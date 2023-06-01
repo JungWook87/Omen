@@ -1,0 +1,58 @@
+package com.ln.intranet.common;
+
+
+import java.text.SimpleDateFormat;
+
+public class Util {
+	   // �뙆�씪紐� 蹂�寃� 硫붿냼�뱶
+	   public static String fileRename(String originFileName) {
+	      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	      String date = sdf.format(new java.util.Date(System.currentTimeMillis()));
+
+	      int ranNum = (int) (Math.random() * 100000); // 5�옄由� �옖�뜡 �닽�옄 �깮�꽦
+
+	      String str = "_" + String.format("%05d", ranNum);
+
+	      String ext = originFileName.substring(originFileName.lastIndexOf("."));
+
+	      return date + str + ext;
+	   }
+	   
+	   // �겕濡쒖뒪 �궗�씠�듃 �뒪�듃由쏀듃 怨듦꺽�쓣 諛⑹� �븯湲� �쐞�븳 硫붿냼�뱶
+	   public static String XSSHandling(String content) {
+	      if(content != null) {
+	         content = content.replaceAll("&", "&amp;");
+	         content = content.replaceAll("<", "&lt;");
+	         content = content.replaceAll(">", "&gt;");
+	         content = content.replaceAll("\"", "&quot;");
+	      }
+	      return content;
+	   }
+
+	   
+	   // �겕濡쒖뒪 �궗�씠�듃 �뒪�듃由쏀듃 �빐�젣
+	   public static String XSSClear(String content) {
+	      if(content != null) {
+	         content = content.replaceAll("&amp;", "&");
+	         content = content.replaceAll("&lt;", "<" );
+	         content = content.replaceAll("&gt;", ">");
+	         content = content.replaceAll("&quot;", "\"");
+	      }
+	      return content;
+	   }
+	   
+	   
+	   // 媛쒗뻾臾몄옄 泥섎━ 
+	   public static String newLineHandling(String content) {
+	      return content.replaceAll("(\r\n|\r|\n|\n\r)", "<br>");
+	   }
+	   
+	   // 媛쒗뻾臾몄옄 �빐�젣
+	   public static String newLineClear(String content) {
+	      return content.replaceAll("<br>", "\n");
+	   }
+	   
+	   
+	   
+	   
+}
