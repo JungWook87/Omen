@@ -1,0 +1,135 @@
+/* 폰트 스타일 */
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 바디 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+
+    font-family: 'OTWelcomeRA';
+}
+
+p {
+    margin: 0;
+}
+
+
+
+/* 박스 전체 스타일 */
+.main-box {
+    background-color: white;
+    border-radius: 10px;
+
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+
+    margin: 40px;
+    margin-right: 0;
+
+    padding: 20px;
+}
+
+.main-box2 {
+    background-color: white;
+    border-radius: 10px;
+
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+
+    margin: 0px 40px;
+    margin-right: 0;
+
+    padding: 20px;
+}
+
+
+/* 박스 내부 상단부 스타일 */
+.main-box-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-box-title-left {
+    display: flex;
+}
+
+
+.main-box-title-left img {
+    width: 16px;
+    height: 16px;
+
+    margin-right: 5px;
+}
+
+.main-box-title-left span {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: var(--primary700);
+}
+
+
+
+.main-box-title-right {
+    display: flex;
+}
+
+.main-box-title-right img {
+    width: 10px;
+    height: 10px;
+
+    margin-left: 5px;
+}
+
+.main-box-title-right span {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: var(--primary700);
+}
+
+.main-box-title-right a {
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: var(--primary700);
+
+}
+
+/* 메인박스 내부 타이틀 폰트 스타일 */
+.main-font-title {
+    font-size: 20px;
+    font-weight: bold;
+
+    color: var(--black);
+}
+
+
+/* 채팅 */
+.chatting-img {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 15px;
+
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.chatting-box {
+    position: fixed;
+
+    bottom: 40px;
+    right: 40px;
+}
