@@ -1,6 +1,5 @@
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
-  border: 1px solid black;
 
   height: calc(100vh - 90px);
 
@@ -38,11 +37,21 @@ section {
 .side-bar li {
   list-style: none;
 
-  /* padding-bottom: 20px; */
-  /* padding-left: 55px; */
 }
 
 
+/* 사이드바 선택 되었을때 스타일 */
+/* FIXME:아래 주석처리 되어 있는 코드를 바꿔서 현재페이지에 맞게 지정 해주면 될것 */
+/* .side-bar li:nth-child(2) {   
+  border-left: 10px solid var(--primary500);
+
+  background-color: rgb(230, 232, 236, 50%);
+  
+}
+
+.side-bar-password {
+  color: var(--primary400);
+} */
 
 
 /* 사이드바 호버 스타일 시작 ------------------------------*/
@@ -80,7 +89,7 @@ a:focus {
   width: 25%;
   height: 100%;
   border-radius: 30px;
-  border: 1px solid var(--primary500);
+  /* border: 1px solid var(--primary500); */
   border-left: none;
   border-right: none;
   position: absolute;
@@ -89,6 +98,7 @@ a:focus {
   opacity: 0;
   transform: scale(0.8);
   transition: all 0.3s ease 0s;
+  background-color: rgb(230, 232, 236, 50%);
 
 }
 
@@ -113,21 +123,13 @@ a:focus {
   transform: scale(1);
 }
 
-.side-bar a:hover:before {
-  border-left: 10px solid var(--primary500);
-}
 
-.side-bar a:hover span:after {
-  border-right: 1px solid var(--primary500);
-}
 
 .menu a {
   color: var(--black);
 
-  /* padding-bottom: 20px; */
-  /* padding-left: 55px; */
   padding: 15px 0 5px 55px;
-  /* padding: 15px 25px; */
+  
 
   font-size: 24px;
 
@@ -138,3 +140,49 @@ a:focus {
 }
 
 /* 사이드바 호버 스타일 끝 ------------------------------*/
+
+/* 컨텐츠 영역 전체 */
+.content-all-page {
+  width: 100%;
+
+
+}
+
+/* 마이페이지 컨텐츠 상단 부분 */
+.myPage-pw-content-top-area {
+  margin: auto;
+  margin-top: 70px;
+  margin-left: 130px;
+  margin-right: 130px;
+}
+
+/* 마이페이지 상단 텍스트 */
+.myPage-pw-top-text1 {
+  font-weight: bold;
+  font-size: 16px;
+
+  color: var(--gray400);
+}
+
+.myPage-pw-top-text2 {
+  font-weight: bold;
+  font-size: 24px;
+
+  color: var(--black);
+}
+
+/* 선 */
+.myPage-pw-top-line {
+  border-bottom: 1px solid var(--gray400);
+
+  margin-top: 30px;
+}
+
+
+/* 마이페이지 하단 부분 */
+.myPage-pw-content-bottom-area {
+  margin: auto;
+  margin-top: 60px;
+  margin-left: 130px;
+  margin-right: 130px;
+}
