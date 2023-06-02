@@ -6,8 +6,14 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 
-	<typeAliases></typeAliases>
+	<typeAliases>
 	
-	<mappers></mappers>
+		<typeAlias type="com.ln.intranet.notice.model.vo.Notice" alias="notice"/>
+	
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="/mappers/notice-mapper.xml"/>
+	</mappers>
 
 </configuration>
