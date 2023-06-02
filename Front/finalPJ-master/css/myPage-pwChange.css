@@ -41,6 +41,21 @@ section {
 }
 
 
+/* 사이드바 선택 되었을때 스타일 */
+.side-bar li:nth-child(2) {   
+  border-left: 10px solid var(--primary500);
+
+  background-color: rgb(230, 232, 236, 50%);
+  
+}
+
+.side-bar-password {
+  color: var(--primary400);
+}
+
+
+
+
 
 
 /* 사이드바 호버 스타일 시작 ------------------------------*/
@@ -78,7 +93,7 @@ a:focus {
   width: 25%;
   height: 100%;
   border-radius: 30px;
-  border: 1px solid var(--primary500);
+  /* border: 1px solid var(--primary500); */
   border-left: none;
   border-right: none;
   position: absolute;
@@ -87,6 +102,7 @@ a:focus {
   opacity: 0;
   transform: scale(0.8);
   transition: all 0.3s ease 0s;
+  background-color: rgb(230, 232, 236, 50%);
 
 }
 
@@ -111,21 +127,13 @@ a:focus {
   transform: scale(1);
 }
 
-.side-bar a:hover:before {
-  border-left: 10px solid var(--primary500);
-}
 
-.side-bar a:hover span:after {
-  border-right: 1px solid var(--primary500);
-}
 
 .menu a {
   color: var(--black);
 
-  /* padding-bottom: 20px; */
-  /* padding-left: 55px; */
   padding: 15px 0 5px 55px;
-  /* padding: 15px 25px; */
+  
 
   font-size: 24px;
 
@@ -246,4 +254,25 @@ input:focus ~ span, input:valid ~ span {
 }
 
 /* 비밀번호 변경 버튼 */
+.password-btn {
+  width: 130px;
+  height: 50px;
+  
+  font-size: 20px;
 
+  border: none;
+  border-radius: 10px;
+
+  background-color: var(--primary400);
+
+  color: white;
+
+  cursor: pointer;
+
+  margin-top: 80px;
+}
+
+.password-btn:hover {
+  background-color: var(--primary300);
+  transition: all 1s;
+}
