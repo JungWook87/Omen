@@ -6,8 +6,12 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 
-	<typeAliases></typeAliases>
+	<typeAliases>
+		<typeAlias type="com.ln.intranet.attendance.model.vo.Attendance" alias="attendance"/>
+	</typeAliases>
 	
-	<mappers></mappers>
+	<mappers>
+		 <mapper resource="/mappers/attendance-mapper.xml"/>
+	</mappers>
 
 </configuration>
