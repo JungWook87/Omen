@@ -21,7 +21,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService service;
 	
-	@GetMapping("/noticeList")
+	@GetMapping("/deptNoticeList")
 	public String selectNoticeList(@ModelAttribute("loginMember") Member loginMember) {
 		
 		int deptCode = loginMember.getDeptCode;
@@ -33,5 +33,13 @@ public class NoticeController {
 		return "/noticeList";
 	}
 
+	@GetMapping("/noticeList")
+	public String selectNoticeList2() {
+		
+		List<Notice> noticeList2 = service.selectNoticeList2();
+		
+		return "";
+	}
+	
 	
 }

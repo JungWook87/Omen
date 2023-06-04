@@ -15,4 +15,9 @@
 		SELECT NOTICE_NO, TITLE, DATE FROM NOTICE 
 		WHERE NOTICE_TYPE = #{deptCode}
 	</select>
+	
+	<select id="selectNoticeList2" resultMap="notice_rm">
+		SELECT NOTICE_NO. TITLE, DATE FROM NOTICE
+		WHERE NOTICE_TYPE = 0
+	</select>
 </mapper>

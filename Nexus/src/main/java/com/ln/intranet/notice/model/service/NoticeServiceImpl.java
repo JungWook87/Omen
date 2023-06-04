@@ -17,4 +17,10 @@ public class NoticeServiceImpl implements NoticeService{
 		return dao.selectNoticeList(deptCode);
 	}
 
+	@Override
+	public List<Notice> selectNoticeList2() {
+		
+		return dao.selectNoticeList2();
+	}
+
 }
