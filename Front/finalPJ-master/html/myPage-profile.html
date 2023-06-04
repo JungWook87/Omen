@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="../component/component.css">
   <link rel="stylesheet" href="../component/variable.css">
   <link rel="stylesheet" href="../css/myPage-profile.css">
+  <!-- sweetAlert2 cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <!-- jquery cdn -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
   <title>마이페이지</title>
 </head>
 
@@ -23,23 +29,23 @@
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href=""><span>프로필</span> </a></li>
-        <li><a href=""><span>비밀번호 변경</span> </a></li>
+        <li><a href="./myPage-profile.html"><span>프로필</span> </a></li>
+        <li><a href="./myPage-pwChange.html"><span>비밀번호 변경</span></a></li>
       </ul>
     </div>
 
     <!-- 컨텐츠 내용 -->
     <div class="content-all-page">
       <!-- 컨텐츠 내용 윗부분 -->
-      <div class="myPage-content-top-area">
-        <p class="myPage-top-text1">마이메뉴 / </p>
-        <p class="myPage-top-text2">프로필</p>
+      <div class="content-all-top-area">
+        <p class="content-all-top-text1">마이메뉴 / </p>
+        <p class="content-all-top-text2">프로필</p>
         <!-- 선 -->
-        <div class="myPage-top-line"></div>
+        <div class="content-all-top-line"></div>
       </div>
 
       <!-- 컨텐츠 내용 아랫부분 -->
-      <div class="myPage-content-bottom-area">
+      <div class="content-all-bottom-area">
         <h1>기본정보</h1>
         <div class="myPage-profile">
 
@@ -59,22 +65,22 @@
             <p class="myPage-profile-detail" id="myPage-profile-rank">부장</p>
             <p class="myPage-profile-detail" id="myPage-profile-date">2011.03.01</p>
           </div>
-         
+
         </div>
-        
+
         <div class="myPage-group">
           <h1>조직</h1>
-          <span>CEO - 총무부</span>        
+          <span>CEO - 총무부</span>
         </div>
       </div>
-    
+
     </div>
 
-       <!-- 채팅창 -->
-       <div class="chatting-box">
-        <a href="#">
-            <img class="chatting-img" src="../images/chattImg.png" alt="">
-        </a>
+    <!-- 채팅창 -->
+    <div id="chatting-function" class="chatting-box">
+      <a href="#">
+        <img class="chatting-img" src="../images/chattImg.png" alt="">
+      </a>
     </div>
 
   </section>
