@@ -15,4 +15,9 @@ public class NoticeDao {
 		return sqlSession.selectList("noticeMapper.selectNoticeList", deptCode);
 	}
 
+	public List<Notice> selectNoticeList2() {
+		
+		return sqlSession.selectList("noticeMapper.selectNoticeList2");
+	}
+
 }
