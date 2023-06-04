@@ -223,6 +223,8 @@ td:last-child {
 
     margin-left: 10px;
     margin-right: 10px;
+
+    padding: 15px;
 }
 
 .main-attn-btn2 {
@@ -239,6 +241,8 @@ td:last-child {
     border-radius: 5px;
 
     cursor: pointer;
+
+    padding: 15px;
 }
 
 
@@ -255,6 +259,8 @@ td:last-child {
     border-radius: 10px;
 
     background-color: #FFF3E6;
+
+    padding: 20px;
 }
 
 
@@ -272,6 +278,8 @@ td:last-child {
     border-radius: 10px;
 
     background-color: #E7F5E8;
+
+    padding: 20px;
 }
 
 
@@ -290,6 +298,7 @@ td:last-child {
 
     background-color: #F0F5FF;
 
+    padding: 20px;
 }
 
 /* 연필 아이콘 */
@@ -323,6 +332,8 @@ td:last-child {
     border-radius: 10px;
 
     background-color: #FCECEC;
+
+    padding: 20px;
 }
 
 /* 부서 공지사항 */
@@ -338,4 +349,6 @@ td:last-child {
     border-radius: 10px;
 
     background-color: #F1EBFF;
+
+    padding: 20px;
 }
