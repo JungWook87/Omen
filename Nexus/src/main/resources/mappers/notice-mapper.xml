@@ -12,7 +12,12 @@
 	</resultMap>
 	
 	<select id="selectNoticeList" resultMap="notice_rm">
-		SELECT NOTICE_NO, TITLE, DATE FROM NOTICE 
+		SELECT NOTICE_NO, TITLE, CREATE_DATE FROM NOTICE 
 		WHERE NOTICE_TYPE = #{deptCode}
+	</select>
+	
+	<select id="selectPublicNoticeList" resultMap="notice_rm">
+		SELECT NOTICE_NO, TITLE, CREATE_DATE FROM NOTICE
+		WHERE NOTICE_TYPE = 0
 	</select>
 </mapper>

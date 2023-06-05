@@ -44,7 +44,7 @@
 	<!-- 이 패키지 이하에서 출력되는 로그들을 출력하겠다.  
 		trace < debug < info < warn < error < fatal
 	-->
-	<logger name="edu.kh.comm">
+	<logger name="com.ln.intranet">
 		<level value="debug" />
 		<appender-ref ref="dailyRollingFile"/>
 	</logger>
