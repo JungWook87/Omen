@@ -28,7 +28,7 @@
 
             <!-- 로고 -->
             <div>
-                <a href="">
+                <a href="main">
                     <img src="${contextPath}/resources/images/logo-width.png" alt="">
                 </a>
             </div>
@@ -36,13 +36,13 @@
             <!-- 네비바 -->
             <div>
                 <ul class="main-header-ul">
-                    <li><a href="#">홈</a> </li>
-                    <li><a href="#">공지사항</a> </li>
-                    <li><a href="#">부서</a> </li>
-                    <li><a href="#">결재</a> </li>
-                    <li><a href="#">근무/휴가</a> </li>
-                    <li><a href="#">회의실</a> </li>
-                    <li><a href="#">설문</a> </li>
+                    <li><a href="main">홈</a> </li>
+                    <li><a href="notice">공지사항</a> </li>
+                    <li><a href="dept">부서</a> </li>
+                    <li><a href="work">결재</a> </li>
+                    <li><a href="attendance">근무/휴가</a> </li>
+                    <li><a href="meeting">회의실</a> </li>
+                    <li><a href="survey">설문</a> </li>
                 </ul>
             </div>
         </div>
