@@ -17,21 +17,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class NoticeController {
-
-	@Autowired
-	private NoticeService service;
-	
-	@GetMapping("/noticeList")
-	public String selectNoticeList(@ModelAttribute("loginMember") Member loginMember) {
-		
-		int deptCode = loginMember.getDeptCode;
-		
-		List<Notice> noticeList = service.selectNoticeList(deptCode);
-		
-		log.debug(noticeList + "");
-		
-		return "/noticeList";
-	}
+	/*
+	 * @Autowired private NoticeService service;
+	 */
+//	
+//	@GetMapping("/noticeList")
+//	public String selectNoticeList(@ModelAttribute("loginMember") Member loginMember) {
+//		
+//		int deptCode = loginMember.getDeptCode;
+//		
+//		List<Notice> noticeList = service.selectNoticeList(deptCode);
+//		
+//		log.debug(noticeList + "");
+//		
+//		return "/noticeList";
+//	}
 
 	
 }
