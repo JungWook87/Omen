@@ -22,28 +22,31 @@
 
         <div class="login-box">
             <img class="logo-width" src="${contextPath}/resources/images/logo-height.png" alt="">
-            <form>
-                <div class="user-box">
-                    <input type="text" name="" required="">
-                    <label>ID</label>
-                </div>
-                <div class="user-box">
-                    <input type="password" name="" required="">
-                    <label>Password</label>
-                </div>
-
-                <a href="main">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    login
-                </a>
+            <form action="member/login" method="POST" name="login-form" onsubmit="return loginValidate()">
+                    <div class="user-box">
+                        <input type="text" id="inputId" name="memId">
+                        <label>ID</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="password" id="inputPw" name="memPw">
+                        <label>Password</label>
+                    </div>
+                    <button>
+                        로그인
+                    </button>
             </form>
         </div>
     </div>
 
     <script src="${contextPath}/resources/js/member/login.js"></script>
+    <c:if test="${ !empty message }">
+	    <script>
+	        alert("${message}");
+	        // EL 작성 시 scope를 지정하지 않으면
+	        // page -> request -> session -> application 순서로 검색하여
+	        // 일치하는 속성이 있으면 출력
+	    </script>
+	</c:if> 
 </body>
 
 </html>
