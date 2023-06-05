@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+
+	<resultMap type="notice" id="notice_rm">
+		<id property="noticeNo" column="NOTICE_NO" />
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="file" column="FILE"/>
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="noticeType" column="NOTICE_TYPE"/>
+	</resultMap>
+	
+	<select id="selectNoticeList" resultMap="notice_rm">
+		SELECT NOTICE_NO, TITLE, DATE FROM NOTICE 
+		WHERE NOTICE_TYPE = #{deptCode}
+	</select>
+</mapper>

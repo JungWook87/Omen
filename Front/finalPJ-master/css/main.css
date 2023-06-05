@@ -1,0 +1,354 @@
+body {
+    background-color: var(--gray50);
+}
+
+
+/* 메인 헤더 부분 시작 */
+
+header {
+    height: 180px;
+
+    background-image: url(../images/banner.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+
+.main-banner-text1 {
+    color: #FBFFDC;
+    ;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.main-banner-text2 {
+    color: #FBFFDC;
+    ;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    display: flex;
+}
+
+
+
+/* 리스트 점 없애는 css */
+.main-header-ul {
+    list-style: none;
+
+    display: flex;
+
+    color: white;
+
+    margin: 0 100px;
+    padding: 0;
+
+    white-space: nowrap;
+}
+
+/* 밑줄 애니메이션 */
+.main-header-ul>li {
+    font-size: 20px;
+
+    margin-top: 33px;
+    margin-right: 80px;
+
+
+    color: #333;
+    text-decoration: none;
+    display: inline-block;
+
+    position: relative;
+
+}
+
+
+.main-header-ul>li:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #ffb000;
+    transition: width 0.5s ease 0s, left 0.5s ease 0s;
+    width: 0;
+
+
+}
+
+.main-header-ul>li:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.main-header-ul a {
+    text-decoration: none;
+    color: white;
+}
+
+.main-header-ul a:hover {
+    color: var(--primary300);
+}
+
+
+
+.main-banner-top {
+    display: flex;
+}
+
+.main-banner-bottom {
+
+    margin-left: 140px;
+}
+
+/* 메인 헤더 부분 끝 */
+
+
+/* 메인 섹션 부분 시작 */
+
+section {
+    width: 100%;
+    height: calc(100% - 180px);
+
+    display: flex;
+}
+
+.main-area-left {
+    margin: auto;
+    margin-right: 0;
+    margin-top: 40px;
+
+
+}
+
+.main-area-right {
+    margin: auto;
+    margin-left: 30px;
+
+}
+
+.main-attn-area {
+    display: flex;
+}
+
+/* 출퇴근 기록 */
+#main-attn-check {
+    width: 350px;
+    height: 300px;
+
+    padding: 30px;
+}
+
+/* 업무중 표시 */
+#main-attn-circle {
+    width: 16px;
+    height: 16px;
+
+    border-radius: 50%;
+    background-color: springgreen;
+
+    margin-right: 10px;
+}
+
+/* 출퇴근 시간 체크 테이블 */
+
+table {
+    width: 100%;
+    height: 150px;
+
+    margin-top: 5px;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 3px solid white;
+    text-align: center;
+}
+
+th:first-child {
+    background-color: var(--gray50);
+    border-top-left-radius: 15px;
+}
+
+th:last-child {
+    background-color: var(--gray50);
+    border-top-right-radius: 15px;
+}
+
+td:first-child {
+    background-color: var(--primary50);
+    border-bottom-left-radius: 15px;
+}
+
+td:last-child {
+    background-color: var(--primary50);
+    border-bottom-right-radius: 15px;
+}
+
+/* 자리비움, 업무종료 버튼 */
+.main-attn-btns {
+    margin-top: 20px;
+
+    display: flex;
+}
+
+
+.main-attn-btn1 {
+    width: 130px;
+    height: 45px;
+
+    background-color: var(--primary400);
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    margin-left: 10px;
+    margin-right: 10px;
+
+    padding: 15px;
+}
+
+.main-attn-btn2 {
+    width: 130px;
+    height: 45px;
+
+    background-color: var(--gray100);
+    color: var(--gray700);
+
+    font-size: 20px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    padding: 15px;
+}
+
+
+/* 결재진행 상황 */
+#main-work-progress {
+    width: 350px;
+    height: 200px;
+}
+
+.main-work-progress-box {
+    width: 100%;
+    height: 146px;
+
+    border-radius: 10px;
+
+    background-color: #FFF3E6;
+
+    padding: 20px;
+}
+
+
+
+/* 요청된 승인 */
+#main-approval-list {
+    width: 350px;
+    height: 200px;
+}
+
+.main-approval-list-box {
+    width: 100%;
+    height: 146px;
+
+    border-radius: 10px;
+
+    background-color: #E7F5E8;
+
+    padding: 20px;
+}
+
+
+
+/* 오늘의 알림 */
+#main-today-alert {
+    width: 1000px;
+    height: 100px;
+}
+
+.main-today-line-box {
+    width: 960px;
+    height: 48px;
+
+    border-radius: 10px;
+
+    background-color: #F0F5FF;
+
+    padding: 20px;
+}
+
+/* 연필 아이콘 */
+.main-today-alert-pencil {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+
+/* 부서일정 */
+#main-calender {
+    width: 1000px;
+    height: 400px;
+}
+
+/* 공지사항 & 부서 공지사항 박스 */
+.main-notice-box {
+    display: flex;
+}
+
+/* 공지사항 */
+#main-notice {
+    width: 480px;
+    height: 200px;
+}
+
+.main-notice-box-in-box {
+    width: 440px;
+    height: 147px;
+
+    border-radius: 10px;
+
+    background-color: #FCECEC;
+
+    padding: 20px;
+}
+
+/* 부서 공지사항 */
+#main-dept-notice {
+    width: 480px;
+    height: 200px;
+}
+
+.main-dept-notice-box {
+    width: 440px;
+    height: 147px;
+
+    border-radius: 10px;
+
+    background-color: #F1EBFF;
+
+    padding: 20px;
+}

@@ -1,5 +1,0 @@
-package com.ln.intranet.common.interceptor;
-
-public class BoardTypeInterceptor {
-
-}
