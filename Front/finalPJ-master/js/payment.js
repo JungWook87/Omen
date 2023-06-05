@@ -22,24 +22,19 @@ $(function() {
   });
 });
 
-btn.addEventListener("click", () => {
-
-  
-  }) 
-
   // 모달창 스타일
 const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap');
 const closeBtn = document.getElementById('closeBtn');
 const modalBody = document.querySelector('.modalBody');
 const cancellBtn = document.getElementById('cancell-btn');
-const noticeTitle = document.querySelector('.modal-title > input');
-const noticeContent = document.querySelector('.modal-detail > textarea');
+const paymentTitle = document.querySelector('.modal-title > input');
+const paymentContent = document.querySelector('.modal-detail > textarea');
 
-// 공지사항 버튼 이벤트
+// 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
-  noticeTitle.value = '';
-  noticeContent.value = '';
+  paymentTitle.value = '';
+  paymentContent.value = '';
 
   modal.style.display = 'block';
   modalBody.classList.add('modal-open');
