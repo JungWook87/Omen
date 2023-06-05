@@ -34,6 +34,7 @@
                     <button>
                         로그인
                     </button>
+                    <a href="main">메인화면으로</a>
             </form>
         </div>
     </div>
