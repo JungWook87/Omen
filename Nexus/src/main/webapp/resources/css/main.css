@@ -156,7 +156,7 @@ section {
     height: 16px;
 
     border-radius: 50%;
-    background-color: springgreen;
+    background-color: var(--gray300);
 
     margin-right: 10px;
 }
@@ -231,7 +231,7 @@ td:last-child {
     width: 130px;
     height: 45px;
 
-    background-color: var(--gray100);
+    background-color: var(--primary100);
     color: var(--gray700);
 
     font-size: 20px;

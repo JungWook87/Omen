@@ -73,7 +73,7 @@
             <div id="main-attn-check" class="main-box">
                 <div class="main-attn-area">
                     <div id="main-attn-circle"></div>
-                    <span class="main-font-title">업무중 : 100시간 20분</span>
+                    <span class="main-font-title">업무중 : --시간 --분</span>
                 </div>
                 <div>
                     <table>
@@ -82,14 +82,14 @@
                             <th>퇴근시간</th>
                         </tr>
                         <tr>
-                            <td>9 : 00</td>
-                            <td>18 : 00</td>
+                            <td id="attn-start">00 : 00</td>
+                            <td id="attn-end">00 : 00</td>
                         </tr>
                     </table>
                 </div>
                 <div class="main-attn-btns">
-                    <button class="main-attn-btn1">자리비움</button>
-                    <button class="main-attn-btn2">업무종료</button>
+                    <button class="main-attn-btn1">마이페이지</button>
+                    <button class="main-attn-btn2">업무시작</button>
                 </div>
             </div>
 
@@ -203,6 +203,8 @@
             </a>
         </div>
     </section>
+    
+    <script type="${contextPath}/resources/js/main.js"></script>
 
 </body>
 
