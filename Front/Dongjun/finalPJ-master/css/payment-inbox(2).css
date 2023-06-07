@@ -190,6 +190,43 @@ a:focus {
   color: var(--black);
 }
 
+
+
+/* 결재 시작일 종료일 조회영역 */
+.content-all-date{
+display: flex;
+flex-direction: column;
+justify-content: center;
+text-align: center;
+margin-top: 30px;
+}
+
+/* 결재 시작일 종료일 텍스트 및 데이트 */
+.content-all-date-p{
+  font-size: larger;
+  color: gray;
+  display: flex;
+}
+
+.date-p:nth-of-type(1){
+  margin-left: 350px;
+}
+.date-p:nth-of-type(2){
+  margin-left: 120px;
+}
+
+.content-all-date-input > input{
+  width: 310px;
+  height: 50px;
+  font-size: x-large;
+  border: none;
+}
+
+label{
+  font-size: x-large;
+  margin-right: 100px;
+}
+
 /* 컨텐츠 하단 부분 */
 .content-all-bottom-area {
   margin: auto;
@@ -252,10 +289,6 @@ select{
   padding: 20px;
 }
 
-.row{
-  cursor: pointer;
-}
-
 /* 모달 박스 스타일 */
 /* 결재 모달창 */
 
@@ -273,7 +306,7 @@ select{
 
 }
 
-.payment-inbox-modalBody {
+.payment-modalBody {
   min-width: 570px;
   min-height: 100px;
   max-width: 80%;
@@ -291,7 +324,7 @@ select{
   width: 80%;
 }
 
-.payment-inbox-modalBody.modal-open {
+.payment-modalBody.modal-open {
   /* 모달이 열릴 때 애니메이션 효과 추가 */
   animation: 0.35s ease-in-out 0s 1 normal forwards running modalAniOpen;
 }
@@ -311,7 +344,7 @@ select{
   }
 }
 
-.payment-inbox-modalBody.modal-close {
+.payment-modalBody.modal-close {
   /* 모달이 닫힐 때 애니메이션 효과 추가 */
   animation: 0.35s ease-in-out 0s 1 normal forwards running modalAniClose;
 }
@@ -329,7 +362,7 @@ select{
   }
 }
 
-.payment-inbox-modalBody h1 {
+.payment-modalBody h1 {
   color: var(--black);
 
   font-size: 24px;
@@ -348,83 +381,54 @@ select{
   width: 18px;
   height: 18px;
 }
-/* 모달 */
-.payment-inbox-modal-header{
-  background-color: var(--gray50);
-  
-}
-/* 모달 헤더 */
-.payment-inbox-modal-headerbox{
-  margin-top: 29px;
-  font-size: 16px;
-}
-.payment-inbox-modal-headerbox-content{
-  padding: 3px 0px;
-}
 
-.modal-headerbox-footer{
-  padding: 20px 0px;
-}
-
-.modal-headerbox-footer-btn{
-  color: inherit;
-  height: 32px;
-  padding: 8px 12px;
-  border: 1px solid;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-/* 모달 테이블영역 */
-
-.payment-inbox-modal-table-body{
-  margin-top: 50px;
-}
-
-.payment-inbox-modal-table-body table{
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-}
-
-.payment-inbox-modal-table-body table th {
-  color: var(--gray600);
+/* 모달 선 */
+.payment-modal-line {
   border-bottom: 1px solid var(--gray300);
-  padding-bottom: 10px;
-}
 
-.payment-inbox-modal-table-body table tbody tr:nth-of-type(1){
-  background-color: var(--primary100);
-  border-radius: 10px;
-}
-.payment-inbox-modal-table-body table tbody tr:nth-of-type(2){
-  background-color: var(--primary200);
-  border-radius: 10px;
-}
-.payment-inbox-modal-table-body table tbody tr:nth-of-type(3){
-  background-color: var(--primary300);
-  border-radius: 10px;
+  margin-top: 20px;
 }
 
 
-.payment-inbox-modal-table-body table td{
-  color: black;
-  padding: 20px;
-}
-
-
-/*모달 내용 스타일 */
-.payment-inbox-modalBody p {
+/* 제목 , 내용 스타일 */
+.payment-modalBody p {
   color: var(--gray400);
 
   margin-top: 36px;
 }
 
-.payment-inbox-modal-table-body h2{
-  margin-bottom: 20px;
+.payment-modal-template select{
+  width: 25%;
+  height: 40px;
 }
 
-.payment-inbox-modal-detail textarea {
+.payment-modal-title input {
+  width: 100%;
+  height: 50px;
+
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+
+  background-color: var(--gray50);
+
+  padding: 10px;
+
+  font-size: 18px;
+
+  outline: none;
+}
+
+.payment-modal-title input:focus {
+  border-color: var(--primary400);
+
+  background-color: white;
+}
+
+.payment-modal-title input::placeholder {
+  color: var(--gray200);
+}
+
+.payment-modal-detail textarea {
   width: 100%;
   max-height: 350px;
 
@@ -441,17 +445,7 @@ select{
   resize: none;
 }
 
-.payment-inbox-modal-coment input{
-  width: 100%;
-  height: 50px;
-  border: 1px solid var(--gray300);
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 18px;
-  outline: none;
-}
-
-.payment-inbox-modal-approver input{
+.payment-modal-approver input{
   width: 100%;
   height: 50px;
   border: 1px solid var(--gray300);
@@ -462,17 +456,6 @@ select{
   outline: none;
 
 }
-
-.payment-inbox-modal-checkbox{
-  margin: 10px 0px 10px;
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  font-size: large;
-  align-items: center;
-}
-
-
 
 /* 파일업로드된 스타일 */
 .preview ol {
@@ -552,24 +535,32 @@ select{
   transition: all 1s;
 }
 
+/* 임시 저장 */
+.payment-modal-save{
+  margin-top: 20px;
+}
+/* 임시저장 버튼 */
+#save-draft{
+  width: 90px;
+  height: 35px;
+  padding: 13px;
+  font-size: 14px;
+  color: white;
+  background-color: var(--primary400);
+  border: none;
+  border-radius: 5px;
+  vertical-align: middle;
+  line-height: normal;
+  cursor: pointer;
+
+}
+
 
 /* 확인 취소 버튼 */
 .payment-submit-reset-btns {
   margin-top: 20px;
 
   float: right;
-}
-
-#companion-btn{
-  width: 60px;
-  height: 30px;
-  color: white;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(252, 50, 50, 0.8);
-  padding-top: 5px;
-  cursor: pointer;
 }
 
 #cancell-btn {
