@@ -1,6 +1,7 @@
 package com.ln.intranet.attendance.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,9 @@ public class AttendanceDAO {
 
 	public List<Attendance> selectAttendanceList(int memNo) {
 		return sqlSession.selectList("attendanceMapper.selectAttendanceList", memNo);
+	}
+
+	public int attnStrartHours(Map<String, Object> map, int memNo) {
+		return sqlSession.insert("attendanceMapper.startHours", memNo);
 	}
 }
