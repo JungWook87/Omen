@@ -1,16 +1,13 @@
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
 
-  height: calc(100vh - 90px);
-
   display: flex;
 }
 
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  height: 100%;
-
+  min-height: 100vh;
   background-color: var(--side);
 
 }
@@ -207,33 +204,62 @@ a:focus {
   margin-right: 130px;
 }
 
-/* 공지사항 번호, 제목, 작성일 */
-.notice-title {
+
+/* 부서 공지사항 */
+.dept-notice-table {
   margin-top: 80px;
+}
+
+.dept-notice-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.dept-notice-table table th {
+  color: var(--gray600);
+
+  border-bottom: 1px solid var(--gray300);
+
+  padding-bottom: 10px;
 
   font-size: 14px;
-
-  display: flex;
-  justify-content: space-between;
-
-  color: var(--gray600);
+  font-weight: 100;
 }
 
-.notice-title>span:nth-child(1) {
-  padding-right: 100px;
+.dept-notice-table table td {
+  color: var(--black);
+
+  border-bottom: 1px solid var(--gray100);
+
+  padding: 30px 0;
 }
 
-.notice-title>span:nth-child(2) {
-  padding-right: 1200px;
+.dept-notice-table tbody>tr:hover {
+  cursor: pointer;
+
+  background-color: var(--gray50)
 }
 
-.notice-title>span:nth-child(3) {
-  padding-right: 250px;
+.dept-notice-table table th:first-child {
+  width: 200px;
+
+  text-align: left;
 }
 
-/* 선 */
-.content-all-top-line {
-  border-bottom: 1px solid var(--gray400);
+.dept-notice-table table th:nth-child(2) {
+  width: 800px;
 
-  margin-top: 20px;
+  text-align: left;
+}
+
+.dept-notice-table table th:nth-child(3) {
+  width: 200px;
+
+  text-align: left;
+}
+
+.dept-notice-table table th:nth-child(4) {
+
+  text-align: left;
 }

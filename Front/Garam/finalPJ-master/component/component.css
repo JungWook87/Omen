@@ -26,6 +26,28 @@ p {
     margin: 0;
 }
 
+/* 스크롤바 스타일 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear,
+            left bottom,
+            left top,
+            color-stop(0.44, rgb(122, 153, 217)),
+            color-stop(0.72, rgb(73, 125, 189)),
+            color-stop(0.86, rgb(28, 58, 148)));
+}
+
 
 
 /* 박스 전체 스타일 */
@@ -167,10 +189,11 @@ p {
 /* 사이드바 */
 .side-bar {
     min-width: 300px;
+
 }
 
 
-/* 테이블스타일 */
+/* 공지사항 테이블스타일 */
 .notice-table {
     margin-top: 80px;
 }
@@ -737,4 +760,21 @@ p {
 #check-remove-btn:hover {
     background-color: var(--gray50);
     transition: all 1s;
+}
+
+/* sweetAlert 스타일 */
+.swal2-popup {
+    background-color: white !important;
+}
+
+.swal2-title {
+    color: var(--gray600) !important;
+}
+
+.swal2-input {
+    background: white !important;
+
+    border: 1px solid var(--gray400) !important;
+
+    color: var(--black) !important;
 }

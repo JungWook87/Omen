@@ -2,7 +2,7 @@
 section {
 
 
-  height: calc(100vh - 90px);
+
 
   display: flex;
 }
@@ -10,7 +10,7 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  height: 100%;
+  min-height: 100vh;
 
   background-color: var(--side);
 

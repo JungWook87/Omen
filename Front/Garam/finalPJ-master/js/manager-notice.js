@@ -169,9 +169,9 @@ const successBtn = document.getElementById('success-btn');
 successBtn.addEventListener("click", () => {
 
   if(noticeTitle.value == "") {
-    Swal.fire('제목을 입력해 주세요');
+    Swal.fire('제목을 입력해 주세요','','error');
   } else if(noticeContent.value == '') {
-    Swal.fire('내용을 입력해 주세요')
+    Swal.fire('내용을 입력해 주세요','','warning')
   } else {
     
     const tr = document.createElement('tr');
