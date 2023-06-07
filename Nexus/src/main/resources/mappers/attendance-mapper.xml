@@ -11,10 +11,16 @@
 		<result property="attnEnd" column="ATTN_END" />
 		<result property="workingHours" column="WORKING_HOURS" />
 		<result property="extendedWorkingHours" column="EXTENDED_WORKING_HOURS" />
+		<result property="attdTypeName" column="ATTD_TYPE_NAME" />
+		
 	</resultMap>
 	
-	<select id="selectAttendanceList">
-		
+	<select id="selectAttendanceList" parameterType="_int" resultMap="attendance_rm">
+		SELECT ATTD_TYPE_NAME , TO_CHAR(TODAY, 'YYYY-MM-DD') AS TODAY, ATTN_START, ATTN_END, WORKING_HOURS, EXTENDED_WORKING_HOURS  
+		FROM ATTENDANCE 
+		JOIN ATTD_TYPE USING(ATTD_TYPE_NO)
+		WHERE MEM_NO = ${memNo}
+		AND TODAY &lt;= SYSDATE
 	</select>
 	
 	
