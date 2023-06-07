@@ -145,7 +145,7 @@
                 </div>
 
                 <div class="main-today-line-box">
-                    <p>집에가고싶다</p>
+                    <p>집에가고싶다  ~~ 세션 테스트 "${loginMember.memName}"" 의 접속 ~~</p>
 
                 </div>
             </div>
@@ -203,6 +203,8 @@
             </a>
         </div>
     </section>
+
+    <script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 

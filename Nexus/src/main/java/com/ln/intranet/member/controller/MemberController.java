@@ -27,6 +27,9 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	
+	// 로그인 컨트롤러
+	// 아이디 쿠키 or 자동로그인 쿠키 미구현
 	@PostMapping("/login")
 	public String login( @ModelAttribute Member inputMember,
 			Model model,
@@ -41,6 +44,8 @@ public class MemberController {
 		
 		if(loginMember != null) {
 			model.addAttribute("loginMember",loginMember);
+			
+			logger.info("로그인 회원 : " + inputMember.getMemId());
 			
 			return "/main";
 

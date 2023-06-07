@@ -3,7 +3,7 @@
 <mapper namespace="memberMapper">
 	
 	<resultMap type="member" id="member_rm">
-		<id 	property="memberNo"     column="MEM_NO" />
+		<id 	property="memNo" 	    column="MEM_NO" />
 		<result property="jobNo"  		column="JOB_NO"/>
 		<result property="teamNo" 		column="TEAM_NO"/>
 		<result property="deptNo" 		column="DEPT_NO"/>
@@ -19,6 +19,7 @@
 		<result property="secession" 	column="SECESSION"/>
 	</resultMap>
 	
+	<!-- 로그인 -->
 	<select id="login" parameterType="member" resultMap="member_rm">
 		SELECT MEM_NO, JOB_NO, TEAM_NO, DEPT_NO, MEM_ID,
 				MEM_PW, MEM_NAME, MEM_RNO, ADDRESS, EMAIL,
@@ -26,7 +27,7 @@
 				TO_CHAR( DEPARTURE_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEPARTURE_DATE,
 				SECESSION 
 		FROM MEMBER
-		WHERE MEM_ID = #{memId} AND MEM_PW = #{memPw} 
+		WHERE MEM_ID = #{memId}
 		AND SECESSION = 'N'
 	</select>
 	
