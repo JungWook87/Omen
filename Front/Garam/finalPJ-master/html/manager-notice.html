@@ -7,14 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../component/component.css">
   <link rel="stylesheet" href="../component/variable.css">
-  <link rel="stylesheet" href="../css/dept-board.css ">
+  <link rel="stylesheet" href="../css/manager-notice.css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <!-- jquery cdn -->
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
-  <title>부서 게시판</title>
+
+  <title>관리자-공지사항등록</title>
 </head>
 
 <body>
@@ -25,14 +26,21 @@
     <!-- 사이드 바 -->
     <div class="side-bar menu">
       <!-- 페이지마다 바뀌는 제목 -->
-      <h1>부서</h1>
-
-      <!-- 페이지마다 바뀌는 부제목 -->
-      <ul>
-        <li><a href="./dept-notice.html"><span>부서 공지사항</span> </a></li>
-        <li><a href="./dept-board.html"><span>부서 게시판</span> </a></li>
-        <li><a href="./dept-schedule.html"><span>부서 일정</span> </a></li>
+      <h1>직원</h1>
+      <ul class="employee-ul">
+        <li><a href="./manager-employeeAdd.html"><span>추가</span> </a></li>
+        <li><a href="./manager-employeeUpdate.html"><span>정보 수정</span> </a></li>
+        <li><a href="./manager-employeeDelete.html"><span>삭제</span> </a></li>
       </ul>
+      <h1>공지사항</h1>
+      <ul class="notice-ul">
+        <li><a href="./manager-notice.html"><span>공지사항 등록</span> </a></li>
+      </ul>
+      <h1>설문</h1>
+      <ul class="survey-ul">
+        <li><a href="./manager-survey.html"><span>설문 등록</span> </a></li>
+      </ul>
+
     </div>
 
     <!-- 컨텐츠 내용 -->
@@ -45,21 +53,23 @@
 
           <!-- 컨텐츠 제목 부분 -->
           <div>
-            <p class="content-all-top-text1">부서 / </p>
-            <p class="content-all-top-text2">부서 게시판</p>
+            <p class="content-all-top-text1">공지사항 / </p>
+            <p class="content-all-top-text2">공지사항 등록</p>
           </div>
 
           <!-- 오른쪽 버튼 부분 -->
+
+          <!-- 공지사항 모달창 -->
           <div>
-            <button class="omen-btn" id="popupBtn">글쓰기</button>
+            <button type="button" class="omen-btn" id="popupBtn">공지사항 추가</button>
           </div>
-       
+
           <div id="modalWrap">
             <div class="modalBody">
               <span id="closeBtn">
                 <img src="../images/Xbtn.png" alt="">
               </span>
-              <h1>부서 게시판</h1>
+              <h1>공지사항</h1>
               <!-- 선1 -->
               <div class="modal-line"></div>
 
@@ -103,14 +113,13 @@
 
       <!-- 컨텐츠 내용 아랫부분 -->
       <div class="content-all-bottom-area">
-        <div class="dept-notice-table">
+        <div class="notice-table">
           <table>
 
             <thead>
               <tr>
                 <th>번호</th>
                 <th>제목</th>
-                <th>작성자</th>
                 <th>작성일</th>
               </tr>
             </thead>
@@ -119,11 +128,10 @@
               <tr>
                 <td>1</td>
                 <td>공지사항입니다</td>
-                <td>오가람</td>
                 <td>2023년 6월 4일(일)</td>
               </tr>
 
-           
+
             </tbody>
           </table>
         </div>
@@ -135,7 +143,7 @@
           <span id="check-closeBtn">
             <img src="../images/Xbtn.png" alt="">
           </span>
-          <h1>부서 게시판</h1>
+          <h1>공지사항</h1>
           <!-- 선1 -->
           <div class="modal-line"></div>
 
@@ -167,7 +175,6 @@
 
     </div>
 
-
     <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
       <a href="#">
@@ -176,7 +183,8 @@
     </div>
   </section>
 
-  <script src="../js/dept-board.js"></script>
+
+  <script src="../js/manager-notice.js"></script>
 </body>
 
 </html>

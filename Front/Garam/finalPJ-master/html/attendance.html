@@ -7,16 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../component/component.css">
   <link rel="stylesheet" href="../component/variable.css">
-  <link rel="stylesheet" href="../css/dept-schedule.css ">
+  <link rel="stylesheet" href="../css/attendance.css ">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <!-- jquery cdn -->
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
-  <!-- fullcalendar cdn -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  <title>부서 일정</title>
+  <title>근무/휴가</title>
 </head>
 
 <body>
@@ -27,13 +25,11 @@
     <!-- 사이드 바 -->
     <div class="side-bar menu">
       <!-- 페이지마다 바뀌는 제목 -->
-      <h1>부서</h1>
+      <h1>근무/휴가</h1>
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href="./dept-notice.html"><span>부서 공지사항</span> </a></li>
-        <li><a href="./dept-board.html"><span>부서 게시판</span> </a></li>
-        <li><a href="./dept-schedule.html"><span>부서 일정</span> </a></li>
+        <li><a href="./dept-notice.html"><span>근태 현황</span> </a></li>
       </ul>
     </div>
 
@@ -47,30 +43,49 @@
 
           <!-- 컨텐츠 제목 부분 -->
           <div>
-            <p class="content-all-top-text1">부서 / </p>
-            <p class="content-all-top-text2">부서 일정</p>
+            <p class="content-all-top-text2">근태현황</p>
+            <p class="content-all-top-text1">오가람님의 근태현황입니다.</p>
           </div>
-
 
         </div>
 
       </div>
 
       <!-- 컨텐츠 내용 아랫부분 -->
-
       <div class="content-all-bottom-area">
+        <div class="attendance-table">
+          <table>
 
-        <!-- 부서일정 -->
-        <!-- calendar 태그 -->
-        <div id='calendar-container'>
-          <div id='calendar'></div>
+            <thead>
+              <tr>
+                <th>분류</th>
+                <th>날짜</th>
+                <th>출근시간</th>
+                <th>퇴근시간</th>
+                <th>근무시간</th>
+                <th>연장근무시간</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>출근</td>
+                <td>2023년 6월 4일</td>
+                <td>09:00</td>
+                <td>18:00</td>
+                <td>9시간</td>
+                <td>3시간</td>
+              </tr>
+
+           
+            </tbody>
+          </table>
         </div>
-
-        
       </div>
 
 
     </div>
+
 
     <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
@@ -79,7 +94,8 @@
       </a>
     </div>
   </section>
-  <script src="../js/dept-dchedule.js"></script>
+
+  <script src="../js/dept-board.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
 
+
   display: flex;
 }
 
@@ -42,32 +43,27 @@ section {
 }
 
 
-
 /* 사이드바 선택 되었을때 스타일 */
-.side-bar li:nth-child(2) {
+/* FIXME:아래 주석처리 되어 있는 코드를 바꿔서 현재페이지에 맞게 지정 해주면 될것 */
+.employee-ul li:nth-child(1) {
   border-left: 10px solid var(--primary500);
 
   background-color: rgb(230, 232, 236, 50%);
 
 }
 
-.side-bar li:nth-child(2)>a:first-child>span:first-child {
+.employee-ul li:first-child>a:first-child>span:first-child {
 
   color: var(--primary400);
 }
 
-.side-bar li:nth-child(2)>a:first-child {
+.employee-ul li:first-child>a:first-child {
   padding-left: 30px;
 }
 
 
 
-
-
-
-/* 사이드바 호버 스타일 시작 ------------------------------*/
-
-*,
+사이드바 호버 스타일 시작 ------------------------------ *,
 *:after,
 *:before {
   -webkit-box-sizing: border-box;
@@ -159,7 +155,7 @@ a:focus {
 
 }
 
-/* 마이페이지 컨텐츠 상단 부분 */
+/* 컨텐츠 상단 부분 */
 .content-all-top-area {
   margin: auto;
   margin-top: 70px;
@@ -167,7 +163,7 @@ a:focus {
   margin-right: 130px;
 }
 
-/* 마이페이지 상단 텍스트 */
+/* 컨텐츠 상단 텍스트 */
 .content-all-top-text1 {
   font-weight: bold;
   font-size: 16px;
@@ -190,7 +186,7 @@ a:focus {
 }
 
 
-/* 마이페이지 하단 부분 */
+/* 컨텐츠 하단 부분 */
 .content-all-bottom-area {
   margin: auto;
   /* margin-top: 60px; */
@@ -198,17 +194,36 @@ a:focus {
   margin-right: 130px;
 }
 
-/* 비밀번호 인풋창 */
-.myPage-pw-input {
+
+/* 직원추가 스타일 */
+.employee-area {
   position: relative;
-  width: 300px;
+  /* width: 300px; */
   margin-left: 50px;
   margin-top: 100px;
-
-  font-family: sans-serif;
 }
 
-input {
+form div:nth-child(1)>div:nth-child(1) {
+  width: 452px;
+}
+
+form div:nth-child(2)>div:nth-child(1) {
+  width: 512px;
+}
+
+form div:nth-child(3)>div:nth-child(1) {
+  width: 522px;
+}
+
+form div:nth-child(4)>div:nth-child(1) {
+  width: 534px;
+}
+
+form div:nth-child(5)>div:nth-child(1) {
+  width: 700px;
+}
+
+.employee-area>input {
   font-size: 20px;
   color: var(--black);
   width: 800px;
@@ -219,66 +234,106 @@ input {
   position: relative;
   background: none;
   z-index: 5;
-  font-family: sans-serif;
 }
 
-input::placeholder {
+.employee-area>input::placeholder {
   color: #aaaaaa;
-  font-family: sans-serif;
 }
 
-input:focus {
+.employee-area>input:focus {
   outline: none;
-  font-family: sans-serif;
 }
 
-.myPage-pw-input span {
+.employee-area>span {
   display: block;
   position: absolute;
   bottom: 0;
   left: 0%;
-
   background-color: var(--primary400);
   width: 0;
   height: 2px;
   border-radius: 2px;
   transition: 0.5s;
-  font-family: sans-serif;
 }
 
-.myPage-pw-input label {
+.employee-area>label {
   position: absolute;
   color: #aaa;
   left: 10px;
   font-size: 20px;
   bottom: 8px;
   transition: all .2s;
-
 }
 
-input:focus~label,
-input:valid~label {
-  font-size: 22px;
+.employee-area>input:focus~label,
+.employee-area>input:valid~label {
+  font-size: 16px;
   bottom: 40px;
+  color: var(--primary400);
+  font-weight: bold;
+}
+
+.employee-area>p {
+  font-size: 16px;
   color: var(--primary400);
   font-weight: bold;
 
 }
 
-input:focus~span,
-input:valid~span {
+.employee-area>input:focus~span,
+.employee-area>input:valid~span {
   width: 800px;
 }
 
-/* 비밀번호 변경 버튼 */
-.password-btn {
-  width: 110px;
+/* 유효성 검사 스타일 */
+.employee-area-container {
+  display: flex;
+}
+
+.employee-check {
+  margin-left: 30px;
+  margin-top: 100px;
+
+  color: var(--gray400);
+}
+
+#employee-tel::placeholder {
+  display: none;
+}
+
+/* 주소찾기 버튼 */
+.address-btn {
+  width: 80px;
+  height: 40px;
+
+  border: none;
+  border-radius: 5px;
+
+  background-color: var(--gray100);
+
+  color: var(--black);
+
+  margin-top: 70px;
+  margin-left: 20px;
+
+  cursor: pointer;
+}
+
+.address-btn:hover {
+  background-color: var(--gray200);
+
+  transition: all 1s;
+}
+
+/* 직원등록 버튼 */
+.employee-add-btn {
+  width: 90px;
   height: 40px;
 
   font-size: 16px;
 
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
 
   background-color: var(--primary400);
 
@@ -286,36 +341,14 @@ input:valid~span {
 
   cursor: pointer;
 
-  margin-top: 80px;
+  margin-top: 70px;
+  margin-left: 760px;
+  margin-bottom: 10px;
 
   padding: 14px;
-
-  margin-left: 745px;
 }
 
-.password-btn:hover {
+.employee-add-btn:hover {
   background-color: var(--primary500);
   transition: all 1s;
-}
-
-/* 유효성 검사 스타일 */
-.myPage-pw-input-container {
-  display: flex;
-}
-
-#current-pw-inspection {
-  margin-top: 100px;
-  margin-left: 30px;
-}
-
-#new-pw-inspection {
-  margin-top: 100px;
-  margin-left: 30px;
-
-  color: var(--gray400);
-}
-
-#new-pw-check-inspection {
-  margin-top: 100px;
-  margin-left: 30px;
 }

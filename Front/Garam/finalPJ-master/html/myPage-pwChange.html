@@ -48,25 +48,35 @@
       <!-- 컨텐츠 내용 아랫부분 -->
       <div class="content-all-bottom-area">
         <form action="" method="post">
-
-          <div class="myPage-pw-input">
-            <input type="password" required>
-            <label>현재 비밀번호</label>
-            <span></span>
+          <!-- 현재 비밀번호 -->
+          <div class="myPage-pw-input-container">
+            <div class="myPage-pw-input">
+              <input type="password" id="current-pw" maxlength="15" required>
+              <label>현재 비밀번호</label>
+              <span></span>
+            </div>
+            <div id="current-pw-inspection"></div>
           </div>
-          <div class="myPage-pw-input">
-            <input type="password" required>
-            <label>변경할 비밀번호</label>
-            <span></span>
+          <!-- 변경할 비밀번호 -->
+          <div class="myPage-pw-input-container">
+            <div class="myPage-pw-input">
+              <input type="password" id="new-pw" maxlength="15" required>
+              <label>변경할 비밀번호</label>
+              <span></span>
+            </div>
+            <div id="new-pw-inspection">영문, 숫자, 특수기호(!@#$%^*+=-) 조합으로 8-15자리 이내로 입력해주세요</div>
           </div>
-          <div class="myPage-pw-input">
-            <input type="password" required>
-            <label>변경할 비밀번호 확인</label>
-            <span></span>
+          <!-- 변경할 비밀번호 확인 -->
+          <div class="myPage-pw-input-container">
+            <div class="myPage-pw-input">
+              <input type="password" id="new-pw-check" maxlength="15" required>
+              <label>변경할 비밀번호 확인</label>
+              <span></span>
+            </div>
+            <div id="new-pw-check-inspection"></div>
           </div>
 
           <button class="password-btn">비밀번호 변경</button>
-
 
         </form>
       </div>
@@ -80,6 +90,8 @@
       </a>
     </div>
   </section>
+
+  <script src="../js/myPage-pwChange.js"></script>
 </body>
 
 </html>

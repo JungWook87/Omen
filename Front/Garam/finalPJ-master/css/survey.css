@@ -11,6 +11,7 @@ section {
   width: 300px;
 
   min-height: 100vh;
+
   background-color: var(--side);
 
 }
@@ -58,22 +59,11 @@ section {
   padding-left: 30px;
 }
 
-.side-bar li:nth-child(2)>a:first-child {
-  padding-left: 40px;
-}
-
-.side-bar li:nth-child(3)>a:first-child {
-  padding-left: 40px;
-}
-
-/* 사이드바 메뉴 선택부분이 두번째 이상일때 */
-/* .side-bar li:nth-child(2)>a:first-child>span:first-child {
-
-  color: var(--primary400);
-}
 
 
-} */
+
+
+
 
 
 /* 사이드바 호버 스타일 시작 ------------------------------*/
@@ -183,19 +173,44 @@ a:focus {
   justify-content: space-between;
 }
 
-/* 컨텐츠 상단 텍스트 */
-.content-all-top-text1 {
-  font-weight: bold;
-  font-size: 16px;
 
-  color: var(--gray400);
+
+/* 컨텐츠 상단 텍스트 */
+.content-all-top-texts {
+  display: flex;
+}
+
+.content-all-top-texts>a {
+  margin-right: 20px;
+
+  text-decoration: none;
+}
+
+.content-all-top-texts>a:hover {
+  border-bottom: 2px solid var(--primary400);
+}
+
+.content-all-top-text {
+  font-weight: bold;
+  font-size: 24px;
+
+  border-bottom: 2px solid var(--primary400);
+
+  color: var(--primary400);
 }
 
 .content-all-top-text2 {
   font-weight: bold;
   font-size: 24px;
 
-  color: var(--black);
+  color: var(--gray300);
+}
+
+.content-all-top-text3 {
+  font-weight: bold;
+  font-size: 24px;
+
+  color: var(--gray300);
 }
 
 
@@ -205,4 +220,66 @@ a:focus {
 
   margin-left: 130px;
   margin-right: 130px;
+}
+
+
+/* 근태현황 */
+.survey-table {
+  margin-top: 80px;
+}
+
+.survey-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.survey-table table th {
+  color: var(--gray600);
+
+  border-bottom: 1px solid var(--gray300);
+
+  padding-bottom: 10px;
+
+  font-size: 14px;
+  font-weight: 100;
+
+  text-align: left;
+}
+
+/* .survey-table table th:nth-child(1) {
+  width: 100px;
+}
+
+.survey-table table th:nth-child(2) {
+  width: 500px;
+}
+
+.survey-table table th:nth-child(3) {
+  width: 200px;
+} */
+
+.survey-table table td {
+  color: var(--black);
+
+  border-bottom: 1px solid var(--gray100);
+
+  padding: 20px 0;
+}
+
+.survey-table tbody>tr:hover {
+  cursor: pointer;
+
+  background-color: var(--gray50)
+}
+
+
+/* 상태 컬러 */
+#status-color {
+  color: var(--green);
+}
+
+/* 참여여부 컬러 */
+#participation-color {
+  color: red;
 }

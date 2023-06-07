@@ -51,8 +51,49 @@
 
           <!-- 오른쪽 버튼 부분 -->
           <div>
-            <button class="omen-btn">공지사항 추가</button>
+            <button class="omen-btn" id="popupBtn">공지사항 추가</button>
           </div>
+
+          <div id="modalWrap">
+            <div class="modalBody">
+              <span id="closeBtn">
+                <img src="../images/Xbtn.png" alt="">
+              </span>
+              <h1>부서 공지사항</h1>
+              <!-- 선1 -->
+              <div class="modal-line"></div>
+
+              <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
+              <!-- 제목 -->
+              <div class="modal-title">
+                <p>제목</p>
+                <input type="text" placeholder="제목을 입력해주세요" required>
+              </div>
+              <!-- 내용 -->
+              <div class="modal-detail">
+                <p>내용</p>
+                <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+                  onkeyup="handleResizeHeight(this)"></textarea>
+              </div>
+              <!-- 파일 업로드 -->
+              <div class="file-box">
+                <button type="button" id="file-remove">파일 지우기</button>
+                <label for="file-uploads">파일 올리기</label>
+                <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+              </div>
+              <!-- 선택된 파일 -->
+              <div class="preview"></div>
+              <!-- 선2 -->
+              <div class="modal-line"></div>
+              <!-- 버튼 -->
+              <div class="notice-submit-reset-btns">
+                <button type="reset" id="cancell-btn">취소</button>
+                <button id="success-btn">확인</button>
+              </div>
+              <!-- </form> -->
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -60,13 +101,68 @@
       <!-- 컨텐츠 내용 아랫부분 -->
 
       <div class="content-all-bottom-area">
-        <div class="notice-title">
-          <span>번호</span>
-          <span>제목</span>
-          <span>작성일</span>
+        
+        <div class="notice-table">
+          <table>
+
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>공지사항입니다</td>
+                <td>2023년 6월 4일(일)</td>
+              </tr>
+
+           
+            </tbody>
+          </table>
         </div>
-        <!-- 선 -->
-        <div class="content-all-top-line"></div>
+      </div>
+
+      <!-- 사용자가 작성한 공지사항 열기 -->
+      <div id="check-modalWrap">
+        <div class="check-modalBody">
+          <span id="check-closeBtn">
+            <img src="../images/Xbtn.png" alt="">
+          </span>
+          <h1>부서 공지사항</h1>
+          <!-- 선1 -->
+          <div class="modal-line"></div>
+
+          <!-- 제목 -->
+          <div class="check-modal-title">
+            <p>제목</p>
+            <input type="text" readonly>
+          </div>
+          <!-- 내용 -->
+          <div>
+            <p>내용</p>
+            <div class="check-modal-detail"></div>
+          </div>
+
+          <!-- 선택된 파일 -->
+          <p>첨부파일</p>
+          <div class="check-preview"></div>
+          <!-- 선2 -->
+          <div class="modal-line"></div>
+          <!-- 버튼 -->
+          <div class="notice-submit-reset-btns">
+            <button id="check-remove-btn">삭제</button>
+            <button type="reset" id="check-cancell-btn">닫기</button>
+            <button id="check-success-btn">수정</button>
+          </div>
+
+        </div>
+      </div>
+
+
       </div>
 
 
@@ -79,6 +175,8 @@
       </a>
     </div>
   </section>
+
+  <script src="../js/dept-notice.js"></script>
 </body>
 
 </html>
