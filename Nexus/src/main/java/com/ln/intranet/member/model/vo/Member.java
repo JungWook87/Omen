@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Member {
-	private int memberNo;
+	private int memNo;
 	private int jobNo;
 	private int teamNo;
 	private int deptNo;
