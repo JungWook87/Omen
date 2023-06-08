@@ -7,12 +7,15 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias type="com.ln.intranet.dept.model.vo.Board" alias="board"/>
+		<typeAlias type="com.ln.intranet.dept.model.vo.BoardDetail" alias="detail"/>
 		<typeAlias type="com.ln.intranet.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.ln.intranet.attendance.model.vo.Attendance" alias="attendance"/>
 		<typeAlias type="com.ln.intranet.notice.model.vo.Notice" alias="notice"/>
 	</typeAliases>
 	
 	<mappers>
+		 <mapper resource="/mappers/dept-mapper.xml"/>
 		 <mapper resource="/mappers/member-mapper.xml"/>
 		 <mapper resource="/mappers/attendance-mapper.xml"/>
 		 <mapper resource="/mappers/notice-mapper.xml"/>

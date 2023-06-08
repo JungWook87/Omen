@@ -36,13 +36,13 @@
             <!-- 네비바 -->
             <div>
                 <ul class="main-header-ul">
-                    <li><a href="main">홈</a> </li>
-                    <li><a href="notice">공지사항</a> </li>
-                    <li><a href="dept">부서</a> </li>
-                    <li><a href="work">결재</a> </li>
-                    <li><a href="attendance">근무/휴가</a> </li>
-                    <li><a href="meeting">회의실</a> </li>
-                    <li><a href="survey">설문</a> </li>
+                    <li><a href="${contextPath}/main">홈</a> </li>
+                    <li><a href="${contextPath}/notice">공지사항</a> </li>
+                    <li><a href="${contextPath}/dept/deptNotice">부서</a> </li>
+                    <li><a href="${contextPath}/work">결재</a> </li>
+                    <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
+                    <li><a href="${contextPath}/meeting">회의실</a> </li>
+                    <li><a href="${contextPath}/survey">설문</a> </li>
                 </ul>
             </div>
         </div>
@@ -204,7 +204,7 @@
         </div>
     </section>
     
-    <script src="${contextPath}/resources/js/main.js"></script>
+    <script src="${contextPath}/resources/js/main.js"></script> 
 
 </body>
 

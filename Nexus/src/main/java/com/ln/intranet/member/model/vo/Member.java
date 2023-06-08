@@ -12,8 +12,11 @@ import lombok.ToString;
 public class Member {
 	private int memNo;
 	private int jobNo;
+	private String jobName;
 	private int teamNo;
+	private String teamName;
 	private int deptNo;
+	private String deptName;
 	private String memId;
 	private String memPw;
 	private String memName;
