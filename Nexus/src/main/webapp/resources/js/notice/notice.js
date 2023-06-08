@@ -1,7 +1,9 @@
-function NoticeListAll(){
+console.log("js loaded");
+
+
 
   $.ajax({
-    url: "notice/noticeList" ,
+    url : "notice/noticeList",
     dataType : "json",
 
     success : function(publicNoticeList){
@@ -16,28 +18,29 @@ function NoticeListAll(){
         const tr = document.createElement("tr");
 
         const noticeNumber = document.createElement("td");
-        noticeNo.innerText = item.notcieNo;
+        noticeNumber.innerText = item.noticeNo;
 
-        const  noticeCtnt = document.createElement("td");
-        noticeCtnt.innerText = item.noticeContent;
+        const noticeCtnt = document.createElement("td");
+        noticeCtnt.innerText = item.title;
 
         const Cdate = document.createElement("td");
         Cdate.innerText = item.createDate;
 
-        tr.append(noticeNo, noticeCtnt, innerText);
+        tr.append(noticeNumber, noticeCtnt, Cdate);
 
-        notcie-list.add(tr);
+        noticeList.append(tr);
 
 
 
       }
     },
-    error : function(){
+    error : function(request, status, error){
       console.log("에러");
+      console.log("상태코드 : request.status");
     }
 
   });
-}
+
 
 
 

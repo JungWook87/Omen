@@ -19,84 +19,84 @@
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
 
-  <title>ê³µì§ì¬í­</title>
+  <title>공지사항</title>
 </head>
 
 <body>
 
- <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <section>
 
-    <!-- ì¬ì´ë ë° -->
+    <!-- 사이드 바 -->
     <div class="side-bar menu">
-      <!-- íì´ì§ë§ë¤ ë°ëë ì ëª© -->
-      <h1>ê³µì§ì¬í­</h1>
+      <!-- 페이지마다 바뀌는 제목 -->
+      <h1>공지사항</h1>
 
-      <!-- íì´ì§ë§ë¤ ë°ëë ë¶ì ëª© -->
+      <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href=""><span>ê³µì§ì¬í­</span> </a></li>
+        <li><a href=""><span>공지사항</span> </a></li>
 
       </ul>
     </div>
 
-    <!-- ì»¨íì¸  ë´ì© -->
+    <!-- 컨텐츠 내용 -->
     <div class="content-all-page">
 
-      <!-- ì»¨íì¸  ë´ì© ìë¶ë¶ -->
+      <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
 
         <div class="content-all-top-area-detail">
 
-          <!-- ì»¨íì¸  ì ëª© ë¶ë¶ -->
+          <!-- 컨텐츠 제목 부분 -->
           <div>
-            <p class="content-all-top-text1">ê³µì§ì¬í­ / </p>
-            <p class="content-all-top-text2">ê³µì§ì¬í­</p>
+            <p class="content-all-top-text1">공지사항 / </p>
+            <p class="content-all-top-text2">공지사항</p>
           </div>
 
-          <!-- ì¤ë¥¸ìª½ ë²í¼ ë¶ë¶ -->
+          <!-- 오른쪽 버튼 부분 -->
 
-          <!-- ê³µì§ì¬í­ ëª¨ë¬ì°½ -->
+          <!-- 공지사항 모달창 -->
           <div>
-            <button type="button" class="omen-btn" id="popupBtn">ê³µì§ì¬í­ ì¶ê°</button>
+            <button type="button" class="omen-btn" id="popupBtn">공지사항 추가</button>
           </div>
 
           <div id="modalWrap">
             <div class="modalBody">
               <span id="closeBtn">
-                <img src="../images/Xbtn.png" alt="">
+                <img src="${contextPath}/resources/images/Xbtn.png" alt="">
               </span>
-              <h1>ê³µì§ì¬í­</h1>
-              <!-- ì 1 -->
+              <h1>공지사항</h1>
+              <!-- 선1 -->
               <div class="modal-line"></div>
 
-              <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
-              <!-- ì ëª© -->
+              <!-- 제목 -->
+              <form action="writeNotice" enctype="multipart/form-data" method="post">
               <div class="modal-title">
-                <p>ì ëª©</p>
-                <input type="text" placeholder="ì ëª©ì ìë ¥í´ì£¼ì¸ì" required>
+                <p>제목</p>
+                <input type="text" placeholder="제목을 입력해주세요" required>
               </div>
-              <!-- ë´ì© -->
+              <!-- 내용 -->
               <div class="modal-detail">
-                <p>ë´ì©</p>
+                <p>내용</p>
                 <textarea name="" id="" onkeydown="handleResizeHeight(this)"
                   onkeyup="handleResizeHeight(this)"></textarea>
               </div>
-              <!-- íì¼ ìë¡ë -->
+              <!-- 파일 업로드 -->
               <div class="file-box">
-                <button type="button" id="file-remove">íì¼ ì§ì°ê¸°</button>
-                <label for="file-uploads">íì¼ ì¬ë¦¬ê¸°</label>
+                <button type="button" id="file-remove">파일 지우기</button>
+                <label for="file-uploads">파일 올리기</label>
                 <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
               </div>
-              <!-- ì íë íì¼ -->
+              <!-- 선택된 파일 -->
               <div class="preview"></div>
-              <!-- ì 2 -->
+              <!-- 선2 -->
               <div class="modal-line"></div>
-              <!-- ë²í¼ -->
+              <!-- 버튼 -->
               <div class="notice-submit-reset-btns">
-                <button type="reset" id="cancell-btn">ì·¨ì</button>
-                <button id="success-btn">íì¸</button>
+                <button type="reset" id="cancell-btn">취소</button>
+                <button id="success-btn">확인</button>
               </div>
-              <!-- </form> -->
+              </form>
             </div>
           </div>
 
@@ -107,63 +107,57 @@
 
       </div>
 
-      <!-- ì»¨íì¸  ë´ì© ìë«ë¶ë¶ -->
+      <!-- 컨텐츠 내용 아랫부분 -->
       <div class="content-all-bottom-area">
         <div class="notice-table">
           <table>
 
             <thead>
               <tr>
-                <th>ë²í¸</th>
-                <th>ì ëª©</th>
-                <th>ìì±ì¼</th>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일</th>
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>ê³µì§ì¬í­ìëë¤</td>
-                <td>2023ë 6ì 4ì¼(ì¼)</td>
-              </tr>
-
+            <tbody id="notice-list">
            
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- ì¬ì©ìê° ìì±í ê³µì§ì¬í­ ì´ê¸° -->
+      <!-- 사용자가 작성한 공지사항 열기 -->
       <div id="check-modalWrap">
         <div class="check-modalBody">
           <span id="check-closeBtn">
-            <img src="../images/Xbtn.png" alt="">
+            <img src="${contextPath}/resources/images/Xbtn.png" alt="">
           </span>
-          <h1>ê³µì§ì¬í­</h1>
-          <!-- ì 1 -->
+          <h1>공지사항</h1>
+          <!-- 선1 -->
           <div class="modal-line"></div>
 
-          <!-- ì ëª© -->
+          <!-- 제목 -->
           <div class="check-modal-title">
-            <p>ì ëª©</p>
+            <p>제목</p>
             <input type="text" readonly>
           </div>
-          <!-- ë´ì© -->
+          <!-- 내용 -->
           <div>
-            <p>ë´ì©</p>
+            <p>내용</p>
             <div class="check-modal-detail"></div>
           </div>
 
-          <!-- ì íë íì¼ -->
-          <p>ì²¨ë¶íì¼</p>
+          <!-- 선택된 파일 -->
+          <p>첨부파일</p>
           <div class="check-preview"></div>
-          <!-- ì 2 -->
+          <!-- 선2 -->
           <div class="modal-line"></div>
-          <!-- ë²í¼ -->
+          <!-- 버튼 -->
           <div class="notice-submit-reset-btns">
-            <button id="check-remove-btn">ì­ì </button>
-            <button type="reset" id="check-cancell-btn">ë«ê¸°</button>
-            <button id="check-success-btn">ìì </button>
+            <button id="check-remove-btn">삭제</button>
+            <button type="reset" id="check-cancell-btn">닫기</button>
+            <button id="check-success-btn">수정</button>
           </div>
 
         </div>
@@ -171,10 +165,10 @@
 
     </div>
 
-    <!-- ì±íì°½ -->
+    <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
       <a href="#">
-        <img class="chatting-img" src="../images/chattImg.png" alt="">
+        <img class="chatting-img" src="${contextPath}/resources/images/chattImg.png" alt="">
       </a>
     </div>
   </section>
