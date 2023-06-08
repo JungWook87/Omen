@@ -16,13 +16,42 @@
 	</resultMap>
 	
 	<select id="selectAttendanceList" parameterType="_int" resultMap="attendance_rm">
-		SELECT ATTD_TYPE_NAME , TO_CHAR(TODAY, 'YYYY-MM-DD') AS TODAY, ATTN_START, ATTN_END, WORKING_HOURS, EXTENDED_WORKING_HOURS  
+		SELECT ATTD_TYPE_NAME , TODAY, ATTN_START, ATTN_END, WORKING_HOURS, EXTENDED_WORKING_HOURS  
 		FROM ATTENDANCE 
 		JOIN ATTD_TYPE USING(ATTD_TYPE_NO)
 		WHERE MEM_NO = ${memNo}
 		AND TODAY &lt;= SYSDATE
 	</select>
 	
+	<insert id="startHours" >
+		INSERT INTO ATTENDANCE VALUES (
+			ATTENDANCE_NO.NEXTVAL, ${memNo}, ${attdTypeNo}, TO_CHAR(SYSDATE, 'YY/MM/DD'), #{attnStart}, '-', '-', '-' 	
+		)
+	</insert>
+	
+	<select id="selectStartTime" resultType="string">
+		SELECT ATTN_START FROM ATTENDANCE 
+		WHERE MEM_NO = ${memNo}
+		AND TODAY = TO_CHAR(SYSDATE, 'YY/MM/DD')
+	</select>
 	
 	
+	<update id="endHours">
+		UPDATE ATTENDANCE SET ATTN_END = #{attnEnd}, WORKING_HOURS = #{workingHours}, EXTENDED_WORKING_HOURS = #{extendedWH}
+		WHERE MEM_NO = ${memNo}
+		AND TODAY = TO_CHAR(SYSDATE, 'YY/MM/DD')
+	</update>
+	
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>
