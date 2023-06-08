@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../component/component.css">
   <link rel="stylesheet" href="../component/variable.css">
-  <link rel="stylesheet" href="../css/dept-schedule.css ">
+  <link rel="stylesheet" href="../css/meetingRoom.css ">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <!-- jquery cdn -->
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
-  <!-- fullcalendar cdn -->
+    <!-- fullcalendar cdn -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  <title>부서 일정</title>
+  <title>회의실</title>
 </head>
 
 <body>
@@ -27,13 +27,11 @@
     <!-- 사이드 바 -->
     <div class="side-bar menu">
       <!-- 페이지마다 바뀌는 제목 -->
-      <h1>부서</h1>
+      <h1>회의실</h1>
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href="./dept-notice.html"><span>부서 공지사항</span> </a></li>
-        <li><a href="./dept-board.html"><span>부서 게시판</span> </a></li>
-        <li><a href="./dept-schedule.html"><span>부서 일정</span> </a></li>
+        <li><a href="./dept-notice.html"><span>예약신청</span> </a></li>
       </ul>
     </div>
 
@@ -42,12 +40,14 @@
 
       <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
+
           <!-- 컨텐츠 제목 부분 -->
-            <p class="content-all-top-text1">부서 / </p>
-            <p class="content-all-top-text2">부서 일정</p>
-           <!-- 선 -->
-            <div class="content-all-top-line"></div>
-      </div>
+            <p class="content-all-top-text1">회의실 / </p>
+            <p class="content-all-top-text2">예약신청</p>
+          <!-- 선 -->
+          <div class="content-all-top-line"></div>
+      
+        </div>
 
       <!-- 컨텐츠 내용 아랫부분 -->
 
@@ -59,11 +59,39 @@
           <div id='calendar'></div>
         </div>
 
+        <!-- 모달창 -->
+        <div id="modalWrap">
+          <div class="modalBody">
+            <span id="closeBtn">
+              <img src="../images/Xbtn.png" alt="">
+            </span>
+            <h1>예약신청</h1>
+            <!-- 선1 -->
+            <div class="modal-line"></div>
+
+            <!-- <form action="#" method="post"> -->
+              <div>
+                <input type="text" id="meetingRoom-title">
+              </div>
+           
+            
+            <!-- 선2 -->
+            <div class="modal-line"></div>
+            <!-- 버튼 -->
+            <div class="notice-submit-reset-btns">
+              <button type="reset" id="cancell-btn">취소</button>
+              <button id="success-btn">확인</button>
+            </div>
+            <!-- </form> -->
+          </div>
+        </div>
+
+
         
       </div>
 
-
     </div>
+
 
     <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
@@ -72,7 +100,9 @@
       </a>
     </div>
   </section>
-  <script src="../js/dept-schedule.js"></script>
+
+  <script src="../js/meetingRoom.js"></script>
+
 </body>
 
 </html>
