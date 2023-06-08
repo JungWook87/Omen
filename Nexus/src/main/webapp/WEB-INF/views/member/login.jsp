@@ -24,17 +24,21 @@
             <img class="logo-width" src="${contextPath}/resources/images/logo-height.png" alt="">
             <form action="member/login" method="POST" name="login-form" onsubmit="return loginValidate()">
                     <div class="user-box">
-                        <input type="text" id="inputId" name="memId">
+                        <input type="text" id="inputId" name="memId" required="">
                         <label>ID</label>
                     </div>
                     <div class="user-box">
-                        <input type="password" id="inputPw" name="memPw">
+                        <input type="password" id="inputPw" name="memPw" required="">
                         <label>Password</label>
                     </div>
-                    <button>
-                        로그인
-                    </button>
-                    <a href="main">메인화면으로</a>
+						
+                    <a href="main">          	
+						<span></span>
+                    	<span></span>
+                    	<span></span>
+                    	<span></span>
+                    	<button>login</button>
+                    </a>
             </form>
         </div>
     </div>
