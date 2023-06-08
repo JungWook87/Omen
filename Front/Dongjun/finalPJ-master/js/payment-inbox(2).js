@@ -1,63 +1,40 @@
-console.log("js loaded");
-
-
-
-  $.ajax({
-    url : "notice/noticeList",
-    dataType : "json",
-
-    success : function(publicNoticeList){
-      console.log(publicNoticeList);
-
-      const noticeList = document.getElementById("notice-list");
-
-      noticeList.innerHTML = "";
-
-      for(let item of publicNoticeList){
-
-        const tr = document.createElement("tr");
-
-        const noticeNumber = document.createElement("td");
-        noticeNumber.innerText = item.noticeNo;
-
-        const noticeCtnt = document.createElement("td");
-        noticeCtnt.innerText = item.title;
-
-        const Cdate = document.createElement("td");
-        Cdate.innerText = item.createDate;
-
-        tr.append(noticeNumber, noticeCtnt, Cdate);
-
-        noticeList.append(tr);
-
-
-
-      }
+// 날짜 조회
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    "locale": {
+        "format": "YYYY-MM-DD",
+        "separator": " ~ ",
+        "applyLabel": "확인",
+        "cancelLabel": "취소",
+        "fromLabel": "From",
+        "toLabel": "To",
+        "customRangeLabel": "Custom",
+        "weekLabel": "W",
+        "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],   
     },
-    error : function(request, status, error){
-      console.log("에러");
-      console.log("상태코드 : request.status");
-    }
-
+    "firstDayOfWeek": 1,
+    "startDate": "2023-06-5",
+    "endDate": "2023-06-30",
+    "drops": "down"
+}, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
   });
+});
 
-
-
-
-
-// 모달창 스타일
+  // 모달창 스타일
 const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap');
 const closeBtn = document.getElementById('closeBtn');
-const modalBody = document.querySelector('.modalBody');
+const modalBody = document.querySelector('.payment-modalBody');
 const cancellBtn = document.getElementById('cancell-btn');
-const noticeTitle = document.querySelector('.modal-title > input');
-const noticeContent = document.querySelector('.modal-detail > textarea');
+const paymentTitle = document.querySelector('.payment-modal-title > input');
+const paymentContent = document.querySelector('.payment-modal-detail > textarea');
 
-// 공지사항 버튼 이벤트
+// 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
-  noticeTitle.value = '';
-  noticeContent.value = '';
+  paymentTitle.value = '';
+  paymentContent.value = '';
 
   modal.style.display = 'block';
   modalBody.classList.add('modal-open');
@@ -90,9 +67,9 @@ function modalClose() {
     modalBody.classList.remove("modal-close");
   }, 350);
 
-  noticeContent.style.overflow = 'hidden';
+  paymentContent.style.overflow = 'hidden';
 
-  noticeContent.style.height = 'inherit';
+  paymentContent.style.height = 'inherit';
 }
 
 
@@ -309,3 +286,5 @@ checkCancellBtn.addEventListener("click", () => {
 
 
 
+
+  

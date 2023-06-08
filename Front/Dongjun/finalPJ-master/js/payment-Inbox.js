@@ -30,6 +30,7 @@ const modalBody = document.querySelector('.payment-modalBody');
 const cancellBtn = document.getElementById('cancell-btn');
 const paymentTitle = document.querySelector('.payment-modal-title > input');
 const paymentContent = document.querySelector('.payment-modal-detail > textarea');
+const paymentApprover = document.querySelector('.payment-modal-approver > input')
 
 // 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
@@ -67,9 +68,9 @@ function modalClose() {
     modalBody.classList.remove("modal-close");
   }, 350);
 
-  noticeContent.style.overflow = 'hidden';
+  paymentContent.style.overflow = 'hidden';
 
-  noticeContent.style.height = 'inherit';
+  paymentContent.style.height = 'inherit';
 }
 
 
@@ -187,20 +188,25 @@ const successBtn = document.getElementById('success-btn');
 
 successBtn.addEventListener("click", () => {
 
-  if(noticeTitle.value == "") {
+  if(paymentTitle.value == "") {
     Swal.fire('제목을 입력해 주세요');
-  } else if(noticeContent.value == '') {
+  } else if(paymentContent.value == '') {
     Swal.fire('내용을 입력해 주세요')
+  }  else if(paymentApprover.value == '') {
+      Swal.fire('결재자를 입력해 주세요')
   } else {
     
     const tr = document.createElement('tr');
+    const tdType = document.createElement('td');
     const tdNum = document.createElement('td');
     const tdTitle = document.createElement('td');
-    const tdNode = document.createTextNode(noticeTitle.value);
+    const tdSituation = document.createElement('td');
+    const tdNode = document.createTextNode(paymentTitle.value);
+    const tdFile = document.createElement('td');
     const tdDate = document.createElement('td');
   
     tdTitle.append(tdNode);
-    tr.append(tdNum, tdTitle, tdDate);
+    tr.append(tdType,tdNum, tdTitle, tdSituation, tdFile, tdDate);
   
     document.querySelector('tbody').append(tr);
     
@@ -223,17 +229,21 @@ const checkCancellBtn = document.getElementById('check-cancell-btn');
 const checkModalTitle = document.querySelector('.check-modal-title > input');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
+const checkTemplate = document.querySelector('check-modal-template');
 
 
 // 수정 모달창 오픈
 function modifyModal() {
   
+  // // 템플릿 밸류값 들고오기
+  // checkTemplate.value = 
+
   // 제목 밸류값 들고오기
-  checkModalTitle.value = noticeTitle.value;
+  checkModalTitle.value = paymentTitle.value;
 
   // textarea 밸류값 들고오기
   checkModalDetail.innerHTML = "";
-  const checkModalDetailLines = noticeContent.value.split("\n");
+  const checkModalDetailLines = paymentContent.value.split("\n");
   let resultString = "<p>";
   
   for (let i = 0; i < checkModalDetailLines.length; i++) {
@@ -261,9 +271,9 @@ function checkModalClose() {
     checkModalBody.classList.remove("check-modal-close");
   }, 350);
 
-  noticeContent.style.overflow = 'hidden';
+  paymentContent.style.overflow = 'hidden';
 
-  noticeContent.style.height = 'inherit';
+  paymentContent.style.height = 'inherit';
 }
 
 // 모달창 엑스 버튼
