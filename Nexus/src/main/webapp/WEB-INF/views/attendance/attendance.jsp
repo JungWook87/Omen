@@ -11,29 +11,31 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/template/attendance.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/attendance/attendance.css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-
-  <title>Document</title>
+  <!-- jquery cdn -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/0041fb1dcb.js" crossorigin="anonymous"></script>
+  <title>근무/휴가</title>
 </head>
 
 <body>
 
   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-  
   <section>
 
     <!-- 사이드 바 -->
     <div class="side-bar menu">
       <!-- 페이지마다 바뀌는 제목 -->
-      <h1>마이메뉴</h1>
+      <h1>근무/휴가</h1>
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href=""><span>프로필</span> </a></li>
-        <li><a href=""><span>비밀번호 변경</span> </a></li>
+        <li><a href="./dept-notice.html"><span>근태 현황</span> </a></li>
       </ul>
     </div>
 
@@ -42,28 +44,75 @@
 
       <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
-        <p class="content-all-top-text1">근무/휴가 / </p>
-        <p class="content-all-top-text2">근태현황</p>
-        <!-- 선 -->
-        <div class="content-all-top-line"></div>
+
+        <div class="content-all-top-area-detail">
+
+          <!-- 컨텐츠 제목 부분 -->
+          <div>
+            <p class="content-all-top-text2">근태현황</p>
+            <p class="content-all-top-text1">${loginMember.memName}님의 근태현황입니다.</p>
+          </div>
+
+        </div>
+
       </div>
 
       <!-- 컨텐츠 내용 아랫부분 -->
       <div class="content-all-bottom-area">
-      	<c:forEach var="list" items="${attendanceList}">
-      		<p>${list.attdTypeName}</p> <br>
-      	</c:forEach>
+      
+      	<div class="YMSelect">
+      		<button class="fa-solid fa-chevron-left" type="button" id="leftBtn"></button>
+      		<p>${attendanceList[0].today.split("/")[0]} 년 ${attendanceList[0].today.split("/")[1]} 월</p>
+      		<input id="year" style="display:none" value="${attendanceList[0].today.split("/")[0]}">
+      		<input id="month" style="display:none" value="${attendanceList[0].today.split("/")[1]}">
+      		<button class="fa-solid fa-chevron-right" type="button" id="rightBtn"></button>
+      	</div>
+      	
+        <div class="attendance-table">
+          <table>
+
+            <thead>
+              <tr>
+                <th>분류</th>
+                <th>날짜</th>
+                <th>출근시간</th>
+                <th>퇴근시간</th>
+                <th>근무시간</th>
+                <th>연장근무시간</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            	<c:forEach var="attnList" items="${attendanceList}">
+	              <tr>
+	                <td>${attnList.attdTypeName}</td>
+	                <td>${attnList.today}</td>
+	                <td>${attnList.attnStart}</td>
+	                <td>${attnList.attnEnd}</td>
+	                <td>${attnList.workingHours}</td>
+	                <td>${attnList.extendedWorkingHours}</td>
+	              </tr>
+				</c:forEach>
+           
+            </tbody>
+          </table>
+        </div>
       </div>
 
+
     </div>
+
 
     <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
       <a href="#">
-        <img class="chatting-img" src="${contextPaht}/resources//images/chattImg.png" alt="">
+        <img class="chatting-img" src="${contextPath}/resources/images/chattImg.png" alt="">
       </a>
     </div>
   </section>
+  
+  <script src="${contextPath}/resources/js/attendance/attendance.js"></script>
+  
 </body>
 
 </html>

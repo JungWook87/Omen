@@ -16,8 +16,8 @@ public class AttendanceDAO {
 	private SqlSessionTemplate sqlSession;
 
 	// 근태 리스트 조회
-	public List<Attendance> selectAttendanceList(int memNo) {
-		return sqlSession.selectList("attendanceMapper.selectAttendanceList", memNo);
+	public List<Attendance> selectAttendanceList(Map<String, Object> map) {
+		return sqlSession.selectList("attendanceMapper.selectAttendanceList", map);
 	}
 
 	// 출근 시간 입력

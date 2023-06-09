@@ -17,9 +17,9 @@ public class AttendanceServiceImp implements AttendanceService {
 	
 	// 근태 리스트 조회
 	@Override
-	public List<Attendance> selectAttendanceList(int memNo) {
+	public List<Attendance> selectAttendanceList(Map<String, Object> map) {
 		
-		return dao.selectAttendanceList(memNo);
+		return dao.selectAttendanceList(map);
 	}
 	
 	// 출근 시간 입력

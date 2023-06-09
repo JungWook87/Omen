@@ -8,7 +8,7 @@ import com.ln.intranet.attendance.model.vo.Attendance;
 public interface AttendanceService {
 
 	// 근태 기록 조회
-	List<Attendance> selectAttendanceList(int memNo);
+	List<Attendance> selectAttendanceList(Map<String, Object> map);
 
 	// 출근 시간 입력
 	int attnStrartHours(Map<String, Object> map);
