@@ -57,12 +57,13 @@
             <p class="content-all-top-text1">부서 / </p>
             <p class="content-all-top-text2">부서 게시판</p>
           </div>
-
-          <!-- 오른쪽 버튼 부분 -->
-          <div>
+          
+           <div>
             <button class="omen-btn" id="popupBtn">글쓰기</button>
           </div>
-       
+
+          <!-- 글쓰기 모달 창 -->
+          
           <div id="modalWrap">
             <div class="modalBody">
               <span id="closeBtn">
@@ -72,36 +73,37 @@
               <!-- 선1 -->
               <div class="modal-line"></div>
 
-              <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
-              <!-- 제목 -->
-              <div class="modal-title">
-                <p>제목</p>
-                <input type="text" placeholder="제목을 입력해주세요" required>
-              </div>
-              <!-- 내용 -->
-              <div class="modal-detail">
-                <p>내용</p>
-                <textarea name="" id="" onkeydown="handleResizeHeight(this)"
-                  onkeyup="handleResizeHeight(this)"></textarea>
-              </div>
-              <!-- 파일 업로드 -->
-              <div class="file-box">
-                <button type="button" id="file-remove">파일 지우기</button>
-                <label for="file-uploads">파일 올리기</label>
-                <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
-              </div>
-              <!-- 선택된 파일 -->
-              <div class="preview"></div>
-              <!-- 선2 -->
-              <div class="modal-line"></div>
-              <!-- 버튼 -->
-              <div class="notice-submit-reset-btns">
-                <button type="reset" id="cancell-btn">취소</button>
-                <button id="success-btn">확인</button>
-              </div>
-              <!-- </form> -->
+              <form action="write" method="post" enctype="multipart/form-data" onsubmit="return writeValidate()">
+                <!-- 제목 -->
+                <div class="modal-title">
+                  <p>제목</p>
+                  <input name="noticeTitle" type="text" placeholder="제목을 입력해주세요" value="${detail.boardTitle}">
+                </div>
+                <!-- 내용 -->
+                <div class="modal-detail">
+                  <p>내용</p>
+                  <textarea name="noticeContent" id="noticeContent" onkeydown="handleResizeHeight(this)"
+                    onkeyup="handleResizeHeight(this)" value="${detail.boardContent}"></textarea>
+                </div>
+                <!-- 파일 업로드 -->
+                <div class="file-box">
+                  <button type="button" id="file-remove">파일 지우기</button>
+                  <label for="file-uploads">파일 올리기</label>
+                  <input type="file" id="file-uploads" name="uploadFile" accept="" multiple>
+                </div>
+                <!-- 선택된 파일 -->
+                <div class="preview"></div>
+                <!-- 선2 -->
+                <div class="modal-line"></div>
+                <!-- 버튼 -->
+                <div class="notice-submit-reset-btns">
+                  <button type="reset" id="cancell-btn">취소</button>
+                  <button type="submit" id="success-btn">확인</button>
+                </div>
+              </form>
             </div>
           </div>
+
 
         </div>
 
@@ -136,7 +138,9 @@
                     <c:forEach var="board" items="${boardList}">
                         <tr>
                             <td>${board.boardNo}</td>
-                            <td>${board.boardTitle}</td>
+                            <td>
+                           		 <a href="../detail/${board.boardNo}"> ${board.boardTitle}</a>
+                            </td>
                             <td>${board.memName}</td>
                             <td>${board.boardDate}</td>
                         </tr>
@@ -197,7 +201,9 @@
           <h1>부서 게시판</h1>
           <!-- 선1 -->
           <div class="modal-line"></div>
-
+			
+			
+		 
           <!-- 제목 -->
           <div class="check-modal-title">
             <p>제목</p>
