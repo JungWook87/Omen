@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../component/component.css">
   <link rel="stylesheet" href="../component/variable.css">
-  <link rel="stylesheet" href="../css/payment-inbox(2).css">
+  <link rel="stylesheet" href="../css/payment-Inbox.css">
+  <link rel="stylesheet" href="../css/payment-inbox(1).css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -26,10 +27,15 @@
   <header style="height: 90px;"></header>
   <section>
 
-    <!-- 사이드 바 -->
-    <div class="side-bar menu">
-      <!-- 페이지마다 바뀌는 제목 -->
-      <h1>수신함</h1>
+       <!-- 사이드 바 -->
+       <div class="side-bar menu">
+        <!-- 페이지마다 바뀌는 제목 -->
+        <div class="side-barTitle">
+          <a href="payment-Inbox.html" id="side-barTitle-a">
+            <img src="../images/leftArrow.png" alt="">
+          </a>
+        <h1>수신함</h1>
+      </div>
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
@@ -130,14 +136,7 @@
               <p>결재자</p>
               <input type="text">
             </div>
-            <!-- 파일 업로드 -->
-            <div class="payment-file-box">
-              <button type="button" id="file-remove">파일 지우기</button>
-              <label for="file-uploads">파일 올리기</label>
-              <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
-            </div>
-            <!-- 선택된 파일 -->
-            <div class="payment-preview"></div>
+
             <!-- 선2 -->
             <div class="payment-modal-line"></div>
             <!-- 임시저장 버튼 -->
@@ -183,15 +182,142 @@
               </tr>
             </tbody>
 
-
-            
           </table>
-
 
         </div>
 
-      
+      </div>
 
+      <div id="check-modalWrap">
+        <div class="check-modalBody">
+          <span id="check-closeBtn">
+            <img src="../images/Xbtn.png" alt="">
+          </span>
+          <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
+            
+            <!-- 모달창 시작 -->
+            <div class="check-modal-header">
+              <!-- 제목 -->
+              <h1 class="check-modal-title">결재 예시</h1>
+              <!-- 결재항목박스 -->
+              <div class="check-modal-modal-headerbox">
+                <!-- 결재항목 내용 -->
+                <div class="check-modal-headerbox-content">
+                  <!-- 문서번호 -->
+                  <span class="check-modal-modal-headerbox-content-a">문서번호 :</span>  
+                  <span class="check-modal-modal-headerbox-content-b">2023-05-26-20001990</span>
+                </div>
+                
+                <div class="check-modal-headerbox-content">
+                  <!-- 작성자 -->
+                  <span class="check-modal-headerbox-content-a">작성자 :</span>  
+                  <span class="check-modal-headerbox-content-b">이재혁 ( abcde@gmail.com )</span>
+                </div>
+                <div class="check-modal-headerbox-content">
+                  <!-- 작성일 -->
+                  <span class="check-modal-modal-headerbox-content-a">작성일 :</span>  
+                  <span class="check-modal-modal-headerbox-content-b">2023-05-26 14:19</span>
+                </div>
+
+                <div class="check-modal-headerbox-footer">
+                    <button class="modal-headerbox-footer-btn">
+                      <span>꓋ 문서복사</span>
+                    </button>
+                    <button class="check-modal-headerbox-footer-btn">
+                      <span> ✁  문서출력</span>
+                    </button>
+                </div>
+            
+              </div>
+              
+            </div>
+            
+            <div class="check-modal-table-body">
+              
+              <h2>결재경로</h2>
+
+              <table>
+          
+                <thead>
+                  
+                  <tr>
+                    <th>순서</th>
+                    <th>이름</th>
+                    <th>결재상태</th>
+                    <th>구분</th>
+                  </tr>
+                  
+                </thead>
+    
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>류정훈</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>이동준</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>김정욱</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                </tbody>
+              </table>
+            
+
+            </div>
+
+          <!-- 내용 -->
+          <div class="check-modal-detail">
+            <p>내용</p>
+            <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+              onkeyup="handleResizeHeight(this)"></textarea>
+          </div>
+          <!-- 의견 -->
+          <div class="check-modal-coment">
+            <p>의견</p>
+            <input type="text">
+          </div>
+           <!-- 결재자 -->
+           <div class="check-modal-approver">
+            <p>결재자</p>
+            <input type="text">
+          </div>
+          <!-- 선택된 파일 -->
+          <p>선택파일</p>
+          <div class="check-preview"></div>
+          <!-- 파일 업로드 -->
+          <div class="payment-file-box">
+            <button type="button" id="file-remove">파일 지우기</button>
+            <label for="file-uploads">파일 올리기</label>
+            <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+          </div>
+          <!-- 선2 -->
+          <div class="payment-modal-line"></div>
+           <!-- 최종승인 버튼 -->
+           <div class="check-modal-checkbox">
+            <label for="">
+              <input type="checkbox" id='check-modal-checkbox' onclick='is_checked()'> 
+              최종 승인
+            </label>
+          </div>
+          
+
+          <!-- 버튼 -->
+          <div class="payment-submit-reset-btns">
+            <button type="submit" id="companion-btn">반려</button>
+            <button type="reset" id="check-cancell-btn">취소</button>
+            <button id="check-success-btn">승인</button>
+          </div>
+          <!-- </form> -->
+        </div>
       </div>
 
     </div>

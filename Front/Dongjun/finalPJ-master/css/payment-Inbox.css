@@ -224,7 +224,7 @@ margin-top: 30px;
 
 label{
   font-size: x-large;
-  margin-right: 100px;
+  /* margin-right: 100px; */
 }
 
 /* 컨텐츠 하단 부분 */
@@ -464,7 +464,7 @@ select{
 }
 
 /* 파일업로드된 스타일 */
-.preview ol {
+.payment-preview ol {
   list-style: none;
 }
 

@@ -20,6 +20,23 @@ section {
   padding: 0;
 }
 
+/* 사이드바 제목 박스 */
+.side-barTitle{
+  display: flex;
+}
+#side-barTitle-a{
+  margin: 0;
+  padding: 0;
+}
+
+/* 사이드바 화살표 */
+.side-barTitle img{
+  
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 60px;
+}
+
 
 /* 사이드바 제목 스타일 */
 .side-bar h1 {
@@ -27,7 +44,7 @@ section {
 
   margin: 0;
 
-  padding: 60px 0 40px 35px;
+  padding: 60px 0 40px 10px;
 
   color: var(--black);
 }
@@ -458,7 +475,7 @@ select{
 }
 
 /* 파일업로드된 스타일 */
-.preview ol {
+.payment-preview ol {
   list-style: none;
 }
 

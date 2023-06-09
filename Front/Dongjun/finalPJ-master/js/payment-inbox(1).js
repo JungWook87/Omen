@@ -1,20 +1,23 @@
 // 모달창 스타일
-const detailClick = document.querySelectorAll('.row');
+const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap');
 const closeBtn = document.getElementById('closeBtn');
-const modalBody = document.querySelector('.payment-inbox-modalBody');
+const modalBody = document.querySelector('.payment-modalBody');
 const cancellBtn = document.getElementById('cancell-btn');
 const paymentTitle = document.querySelector('.payment-modal-title > input');
 const paymentContent = document.querySelector('.payment-modal-detail > textarea');
+const paymentApprover = document.querySelector('.payment-modal-approver > input')
 
 
-// 디테일 창 버튼 이벤트
-detailClick.forEach(function(row) {
-  row.addEventListener("click", function() {
-    modal.style.display = 'block';
-    modalBody.classList.add('modal-open');
-  });
-});
+// 결제창 버튼 이벤트
+btn.addEventListener("click", () => {
+  paymentTitle.value = '';
+  paymentContent.value = '';
+
+  modal.style.display = 'block';
+  modalBody.classList.add('modal-open');
+
+}) 
 
 
 // 모달창 엑스 버튼
@@ -43,9 +46,9 @@ function modalClose() {
     modalBody.classList.remove("modal-close");
   }, 350);
 
-  noticeContent.style.overflow = 'hidden';
+  paymentContent.style.overflow = 'hidden';
 
-  noticeContent.style.height = 'inherit';
+  paymentContent.style.height = 'inherit';
 }
 
 
@@ -69,7 +72,7 @@ function handleResizeHeight(obj) {
 
 // 파일 업로드 스타일
 const fileUpload = document.getElementById('file-uploads');
-const preview = document.querySelector('.preview');
+const preview = document.querySelector('.payment-preview');
 
 fileUpload.style.opacity = 0;
 
@@ -157,58 +160,41 @@ fileRemove.addEventListener("click", () => {
   
 })
 
-// 승인버튼 
+// 글 추가시 나타나는 기능
 const successBtn = document.getElementById('success-btn');
 
 
 successBtn.addEventListener("click", () => {
 
-  const checkbox = document.getElementById('modal-checkbox');
-  const is_checked = checkbox.checked;
-
-  if(is_checked) {
-    modalClose();
+  if(paymentTitle.value == "") {
+    Swal.fire('제목을 입력해 주세요');
+  } else if(paymentContent.value == '') {
+    Swal.fire('내용을 입력해 주세요')
+  }  else if(paymentApprover.value == '') {
+      Swal.fire('결재자를 입력해 주세요')
   } else {
     
-    // const tr = document.createElement('tr');
-    // const tdNum = document.createElement('td');
-    // const tdTitle = document.createElement('td');
-    // const tdNode = document.createTextNode(noticeTitle.value);
-    // const tdDate = document.createElement('td');
+    const tr = document.createElement('tr');
+    const tdType = document.createElement('td');
+    const tdNum = document.createElement('td');
+    const tdTitle = document.createElement('td');
+    const tdSituation = document.createElement('td');
+    const tdNode = document.createTextNode(paymentTitle.value);
+    const tdFile = document.createElement('td');
+    const tdDate = document.createElement('td');
   
-    // tdTitle.append(tdNode);
-    // tr.append(tdNum, tdTitle, tdDate);
+    tdTitle.append(tdNode);
+    tr.append(tdType,tdNum, tdTitle, tdSituation, tdFile, tdDate);
   
-    // document.querySelector('tbody').append(tr);
+    document.querySelector('tbody').append(tr);
     
-    // // 수정 모달창 열기
-    // tr.addEventListener("click", function() {
-    //   modifyModal();
-    // })
+    // 수정 모달창 열기
+    tr.addEventListener("click", function() {
+      modifyModal();
+    })
     
-    Swal.fire({
-      title: '최종 승인하시겠습니다',
-      text: '',
-      icon: 'warning',
-      
-      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-      cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-      cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-      
-      reverseButtons: true, // 버튼 순서 거꾸로
-      
-   }).then(result => {
-      // 만약 Promise리턴을 받으면,
-      if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-      
-         Swal.fire('완료되었습니다.');
-      }
-   });
-
     // 모달 닫기
-    // modalClose();
+    modalClose();
   }
 
 })
@@ -221,31 +207,16 @@ const checkCancellBtn = document.getElementById('check-cancell-btn');
 const checkModalTitle = document.querySelector('.check-modal-title > input');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
+const checkSuccessBtn = document.getElementById('check-success-btn');
 
 
 // 수정 모달창 오픈
 function modifyModal() {
   
-  // 제목 밸류값 들고오기
-  checkModalTitle.value = noticeTitle.value;
-
-  // textarea 밸류값 들고오기
-  checkModalDetail.innerHTML = "";
-  const checkModalDetailLines = noticeContent.value.split("\n");
-  let resultString = "<p>";
-  
-  for (let i = 0; i < checkModalDetailLines.length; i++) {
-    resultString += checkModalDetailLines[i] + "<br>";
-  }
-
-  resultString += "</p>";
-
-  checkModalDetail.innerHTML = resultString;
-
-
   // 모달창 열기
   checkModal.style.display = 'block';
   checkModalBody.classList.add('check-modal-open');
+
 
 }
 
@@ -259,9 +230,9 @@ function checkModalClose() {
     checkModalBody.classList.remove("check-modal-close");
   }, 350);
 
-  noticeContent.style.overflow = 'hidden';
+  paymentContent.style.overflow = 'hidden';
 
-  noticeContent.style.height = 'inherit';
+  paymentContent.style.height = 'inherit';
 }
 
 // 모달창 엑스 버튼
@@ -281,8 +252,41 @@ checkCancellBtn.addEventListener("click", () => {
   checkModalClose();
 });
 
+// 최종승인 이벤트
+checkSuccessBtn.addEventListener("click", () => {
 
+  const checkbox = document.getElementById('check-modal-checkbox');
+  const is_checked = checkbox.checked;
 
+  if(is_checked) {
+    checkModalClose();
+  } else{
+    
+    Swal.fire({
+      title: '최종 승인하시겠습니까?',
+      text: '',
+      icon: 'warning',
+      
+      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+      cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+      cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+      
+      reverseButtons: true, // 버튼 순서 거꾸로
+      
+   }).then(result => {
+      // 만약 Promise리턴을 받으면,
+      if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+      
+         Swal.fire('최종 승인 되었습니다.');
+         checkModalClose();
+      } else {
+        Swal.fire('승인 되었습니다.');
+        checkModalClose();
+      }
+   });
 
+  }
 
-  
+})
