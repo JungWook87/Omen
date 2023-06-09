@@ -23,10 +23,22 @@
 		WHERE NOTICE_TYPE = 0
 	</select>
 	
-		<insert id="insertNotice" parameterType="notice">
-		INSERT INTO NOTICE VALUES(
-		SEQ_NOTICE_NO.NEXTVAL, #{title}, #{content},NULL,SYSDATE, 0)
-	</insert>
+		<!-- 공지사항 작성 -->
+		<insert id="insertNotice" parameterType="notice" useGeneratedKeys="true">
+			<selectKey keyProperty="noticeNo" resultType="_int" order="BEFORE">
+				SELECT SEQ_NOTICE_NO.NEXTVAL FROM DUAL
+			</selectKey>
+				INSERT INTO NOTICE VALUES(
+				#{noticeNo}, #{title}, #{content}, NULL ,SYSDATE, 0)
+		</insert>
+		
+		<insert id="insertNoticeFile" parameterType="file" useGeneratedKeys="true">
+			<selectKey keyProperty="fileNo" resultType="_int" order="BEFORE">
+				SELECT SEQ_FILE_NO.NEXTVAL FROM DUAL
+			</selectKey>
+				INSERT INTO UPLOAD_FILE VALUES(DEFAULT, DEFAULT, DEFAULT, #{noticeNo} , DEFAULT, #{fileReName}, #{fileOrigin}, #{fileNo})
+			
+		</insert>
 
 	
 </mapper>

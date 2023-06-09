@@ -88,7 +88,7 @@
               <div class="file-box">
                 <button type="button" id="file-remove">파일 지우기</button>
                 <label for="file-uploads">파일 올리기</label>
-                <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+                <input type="file" id="file-uploads" name=" uploadFile" accept="" multiple>
               </div>
               <!-- 선택된 파일 -->
               <div class="preview"></div>

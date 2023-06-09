@@ -7,11 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class NoticeImage {
+public class NoticeDetail {
 
-	private int imageNo;
-	private String imageRename;
-	private String imageOriginal;
-	private int noticeNo;
+	
 	
 }
