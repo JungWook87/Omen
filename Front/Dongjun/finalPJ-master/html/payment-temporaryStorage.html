@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../component/component.css">
   <link rel="stylesheet" href="../component/variable.css">
   <link rel="stylesheet" href="../css/payment-Inbox.css">
+  <link rel="stylesheet" href="../css/payment-inbox(1).css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -18,7 +19,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-  <title>결재</title>
+  <title>결재-임시저장</title>
 </head>
 
 <body>
@@ -29,7 +30,12 @@
     <!-- 사이드 바 -->
     <div class="side-bar menu">
       <!-- 페이지마다 바뀌는 제목 -->
-      <h1>결재</h1>
+      <div class="side-barTitle">
+        <a href="payment-Inbox.html" id="side-barTitle-a">
+          <img src="../images/leftArrow.png" alt="">
+        </a>
+      <h1>수신함</h1>
+      </div>
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
@@ -46,31 +52,7 @@
       <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
         <p class="content-all-top-text1">결재 / </p>
-        <p class="content-all-top-text2">내가 작성한 결재(0)</p>
-        <!-- 시작일 / 종료일 -->
-        <div class="content-all-date">
-          
-          <div class="content-all-date-p">
-
-            <p class="date-p">
-              시작일
-            </p>
-            
-            <p class="date-p">
-              종료일
-            </p>
-
-          </div>
-
-          <div class="content-all-date-input">
-            
-            <input type="text" id="dateClick" name="daterange" value="01/01/2023 - 01/15/2023" />
-            <label for="dateClick">⌵</label>
-            <button type="button" class="omen-btn" id="dateBtn">조회</button>
-          </div>
-          
-        </div>
-        
+        <p class="content-all-top-text2">임시 저장(2)</p>
       </div>
 
       <!-- 컨텐츠 내용 아랫부분 -->
@@ -171,7 +153,7 @@
             </thead>
 
             <tbody>
-              <tr>
+              <tr class="row">
                 <td>1</td>
                 <td>1234</td>
                 <td>테스트입니다</td>
@@ -185,62 +167,138 @@
             
           </table>
 
+
         </div>
+
+      
 
       </div>
 
-    </div>
+      <div id="check-modalWrap">
+        <div class="check-modalBody">
+          <span id="check-closeBtn">
+            <img src="../images/Xbtn.png" alt="">
+          </span>
+          <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
+            
+            <!-- 모달창 시작 -->
+            <div class="check-modal-header">
+              <!-- 제목 -->
+              <h1 class="check-modal-title">결재 예시</h1>
+              <!-- 결재항목박스 -->
+              <div class="check-modal-modal-headerbox">
+                <!-- 결재항목 내용 -->
+                <div class="check-modal-headerbox-content">
+                  <!-- 문서번호 -->
+                  <span class="check-modal-modal-headerbox-content-a">문서번호 :</span>  
+                  <span class="check-modal-modal-headerbox-content-b">2023-05-26-20001990</span>
+                </div>
+                
+                <div class="check-modal-headerbox-content">
+                  <!-- 작성자 -->
+                  <span class="check-modal-headerbox-content-a">작성자 :</span>  
+                  <span class="check-modal-headerbox-content-b">이재혁 ( abcde@gmail.com )</span>
+                </div>
+                <div class="check-modal-headerbox-content">
+                  <!-- 작성일 -->
+                  <span class="check-modal-modal-headerbox-content-a">작성일 :</span>  
+                  <span class="check-modal-modal-headerbox-content-b">2023-05-26 14:19</span>
+                </div>
 
-    <!-- 사용자가 작성한 공지사항 열기 -->
-    <div id="check-modalWrap">
-      <div class="check-modalBody">
-        <span id="check-closeBtn">
-          <img src="../images/Xbtn.png" alt="">
-        </span>
-        <h1>결재상신</h1>
-        <!-- 선1 -->
-        <div class="modal-line"></div>
+                <div class="check-modal-headerbox-footer">
+                    <button class="modal-headerbox-footer-btn">
+                      <span>꓋ 문서복사</span>
+                    </button>
+                    <button class="check-modal-headerbox-footer-btn">
+                      <span> ✁  문서출력</span>
+                    </button>
+                </div>
+            
+              </div>
+              
+            </div>
+            
+            <div class="check-modal-table-body">
+              
+              <h2>결재경로</h2>
 
-        <!-- 템플릿 -->
-        <div class="check-modal-template">
-          <p>템플릿</p>
-          <select name="" id="">
-            <option value="">경조금신청서(예시)</option>
-            <option value="">구매요청서(예시)</option>
-            <option value="">자산요청서(예시)</option>
-          </select>
-        </div>
-        <!-- 제목 -->
-        <div class="check-modal-title">
-          <p>제목</p>
-          <input type="text" readonly>
-        </div>
-        <!-- 내용 -->
-        <div>
-          <p>내용</p>
-          <div class="check-modal-detail"></div>
-        </div>
-        <!-- 결재자 -->
-        <div class="check-modal-approver">
-          <p>결재자</p>
-          <input type="text">
-        </div>
+              <table>
+          
+                <thead>
+                  
+                  <tr>
+                    <th>순서</th>
+                    <th>이름</th>
+                    <th>결재상태</th>
+                    <th>구분</th>
+                  </tr>
+                  
+                </thead>
+    
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>류정훈</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>이동준</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>김정욱</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                </tbody>
+              </table>
+            
 
-        <!-- 선택된 파일 -->
-        <p>첨부파일</p>
-        <div class="check-preview"></div>
-        <!-- 선2 -->
-        <div class="modal-line"></div>
-        <!-- 버튼 -->
-        <div class="notice-submit-reset-btns">
-          <button id="check-remove-btn">삭제</button>
-          <button type="reset" id="check-cancell-btn">닫기</button>
-          <button id="check-success-btn">수정</button>
-        </div>
+            </div>
 
+          <!-- 내용 -->
+          <div class="check-modal-detail">
+            <p>내용</p>
+            <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+              onkeyup="handleResizeHeight(this)"></textarea>
+          </div>
+          <!-- 의견 -->
+          <div class="check-modal-coment">
+            <p>의견</p>
+            <input type="text">
+          </div>
+           <!-- 결재자 -->
+           <div class="check-modal-approver">
+            <p>결재자</p>
+            <input type="text">
+          </div>
+         
+          <!-- 선2 -->
+          <div class="payment-modal-line"></div>
+           <!-- 최종승인 버튼 -->
+           <div class="check-modal-checkbox">
+            <label for="">
+              <input type="checkbox" id='check-modal-checkbox' onclick='is_checked()'> 
+              최종 승인
+            </label>
+          </div>
+          
+
+          <!-- 버튼 -->
+          <div class="payment-submit-reset-btns">
+            <button type="submit" id="companion-btn">반려</button>
+            <button type="reset" id="check-cancell-btn">취소</button>
+            <button id="check-success-btn">승인</button>
+          </div>
+          <!-- </form> -->
+        </div>
       </div>
-    </div>
 
+    </div>
 
     <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
@@ -251,5 +309,5 @@
   </section>
 </body>
 
-<script src="../js/payment-Inbox.js"></script>
+<script src="../js/payment-inbox(1).js"></script>
 </html>
