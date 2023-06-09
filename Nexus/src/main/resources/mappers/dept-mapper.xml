@@ -48,7 +48,7 @@
 	</select>
 	
 	<!-- 부서 게시판 목록 조회 -->
-	<select id="boardList" parameterType="_int" resultMap="board_rm">
+	<select id="selectPublicNoticeList" parameterType="_int" resultMap="board_rm">
 		SELECT BOARD_NO, MEMBER.MEM_NAME, BOARD_TITLE, BOARD_DATE
 		FROM BOARD
 		JOIN MEMBER ON BOARD.MEM_NO = MEMBER.MEM_NO

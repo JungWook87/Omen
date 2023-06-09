@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ln.intranet.common.model.vo.Pagination;
+import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.notice.model.vo.Notice;
 
 @Repository
@@ -26,12 +27,25 @@ public class NoticeDao {
 		return sqlSession.selectList("noticeMapper.selectPublicNoticeList",rowBounds);
 	}
 
+	// 공지사항 글 개수 조회
 	public int totalCount() {
 		return sqlSession.selectOne("noticeMapper.totalList");
 	}
 
+	// 공지사항 작성
 	public int insertNotice(Map<String, Object> map) {
-		return sqlSession.insert("noticeMapper.insertNotice", map);
+		
+		int result = sqlSession.insert("noticeMapper.insertNotice", map);
+		
+		if(result > 0) result = (int) map.get("noticeNo");
+		
+		return result;
+	}
+
+	// 파일 업로드
+	public int insertNoticeFile(UploadFile file) {
+		
+		return sqlSession.insert("noticeMapper.insertNoticeFile", file);
 	}
 
 }

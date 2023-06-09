@@ -1,5 +1,7 @@
 package com.ln.intranet.notice.model.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,11 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ln.intranet.common.Util;
+import com.ln.intranet.common.model.exception.InsertFailException;
 import com.ln.intranet.common.model.vo.Pagination;
+import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.dept.model.vo.Board;
 import com.ln.intranet.notice.model.dao.NoticeDao;
 import com.ln.intranet.notice.model.vo.Notice;
-import com.ln.intranet.notice.model.vo.NoticeImage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,30 +46,45 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 
+	/** 공지사항 작성 + 파일업로드
+	 * 
+	 */
 	@Transactional(rollbackFor = {Exception.class})
 	@Override
-	public int writeNotice(String webPath, String folderPath, List<MultipartFile> imgList, Map<String, Object> map) {
-		
-		log.debug(map + "");
+	public int writeNotice(String webPath, String folderPath, MultipartFile uploadFile, Map<String, Object> map)throws IOException {
 		
 		int noticeNo = dao.insertNotice(map);
 		
+		log.debug("noticeNo = " + noticeNo + "");
 		
-		List<NoticeImage> boardImageList = new ArrayList();
-		List<String>reNameList = new ArrayList();
+		UploadFile file = new UploadFile();
+		String reName = null;
 		
-		for(int i = 0; i < imgList.size(); i++) {
-			String reName = Util.fileRename(imgList.get(i).getOriginalFilename());
-			reNameList.add(reName);
+		if(noticeNo > 0) {
 			
-			NoticeImage img = new NoticeImage();
-			
-			
+			if(uploadFile.getSize() > 0 ) {
+				
+				reName = Util.fileRename(uploadFile.getOriginalFilename());
+				
+				file.setNoticeNo(noticeNo);
+				file.setFileOrigin(uploadFile.getOriginalFilename());
+				file.setFileReName(webPath+reName);
+				
+				int result = dao.insertNoticeFile(file);
+				
+				log.debug("FILENO = " + result + "");
+				
+				
+				if(result > 0) {
+					uploadFile.transferTo(new File(folderPath + reName));
+				}else {
+					throw new InsertFailException();
+				}
+			}
 		}
+	
 		
-		
-		
-		return 0;
+		return noticeNo;
 	}
 
 

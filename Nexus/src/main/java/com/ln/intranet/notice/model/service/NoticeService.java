@@ -1,5 +1,6 @@
 package com.ln.intranet.notice.model.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,6 @@ public interface NoticeService {
 
 	Map<String, Object> selectPublicNoticeList(int cp);
 
-	int writeNotice(String webPath, String folderPath, List<MultipartFile> imgList, Map<String, Object> map);
+	int writeNotice(String webPath, String folderPath, MultipartFile uploadFile, Map<String, Object> map) throws IOException;
 
 }

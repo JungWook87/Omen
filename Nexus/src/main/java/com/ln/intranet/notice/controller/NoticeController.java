@@ -1,5 +1,6 @@
 package com.ln.intranet.notice.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -52,23 +53,31 @@ public class NoticeController {
 	  }
 	  
 	  @PostMapping("writeNotice")
-	  public String writeNotice(@RequestParam(value="file-uploads", required = false)List<MultipartFile> imgList,
+	  public String writeNotice(@RequestParam("uploadFile") MultipartFile uploadFile,
 			  					@ModelAttribute("loginMember") Member loginMember,
 			  					@RequestParam Map<String, Object> map,
 			  					HttpServletRequest req,
 			  					RedirectAttributes ra
 			  					
-			  ) {
+			  )throws IOException {
 		  	
-		  map.put("memberNo", loginMember.getMemNo());
 		  
-		  
-		  String webPath = "resources/images/notice/";
+		  String webPath = "/resources/file/";
 		  String folderPath = req.getSession().getServletContext().getRealPath(webPath);
 		  
-		  int result = service.writeNotice(webPath, folderPath, imgList ,map);
+		  int result = service.writeNotice(webPath, folderPath, uploadFile ,map);
 		  
-		  return "";
+		  String message = null;
+		  
+		  if(result > 0) {
+			  
+			  message = "공지사항 등록됨";
+		  }else {
+			  message = "공지사항 등록 실패";
+		  }
+		  ra.addFlashAttribute("message", message);
+		  
+		  return "redirect:/notice/list";
 	  }
 	  
 	  
