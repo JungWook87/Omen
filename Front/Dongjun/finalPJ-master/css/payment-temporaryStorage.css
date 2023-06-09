@@ -1,0 +1,9 @@
+.side-bar h1 {
+    font-size: 30px;
+    margin: 0;
+    padding: 60px 0 40px 35px;
+    color: var(--black);
+}
+.content-all-bottom-area-header{
+    justify-content: end;
+}

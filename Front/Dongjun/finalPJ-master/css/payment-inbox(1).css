@@ -491,16 +491,16 @@ select{
 
 
 /* 파일업로드된 스타일 */
-.payment-preview ol {
+.work-preview ol {
   list-style: none;
 }
 
 /* 파일 올리기 지우기 버튼 스타일 */
-.payment-file-box {
+.work-file-box {
   margin-top: 20px;
 }
 
-.payment-file-box label {
+.work-file-box label {
   width: 90px;
   height: 35px;
 
@@ -524,12 +524,12 @@ select{
 
 }
 
-.payment-file-box label:hover {
+.work-file-box label:hover {
   background-color: var(--primary500);
   transition: all 1s;
 }
 
-.payment-filebox input[type="file"] {
+.work-filebox input[type="file"] {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -541,7 +541,7 @@ select{
 }
 
 
-.payment-file-box button {
+.work-file-box button {
   width: 90px;
   height: 35px;
 
@@ -563,14 +563,14 @@ select{
   cursor: pointer;
 }
 
-.payment-file-box button:hover {
+.work-file-box button:hover {
   background-color: var(--gray100);
   transition: all 1s;
 }
 
 
 /* 확인 취소 버튼 */
-.payment-submit-reset-btns {
+.work-submit-reset-btns {
   margin-top: 20px;
 
   float: right;

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../component/component.css">
+  <link rel="stylesheet" href="../component/variable.css">
+  <link rel="stylesheet" href="../css/work-send.css">
+  <link rel="stylesheet" href="../css/work-inbox(1).css">
+  <!-- sweetAlert2 cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+  <!-- 날짜조회api-->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+  <title>결재-수신함-결재 취소</title>
+</head>
+
+<body>
+
+  <header style="height: 90px;"></header>
+  <section>
+
+       <!-- 사이드 바 -->
+       <div class="side-bar menu">
+        <!-- 페이지마다 바뀌는 제목 -->
+        <div class="side-barTitle">
+          <a href="work-send.html" id="side-barTitle-a">
+            <img src="../images/leftArrow.png" alt="">
+          </a>
+        <h1>수신함</h1>
+      </div>
+
+      <!-- 페이지마다 바뀌는 부제목 -->
+      <ul>
+        <li><a href="work-inbox(1).html"><span>결재할문서</span> </a></li>
+        <li><a href="work-inbox(2).html"><span>결재진행중</span> </a></li>
+        <li><a href="work-inbox(3).html"><span>결재완료</span> </a></li>
+        <li><a href="work-inbox(4).html"><span>결재취소</span> </a></li>
+      </ul>
+    </div>
+
+    <!-- 컨텐츠 내용 -->
+    <div class="content-all-page">
+
+      <!-- 컨텐츠 내용 윗부분 -->
+      <div class="content-all-top-area">
+        <p class="content-all-top-text1">결재 / </p>
+        <p class="content-all-top-text2">결재 취소</p>
+        <!-- 시작일 / 종료일 -->
+        <div class="content-all-date">
+          
+          <div class="content-all-date-p">
+
+            <p class="date-p">
+              시작일
+            </p>
+            
+            <p class="date-p">
+              종료일
+            </p>
+
+          </div>
+
+          <div class="content-all-date-input">
+            
+            <input type="text" id="dateClick" name="daterange" value="01/01/2023 - 01/15/2023" />
+            <label for="dateClick">⌵</label>
+            <button type="button" class="omen-btn" id="dateBtn">조회</button>
+          </div>
+          
+        </div>
+        
+      </div>
+
+      <!-- 컨텐츠 내용 아랫부분 -->
+      <div class="content-all-bottom-area">
+        
+        <div class="content-all-bottom-area-header">
+
+            <select placeholder="전체">
+              <option value="전체">전체</option>
+              <option value="진행중">근태</option>
+              <option value="근무">근무</option>
+              <option value="비용">비용</option>
+              <option value="일반">일반</option>
+            </select>
+
+            <div class="button-box">
+
+              <button type="button" class="search-btn" >검색하기</button>
+              <button type="button" class="omen-btn" id="popupBtn">결재 작성하기</button>
+              
+            </div>    
+
+        </div>
+
+        <div id="modalWrap">
+          <div class="work-modalBody">
+            <span id="closeBtn">
+              <img src="../images/Xbtn.png" alt="">
+            </span>
+            <h1>결제상신</h1>
+            <!-- 선1 -->
+            <div class="work-modal-line"></div>
+
+            <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
+              <!-- 템플릿 -->
+              <div class="work-modal-template">
+                <p>템플릿</p>
+                <select name="" id="">
+                  <option value="">경조금신청서(예시)</option>
+                  <option value="">구매요청서(예시)</option>
+                  <option value="">자산요청서(예시)</option>
+                </select>
+              </div>   
+            <!-- 제목 -->
+            <div class="work-modal-title">
+              <p>제목</p>
+              <input type="text" placeholder="제목을 입력해주세요" required>
+            </div>
+            <!-- 내용 -->
+            <div class="work-modal-detail">
+              <p>내용</p>
+              <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+                onkeyup="handleResizeHeight(this)"></textarea>
+            </div>
+            <!-- 결재자 -->
+            <div class="work-modal-approver">
+              <p>결재자</p>
+              <input type="text">
+            </div>
+
+            <!-- 선2 -->
+            <div class="work-modal-line"></div>
+            <!-- 임시저장 버튼 -->
+            <div class="work-modal-save">
+              <button type="button" id="save-draft">임시 저장</button>
+            </div>
+            <!-- 버튼 -->
+            <div class="work-submit-reset-btns">
+              <button type="reset" id="cancell-btn">취소</button>
+              <button id="success-btn">확인</button>
+            </div>
+            <!-- </form> -->
+          </div>
+        </div>
+
+        <div class="content-all-bottom-area-content">
+
+          <table>
+            
+            <thead>
+              
+              <tr>
+                <th>종류</th>
+                <th>결재 번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>첨부파일</th>
+                <th>결재의견</th>
+                <th>작성일</th>
+              </tr>
+              
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>1234</td>
+                <td>테스트입니다</td>
+                <td>테스터</td>
+                <td>없음</td>
+                <td>없음</td>
+                <td>2023.5.10</td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+      <div id="check-modalWrap">
+        <div class="check-modalBody">
+          <span id="check-closeBtn">
+            <img src="../images/Xbtn.png" alt="">
+          </span>
+          <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
+            
+            <!-- 모달창 시작 -->
+            <div class="check-modal-header">
+              <!-- 제목 -->
+              <h1 class="check-modal-title">결재 예시</h1>
+              <!-- 결재항목박스 -->
+              <div class="check-modal-modal-headerbox">
+                <!-- 결재항목 내용 -->
+                <div class="check-modal-headerbox-content">
+                  <!-- 문서번호 -->
+                  <span class="check-modal-modal-headerbox-content-a">문서번호 :</span>  
+                  <span class="check-modal-modal-headerbox-content-b">2023-05-26-20001990</span>
+                </div>
+                
+                <div class="check-modal-headerbox-content">
+                  <!-- 작성자 -->
+                  <span class="check-modal-headerbox-content-a">작성자 :</span>  
+                  <span class="check-modal-headerbox-content-b">이재혁 ( abcde@gmail.com )</span>
+                </div>
+                <div class="check-modal-headerbox-content">
+                  <!-- 작성일 -->
+                  <span class="check-modal-modal-headerbox-content-a">작성일 :</span>  
+                  <span class="check-modal-modal-headerbox-content-b">2023-05-26 14:19</span>
+                </div>
+
+                <div class="check-modal-headerbox-footer">
+                    <button class="modal-headerbox-footer-btn">
+                      <span>꓋ 문서복사</span>
+                    </button>
+                    <button class="check-modal-headerbox-footer-btn">
+                      <span> ✁  문서출력</span>
+                    </button>
+                </div>
+            
+              </div>
+              
+            </div>
+            
+            <div class="check-modal-table-body">
+              
+              <h2>결재경로</h2>
+
+              <table>
+          
+                <thead>
+                  
+                  <tr>
+                    <th>순서</th>
+                    <th>이름</th>
+                    <th>결재상태</th>
+                    <th>구분</th>
+                  </tr>
+                  
+                </thead>
+    
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>류정훈</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>이동준</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>김정욱</td>
+                    <td>승인</td>
+                    <td>결재자 / 팀(전체)</td>
+                  </tr>
+                </tbody>
+              </table>
+            
+
+            </div>
+
+          <!-- 내용 -->
+          <div class="check-modal-detail">
+            <p>내용</p>
+            <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+              onkeyup="handleResizeHeight(this)"></textarea>
+          </div>
+          <!-- 의견 -->
+          <div class="check-modal-coment">
+            <p>의견</p>
+            <input type="text">
+          </div>
+           <!-- 결재자 -->
+           <div class="check-modal-approver">
+            <p>결재자</p>
+            <input type="text">
+          </div>
+          <!-- 선택된 파일 -->
+          <p>선택파일</p>
+          <div class="check-preview"></div>
+          <!-- 파일 업로드 -->
+          <div class="work-file-box">
+            <button type="button" id="file-remove">파일 지우기</button>
+            <label for="file-uploads">파일 올리기</label>
+            <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+          </div>
+          <!-- 선2 -->
+          <div class="work-modal-line"></div>
+           <!-- 최종승인 버튼 -->
+           <div class="check-modal-checkbox">
+            <label for="">
+              <input type="checkbox" id='check-modal-checkbox' onclick='is_checked()'> 
+              최종 승인
+            </label>
+          </div>
+          
+
+          <!-- 버튼 -->
+          <div class="work-submit-reset-btns">
+            <button type="submit" id="companion-btn">반려</button>
+            <button type="reset" id="check-cancell-btn">취소</button>
+            <button id="check-success-btn">승인</button>
+          </div>
+          <!-- </form> -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 채팅창 -->
+    <div id="chatting-function" class="chatting-box">
+      <a href="#">
+        <img class="chatting-img" src="../images/chattImg.png" alt="">
+      </a>
+    </div>
+  </section>
+</body>
+
+<script src="../js/work-inbox(2).js"></script>
+</html>
