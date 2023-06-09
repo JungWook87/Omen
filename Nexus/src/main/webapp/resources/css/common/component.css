@@ -8,6 +8,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 
+/* 셀렉 옵션 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 
 /* 바디 스타일 */
 * {
@@ -27,6 +38,50 @@ p {
 }
 
 
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear,
+            left bottom,
+            left top,
+            color-stop(0.44, rgb(122, 153, 217)),
+            color-stop(0.72, rgb(73, 125, 189)),
+            color-stop(0.86, rgb(28, 58, 148)));
+}
+
+
+.modalBody input {
+    font-family: 'NanumSquareNeo-Variable';
+    font-size: 14px;
+}
+
+.payment-modalBody input {
+    font-family: 'NanumSquareNeo-Variable';
+    font-size: 14px;
+}
+
+select {
+    font-family: 'NanumSquareNeo-Variable';
+    font-size: 14px;
+    
+}
+
+option {
+    font-family: 'NanumSquareNeo-Variable';
+    font-size: 14px;
+}
 
 /* 박스 전체 스타일 */
 .main-box {
@@ -167,10 +222,11 @@ p {
 /* 사이드바 */
 .side-bar {
     min-width: 300px;
+
 }
 
 
-/* 테이블스타일 */
+/* 공지사항 테이블스타일 */
 .notice-table {
     margin-top: 80px;
 }

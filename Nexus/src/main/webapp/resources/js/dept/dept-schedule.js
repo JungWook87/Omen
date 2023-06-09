@@ -84,7 +84,7 @@
                 text: '',
                 input: 'text',
                 inputPlaceholder: ''
-            })
+            });
         
             // 이후 처리되는 내용.
             if (title) {
