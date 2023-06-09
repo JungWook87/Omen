@@ -4,8 +4,10 @@ const modal = document.getElementById('modalWrap');
 const closeBtn = document.getElementById('closeBtn');
 const modalBody = document.querySelector('.modalBody');
 const cancellBtn = document.getElementById('cancell-btn');
-const meetingRoomTitle = document.getElementById('meetingRoom-title');
+const meetingRoomName = document.getElementById('meetingRoom-name');
 const successBtn = document.getElementById('success-btn');
+
+
 
 
 (function(){
@@ -88,33 +90,54 @@ const successBtn = document.getElementById('success-btn');
             console.log('remove');
         },
         select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-            modal.style.display = 'block';
-            modalBody.classList.add('modal-open');
-            // meetingRoomTitle.value = '';
-            var title = meetingRoomTitle.value;
-            successBtn.addEventListener('click', () => {
-             
-              if (title) {
-                  
-                  calendar.addEvent({
-                    title: title,
-                    start: arg.start,
-                    end: arg.end,
-                    allDay: arg.allDay
-                  })
-                
-                }
-                
-                modalClose();
-                
-                calendar.unselect()
+          modal.style.display = 'block';
+          modalBody.classList.add('modal-open');
+          
+          
+          // 기존에 등록된 이벤트 리스너 제거
+          successBtn.removeEventListener('click', handleSuccessClick);
 
-            })
+          // 새로운 이벤트 리스너 등록
+          successBtn.addEventListener('click', handleSuccessClick);
+
+          function handleSuccessClick(e) {
+            var title = $("#meetingRooms option:checked").text();
+            var selectedTime = $("#reservationTime option:checked").val();
+            var start = new Date(arg.start);
+
+            // 시작 시간 생성
+            var hours = parseInt(selectedTime.substring(4, 6)); // 문자열에서 시간 추출
+            var minutes = 0; // 분은 0으로 설정 (예시 기준)
+            start.setHours(hours);
+            start.setMinutes(minutes);
+
+            // 종료 시간 생성 (예시로 시작 시간보다 1시간 뒤로 설정)
+            var end = new Date(start);
+            end.setHours(end.getHours() + 1);
+
+
+            calendar.addEvent({
+              title: title,
+              start: start,
+              end: end,
+              
+            });
+            
+            modalClose();
+            // 기존에 등록된 이벤트 리스너 제거
+            successBtn.removeEventListener('click', handleSuccessClick);
+          }
+        
+
+          // modalClose();
+        },
+        
+        dateClick: function(arg) {
          
+        
+      
         },
-        dataClick: function(arg) {
-
-        },
+       
         eventClick: function(arg) { 
             // 있는 일정 클릭시
             Swal.fire({
@@ -174,7 +197,7 @@ const successBtn = document.getElementById('success-btn');
             
         },
         eventBorderColor : 'var(--primary300)', // 이벤트 테두리색
-		eventBackgroundColor : 'var(--primary300)' , // 이벤트 배경색
+		    eventBackgroundColor : 'var(--primary300)' , // 이벤트 배경색
        
          // 이벤트 
          events: [
@@ -222,3 +245,13 @@ function modalClose() {
 
  
 }
+
+
+
+
+
+
+
+
+
+
