@@ -36,7 +36,7 @@ public class DeptDAO {
 		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 		RowBounds rowBounds = new RowBounds(offset,pagination.getLimit());
 		
-		return sqlSession.selectList("deptMapper.selectPublicNoticeList",deptNo,rowBounds);
+		return sqlSession.selectList("deptMapper.boardList",deptNo,rowBounds);
 	}
 	
 	// 부서게시판 글작성 DAO (파일업로드 전)
