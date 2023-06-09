@@ -93,7 +93,7 @@ function handleResizeHeight(obj) {
 
 // 파일 업로드 스타일
 const fileUpload = document.getElementById('file-uploads');
-const preview = document.querySelector('.preview');
+const preview = document.querySelector('.payment-preview');
 
 fileUpload.style.opacity = 0;
 
