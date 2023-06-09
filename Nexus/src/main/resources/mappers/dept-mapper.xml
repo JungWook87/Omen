@@ -4,23 +4,34 @@
 
 	<!-- 부서 게시판 글 목록 조회 -->
 	<resultMap type="board" id="board_rm">
-		<id 	property="boardNo" 		column="BOARD_NO"/>
+		<id 	property="boardNo" 			column="BOARD_NO"/>
 		<result property="memName" 		column="MEM_NAME"/>
-		<result property="boardTitle" 	column="BOARD_TITLE"/>
-		<result property="boardDate" 	column="BOARD_DATE"/>
+		<result property="boardTitle" 		column="BOARD_TITLE"/>
+		<result property="boardDate" 		column="BOARD_DATE"/>
 	</resultMap>
 
 	<!-- 부서 게시판 상세 조회 -->
 	<resultMap type="detail" id="detail_rm">
-		<id 	property="boardNo" 		column="BOARD_NO"/>
-		<result property="memNo" 		column="MEM_NO"/>
+		<id 	property="boardNo" 			column="BOARD_NO"/>
+		<result property="memNo" 			column="MEM_NO"/>
 		<result property="memName" 		column="MEM_NAME"/>
-		<result property="boardTitle" 	column="BOARD_TITLE"/>
+		<result property="boardTitle" 		column="BOARD_TITLE"/>
 		<result property="boardContent" column="BOARD_CONTENT"/>
-		<result property="boardFile" 	column="BOARD_FILE"/>
-		<result property="boardDate" 	column="BOARD_DATE"/>
-		<result property="boardSt" 		column="BOARD_ST"/>
-		<result property="deptNo"		column="DEPT_NO"/>
+		<result property="boardFile" 		column="BOARD_FILE"/>
+		<result property="boardDate" 		column="BOARD_DATE"/>
+		<result property="boardSt" 			column="BOARD_ST"/>
+		<result property="deptNo"			column="DEPT_NO"/>
+	</resultMap>
+	
+	<resultMap type="file" id="file_rm">
+		<id property="fileNo" 					column="FILE_NO"/>
+		<result property="workNo" 			column="WORK_NO"/>
+		<result property="taskNo" 			column="TASK_NO"/>
+		<result property="projectNo" 		column="PROJECT_NO"/>		
+		<result property="noticeNo" 		column="NOTICE_NO"/>	
+		<result property="boardNo" 		column="BOARD_NO"/>	
+		<result property="fileReName" 	column="FILE_RENAME"/>
+		<result property="fileOrigin" 		column="FILE_ORIGIN"/>
 	</resultMap>
 	
 	
@@ -44,6 +55,34 @@
 		WHERE BOARD.BOARD_ST = 'N'
 		AND BOARD.DEPT_NO = ${deptNo}
 		ORDER BY BOARD.BOARD_NO DESC
+	</select>
+	
+	<!-- 부서 게시판 글작성 -->
+	<insert id="insertBoard" parameterType="detail" useGeneratedKeys="true"> 
+		<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+		</selectKey>
+			INSERT INTO BOARD VALUES( 
+			#{boardNo}, #{memNo}, #{boardTitle}, #{boardContent}, 
+			DEFAULT, DEFAULT, DEFAULT, #{deptNo}
+			)
+	</insert>
+	
+	<!-- 부서게시판 파일업로드 -->
+	<insert id="insertBoardFile" parameterType="file" useGeneratedKeys="true">
+			<selectKey keyProperty="fileNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_FILE_NO.NEXTVAL FROM DUAL
+			</selectKey>
+			INSERT INTO UPLOAD_FILE VALUES( 
+			DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{boardNo}, #{fileReName}, #{fileOrigin}, #{fileNo} 
+			)
+	</insert>
+	
+	<select id="selectDetail" parameterType="_int" resultMap="detail_rm">
+			SELECT MEM_NO, MEM_NAME, BOARD_TITLE, BOARD_CONTENT, BOARD_FILE, BOARD_DATE
+			FROM BOARD
+			JOIN MEMBER USING (MEM_NO)
+			WHERE BOARD_NO = #{boardNo}
 	</select>
 
 </mapper>

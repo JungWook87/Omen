@@ -12,7 +12,7 @@ import lombok.ToString;
 public class BoardDetail {
 
 	private int boardNo;
-	private int memberNo;
+	private int memNo;
 	private String memName;
 	private String boardTitle;
 	private String boardContent;

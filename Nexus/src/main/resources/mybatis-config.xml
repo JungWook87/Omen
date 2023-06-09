@@ -7,6 +7,7 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias type="com.ln.intranet.common.model.vo.UploadFile" alias="file"/>
 		<typeAlias type="com.ln.intranet.dept.model.vo.Board" alias="board"/>
 		<typeAlias type="com.ln.intranet.dept.model.vo.BoardDetail" alias="detail"/>
 		<typeAlias type="com.ln.intranet.member.model.vo.Member" alias="member"/>
