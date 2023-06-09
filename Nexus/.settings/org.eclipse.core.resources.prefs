@@ -7,3 +7,7 @@ encoding//src/main/webapp/WEB-INF/views/dept/dept-schedule.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/main.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/member/login.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/notice/notice.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/work/work-inbox-end.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/work/work-inbox-ing.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/work/work-inbox.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/work/work-send.jsp=UTF-8
