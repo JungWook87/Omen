@@ -29,6 +29,10 @@ button {
   color: var(--black);
 }
 
+.employee-search input::-moz-placeholder {
+  color: var(--gray200);
+}
+
 .employee-search input::placeholder {
   color: var(--gray200);
 }
@@ -39,7 +43,9 @@ button {
   background: white;
   padding: 0 1.6rem;
   border-radius: var(--rad);
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   transition: all var(--dur) var(--bez);
   transition-property: width, border-radius;
   z-index: 1;
@@ -57,9 +63,18 @@ button {
   border-radius: 0 var(--rad) var(--rad) 0;
 }
 
+.employee-search input:not(:-moz-placeholder-shown) {
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
+}
+
 .employee-search input:not(:placeholder-shown) {
   border-radius: var(--rad) 0 0 var(--rad);
   width: calc(100% - var(--btn-width));
+}
+.employee-search input:not(:-moz-placeholder-shown) + button {
+  display: block;
+  cursor: pointer;
 }
 .employee-search input:not(:placeholder-shown) + button {
   display: block;
@@ -74,6 +89,4 @@ button {
   height: 1px;
   width: 1px;
   overflow: hidden;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

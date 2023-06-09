@@ -16,6 +16,7 @@
     crossorigin="anonymous"></script>
     <!-- fullcalendar cdn -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  
   <title>회의실</title>
 </head>
 
@@ -71,9 +72,36 @@
 
             <!-- <form action="#" method="post"> -->
               <div>
-                <input type="text" id="meetingRoom-title">
+                <p>회의실 선택</p>
+                <select name="meetingRooms" id="meetingRooms" class="custom-select sources" placeholder="회의실">
+                  <!-- <option value="" selected disable>회의실</option> -->
+                  <option value="meetingRoom1">회의실 1</option>
+                  <option value="meetingRoom2">회의실 2</option>
+                  <option value="meetingRoom3">회의실 3</option>
+                  <option value="meetingRoom4">회의실 4</option>
+                </select>
               </div>
-           
+              <div>
+                <p>예약 시간</p>
+                <select name="reservationTime" id="reservationTime">
+                  <option value="" selected disable>-- 예약시간 --</option>
+                  <option value="time9">09 : 00</option>
+                  <option value="time10">10 : 00</option>
+                  <option value="time11">11 : 00</option>
+                  <option value="time12">12 : 00</option>
+                  <option value="time13">13 : 00</option>
+                  <option value="time14">14 : 00</option>
+                  <option value="time15">15 : 00</option>
+                  <option value="time16">16 : 00</option>
+                  <option value="time17">17 : 00</option>
+                  <option value="time18">18 : 00</option>
+                </select>
+              </div>
+              <div>
+                <p>예약자</p>
+                <input type="text" id="meetingRoom-name">
+              </div>
+              
             
             <!-- 선2 -->
             <div class="modal-line"></div>
