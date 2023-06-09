@@ -11,13 +11,22 @@
 		<result property="noticeType" column="NOTICE_TYPE"/>
 	</resultMap>
 	
-	<select id="selectNoticeList" resultMap="notice_rm">
-		SELECT NOTICE_NO, TITLE, CREATE_DATE FROM NOTICE 
-		WHERE NOTICE_TYPE = #{deptCode}
-	</select>
 	
 	<select id="selectPublicNoticeList" resultMap="notice_rm">
 		SELECT NOTICE_NO, TITLE, CREATE_DATE FROM NOTICE
 		WHERE NOTICE_TYPE = 0
+		ORDER BY NOTICE_NO DESC
 	</select>
+	
+	<select id="totalList" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM NOTICE
+		WHERE NOTICE_TYPE = 0
+	</select>
+	
+		<insert id="insertNotice" parameterType="notice">
+		INSERT INTO NOTICE VALUES(
+		SEQ_NOTICE_NO.NEXTVAL, #{title}, #{content},NULL,SYSDATE, 0)
+	</insert>
+
+	
 </mapper>

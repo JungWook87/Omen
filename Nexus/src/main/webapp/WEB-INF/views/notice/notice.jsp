@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
+<c:set var="pagination" value="${map.pagination}" />
+<c:set var="boardList" value="${map.boardList}" />
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,12 +76,12 @@
               <form action="writeNotice" enctype="multipart/form-data" method="post">
               <div class="modal-title">
                 <p>제목</p>
-                <input type="text" placeholder="제목을 입력해주세요" required>
+                <input type="text" name="title" placeholder="제목을 입력해주세요" required>
               </div>
               <!-- 내용 -->
               <div class="modal-detail">
                 <p>내용</p>
-                <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+                <textarea name="content" id="" onkeydown="handleResizeHeight(this)"
                   onkeyup="handleResizeHeight(this)"></textarea>
               </div>
               <!-- 파일 업로드 -->
@@ -120,10 +123,64 @@
               </tr>
             </thead>
 
-            <tbody id="notice-list">
+            <tbody>
+           <c:choose>
+                <c:when test="${empty boardList}">
+                    <tr>
+                        <th colspan="4">게시글이 존재하지 않습니다.</th>
+                    </tr>
+                </c:when>
+
+                <c:otherwise>
+                    <c:forEach var="board" items="${boardList}">
+                        <tr>
+                            <td>${board.noticeNo}</td>
+                            <td>${board.title}</td>
+                            <td>${board.createDate}</td>
+                        </tr>
+                    </c:forEach>
+
+                </c:otherwise>
+              </c:choose>
            
             </tbody>
           </table>
+        </div>
+          <div class="pagination-area">
+
+          <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
+          <c:set var="url" value="${boardCode}?cp="/>
+
+
+          <ul class="pagination">
+              <!-- 첫 페이지로 이동 -->
+              <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
+
+              <!-- 이전 목록 마지막 번호로 이동 -->
+              <li><a href="${url}${pagination.prevPage}${sURL}">&lt;</a></li>
+
+              <!-- 범위가 정해진 일반 for문 사용 -->
+              <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+
+                  <c:choose>
+                      <c:when test="${i == pagination.currentPage}">
+                          <li><a class="current">${i}</a></li>
+                      </c:when>
+
+                      <c:otherwise>
+                          <li><a href="${url}${i}${sURL}">${i}</a></li>        
+                      </c:otherwise>
+                  </c:choose>
+
+              </c:forEach>
+              
+              <!-- 다음 목록 시작 번호로 이동 -->
+              <li><a href="${url}${pagination.nextPage}${sURL}">&gt;</a></li>
+
+              <!-- 끝 페이지로 이동 -->
+              <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+
+          </ul>
         </div>
       </div>
 

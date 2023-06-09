@@ -1,50 +1,5 @@
 console.log("js loaded");
 
-
-
-  $.ajax({
-    url : "notice/noticeList",
-    dataType : "json",
-
-    success : function(publicNoticeList){
-      console.log(publicNoticeList);
-
-      const noticeList = document.getElementById("notice-list");
-
-      noticeList.innerHTML = "";
-
-      for(let item of publicNoticeList){
-
-        const tr = document.createElement("tr");
-
-        const noticeNumber = document.createElement("td");
-        noticeNumber.innerText = item.noticeNo;
-
-        const noticeCtnt = document.createElement("td");
-        noticeCtnt.innerText = item.title;
-
-        const Cdate = document.createElement("td");
-        Cdate.innerText = item.createDate;
-
-        tr.append(noticeNumber, noticeCtnt, Cdate);
-
-        noticeList.append(tr);
-
-
-
-      }
-    },
-    error : function(request, status, error){
-      console.log("에러");
-      console.log("상태코드 : request.status");
-    }
-
-  });
-
-
-
-
-
 // 모달창 스타일
 const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap');

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,37 +32,23 @@ public class NoticeController {
 	  @Autowired 
 	  private NoticeService service;
 	  
+
+	
 	  
-		@GetMapping("")
-		public String noticeforward() {
+	  @GetMapping("/list")
+	  public String selectPublicNoticeList(@RequestParam(value="cp",required=false, defaultValue="1") Integer cp,
+			  							Model model
+			  ) {
+		  	
+			Map<String,Object> map = null;	
 			
-			return "notice/notice";
-		
-	}
-	  
-	
-	
-	  @GetMapping("/deptNoticeList") 
-	 public String selectNoticeList(@ModelAttribute("loginMember") Member loginMember) {
+			map = service.selectPublicNoticeList(cp);
+			
+			
+			model.addAttribute("map", map);
 		  
-	  int deptCode = loginMember.getDeptNo();
-	  
-	  List<Notice> noticeList = service.selectNoticeList(deptCode);
-	  
-	  log.debug(noticeList + "");
-	  
-	 return "redirect:";
-	 }
-	  
-	  @ResponseBody
-	  @GetMapping("/noticeList")
-	  public String selectPublucNoticeList() {
 		  
-		  List <Notice> publicNoticeList = service.selectPublucNoticeList();
-		  
-		  log.info("publicNoticeList" + "");
-		  
-		  return new Gson().toJson(publicNoticeList);
+		  return "/notice/notice";
 	  }
 	  
 	  @PostMapping("writeNotice")
@@ -72,11 +59,9 @@ public class NoticeController {
 			  					RedirectAttributes ra
 			  					
 			  ) {
-		  
+		  	
 		  map.put("memberNo", loginMember.getMemNo());
 		  
-		  log.debug(map + "");
-
 		  
 		  String webPath = "resources/images/notice/";
 		  String folderPath = req.getSession().getServletContext().getRealPath(webPath);
