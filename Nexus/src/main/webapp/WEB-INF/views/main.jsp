@@ -37,7 +37,7 @@
             <div>
                 <ul class="main-header-ul">
                     <li><a href="${contextPath}/main">홈</a> </li>
-                    <li><a href="${contextPath}/notice">공지사항</a> </li>
+                    <li><a href="${contextPath}/notice/list">공지사항</a> </li>
                     <li><a href="${contextPath}/dept/deptNotice">부서</a> </li>
                     <li><a href="${contextPath}/work">결재</a> </li>
                     <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>

@@ -9,9 +9,8 @@ import com.ln.intranet.notice.model.vo.Notice;
 
 public interface NoticeService {
 
-	List<Notice> selectNoticeList(int deptCode);
 
-	List<Notice> selectPublucNoticeList();
+	Map<String, Object> selectPublicNoticeList(int cp);
 
 	int writeNotice(String webPath, String folderPath, List<MultipartFile> imgList, Map<String, Object> map);
 
