@@ -28,16 +28,32 @@ const modal = document.getElementById('modalWrap');
 const closeBtn = document.getElementById('closeBtn');
 const modalBody = document.querySelector('.payment-modalBody');
 const cancellBtn = document.getElementById('cancell-btn');
+const paymentModaltitle = document.querySelector('.payment-modal-title');
+const paymentStartDate = document.querySelector('.payment-modal-startDate');
+const paymentEndDate = document.querySelector('.payment-modal-endDate');
 const paymentTitle = document.querySelector('.payment-modal-title > input');
 const paymentContent = document.querySelector('.payment-modal-detail > textarea');
-const paymentApprover = document.querySelector('.payment-modal-approver > input')
+const paymentApprover = document.querySelector('.payment-modal-approver > input');
+const paymentTemplateSelect = document.getElementById('payment-template');
+const normalCheckSelect = document.getElementById('normal-check');
+const paymentDetail = document.querySelector('.payment-modal-detail');
+const paymentBusinessDetail = document.querySelector('.payment-modal-businessDetail');
+const paymentBusinessArea = document.querySelector('.payment-modal-businessArea');
+
+
 
 // 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
   paymentTitle.value = '';
   paymentContent.value = '';
+  paymentApprover.value = '';
 
   modal.style.display = 'block';
+  paymentModaltitle.style.display = 'block'; // 보이기
+  paymentStartDate.style.display = 'none'; // 숨기기
+  paymentEndDate.style.display = 'none'; // 숨기기
+  paymentBusinessDetail.style.display = 'none' // 숨기기
+  paymentBusinessArea.style.display = 'none'; // 숨기기
   modalBody.classList.add('modal-open');
 
 }) 
@@ -72,6 +88,47 @@ function modalClose() {
 
   paymentContent.style.height = 'inherit';
 }
+
+
+
+// payment-template 선택란의 값이 변경될 때마다 이벤트 핸들러 실행
+paymentTemplateSelect.addEventListener('change', () => {
+  // 선택된 옵션의 값 가져오기
+  const selectedValue = paymentTemplateSelect.value;
+
+  // vaction 선택란 보이거나 숨기기
+  if (selectedValue === 'vacation') {
+    paymentStartDate.style.display = 'block'; // 보이기
+    paymentEndDate.style.display = 'block'; // 보이기
+    paymentModaltitle.style.display = 'none'; // 숨기기
+    paymentBusinessArea.style.display = 'none'; // 숨기기
+    paymentDetail.style.display = 'none'; // 숨기기
+  } else {
+  }
+
+
+  // payment-modal-businessArea 선택란을 보이거나 숨기기
+  if (selectedValue === 'business trip') {
+    paymentBusinessArea.style.display = 'block'; // 보이기
+    paymentModaltitle.style.display = 'none'; // 숨기기
+  } else {
+    paymentDetail.style.display = 'none'; // 숨기기
+  }
+
+
+  // normal-check 선택란을 보이거나 숨기기
+  if (selectedValue === 'normal-check') {
+    normalCheckSelect.style.display = 'block'; // 보이기
+    paymentModaltitle.style.display = 'block'; // 보이기
+    paymentStartDate.style.display = 'none'; // 숨기기
+    paymentEndDate.style.display = 'none'; // 숨기기
+    paymentBusinessDetail.style.display = 'none' // 숨기기
+    paymentBusinessArea.style.display = 'none'; // 숨기기
+    
+  } else {
+    normalCheckSelect.style.display = 'none'; // 숨기기
+  }
+});
 
 
 
