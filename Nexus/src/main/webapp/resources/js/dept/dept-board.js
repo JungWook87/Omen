@@ -174,22 +174,6 @@ successBtn.addEventListener("click", () => {
     Swal.fire('내용을 입력해 주세요')
   } else {
     
-    const tr = document.createElement('tr');
-    const tdNum = document.createElement('td');
-    const tdTitle = document.createElement('td');
-    const tdNode = document.createTextNode(noticeTitle.value);
-    const tdDate = document.createElement('td');
-  
-    tdTitle.append(tdNode);
-    tr.append(tdNum, tdTitle, tdDate);
-  
-    document.querySelector('tbody').append(tr);
-    
-    // 수정 모달창 열기
-    tr.addEventListener("click", function() {
-      modifyModal();
-    })
-    
     // 모달 닫기
     modalClose();
   }
@@ -199,25 +183,25 @@ successBtn.addEventListener("click", () => {
 
 
 // 게시글 작성 유효성 검사
-function writeValidate(){
-  const noticeTitle = document.getElementsByName("noticeTitle")[0];
-  const noticeContent = document.querySelector("[name='noticeContent']");
+// function writeValidate(){
+//   const noticeTitle = document.getElementsByName("noticeTitle")[0];
+//   const noticeContent = document.querySelector("[name='noticeContent']");
 
-  if(noticeTitle.value.trim().length == 0){
-      alert("제목을 입력해주세요!!!");
-      noticeTitle.value = "";
-      noticeTitle.focus();
-      return false;
-  }
+//   if(noticeTitle.value.trim().length == 0){
+//       alert("제목을 입력해주세요!!!");
+//       noticeTitle.value = "";
+//       noticeTitle.focus();
+//       return false;
+//   }
 
-  if(noticeContent.value.trim().length == 0){
-      alert("내용을 입력해주세요!!!");
-      noticeContent.value = "";
-      noticeContent.focus();
-      return false;
-  }
-  return true;
-}
+//   if(noticeContent.value.trim().length == 0){
+//       alert("내용을 입력해주세요!!!");
+//       noticeContent.value = "";
+//       noticeContent.focus();
+//       return false;
+//   }
+//   return true;
+// }
 
 
 
@@ -228,7 +212,7 @@ const checkModal = document.getElementById('check-modalWrap');
 const checkCloseBtn = document.getElementById('check-closeBtn');
 const checkModalBody = document.querySelector('.check-modalBody');
 const checkCancellBtn = document.getElementById('check-cancell-btn');
-const checkModalTitle = document.querySelector('.check-modal-title > input');
+const checkModalTitle = document.querySelector('.check-modal-title > span');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
 
