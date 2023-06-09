@@ -11,6 +11,9 @@ public interface AttendanceService {
 	List<Attendance> selectAttendanceList(int memNo);
 
 	// 출근 시간 입력
-	int attnStrartHours(Map<String, Object> map, int memNo);
+	int attnStrartHours(Map<String, Object> map);
+
+	// 퇴근 시간 입력
+	int attnEndHours(Map<String, Object> map);
 
 }

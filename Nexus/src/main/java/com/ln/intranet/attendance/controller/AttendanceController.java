@@ -52,12 +52,19 @@ public class AttendanceController {
 		int memNo = loginMember.getMemNo();
 		
 		int result = 0;
-	
+		
+		map.put("memNo", loginMember.getMemNo());
+		
+		System.out.println(map.get("type"));
+		System.out.println(map.get("hours"));
+		System.out.println(map.get("minutes"));
 		
 		if(map.get("type").equals("start")) {
-			result = service.attnStrartHours(map, memNo); 
+			result = service.attnStrartHours(map); 
+		} else {
+			result = service.attnEndHours(map);
 		}
-		
+
 		
 		return result;
 	}

@@ -9,7 +9,7 @@
 
        <!-- 로고 -->
        <div>
-         <a href="main">
+         <a href="${contextPath}/main">
            <img src="${contextPath}/resources/images/logo-width.png" alt="">
          </a>
        </div>
