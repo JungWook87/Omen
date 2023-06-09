@@ -1,6 +1,8 @@
 package com.ln.intranet.attendance.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,13 +31,24 @@ public class AttendanceController {
 	
 	@GetMapping("/list")
 	public String selectAttendanceList(Model model,
-									   @ModelAttribute("loginMember") Member loginMember) {
+									   @ModelAttribute("loginMember") Member loginMember,
+									   @RequestParam Map<String, Object> map) {
 		
 		List<Attendance> attendanceList = new ArrayList<Attendance>();
 		
 		int memNo = loginMember.getMemNo();
 		
-		attendanceList = service.selectAttendanceList(memNo);
+		// 현재 날짜 구하기
+		LocalDate now = LocalDate.now();
+		
+		String year = now.getYear() + "";
+		String month = now.getMonthValue() + "";
+		
+		System.out.println(year + "//" + month);
+		
+		map.put("memNo", memNo);
+		
+		attendanceList = service.selectAttendanceList(map);
 		
 		model.addAttribute("attendanceList", attendanceList);
 		
