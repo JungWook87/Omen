@@ -28,7 +28,7 @@
 	
 	<insert id="startHours" >
 		INSERT INTO ATTENDANCE VALUES (
-			ATTENDANCE_NO.NEXTVAL, ${memNo}, ${attdTypeNo}, TO_CHAR(SYSDATE, 'YY/MM/DD'), #{attnStart}, '-', '-', '-' 	
+			ATTENDANCE_NO.NEXTVAL, ${memNo}, ${attdTypeNo}, TO_CHAR(SYSDATE, 'YY/MM/DD'), #{attnStart}, '-- : --', '-', '-' 	
 		)
 	</insert>
 	
@@ -45,8 +45,11 @@
 		AND TODAY = TO_CHAR(SYSDATE, 'YY/MM/DD')
 	</update>
 	
-
-
+	<select id="selectOne" resultMap="attendance_rm">
+		SELECT ATTN_START, ATTN_END, WORKING_HOURS FROM ATTENDANCE
+		WHERE MEM_NO = ${memNo}
+		AND TODAY = #{today}
+	</select>
 
 
 

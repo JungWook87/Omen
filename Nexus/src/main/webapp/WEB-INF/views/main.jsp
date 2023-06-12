@@ -70,28 +70,120 @@
         <div class="main-area-left">
 
             <!-- 출퇴근 시간 -->
-            <div id="main-attn-check" class="main-box">
-                <div class="main-attn-area">
-                    <div id="main-attn-circle"></div>
-                    <span class="main-font-title">업무중 : --시간 --분</span>
-                </div>
-                <div>
-                    <table>
-                        <tr>
-                            <th>출근시간</th>
-                            <th>퇴근시간</th>
-                        </tr>
-                        <tr>
-                            <td id="attn-start">00 : 00</td>
-                            <td id="attn-end">00 : 00</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="main-attn-btns">
-                    <button class="main-attn-btn1">마이페이지</button>
-                    <button class="main-attn-btn2">업무시작</button>
-                </div>
-            </div>
+            <c:choose>
+                <c:when test="${ empty todayAttn.attnStart }">
+                    <div id="main-attn-check" class="main-box">
+                        <div class="main-attn-area">
+                            <div id="main-attn-circle"></div>
+                            <span class="main-font-title">업무중 : --시간 --분</span>    
+                        </div>
+                        <div>
+                            <table>
+                                <tr>
+                                    <th>출근시간</th>
+                                    <th>퇴근시간</th>
+                                </tr>
+                                <tr>
+                                    <td id="attn-start">-- : --</td>
+                                    <td id="attn-end">-- : --</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="main-attn-btns">
+                            <button class="main-attn-btn1">마이페이지</button>
+                            <button class="main-attn-btn2">업무시작</button>
+                        </div>
+                    </div>
+                </c:when>
+
+                <c:when test="${not empty todayAttn.attnStart and todayAttn.attnEnd eq '-- : --'}">
+                    <div style="display: none;" id="todayAttnStart">${todayAttn.attnStart}</div>
+                    <div id="main-attn-check" class="main-box">
+                        <div class="main-attn-area">
+                            <div id="main-attn-circle" style="background-color: springgreen;"></div>
+                            <span class="main-font-title">업무중 : --시간 --분</span>
+                            <script>
+                                (function(){
+                                    
+                                    let todayAttnStart = document.getElementById("todayAttnStart").innerText;
+
+                                    const now = new Date();
+
+                                    let workingHour = now.getHours() - Number(todayAttnStart.split(" : ")[0]);
+                                    let workingMinute = now.getMinutes() - Number(todayAttnStart.split(" : ")[1]);
+
+                                    if(workingMinute < 0){
+                                        workingHour -= 1;
+                                        workingMinute += 60;
+                                    }
+
+                                    document.getElementsByClassName("main-font-title")[0].innerText = "업무중 : " + workingHour + " 시간 " + workingMinute + " 분";
+                                })();
+                            </script>
+                        </div>
+                        <div>
+                            <table>
+                                <tr>
+                                    <th>출근시간</th>
+                                    <th>퇴근시간</th>
+                                </tr>
+                                <tr>
+                                    <td id="attn-start">${todayAttn.attnStart}</td>
+                                    <td id="attn-end">-- : --</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="main-attn-btns">
+                            <button class="main-attn-btn1">마이페이지</button>
+                            <button class="main-attn-btn2" style="background-color: #E6E8EC;">업무종료</button>
+                        </div>
+                    </div>
+                </c:when>
+                
+                <c:otherwise>
+                    <div style="display: none;" id="todayAttnStart">${todayAttn.attnStart}</div>
+                    <div style="display: none;" id="todayAttnEnd">${todayAttn.attnEnd}</div>
+                    <div id="main-attn-check" class="main-box">
+                        <div class="main-attn-area">
+                            <div id="main-attn-circle"></div>
+                            <span class="main-font-title">업무중 : --시간 --분</span>
+                            <script>
+                                (function(){
+
+                                    let todayAttnStart = document.getElementById("todayAttnStart").innerText;
+                                    let todayAttnEnd = document.getElementById("todayAttnEnd").innerText;
+
+                                    let workingHour = Number(todayAttnEnd.split(" : ")[0]) - Number(todayAttnStart.split(" : ")[0]);
+                                    let workingMinute = Number(todayAttnEnd.split(" : ")[1]) - Number(todayAttnStart.split(" : ")[1]);
+
+                                    if(workingMinute < 0){
+                                        workingHour -= 1;
+                                        workingMinute += 60;
+                                    }
+
+                                    document.getElementsByClassName("main-font-title")[0].innerText = "업무종료 : " + workingHour + " 시간 " + workingMinute + " 분";
+                                })();
+                            </script>   
+                        </div>
+                        <div>
+                            <table>
+                                <tr>
+                                    <th>출근시간</th>
+                                    <th>퇴근시간</th>
+                                </tr>
+                                <tr>
+                                    <td id="attn-start">${todayAttn.attnStart}</td>
+                                    <td id="attn-end">${todayAttn.attnEnd}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="main-attn-btns">
+                            <button class="main-attn-btn1">마이페이지</button>
+                            <button class="main-attn-btn2">업무시작</button>
+                        </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
 
             <!-- 결재 진행 상황 -->
             <div id="main-work-progress" class="main-box">
@@ -203,8 +295,8 @@
             </a>
         </div>
     </section>
-    
-    <script src="${contextPath}/resources/js/main.js"></script> 
+
+    <script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 

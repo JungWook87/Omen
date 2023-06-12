@@ -16,4 +16,7 @@ public interface AttendanceService {
 	// 퇴근 시간 입력
 	int attnEndHours(Map<String, Object> map);
 
+	// DB에서 오늘 날짜 값 조회
+	Attendance selectOne(Map<String, Object> map);
+
 }
