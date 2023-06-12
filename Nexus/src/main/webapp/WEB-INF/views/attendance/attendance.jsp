@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<% String receivedData = request.getParameter("attendanceList"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,9 +63,9 @@
       
       	<div class="YMSelect">
       		<button class="fa-solid fa-chevron-left" type="button" id="leftBtn"></button>
-      		<p>${attendanceList[0].today.split("/")[0]} 년 ${attendanceList[0].today.split("/")[1]} 월</p>
-      		<input id="year" style="display:none" value="${attendanceList[0].today.split("/")[0]}">
-      		<input id="month" style="display:none" value="${attendanceList[0].today.split("/")[1]}">
+      		<p id="attnDate">${attendanceList[0].today.split("/")[0]} 년 ${attendanceList[0].today.split("/")[1]} 월</p>
+      		<input id="year" style="display:none" value="${attendanceList[0].today.split('/')[0]}">
+      		<input id="month" style="display:none" value="${attendanceList[0].today.split('/')[1]}">
       		<button class="fa-solid fa-chevron-right" type="button" id="rightBtn"></button>
       	</div>
       	
@@ -82,7 +83,7 @@
               </tr>
             </thead>
 
-            <tbody>
+            <tbody id="attnList">
             	<c:forEach var="attnList" items="${attendanceList}">
 	              <tr>
 	                <td>${attnList.attdTypeName}</td>
