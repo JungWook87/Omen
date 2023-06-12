@@ -8,15 +8,19 @@
   <link rel="stylesheet" href="../component/component.css">
   <link rel="stylesheet" href="../component/variable.css">
   <link rel="stylesheet" href="../css/meetingRoom.css ">
+  <link rel="stylesheet" href="../css/style.css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <!-- jquery cdn -->
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
-    <!-- fullcalendar cdn -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  
+  <!-- font-awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
   <title>회의실</title>
 </head>
 
@@ -42,80 +46,117 @@
       <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
 
-          <!-- 컨텐츠 제목 부분 -->
-            <p class="content-all-top-text1">회의실 / </p>
-            <p class="content-all-top-text2">예약신청</p>
-          <!-- 선 -->
-          <div class="content-all-top-line"></div>
-      
-        </div>
+        <!-- 컨텐츠 제목 부분 -->
+        <p class="content-all-top-text1">회의실 / </p>
+        <p class="content-all-top-text2">예약신청</p>
+        <!-- 선 -->
+        <div class="content-all-top-line"></div>
+
+      </div>
 
       <!-- 컨텐츠 내용 아랫부분 -->
 
       <div class="content-all-bottom-area">
 
         <!-- 부서일정 -->
-        <!-- calendar 태그 -->
-        <div id='calendar-container'>
-          <div id='calendar'></div>
-        </div>
 
-        <!-- 모달창 -->
-        <div id="modalWrap">
-          <div class="modalBody">
-            <span id="closeBtn">
-              <img src="../images/Xbtn.png" alt="">
-            </span>
-            <h1>예약신청</h1>
-            <!-- 선1 -->
-            <div class="modal-line"></div>
-
-            <!-- <form action="#" method="post"> -->
-              <div>
-                <p>회의실 선택</p>
-                <select name="meetingRooms" id="meetingRooms" class="custom-select sources" placeholder="회의실">
-                  <!-- <option value="" selected disable>회의실</option> -->
-                  <option value="meetingRoom1">회의실 1</option>
-                  <option value="meetingRoom2">회의실 2</option>
-                  <option value="meetingRoom3">회의실 3</option>
-                  <option value="meetingRoom4">회의실 4</option>
-                </select>
+        <div class="container">
+          <div class="left">
+            <div class="calendar">
+              <div class="month">
+                <i class="fa fa-angle-left prev"></i>
+                <div class="date"></div>
+                <i class="fa fa-angle-right next"></i>
               </div>
-              <div>
-                <p>예약 시간</p>
-                <select name="reservationTime" id="reservationTime">
-                  <option value="" selected disable>-- 예약시간 --</option>
-                  <option value="time9">09 : 00</option>
-                  <option value="time10">10 : 00</option>
-                  <option value="time11">11 : 00</option>
-                  <option value="time12">12 : 00</option>
-                  <option value="time13">13 : 00</option>
-                  <option value="time14">14 : 00</option>
-                  <option value="time15">15 : 00</option>
-                  <option value="time16">16 : 00</option>
-                  <option value="time17">17 : 00</option>
-                  <option value="time18">18 : 00</option>
-                </select>
+              <div class="weekdays">
+                <div style="color : red;">일</div>
+                <div>월</div>
+                <div>화</div>
+                <div>수</div>
+                <div>목</div>
+                <div>금</div>
+                <div>토</div>
               </div>
-              <div>
-                <p>예약자</p>
-                <input type="text" id="meetingRoom-name">
+              <div class="days">
+                <!-- 추가되는 날짜 js -->
               </div>
-              
-            
-            <!-- 선2 -->
-            <div class="modal-line"></div>
-            <!-- 버튼 -->
-            <div class="notice-submit-reset-btns">
-              <button type="reset" id="cancell-btn">취소</button>
-              <button id="success-btn">확인</button>
+              <div class="goto-today">
+                <div class="goto">
+                  <input type="text" placeholder="월/년도 입력 예) 02/2022" class="date-input">
+                  <button class="goto-btn">go</button>
+                </div>
+                <button class="today-btn">today</button>
+              </div>
             </div>
-            <!-- </form> -->
           </div>
+          <div class="right">
+            <div class="today-date">
+              <div class="event-day"></div>
+              <div class="event-date"></div>
+            </div>
+            <div class="events">
+              <!-- 이벤트 js -->
+            </div>
+
+
+            <div class="add-event-wrapper">
+              <div class="add-event-header">
+                <div class="title">회의실 예약</div>
+                <i class="fas fa-times close"></i>
+              </div>
+              <div class="add-event-body">
+
+
+                <div class="meetingRoom-box">
+                  <div class="drop">
+                    <div class="option active placeholder" data-value="placeholder">
+                      회의실 선택
+                    </div>
+                    <div class="option" data-value="meetingRoom1" id="meetingRoom1">
+                      회의실 1
+                    </div>
+                    <div class="option" data-value="meetingRoom2" id="meetingRoom2">
+                      회의실 2
+                    </div>
+                    <div class="option" data-value="meetingRoom3" id="meetingRoom3">
+                      회의실 3
+                    </div>
+                    <div class="option" data-value="meetingRoom4" id="meetingRoom4">
+                      회의실 4
+                    </div>
+                  </div>
+                </div>
+
+                <div class="day-time-box">
+                  <label class="day-times">
+                    <input type="radio" name="day-time" id="morning" value="morning">
+                    <span>오전</span>
+                  </label>
+                  <label class="day-times">
+                    <input type="radio" name="day-time" id="afternoon" value="afternoon">
+                    <span>오후</span>
+                  </label>
+                </div>
+
+
+
+              </div>
+              <div class="add-event-footer">
+                <button class="add-event-btn">예약</button>
+              </div>
+            </div>
+
+
+          </div>
+          <button class="add-event">
+            <i class="fas fa-plus"></i>
+          </button>
         </div>
 
 
-        
+
+
+
       </div>
 
     </div>
