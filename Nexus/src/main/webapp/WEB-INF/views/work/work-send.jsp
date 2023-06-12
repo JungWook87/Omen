@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/work/work-Inbox.css">
-  <link rel="stylesheet" href="../css/payment-Inbox.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox(1).css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -26,7 +27,8 @@
 
 <body>
 
-  <header style="height: 90px;"></header>
+  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  
   <section>
 
     <!-- 사이드 바 -->
@@ -36,9 +38,9 @@
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href="payment-Inbox.html"><span>상신함</span> </a></li>
-        <li><a href="payment-inbox(1).html"><span>수신함</span> </a></li>
-        <li><a href="payment-temporaryStorage.html"><span>임시저장</span> </a></li>
+        <li><a href="work/workSend"><span>상신함</span> </a></li>
+        <li><a href="work/workInbox"><span>수신함</span> </a></li>
+        <li><a href="work/workTemp"><span>임시저장</span> </a></li>
         <li><a href=""><span>템플릿</span> </a></li>
       </ul>
     </div>
@@ -254,5 +256,5 @@
   </section>
 </body>
 
-<script src="../js/payment-Inbox.js"></script>
+<script src="${contextPath}/resources/js/work-Inbox.js"></script>
 </html>
