@@ -135,11 +135,9 @@
 
                 <c:otherwise>
                     <c:forEach var="board" items="${boardList}">
-                        <tr onclick="modifyModal()">
+                        <tr onclick="detailModal(${board.boardNo})">
                             <td>${board.boardNo}</td>
-                            <td>
-                           		 <a href="../detail/${board.boardNo}"> ${board.boardTitle}</a>
-                            </td>
+                            <td>${board.boardTitle}</td>
                             <td>${board.memName}</td>
                             <td>${board.boardDate}</td>
                         </tr>
@@ -191,7 +189,7 @@
         </div>
       </div>
 
-      <!-- 사용자가 작성한 공지사항 열기 -->
+      <!-- 게시글 디테일 창 -->
       <div id="check-modalWrap">
         <div class="check-modalBody">
           <span id="check-closeBtn">
@@ -201,29 +199,35 @@
           <!-- 선1 -->
           <div class="modal-line"></div>
 			
-			
-		 
           <!-- 제목 -->
-          <div class="check-modal-title">
+          <div class="check-modal-title" id="check-modal-title">
             <p>제목</p>
             <span></span>
           </div>
           <!-- 내용 -->
           <div>
             <p>내용</p>
-            <div class="check-modal-detail"></div>
+            <div class="check-modal-detail" id="check-modal-detail"></div>
           </div>
 
           <!-- 선택된 파일 -->
           <p>첨부파일</p>
-          <div class="check-preview"></div>
+          <div class="check-preview" id="check-preview"></div>
           <!-- 선2 -->
           <div class="modal-line"></div>
           <!-- 버튼 -->
           <div class="notice-submit-reset-btns">
-            <button id="check-remove-btn">삭제</button>
+
+            <form action="">
+              <button id="check-remove-btn">삭제</button>
+            </form>
+
             <button type="reset" id="check-cancell-btn">닫기</button>
-            <button id="check-success-btn">수정</button>
+            
+            <form action="">
+              <button id="check-success-btn">수정</button>
+            </form>
+            
           </div>
 
         </div>

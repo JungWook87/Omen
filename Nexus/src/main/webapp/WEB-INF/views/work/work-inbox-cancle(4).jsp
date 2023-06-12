@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox(1).css">
-  
+ 
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -24,7 +24,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-  <title>결재-임시저장</title>
+  <title>결재-수신함-결재 취소</title>
 </head>
 
 <body>
@@ -32,16 +32,22 @@
   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <section>
 
-    <!-- 사이드 바 -->
-    <div class="side-bar menu">
-      <!-- 페이지마다 바뀌는 제목 -->
-      <h1>임시저장</h1>
+       <!-- 사이드 바 -->
+       <div class="side-bar menu">
+        <!-- 페이지마다 바뀌는 제목 -->
+        <div class="side-barTitle">
+          <a href="workSend" id="side-barTitle-a">
+            <img src="${contextPath}/resources/images/leftArrow.png" alt="">
+          </a>
+        <h1>수신함</h1>
+      </div>
+
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href="workSend"><span>상신함</span> </a></li>
-        <li><a href="workInbox"><span>수신함</span> </a></li>
-        <li><a href="workTemp"><span>임시저장</span> </a></li>
-        <li><a href="workTemplate"><span>템플릿</span> </a></li>
+        <li><a href="workInbox"><span>결재할문서</span> </a></li>
+        <li><a href="workInboxIng"><span>결재진행중</span> </a></li>
+        <li><a href="workInboxEnd"><span>결재완료</span> </a></li>
+        <li><a href="workInboxCancle"><span>결재취소</span> </a></li>
       </ul>
     </div>
 
@@ -51,13 +57,45 @@
       <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
         <p class="content-all-top-text1">결재 / </p>
-        <p class="content-all-top-text2">임시 저장(2)</p>
+        <p class="content-all-top-text2">결재 취소</p>
+        <!-- 시작일 / 종료일 -->
+        <div class="content-all-date">
+          
+          <div class="content-all-date-p">
+
+            <p class="date-p">
+              시작일
+            </p>
+            
+            <p class="date-p">
+              종료일
+            </p>
+
+          </div>
+
+          <div class="content-all-date-input">
+            
+            <input type="text" id="dateClick" name="daterange" value="01/01/2023 - 01/15/2023" />
+            <label for="dateClick">⌵</label>
+            <button type="button" class="omen-btn" id="dateBtn">조회</button>
+          </div>
+          
+        </div>
+        
       </div>
 
       <!-- 컨텐츠 내용 아랫부분 -->
       <div class="content-all-bottom-area">
         
         <div class="content-all-bottom-area-header">
+
+            <select placeholder="전체">
+              <option value="전체">전체</option>
+              <option value="진행중">근태</option>
+              <option value="근무">근무</option>
+              <option value="비용">비용</option>
+              <option value="일반">일반</option>
+            </select>
 
             <div class="button-box">
 
@@ -103,14 +141,7 @@
               <p>결재자</p>
               <input type="text">
             </div>
-            <!-- 파일 업로드 -->
-            <div class="work-file-box">
-              <button type="button" id="file-remove">파일 지우기</button>
-              <label for="file-uploads">파일 올리기</label>
-              <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
-            </div>
-            <!-- 선택된 파일 -->
-            <div class="work-preview"></div>
+
             <!-- 선2 -->
             <div class="work-modal-line"></div>
             <!-- 임시저장 버튼 -->
@@ -133,34 +164,32 @@
             <thead>
               
               <tr>
+                <th>종류</th>
+                <th>결재 번호</th>
                 <th>제목</th>
+                <th>작성자</th>
+                <th>첨부파일</th>
+                <th>결재의견</th>
                 <th>작성일</th>
-                <th>삭제</th>
               </tr>
               
             </thead>
 
             <tbody>
-              <tr class="row">
-                <td>임시저장</td>
-                <td>2023.05.22 15:16</td>
-                <td> </td>
-              </tr>
-              <tr class="row">
-                <td>호반 저감 시설 견적서</td>
-                <td>2023.05.22 15:11</td>
-                <td> </td>
+              <tr>
+                <td>1</td>
+                <td>1234</td>
+                <td>테스트입니다</td>
+                <td>테스터</td>
+                <td>없음</td>
+                <td>없음</td>
+                <td>2023.5.10</td>
               </tr>
             </tbody>
 
-
-            
           </table>
 
-
         </div>
-
-      
 
       </div>
 
@@ -246,6 +275,7 @@
                   </tr>
                 </tbody>
               </table>
+            
 
             </div>
 
@@ -265,7 +295,15 @@
             <p>결재자</p>
             <input type="text">
           </div>
-         
+          <!-- 선택된 파일 -->
+          <p>선택파일</p>
+          <div class="check-preview"></div>
+          <!-- 파일 업로드 -->
+          <div class="work-file-box">
+            <button type="button" id="file-remove">파일 지우기</button>
+            <label for="file-uploads">파일 올리기</label>
+            <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+          </div>
           <!-- 선2 -->
           <div class="work-modal-line"></div>
            <!-- 최종승인 버튼 -->
@@ -298,5 +336,5 @@
   </section>
 </body>
 
-<script src="${contextPath}/resources/js/work/work-inbox(1).js"></script>
+<script src="${contextPath}/resources/js/work/work-inbox-ing(2).js"></script>
 </html>

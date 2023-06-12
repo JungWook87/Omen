@@ -207,39 +207,60 @@ successBtn.addEventListener("click", () => {
 
 
 
-// 수정모달창
+// 게시글디테일
+const contextPath = "${contextPath}";
+
 const checkModal = document.getElementById('check-modalWrap');
 const checkCloseBtn = document.getElementById('check-closeBtn');
 const checkModalBody = document.querySelector('.check-modalBody');
 const checkCancellBtn = document.getElementById('check-cancell-btn');
-const checkModalTitle = document.querySelector('.check-modal-title > span');
+const checkModalTitle = document.querySelector('.check-modal-title');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
 
+// 게시글 디테일 창 오픈
+function detailModal(boardNo) {
 
-// 수정 모달창 오픈
-function modifyModal() {
-  
-  // 제목 밸류값 들고오기
-  checkModalTitle.value = noticeTitle.value;
+  console.log(boardNo);
 
-  // textarea 밸류값 들고오기
-  checkModalDetail.innerHTML = "";
-  const checkModalDetailLines = noticeContent.value.split("\n");
-  let resultString = "<p>";
-  
-  for (let i = 0; i < checkModalDetailLines.length; i++) {
-    resultString += checkModalDetailLines[i] + "<br>";
+  $.ajax({
+    url : "deptBoard/boardDetail",
+    data : {"boardNo" : boardNo},
+    type : "GET",
+    dataType : "JSON",
+    success : function(detail){
+
+      const checkModalTitleSpan = document.createElement("span");
+      checkModalTitleSpan.innerText = detail.boardTitle;
+      checkModalTitle.append(checkModalTitleSpan);
+
+      const checkModalDetailSpan = document.createElement("span");
+      checkModalDetailSpan.innerHTML = detail.boardContent;
+      checkModalDetail.append(checkModalDetailSpan);
+
+      checkPreview.innerHTML = `
+      <a href="${contextPath}${detail.fileRename}" 
+      download="${detail.fileOrigin}">${detail.fileOrigin}</a>`;
+      
+      // for (let i = 0; i < checkModalDetailLines.length; i++) {
+      //   resultString += checkModalDetailLines[i] + "<br>";
+      // }
+
+      // resultString += "</p>";
+
+      // checkModalDetail.innerHTML = resultString;
+
+      // 모달창 열기
+      checkModal.style.display = 'block';
+      checkModalBody.classList.add('check-modal-open');    
+    
+    },
+    error : function(req, status, error){
+      console.log("에러 발생");
+      console.log(req.responseText);
   }
-
-  resultString += "</p>";
-
-  checkModalDetail.innerHTML = resultString;
-
-
-  // 모달창 열기
-  checkModal.style.display = 'block';
-  checkModalBody.classList.add('check-modal-open');
+  })
+  
 
 }
 

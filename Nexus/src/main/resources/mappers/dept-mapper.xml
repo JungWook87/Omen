@@ -17,7 +17,8 @@
 		<result property="memName" 		column="MEM_NAME"/>
 		<result property="boardTitle" 		column="BOARD_TITLE"/>
 		<result property="boardContent" column="BOARD_CONTENT"/>
-		<result property="boardFile" 		column="BOARD_FILE"/>
+		<result property="boardFileRename" 	column="FILE_RENAME"/>
+		<result property="boardFileOrigin" 		column="FILE_ORIGIN"/>
 		<result property="boardDate" 		column="BOARD_DATE"/>
 		<result property="boardSt" 			column="BOARD_ST"/>
 		<result property="deptNo"			column="DEPT_NO"/>
@@ -78,10 +79,15 @@
 			)
 	</insert>
 	
-	<select id="selectDetail" parameterType="_int" resultMap="detail_rm">
-			SELECT MEM_NO, MEM_NAME, BOARD_TITLE, BOARD_CONTENT, BOARD_FILE, BOARD_DATE
+	<!-- 부서게시판 디테일 조회 -->
+	<select id="boardDetail" parameterType="_int" resultMap="detail_rm">
+			SELECT MEM_NO, MEM_NAME, BOARD_TITLE, BOARD_CONTENT, 
+			       COALESCE(FILE_RENAME, NULL) AS FILE_RENAME,
+			       COALESCE(FILE_ORIGIN, NULL) AS FILE_ORIGIN,
+			       BOARD_DATE
 			FROM BOARD
 			JOIN MEMBER USING (MEM_NO)
+			LEFT JOIN UPLOAD_FILE USING (BOARD_NO)
 			WHERE BOARD_NO = #{boardNo}
 	</select>
 

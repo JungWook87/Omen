@@ -16,7 +16,8 @@ public class BoardDetail {
 	private String memName;
 	private String boardTitle;
 	private String boardContent;
-	private String boardFile;
+	private String boardFileRename;
+	private String boardFileOrigin;
 	private String boardDate;
 	private String boardSt;
 	private int deptNo;
