@@ -20,7 +20,10 @@
 		FROM ATTENDANCE 
 		JOIN ATTD_TYPE USING(ATTD_TYPE_NO)
 		WHERE MEM_NO = ${memNo}
+		AND SUBSTR(TODAY, 1, 2) = #{year}
+		AND SUBSTR(TODAY, 4, 2) = #{month}
 		AND TODAY &lt;= SYSDATE
+		ORDER BY TODAY DESC
 	</select>
 	
 	<insert id="startHours" >
