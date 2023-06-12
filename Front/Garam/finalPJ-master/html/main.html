@@ -14,6 +14,11 @@
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <!-- font-awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>메인페이지</title>
 </head>
 
@@ -138,18 +143,70 @@
                     </div>
                     <div class="main-box-title-right">
                         <button id="main-today-alert-btn">
-                            <img class="main-today-alert-pencil" src="../images/PencilSimple.png" alt="">
+                            <!-- <img class="main-today-alert-pencil" src="../images/PencilSimple.png" alt=""> -->
+                            <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                     </div>
                 </div>
 
                 <div class="main-today-line-box">
-                   <input type="text" id="main-today-input" maxlength="70" readonly>
+                    <input type="text" id="main-today-input" maxlength="70" readonly>
                 </div>
             </div>
 
             <!-- 부서일정 -->
             <div id="main-calender" class="main-box">
+
+                <div class="main-box-title">
+                    <div class="main-box-title-left">
+                        <img src="../images/Calendar.png" alt="">
+                        <span>부서일정</span>
+                    </div>
+                    <div class="main-box-title-right">
+                        <a href="../html/dept-schedule.html">전체보기</a>
+                        <img src="../images/right-arrow.png" alt="">
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="left">
+                        <div class="calendar">
+                            <div class="month">
+                                <i class="fa fa-angle-left prev"></i>
+                                <div class="date"></div>
+                                <i class="fa fa-angle-right next"></i>
+                            </div>
+                            <div class="weekdays">
+                                <div style="color : red;">일</div>
+                                <div>월</div>
+                                <div>화</div>
+                                <div>수</div>
+                                <div>목</div>
+                                <div>금</div>
+                                <div>토</div>
+                            </div>
+                            <div class="days">
+                                <!-- 추가되는 날짜 js -->
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="today-date">
+                            <div class="event-day"></div>
+                            <div class="event-date"></div>
+                        </div>
+                        <div class="events">
+                            <!-- 이벤트 js -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
 
             </div>
 
@@ -163,7 +220,7 @@
                             <span>공지사항</span>
                         </div>
                         <div class="main-box-title-right">
-                            <a href="">전체보기</a>
+                            <a href="../html/notice.html">전체보기</a>
                             <img src="../images/right-arrow.png" alt="">
                         </div>
                     </div>
@@ -194,15 +251,131 @@
 
         </div>
 
-        <!-- 채팅창 -->
+        <!-- 채팅창 영역 -->
+        <!-- 채팅 버튼 -->
         <div id="chatting-function" class="chatting-box">
             <a href="#">
                 <img class="chatting-img" src="../images/chattImg.png" alt="">
             </a>
         </div>
+
+        <!-- 채팅창 ui -->
+        <div class="chat-box">
+            <div class="center">
+                <div class="contacts">
+                    <i class="fas fa-bars fa-2x"></i>
+                    <h2>
+                        Contacts
+                    </h2>
+                    <div class="contact">
+                        <div class="pic rogers"></div>
+                        <div class="badge">
+                            14
+                        </div>
+                        <div class="name">
+                            스티브 로저스
+                        </div>
+                        <div class="message">
+                            그것은 미국의 엉덩이입니다 🇺🇸🍑
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <div class="pic stark"></div>
+                        <div class="name">
+                            토니 스타크
+                        </div>
+                        <div class="message">
+                            어, 우주에서 왔어 마법사의 목걸이를 훔치러 왔어
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <div class="pic banner"></div>
+                        <div class="badge">
+                            1
+                        </div>
+                        <div class="name">
+                            브루스 배너
+                        </div>
+                        <div class="message">
+                            Ant-Man 과 Spider-Man이 있습니까?
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <div class="pic thor"></div>
+                        <div class="name">
+                            토르 오딘슨
+                        </div>
+                        <div class="badge">
+                            3
+                        </div>
+                        <div class="message">
+                            난이게 좋아
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <div class="pic danvers"></div>
+                        <div class="badge">
+                            2
+                        </div>
+                        <div class="name">
+                            캐롤 댄버스
+                        </div>
+                        <div class="message">
+                            이봐 피터 파커, 나한테 줄거 있어?
+                        </div>
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="contact bar">
+                        <div class="chat-header">
+                            <div class="name">
+                                토니 스타크
+                            </div>
+                            <i class="fas fa-times" id="close"></i>
+
+                        </div>
+
+                    </div>
+                    <div class="messages" id="chat">
+                        <div class="time">
+                            오늘 11:41
+                        </div>
+                        <div class="message parker">
+                            안녕? 머해 토니 스타크&nbsp;👋
+                        </div>
+                        <div class="message stark">
+                            꼬마야 어디서 왔니?
+                        </div>
+                        <div class="message parker">
+                            소풍! 🤣
+                        </div>
+                        <div class="message parker">
+                            어, 이 사람의 문제가 무엇입니까, 스타크 씨? 🤔
+                        </div>
+                        <div class="message stark">
+                            어, 우주에서 왔어 마법사의 목걸이를 훔치러 왔어
+                        </div>
+                        <div class="message stark">
+                            <div class="typing typing-1"></div>
+                            <div class="typing typing-2"></div>
+                            <div class="typing typing-3"></div>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <i class="fas fa-camera"></i><i class="far fa-laugh-beam"></i><input
+                            placeholder="Type your message here!" type="text"><i class="fa-solid fa-paper-plane-top"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </section>
 
-<script src="../js/main.js"></script>
+    <script src="../component/chatting.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>

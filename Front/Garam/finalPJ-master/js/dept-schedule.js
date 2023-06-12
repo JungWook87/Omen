@@ -1,178 +1,469 @@
-(function(){
-    $(function(){
-      // calendar element 취득
-      var calendarEl = $('#calendar')[0];
-      // full-calendar 생성하기
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        height: '700px', // calendar 높이 설정
-        expandRows: true, // 화면에 맞게 높이 재설정
-        slotMinTime: '08:00', // Day 캘린더에서 시작 시간
-        slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
-        // 해더에 표시할 툴바
-        headerToolbar: {
-          left: 'prev next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-        },
-        // 버튼 스타일
-        buttonText: {
-            today: "오늘",
-            month: "월별",
-            week: "주별",
-            day: "일별",
-            list: "리스트",
-        },
-        initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
-        //initialDate: '2023-06-07', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
-        navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
-        editable: true, // 수정 가능?
-        selectable: true, // 달력 일자 드래그 설정가능
-        nowIndicator: true, // 현재 시간 마크
-        dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-        locale: 'ko', // 한국어 설정
-        eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
-          console.log(obj);
-        },
-        eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
-          // GMT 시간은 9시간 빨라서 9시간 빼줘야됨
-				var start = obj.event._instance.range.start;
-				if(start.getHours() == 9) {
-					start = moment(start).format('YYYY-MM-DD') + " 00:00";
-				}
-				else {
-					start = start.setHours(start.getHours() - 9);
-					start = moment(start).format('YYYY-MM-DD hh:mm');
-				}
-				
-				
-				var end = obj.event._instance.range.end;
-				if(end.getHours() == 9) {
-					end = moment(end).format('YYYY-MM-DD') + " 00:00";
-				}
-				else {
-					end = end.setHours(end.getHours() - 9);
-					end = moment(end).format('YYYY-MM-DD hh:mm');
-				}
-				
-				
-				// $.ajax({
-				// 		  url: "/~team2/admin/ajax_calendar_edit",
-				// 		  type: "POST",
-				// 		  data : {
-				// 				title : obj.event._def.title,
-				// 				start: start,
-				// 				end: end
-				// 		  },
-				// 		  traditional: true,
-				// 		  async: false, //동기
-				// 		  success : function(data){
-							  
-				// 		  },
-				// 		  error : function(request,status,error){
-				// 			alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				// 			console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-				// 		  }
-				// 	});
-        },
-        eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
-            console.log('remove');
-        },
-        select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-          var title = (async () => {
-            const { value: title } = await Swal.fire({
-                title: '일정을 입력하세요.',
-                text: '',
-                input: 'text',
-                inputPlaceholder: ''
-            })
-        
-            // 이후 처리되는 내용.
-            if (title) {
-                
-                    calendar.addEvent({
-                      title: title,
-                      start: arg.start,
-                      end: arg.end,
-                      allDay: arg.allDay
-                    })
-                  
-                  calendar.unselect()
-            }
-        })();
-         
-        },
-        eventClick: function(arg) { 
-            // 있는 일정 클릭시
-            Swal.fire({
-              title: '일정을 삭제하시겠습니까?',
-              text: '다시 되돌릴 수 없습니다. 신중하세요.',
-              icon: 'warning',
-              
-              showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-              confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-              cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-              confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-              cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-              
-              reverseButtons: true, // 버튼 순서 거꾸로
-              
-           }).then(result => {
-              // 만약 Promise리턴을 받으면,
-              if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-                arg.event.remove();
-                const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'center-center',
-                  showConfirmButton: false,
-                  timer: 1000,
-                  timerProgressBar: true,
-                  didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                  }
-              })
-                Toast.fire({
-                  icon: 'success',
-                  title: '삭제가 완료되었습니다.'
-                })
-              }
-           });
-           
-           
-            
-            //     $.ajax({
-            //           url: "/~team2/admin/ajax_calendar_delete",
-            //           type: "POST",
-            //           data : {
-            //                 title : arg.event._def.title
-            //           },
-            //           traditional: true,
-            //           async: false, //동기
-            //           success : function(data){
-                         
-            //           },
-            //           error : function(request,status,error){
-            //             alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            //             console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-            //           }
-            //     });
-                
-            
-        },
-        eventBorderColor : 'var(--primary300)', // 이벤트 테두리색
-		    eventBackgroundColor : 'var(--primary300)' , // 이벤트 배경색
-       
-         // 이벤트 
-         events: [
-            {
-                id: 'a',
-                title: 'christmas',
-                start: '2022-12-25'
-            }
-         ]
-        
+const calendar = document.querySelector(".calendar"),
+      date = document.querySelector(".date"),
+      daysContainer = document.querySelector(".days"),
+      prev = document.querySelector(".prev"),
+      next = document.querySelector(".next"),
+      todayBtn = document.querySelector(".today-btn"),
+      gotoBtn = document.querySelector(".goto-btn"),
+      dateInput = document.querySelector(".date-input"),
+      eventDay = document.querySelector(".event-day"),
+      eventDate = document.querySelector(".event-date"),
+      eventsContainer = document.querySelector(".events"),
+      addEventSubmit = document.querySelector(".add-event-btn");
+
+let today = new Date();
+let activeDay;
+let month = today.getMonth();
+let year = today.getFullYear();
+
+const months = [
+  "1월",
+  "2월",
+  "3월",
+  "4월",
+  "5월",
+  "6월",
+  "7월",
+  "8월",
+  "9월",
+  "10월",
+  "11월",
+  "12월",
+];
+
+// const eventsArr = [
+//   {
+//     day: 16,
+//     month: 6,
+//     year: 2023,
+//     events: [
+//       {
+//         title: "여친사귄날",
+//         time: "10:00 AM"
+//       },
+//       {
+//         title: "헤어진날",
+//         time: "11:00 AM"
+//       },
+//     ],
+//   },
+// ]
+
+let eventsArr = [];
+
+getEvents();
+
+// 날짜 함수
+function initCalendar() {
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const prevLastDay = new Date(year, month, 0);
+  const prevDays = prevLastDay.getDate();
+  const lastDate = lastDay.getDate();
+  const day = firstDay.getDay();
+  const nextDays = 7 - lastDay.getDay() - 1;
+
+  date.innerHTML = year + "년 " + months[month] + " ";
+
+  let days = "";
+
+  for (let x = day; x > 0; x--) {
+    days += `<div class="day prev-date" > ${prevDays - x + 1}</div>`;
+  }
+
+  for(let i = 1; i <= lastDate; i++) {
+
+    let event = false;
+    eventsArr.forEach((eventObj) => {
+      if(
+        eventObj.day === i &&
+        eventObj.month === month + 1 &&
+        eventObj.year === year
+      ) {
+        event = true;
+      }
+    })
+
+
+    if(
+      i === new Date().getDate() && 
+      year === new Date().getFullYear() && 
+      month === new Date().getMonth()
+    ) {
+
+      activeDay = i;
+      getActiveDay(i);
+      updateEvents(i);
+
+      if(event) {
+        days += `<div class="day today active event" > ${i}</div>`;
+      } else {
+        days += `<div class="day today active" > ${i}</div>`;
+      }
+    } 
+    else if (new Date(year, month, i).getDay() === 0) {
+      days += `<div class="day sun" > ${i}</div>`; 
+    }
+     else {
+      if(event) {
+        days += `<div class="day event" > ${i}</div>`;
+      } else {
+        days += `<div class="day" > ${i}</div>`;
+      }
+    }
+  }
+
+  for (let j = 1; j <= nextDays; j++) {
+    days += `<div class="day next-date" > ${j}</div>`;
+  }
+
+ 
+  daysContainer.innerHTML = days;
+  addListner();
+}
+
+initCalendar();
+
+
+// 이전 달
+function prevMonth() {
+  month--;
+  if(month < 0) {
+    month = 11;
+    year--;
+  }
+  initCalendar();
+}
+
+// 다음 달
+function nextMonth() {
+  month++;
+  if(month > 11) {
+    month = 0;
+    year++;
+  }
+  initCalendar();
+}
+
+prev.addEventListener("click", prevMonth);
+next.addEventListener("click", nextMonth)
+
+todayBtn.addEventListener("click", () => {
+  today = new Date();
+  month = today.getMonth();
+  year = today.getFullYear();
+  initCalendar();
+});
+
+dateInput.addEventListener("input", (e) => {
+  
+  dateInput.value = dateInput.value.replace(/[^0-9/]/g, "");
+  if(dateInput.value.length === 2) {
+    dateInput.value += "/";
+  }
+  
+  if(dateInput.value.length > 7) {
+    dateInput.value = dateInput.value.slice(0, 7);
+  }
+
+  if(e.inputType === "deleteContentBackward") {
+    if(dateInput.value.length === 3) {
+      dateInput.value = dateInput.value.slice(0, 2);
+    }
+  }
+});
+
+gotoBtn.addEventListener("click", gotoDate);
+
+function gotoDate() {
+  
+  const dateArr = dateInput.value.split("/");
+
+  if(dateArr.length === 2) {
+    if(dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
+      month = dateArr[0] - 1;
+      year = dateArr[1];
+      initCalendar();
+      dateInput.value = '';
+      return;
+    }
+  }
+
+  Swal.fire("잘못된 날짜입니다.")
+}
+
+
+// 이벤트 추가
+const addEventBtn = document.querySelector(".add-event"),
+      addEventContainer = document.querySelector(".add-event-wrapper"),
+      addEventCloseBtn = document.querySelector(".close"),
+      addEventTitle = document.querySelector(".event-name"),
+      addEventFrom = document.querySelector(".event-time-from"),
+      addEventTo = document.querySelector(".event-time-to");
+
+addEventBtn.addEventListener("click", () => {
+  addEventContainer.classList.toggle("active");
+});
+
+addEventCloseBtn.addEventListener("click", () => {
+  addEventContainer.classList.remove("active");
+});
+
+document.addEventListener("click", (e) => {
+  if(e.target !== addEventBtn && !addEventContainer.contains(e.target)) {
+    addEventContainer.classList.remove("active");
+  }
+})
+
+
+addEventTitle.addEventListener("input", (e) => {
+  addEventTitle.value = addEventTitle.value.slice(0, 50);
+});
+
+addEventFrom.addEventListener("input", (e) => {
+  addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+  if (addEventFrom.value.length === 2) {
+    addEventFrom.value += ":";
+  }
+  
+  if(addEventFrom.value.length > 5) {
+    addEventFrom.value = addEventFrom.value.slice(0, 5);
+  }
+});
+
+addEventTo.addEventListener("input", (e) => {
+  addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
+  if (addEventTo.value.length === 2) {
+    addEventTo.value += ":";
+  }
+  
+  if(addEventTo.value.length > 5) {
+    addEventTo.value = addEventTo.value.slice(0, 5);
+  }
+});
+
+
+function addListner() {
+  const days = document.querySelectorAll(".day");
+  days.forEach((day) => {
+    day.addEventListener("click", (e) => {
+      
+      getActiveDay(e.target.innerHTML);
+      updateEvents(Number(e.target.innerHTML));
+      activeDay = Number(e.target.innerHTML);
+
+      days.forEach((day) => {
+        day.classList.remove("active");
       })
-      // 캘린더 랜더링
-      calendar.render();
-    });
-  })();
+
+      if(e.target.classList.contains("prev-date")) {
+        prevMonth();
+
+        setTimeout(() => {
+          const days = document.querySelectorAll(".day");
+
+          days.forEach((day) => {
+            if(
+              !day.classList.contains("prev-date") && 
+              day.innerHTML === e.target.innerHTML
+              ) {
+                day.classList.add("active");
+              }
+          });
+        }, 100);
+      } else if(e.target.classList.contains("next-date")) {
+        nextMonth();
+
+        setTimeout(() => {
+          const days = document.querySelectorAll(".day");
+
+          days.forEach((day) => {
+            if(
+              !day.classList.contains("next-date") && 
+              day.innerHTML === e.target.innerHTML
+              ) {
+                day.classList.add("active");
+              }
+          });
+        }, 100);
+      }
+      else {
+        e.target.classList.add("active");
+      }
+
+    })
+  })
+}
+
+
+
+function getActiveDay(date) {
+  const dayNames = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+  const day = new Date(year, month, date);
+  const dayName = dayNames[day.getDay()];
+  eventDay.innerHTML = dayName;
+  eventDate.innerHTML = year + "년" + " " + months[month] + " " + date + "일";
+}
+
+function updateEvents(date) {
+  let events = "";
+  eventsArr.forEach((event) => {
+    if(
+      date === event.day &&
+      month + 1 === event.month &&
+      year === event.year
+    ) {
+
+      event.events.forEach((event) => {
+        events += `
+        <div class = "event">
+          <div class = "title">
+            <i class = "fas fa-circle"></i>
+            <h3 class = "event-title">${event.title}</h3>
+          </div>
+          <div class = "event-time">
+            <span class = "event-time">${event.time}</span>
+          </div>
+        </div>`
+      })
+
+    }
+  })
+
+  if(events === "") {
+    events = `<div class = "no-event">
+                <h3>일정이 없습니다.</h3>
+              </div>`
+  }
+
+  eventsContainer.innerHTML = events;
+
+  saveEvents();
+
+}
+
+addEventSubmit.addEventListener("click", () => {
+  const eventTitle = addEventTitle.value;
+  const eventTimeFrom = addEventFrom.value;
+  const eventTimeTo = addEventTo.value;
+
+  if(eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
+    Swal.fire("모든 내용을 입력해 주세요");
+    return;
+  }
+
+  const timeFromArr = eventTimeFrom.split(":");
+  const timeToArr = eventTimeTo.split(":");
+
+  if(
+    timeFromArr.length !== 2 ||
+    timeToArr.length !== 2 ||
+    timeFromArr[0] > 23 ||
+    timeFromArr[1] > 59 ||
+    timeToArr[0] > 23 ||
+    timeToArr[1] > 59
+  ) {
+    Swal.fire("잘못된 시간 형식입니다.");
+  }
+
+  const timeFrom = convertTime(eventTimeFrom);
+  const timeTo = convertTime(eventTimeTo);
+
+  const newEvent = {
+    title : eventTitle,
+    time: timeFrom + " - " + timeTo,
+  };
+
+  let eventAdded = false;
+
+  if(eventsArr.length > 0) {
+    eventsArr.forEach((item) => {
+      if(
+        item.day === activeDay &&
+        item.month === month + 1 &&
+        item.year === year
+      ) {
+        item.events.push(newEvent);
+        eventAdded = true;
+      }
+    })
+  }
+
+  if(!eventAdded) {
+    eventsArr.push({
+      day: activeDay,
+      month:month + 1,
+      year: year,
+      events : [newEvent],
+    })
+  }
+
+  addEventContainer.classList.remove("active");
+
+  addEventTitle.value = "";
+  addEventFrom.value = "";
+  addEventTo.value = "";
+
+  updateEvents(activeDay);
+
+  const activeDayElem = document.querySelector(".day.active");
+  if(!activeDayElem.classList.contains("event")) {
+    activeDayElem.classList.add("event");
+  }
+
+
+})
+
+
+function convertTime(time) {
+  let timeArr = time.split(":");
+  let timeHour = timeArr[0];
+  let timeMin = timeArr[1];
+  let timeFormat = timeHour >= 12 ? "PM" : "AM";
+  timeHour = timeHour % 12 || 12;
+  time = timeHour + ":" + timeMin + " " + timeFormat;
+  return time;
+}
+
+eventsContainer.addEventListener("click", (e) => {
+  if(e.target.classList.contains("event")) {
+    const eventTitle = e.target.children[0].children[1].innerHTML;
+
+    eventsArr.forEach((event) => {
+      if(
+        event.day === activeDay &&
+        event.month === month + 1 &&
+        event.year === year
+      ) {
+        event.events.forEach((item, index) => {
+          if(item.title === eventTitle) {
+            event.events.splice(index, 1);
+          }
+        })
+
+        if(event.events.length === 0) {
+          eventsArr.splice(eventsArr.indexOf(event), 1);
+
+          const activeDayElem = document.querySelector(".day.active");
+          if(activeDayElem.classList.contains("event")) {
+            activeDayElem.classList.remove("event");
+          }
+        }
+      }
+    })
+
+    updateEvents(activeDay);
+  }
+})
+
+
+function saveEvents() {
+  localStorage.setItem("events", JSON.stringify(eventsArr)); 
+}
+
+function getEvents() {
+  if(localStorage.getItem("events") === null) {
+    return;
+  }
+  eventsArr.push(...JSON.parse(localStorage.getItem("events")));
+}
