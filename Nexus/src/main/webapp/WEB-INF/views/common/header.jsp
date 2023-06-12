@@ -23,7 +23,7 @@
            <li><a href="${contextPath}/work/workSend">결재</a> </li>
            <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
            <li><a href="${contextPath}/meeting">회의실</a> </li>
-           <li><a href="${contextPath}/survey">설문</a> </li>
+           <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
            <li id="employee-rank-change"><a href="dashBoard">대시보드</a></li>
          </ul>
        </div>

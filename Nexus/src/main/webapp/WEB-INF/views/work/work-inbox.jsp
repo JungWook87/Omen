@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/work/work-Inbox.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
   <link rel="stylesheet" href="../css/payment-inbox(1).css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -27,7 +28,7 @@
 
 <body>
 
-  <header style="height: 90px;"></header>
+  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <section>
 
     <!-- 사이드 바 -->
