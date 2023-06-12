@@ -26,34 +26,34 @@ $(function() {
 const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap');
 const closeBtn = document.getElementById('closeBtn');
-const modalBody = document.querySelector('.payment-modalBody');
+const modalBody = document.querySelector('.work-modalBody');
 const cancellBtn = document.getElementById('cancell-btn');
-const paymentModaltitle = document.querySelector('.payment-modal-title');
-const paymentStartDate = document.querySelector('.payment-modal-startDate');
-const paymentEndDate = document.querySelector('.payment-modal-endDate');
-const paymentTitle = document.querySelector('.payment-modal-title > input');
-const paymentContent = document.querySelector('.payment-modal-detail > textarea');
-const paymentApprover = document.querySelector('.payment-modal-approver > input');
-const paymentTemplateSelect = document.getElementById('payment-template');
+const workModaltitle = document.querySelector('.work-modal-title');
+const workStartDate = document.querySelector('.work-modal-startDate');
+const workEndDate = document.querySelector('.work-modal-endDate');
+const workTitle = document.querySelector('.work-modal-title > input');
+const workContent = document.querySelector('.work-modal-detail > textarea');
+const workApprover = document.querySelector('.work-modal-approver > input');
+const workTemplateSelect = document.getElementById('work-template');
 const normalCheckSelect = document.getElementById('normal-check');
-const paymentDetail = document.querySelector('.payment-modal-detail');
-const paymentBusinessDetail = document.querySelector('.payment-modal-businessDetail');
-const paymentBusinessArea = document.querySelector('.payment-modal-businessArea');
+const workDetail = document.querySelector('.work-modal-detail');
+const workBusinessDetail = document.querySelector('.work-modal-businessDetail');
+const workBusinessArea = document.querySelector('.work-modal-businessArea');
 
 
 
 // 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
-  paymentTitle.value = '';
-  paymentContent.value = '';
-  paymentApprover.value = '';
+  workTitle.value = '';
+  workContent.value = '';
+  workApprover.value = '';
 
   modal.style.display = 'block';
-  paymentModaltitle.style.display = 'block'; // 보이기
-  paymentStartDate.style.display = 'none'; // 숨기기
-  paymentEndDate.style.display = 'none'; // 숨기기
-  paymentBusinessDetail.style.display = 'none' // 숨기기
-  paymentBusinessArea.style.display = 'none'; // 숨기기
+  normalCheckSelect.style.display = 'block'; // 보이기
+  workStartDate.style.display = 'none'; // 숨기기
+  workEndDate.style.display = 'none'; // 숨기기
+  workBusinessDetail.style.display = 'none' // 숨기기
+  workBusinessArea.style.display = 'none'; // 숨기기
   modalBody.classList.add('modal-open');
 
 }) 
@@ -84,46 +84,53 @@ function modalClose() {
     modalBody.classList.remove("modal-close");
   }, 350);
 
-  paymentContent.style.overflow = 'hidden';
+  workContent.style.overflow = 'hidden';
 
-  paymentContent.style.height = 'inherit';
+  workContent.style.height = 'inherit';
 }
 
 
 
-// payment-template 선택란의 값이 변경될 때마다 이벤트 핸들러 실행
-paymentTemplateSelect.addEventListener('change', () => {
+// work-template 선택란의 값이 변경될 때마다 이벤트 핸들러 실행
+workTemplateSelect.addEventListener('change', () => {
   // 선택된 옵션의 값 가져오기
-  const selectedValue = paymentTemplateSelect.value;
+  const selectedValue = workTemplateSelect.value;
 
   // vaction 선택란 보이거나 숨기기
   if (selectedValue === 'vacation') {
-    paymentStartDate.style.display = 'block'; // 보이기
-    paymentEndDate.style.display = 'block'; // 보이기
-    paymentModaltitle.style.display = 'none'; // 숨기기
-    paymentBusinessArea.style.display = 'none'; // 숨기기
-    paymentDetail.style.display = 'none'; // 숨기기
+    workStartDate.style.display = 'block'; // 보이기
+    workEndDate.style.display = 'block'; // 보이기
+    workModaltitle.style.display = 'none'; // 숨기기
+    workBusinessArea.style.display = 'none'; // 숨기기
+    workBusinessDetail.style.display = 'none'; // 보이기
+    workDetail.style.display = 'none'; // 숨기기
   } else {
   }
 
 
-  // payment-modal-businessArea 선택란을 보이거나 숨기기
+  // work-modal-businessArea 선택란을 보이거나 숨기기
   if (selectedValue === 'business trip') {
-    paymentBusinessArea.style.display = 'block'; // 보이기
-    paymentModaltitle.style.display = 'none'; // 숨기기
+    workBusinessArea.style.display = 'block'; // 보이기
+    workStartDate.style.display = 'block'; // 보이기
+    workEndDate.style.display = 'block'; // 보이기
+    workBusinessArea.style.display = 'block'; // 보이기
+    workBusinessDetail.style.display = 'block'; // 보이기
+    workModaltitle.style.display = 'none'; // 숨기기
+    workDetail.style.display = 'none'// 보이기
   } else {
-    paymentDetail.style.display = 'none'; // 숨기기
+
   }
 
 
   // normal-check 선택란을 보이거나 숨기기
   if (selectedValue === 'normal-check') {
     normalCheckSelect.style.display = 'block'; // 보이기
-    paymentModaltitle.style.display = 'block'; // 보이기
-    paymentStartDate.style.display = 'none'; // 숨기기
-    paymentEndDate.style.display = 'none'; // 숨기기
-    paymentBusinessDetail.style.display = 'none' // 숨기기
-    paymentBusinessArea.style.display = 'none'; // 숨기기
+    workModaltitle.style.display = 'block'; // 보이기
+    workStartDate.style.display = 'none'; // 숨기기
+    workEndDate.style.display = 'none'; // 숨기기
+    workBusinessDetail.style.display = 'none' // 숨기기
+    workBusinessArea.style.display = 'none'; // 숨기기
+    workDetail.style.display = 'block'// 보이기
     
   } else {
     normalCheckSelect.style.display = 'none'; // 숨기기
@@ -150,7 +157,7 @@ function handleResizeHeight(obj) {
 
 // 파일 업로드 스타일
 const fileUpload = document.getElementById('file-uploads');
-const preview = document.querySelector('.payment-preview');
+const preview = document.querySelector('.work-preview');
 
 fileUpload.style.opacity = 0;
 
@@ -245,11 +252,11 @@ const successBtn = document.getElementById('success-btn');
 
 successBtn.addEventListener("click", () => {
 
-  if(paymentTitle.value == "") {
+  if(workTitle.value == "") {
     Swal.fire('제목을 입력해 주세요');
-  } else if(paymentContent.value == '') {
+  } else if(workContent.value == '') {
     Swal.fire('내용을 입력해 주세요')
-  }  else if(paymentApprover.value == '') {
+  }  else if(workApprover.value == '') {
       Swal.fire('결재자를 입력해 주세요')
   } else {
     
@@ -258,7 +265,7 @@ successBtn.addEventListener("click", () => {
     const tdNum = document.createElement('td');
     const tdTitle = document.createElement('td');
     const tdSituation = document.createElement('td');
-    const tdNode = document.createTextNode(paymentTitle.value);
+    const tdNode = document.createTextNode(workTitle.value);
     const tdFile = document.createElement('td');
     const tdDate = document.createElement('td');
   
@@ -296,11 +303,11 @@ function modifyModal() {
   // checkTemplate.value = 
 
   // 제목 밸류값 들고오기
-  checkModalTitle.value = paymentTitle.value;
+  checkModalTitle.value = workTitle.value;
 
   // textarea 밸류값 들고오기
   checkModalDetail.innerHTML = "";
-  const checkModalDetailLines = paymentContent.value.split("\n");
+  const checkModalDetailLines = workContent.value.split("\n");
   let resultString = "<p>";
   
   for (let i = 0; i < checkModalDetailLines.length; i++) {
@@ -328,9 +335,9 @@ function checkModalClose() {
     checkModalBody.classList.remove("check-modal-close");
   }, 350);
 
-  paymentContent.style.overflow = 'hidden';
+  workContent.style.overflow = 'hidden';
 
-  paymentContent.style.height = 'inherit';
+  workContent.style.height = 'inherit';
 }
 
 // 모달창 엑스 버튼
