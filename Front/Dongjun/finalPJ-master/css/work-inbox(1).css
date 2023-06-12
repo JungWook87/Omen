@@ -382,7 +382,7 @@ select{
   padding: 20px 0px;
 }
 
-.check-modal-headerbox-footer-btn{
+.check-modal-headerbox-footer button{
   color: inherit;
   height: 32px;
   padding: 8px 12px;

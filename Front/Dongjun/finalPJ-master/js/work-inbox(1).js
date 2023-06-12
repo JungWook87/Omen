@@ -1,115 +1,184 @@
-// 모달창 스타일
-const btn = document.getElementById('popupBtn');
-const modal = document.getElementById('modalWrap');
-const closeBtn = document.getElementById('closeBtn');
-const modalBody = document.querySelector('.work-modalBody');
-const cancellBtn = document.getElementById('cancell-btn');
-const workModaltitle = document.querySelector('.work-modal-title');
-const workStartDate = document.querySelector('.work-modal-startDate');
-const workEndDate = document.querySelector('.work-modal-endDate');
-const workTitle = document.querySelector('.work-modal-title > input');
-const workContent = document.querySelector('.work-modal-detail > textarea');
-const workApprover = document.querySelector('.work-modal-approver > input');
-const workTemplateSelect = document.getElementById('work-template');
-const normalCheckSelect = document.getElementById('normal-check');
-const workDetail = document.querySelector('.work-modal-detail');
-const workBusinessDetail = document.querySelector('.work-modal-businessDetail');
-const workBusinessArea = document.querySelector('.work-modal-businessArea');
-
-
-// 결제창 버튼 이벤트
-btn.addEventListener("click", () => {
-  workTitle.value = '';
-  workContent.value = '';
-  workApprover.value = '';
-
-  modal.style.display = 'block';
-  normalCheckSelect.style.display = 'block'; // 보이기
-  workStartDate.style.display = 'none'; // 숨기기
-  workEndDate.style.display = 'none'; // 숨기기
-  workBusinessDetail.style.display = 'none' // 숨기기
-  workBusinessArea.style.display = 'none'; // 숨기기
-  modalBody.classList.add('modal-open');
-}) 
-
-
-// 모달창 엑스 버튼
-closeBtn.addEventListener("click", () => {
-  modalClose();
-});
-
-// 모달창 외부 영역 이벤트
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modalClose();
-  }
-}
-
-// 취소버튼 이벤트
-cancellBtn.addEventListener("click", () => {
-  modalClose();
-})
-
-// 모달창 닫는 함수
-function modalClose() {
-  modalBody.classList.add('modal-close');
+  // 모달창 스타일
+  const btn = document.getElementById('popupBtn');
+  const modal = document.getElementById('modalWrap');
+  const closeBtn = document.getElementById('closeBtn');
+  const plusBtn = document.getElementById('pulsProject');
+  const modalBody = document.querySelector('.work-modalBody');
+  const cancellBtn = document.getElementById('cancell-btn');
+  const workModaltitle = document.querySelector('.work-modal-title');
+  const workStartDate = document.querySelector('.work-modal-startDate');
+  const workEndDate = document.querySelector('.work-modal-endDate');
+  const workTitle = document.querySelector('.work-modal-title > input');
+  const workContent = document.querySelector('.work-modal-detail > textarea');
+  const workApprover = document.querySelector('.work-modal-approver > input');
+  const workTemplateSelect = document.getElementById('work-template');
+  const normalCheckSelect = document.getElementById('normal-checked');
+  const projectCheckSelect = document.getElementById('project-checked');
+  const assignmentCheckSelect = document.getElementById('assignment-checked');
+  const workDetail = document.querySelector('.work-modal-detail');
+  const workProjectbox = document.querySelector('.projectBox');
+  const workBusinessDetail = document.querySelector('.work-modal-businessDetail');
+  const workBusinessArea = document.querySelector('.work-modal-businessArea');
+  const modalProjectbox = document.querySelector('.work-modal-projectBox');
   
-  setTimeout(() => {
-    modal.style.display = 'none';
-    modalBody.classList.remove("modal-close");
-  }, 350);
-
-  workContent.style.overflow = 'hidden';
-
-  workContent.style.height = 'inherit';
-}
-
-// work-template 선택란의 값이 변경될 때마다 이벤트 핸들러 실행
-workTemplateSelect.addEventListener('change', () => {
-  // 선택된 옵션의 값 가져오기
-  const selectedValue = workTemplateSelect.value;
-
-  // vaction 선택란 보이거나 숨기기
-  if (selectedValue === 'vacation') {
-    workStartDate.style.display = 'block'; // 보이기
-    workEndDate.style.display = 'block'; // 보이기
-    workModaltitle.style.display = 'none'; // 숨기기
-    workBusinessArea.style.display = 'none'; // 숨기기
-    workBusinessDetail.style.display = 'none'; // 보이기
-    workDetail.style.display = 'none'; // 숨기기
-  } else {
-  }
-
-
-  // work-modal-businessArea 선택란을 보이거나 숨기기
-  if (selectedValue === 'business trip') {
-    workBusinessArea.style.display = 'block'; // 보이기
-    workStartDate.style.display = 'block'; // 보이기
-    workEndDate.style.display = 'block'; // 보이기
-    workBusinessArea.style.display = 'block'; // 보이기
-    workBusinessDetail.style.display = 'block'; // 보이기
-    workModaltitle.style.display = 'none'; // 숨기기
-    workDetail.style.display = 'none'// 보이기
-  } else {
-
-  }
-
-
-  // normal-check 선택란을 보이거나 숨기기
-  if (selectedValue === 'normal-check') {
-    normalCheckSelect.style.display = 'block'; // 보이기
-    workModaltitle.style.display = 'block'; // 보이기
-    workStartDate.style.display = 'none'; // 숨기기
-    workEndDate.style.display = 'none'; // 숨기기
-    workBusinessDetail.style.display = 'none' // 숨기기
-    workBusinessArea.style.display = 'none'; // 숨기기
-    workDetail.style.display = 'block'// 보이기
+  
+  // 결제창 버튼 이벤트
+  btn.addEventListener("click", () => {
+    workTitle.value = '';
+    workContent.value = '';
+    workApprover.value = '';
+    workBusinessArea.querySelector('input').value = '';
+    workBusinessDetail.querySelector('textarea').value = '';
+    workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
     
-  } else {
-    normalCheckSelect.style.display = 'none'; // 숨기기
+  
+    workTemplateSelect.value = 'normal-check';
+  
+    modal.style.display = 'block';
+    workModaltitle.style.display = 'block';
+    normalCheckSelect.style.display='block';
+    modalProjectbox.style.display ='none';
+    workProjectbox.style.display = 'none';
+    workStartDate.style.display = 'none'; 
+    workEndDate.style.display = 'none';
+    workBusinessDetail.style.display = 'none' 
+    workBusinessArea.style.display = 'none';
+    projectCheckSelect.style.display = 'none';
+    assignmentCheckSelect.style.display = 'none';
+    modalBody.classList.add('modal-open');
+  
+  }) 
+  
+  // 모달창 엑스 버튼
+  closeBtn.addEventListener("click", () => {
+    modalClose();
+  });
+  
+  // 모달창 플러스 버튼
+  plusBtn.addEventListener("click", () => {
+  
+    const div = document.createElement('div');
+    div.style.borderTop = '1px solid var(--gray400)';
+    div.style.marginBlockStart = '20px';
+    div.style.padding = '10px';
+    const projectName = document.createElement('p');
+    projectName.innerText = "과제명"
+    const projectcontentName = document.createElement('p');
+    projectcontentName.innerText = "과제내용"
+    const projectcontent1 = document.createElement('input');
+    const projectcontent2 = document.createElement('input');
+    const buttonDiv = document.createElement('div'); // 취소 버튼을 감싸는 div 요소
+    buttonDiv.style.display = 'flex';
+    buttonDiv.style.justifyContent = 'end';
+    const xbutton = document.createElement('button');
+    xbutton.innerText = "취소";
+  
+    buttonDiv.appendChild(xbutton); // 취소 버튼을 buttonDiv에 추가
+    div.append(projectName, projectcontent1, projectcontentName, projectcontent2, buttonDiv);
+    workProjectbox.append(div);
+  
+    xbutton.addEventListener("click", () => {
+      workProjectbox.removeChild(div);
+    })
+  
+    btn.addEventListener("click", () =>{
+       workProjectbox.removeChild(div);
+    })
+  
+    workTemplateSelect.addEventListener('change', () => {
+       workProjectbox.removeChild(div);
+    })
+  
+  });
+  
+  // 모달창 외부 영역 이벤트
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modalClose();
+    }
   }
-});
-
+  
+  // 취소버튼 이벤트
+  cancellBtn.addEventListener("click", () => {
+    modalClose();
+  })
+  
+  // 모달창 닫는 함수
+  function modalClose() {
+    modalBody.classList.add('modal-close');
+    
+    setTimeout(() => {
+      modal.style.display = 'none';
+      modalBody.classList.remove("modal-close");
+    }, 350);
+  
+    workContent.style.overflow = 'hidden';
+  
+    workContent.style.height = 'inherit';
+  }
+  
+  // work-template 선택란의 값이 변경될 때마다 이벤트 핸들러 실행
+  workTemplateSelect.addEventListener('change', () => {
+    // 선택된 옵션의 값 가져오기
+    const selectedValue = workTemplateSelect.value;
+  
+    console.log("selectedValue",selectedValue);
+    workTitle.value = '';
+    workContent.value = '';
+    workApprover.value = '';
+    workBusinessArea.querySelector('input').value = '';
+    workBusinessDetail.querySelector('textarea').value = '';
+    workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
+  
+  
+    normalCheckSelect.style.display='none';
+    workModaltitle.style.display='none';
+    workBusinessArea.style.display ='none';
+    workStartDate.style.display = 'none';
+    workEndDate.style.display = 'none'; 
+    workBusinessDetail.style.display = 'none';
+    workDetail.style.display = 'none';
+    workProjectbox.style.display = 'none';
+    modalProjectbox.style.display = 'none';
+    projectCheckSelect.style.display = 'none';
+    assignmentCheckSelect.style.display = 'none';
+  
+    if (selectedValue === 'normal-check') {
+      normalCheckSelect.style.display = 'block';
+      workModaltitle.style.display = 'block'; 
+      workDetail.style.display = 'block';
+  
+    } 
+  
+    if(selectedValue === 'business-trip') {
+      workBusinessArea.style.display = 'block'; 
+      workStartDate.style.display = 'block'; 
+      workEndDate.style.display = 'block'; 
+      workBusinessArea.style.display = 'block'; 
+      workBusinessDetail.style.display = 'block'; 
+    }
+  
+    if(selectedValue === 'vacation') {
+      workStartDate.style.display = 'block'; 
+      workEndDate.style.display = 'block'; 
+  
+    }
+  
+    if(selectedValue === 'project') {
+      workModaltitle.style.display = 'block'; 
+      workDetail.style.display = 'block'
+      workProjectbox.style.display = 'block';
+      modalProjectbox.style.display = 'block';
+    }
+  
+    if(selectedValue === 'assignment') {
+      projectCheckSelect.style.display = 'block';
+      assignmentCheckSelect.style.display = 'block';
+      workDetail.style.display = 'block'
+    }
+    
+  })
+  
 
 // 자동 높이 조정 textarea
 
@@ -265,6 +334,7 @@ const checkModalTitle = document.querySelector('.check-modal-title > input');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
 const checkSuccessBtn = document.getElementById('check-success-btn');
+const checkModalApprover = document.querySelector('.check-modal-approver > input');
 
 
 // 수정 모달창 오픈
@@ -309,40 +379,48 @@ checkCancellBtn.addEventListener("click", () => {
   checkModalClose();
 });
 
+//체크박스 체크
+function is_checked() {
+  // 체크박스 상태 확인
+  var checkbox = document.getElementById('check-modal-checkbox');
+  var is_Checked = checkbox.checked;
+
+}
+
+
 // 최종승인 이벤트
 checkSuccessBtn.addEventListener("click", () => {
 
-  const checkbox = document.getElementById('check-modal-checkbox');
-  const is_checked = checkbox.checked;
 
-  if(is_checked) {
+
+  if(is_checked() || checkModalApprover.value !== "") {
     checkModalClose();
   } else{
-    
-    Swal.fire({
-      title: '최종 승인하시겠습니까?',
-      text: '',
-      icon: 'warning',
+    checkSuccessBtn.disabled = true;
+  //   Swal.fire({
+  //     title: '최종 승인하시겠습니까?',
+  //     text: '',
+  //     icon: 'warning',
       
-      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-      cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-      cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+  //     showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+  //     confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+  //     cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+  //     confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+  //     cancelButtonText: '취소', // cancel 버튼 텍스트 지정
       
-      reverseButtons: true, // 버튼 순서 거꾸로
+  //     reverseButtons: true, // 버튼 순서 거꾸로
       
-   }).then(result => {
-      // 만약 Promise리턴을 받으면,
-      if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+  //  }).then(result => {
+  //     // 만약 Promise리턴을 받으면,
+  //     if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
       
-         Swal.fire('최종 승인 되었습니다.');
-         checkModalClose();
-      } else {
-        Swal.fire('승인 되었습니다.');
-        checkModalClose();
-      }
-   });
+  //        Swal.fire('최종 승인 되었습니다.');
+  //        checkModalClose();
+  //     } else {
+  //       Swal.fire('승인 되었습니다.');
+  //       checkModalClose();
+  //     }
+  //  });
 
   }
 
