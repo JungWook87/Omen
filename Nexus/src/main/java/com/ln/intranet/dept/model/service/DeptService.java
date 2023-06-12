@@ -14,6 +14,7 @@ public interface DeptService {
 
 	int insertBoard(BoardDetail detail, MultipartFile uploadFile, String filePath, String folderPath) throws IOException;
 
-	BoardDetail selectDetail(int boardNo);
+	BoardDetail boardDetail(int boardNo);
+
 
 }

@@ -91,12 +91,14 @@ public class DeptServiceImpl implements DeptService{
 		return boardNo;
 	}
 
-	
+
 	@Override
-	public BoardDetail selectDetail(int boardNo) {
+	public BoardDetail boardDetail(int boardNo) {
 	
-		return dao.selectDetail(boardNo);
+		return dao.boardDetail(boardNo);
 	}
+
+	
 
 
 

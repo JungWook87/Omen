@@ -312,7 +312,7 @@ select{
 
 }
 
-.payment-modalBody {
+.work-modalBody {
   min-width: 570px;
   min-height: 100px;
   max-width: 80%;
@@ -330,7 +330,7 @@ select{
   width: 80%;
 }
 
-.payment-modalBody.modal-open {
+.work-modalBody.modal-open {
   /* 모달이 열릴 때 애니메이션 효과 추가 */
   animation: 0.35s ease-in-out 0s 1 normal forwards running modalAniOpen;
 }
@@ -350,7 +350,7 @@ select{
   }
 }
 
-.payment-modalBody.modal-close {
+.work-modalBody.modal-close {
   /* 모달이 닫힐 때 애니메이션 효과 추가 */
   animation: 0.35s ease-in-out 0s 1 normal forwards running modalAniClose;
 }
@@ -368,7 +368,7 @@ select{
   }
 }
 
-.payment-modalBody h1 {
+.work-modalBody h1 {
   color: var(--black);
 
   font-size: 24px;
@@ -389,7 +389,7 @@ select{
 }
 
 /* 모달 선 */
-.payment-modal-line {
+.work-modal-line {
   border-bottom: 1px solid var(--gray300);
 
   margin-top: 20px;
@@ -397,18 +397,18 @@ select{
 
 
 /* 제목 , 내용 스타일 */
-.payment-modalBody p {
+.work-modalBody p {
   color: var(--gray400);
 
   margin-top: 36px;
 }
 
-.payment-modal-template select{
+.work-modal-template select{
   width: 25%;
   height: 40px;
 }
 
-.payment-modal-title input {
+.work-modal-title input {
   width: 100%;
   height: 50px;
 
@@ -424,17 +424,18 @@ select{
   outline: none;
 }
 
-.payment-modal-title input:focus {
+.work-modal-title input:focus {
   border-color: var(--primary400);
 
   background-color: white;
 }
 
-.payment-modal-title input::placeholder {
+.work-modal-title input::placeholder {
   color: var(--gray200);
 }
 
-.payment-modal-detail textarea {
+.work-modal-detail textarea,
+.work-modal-businessDetail textarea {
   width: 100%;
   max-height: 350px;
 
@@ -451,7 +452,18 @@ select{
   resize: none;
 }
 
-.payment-modal-approver input{
+.work-modalBody input{
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+  background-color: var(--gray50);
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+}
+
+.work-modal-approver input{
   width: 100%;
   height: 50px;
   border: 1px solid var(--gray300);
@@ -463,17 +475,35 @@ select{
 
 }
 
+/* 일반 체크 박스 */
+#normal-check {
+  display: none;
+}
+
+/* 선탁창 일반 체크 시 템플릿 */
+.work-modal-template-select{
+  display: flex;
+}
+
+.work-modal-template-select select {
+  margin-right: 10px;
+}
+
+.work-modal-businessArea{
+  display: none;
+}
+
 /* 파일업로드된 스타일 */
-.payment-preview ol {
+.work-preview ol {
   list-style: none;
 }
 
 /* 파일 올리기 지우기 버튼 스타일 */
-.payment-file-box {
+.work-file-box {
   margin-top: 20px;
 }
 
-.payment-file-box label {
+.work-file-box label {
   width: 90px;
   height: 35px;
 
@@ -497,12 +527,12 @@ select{
 
 }
 
-.payment-file-box label:hover {
+.work-file-box label:hover {
   background-color: var(--primary500);
   transition: all 1s;
 }
 
-.payment-filebox input[type="file"] {
+.work-filebox input[type="file"] {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -514,7 +544,7 @@ select{
 }
 
 
-.payment-file-box button {
+.work-file-box button {
   width: 90px;
   height: 35px;
 
@@ -536,13 +566,13 @@ select{
   cursor: pointer;
 }
 
-.payment-file-box button:hover {
+.work-file-box button:hover {
   background-color: var(--gray100);
   transition: all 1s;
 }
 
 /* 임시 저장 */
-.payment-modal-save{
+.work-modal-save{
   margin-top: 20px;
 }
 /* 임시저장 버튼 */
@@ -563,7 +593,7 @@ select{
 
 
 /* 확인 취소 버튼 */
-.payment-submit-reset-btns {
+.work-submit-reset-btns {
   margin-top: 20px;
 
   float: right;

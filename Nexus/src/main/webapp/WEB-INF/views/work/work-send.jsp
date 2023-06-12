@@ -7,11 +7,12 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-Inbox.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox(1).css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
+
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -28,7 +29,6 @@
 <body>
 
   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-  
   <section>
 
     <!-- 사이드 바 -->
@@ -38,10 +38,10 @@
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href="work/workSend"><span>상신함</span> </a></li>
-        <li><a href="work/workInbox"><span>수신함</span> </a></li>
-        <li><a href="work/workTemp"><span>임시저장</span> </a></li>
-        <li><a href=""><span>템플릿</span> </a></li>
+        <li><a href="workSend"><span>상신함</span> </a></li>
+        <li><a href="workInbox"><span>수신함</span> </a></li>
+        <li><a href="workTemp"><span>임시저장</span> </a></li>
+        <li><a href="workTemplate"><span>템플릿</span> </a></li>
       </ul>
     </div>
 
@@ -101,56 +101,90 @@
         </div>
 
         <div id="modalWrap">
-          <div class="payment-modalBody">
+          <div class="work-modalBody">
             <span id="closeBtn">
-              <img src="../images/Xbtn.png" alt="">
+              <img src="${contextPath}/resources/images/Xbtn.png" alt="">
             </span>
             <h1>결제상신</h1>
             <!-- 선1 -->
-            <div class="payment-modal-line"></div>
+            <div class="work-modal-line"></div>
 
             <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
               <!-- 템플릿 -->
-              <div class="payment-modal-template">
-                <p>템플릿</p>
-                <select name="" id="">
-                  <option value="">경조금신청서(예시)</option>
-                  <option value="">구매요청서(예시)</option>
-                  <option value="">자산요청서(예시)</option>
-                </select>
+              <div class="work-modal-template">
+                <p>결재 타입</p>
+
+                <div class="work-modal-template-select">
+
+                  <select name="" id="work-template">
+                    <option value="normal-check">일반</option>
+                    <option value="business trip">출장</option>
+                    <option value="vacation">연차</option>
+                    <option value="project">프로젝트</option>
+                  </select>
+                  
+                  <select name="" id="normal-check">
+                    <option value="">경조금신청서(예시)</option>
+                    <option value="">구매요청서(예시)</option>
+                    <option value="">자산요청서(예시)</option>
+                    <option value="">지출결의서(예시)</option>
+                  </select>
+
+                </div>
               </div>   
             <!-- 제목 -->
-            <div class="payment-modal-title">
+            <div class="work-modal-title">
               <p>제목</p>
               <input type="text" placeholder="제목을 입력해주세요" required>
             </div>
+            <!-- 출장지 -->
+            <div class="work-modal-businessArea">
+              <p>출장지</p>
+              <input type="text">
+            </div>
+            <!-- 시작날짜 -->
+            <div class="work-modal-startDate">
+              <p>시작날짜</p>
+              <input type="date">
+            </div>
+            <!-- 종료날짜 -->
+            <div class="work-modal-endDate">
+              <p>종료날짜</p>
+              <input type="date">
+            </div>
             <!-- 내용 -->
-            <div class="payment-modal-detail">
+            <div class="work-modal-detail">
               <p>내용</p>
               <textarea name="" id="" onkeydown="handleResizeHeight(this)"
                 onkeyup="handleResizeHeight(this)"></textarea>
             </div>
+            <!-- 출장내용 -->
+            <div class="work-modal-businessDetail">
+              <p>출장 내용</p>
+              <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+                onkeyup="handleResizeHeight(this)"></textarea>
+            </div>
             <!-- 결재자 -->
-            <div class="payment-modal-approver">
+            <div class="work-modal-approver">
               <p>결재자</p>
               <input type="text">
             </div>
             <!-- 파일 업로드 -->
-            <div class="payment-file-box">
+            <div class="work-file-box">
               <button type="button" id="file-remove">파일 지우기</button>
               <label for="file-uploads">파일 올리기</label>
               <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
             </div>
             <!-- 선택된 파일 -->
-            <div class="payment-preview"></div>
+            <div class="work-preview"></div>
             <!-- 선2 -->
-            <div class="payment-modal-line"></div>
+            <div class="work-modal-line"></div>
             <!-- 임시저장 버튼 -->
-            <div class="payment-modal-save">
+            <div class="work-modal-save">
               <button type="button" id="save-draft">임시 저장</button>
             </div>
             <!-- 버튼 -->
-            <div class="payment-submit-reset-btns">
+            <div class="work-submit-reset-btns">
               <button type="reset" id="cancell-btn">취소</button>
               <button id="success-btn">확인</button>
             </div>
@@ -200,7 +234,7 @@
     <div id="check-modalWrap">
       <div class="check-modalBody">
         <span id="check-closeBtn">
-          <img src="../images/Xbtn.png" alt="">
+          <img src="${contextPath}/resources/images/Xbtn.png" alt="">
         </span>
         <h1>결재상신</h1>
         <!-- 선1 -->
@@ -256,5 +290,5 @@
   </section>
 </body>
 
-<script src="${contextPath}/resources/js/work-Inbox.js"></script>
+<script src="${contextPath}/resources/js/work/work-send.js"></script>
 </html>

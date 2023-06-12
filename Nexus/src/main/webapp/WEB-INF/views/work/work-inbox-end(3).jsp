@@ -10,9 +10,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-Inbox.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
-  <link rel="stylesheet" href="../css/payment-inbox(1).css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox(1).css">
+  
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -23,7 +24,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-  <title>결재-수신함-결재할것</title>
+  <title>결재-수신함-결재 완료</title>
 </head>
 
 <body>
@@ -31,22 +32,22 @@
   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <section>
 
-    <!-- 사이드 바 -->
-    <div class="side-bar menu">
-      <!-- 페이지마다 바뀌는 제목 -->
-      <div class="side-barTitle">
-        <a href="payment-Inbox.html" id="side-barTitle-a">
-          <img src="${contextPath}/resources/images/leftArrow.png" alt="">
-        </a>
-      <h1>수신함</h1>
+       <!-- 사이드 바 -->
+       <div class="side-bar menu">
+        <!-- 페이지마다 바뀌는 제목 -->
+        <div class="side-barTitle">
+          <a href="workSend" id="side-barTitle-a">
+            <img src="${contextPath}/resources/images/leftArrow.png" alt="">
+          </a>
+        <h1>수신함</h1>
       </div>
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href="work/work-inbox"><span>결재할문서</span> </a></li>
-        <li><a href="work/work-inbox-ing"><span>결재진행중</span> </a></li>
-        <li><a href="work/work-inbox-end"><span>결재완료</span> </a></li>
-        <li><a href="work.work-inbox"><span>결재취소</span> </a></li>
+        <li><a href="workInbox"><span>결재할문서</span> </a></li>
+        <li><a href="workInboxIng"><span>결재진행중</span> </a></li>
+        <li><a href="workInboxEnd"><span>결재완료</span> </a></li>
+        <li><a href="workInboxCancle"><span>결재취소</span> </a></li>
       </ul>
     </div>
 
@@ -56,7 +57,31 @@
       <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
         <p class="content-all-top-text1">결재 / </p>
-        <p class="content-all-top-text2">결재할 문서(1)</p>
+        <p class="content-all-top-text2">결재 완료</p>
+        <!-- 시작일 / 종료일 -->
+        <div class="content-all-date">
+          
+          <div class="content-all-date-p">
+
+            <p class="date-p">
+              시작일
+            </p>
+            
+            <p class="date-p">
+              종료일
+            </p>
+
+          </div>
+
+          <div class="content-all-date-input">
+            
+            <input type="text" id="dateClick" name="daterange" value="01/01/2023 - 01/15/2023" />
+            <label for="dateClick">⌵</label>
+            <button type="button" class="omen-btn" id="dateBtn">조회</button>
+          </div>
+          
+        </div>
+        
       </div>
 
       <!-- 컨텐츠 내용 아랫부분 -->
@@ -82,17 +107,17 @@
         </div>
 
         <div id="modalWrap">
-          <div class="payment-modalBody">
+          <div class="work-modalBody">
             <span id="closeBtn">
               <img src="${contextPath}/resources/images/Xbtn.png" alt="">
             </span>
             <h1>결제상신</h1>
             <!-- 선1 -->
-            <div class="payment-modal-line"></div>
+            <div class="work-modal-line"></div>
 
             <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
               <!-- 템플릿 -->
-              <div class="payment-modal-template">
+              <div class="work-modal-template">
                 <p>템플릿</p>
                 <select name="" id="">
                   <option value="">경조금신청서(예시)</option>
@@ -101,37 +126,30 @@
                 </select>
               </div>   
             <!-- 제목 -->
-            <div class="payment-modal-title">
+            <div class="work-modal-title">
               <p>제목</p>
               <input type="text" placeholder="제목을 입력해주세요" required>
             </div>
             <!-- 내용 -->
-            <div class="payment-modal-detail">
+            <div class="work-modal-detail">
               <p>내용</p>
               <textarea name="" id="" onkeydown="handleResizeHeight(this)"
                 onkeyup="handleResizeHeight(this)"></textarea>
             </div>
             <!-- 결재자 -->
-            <div class="payment-modal-approver">
+            <div class="work-modal-approver">
               <p>결재자</p>
               <input type="text">
             </div>
-            <!-- 파일 업로드 -->
-            <div class="payment-file-box">
-              <button type="button" id="file-remove">파일 지우기</button>
-              <label for="file-uploads">파일 올리기</label>
-              <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
-            </div>
-            <!-- 선택된 파일 -->
-            <div class="payment-preview"></div>
+
             <!-- 선2 -->
-            <div class="payment-modal-line"></div>
+            <div class="work-modal-line"></div>
             <!-- 임시저장 버튼 -->
-            <div class="payment-modal-save">
+            <div class="work-modal-save">
               <button type="button" id="save-draft">임시 저장</button>
             </div>
             <!-- 버튼 -->
-            <div class="payment-submit-reset-btns">
+            <div class="work-submit-reset-btns">
               <button type="reset" id="cancell-btn">취소</button>
               <button id="success-btn">확인</button>
             </div>
@@ -149,32 +167,29 @@
                 <th>종류</th>
                 <th>결재 번호</th>
                 <th>제목</th>
-                <th>상태</th>
+                <th>작성자</th>
                 <th>첨부파일</th>
+                <th>결재의견</th>
                 <th>작성일</th>
               </tr>
               
             </thead>
 
             <tbody>
-              <tr class="row">
+              <tr>
                 <td>1</td>
                 <td>1234</td>
                 <td>테스트입니다</td>
-                <td>결재완료</td>
+                <td>테스터</td>
+                <td>없음</td>
                 <td>없음</td>
                 <td>2023.5.10</td>
               </tr>
             </tbody>
 
-
-            
           </table>
 
-
         </div>
-
-      
 
       </div>
 
@@ -280,9 +295,17 @@
             <p>결재자</p>
             <input type="text">
           </div>
-         
+          <!-- 선택된 파일 -->
+          <p>선택파일</p>
+          <div class="check-preview"></div>
+          <!-- 파일 업로드 -->
+          <div class="work-file-box">
+            <button type="button" id="file-remove">파일 지우기</button>
+            <label for="file-uploads">파일 올리기</label>
+            <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+          </div>
           <!-- 선2 -->
-          <div class="payment-modal-line"></div>
+          <div class="work-modal-line"></div>
            <!-- 최종승인 버튼 -->
            <div class="check-modal-checkbox">
             <label for="">
@@ -293,7 +316,7 @@
           
 
           <!-- 버튼 -->
-          <div class="payment-submit-reset-btns">
+          <div class="work-submit-reset-btns">
             <button type="submit" id="companion-btn">반려</button>
             <button type="reset" id="check-cancell-btn">취소</button>
             <button id="check-success-btn">승인</button>
@@ -313,5 +336,5 @@
   </section>
 </body>
 
-<script src="${contextPath}/resources/js/work/work-inbox(1).js"></script>
+<script src="${contextPath}/resources/js/work/work-inbox-ing(2).js"></script>
 </html>

@@ -55,10 +55,10 @@ public class DeptDAO {
 		return sqlSession.insert("deptMapper.insertBoardFile",file);
 	}
 	
-	// 부서게시판 게시물 조회
-	public BoardDetail selectDetail(int boardNo) {
+	// 부서게시판 게시글 상세조회
+	public BoardDetail boardDetail(int boardNo) {
 		
-		return sqlSession.selectOne("deptMapper.selectDetail",boardNo);
+		return sqlSession.selectOne("deptMapper.boardDetail",boardNo);
 	}
 
 	
