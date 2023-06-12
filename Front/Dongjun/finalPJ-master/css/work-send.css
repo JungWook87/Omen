@@ -493,6 +493,27 @@ select{
   display: none;
 }
 
+.work-modal-projectBox{
+  float: right;
+  margin-block: 5px;
+}
+
+.projectBox {
+  margin-top: 36px;
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.projectBox div > button{
+  float: right;
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+}
+
 /* 파일업로드된 스타일 */
 .work-preview ol {
   list-style: none;
