@@ -1,5 +1,7 @@
 
 const attn_btn2 = document.getElementsByClassName("main-attn-btn2");
+const attn_start = document.getElementById("attn-start");
+const attn_end = document.getElementById("attn-end");
 
 attn_btn2[0].addEventListener("click", function() {
     
@@ -18,63 +20,77 @@ attn_btn2[0].addEventListener("click", function() {
         attn_time_minutes = "0" + attn_time_minutes;
     }
     
-    const attn_start = document.getElementById("attn-start");
     attn_start_hours = attn_time_hours;
     attn_start_minutes = attn_time_minutes;
-
-    const attn_end = document.getElementById("attn-end");
-    
     
     if(attn_btn2[0].innerText == "업무시작"){
-        attn_start.innerText = attn_start_hours + " : " + attn_start_minutes;
-        attn_btn2[0].innerText = "업무종료";
-        attn_btn2[0].style.backgroundColor = '#E6E8EC';
-
-        document.getElementById("main-attn-circle").style.backgroundColor = 'springgreen';
-        working_time[0].innerText = "업무중 : 0시간 0분";
-
-        $.ajax({
-            url : "attendance/attn_hours",
-            type : "GET",
-            dataType : "JSON",
-            data : {"type" : "start",
-                    "hours" : attn_start_hours,
-                    "minutes" : attn_start_minutes}
-
-        })
+        if(true){
+            attn_start.innerText = attn_start_hours + " : " + attn_start_minutes;
+            attn_btn2[0].innerText = "업무종료";
+            attn_btn2[0].style.backgroundColor = '#E6E8EC';
+    
+            document.getElementById("main-attn-circle").style.backgroundColor = 'springgreen';
+            working_time[0].innerText = "업무중 : 0시간 0분";
+    
+            $.ajax({
+                url : "attendance/attn_hours",
+                type : "GET",
+                dataType : "JSON",
+                data : {"type" : "start",
+                        "hours" : attn_start_hours,
+                        "minutes" : attn_start_minutes}
+    
+            });
+        } else{
+            Swal.fire(
+                '금일은 출근이 완료되었습니다.',
+                '자세한 사항은 인사부에 문의해주세요.',
+                'warning',
+            );
+        }
 
     } else{
-        attn_end.innerText = attn_time_hours + " : " + attn_time_minutes;
-        attn_btn2[0].innerText = "업무시작";
-        attn_btn2[0].style.backgroundColor = '#CEE0FA';
+        Swal.fire({
+            title: '업무를 종료하시겠습니까?',
+            text: '다시 되돌릴 수 없습니다. 신중하세요.',
+            icon: 'warning',
+            
+            showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+            confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+            cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+            confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+            cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+            
+         }).then(result => {
+            // 만약 Promise리턴을 받으면,
+            if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+            
+                attn_end.innerText = attn_time_hours + " : " + attn_time_minutes;
+                attn_btn2[0].innerText = "업무시작";
+                attn_btn2[0].style.backgroundColor = '#CEE0FA';
+    
+                document.getElementById("main-attn-circle").style.backgroundColor = '#B4BBC5';
+            
+                $.ajax({
+                    url : "attendance/attn_hours",
+                    type : "GET",
+                    dataType : "JSON",
+                    data : {"type" : "end",
+                            "hours" : attn_time_hours,
+                            "minutes" : attn_time_minutes}
+                    
+                });
 
-        document.getElementById("main-attn-circle").style.backgroundColor = '#B4BBC5';
+                let workingHour = Number(attn_end.innerText.split(" : ")[0])  - Number(attn_start.innerText.split(" : ")[0]);
+                let workingMinute = Number(attn_end.innerText.split(" : ")[1])  - Number(attn_start.innerText.split(" : ")[1]);
+
+                document.getElementsByClassName("main-font-title")[0].innerText = "업무종료 : " + workingHour + " 시간 " + workingMinute + " 분";
+
+               Swal.fire('퇴근이 완료되었습니다.', '오늘도 수고하셨습니다.', 'success');
+            }
+         });
         
-        $.ajax({
-        	url : "attendance/attn_hours",
-            type : "GET",
-            dataType : "JSON",
-            data : {"type" : "end",
-                    "hours" : attn_time_hours,
-                    "minutes" : attn_time_minutes}
-
-        })
     }
 
 }); 
 
-(function (){
-    if(attn_start_hours != null){
-        const now = new Date();
-
-        let now_hours = now.getHours();
-        let now_minutes = now.getMinutes();
-
-        attn_start_hours = 10;
-        attn_start_minutes = 5;
-
-        let working_hours = now_hours - attn_start_hours;
-        let working_minutes = now_minutes - attn_start_minutes;
-
-    }
-})();

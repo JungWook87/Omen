@@ -85,8 +85,6 @@ public class AttendanceController {
 			@ModelAttribute("loginMember") Member loginMember,
 			@RequestParam Map<String, Object> map) {
 		
-		int memNo = loginMember.getMemNo();
-		
 		int result = 0;
 		
 		map.put("memNo", loginMember.getMemNo());
@@ -99,4 +97,5 @@ public class AttendanceController {
 		
 		return result;
 	}
+	
 }

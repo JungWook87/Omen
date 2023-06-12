@@ -34,6 +34,11 @@ public class AttendanceDAO {
 	public int attnEndHours(Map<String, Object> map) {
 		return sqlSession.update("attendanceMapper.endHours", map);
 	}
+	
+	// DB에서 오늘 날짜 조회
+	public Attendance selectOne(Map<String, Object> map) {
+		return sqlSession.selectOne("attendanceMapper.selectOne", map);
+	}
 
 
 }

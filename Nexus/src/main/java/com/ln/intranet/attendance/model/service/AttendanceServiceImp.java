@@ -127,6 +127,12 @@ public class AttendanceServiceImp implements AttendanceService {
 		
 		return dao.attnEndHours(map);
 	}
+
+	// DB에서 오늘 날짜 조회
+	@Override
+	public Attendance selectOne(Map<String, Object> map) {
+		return dao.selectOne(map);
+	}
 	
 	
 	
