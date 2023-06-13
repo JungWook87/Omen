@@ -650,7 +650,7 @@ option {
     margin-top: 36px;
 }
 
-.check-modal-title input {
+.check-modal-title {
     width: 100%;
     height: 50px;
 
@@ -666,7 +666,12 @@ option {
     font-size: 18px;
 
     outline: none;
+
+    display: flex;
+    align-items: center;
+
 }
+
 
 
 .check-modal-detail {

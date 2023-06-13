@@ -127,6 +127,7 @@ function updateImageDisplay(event) {
 }
 
 const fileTypes = [
+  // 이미지 파일
   "image/apng",
   "image/bmp",
   "image/gif",
@@ -136,8 +137,40 @@ const fileTypes = [
   "image/svg+xml",
   "image/tiff",
   "image/webp",
-  "image/x-icon"
+  "image/x-icon",
+  
+  // 텍스트 파일
+  "text/plain",
+  "text/html",
+  "text/css",
+  "text/javascript",
+  
+  // 음악 파일
+  "audio/mpeg",
+  "audio/ogg",
+  "audio/wav",
+  
+  // 비디오 파일
+  "video/mpeg",
+  "video/mp4",
+  "video/quicktime",
+  
+  // 문서 파일
+  "application/pdf",
+  "application/msword",
+  "application/vnd.ms-excel",
+  "application/vnd.ms-powerpoint",
+  
+  // 압축 파일
+  "application/zip",
+  "application/x-rar-compressed",
+  "application/x-tar",
+  
+  // 기타 파일 유형
+  "application/octet-stream"
 ];
+
+
 
 function validFileType(file) {
   return fileTypes.includes(file.type);
@@ -238,18 +271,15 @@ function detailModal(boardNo) {
       checkModalDetailSpan.innerHTML = detail.boardContent;
       checkModalDetail.append(checkModalDetailSpan);
 
-      checkPreview.innerHTML = `
-      <a href="${contextPath}${detail.fileRename}" 
-      download="${detail.fileOrigin}">${detail.fileOrigin}</a>`;
       
-      // for (let i = 0; i < checkModalDetailLines.length; i++) {
-      //   resultString += checkModalDetailLines[i] + "<br>";
-      // }
+      console.log(detail.fileRename);
 
-      // resultString += "</p>";
-
-      // checkModalDetail.innerHTML = resultString;
-
+      const checkPreviewA = document.createElement("a");
+      checkPreviewA.innerText = detail.boardFileOrigin;
+      checkPreviewA.href = "/intranet" + detail.boardFileRename;
+      checkPreviewA.download = detail.boardFileOrigin;
+      checkPreview.append(checkPreviewA); 
+      
       // 모달창 열기
       checkModal.style.display = 'block';
       checkModalBody.classList.add('check-modal-open');    
@@ -268,7 +298,15 @@ function detailModal(boardNo) {
 // 수정 모달창 닫는 함수
 function checkModalClose() {
   checkModalBody.classList.add('check-modal-close');
-  
+
+
+   // checkModalTitle 비우기
+   checkModalTitle.innerHTML = '';
+   // checkModalDetail 비우기
+   checkModalDetail.innerHTML = '';
+   // checkPreview 비우기
+   checkPreview.innerHTML = '';
+
   setTimeout(() => {
     checkModal.style.display = 'none';
     checkModalBody.classList.remove("check-modal-close");

@@ -30,7 +30,7 @@
     <!-- 사이드 바 -->
     <div class="side-bar menu">
       <!-- 페이지마다 바뀌는 제목 -->
-      <h1>설문</h1>
+      <h1>설문생성/관리</h1>
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
@@ -49,12 +49,11 @@
 
           <!-- 컨텐츠 제목 부분 -->
           <div class="content-all-top-texts">
-            <a href="" class="content-all-top-text">전체(1)</a>
-            <a href="" class="content-all-top-text2">미참여(0)</a>
-            <a href="" class="content-all-top-text3">참여(1)</a>
-          </div>
-          
+            <form action="surveyCreate">
+              <button>설문 생성</button>
+            </form>
 
+          </div>
         </div>
 
       </div>
@@ -68,8 +67,11 @@
               <tr>
                 <th>상태</th>
                 <th>제목</th>
-                <th>기간</th>
-                <th>참여여부</th>
+                <th>설문 생성일</th>
+                <th>URL복사</th>
+                <th>응답수</th>
+                <th>설문 결과</th>
+                <th>삭제</th>
               </tr>
             </thead>
 
@@ -77,8 +79,11 @@
               <tr>
                 <td id="status-color">진행중</td>
                 <td>파이널 프로젝트 목업 디자인에 관한 설문</td>
-                <td>23.05.25 ~ 23.05.25</td>
-                <td id="participation-color">미참여</td>
+                <td>23.05.25</td>
+                <td><button>url복사</button></td>
+                <td>1/4</td>
+                <td><button>결과 보기</button></td>                                
+                <td> 삭제 </td>
               </tr>
             </tbody>
           </table>

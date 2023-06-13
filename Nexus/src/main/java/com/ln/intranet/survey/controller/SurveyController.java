@@ -21,26 +21,50 @@ public class SurveyController {
 	
 	private SurveyService service;
 	
-	@GetMapping("/surveyList")
+	@GetMapping("surveyList")
 	public String surveyList(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
 			HttpSession session
 			) {
 		
-		Member loginMember = (Member)session.getAttribute("loginMember");
-		
-		Map<String,Object> map = null;
-		
-		int memNo = loginMember.getMemNo();
-		
-		map = service.surveyList(cp, memNo);
-		
-		model.addAttribute("map",map);
+//		Member loginMember = (Member)session.getAttribute("loginMember");
+//		
+//		Map<String,Object> map = null;
+//		
+//		int memNo = loginMember.getMemNo();
+//		
+//		map = service.surveyList(cp, memNo);
+//		
+//		model.addAttribute("map",map);
 		
 		
 		return "/survey/survey-list";
 		
 	}
+	
+	@GetMapping("surveyManage")
+	public String surveyManage(
+			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
+			Model model,
+			HttpSession session
+			) {
+		
+		
+		return "/survey/survey-manage";
+
+	}
+	
+	@GetMapping("/surveyCreate")
+	public String surveyCreate(
+			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
+			Model model
+			) {
+		
+		
+		return "/survey/survey-create";
+
+	}
+	
 
 }
