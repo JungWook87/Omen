@@ -126,7 +126,21 @@ function updateImageDisplay(event) {
 
 }
 
+// const fileTypes = [
+//   "image/apng",
+//   "image/bmp",
+//   "image/gif",
+//   "image/jpeg",
+//   "image/pjpeg",
+//   "image/png",
+//   "image/svg+xml",
+//   "image/tiff",
+//   "image/webp",
+//   "image/x-icon"
+// ];
+
 const fileTypes = [
+  // 이미지 파일
   "image/apng",
   "image/bmp",
   "image/gif",
@@ -136,8 +150,39 @@ const fileTypes = [
   "image/svg+xml",
   "image/tiff",
   "image/webp",
-  "image/x-icon"
+  "image/x-icon",
+  
+  // 텍스트 파일
+  "text/plain",
+  "text/html",
+  "text/css",
+  "text/javascript",
+  
+  // 음악 파일
+  "audio/mpeg",
+  "audio/ogg",
+  "audio/wav",
+  
+  // 비디오 파일
+  "video/mpeg",
+  "video/mp4",
+  "video/quicktime",
+  
+  // 문서 파일
+  "application/pdf",
+  "application/msword",
+  "application/vnd.ms-excel",
+  "application/vnd.ms-powerpoint",
+  
+  // 압축 파일
+  "application/zip",
+  "application/x-rar-compressed",
+  "application/x-tar",
+  
+  // 기타 파일 유형
+  "application/octet-stream"
 ];
+
 
 function validFileType(file) {
   return fileTypes.includes(file.type);

@@ -1133,8 +1133,3 @@ html {
 .chat-box.closing {
     transform: scale(0);
 }
-
-
-.fa-paper-plane-top:before {
-    content: "\f1d8";
-}
