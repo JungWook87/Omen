@@ -106,6 +106,8 @@ function initCalendar() {
   addListner();
 }
 
+
+
 initCalendar();
 
 
@@ -263,6 +265,8 @@ function getActiveDay(date) {
 
 function updateEvents(date) {
   let events = "";
+  let availableRooms = 8; // Total available rooms
+
   eventsArr.forEach((event) => {
     if(
       date === event.day &&
@@ -281,6 +285,9 @@ function updateEvents(date) {
             <span class = "event-time">${event.time}</span>
           </div>
         </div>`
+        if (event.title !== "회의실 선택") {
+          availableRooms--; // Decrease available rooms count for each reserved room
+        }
       })
 
     }
@@ -293,6 +300,24 @@ function updateEvents(date) {
   }
 
   eventsContainer.innerHTML = events;
+
+  const availableRoomsText = document.querySelector(".available-rooms");
+  if (availableRoomsText) {
+    availableRoomsText.remove(); // Remove existing text if it exists
+  }
+
+  if (availableRooms >= 0) {
+    const roomsText = document.createElement("div");
+    roomsText.className = "available-rooms";
+    roomsText.innerHTML = `예약 가능한 회의실: ${availableRooms}`;
+    daysContainer.appendChild(roomsText);
+  }
+
+  const eventWindow = document.querySelector(".event-window");
+  if (eventWindow) {
+    eventWindow.style.display = "none"; // Hide the event window
+  }
+
 
   // saveEvents();
 
