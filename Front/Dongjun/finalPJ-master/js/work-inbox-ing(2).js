@@ -22,10 +22,11 @@ $(function() {
   });
 });
 
-// 모달창 스타일
+  // 모달창 스타일
 const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap');
 const closeBtn = document.getElementById('closeBtn');
+const plusBtn = document.getElementById('pulsProject');
 const modalBody = document.querySelector('.work-modalBody');
 const cancellBtn = document.getElementById('cancell-btn');
 const workModaltitle = document.querySelector('.work-modal-title');
@@ -35,10 +36,14 @@ const workTitle = document.querySelector('.work-modal-title > input');
 const workContent = document.querySelector('.work-modal-detail > textarea');
 const workApprover = document.querySelector('.work-modal-approver > input');
 const workTemplateSelect = document.getElementById('work-template');
-const normalCheckSelect = document.getElementById('normal-check');
+const normalCheckSelect = document.getElementById('normal-checked');
+const projectCheckSelect = document.getElementById('project-checked');
+const assignmentCheckSelect = document.getElementById('assignment-checked');
 const workDetail = document.querySelector('.work-modal-detail');
+const workProjectbox = document.querySelector('.projectBox');
 const workBusinessDetail = document.querySelector('.work-modal-businessDetail');
 const workBusinessArea = document.querySelector('.work-modal-businessArea');
+const modalProjectbox = document.querySelector('.work-modal-projectBox');
 
 
 // 결제창 버튼 이벤트
@@ -46,20 +51,68 @@ btn.addEventListener("click", () => {
   workTitle.value = '';
   workContent.value = '';
   workApprover.value = '';
+  workBusinessArea.querySelector('input').value = '';
+  workBusinessDetail.querySelector('textarea').value = '';
+  workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
+  
+
+  workTemplateSelect.value = 'normal-check';
 
   modal.style.display = 'block';
-  normalCheckSelect.style.display = 'block'; // 보이기
-  workStartDate.style.display = 'none'; // 숨기기
-  workEndDate.style.display = 'none'; // 숨기기
-  workBusinessDetail.style.display = 'none' // 숨기기
-  workBusinessArea.style.display = 'none'; // 숨기기
+  workModaltitle.style.display = 'block';
+  normalCheckSelect.style.display='block';
+  modalProjectbox.style.display ='none';
+  workProjectbox.style.display = 'none';
+  workStartDate.style.display = 'none'; 
+  workEndDate.style.display = 'none';
+  workBusinessDetail.style.display = 'none' 
+  workBusinessArea.style.display = 'none';
+  projectCheckSelect.style.display = 'none';
+  assignmentCheckSelect.style.display = 'none';
   modalBody.classList.add('modal-open');
-}) 
 
+}) 
 
 // 모달창 엑스 버튼
 closeBtn.addEventListener("click", () => {
   modalClose();
+});
+
+// 모달창 플러스 버튼
+plusBtn.addEventListener("click", () => {
+
+  const div = document.createElement('div');
+  div.style.borderTop = '1px solid var(--gray400)';
+  div.style.marginBlockStart = '20px';
+  div.style.padding = '10px';
+  const projectName = document.createElement('p');
+  projectName.innerText = "과제명"
+  const projectcontentName = document.createElement('p');
+  projectcontentName.innerText = "과제내용"
+  const projectcontent1 = document.createElement('input');
+  const projectcontent2 = document.createElement('input');
+  const buttonDiv = document.createElement('div'); // 취소 버튼을 감싸는 div 요소
+  buttonDiv.style.display = 'flex';
+  buttonDiv.style.justifyContent = 'end';
+  const xbutton = document.createElement('button');
+  xbutton.innerText = "취소";
+
+  buttonDiv.appendChild(xbutton); // 취소 버튼을 buttonDiv에 추가
+  div.append(projectName, projectcontent1, projectcontentName, projectcontent2, buttonDiv);
+  workProjectbox.append(div);
+
+  xbutton.addEventListener("click", () => {
+    workProjectbox.removeChild(div);
+  })
+
+  btn.addEventListener("click", () =>{
+     workProjectbox.removeChild(div);
+  })
+
+  workTemplateSelect.addEventListener('change', () => {
+     workProjectbox.removeChild(div);
+  })
+
 });
 
 // 모달창 외부 영역 이벤트
@@ -93,46 +146,62 @@ workTemplateSelect.addEventListener('change', () => {
   // 선택된 옵션의 값 가져오기
   const selectedValue = workTemplateSelect.value;
 
-  // vaction 선택란 보이거나 숨기기
-  if (selectedValue === 'vacation') {
-    workStartDate.style.display = 'block'; // 보이기
-    workEndDate.style.display = 'block'; // 보이기
-    workModaltitle.style.display = 'none'; // 숨기기
-    workBusinessArea.style.display = 'none'; // 숨기기
-    workBusinessDetail.style.display = 'none'; // 보이기
-    workDetail.style.display = 'none'; // 숨기기
-  } else {
-  }
+  console.log("selectedValue",selectedValue);
+  workTitle.value = '';
+  workContent.value = '';
+  workApprover.value = '';
+  workBusinessArea.querySelector('input').value = '';
+  workBusinessDetail.querySelector('textarea').value = '';
+  workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
 
 
-  // work-modal-businessArea 선택란을 보이거나 숨기기
-  if (selectedValue === 'business trip') {
-    workBusinessArea.style.display = 'block'; // 보이기
-    workStartDate.style.display = 'block'; // 보이기
-    workEndDate.style.display = 'block'; // 보이기
-    workBusinessArea.style.display = 'block'; // 보이기
-    workBusinessDetail.style.display = 'block'; // 보이기
-    workModaltitle.style.display = 'none'; // 숨기기
-    workDetail.style.display = 'none'// 보이기
-  } else {
+  normalCheckSelect.style.display='none';
+  workModaltitle.style.display='none';
+  workBusinessArea.style.display ='none';
+  workStartDate.style.display = 'none';
+  workEndDate.style.display = 'none'; 
+  workBusinessDetail.style.display = 'none';
+  workDetail.style.display = 'none';
+  workProjectbox.style.display = 'none';
+  modalProjectbox.style.display = 'none';
+  projectCheckSelect.style.display = 'none';
+  assignmentCheckSelect.style.display = 'none';
 
-  }
-
-
-  // normal-check 선택란을 보이거나 숨기기
   if (selectedValue === 'normal-check') {
-    normalCheckSelect.style.display = 'block'; // 보이기
-    workModaltitle.style.display = 'block'; // 보이기
-    workStartDate.style.display = 'none'; // 숨기기
-    workEndDate.style.display = 'none'; // 숨기기
-    workBusinessDetail.style.display = 'none' // 숨기기
-    workBusinessArea.style.display = 'none'; // 숨기기
-    workDetail.style.display = 'block'// 보이기
-    
-  } else {
-    normalCheckSelect.style.display = 'none'; // 숨기기
+    normalCheckSelect.style.display = 'block';
+    workModaltitle.style.display = 'block'; 
+    workDetail.style.display = 'block';
+
+  } 
+
+  if(selectedValue === 'business-trip') {
+    workBusinessArea.style.display = 'block'; 
+    workStartDate.style.display = 'block'; 
+    workEndDate.style.display = 'block'; 
+    workBusinessArea.style.display = 'block'; 
+    workBusinessDetail.style.display = 'block'; 
   }
-});
+
+  if(selectedValue === 'vacation') {
+    workStartDate.style.display = 'block'; 
+    workEndDate.style.display = 'block'; 
+
+  }
+
+  if(selectedValue === 'project') {
+    workModaltitle.style.display = 'block'; 
+    workDetail.style.display = 'block'
+    workProjectbox.style.display = 'block';
+    modalProjectbox.style.display = 'block';
+  }
+
+  if(selectedValue === 'assignment') {
+    projectCheckSelect.style.display = 'block';
+    assignmentCheckSelect.style.display = 'block';
+    workDetail.style.display = 'block'
+  }
+  
+})
 
 
 // 자동 높이 조정 textarea
