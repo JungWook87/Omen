@@ -31,7 +31,7 @@
 		<result property="projectNo" 		column="PROJECT_NO"/>		
 		<result property="noticeNo" 		column="NOTICE_NO"/>	
 		<result property="boardNo" 		column="BOARD_NO"/>	
-		<result property="fileReName" 	column="FILE_RENAME"/>
+		<result property="fileRename" 	column="FILE_RENAME"/>
 		<result property="fileOrigin" 		column="FILE_ORIGIN"/>
 	</resultMap>
 	

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey.css ">
+  <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-create.css ">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -30,7 +31,7 @@
     <!-- 사이드 바 -->
     <div class="side-bar menu">
       <!-- 페이지마다 바뀌는 제목 -->
-      <h1>설문</h1>
+      <h1>설문생성/관리</h1>
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
@@ -49,42 +50,19 @@
 
           <!-- 컨텐츠 제목 부분 -->
           <div class="content-all-top-texts">
-            <a href="" class="content-all-top-text">전체(1)</a>
-            <a href="" class="content-all-top-text2">미참여(0)</a>
-            <a href="" class="content-all-top-text3">참여(1)</a>
+            <input id="surveyTitle" class="surveyTitle" type="text" placeholder=" 제목 없는 설문 ">
+            <input id="surveyContent" class="surveyContent" type="text" placeholder=" 설문에 대한 설명을 적어주세요(선택사항)">
           </div>
-          
-
         </div>
 
-      </div>
-
-      <!-- 컨텐츠 내용 아랫부분 -->
-      <div class="content-all-bottom-area">
-        <div class="survey-table">
-          <table>
-
-            <thead>
-              <tr>
-                <th>상태</th>
-                <th>제목</th>
-                <th>기간</th>
-                <th>참여여부</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td id="status-color">진행중</td>
-                <td>파이널 프로젝트 목업 디자인에 관한 설문</td>
-                <td>23.05.25 ~ 23.05.25</td>
-                <td id="participation-color">미참여</td>
-              </tr>
-            </tbody>
-          </table>
+        <div>
+          <input id="surveyOption" class="surveyOption" name="surveyOption" type="text" placeholder="옵션을 입력해주세요"> 
+          <button>지우기</button>
         </div>
-      </div>
+        
+        <button onclick="return optionAdd()"> + 옵션추가 </button>
 
+      </div>
 
     </div>
 
@@ -96,6 +74,8 @@
       </a>
     </div>
   </section>
+
+  <script src="${contextPath}/resources/js/survey/survey-create.js"></script>
 
 
 </body>

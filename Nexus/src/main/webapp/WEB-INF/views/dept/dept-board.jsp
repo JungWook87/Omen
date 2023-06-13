@@ -198,12 +198,14 @@
           <h1>부서 게시판</h1>
           <!-- 선1 -->
           <div class="modal-line"></div>
-			
+          
           <!-- 제목 -->
-          <div class="check-modal-title" id="check-modal-title">
+          <div>
             <p>제목</p>
-            <span></span>
+            <div class="check-modal-title" id="check-modal-title"></div>
           </div>
+
+          
           <!-- 내용 -->
           <div>
             <p>내용</p>
@@ -218,14 +220,11 @@
           <!-- 버튼 -->
           <div class="notice-submit-reset-btns">
 
-            <form action="">
-              <button id="check-remove-btn">삭제</button>
-            </form>
 
+            <button id="check-remove-btn">삭제</button>
             <button type="reset" id="check-cancell-btn">닫기</button>
+            <button id="check-success-btn">수정</button>
             
-            <form action="">
-              <button id="check-success-btn">수정</button>
             </form>
             
           </div>

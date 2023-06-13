@@ -74,8 +74,9 @@ public class DeptController {
 		
 		BoardDetail detail = service.boardDetail(boardNo);
 		
-		return  new Gson().toJson(detail);
+		detail.setBoardNo(boardNo);
 		
+		return new Gson().toJson(detail);
 	}
 	
 	// 부서 일정 접속
