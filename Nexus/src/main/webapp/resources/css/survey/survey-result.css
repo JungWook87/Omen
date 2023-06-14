@@ -14,11 +14,13 @@ section {
 
   background-color: var(--side);
 
+  z-index: 100;
 }
 
 .side-bar ul {
   margin: 0;
   padding: 0;
+
 }
 
 
@@ -40,6 +42,11 @@ section {
 
 }
 
+.side-bar li>a {
+  padding-left: 40px;
+}
+
+
 
 /* 사이드바 선택 되었을때 스타일 */
 /* FIXME:아래 주석처리 되어 있는 코드를 바꿔서 현재페이지에 맞게 지정 해주면 될것 */
@@ -50,21 +57,14 @@ section {
 
 }
 
-.side-bar li:first-child>a:first-child>span:first-child {
+.side-bar li:nth-child(1)>a:first-child>span:first-child {
 
   color: var(--primary400);
 }
 
-.side-bar li:first-child>a:first-child {
+.side-bar li:nth-child(1)>a:first-child {
   padding-left: 30px;
 }
-
-
-.side-bar li:nth-child(2)>a:nth-child(2) {
-  padding-left: 30px;
-}
-
-
 
 
 
@@ -164,129 +164,124 @@ a:focus {
 .content-all-page {
   width: 100%;
 
-
-}
-
-/* 컨텐츠 상단 부분 */
-.content-all-top-area {
   margin: auto;
   margin-top: 70px;
-  margin-left: 130px;
-  margin-right: 130px;
+  margin-left: 50px;
+  margin-right: 50px;
+
 }
 
-.content-all-top-area-detail {
+
+
+
+/* 설문 생성 윗부분 */
+.survey-create-top {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
+.survey-create-top h1 {
+  height: 35px;
+  line-height: 35px;
 
+  border: none;
 
-/* 컨텐츠 상단 텍스트 */
-.content-all-top-texts {
-  display: flex;
-}
+  outline: none;
 
-.content-all-top-texts>a {
-  margin-right: 20px;
-
-  text-decoration: none;
-}
-
-.content-all-top-texts>a:hover {
-  border-bottom: 2px solid var(--primary400);
-}
-
-.content-all-top-text {
+  font-size: 26px;
   font-weight: bold;
-  font-size: 24px;
 
-  border-bottom: 2px solid var(--primary400);
+  margin-bottom: 30px;
 
-  color: var(--primary400);
-}
-
-.content-all-top-text2 {
-  font-weight: bold;
-  font-size: 24px;
-
-  color: var(--gray300);
-}
-
-.content-all-top-text3 {
-  font-weight: bold;
-  font-size: 24px;
-
-  color: var(--gray300);
-}
-
-
-/* 컨텐츠 하단 부분 */
-.content-all-bottom-area {
-  margin: auto;
-
-  margin-left: 130px;
-  margin-right: 130px;
-}
-
-
-/* 근태현황 */
-.survey-table {
-  margin-top: 80px;
-}
-
-.survey-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-
-.survey-table table th {
-  color: var(--gray600);
-
-  border-bottom: 1px solid var(--gray300);
-
-  padding-bottom: 10px;
-
-  font-size: 14px;
-  font-weight: 100;
-
-  text-align: left;
-}
-
-/* .survey-table table th:nth-child(1) {
-  width: 100px;
-}
-
-.survey-table table th:nth-child(2) {
-  width: 500px;
-}
-
-.survey-table table th:nth-child(3) {
-  width: 200px;
-} */
-
-.survey-table table td {
   color: var(--black);
-
-  border-bottom: 1px solid var(--gray100);
-
-  padding: 20px 0;
 }
 
-.survey-table tbody>tr:hover {
+
+
+/* 설문 생성 content */
+.survey-create-content {
+  width: 1100px;
+
+  padding: 50px;
+  padding-bottom: 100px;
+
+  /* margin-top: 50px; */
+  margin-bottom: 200px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--gray300);
+  border-radius: 10px;
+
+}
+
+
+/* 옵션추가부분 */
+.survey-create-content-option {
+  display: flex;
+
+  margin-bottom: 40px;
+
+  border-bottom: 1px solid var(--gray200);
+
+  list-style: none;
+}
+
+
+/* 설문 생성 아랫부분 */
+.survey-create-bottom {
+  display: flex;
+  position: fixed;
+  justify-content: flex-end;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  padding: 34px 32px 16px 272px;
+  border-top: 1px solid var(--gray100);
+  background-color: white;
+  z-index: 1;
+  gap: 10px;
+}
+
+#survey-create-bottom-cancle {
+  width: 100px;
+  height: 40px;
+
+  border: 1px solid var(--gray200);
+  border-radius: 5px;
+
+  background-color: white;
+
+  font-size: 15px;
+
   cursor: pointer;
 
-  background-color: var(--gray50)
 }
 
-
-/* 상태 컬러 */
-#status-color {
-  color: var(--green);
+#survey-create-bottom-cancle:hover {
+  background-color: var(--gray200);
+  color: white;
+  transition: all 0.5s;
 }
 
-/* 참여여부 컬러 */
-#participation-color {
-  color: red;
+#survey-create-bottom-submit {
+  width: 100px;
+  height: 40px;
+
+  border: 1px solid var(--gray200);
+  border-radius: 5px;
+
+  background-color: var(--primary400);
+
+  color: white;
+
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+#survey-create-bottom-submit:hover {
+  background-color: var(--primary500);
+  transition: all 0.5s;
 }

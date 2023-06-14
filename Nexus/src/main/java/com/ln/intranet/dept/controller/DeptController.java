@@ -90,7 +90,6 @@ public class DeptController {
 	public String insertBoard(
 			@RequestParam("noticeTitle") String boardTitle,
 			@RequestParam("noticeContent") String boardContent,
-			String mode,
 			@RequestParam("uploadFile") MultipartFile uploadFile,
 			@ModelAttribute("loginMember") Member loginMember,
 			HttpServletRequest req,

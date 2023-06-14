@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey.css ">
+  <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-list.css ">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -97,7 +97,7 @@
     </div>
   </section>
 
-
+   <script src="${contextPath}/resources/js/survey/survey-list.js"></script>
 </body>
 
 </html>
