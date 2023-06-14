@@ -1,37 +1,78 @@
 package com.ln.intranet.work.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.google.gson.Gson;
+import com.ln.intranet.member.model.vo.Member;
+import com.ln.intranet.work.model.service.WorkService;
+import com.ln.intranet.work.model.vo.WorkGeneralList;
 
 @Controller
 @SessionAttributes({"loginMember"})
 @RequestMapping("/work")
 public class WorkController {
 	
+	@Autowired
+	WorkService service;
+	
+	
 	// 결재 상신함 페이지 진입
-	@GetMapping("workSend")
+	@GetMapping("/workSend")
 	public String workSend(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
-			HttpSession session
+			@ModelAttribute("loginMember") Member loginMember
 			) {
-			
+		
+		
+		List<WorkGeneralList> list = service.workSend(loginMember.getMemNo());
+		
+		model.addAttribute("list", list);
 		
 		return "/work/work-send";
 	}
 	
+	// 결재 상신함 페이지 일정 지정
+	@ResponseBody
+	@GetMapping("/workSendSelectDate")
+	public String workSendSelectDate(@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
+									Model model,
+									@ModelAttribute("loginMember") Member loginMember,
+									@RequestParam Map<String, Object> map) {
+		
+		System.out.println(map.get("start"));
+		System.out.println(map.get("end"));
+		
+		map.put("memNo", loginMember.getMemNo());
+		
+		List<WorkGeneralList> list = service.workSendSelectDate(map);
+		
+		Gson gson = new Gson();
+		
+		gson.toJson(list);
+		
+		return gson.toJson(list);
+	}
+	
 	// 결재 수신함 (결재할것) 페이지 진입
-	@GetMapping("workInbox")
+	@GetMapping("/workInbox")
 	public String workInbox(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
-			HttpSession session
+			@ModelAttribute("loginMember") Member loginMember
 			) {
 			
 		
@@ -39,11 +80,11 @@ public class WorkController {
 	}
 
 	// 결재 수신함 (결재진행중) 페이지 진입
-	@GetMapping("workInboxIng")
+	@GetMapping("/workInboxIng")
 	public String workIng(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
-			HttpSession session
+			@ModelAttribute("loginMember") Member loginMember
 			) {
 			
 		
@@ -51,11 +92,11 @@ public class WorkController {
 	}
 	
 	// 결재 수신함 (결재완료) 페이지 진입
-	@GetMapping("workInboxEnd")
+	@GetMapping("/workInboxEnd")
 	public String workEnd(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
-			HttpSession session
+			@ModelAttribute("loginMember") Member loginMember
 			) {
 			
 		
@@ -63,11 +104,11 @@ public class WorkController {
 	}
 	
 	// 결재 임시저장 페이지 진입
-	@GetMapping("workTemp")
+	@GetMapping("/workTemp")
 	public String workTemp(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
-			HttpSession session
+			@ModelAttribute("loginMember") Member loginMember
 			) {
 			
 		
@@ -75,14 +116,20 @@ public class WorkController {
 	}
 	
 	// 결재 템플릿 페이지 진입
-	@GetMapping("workTemplate")
+	@GetMapping("/workTemplate")
 	public String workTemplate(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
-			HttpSession session
+			@ModelAttribute("loginMember") Member loginMember
 			) {
 			
 		
 		return "/work/work-template";
 	}
+	
+	
+	
+	
+	
+	
 }

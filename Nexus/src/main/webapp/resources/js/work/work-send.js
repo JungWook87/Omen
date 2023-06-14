@@ -1,3 +1,4 @@
+
 // 날짜 조회
 $(function() {
   $('input[name="daterange"]').daterangepicker({
@@ -14,11 +15,72 @@ $(function() {
         "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],   
     },
     "firstDayOfWeek": 1,
-    "startDate": "2023-06-5",
-    "endDate": "2023-06-30",
+    "startDate": new Date(),
+    "endDate": new Date(),
     "drops": "down"
 }, function(start, end, label) {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+
+    $.ajax({
+      url : "workSendSelectDate",
+      type : "GET",
+      dataType : "JSON",
+      data : {"start" : start.format('YYYY-MM-DD'),
+              "end" : end.format('YYYY-MM-DD')
+              },
+      success : function(list){
+        const listBody = document.getElementById("listBody");
+        listBody.innerText = "";
+
+        for(let item of list){
+          const tr = document.createElement("tr");
+          tr.classList.add('listTr');
+          
+          const td1 = document.createElement("td");
+          td1.innerText = item.typeNo;
+          td1.classList.add('listTypeNo');
+          td1.style.display = 'none';
+
+          const td2 = document.createElement("td");
+          td2.innerText = item.typeName;
+
+          const td3 = document.createElement("td");
+          td3.innerText = item.workNo;
+
+          const td4 = document.createElement("td");
+          td4.innerText = item.title;
+
+          const td5 = document.createElement("td");
+          td5.innerText += item.workState;
+          if(item.workState == '진행중'){
+            td5.style.color = "var(--black)";
+          } else if(item.workState == '승인'){
+            td5.style.color = "var(--green)";
+          } else{
+            td5.style.color = "red";
+          }
+
+          const td6 = document.createElement("td");
+          if(item.fileRename == null){
+            td6.innerText = "없음";
+          } else{
+            td6.innerText = "있음";
+          }
+
+          const td7 = document.createElement("td");
+          item.sendDate = item.sendDate.substring(0, 11);
+          td7.innerText = item.sendDate;
+
+          tr.append(td1, td2, td3, td4, td5, td6, td7);
+
+          listBody.append(tr);
+        }
+
+        const attnTypeSelect = document.getElementById("attnTypeSelect");
+        attnTypeSelect.value = 0;
+
+      }
+    });
   });
 });
 
@@ -357,7 +419,48 @@ checkCancellBtn.addEventListener("click", () => {
   checkModalClose();
 });
 
+// 근무 타입 select
+const attnTypeSelect = document.getElementById("attnTypeSelect");
 
+attnTypeSelect.addEventListener("change", function(){
+  
+  let attnTypeSelectValue = attnTypeSelect.value;
+  let tbody = document.getElementById("listBody");
+  let trCount = tbody.getElementsByTagName("tr").length;
+  let listTr = document.getElementsByClassName("listTr");
+  const listTypeNo = document.getElementsByClassName("listTypeNo");
+
+  console.log("trCount : " + trCount);
+
+  for(let i = 0; i < trCount; i++){
+    listTr[i].removeAttribute("style", "display:none");
+  }
+
+  if(attnTypeSelectValue == 1){ 
+    for(let i = 0; i < trCount; i++){
+      if(listTypeNo[i].innerText != 1){
+        listTr[i].setAttribute("style", "display:none");
+      }
+    }
+  } else if(attnTypeSelectValue == 2){
+    for(let i = 0; i < trCount; i++){
+      if(listTypeNo[i].innerText != 2){
+        listTr[i].setAttribute("style", "display:none");
+      }
+    }
+  } else if(attnTypeSelectValue == 3){
+    for(let i = 0; i < trCount; i++){
+      if(listTypeNo[i].innerText != 3){
+        listTr[i].setAttribute("style", "display:none");
+      }
+    }
+  } else{
+    for(let i = 0; i < trCount; i++){
+      listTr[i].removeAttribute("style", "display:none");
+    }
+  }
+
+})
 
 
 

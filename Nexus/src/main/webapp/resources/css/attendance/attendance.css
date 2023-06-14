@@ -252,7 +252,6 @@ a:focus {
 	cursor: pointer;
 	margin-left : 10px;
 	margin-right : 10px;
-	font-size: 20px;
 }
 
 .YMSelect > p {
@@ -261,7 +260,10 @@ a:focus {
 }
 
 
-
+.YMSelect button img {
+	height : 22px;
+	padding-top : 7px;
+}
 
 
 

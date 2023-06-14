@@ -18,8 +18,7 @@
   <!-- jquery cdn -->
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
-  <!-- 폰트어썸 -->
-  <script src="https://kit.fontawesome.com/0041fb1dcb.js" crossorigin="anonymous"></script>
+
   <title>근무/휴가</title>
 </head>
 
@@ -61,11 +60,11 @@
       <div class="content-all-bottom-area">
       
       	<div class="YMSelect">
-      		<button class="fa-solid fa-chevron-left" type="button" id="leftBtn"></button>
+      		<button type="button" id="leftBtn"><img src="${contextPath}/resources/images/LtAngle.png"></button>
       		<p id="attnDate">${attendanceList[0].today.split("/")[0]} 년 ${attendanceList[0].today.split("/")[1]} 월</p>
       		<input id="year" style="display:none" value="${attendanceList[0].today.split('/')[0]}">
       		<input id="month" style="display:none" value="${attendanceList[0].today.split('/')[1]}">
-      		<button class="fa-solid fa-chevron-right" type="button" id="rightBtn"></button>
+      		<button type="button" id="rightBtn"><img src="${contextPath}/resources/images/RtAngle.png"></button>
       	</div>
       	
         <div class="attendance-table">
