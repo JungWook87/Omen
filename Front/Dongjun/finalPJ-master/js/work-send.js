@@ -25,15 +25,19 @@ $(function() {
   // 모달창 스타일
 const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap');
+const approverModal = document.getElementById('approver-modal-wrap')
 const closeBtn = document.getElementById('closeBtn');
+const approverCloseBtn = document.getElementById('approver-closeBtn');
 const plusBtn = document.getElementById('pulsProject');
 const modalBody = document.querySelector('.work-modalBody');
+const approverModalBody = document.querySelector('.approver-modal-Body');
 const cancellBtn = document.getElementById('cancell-btn');
+const approverCancellBtn = document.getElementById('approver-cancell-btn');
 const workModaltitle = document.querySelector('.work-modal-title');
 const workStartDate = document.querySelector('.work-modal-startDate');
 const workEndDate = document.querySelector('.work-modal-endDate');
 const workTitle = document.querySelector('.work-modal-title > input');
-const workContent = document.querySelector('.work-modal-detail > textarea');
+const workContent = document.querySelector('.work-modal-detail textarea');
 const workApprover = document.querySelector('.work-modal-approver > input');
 const workTemplateSelect = document.getElementById('work-template');
 const normalCheckSelect = document.getElementById('normal-checked');
@@ -44,6 +48,7 @@ const workProjectbox = document.querySelector('.projectBox');
 const workBusinessDetail = document.querySelector('.work-modal-businessDetail');
 const workBusinessArea = document.querySelector('.work-modal-businessArea');
 const modalProjectbox = document.querySelector('.work-modal-projectBox');
+
 
 
 // 결제창 버튼 이벤트
@@ -203,6 +208,45 @@ workTemplateSelect.addEventListener('change', () => {
   
 })
 
+// 결재자 클릭 이벤트
+workApprover.addEventListener("click",() => {
+  approverModal.style.display = 'block';
+  approverModalBody.classList.add('work-modal-open')
+})
+
+// 결재자 모달창 외부 영역 이벤트 (수정해야됨)
+window.onclick = function(event) {
+  if (event.target == approverModal) {
+    modalClose();
+  }
+}
+
+approverCloseBtn.addEventListener("click", () =>{
+  modalClose();
+})
+
+// 결재자 모달창 취소버튼 이벤트
+approverCancellBtn.addEventListener("click", () => {
+  modalClose();
+})
+
+
+// 결재자 모달창 닫는 함수
+function modalClose() {
+  approverModalBody.classList.add('approver-modal-close');
+  
+  setTimeout(() => {
+    approverModal.style.display = 'none';
+    approverModalBody.classList.remove("approver-modal-close");
+  }, 350);
+
+  // workContent.style.overflow = 'hidden';
+
+  // workContent.style.height = 'inherit';
+}
+
+
+
 // 자동 높이 조정 textarea
 
 function handleResizeHeight(obj) {
@@ -352,37 +396,80 @@ successBtn.addEventListener("click", () => {
 
 // 수정모달창
 const checkModal = document.getElementById('check-modalWrap');
-const checkCloseBtn = document.getElementById('check-closeBtn');
 const checkModalBody = document.querySelector('.check-modalBody');
 const checkCancellBtn = document.getElementById('check-cancell-btn');
-const checkModalTitle = document.querySelector('.check-modal-title > input');
-const checkModalDetail = document.querySelector('.check-modal-detail');
-const checkPreview = document.querySelector('.check-preview');
+const checkCloseBtn = document.getElementById('check-closeBtn');
+const checkSuccessBtn = document.getElementById('check-success-btn');
+const checkModalTitle = document.querySelector('.check-modal-title');
+const checkModalTitleText = document.querySelector('.check-modal-title > input');
+const checkBusinessArea = document.querySelector('.check-modal-businessArea');
+const checkBusinessAreaText = document.querySelector('.check-modal-businessArea > input');
+const checkStartDate = document.querySelector('.check-modal-startDate');
+const checkStartDateText = document.querySelector('.check-modal-startDate > input');
+const checkEndDate = document.querySelector('.check-modal-endDate');
+
+const checkEndDateText = document.querySelector('.check-modal-endDate > input');
 const checkTemplate = document.querySelector('check-modal-template');
+// const normalCheckSelect = document.getElementById('normal-checked');
+// const projectCheckSelect = document.getElementById('project-checked');
+// const assignmentCheckSelect = document.getElementById('assignment-checked');
+
+
+
+const checkModalDetail = document.querySelector('.check-modal-detail');
+const checkModalDetailText = document.querySelector('.check-modal-detail textarea');
+// const plusBtn = document.getElementById('pulsProject');
+// const workProjectbox = document.querySelector('.projectBox');
+// const modalProjectbox = document.querySelector('.work-modal-projectBox');
+
+
+// 올릴꺼
+const workBusinessAreaText = document.querySelector('.work-modal-businessArea > input');
+
+//올릴꺼
+const workStartDateText = document.querySelector('.work-modal-startDate > input');
+//올릴꺼
+const workEndDateText = document.querySelector('.work-modal-endDate > input');
+//올릴꺼
+const workBusinessDetailText = document.querySelector('.work-modal-businessDetail > textarea');
+
+const checkBusinessDetail = document.querySelector('.check-modal-businessDetail');
+const checkBusinessDetailText = document.querySelector('.check-modal-businessDetail > textarea');
+
+const checkApprover = document.querySelector('.check-modal-approver');
+const checkApproverText = document.querySelector('.check-modal-approver > input');
+
+const checkPreview = document.querySelector('.check-preview');
+
+
 
 
 // 수정 모달창 오픈
 function modifyModal() {
   
   // // 템플릿 밸류값 들고오기
-  // checkTemplate.value = 
+  // checkTemplate.value = workTemplateSelect.value
 
   // 제목 밸류값 들고오기
-  checkModalTitle.value = workTitle.value;
+  checkModalTitleText.value = workTitle.value;
+
+  // 출장지 밸류값 들고오기
+  checkBusinessAreaText.value = workBusinessAreaText.value;
+  // 시작날짜 밸류값 들고오기
+  checkStartDateText.value = workStartDateText.value;
+  // 종료날짜 밸류값 들고오기
+  checkEndDateText.value= workEndDateText.value;
 
   // textarea 밸류값 들고오기
-  checkModalDetail.innerHTML = "";
-  const checkModalDetailLines = workContent.value.split("\n");
-  let resultString = "<p>";
-  
-  for (let i = 0; i < checkModalDetailLines.length; i++) {
-    resultString += checkModalDetailLines[i] + "<br>";
-  }
+  checkModalDetailText.value = workContent.value;
+ 
+  // 출장내용 밸류값 들고오기
+    checkBusinessDetailText.value = workBusinessDetailText.value
 
-  resultString += "</p>";
 
-  checkModalDetail.innerHTML = resultString;
 
+  // 결재자 밸류값 들고오기
+   checkApproverText.value = workApprover.value
 
   // 모달창 열기
   checkModal.style.display = 'block';
@@ -424,6 +511,91 @@ checkCancellBtn.addEventListener("click", () => {
 
 
 
+// 수정버튼 이벤트
+let isEditMode = false; // 초기 상태는 편집 모드가 아님
+
+checkSuccessBtn.addEventListener('click', function() {
+  if (!isEditMode) {
+    // 제목
+    const titleInput = document.querySelector('.check-modal-title input');
+    titleInput.readOnly = false;
+
+    // 출장지
+    const businessAreaInput = document.querySelector('.check-modal-businessArea input');
+    businessAreaInput.readOnly = false;
+
+    // 시작날짜
+    const startDateInput = document.querySelector('.check-modal-startDate input');
+    startDateInput.readOnly = false;
+
+    // 종료날짜
+    const endDateInput = document.querySelector('.check-modal-endDate input');
+    endDateInput.readOnly = false;
+
+    // 출장 내용
+    const businessDetailTextarea = document.querySelector('.check-modal-businessDetail textarea');
+    businessDetailTextarea.readOnly = false;
+
+    // 결재자
+    const approverInput = document.querySelector('.check-modal-approver input');
+    approverInput.readOnly = false;
+
+    isEditMode = true; // 편집 모드로 변경
+    checkSuccessBtn.textContent = '저장'; // 버튼 텍스트 변경
+  } else {
+    // 수정된 내용을 저장하는 로직 추가
+    // ...
+
+    // 제목
+    const titleInput = document.querySelector('.check-modal-title input');
+    titleInput.readOnly = true;
+
+    // 출장지
+    const businessAreaInput = document.querySelector('.check-modal-businessArea input');
+    businessAreaInput.readOnly = true;
+
+    // 시작날짜
+    const startDateInput = document.querySelector('.check-modal-startDate input');
+    startDateInput.readOnly = true;
+
+    // 종료날짜
+    const endDateInput = document.querySelector('.check-modal-endDate input');
+    endDateInput.readOnly = true;
+
+    // 출장 내용
+    const businessDetailTextarea = document.querySelector('.check-modal-businessDetail textarea');
+    businessDetailTextarea.readOnly = true;
+
+    // 결재자
+    const approverInput = document.querySelector('.check-modal-approver input');
+    approverInput.readOnly = true;
+
+    isEditMode = false; // 편집 모드 비활성화
+    checkSuccessBtn.textContent = '수정'; // 버튼 텍스트 변경
+  }
+});
+
+ // 결재자 클릭 이벤트 핸들러
+ function handleClick() {
+  // 새로운 div 요소 생성
+  const newDiv = document.createElement('div');
+  newDiv.classList.add('employee'); // line 클래스 추가
+  document.querySelector('.approver-modal-container').appendChild(newDiv);
+}
+
+// div 요소에 클릭 이벤트 리스너 추가
+const box = document.querySelector('.boss');
+box.addEventListener('click', handleClick);
 
 
-  
+//  // 클릭 이벤트 핸들러
+//  function handleClick() {
+//   // 새로운 div 요소 생성
+//   const newDiv = document.createElement('div');
+//   newDiv.classList.add('div'); // line 클래스 추가
+//   document.getElementById('container').appendChild(newDiv);
+// }
+
+// // div 요소에 클릭 이벤트 리스너 추가
+// const box = document.querySelector('.box');
+// box.addEventListener('click', handleClick);
