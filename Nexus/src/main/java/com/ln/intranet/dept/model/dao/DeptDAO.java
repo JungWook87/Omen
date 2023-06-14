@@ -1,6 +1,7 @@
 package com.ln.intranet.dept.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,6 +14,8 @@ import com.ln.intranet.common.model.vo.Pagination;
 import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.dept.model.vo.Board;
 import com.ln.intranet.dept.model.vo.BoardDetail;
+import com.ln.intranet.notice.model.vo.Notice;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 
 @Repository
@@ -59,6 +62,41 @@ public class DeptDAO {
 	public BoardDetail boardDetail(int boardNo) {
 		
 		return sqlSession.selectOne("deptMapper.boardDetail",boardNo);
+	}
+
+	// 부서 공지사항 카운트
+	public int totalList(int deptNo) {
+		
+		return sqlSession.selectOne("noticeMapper.totalCount", deptNo);
+	}
+
+	// 부서 공지사항 목록 조회
+	public List<Notice> selectDeptNoticeList(Pagination pagination, int deptNo) {
+		
+		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
+		RowBounds rowBounds = new RowBounds(offset,pagination.getLimit());
+		
+		return sqlSession.selectList("noticeMapper.selectDeptNoticeList",deptNo , rowBounds);
+		
+	}
+
+
+
+	public NoticeDetail noticeDetail(Map<String, Object> map) {
+		return sqlSession.selectOne("noticeMapper.deptNoticeDetail",map);
+	}
+
+	public int insertNotice(Map<String, Object> map) {
+		int result = sqlSession.insert("noticeMapper.insertDeptNotice", map);
+		
+		if(result > 0) result = (int) map.get("noticeNo");
+		
+		return result;
+	}
+
+	public int insertNoticeFile(UploadFile file) {
+		
+		return sqlSession.insert("noticeMapper.insertDeptNoticeFile", file);
 	}
 
 	

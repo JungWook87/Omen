@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.notice.model.service.NoticeService;
 import com.ln.intranet.notice.model.vo.Notice;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,7 +36,7 @@ public class NoticeController {
 	  
 
 	
-	  
+	  // 공지사항 게시글 출력
 	  @GetMapping("/list")
 	  public String selectPublicNoticeList(@RequestParam(value="cp",required=false, defaultValue="1") Integer cp,
 			  							Model model
@@ -52,6 +53,8 @@ public class NoticeController {
 		  return "/notice/notice";
 	  }
 	  
+	  
+	  // 공지사항 추가
 	  @PostMapping("writeNotice")
 	  public String writeNotice(@RequestParam("uploadFile") MultipartFile uploadFile,
 			  					@ModelAttribute("loginMember") Member loginMember,
@@ -78,6 +81,20 @@ public class NoticeController {
 		  ra.addFlashAttribute("message", message);
 		  
 		  return "redirect:/notice/list";
+	  }
+	  
+	  
+	  // 공지사항 디테일 폼
+	  @ResponseBody
+	  @GetMapping("/list/NoticeDetail")
+	  public String noticeDetail(int noticeNo) {
+		  
+		  NoticeDetail detail = service.noticeDetail(noticeNo);
+		  
+		  detail.setNoticeNo(noticeNo);
+		  
+		  return new Gson().toJson(detail);
+				 
 	  }
 	  
 	  

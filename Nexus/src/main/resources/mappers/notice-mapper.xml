@@ -11,6 +11,18 @@
 		<result property="noticeType" column="NOTICE_TYPE"/>
 	</resultMap>
 	
+	<resultMap type= "noticeDetail" id="NoticeDetail_rm">
+		<id property="noticeNo" column="NOTICE_NO" />
+		<result property="memNo" column="MEM_NO" />
+		<result property="memName" column="MEM_NAME" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="noticeFileRename" column="FILE_RENAME" />
+		<result property="noticeFileOrigin" column="FILE_ORIGIN" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="noticeType" column="NOTICE_TYPE" />
+	</resultMap>
+	
 	
 	<select id="selectPublicNoticeList" resultMap="notice_rm">
 		SELECT NOTICE_NO, TITLE, CREATE_DATE FROM NOTICE
@@ -21,6 +33,27 @@
 	<select id="totalList" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM NOTICE
 		WHERE NOTICE_TYPE = 0
+	</select>
+	
+		<select id="totalCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM NOTICE
+		WHERE NOTICE_TYPE = #{deptNo}
+	</select>
+	
+		<select id="selectDeptNoticeList" resultMap="notice_rm">
+		SELECT NOTICE_NO, TITLE, CREATE_DATE FROM NOTICE
+		WHERE NOTICE_TYPE = #{deptNo}
+		ORDER BY NOTICE_NO DESC
+	</select>
+	
+	<select id="deptNoticeDetail" parameterType="_int" resultMap="NoticeDetail_rm">
+		SELECT TITLE, CONTENT, 
+			COALESCE(FILE_RENAME, NULL) AS FILE_RENAME,
+			COALESCE(FILE_ORIGIN, NULL) AS FILE_ORIGIN,
+			CREATE_DATE
+			FROM NOTICE
+			LEFT JOIN UPLOAD_FILE USING (NOTICE_NO)
+			WHERE NOTICE_NO = #{noticeNo} AND NOTICE_TYPE = #{deptNo}
 	</select>
 	
 		<!-- 공지사항 작성 -->
@@ -39,6 +72,34 @@
 				INSERT INTO UPLOAD_FILE VALUES(DEFAULT, DEFAULT, DEFAULT, #{noticeNo} , DEFAULT, #{fileReName}, #{fileOrigin}, #{fileNo})
 			
 		</insert>
+		
+		<select id="noticeDetail" parameterType="_int" resultMap="NoticeDetail_rm">
+			SELECT TITLE, CONTENT, 
+			COALESCE(FILE_RENAME, NULL) AS FILE_RENAME,
+			COALESCE(FILE_ORIGIN, NULL) AS FILE_ORIGIN,
+			CREATE_DATE
+			FROM NOTICE
+			LEFT JOIN UPLOAD_FILE USING (NOTICE_NO)
+			WHERE NOTICE_NO = #{noticeNo} AND NOTICE_TYPE = 0
+		
+		</select>
+		
+		<insert id="insertDeptNotice" parameterType="notice" useGeneratedKeys="true">
+			<selectKey keyProperty="noticeNo" resultType="_int" order="BEFORE">
+				SELECT SEQ_NOTICE_NO.NEXTVAL FROM DUAL
+			</selectKey>
+				INSERT INTO NOTICE VALUES(
+				#{noticeNo}, #{title}, #{content}, NULL ,SYSDATE, #{deptNo})
+		</insert>
+		
+				<insert id="insertDeptNoticeFile" parameterType="file" useGeneratedKeys="true">
+			<selectKey keyProperty="fileNo" resultType="_int" order="BEFORE">
+				SELECT SEQ_FILE_NO.NEXTVAL FROM DUAL
+			</selectKey>
+				INSERT INTO UPLOAD_FILE VALUES(DEFAULT, DEFAULT, DEFAULT, #{noticeNo} , DEFAULT, #{fileReName}, #{fileOrigin}, #{fileNo})
+			
+		</insert>
+	
 
 	
 </mapper>

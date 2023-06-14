@@ -19,6 +19,8 @@ import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.dept.model.dao.DeptDAO;
 import com.ln.intranet.dept.model.vo.Board;
 import com.ln.intranet.dept.model.vo.BoardDetail;
+import com.ln.intranet.notice.model.vo.Notice;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 
 @Service
@@ -92,10 +94,77 @@ public class DeptServiceImpl implements DeptService{
 	}
 
 
+	
 	@Override
 	public BoardDetail boardDetail(int boardNo) {
 	
 		return dao.boardDetail(boardNo);
+	}
+
+
+	// 부서 공지사항 list
+	@Override
+	public Map<String, Object> selectDeptNoticeList(Integer cp ,int deptNo) {
+		
+	    int totalCount = dao.totalList(deptNo);
+	    
+	    Pagination pagination = new Pagination(cp, totalCount);
+	   
+	    
+	    List<Notice> boardList = dao.selectDeptNoticeList(pagination ,deptNo);
+	    
+	    
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("pagination", pagination);
+	    map.put("boardList", boardList);
+	    
+	    return map;
+	}
+
+
+
+	// 부서 공지사항 디테일 service
+	@Override
+	public NoticeDetail noticeDetail(Map<String, Object> map) {
+		
+		return dao.noticeDetail(map);
+	}
+
+
+	// 부서 공지사항 추가
+	@Transactional(rollbackFor = {Exception.class})
+	@Override
+	public int writeNotice(String webPath, String folderPath, MultipartFile uploadFile, Map<String, Object> map)throws IOException {
+		
+		int noticeNo = dao.insertNotice(map);
+		
+		
+		UploadFile file = new UploadFile();
+		String reName = null;
+		
+		if(noticeNo > 0) {
+			
+			if(uploadFile.getSize() > 0 ) {
+				
+				reName = Util.fileRename(uploadFile.getOriginalFilename());
+				
+				file.setNoticeNo(noticeNo);
+				file.setFileOrigin(uploadFile.getOriginalFilename());
+				file.setFileReName(webPath+reName);
+				
+				int result = dao.insertNoticeFile(file);
+				
+				
+				if(result > 0) {
+					uploadFile.transferTo(new File(folderPath + reName));
+				}else {
+					throw new InsertFailException();
+				}
+			}
+		}
+	
+		
+		return noticeNo;
 	}
 
 	
