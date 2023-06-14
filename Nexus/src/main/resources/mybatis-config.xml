@@ -14,6 +14,9 @@
 		<typeAlias type="com.ln.intranet.attendance.model.vo.Attendance" alias="attendance"/>
 		<typeAlias type="com.ln.intranet.notice.model.vo.Notice" alias="notice"/>
 		<typeAlias type="com.ln.intranet.notice.model.vo.NoticeDetail" alias="noticeDetail"/>
+		<typeAlias type="com.ln.intranet.work.model.vo.WorkGeneral" alias="workGeneral"/>
+		<typeAlias type="com.ln.intranet.work.model.vo.WorkProject" alias="workProject"/>
+		<typeAlias type="com.ln.intranet.work.model.vo.WorkGeneralList" alias="workGeneralList"/>
 	</typeAliases>
 	
 	<mappers>
@@ -21,6 +24,7 @@
 		 <mapper resource="/mappers/member-mapper.xml"/>
 		 <mapper resource="/mappers/attendance-mapper.xml"/>
 		 <mapper resource="/mappers/notice-mapper.xml"/>
+		 <mapper resource="/mappers/work-mapper.xml"/>
 	</mappers>
 
 </configuration>

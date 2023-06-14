@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +52,7 @@
       <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
         <p class="content-all-top-text1">결재 / </p>
-        <p class="content-all-top-text2">내가 작성한 결재(0)</p>
+        <p class="content-all-top-text2">내가 작성한 결재(${fn:length(list)})</p>
         <!-- 시작일 / 종료일 -->
         <div class="content-all-date">
           
@@ -68,10 +69,7 @@
           </div>
 
           <div class="content-all-date-input">
-            
             <input type="text" id="dateClick" name="daterange" value="01/01/2023 - 01/15/2023" />
-            <label for="dateClick">⌵</label>
-            <button type="button" class="omen-btn" id="dateBtn">조회</button>
           </div>
           
         </div>
@@ -83,12 +81,11 @@
         
         <div class="content-all-bottom-area-header">
 
-            <select placeholder="전체">
-              <option value="전체">전체</option>
-              <option value="진행중">근태</option>
-              <option value="근무">근무</option>
-              <option value="비용">비용</option>
-              <option value="일반">일반</option>
+            <select placeholder="전체" id="attnTypeSelect">
+              <option value="0">전체</option>
+              <option value="1">일반</option>
+              <option value="2">연차</option>
+              <option value="3">출장</option>
             </select>
 
             <div class="button-box">
@@ -110,28 +107,43 @@
             <div class="work-modal-line"></div>
 
             <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
-              <!-- 템플릿 -->
-              <div class="work-modal-template">
-                <p>결재 타입</p>
+            <!-- 템플릿 -->
+            <div class="work-modal-template">
+              <p>결재 타입</p>
 
-                <div class="work-modal-template-select">
+              <div class="work-modal-template-select">
 
-                  <select name="" id="work-template">
-                    <option value="normal-check">일반</option>
-                    <option value="business trip">출장</option>
-                    <option value="vacation">연차</option>
-                    <option value="project">프로젝트</option>
-                  </select>
-                  
-                  <select name="" id="normal-check">
-                    <option value="">경조금신청서(예시)</option>
-                    <option value="">구매요청서(예시)</option>
-                    <option value="">자산요청서(예시)</option>
-                    <option value="">지출결의서(예시)</option>
-                  </select>
+                <select name="" id="work-template">
+                  <option value="normal-check">일반</option>
+                  <option value="business-trip">출장</option>
+                  <option value="vacation">연차</option>
+                  <option value="project">프로젝트</option>
+                  <option value="assignment">과제</option>
+                </select>
+                
+                <select name="" id="normal-checked">
+                  <option value="">경조금신청서(예시)</option>
+                  <option value="">구매요청서(예시)</option>
+                  <option value="">자산요청서(예시)</option>
+                  <option value="">지출결의서(예시)</option>
+                </select>
 
-                </div>
-              </div>   
+                <select name="" id="project-checked">
+                  <option value="">프로젝트1(예시)</option>
+                  <option value="">프로젝트2(예시)</option>
+                  <option value="">프로젝트3(예시)</option>
+                  <option value="">프로젝트4(예시)</option>
+                </select>
+
+                <select name="" id="assignment-checked">
+                  <option value="">과제1(예시)</option>
+                  <option value="">과제2(예시)</option>
+                  <option value="">과제3(예시)</option>
+                  <option value="">과제4(예시)</option>
+                </select>
+
+              </div>
+            </div> 
             <!-- 제목 -->
             <div class="work-modal-title">
               <p>제목</p>
@@ -164,6 +176,19 @@
               <textarea name="" id="" onkeydown="handleResizeHeight(this)"
                 onkeyup="handleResizeHeight(this)"></textarea>
             </div>
+            <!-- 프로젝트박스 -->
+            <div class="work-modal-projectBox">
+              <span id="pulsProject">
+                <img src="${contextPath}/resources/images/plus.png" alt="">
+                과제 추가
+              </span>
+            </div>
+              <div class="projectBox"> 
+                <p>과제명</p>
+                <input type="text">
+                <p>과제내용</p>
+                <input type="text">
+              </div>
             <!-- 결재자 -->
             <div class="work-modal-approver">
               <p>결재자</p>
@@ -209,15 +234,33 @@
               
             </thead>
 
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>1234</td>
-                <td>테스트입니다</td>
-                <td>결재완료</td>
-                <td>없음</td>
-                <td>2023.5.10</td>
-              </tr>
+            <tbody id="listBody">
+              <c:forEach var="list" items="${list}">
+                <tr class="listTr">
+                  <td class="listTypeNo" style="display: none;">${list.typeNo}</td>
+                  <td>${list.typeName}</td>
+                  <td>${list.workNo}</td>
+                  <td>${list.title}</td>
+                  <c:choose>
+                    <c:when test="${list.workState == '진행중'}">
+                      <td style="color: var(--black);">${list.workState}</td>
+                    </c:when>
+                    <c:when test="${list.workState == '승인'}">
+                      <td style="color: var(--green);">${list.workState}</td>
+                    </c:when>
+                    <c:otherwise>
+                      <td style="color: red;">${list.workState}</td>
+                    </c:otherwise>
+                  </c:choose>
+                  <c:if test="${empty list.fileRename}">
+                    <td>없음</td>
+                  </c:if>
+                  <c:if test="${not empty list.fileRename}">
+                    <td>있음</td>
+                  </c:if>
+                  <td>${fn:substring(list.sendDate, 0, 11)}</td>
+                </tr>
+              </c:forEach>
             </tbody>
 
 

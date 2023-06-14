@@ -1,12 +1,15 @@
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
 
+
+
   display: flex;
 }
 
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
+
   min-height: 100vh;
 
   background-color: var(--side);
@@ -37,22 +40,27 @@ section {
 
 }
 
+.side-bar li>a {
+  padding-left: 40px;
+}
+
+
 
 /* 사이드바 선택 되었을때 스타일 */
 /* FIXME:아래 주석처리 되어 있는 코드를 바꿔서 현재페이지에 맞게 지정 해주면 될것 */
-.side-bar li:nth-child(1) {
+.side-bar li:nth-child(2) {
   border-left: 10px solid var(--primary500);
 
   background-color: rgb(230, 232, 236, 50%);
 
 }
 
-.side-bar li:first-child>a:first-child>span:first-child {
+.side-bar li:nth-child(2)>a:first-child>span:first-child {
 
   color: var(--primary400);
 }
 
-.side-bar li:first-child>a:first-child {
+.side-bar li:nth-child(2)>a:first-child {
   padding-left: 30px;
 }
 
@@ -167,22 +175,45 @@ a:focus {
 
 .content-all-top-area-detail {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
-/* 컨텐츠 상단 텍스트 */
-.content-all-top-text1 {
-  font-weight: bold;
-  font-size: 16px;
 
-  color: var(--gray400);
+
+/* 컨텐츠 상단 텍스트 */
+.content-all-top-texts {
+  display: flex;
+}
+
+.content-all-top-texts>a {
+  text-align: center;
+
+  text-decoration: none;
+}
+
+
+
+.content-all-top-text {
+  font-weight: bold;
+  font-size: 24px;
+
+  border-bottom: 2px solid var(--primary400);
+
+  color: var(--primary400);
 }
 
 .content-all-top-text2 {
   font-weight: bold;
   font-size: 24px;
 
-  color: var(--black);
+  color: var(--gray300);
+}
+
+.content-all-top-text3 {
+  font-weight: bold;
+  font-size: 24px;
+
+  color: var(--gray300);
 }
 
 
@@ -196,17 +227,17 @@ a:focus {
 
 
 /* 근태현황 */
-.attendance-table {
-  margin-top: 20px;
+.survey-table {
+  margin-top: 80px;
 }
 
-.attendance-table table {
+.survey-table table {
   width: 100%;
   border-collapse: collapse;
 }
 
 
-.attendance-table table th {
+.survey-table table th {
   color: var(--gray600);
 
   border-bottom: 1px solid var(--gray300);
@@ -216,16 +247,11 @@ a:focus {
   font-size: 14px;
   font-weight: 100;
 
-  width: 200px;
-
   text-align: left;
 }
 
-.attendance-table table th:nth-child(2) {
-  width: 300px;
-}
 
-.attendance-table table td {
+.survey-table table td {
   color: var(--black);
 
   border-bottom: 1px solid var(--gray100);
@@ -233,47 +259,52 @@ a:focus {
   padding: 20px 0;
 }
 
-.attendance-table tbody>tr:hover {
+.survey-table tbody>tr:hover {
   cursor: pointer;
 
   background-color: var(--gray50)
 }
 
-/* 년월 선택 */
-.YMSelect {
-	display:flex;
-	margin-top: 80px;
-	align-items: center;
+
+/* 상태 컬러 */
+#status-color {
+  color: var(--green);
 }
 
-.YMSelect button {
-	background-color: transparent;
-	border : none;
-	cursor: pointer;
-	margin-left : 10px;
-	margin-right : 10px;
+/* 참여여부 컬러 */
+#participation-color {
+  color: red;
 }
 
-.YMSelect > p {
-	padding-top : 7px;
-	font-size: 20px;
+/* 클립스타일 */
+#clip::after {
+  content: "URL";
+
+  font-weight: bold;
+
+  border-bottom: 1px solid var(--black);
 }
 
-
-.YMSelect button img {
-	height : 22px;
-	padding-top : 7px;
+#clip:hover {
+  color: var(--primary400);
 }
 
+.colored-toast.swal2-icon-success {
+  background-color: #a5dc86 !important;
+}
 
+#survey-result-btn {
+  width: 90px;
+  height: 32px;
 
+  border: 1px solid var(--primary500);
+  border-radius: 5px;
 
+  background-color: transparent;
 
+  color: var(--primary500);
 
-
-
-
-
-
-
-
+  font-size: 16px;
+  
+  cursor: pointer;
+}
