@@ -1,5 +1,7 @@
 package com.ln.intranet.chat.model.vo;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +15,6 @@ public class Message {
 	private int cmNo;
 	private int memNo;
 	private String mContent;
-	private String mDate;
+	private Date mDate;
 	
 }

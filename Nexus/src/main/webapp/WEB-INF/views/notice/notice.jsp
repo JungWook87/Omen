@@ -133,7 +133,7 @@
 
                 <c:otherwise>
                     <c:forEach var="board" items="${boardList}">
-                        <tr>
+                         <tr onclick="detailModal(${board.noticeNo})">
                             <td>${board.noticeNo}</td>
                             <td>${board.title}</td>
                             <td>${board.createDate}</td>
@@ -195,9 +195,9 @@
           <div class="modal-line"></div>
 
           <!-- 제목 -->
-          <div class="check-modal-title">
+          <div>
             <p>제목</p>
-            <input type="text" readonly>
+             <div class="check-modal-title" id="check-modal-title"></div>
           </div>
           <!-- 내용 -->
           <div>

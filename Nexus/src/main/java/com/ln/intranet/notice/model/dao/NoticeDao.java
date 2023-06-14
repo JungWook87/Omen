@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.ln.intranet.common.model.vo.Pagination;
 import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.notice.model.vo.Notice;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 @Repository
 public class NoticeDao {
@@ -47,5 +48,10 @@ public class NoticeDao {
 		
 		return sqlSession.insert("noticeMapper.insertNoticeFile", file);
 	}
+
+	public NoticeDetail noticeDetail(int noticeNo) {
+		return sqlSession.selectOne("noticeMapper.noticeDetail", noticeNo);
+	}
+
 
 }

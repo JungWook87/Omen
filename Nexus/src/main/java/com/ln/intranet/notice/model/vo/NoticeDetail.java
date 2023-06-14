@@ -9,6 +9,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NoticeDetail {
 
-	
+	private int noticeNo;
+	private int memNo;
+	private String memName;
+	private String title;
+	private String content;
+	private String NoticeFileRename;
+	private String NoticeFileOrigin;
+	private String createDate;
+	private int noticeType;
 	
 }

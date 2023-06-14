@@ -90,5 +90,7 @@
 			LEFT JOIN UPLOAD_FILE USING (BOARD_NO)
 			WHERE BOARD_NO = #{boardNo}
 	</select>
+	
+
 
 </mapper>

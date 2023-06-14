@@ -13,6 +13,7 @@
 		<typeAlias type="com.ln.intranet.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.ln.intranet.attendance.model.vo.Attendance" alias="attendance"/>
 		<typeAlias type="com.ln.intranet.notice.model.vo.Notice" alias="notice"/>
+		<typeAlias type="com.ln.intranet.notice.model.vo.NoticeDetail" alias="noticeDetail"/>
 	</typeAliases>
 	
 	<mappers>

@@ -19,6 +19,7 @@ import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.dept.model.vo.Board;
 import com.ln.intranet.notice.model.dao.NoticeDao;
 import com.ln.intranet.notice.model.vo.Notice;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -86,6 +87,15 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		return noticeNo;
 	}
+
+
+	@Override
+	public NoticeDetail noticeDetail(int noticeNo) {
+		
+		return dao.noticeDetail(noticeNo);
+	}
+
+
 
 
 }

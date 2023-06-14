@@ -1,6 +1,7 @@
 package com.ln.intranet.dept.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,8 @@ import com.google.gson.Gson;
 import com.ln.intranet.dept.model.service.DeptService;
 import com.ln.intranet.dept.model.vo.BoardDetail;
 import com.ln.intranet.member.model.vo.Member;
+import com.ln.intranet.notice.model.service.NoticeService;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 @Controller
 @SessionAttributes({"loginMember"})
@@ -36,16 +39,87 @@ public class DeptController {
 	@Autowired
 	private DeptService service;
 	
+	
 	// 부서 공지사항 페이지 조회
 	@GetMapping("deptNotice")
-	public String deptNotice(
-			
+	public String deptNotice(@RequestParam(value="cp",required=false, defaultValue="1") Integer cp,
+				Model model,
+				HttpSession session
 			) {
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		int deptNo = loginMember.getDeptNo();
+		
+		Map<String,Object> map = null;	
 		
 		
+		map = service.selectDeptNoticeList(cp , deptNo);
+		
+		
+		model.addAttribute("map", map);
 		
 		return "/dept/dept-notice";
 	}
+	
+	  // 공지사항 추가
+	  @PostMapping("writeNotice")
+	  public String writeNotice(@RequestParam("uploadFile") MultipartFile uploadFile,
+			  					@ModelAttribute("loginMember") Member loginMember,
+			  					@RequestParam Map<String, Object> map,
+			  					HttpServletRequest req,
+			  					RedirectAttributes ra
+			  					
+			  )throws IOException {
+		  	
+		  
+		  String webPath = "/resources/file/";
+		  String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+		  
+		  int deptNo = loginMember.getDeptNo();
+		  
+		  map.put("deptNo", deptNo);
+		  
+		  int result = service.writeNotice(webPath, folderPath, uploadFile ,map);
+		  
+		  String message = null;
+		  
+		  if(result > 0) {
+			  
+			  message = "공지사항 등록됨";
+		  }else {
+			  message = "공지사항 등록 실패";
+		  }
+		  ra.addFlashAttribute("message", message);
+		  
+		  return "redirect:/dept/deptNotice";
+	  }
+	
+	
+	// 부서 공지사항 디테일
+	  @ResponseBody
+	  @GetMapping("/deptNotice/noticeDetail")
+	  public String noticeDetail(int noticeNo,
+			  @ModelAttribute("loginMember") Member loginMember) {
+		  
+		  int deptNo = loginMember.getDeptNo();
+		  
+		  
+		  Map<String,Object> map = new HashMap<>();
+		  
+		  map.put("deptNo", deptNo);
+		  map.put("noticeNo", noticeNo);
+		  
+		  NoticeDetail detail = service.noticeDetail(map);
+		  
+		  detail.setNoticeNo(noticeNo);
+		  
+		  logger.debug(detail + "");
+		  
+		  return new Gson().toJson(detail);
+				 
+	  }
+	
+	
 	
 	// 부서 게시판 접속
 	@GetMapping("deptBoard")
@@ -68,6 +142,8 @@ public class DeptController {
 		return "/dept/dept-board";
 	}
 	
+	
+	// 부서 게시판 디테일
 	@ResponseBody
 	@GetMapping("/deptBoard/boardDetail")
 	public String boardDetail(int boardNo) {
