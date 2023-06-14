@@ -296,7 +296,7 @@ select{
 /* 모달 박스 스타일 */
 /* 결재 모달창 */
 
-#modalWrap {
+#modalWrap, #approver-modal-wrap {
   position: fixed;
   z-index: 1;
 
@@ -310,7 +310,7 @@ select{
 
 }
 
-.work-modalBody {
+.work-modalBody, .approver-modal-Body {
   min-width: 570px;
   min-height: 100px;
   max-width: 80%;
@@ -366,14 +366,14 @@ select{
   }
 }
 
-.work-modalBody h1 {
+.work-modalBody h1, .approver-modal-Body h1 {
   color: var(--black);
 
   font-size: 24px;
 }
 
 
-#closeBtn {
+#closeBtn, #approver-closeBtn {
   float: right;
   color: var(--black);
 
@@ -381,7 +381,9 @@ select{
 
 }
 
-#closeBtn img {
+
+
+#closeBtn img, #approver-closeBtn img{
   width: 18px;
   height: 18px;
 }
@@ -472,6 +474,36 @@ select{
   outline: none;
 
 }
+
+/* ---------------결재 라인 설정-------------------------- */
+
+.approver-modal-container{
+  width: 100%;
+  height: 300px;
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+  background-color: var(--gray50);
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+  overflow: auto;
+  max-height: 300px; /* 원하는 최대 높이 설정 */
+}
+
+/* 결재자 모달선 */
+.approver-modal-line1, .approver-modal-line2{
+  border-bottom: 1px solid var(--gray300);
+  margin:  20px 0px;
+
+}
+/* 확인 취소 버튼 */
+.approver-submit-reset-btns{
+  float: right;
+}
+
+/* ---------------------------------------------------- */
+
+
 
 /* 일반 체크 박스 */
 #normal-checkd {
@@ -633,7 +665,7 @@ select{
   float: right;
 }
 
-#cancell-btn {
+#cancell-btn, #approver-cancell-btn {
   width: 60px;
   height: 30px;
 
@@ -656,7 +688,7 @@ select{
   transition: all 1s;
 }
 
-#success-btn {
+#success-btn, #approver-success-btn {
   width: 60px;
   height: 30px;
 
@@ -681,41 +713,28 @@ select{
 
 /* 수정모달창------------------------------------------------------ */
 
-.check-modal-template select{
+.check-modal-template {
   width: 25%;
   height: 40px;
+  display: none;
 }
 
-.check-modal-approver input {
-  width: 100%;
-  height: 50px;
-
-  border: none;
-  border-radius: 5px;
-
-  background-color: var(--gray50);
-
-  color: var(--gray700);
-
-  padding: 10px;
-
-  font-size: 18px;
-
-  outline: none;
-}
-
-
-.check-modal-detail {
+.check-modal-title,
+.check-modal-businessArea,
+.check-modal-startDate,
+.check-modal-endDate,
+.check-modal-detail,
+.check-modal-businessDetail,
+.check-modal-approver
+{
   width: 100%;
   max-height: 350px;
 
-  border: none;
-  border-top: 1px solid var(--gray300);
-  border-bottom: 1px solid var(--gray300);
-
   color: var(--gray700);
 
-  padding: 10px;
+  border: none;
+
+  padding: 0;
 
   font-size: 16px;
 
@@ -726,7 +745,32 @@ select{
 }
 
 .check-modal-detail>p {
-  color: var(--black);
+  color: var(--gray700);
+}
+
+
+.check-modalBody input {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--gray50);
+  color: var(--gray700);
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+}
+
+.check-modalBody textarea {
+  width: 100%;
+  max-height: 350px;
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  overflow: hidden;
+  outline: none;
+  resize: none;
 }
 
 /* 파일업로드된 스타일 */
@@ -830,3 +874,24 @@ select{
   background-color: var(--gray50);
   transition: all 1s;
 }
+/* 결재 테스트 */
+.boss {
+  width: 100px;
+  height: 50px;
+  background-color: lightblue;
+  margin: 40px;
+}
+.employee {
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  margin: 70px;
+}
+
+.employee-2 {
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  margin: 70px;
+}
+/* 테스트 끝 */
