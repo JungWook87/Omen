@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="workMapper">
+
+	<resultMap type="workGeneral" id="workGeneral_rm">
+		<id property="workNo" column="WORK_NO" />
+		<result property="memNo" column="MEM_NO"/>
+		<result property="typeNo" column="TYPE_NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="sendDate" column="SEND_DATE"/>
+		<result property="approvalDate" column="APPROVAL_DATE"/>
+		<result property="contenet" column="CONTENT"/>
+		<result property="start" column="START"/>
+		<result property="end" column="END"/>
+		<result property="next" column="NEXT"/>
+		<result property="approvalList" column="APPROVAL_LIST"/>
+		<result property="tempSave" column="TEMP_SAVE"/>
+		<result property="finFlag" column="FIN_FLAG"/>
+		<result property="workState" column="WORK_STATE"/>
+		<result property="opinion" column="OPINION"/>
+		<result property="typeName" column="TYPE_NAME"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="fileRename" column="FILE_RENAME"/>
+		<result property="fileOrigin" column="FILE_ORIGIN"/>
+	</resultMap>
+
+	<resultMap type="workGeneralList" id="workGeneralList_rm">
+		<id property="workNo" column="WORK_NO" />
+		<result property="typeNo" column="TYPE_NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="sendDate" column="SEND_DATE"/>
+		<result property="workState" column="WORK_STATE"/>
+		<result property="opinion" column="OPINION"/>
+		<result property="typeName" column="TYPE_NAME"/>
+		<result property="fileRename" column="FILE_RENAME"/>
+	</resultMap>
+	
+	<select id="workSendList" resultMap="workGeneralList_rm">
+		SELECT WORK_NO, TYPE_NO, TITLE , SEND_DATE ,WORK_STATE , OPINION , TYPE_NAME, FILE_RENAME 
+		FROM "WORK"
+		LEFT JOIN WORK_TYPE USING(TYPE_NO)
+		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
+		WHERE MEM_NO = ${memNo}
+		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		ORDER BY SEND_DATE DESC
+	</select>
+	
+	<select id="workSendSelectDate" resultMap="workGeneralList_rm">
+		SELECT WORK_NO, TYPE_NO, TITLE , SEND_DATE ,WORK_STATE , OPINION , TYPE_NAME, FILE_RENAME 
+		FROM "WORK"
+		LEFT JOIN WORK_TYPE USING(TYPE_NO)
+		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
+		WHERE MEM_NO = ${memNo}
+		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') BETWEEN #{start} AND #{end}
+		ORDER BY SEND_DATE DESC
+	</select>
+	
+</mapper>
+
+
+
