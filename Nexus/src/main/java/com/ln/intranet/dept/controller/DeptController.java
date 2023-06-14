@@ -178,22 +178,12 @@ public class DeptController {
 		detail.setMemNo(loginMember.getMemNo());
 		detail.setDeptNo(loginMember.getDeptNo());
 		
-		
-		logger.info(detail.getBoardTitle());
 		String filePath = "/resources/file/";
 		String folderPath = req.getSession().getServletContext().getRealPath(filePath);
 		
 		int boardNo = service.insertBoard(detail,uploadFile,filePath,folderPath);
 		
-		String message = null;
 		
-		if(boardNo > 0) {
-
-			message = "게시글이 등록되었습니다";
-		} else {
-			message = "게시글 등록 실패";
-		}
-		ra.addFlashAttribute("message",message);
 		
 		return "redirect:/dept/deptBoard";
 	}

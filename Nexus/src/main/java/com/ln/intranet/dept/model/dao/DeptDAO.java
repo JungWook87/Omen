@@ -34,7 +34,6 @@ public class DeptDAO {
 	
 	// 부서 게시판 목록 조회
 	public List<Board> boardList(Pagination pagination, int deptNo) {
-		
 
 		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 		RowBounds rowBounds = new RowBounds(offset,pagination.getLimit());

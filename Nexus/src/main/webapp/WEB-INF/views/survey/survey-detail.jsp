@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-result.css ">
+  <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-detail.css ">
     <!-- sweetAlert2 cdn -->
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -55,7 +55,12 @@
 
             <!-- 가운데 -->
             <div class="survey-create-content">
-
+                <c:foreach var="survey" items="${surveyList}">
+                    <div>
+                        <input name="${question}" type="radio"><span>${optionNo}</span> <span>${survey.optionAnnotaion}</span>
+                    </div>
+                </c:foreach>
+                
 
             </div>
 
@@ -82,7 +87,7 @@
     </section>
 
 
-    <script src="${contextPath}/resources/js/survey/survey-result.js"></script>
+    <script src="${contextPath}/resources/js/survey/survey-detail.js"></script>
 
 </body>
 
