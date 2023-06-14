@@ -8,6 +8,7 @@ encoding//src/main/webapp/WEB-INF/views/main.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/member/login.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/notice/notice.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/survey/survey-list.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/survey/survey-result.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/work/work-inbox(1).jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/work/work-inbox-cancle(4).jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/work/work-inbox-end(3).jsp=UTF-8

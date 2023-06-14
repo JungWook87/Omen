@@ -11,11 +11,14 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey.css ">
   <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-create.css ">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <!-- font-awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- jquery cdn -->
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
@@ -40,39 +43,50 @@
       </ul>
     </div>
 
-    <!-- 컨텐츠 내용 -->
-    <div class="content-all-page">
+        <!-- 컨텐츠 내용 -->
+        <div class="content-all-page">
 
-      <!-- 컨텐츠 내용 윗부분 -->
-      <div class="content-all-top-area">
+            <form action="" method="post">
+                <!-- 윗부분 -->
+                <div class="survey-create-top">
+                    <input id="survey-create-top-title" type="text" placeholder="제목 없는 설문">
+                    <input type="text" placeholder="설문에 대한 설명을 적어주세요.(선택사항)">
+                </div>
 
-        <div class="content-all-top-area-detail">
+                <!-- 가운데 -->
+                <div class="survey-create-content">
+                    <div>
+                        <input id="survey-create-content-question" type="text" placeholder="질문을 작성해 주세요.">
+                    </div>
 
-          <!-- 컨텐츠 제목 부분 -->
-          <div class="content-all-top-texts">
-            <input id="surveyTitle" class="surveyTitle" type="text" placeholder=" 제목 없는 설문 ">
-            <input id="surveyContent" class="surveyContent" type="text" placeholder=" 설문에 대한 설명을 적어주세요(선택사항)">
-          </div>
-        </div>
+                    <!-- 옵션추가 부분 -->
+                    <ul class="survey-create-content-option">
+                        <li>
+                            <i class="fa-solid fa-check survey-check"></i>
+                            <input type="text" name="survey-option-value" placeholder="옵션을 입력해 주세요.">
+                            <button type="button" id="survey-option-delete" disabled>
+                                <i class="fa-solid fa-xmark fa-xl"></i>
+                            </button>
+                        </li>
+                    </ul>
 
-        <div>
-          <input id="surveyOption" class="surveyOption" name="surveyOption" type="text" placeholder="옵션을 입력해주세요"> 
-          <button>지우기</button>
-        </div>
+                    <div class="servey-option-add-area">
+                        <i class="fa-solid fa-plus fa-2xs"></i>
+                        <button type="button" id="survey-option-add">옵션 추가</button>
+                    </div>
+                </div>
+
+                <!-- 아래 취소 저장 부분 -->
+                <div class="survey-create-bottom">
+                    <button type="button" id="survey-create-bottom-cancle">취소</button>
+                    <button id="survey-create-bottom-submit">저장</button>
+                </div>
+            
+    
+                
+            </form>
         
-        <button onclick="return optionAdd()"> + 옵션추가 </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- 채팅창 -->
-    <div id="chatting-function" class="chatting-box">
-      <a href="#">
-        <img class="chatting-img" src="${contextPath}/resources/images/chattImg.png" alt="">
-      </a>
-    </div>
+        </div>
   </section>
 
   <script src="${contextPath}/resources/js/survey/survey-create.js"></script>
