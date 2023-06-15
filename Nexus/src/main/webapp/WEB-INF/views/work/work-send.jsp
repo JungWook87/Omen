@@ -122,10 +122,11 @@
                 </select>
                 
                 <select name="" id="normal-checked">
-                  <option value="">경조금신청서(예시)</option>
-                  <option value="">구매요청서(예시)</option>
-                  <option value="">자산요청서(예시)</option>
-                  <option value="">지출결의서(예시)</option>
+                  <option value="userCustom">직접작성</option>
+                  <option value="normalEx1">경조금신청서(예시)</option>
+                  <option value="normalEx2">구매요청서(예시)</option>
+                  <option value="normalEx3">자산요청서(예시)</option>
+                  <option value="normalEx4">지출결의서(예시)</option>
                 </select>
 
                 <select name="" id="project-checked">
@@ -149,11 +150,6 @@
               <p>제목</p>
               <input type="text" placeholder="제목을 입력해주세요" required>
             </div>
-            <!-- 출장지 -->
-            <div class="work-modal-businessArea">
-              <p>출장지</p>
-              <input type="text">
-            </div>
             <!-- 시작날짜 -->
             <div class="work-modal-startDate">
               <p>시작날짜</p>
@@ -174,7 +170,7 @@
             <div class="work-modal-businessDetail">
               <p>출장 내용</p>
               <textarea name="" id="" onkeydown="handleResizeHeight(this)"
-                onkeyup="handleResizeHeight(this)"></textarea>
+                onkeyup="handleResizeHeight(this)" spellcheck="false"></textarea>
             </div>
             <!-- 프로젝트박스 -->
             <div class="work-modal-projectBox">
@@ -217,6 +213,36 @@
           </div>
         </div>
 
+        <div id="approver-modal-wrap">
+          <div class="approver-modal-Body">
+            <span id="approver-closeBtn">
+              <img src="${contextPath}/resources/images/Xbtn.png" alt="">
+            </span>
+            <h1>결재 라인 설정</h1>
+            <!-- 선1 -->
+            <div class="approver-modal-line1"></div>
+
+            
+            <div class="approver-modal-container">
+        
+              <div class="boss"></div>      
+              
+            </div>
+
+
+            <!-- 선2 -->
+            <div class="approver-modal-line2"></div>
+            <!-- 버튼 -->
+            <div class="approver-submit-reset-btns">
+              <button type="reset" id="approver-cancell-btn">취소</button>
+              <button id="approver-success-btn">확인</button>
+            </div>
+            <!-- </form> -->
+          </div>
+        </div>
+
+      </div>
+
         <div class="content-all-bottom-area-content">
 
           <table>
@@ -235,6 +261,7 @@
             </thead>
 
             <tbody id="listBody">
+
               <c:forEach var="list" items="${list}">
                 <tr class="listTr">
                   <td class="listTypeNo" style="display: none;">${list.typeNo}</td>
@@ -243,7 +270,7 @@
                   <td>${list.title}</td>
                   <c:choose>
                     <c:when test="${list.workState == '진행중'}">
-                      <td style="color: var(--black);">${list.workState}</td>
+                      <td style="color: var(--primary400);">${list.workState}</td>
                     </c:when>
                     <c:when test="${list.workState == '승인'}">
                       <td style="color: var(--green);">${list.workState}</td>
@@ -261,10 +288,9 @@
                   <td>${fn:substring(list.sendDate, 0, 11)}</td>
                 </tr>
               </c:forEach>
+
             </tbody>
 
-
-            
           </table>
 
         </div>
@@ -286,28 +312,92 @@
         <!-- 템플릿 -->
         <div class="check-modal-template">
           <p>템플릿</p>
-          <select name="" id="">
-            <option value="">경조금신청서(예시)</option>
-            <option value="">구매요청서(예시)</option>
-            <option value="">자산요청서(예시)</option>
-          </select>
+
+          <div class="check-modal-template-select">
+
+            <select name="" id="check-work-template">
+              <option value="normal-check">일반</option>
+              <option value="business-trip">출장</option>
+              <option value="vacation">연차</option>
+              <option value="project">프로젝트</option>
+              <option value="assignment">과제</option>
+            </select>
+                  
+            <select name="" id="check-normal-checked">
+              <option value="">경조금신청서(예시)</option>
+              <option value="">구매요청서(예시)</option>
+              <option value="">자산요청서(예시)</option>
+              <option value="">지출결의서(예시)</option>
+            </select>
+
+             <select name="" id="check-project-checked">
+              <option value="">프로젝트1(예시)</option>
+              <option value="">프로젝트2(예시)</option>
+              <option value="">프로젝트3(예시)</option>
+              <option value="">프로젝트4(예시)</option>
+            </select>
+
+            <select name="" id="check-assignment-checked">
+              <option value="">과제1(예시)</option>
+              <option value="">과제2(예시)</option>
+              <option value="">과제3(예시)</option>
+              <option value="">과제4(예시)</option>
+            </select>
+          </div>
         </div>
         <!-- 제목 -->
         <div class="check-modal-title">
           <p>제목</p>
           <input type="text" readonly>
         </div>
-        <!-- 내용 -->
-        <div>
-          <p>내용</p>
-          <div class="check-modal-detail"></div>
+        <!-- 출장지 -->
+        <div class="check-modal-businessArea">
+          <p>출장지</p>
+          <input type="text" readonly>
         </div>
+        <!-- 시작날짜 -->
+        <div class="check-modal-startDate">
+          <p>시작날짜</p>
+          <input type="date" readonly>
+        </div>
+        <!-- 종료날짜 -->
+        <div class="check-modal-endDate">        
+          <p>종료날짜</p>
+          <input type="date" readonly>
+        </div>        
+        <!-- 내용 -->
+        <div class="check-modal-detail">
+          <p>내용</p>
+          <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+          onkeyup="handleResizeHeight(this)" readonly></textarea>
+        </div>
+
+        <!-- 출장내용 -->
+        
+          <div class="check-modal-businessDetail">
+            <p>출장 내용</p>
+            <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+            onkeyup="handleResizeHeight(this)" readonly spellcheck="false"></textarea>
+          </div>
+        <!-- 프로젝트박스 -->
+        <div class="work-modal-projectBox">
+            <span id="pulsProject">
+              <img src="${contextPath}/resources/images/plus.png" alt="">
+              과제 추가
+            </span>
+          </div>
+         <div class="projectBox"> 
+          <p>과제명</p>
+          <input type="text">
+          <p>과제내용</p>
+          <input type="text">
+        </div>        
+
         <!-- 결재자 -->
         <div class="check-modal-approver">
           <p>결재자</p>
-          <input type="text">
+          <input type="text" readonly>
         </div>
-
         <!-- 선택된 파일 -->
         <p>첨부파일</p>
         <div class="check-preview"></div>
