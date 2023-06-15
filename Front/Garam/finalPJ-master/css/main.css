@@ -1,5 +1,144 @@
 body {
     background-color: var(--gray50);
+  
+}
+
+@media(max-width:1480px) {
+    .main-area-left{
+        margin: auto !important;
+        margin-right: 0 !important;
+    }
+    #main-today-alert {
+        width: 700px !important;
+    }
+    #main-calender {
+        width: 700px !important;
+    }
+    .main-today-line-box {
+        width: 660px !important;
+    }
+    .main-area-right {
+        margin: auto !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        
+    }
+
+    #main-notice {
+        width: 330px !important;
+    }
+    #main-dept-notice {
+        width: 330px !important;
+    }
+    .main-notice-box-in-box {
+        width: 290px !important;
+    }
+    .main-dept-notice-box {
+        width: 290px !important;
+    }
+}
+
+@media(min-width:1480px) {
+    .main-area-right {
+        /* margin: auto !important; */
+        margin-top: 0 !important;
+    }
+    .main-area-left{
+        /* margin: auto !important; */
+        margin-top: 0 !important;
+    }
+}
+
+
+
+@media(max-width:1170px) {
+    section {
+        display: flex;
+        flex-wrap: wrap-reverse;
+    }
+    .main-area-left{
+        margin: auto !important;
+        margin-top: 0 !important;
+    }
+
+    .main-area-right {
+        margin: auto !important;
+        margin-top: 0 !important;
+    }
+    #main-attn-check {
+        width: 700px !important;
+    } 
+    #main-work-progress {
+        width: 700px !important;
+    }
+    #main-approval-list {
+        width: 700px !important;
+    }
+    .main-attn-btn1 {
+        width: 315px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .main-attn-btn2 {
+        width: 315px !important;
+    }
+    .main-attn-btns {
+        gap: 10px !important;
+    }
+}
+
+@media(max-width:775px) {
+    #main-attn-check {
+        width: 400px !important;
+        margin: auto !important;
+        margin-top: 40px !important;
+        margin-bottom: 40px !important;
+    } 
+    #main-work-progress {
+        width: 400px !important;
+        margin: auto !important;
+        margin-bottom: 40px !important;
+    }
+    #main-approval-list {
+        width: 400px !important;
+        margin: auto !important;
+        margin-bottom: 40px !important;
+    }
+   
+    #main-today-alert {
+        width: 400px !important;
+        margin: auto !important;
+        margin-top: 40px !important;
+        margin-bottom: 40px !important;
+    }
+    #main-calender {
+        width: 400px !important;
+        margin: auto !important;
+        margin-bottom: 40px !important;
+    }
+    .main-today-line-box {
+        width: 360px !important;
+    }
+    .main-notice-box {
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+    #main-notice {
+        width: 400px !important;
+        margin: auto !important;
+        margin-bottom: 40px !important;
+    }
+    #main-dept-notice {
+        width: 400px !important;
+        margin: auto !important;
+        /* margin-bottom: 40px !important; */
+    }
+    .main-notice-box-in-box {
+        width: 360px !important;
+    }
+    .main-dept-notice-box {
+        width: 360px !important;
+    }
 }
 
 
