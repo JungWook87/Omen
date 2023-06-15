@@ -10,7 +10,7 @@ section {
 .side-bar {
   width: 300px;
   height: 100%;
-
+  min-width: 80px;
   background-color: var(--side);
 
 }
@@ -20,6 +20,63 @@ section {
   padding: 0;
 }
 
+/* 사이드바 반응형 테스트 */
+
+.side-bar a {
+  
+  display: block;
+  opacity: 1;
+}
+
+.side-bar ::before{
+  font-family: 'Material Icons';
+  font-size: 1.5em;
+  float: left;
+  clear: left;
+  text-align: center;
+  padding: 25px;
+}
+
+#expand-menu { /* 체크박스 폼 요소 감춤 */
+  display: none;
+}
+#expand-menu:checked ~ ul { /*체크박스 체크되었으면 메뉴 목록 표시 - 반응형 표시용*/
+  display: block;
+  height: auto;
+}
+
+
+
+@media screen and (max-width:1500px) {
+ 
+   /* 1단계 */
+  .side-bar label::before{ content: '\e5d2'; }
+  .side-bar li:nth-child(1) a::before{ content: '\f02e'; } 
+  .side-bar li:nth-child(2) a::before{ content: '\e8d6'; }
+  .side-bar li:nth-child(3) a::before{ content: '\e88a'; }
+  .side-bar li:nth-child(4) a::before{ content: '\e8cc'; }
+  .side-bar li:nth-child(5) a::before{ content: '\e87d'; }
+  .side-bar li:nth-child(6) a::before{ content: '\e8b8'; } 
+
+  .side-bar li a span {display: none;}
+
+  .side-bar { 
+    
+    width: 80px;
+    background-color: var(--primary500);
+    overflow: hidden; /* 반응형 애니메이션용 */
+    transition: all 3s ease; /* 반응형 애니메이션 */
+    
+  }
+
+}
+/* 2단계 */
+@media screen and (max-width:1100px) {
+  .side-bar #expand-menu:not(:checked) ~ ul { 
+      /* display: none; */
+  }
+
+}
 
 /* 사이드바 제목 스타일 */
 .side-bar h1 {
@@ -570,6 +627,10 @@ select{
   list-style: none;
 }
 
+#file-uploads{
+  display: none;
+}
+
 /* 파일 올리기 지우기 버튼 스타일 */
 .work-file-box {
   margin-top: 20px;
@@ -887,7 +948,7 @@ select{
   text-decoration: none;
 }
 
-#menu2 p {
+#approver-box p {
 
   display: block;
   
@@ -902,11 +963,6 @@ select{
       flex-direction: column;
       gap: 10px;
   
-  }
-
-
-  .M02,.M03{
-    margin: 0px 200px;
   }
     
   .M01>li, .M02>li, .M03>li {
@@ -940,6 +996,10 @@ select{
    
   .M02, .M03 {
   
+  margin: 0px 210px;
+
+  transition: all 0s ease-out 0.5s;
+
   width: 300px;
   
   list-style: none;
