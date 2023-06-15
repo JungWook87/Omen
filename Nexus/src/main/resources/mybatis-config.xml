@@ -17,6 +17,9 @@
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkGeneral" alias="workGeneral"/>
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkProject" alias="workProject"/>
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkGeneralList" alias="workGeneralList"/>
+		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoom" alias="chatRoom"/>
+		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
+		<typeAlias type="com.ln.intranet.chat.model.vo.Message" alias="message"/>
 	</typeAliases>
 	
 	<mappers>
@@ -25,6 +28,7 @@
 		 <mapper resource="/mappers/attendance-mapper.xml"/>
 		 <mapper resource="/mappers/notice-mapper.xml"/>
 		 <mapper resource="/mappers/work-mapper.xml"/>
+		 <mapper resource="/mappers/chat-mapper.xml"/>
 	</mappers>
 
 </configuration>

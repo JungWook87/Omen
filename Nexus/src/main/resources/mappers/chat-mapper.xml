@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chatMapper">
+
+	<resultMap type="chatRoom" id="chatroom_rm">
+	
+		<id property="cmNo" column="CM_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="status" column="STATUS"/>
+	
+	</resultMap>
+	
+	<resultMap type="message" id="message_rm">
+		
+		<id property="mNo" column="M_NO" />
+		<id property="cmNo" column="CM_NO" />
+		<id property="memNo" column="MEM_NO" />
+		<id property="mContent" column="M_CONTENT" />
+		<id property="mDate" column="M_DATE" />
+		
+	</resultMap>
+	
+
+
+
+	<select id="selectChatRoomList">
+		SELECT *
+		FROM CHATROOM
+		JOIN CHATROOM_JOIN USING (CM_NO)
+		WHERE MEM_NO = #{memNo}
+		AND STATUS = 'N'
+		ORDER BY STATUS, CM_NO
+	</select>
+	
+	
+
+
+</mapper>
