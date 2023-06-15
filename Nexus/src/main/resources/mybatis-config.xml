@@ -20,6 +20,9 @@
 		<typeAlias type="com.ln.intranet.survey.model.vo.Survey" alias="survey"/>
 		<typeAlias type="com.ln.intranet.survey.model.vo.SurveyResult" alias="surveyResult"/>
 		<typeAlias type="com.ln.intranet.survey.model.vo.SurveyPreview" alias="surveyPreview"/>
+		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoom" alias="chatRoom"/>
+		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
+		<typeAlias type="com.ln.intranet.chat.model.vo.Message" alias="message"/>
 	</typeAliases>
 	
 	<mappers>
@@ -29,6 +32,7 @@
 		 <mapper resource="/mappers/attendance-mapper.xml"/>
 		 <mapper resource="/mappers/notice-mapper.xml"/>
 		 <mapper resource="/mappers/work-mapper.xml"/>
+		 <mapper resource="/mappers/chat-mapper.xml"/>
 	</mappers>
 
 </configuration>

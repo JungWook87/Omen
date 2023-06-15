@@ -29,6 +29,7 @@ const approverModal = document.getElementById('approver-modal-wrap')
 const closeBtn = document.getElementById('closeBtn');
 const approverCloseBtn = document.getElementById('approver-closeBtn');
 const plusBtn = document.getElementById('pulsProject');
+const pulsApproverBtn = document.getElementById('pulsApprover'); 
 const modalBody = document.querySelector('.work-modalBody');
 const approverModalBody = document.querySelector('.approver-modal-Body');
 const cancellBtn = document.getElementById('cancell-btn');
@@ -81,6 +82,7 @@ btn.addEventListener("click", () => {
 // 모달창 엑스 버튼
 closeBtn.addEventListener("click", () => {
   modalClose();
+  console.log("hi");
 });
 
 // 모달창 플러스 버튼
@@ -209,30 +211,30 @@ workTemplateSelect.addEventListener('change', () => {
 })
 
 // 결재자 클릭 이벤트
-workApprover.addEventListener("click",() => {
+pulsApproverBtn.addEventListener("click",() => {
   approverModal.style.display = 'block';
-  approverModalBody.classList.add('work-modal-open')
+  approverModalBody.classList.add('approver-modal-open')
 })
 
 // 결재자 모달창 외부 영역 이벤트 (수정해야됨)
 window.onclick = function(event) {
   if (event.target == approverModal) {
-    modalClose();
+    aproverModalClose();
   }
 }
 
 approverCloseBtn.addEventListener("click", () =>{
-  modalClose();
+  aproverModalClose();
 })
 
 // 결재자 모달창 취소버튼 이벤트
 approverCancellBtn.addEventListener("click", () => {
-  modalClose();
+  aproverModalClose();
 })
 
 
 // 결재자 모달창 닫는 함수
-function modalClose() {
+function aproverModalClose() {
   approverModalBody.classList.add('approver-modal-close');
   
   setTimeout(() => {
@@ -245,6 +247,43 @@ function modalClose() {
   // workContent.style.height = 'inherit';
 }
 
+ // 결재자 클릭 이벤트 핸들러
+  // const approverCheck = document.querySelectorAll('#approver-checkBox');
+  // const approverCheckData = document.querySelectorAll('');
+
+  // approverCheck.addEventListener('click', ()=> {
+  
+// var anchorTags = document.querySelectorAll('#menu2 a'); // #menu2 내부의 모든 <a> 태그 선택
+//   for (var i = 0; i < anchorTags.length; i++) {
+//     var checkbox = anchorTags[i].querySelector('input[type="checkbox"]'); // <a> 태그 내부의 체크박스 선택
+//     checkbox.addEventListener('change', function() {
+//       if (this.checked) {
+//         var clickedData = this.parentNode.textContent.trim(); // 클릭한 <a> 태그의 텍스트 데이터 가져오기
+//         console.log(clickedData); // 가져온 데이터 콘솔에 출력 (원하는 작업으로 대체 가능)
+//       }
+//     });
+//   }
+// });
+const approverSuccessBtn = document.getElementById('approver-success-btn');
+const pTags = document.querySelectorAll('#menu2 p'); // #menu2 내부의 모든 <p> 태그 선택
+
+approverSuccessBtn.addEventListener("click", () => {
+  let checkedValue = null;
+  for (let i = 0; i < pTags.length; i++) {
+    let radio = pTags[i].querySelector('input[type="radio"]'); // <p> 태그 내부의 라디오 버튼 선택
+    if (radio.checked) {
+      checkedValue = radio.value; // 체크된 라디오 버튼의 값 가져오기
+      break; // 첫 번째 선택된 값을 가져왔으면 반복문 종료
+    }
+  }
+
+  if (checkedValue) {
+    console.log("라디오 버튼이 체크되었습니다. 선택된 값:", checkedValue);
+    approverModalWrap.style.display = 'none'; // 모달창 숨기기
+  } else {
+    console.log("라디오 버튼이 체크되지 않았습니다.");
+  }
+});
 
 
 // 자동 높이 조정 textarea
@@ -407,21 +446,10 @@ const checkBusinessAreaText = document.querySelector('.check-modal-businessArea 
 const checkStartDate = document.querySelector('.check-modal-startDate');
 const checkStartDateText = document.querySelector('.check-modal-startDate > input');
 const checkEndDate = document.querySelector('.check-modal-endDate');
-
 const checkEndDateText = document.querySelector('.check-modal-endDate > input');
 const checkTemplate = document.querySelector('check-modal-template');
-// const normalCheckSelect = document.getElementById('normal-checked');
-// const projectCheckSelect = document.getElementById('project-checked');
-// const assignmentCheckSelect = document.getElementById('assignment-checked');
-
-
-
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkModalDetailText = document.querySelector('.check-modal-detail textarea');
-// const plusBtn = document.getElementById('pulsProject');
-// const workProjectbox = document.querySelector('.projectBox');
-// const modalProjectbox = document.querySelector('.work-modal-projectBox');
-
 
 // 올릴꺼
 const workBusinessAreaText = document.querySelector('.work-modal-businessArea > input');
@@ -576,26 +604,9 @@ checkSuccessBtn.addEventListener('click', function() {
 });
 
  // 결재자 클릭 이벤트 핸들러
- function handleClick() {
-  // 새로운 div 요소 생성
-  const newDiv = document.createElement('div');
-  newDiv.classList.add('employee'); // line 클래스 추가
-  document.querySelector('.approver-modal-container').appendChild(newDiv);
-}
+  // const approverCheck = document.querySelectorAll('#approver-checkBox');
+  // const approverCheckData = document.querySelectorAll('');
 
-// div 요소에 클릭 이벤트 리스너 추가
-const box = document.querySelector('.boss');
-box.addEventListener('click', handleClick);
+  // approverCheck.addEventListener('click', ()=> {
 
-
-//  // 클릭 이벤트 핸들러
-//  function handleClick() {
-//   // 새로운 div 요소 생성
-//   const newDiv = document.createElement('div');
-//   newDiv.classList.add('div'); // line 클래스 추가
-//   document.getElementById('container').appendChild(newDiv);
-// }
-
-// // div 요소에 클릭 이벤트 리스너 추가
-// const box = document.querySelector('.box');
-// box.addEventListener('click', handleClick);
+  // })
