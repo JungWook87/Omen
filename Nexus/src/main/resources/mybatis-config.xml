@@ -17,12 +17,16 @@
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkGeneral" alias="workGeneral"/>
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkProject" alias="workProject"/>
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkGeneralList" alias="workGeneralList"/>
+		<typeAlias type="com.ln.intranet.survey.model.vo.Survey" alias="survey"/>
+		<typeAlias type="com.ln.intranet.survey.model.vo.SurveyResult" alias="surveyResult"/>
+		<typeAlias type="com.ln.intranet.survey.model.vo.SurveyPreview" alias="surveyPreview"/>
 		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoom" alias="chatRoom"/>
 		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
 		<typeAlias type="com.ln.intranet.chat.model.vo.Message" alias="message"/>
 	</typeAliases>
 	
 	<mappers>
+		 <mapper resource="/mappers/survey-mapper.xml"/>
 		 <mapper resource="/mappers/dept-mapper.xml"/>
 		 <mapper resource="/mappers/member-mapper.xml"/>
 		 <mapper resource="/mappers/attendance-mapper.xml"/>

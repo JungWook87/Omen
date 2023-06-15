@@ -45,7 +45,7 @@ attn_btn2[0].addEventListener("click", function() {
             Swal.fire(
                 '금일은 출근이 완료되었습니다.',
                 '자세한 사항은 인사부에 문의해주세요.',
-                'warning',
+                'warning'
             );
         }
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="surveyMapper">
+	
+	<resultMap type="survey" 	id="survey_rm">
+		<id property="surveyNo" 			column="SURVEY_NO"/>
+		<result property="surveyTopic" 	column="TOPIC"/>
+		<result property="surveyContent" column="CONTENT"/>
+		<result property="start" 				column="START"/>
+		<result property="end" 				column="END"/>
+	</resultMap>
+	
+	<resultMap type="surveyResult" 	id="surveyResult_rm">
+		<id property="surveyNo" 				column="SURVEY_NO"/>
+		<result property="memNo" 				column="MEM_NO"/>
+		<result property="memName" 			column="MEM_NAME"/>
+		<result property="question" 			column="QUESTION"/>
+		<result property="optionNo" 			column="OPTION_NO"/>
+		<result property="optionAnnotation" column="OPTION_ANNOTATION"/>
+	</resultMap>
+	
+	<resultMap type="surveyPreview" id="surveyPreview_rm">
+		<id property="surveyNo" 			column="SURVEY_NO"/>
+		<result property="surveyTopic" 	column="TOPIC"/>
+		<result property="start" 				column="START"/>
+		<result property="end" 				column="END"/>
+		<result property="respMember"   column="RESP_MEMBER"/>
+		<result property="totalMember" 	column="TOTAL_MEMBER"/>
+		<result property="participation" 	column="PARTICIPATION"/>
+	</resultMap>
+	
+	<!-- 설문생성 -->
+	<insert id="createSurvey" parameterType="survey" useGeneratedKeys="true">
+		<selectKey keyProperty="surveyNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_SURVEY_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO SURVEY VALUES (
+		#{surveyNo}, #{surveyTopic}, #{surveyContent}, DEFAULT, #{end}
+		)
+	</insert>
+	<!-- 지문생성 -->
+	<insert id="createResult" parameterType="surveyResult" >
+		INSERT INTO SURVEY_RESULT VALUES (
+		#{surveyNo}, #{memNo}, #{question}, #{optionNo}, #{optionAnnotation}
+		)
+	</insert>
+	
+	<select id="totalCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM SURVEY
+	</select>
+	
+	<select id="surveyList" parameterType="_int"  resultMap="surveyPreview_rm">
+		SELECT
+		  S.SURVEY_NO,
+		  TOPIC,
+		  TO_CHAR("START", 'YYYY-MM-DD') AS "START",
+		  TO_CHAR("END", 'YYYY-MM-DD') AS "END",
+		  COUNT(DISTINCT R.MEM_NO) AS RESP_MEMBER,
+		  (SELECT COUNT(*) FROM MEMBER) AS TOTAL_MEMBER,
+		  CASE WHEN EXISTS (
+		    SELECT 1
+		    FROM SURVEY_RESULT
+		    WHERE SURVEY_NO = S.SURVEY_NO
+		      AND MEM_NO = #{memNo}
+		  ) THEN 1 ELSE 0 END AS PARTICIPATION
+		FROM SURVEY S
+		LEFT JOIN SURVEY_RESULT R ON S.SURVEY_NO = R.SURVEY_NO
+		GROUP BY S.SURVEY_NO, TOPIC, "START", "END"
+	</select>
+</mapper>

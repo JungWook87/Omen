@@ -46,24 +46,26 @@
         <!-- 컨텐츠 내용 -->
         <div class="content-all-page">
 
-            <form action="" method="post">
+            <form action="create" method="post">
                 <!-- 윗부분 -->
                 <div class="survey-create-top">
-                    <input id="survey-create-top-title" type="text" placeholder="제목 없는 설문">
-                    <input type="text" placeholder="설문에 대한 설명을 적어주세요.(선택사항)">
+                    <input id="survey-create-top-title" name="surveyTopic" type="text" placeholder="제목 없는 설문">
+                    <input name="surveyContent" type="text" placeholder="설문에 대한 설명을 적어주세요.(선택사항)">
+                    <br>
+                    <input name="end" type="text" placeholder="종료일을 설정해주세요" >
                 </div>
 
                 <!-- 가운데 -->
                 <div class="survey-create-content">
                     <div>
-                        <input id="survey-create-content-question" type="text" placeholder="질문을 작성해 주세요.">
+                        <input id="survey-create-content-question" name="question" type="text" placeholder="질문을 작성해 주세요.">
                     </div>
 
                     <!-- 옵션추가 부분 -->
                     <ul class="survey-create-content-option">
                         <li>
                             <i class="fa-solid fa-check survey-check"></i>
-                            <input type="text" name="survey-option-value" placeholder="옵션을 입력해 주세요.">
+                            <input type="text" name="optionList" placeholder="옵션을 입력해 주세요.">
                             <button type="button" id="survey-option-delete" disabled>
                                 <i class="fa-solid fa-xmark fa-xl"></i>
                             </button>
@@ -79,10 +81,8 @@
                 <!-- 아래 취소 저장 부분 -->
                 <div class="survey-create-bottom">
                     <button type="button" id="survey-create-bottom-cancle">취소</button>
-                    <button id="survey-create-bottom-submit">저장</button>
+                    <button type="submit" id="survey-create-bottom-submit">저장</button>
                 </div>
-            
-    
                 
             </form>
         

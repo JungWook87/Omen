@@ -18,6 +18,7 @@ optionAdd.addEventListener("click", () => {
     
     const optionInput = document.createElement("input");
     optionInput.placeholder = "옵션을 입력해 주세요"
+    optionInput.name = "optionList";
     
     const optionDelete = document.createElement("button");
     optionDelete.id = "survey-option-delete";
