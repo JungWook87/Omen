@@ -12,6 +12,9 @@
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
+
   <!-- 날짜조회api-->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -28,16 +31,29 @@
 
     <!-- 사이드 바 -->
     <div class="side-bar menu">
-      <!-- 페이지마다 바뀌는 제목 -->
-      <h1>결재</h1>
 
-      <!-- 페이지마다 바뀌는 부제목 -->
-      <ul>
-        <li><a href="work-send.html"><span>상신함</span> </a></li>
-        <li><a href="work-inbox(1).html"><span>수신함</span> </a></li>
-        <li><a href="work-temp.html"><span>임시저장</span> </a></li>
-        <li><a href="work- template.html"><span>템플릿</span> </a></li>
-      </ul>
+      <div class="desktop">
+        <!-- 페이지마다 바뀌는 제목 -->
+        <h1>결재</h1>
+        
+        <!-- 페이지마다 바뀌는 부제목 -->
+        <ul>
+          <li><a href="work-send.html"><span>상신함</span> </a></li>
+          <li><a href="work-inbox(1).html"><span>수신함</span> </a></li>
+          <li><a href="work-temp.html"><span>임시저장</span> </a></li>
+          <li><a href="work- template.html"><span>템플릿</span> </a></li>
+        </ul>
+      </div>
+      
+      <div class="mobile">
+        <ul>
+            <li><a href="#" class="item"><i class="fa-sharp fa-solid fa-file-export"></i></a></li>
+            <li><a href="#" class="item"><div><i class="fa-solid fa-box"></i></div></a></li>
+            <li><a href="#" class="item"><i class="fa-solid fa-floppy-disk"></i></a></li>
+            <li><a href="#" class="item"><i class="fa-solid fa-download"></i></i></a></li>
+        </ul>
+      </div>
+
     </div>
 
     <!-- 컨텐츠 내용 -->
@@ -147,11 +163,6 @@
               <p>제목</p>
               <input type="text" placeholder="제목을 입력해주세요" required>
             </div>
-            <!-- 출장지 -->
-            <div class="work-modal-businessArea">
-              <p>출장지</p>
-              <input type="text">
-            </div>
             <!-- 시작날짜 -->
             <div class="work-modal-startDate">
               <p>시작날짜</p>
@@ -236,7 +247,7 @@
             <div class="approver-modal-container">
 
 
-              <div id="menu2">
+              <div id="approver-box">
 
                 <ul class="M01">
             
@@ -244,9 +255,9 @@
             
                         <ul class="M02">
             
-                            <li><p href="#">대표이사<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                            <li><p href="#">대표이사<input type="radio" name="appprover-check" class="approver-checkBox" value="대표이사"></p></li>
             
-                            <li><p href="#">전무이사<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                            <li><p href="#">전무이사<input type="radio" name="appprover-check" class="approver-checkBox" value="전무이사"></p></li>
             
                         </ul>
             
@@ -254,17 +265,17 @@
             
                     <li><p href="#">부서</p>
             
-                        <ul class="M02">
+                        <ul class="M02 dept">
             
                             <li><p href="#">관리기획부</p>
             
                                 <ul class="M03">
             
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
             
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
             
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
             
                                 </ul>
             
@@ -274,11 +285,11 @@
             
                                 <ul class="M03">
             
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
             
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
             
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
             
                                 </ul>
             
@@ -288,11 +299,11 @@
             
                                 <ul class="M03">
             
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
             
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
             
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox"></p></li>
+                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
             
                                 </ul>
             
