@@ -16,4 +16,7 @@ public interface WorkService {
 	// 결재 상신 날짜 지정
 	List<WorkGeneralList> workSendSelectDate(Map<String, Object> map);
 
+	// 결재 상신 작성
+	Map<String, Object> workWrite(Map<String, Object> map);
+
 }

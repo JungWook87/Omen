@@ -17,7 +17,7 @@ public class WorkGeneral {
 	private String title; // 제목(일반=입력, 연차=연차, 출장=출장)
 	private String sendDate; // 작성일
 	private String approvalDate; // 승인일자
-	private String contenet; // 내용(일반, 출장)
+	private String content; // 내용(일반, 출장)
 	private String start; // 연차, 출장 시작일
 	private String end; // 연차, 출장 종료일
 	private String next; // 다음 승인자 사원번호

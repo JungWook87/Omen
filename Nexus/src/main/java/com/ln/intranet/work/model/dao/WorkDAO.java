@@ -20,8 +20,14 @@ public class WorkDAO {
 		return sqlSession.selectList("workMapper.workSendList", memNo);
 	}
 
+	// 결재 상신 일자 지정 조회
 	public List<WorkGeneralList> workSendSelectDate(Map<String, Object> map) {
 		return sqlSession.selectList("workMapper.workSendSelectDate", map);
+	}
+
+	// 결재 상신 작성
+	public int workWrite(Map<String, Object> map) {
+		return sqlSession.insert("workMapper.workWrite", map);
 	}
 	
 }

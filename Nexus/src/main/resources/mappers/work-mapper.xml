@@ -9,7 +9,7 @@
 		<result property="title" column="TITLE"/>
 		<result property="sendDate" column="SEND_DATE"/>
 		<result property="approvalDate" column="APPROVAL_DATE"/>
-		<result property="contenet" column="CONTENT"/>
+		<result property="content" column="CONTENT"/>
 		<result property="start" column="START"/>
 		<result property="end" column="END"/>
 		<result property="next" column="NEXT"/>
@@ -54,6 +54,17 @@
 		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') BETWEEN #{start} AND #{end}
 		ORDER BY SEND_DATE DESC
 	</select>
+	
+	<insert id="workWrite">
+		<selectKey keyProperty="workNo" resultType="_int" order="BEFORE">
+				SELECT SEQ_WORK_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		<if test="typeNo == 1">
+			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, NEXT, WORK_STATE)
+			VALUES (#{workNo}, ${memNo}, ${typeNo}, #{title}, DEFAULT, #{content}, ${next}, DEFAULT)
+		</if>
+	</insert>
+	
 	
 </mapper>
 

@@ -1,4 +1,63 @@
 
+// 상신 결재 목록 만드는 함수
+function workSendList(obj){
+  const listBody = document.getElementById("listBody");
+  listBody.innerText = "";
+
+  for(let item of obj){
+    const tr = document.createElement("tr");
+    tr.classList.add('listTr');
+    
+    const td1 = document.createElement("td");
+    td1.innerText = item.typeNo;
+    td1.classList.add('listTypeNo');
+    td1.style.display = 'none';
+
+    const td2 = document.createElement("td");
+    td2.innerText = item.typeName;
+
+    const td3 = document.createElement("td");
+    td3.innerText = item.workNo;
+
+    const td4 = document.createElement("td");
+    td4.innerText = item.title;
+
+    const td5 = document.createElement("td");
+    td5.innerText += item.workState;
+    if(item.workState == '진행중'){
+      td5.style.color = "var(--primary400)";
+    } else if(item.workState == '승인'){
+      td5.style.color = "var(--green)";
+    } else{
+      td5.style.color = "red";
+    }
+
+    const td6 = document.createElement("td");
+    if(item.fileRename == null){
+      td6.innerText = "없음";
+    } else{
+      td6.innerText = "있음";
+    }
+
+    const td7 = document.createElement("td");
+    item.sendDate = item.sendDate.substring(0, 11);
+    td7.innerText = item.sendDate;
+
+    tr.append(td1, td2, td3, td4, td5, td6, td7);
+
+    listBody.append(tr);
+  }
+
+  const attnTypeSelect = document.getElementById("attnTypeSelect");
+  attnTypeSelect.value = 0;
+
+  let cntList = document.getElementsByClassName("content-all-top-text2");
+  cntList[0].innerText = "내가 작성한 결재(" + obj.length + ")";
+
+
+}
+
+
 // 날짜 조회
 $(function() {
   $('input[name="daterange"]').daterangepicker({
@@ -29,59 +88,60 @@ $(function() {
               "end" : end.format('YYYY-MM-DD')
               },
       success : function(list){
-        const listBody = document.getElementById("listBody");
-        listBody.innerText = "";
+        // const listBody = document.getElementById("listBody");
+        // listBody.innerText = "";
 
-        for(let item of list){
-          const tr = document.createElement("tr");
-          tr.classList.add('listTr');
+        // for(let item of list){
+        //   const tr = document.createElement("tr");
+        //   tr.classList.add('listTr');
           
-          const td1 = document.createElement("td");
-          td1.innerText = item.typeNo;
-          td1.classList.add('listTypeNo');
-          td1.style.display = 'none';
+        //   const td1 = document.createElement("td");
+        //   td1.innerText = item.typeNo;
+        //   td1.classList.add('listTypeNo');
+        //   td1.style.display = 'none';
 
-          const td2 = document.createElement("td");
-          td2.innerText = item.typeName;
+        //   const td2 = document.createElement("td");
+        //   td2.innerText = item.typeName;
 
-          const td3 = document.createElement("td");
-          td3.innerText = item.workNo;
+        //   const td3 = document.createElement("td");
+        //   td3.innerText = item.workNo;
 
-          const td4 = document.createElement("td");
-          td4.innerText = item.title;
+        //   const td4 = document.createElement("td");
+        //   td4.innerText = item.title;
 
-          const td5 = document.createElement("td");
-          td5.innerText += item.workState;
-          if(item.workState == '진행중'){
-            td5.style.color = "var(--primary400)";
-          } else if(item.workState == '승인'){
-            td5.style.color = "var(--green)";
-          } else{
-            td5.style.color = "red";
-          }
+        //   const td5 = document.createElement("td");
+        //   td5.innerText += item.workState;
+        //   if(item.workState == '진행중'){
+        //     td5.style.color = "var(--primary400)";
+        //   } else if(item.workState == '승인'){
+        //     td5.style.color = "var(--green)";
+        //   } else{
+        //     td5.style.color = "red";
+        //   }
 
-          const td6 = document.createElement("td");
-          if(item.fileRename == null){
-            td6.innerText = "없음";
-          } else{
-            td6.innerText = "있음";
-          }
+        //   const td6 = document.createElement("td");
+        //   if(item.fileRename == null){
+        //     td6.innerText = "없음";
+        //   } else{
+        //     td6.innerText = "있음";
+        //   }
 
-          const td7 = document.createElement("td");
-          item.sendDate = item.sendDate.substring(0, 11);
-          td7.innerText = item.sendDate;
+        //   const td7 = document.createElement("td");
+        //   item.sendDate = item.sendDate.substring(0, 11);
+        //   td7.innerText = item.sendDate;
 
-          tr.append(td1, td2, td3, td4, td5, td6, td7);
+        //   tr.append(td1, td2, td3, td4, td5, td6, td7);
 
-          listBody.append(tr);
-        }
+        //   listBody.append(tr);
+        // }
 
-        const attnTypeSelect = document.getElementById("attnTypeSelect");
-        attnTypeSelect.value = 0;
+        // const attnTypeSelect = document.getElementById("attnTypeSelect");
+        // attnTypeSelect.value = 0;
 
-        let cntList = document.getElementsByClassName("content-all-top-text2");
-        cntList[0].innerText = "내가 작성한 결재(" + list.length + ")";
+        // let cntList = document.getElementsByClassName("content-all-top-text2");
+        // cntList[0].innerText = "내가 작성한 결재(" + list.length + ")";
 
+        workSendList(list);
       }
     });
   });
@@ -478,7 +538,61 @@ successBtn.addEventListener("click", () => {
   if(workApprover.value == '') {
     Swal.fire('결재자를 입력해 주세요')
   } else {
+
+    let insertdata = '';
+
+    if(workTemplateSelect.value == 'normal-check'){
+      insertdata = {
+        typeNo : 1,
+        title : workTitle.value,
+        content : workContent.value,
+        next : workApprover.value,
+        uploadsFile : fileUpload.value
+      };
+    } else if(workTemplateSelect.value == 'business-trip'){
+      insertdata = {
+        typeNo : 3,
+        start : workStartDateText.value,
+        end : workEndDateText.value,
+        content : workBusinessDetailText.value,
+        next : workApprover.value
+      };
+    } else if(workTemplateSelect.value == 'vacation'){
+      insertdata = {
+        typeNo : 2,
+        start : workStartDateText.value,
+        end : workEndDateText.value,
+        next : workApprover.value
+      };
+    }
     
+    $.ajax({
+      // 여기 작성
+      url : "workSend/write",
+      type : "POST",
+      dataType : "JSON",
+      data : insertdata,
+      success : function(resultMap){
+        if(resultMap.message == 1){
+          console.log("추가 성공");
+
+          workSendList(resultMap.list);
+
+          Swal.fire('결재 상신 완료', '', 'success');
+
+        } else{
+          console.log("추가 실패");
+
+          Swal.fire( '결재 상신 실패', '다시 시도해주세요.', 'warning');
+        }
+      },
+      error : function(){
+
+      }
+
+    });
+
+
     const tr = document.createElement('tr');
     const tdType = document.createElement('td');
     const tdNum = document.createElement('td');
@@ -757,4 +871,4 @@ attnTypeSelect.addEventListener("change", function(){
 
 
 
-  
+  // 결재 상신 팝업창에서 확인 누르기
