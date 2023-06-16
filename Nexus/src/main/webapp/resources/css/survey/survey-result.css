@@ -203,10 +203,9 @@ a:focus {
   width: 1100px;
 
   padding: 50px;
-  padding-bottom: 100px;
 
   /* margin-top: 50px; */
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 
   display: flex;
   flex-direction: column;
@@ -284,4 +283,47 @@ a:focus {
 #survey-result-bottom-submit:hover {
   background-color: var(--primary500);
   transition: all 0.5s;
+}
+
+.survey-question{
+  font-size : 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.survey-respMember{
+  color: rgb(150, 161, 181);
+  margin-bottom: 15px;
+  text-align: right;
+  margin-right : 20px;
+
+}
+
+#result-box {
+  margin-bottom: 35px;
+}
+
+#result-span-box > span {
+  color : var(--grey300);
+}
+
+#result-span-box{
+  margin: 0 0 3px 3px;
+}
+
+#progressBar {
+  appearance: none;
+}
+#progressBar::-webkit-progress-bar {
+  width : 500px;
+  height : 35px;
+  background:#f0f0f0;
+  border-radius:10px;
+  box-shadow: inset 3px 3px 10px #ccc;
+}
+#progressBar::-webkit-progress-value {
+  border-radius:10px;
+  background: #1D976C;
+  background: -webkit-linear-gradient(to right, var(--primary600), var(--primary300));
+  background: linear-gradient(to right, var(--primary600), var(--primary300));
+
 }

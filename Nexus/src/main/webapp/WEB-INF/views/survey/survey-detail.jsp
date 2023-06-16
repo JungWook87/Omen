@@ -41,8 +41,8 @@
 	
 	      <!-- 페이지마다 바뀌는 부제목 -->
 	      <ul>
-	        <li><a href="surveyList"><span>설문 리스트</span> </a></li>
-	        <li><a href="surveyManage"><span>설문 생성/관리</span> </a></li>
+	        <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+	        <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
 	      </ul>
 	    </div>
 
@@ -59,10 +59,10 @@
             <form action="../surveyParticipate" method="post">
             <div class="survey-create-content">
                 <input type="hidden" name="surveyNo" value="${survey.surveyNo}">
-            	<span>질문 : ${surveyResultList[0].question}</span>
+            	<span class="survey-question">질문 : ${surveyResultList[0].question}</span>
                 <c:forEach var="surveyResult" items="${surveyResultList}">
-                    <div>
-                        <input name="radioInput" type="radio" value="${surveyResult.optionNo}" ><span>${surveyResult.optionAnnotation}</span>
+                    <div id="radio-box">
+                        <input id="radioBtn" name="radioInput" type="radio" value="${surveyResult.optionNo}" ><label for="${surveyResult.optionNo}">${surveyResult.optionAnnotation}</label>
                     </div>
                 </c:forEach>
             </div>
