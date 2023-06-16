@@ -26,16 +26,14 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	= Collections.synchronizedSet(new HashSet<WebSocketSession>());
 	
 	
-	
+	// afterConnectionEstablished가 자동으로 다시 수행되기 때문에 페이지를 이동해도 결론적으론 session에 남아잇음
 	// 클라이언트와 연결이 완료되고, 통신할 준비가 되면 수행
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 			
-		// WebSocketSession : 웹소켓에 접속/요청한 클라이언트의 세션
 		System.out.println(session.getId() + " 연결됨");		
 			
 		sessions.add(session);
-		// WebSocketSession을 Set에 추가
 	}
 	
 	
@@ -46,22 +44,15 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		
 		System.out.println("전달된 메시지 : " + message.getPayload());
 		
-		// Jackson 라이브러리 : Java에서 JSON을 다루기 위한 라이브러리		
-		
-		// Jackson-databind 라이브러리 :
-		// ObjectMapper 객체를 이용해서
-		// JSON 데이터를 특정 VO 필드에 맞게 자동 매핑
 				
 		ObjectMapper objectMapper = new ObjectMapper();
 				
 		Message chatMessage = objectMapper.readValue(message.getPayload(), Message.class);
 				
-		// 시간세팅
 		chatMessage.setMDate(new Date(System.currentTimeMillis()));
 				
 		System.out.println(chatMessage);
 		
-		// 채팅 메세지 DB삽입
 		
 		int result = service.insertMessage(chatMessage);
 			

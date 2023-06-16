@@ -1,94 +1,141 @@
-  package com.ln.intranet.chat.controller;
-  
-  import java.util.HashMap;
-  import java.util.List;
-  import java.util.Map;
-  
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.ui.Model; 
-  import org.springframework.web.bind.annotation.GetMapping; 
-  import org.springframework.web.bind.annotation.ModelAttribute; 
-  import org.springframework.web.bind.annotation.PathVariable; 
-  import org.springframework.web.bind.annotation.RequestMapping; 
-  import org.springframework.web.bind.annotation.RestController; 
-  import org.springframework.web.bind.annotation.SessionAttributes;
-  
-  import com.ln.intranet.chat.model.service.ChatService; 
-  import com.ln.intranet.chat.model.vo.ChatRoom; 
-  import com.ln.intranet.chat.model.vo.Message; 
-  import com.ln.intranet.member.model.vo.Member;
-  
-  import lombok.extern.slf4j.Slf4j;
-  
-  
-  @Slf4j
-  @SessionAttributes({"loginMember", "chatRoomNo"})
-  @RequestMapping("/chat")
-  @RestController 
-  public class ChattingController {
-	  
-	  @Autowired
-	  private ChatService service;
-	  
-	  
-	  /** 채팅 List 조회
+package com.ln.intranet.chat.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.google.gson.Gson;
+import com.ln.intranet.chat.model.service.ChatService;
+import com.ln.intranet.chat.model.vo.ChatRoom;
+import com.ln.intranet.chat.model.vo.ChatRoomJoin;
+import com.ln.intranet.chat.model.vo.Message;
+import com.ln.intranet.member.model.service.MemberService;
+import com.ln.intranet.member.model.vo.Member;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RequestMapping("/chat")
+@Controller
+public class ChattingController {
+
+	@Autowired
+	private ChatService service;
+	
+	@Autowired
+	private MemberService mService;
+	
+
+	 
+	/** 해당된 채팅방 리스트 조회
 	 * @param loginMember
-	 * @param model
-	 * @return
+	 * @return Gson(RoomList)
 	 */
-	@GetMapping("/chatRoomList") 
-	  public String chatRoomList(@ModelAttribute("loginMember") Member loginMember, Model model )
-	  {
-	  
-		  log.info("loginMember's memNo : " + loginMember.getMemNo());
-		  
-		  int memNo = loginMember.getMemNo(); 
-		  
-		  Map<String, Object> map = new HashMap<>(); 
-		  
-		  map.put("memNo", memNo); 
-		  
-		  List<ChatRoom> chatRoomList = service.selectChatRoomList(map);
-		  
-		  model.addAttribute("chatRoomList", chatRoomList);
-		  
-		  //워크스페이스 채팅방 리스트 조회 //개인 채팅방용 프로젝트 멤버 조회
-		  
-		  return "chat/chatRoomList";
-	  
-	  }
-	  
-	  //채팅방 입장
-	  
-	  @GetMapping("/chatRoom/{chatRoomNo}") 
-	  public String joinChatRoom(@ModelAttribute("loginMember") Member loginMember,
-			  Model model,
-			  @PathVariable("chatRoomNo") int chatRoomNo) {
-	  
-		  // 채팅방 내 채팅 메세지 목록 조회 
-		  List<Message> chatMessageList = service.selectChatMessageList(chatRoomNo);
-		  
-		  model.addAttribute("chatMessageList", chatMessageList);
-		  
-		  int memberNo = loginMember.getMemNo();
-		  
-		  Map<String, Object> map = new HashMap<>();
-		  
-		  map.put("memberNo", memberNo);
-		  
-		  int pmNo = pmService.selectPmNo(map);
-		  
-		  System.out.println("pmNo찾기 : " + pmNo);
-		  
-		  // session에 올림
-		  model.addAttribute("pmNo", pmNo); 
-		  model.addAttribute("chatRoomNo",  chatRoomNo);
-		  
-		  return "chat/chatRoom";
-	  
-	  }
-  
-  
-  
- 
-  }
+	@ResponseBody
+	@PostMapping("/chatRoomList")
+	public String chatRoomList(@ModelAttribute("loginMember") Member loginMember) {
+
+		log.info("loginMember's memNo : " + loginMember.getMemNo());
+
+		int memNo = loginMember.getMemNo();
+
+		Map<String, Object> map = new HashMap<>();
+
+		map.put("memNo", memNo);
+
+		List<ChatRoom> RoomList = service.selectChatRoomList(map);
+
+		log.debug(RoomList + "");
+
+		return new Gson().toJson(RoomList);
+
+	}
+
+
+	/** 채팅방 채팅 조회
+	 * @param loginMember
+	 * @param cmNo
+	 * @return Gson(chatMessageList)
+	 */
+	@ResponseBody
+	@GetMapping("/chatRoom/{cmNo}")
+	public String joinChatRoom(@PathVariable("cmNo") int cmNo) {
+		
+		
+		List<Message> chatMessageList = service.selectChatMessageList(cmNo);
+		
+		
+		
+		return new Gson().toJson(chatMessageList);
+	}
+	
+
+	/** 초대할 사원 목록 조회
+	 * @return Gson(chatMember)
+	 */ 
+	@ResponseBody
+	@GetMapping("/chatRoom/memberList")
+	private String ChatMemberList() {
+		
+	List<Member> chatMember = mService.selectChatMemberList();
+	
+		
+		
+		return new Gson().toJson(chatMember);
+	}
+	
+
+	/** 사원 초대 & 방 생성
+	 * @param loginMember
+	 * @param paramMap
+	 * @param join
+	 * @param ra
+	 * @return result
+	 */
+	@ResponseBody
+	@PostMapping("/inviteMember")
+	private int inviteMember(@ModelAttribute("loginMember") Member loginMember,
+								@RequestParam Map<String, Object> paramMap,
+								ChatRoomJoin join,
+								RedirectAttributes ra
+			) {
+		
+		
+		
+		int memNo = loginMember.getMemNo();
+		
+		join.setMemNo(memNo);
+		
+		int result = service.inviteMember(paramMap, join);
+		
+		String message = null;
+		
+		
+		if(result > 0) {
+			message = paramMap.get("memNo") + "님을 초대했습니다";
+			ra.addFlashAttribute("message", message);
+	
+		}else {
+			message = "[404 error] 일겁니다 아마 내잘못 아닙니다 님잘못임 나 진짜 아님 이거 안되면 버그임";
+			ra.addFlashAttribute("message", message);
+		}
+		
+		
+		return result;
+	}	 
+
+}
