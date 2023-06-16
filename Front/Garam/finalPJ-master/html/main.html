@@ -23,8 +23,8 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-   
-    
+
+
     <title>메인페이지</title>
 </head>
 
@@ -32,48 +32,61 @@
 
     <!-- 메인 헤더 부분 시작 -->
     <header>
-        <div class="main-banner-top">
+        <div class="main-header">
+            <div class="main-banner-top">
 
-            <!-- 로고 -->
-            <div>
-                <a href="">
-                    <img src="../images/logo-width.png" alt="">
-                </a>
-            </div>
-
-            <!-- 네비바 -->
-            <div>
-                <ul class="main-header-ul">
-                    <li><a href="#">홈</a> </li>
-                    <li><a href="#">공지사항</a> </li>
-                    <li><a href="#">부서</a> </li>
-                    <li><a href="#">결재</a> </li>
-                    <li><a href="#">근무/휴가</a> </li>
-                    <li><a href="#">회의실</a> </li>
-                    <li><a href="#">설문</a> </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 배너 텍스트 부분 -->
-        <div class="main-banner-bottom">
-            <div class="main-banner-text1">
-                혁신을 밝히는 기업
-            </div>
-            <div class="main-banner-text2">
+                <!-- 로고 -->
                 <div>
-                    사람과 공간을 연결해 새로운 삶의 문화가 되다
+                    <a href="">
+                        <img src="../images/logo-width.png" alt="">
+                    </a>
                 </div>
 
+                <!-- 네비바 -->
+                <div>
+                    <ul class="main-header-ul">
+                        <li><a href="#">홈</a> </li>
+                        <li><a href="#">공지사항</a> </li>
+                        <li><a href="#">부서</a> </li>
+                        <li><a href="#">결재</a> </li>
+                        <li><a href="#">근무/휴가</a> </li>
+                        <li><a href="#">회의실</a> </li>
+                        <li><a href="#">설문</a> </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 배너 텍스트 부분 -->
+            <div class="main-banner-bottom">
+                <div class="main-banner-text1">
+                    혁신을 밝히는 기업
+                </div>
+                <div class="main-banner-text2">
+                    <div>
+                        사람과 공간을 연결해 새로운 삶의 문화가 되다
+                    </div>
+
+                </div>
             </div>
         </div>
 
-        <div>
-            <div>
-                <a href="">
-                    <img src="../images/logo-width.png" alt="">
-                </a>
-            </div>
+
+        <div class="Responsive-header">
+
+            <a href="">
+                <img src="../images/logo-width.png" alt="">
+            </a>
+            <input type="checkbox" class="menu-btn" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu">
+                <li><a href="#">홈</a> </li>
+                <li><a href="#">공지사항</a> </li>
+                <li><a href="#">부서</a> </li>
+                <li><a href="#">결재</a> </li>
+                <li><a href="#">근무/휴가</a> </li>
+                <li><a href="#">회의실</a> </li>
+                <li><a href="#">설문</a> </li>
+            </ul>
         </div>
 
 
@@ -277,67 +290,148 @@
         <div class="chat-box">
             <div class="center">
                 <div class="contacts">
-                    <i class="fas fa-bars fa-2x"></i>
-                    <h2>
-                        Contacts
-                    </h2>
-                    <div class="contact">
-                        <div class="pic rogers"></div>
-                        <div class="badge">
-                            14
+                    <div class="contact-header">
+                        <h2 id="contact-h2">
+                            채팅
+                        </h2>
+                        <i class="fa-solid fa-user fa-2x" id="friends-list"></i>
+                        <i class="fa-solid fa-comment fa-2x" id="employee-list"></i>
+                    </div>
+                    <div id="contact-area">
+                        <div class="contact contact-hover">
+                            <div class="name">
+                                스티브 로저스
+                            </div>
+                            <div class="message">
+                                그것은 미국의 엉덩이입니다 🇺🇸🍑
+                            </div>
                         </div>
-                        <div class="name">
-                            스티브 로저스
+                        <div class="contact contact-hover">
+
+                            <div class="name">
+                                토니 스타크
+                            </div>
+                            <div class="message">
+                                어, 우주에서 왔어 마법사의 목걸이를 훔치러 왔어
+                            </div>
                         </div>
-                        <div class="message">
-                            그것은 미국의 엉덩이입니다 🇺🇸🍑
+                        <div class="contact contact-hover">
+
+                            <div class="name">
+                                브루스 배너
+                            </div>
+                            <div class="message">
+                                Ant-Man 과 Spider-Man이 있습니까?
+                            </div>
+                        </div>
+                        <div class="contact contact-hover">
+
+                            <div class="name">
+                                토르 오딘슨
+                            </div>
+
+                            <div class="message">
+                                난이게 좋아
+                            </div>
+                        </div>
+                        <div class="contact contact-hover">
+
+                            <div class="name">
+                                캐롤 댄버스
+                            </div>
+                            <div class="message">
+                                이봐 피터 파커, 나한테 줄거 있어?
+                            </div>
+                        </div>
+                        <div class="contact contact-hover">
+
+                            <div class="name">
+                                캐롤 댄버스
+                            </div>
+                            <div class="message">
+                                이봐 피터 파커, 나한테 줄거 있어?
+                            </div>
+                        </div>
+                        <div class="contact contact-hover">
+
+                            <div class="name">
+                                캐롤 댄버스
+                            </div>
+                            <div class="message">
+                                이봐 피터 파커, 나한테 줄거 있어?
+                            </div>
+                        </div>
+                        <div class="contact contact-hover">
+
+                            <div class="name">
+                                캐롤 댄버스
+                            </div>
+                            <div class="message">
+                                이봐 피터 파커, 나한테 줄거 있어?
+                            </div>
                         </div>
                     </div>
-                    <div class="contact">
-                        <div class="pic stark"></div>
-                        <div class="name">
-                            토니 스타크
+                    <div id="employee-area">
+                        <div class="employee-group">
+                            <div class="employee-dropBox">
+                                <span>CEO</span>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-ceo" ></i>
+                            </div>
+                            <ul class="employee-dropBox-ul">
+                                <li>
+                                    <p>오가람</p>
+                                    <label for="employee-name1" class="employee-name-box">
+                                        <input type="radio" name="employee-name" id="employee-name1">
+                                        <span>선택</span>
+                                        <button class="invite-button">초대</button>
+                                    </label>
+                                </li>
+                                <li>
+                                    <p>오가람</p>
+                                    <label for="employee-name2" class="employee-name-box">
+                                        <input type="radio" name="employee-name" id="employee-name2">
+                                        <span>선택</span>
+                                        <button class="invite-button">초대</button>
+                                    </label>
+                                </li>
+                                <li>
+                                    <p>오가람</p>
+                                    <label for="employee-name3" class="employee-name-box">
+                                        <input type="radio" name="employee-name" id="employee-name3">
+                                        <span>선택</span>
+                                        <button class="invite-button">초대</button>
+                                    </label>
+                                </li>
+                               
+                            </ul>
                         </div>
-                        <div class="message">
-                            어, 우주에서 왔어 마법사의 목걸이를 훔치러 왔어
+                        <div class="employee-group">
+                            <div class="employee-dropBox">
+                                <span>Director</span>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-director" ></i>
+                            </div>
+                    
+                        </div>
+                        <div class="employee-group">
+                            <div class="employee-dropBox">
+                                <span>Manager</span>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-manager" ></i>
+                            </div>
+                        </div>
+                        <div class="employee-group">
+                            <div class="employee-dropBox">
+                                <span>Senior</span>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-senior" ></i>
+                            </div>
+                        </div>
+                        <div class="employee-group">
+                            <div class="employee-dropBox">
+                                <span>Junior</span>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-junior" ></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact">
-                        <div class="pic banner"></div>
-                        <div class="badge">
-                            1
-                        </div>
-                        <div class="name">
-                            브루스 배너
-                        </div>
-                        <div class="message">
-                            Ant-Man 과 Spider-Man이 있습니까?
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <div class="pic thor"></div>
-                        <div class="name">
-                            토르 오딘슨
-                        </div>
-                        <div class="badge">
-                            3
-                        </div>
-                        <div class="message">
-                            난이게 좋아
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <div class="pic danvers"></div>
-                        <div class="badge">
-                            2
-                        </div>
-                        <div class="name">
-                            캐롤 댄버스
-                        </div>
-                        <div class="message">
-                            이봐 피터 파커, 나한테 줄거 있어?
-                        </div>
-                    </div>
+
                 </div>
                 <div class="chat">
                     <div class="contact bar">
@@ -354,21 +448,7 @@
                         <div class="time">
                             오늘 11:41
                         </div>
-                        <div class="message parker">
-                            안녕? 머해 토니 스타크&nbsp;👋
-                        </div>
-                        <div class="message stark">
-                            꼬마야 어디서 왔니?
-                        </div>
-                        <div class="message parker">
-                            소풍! 🤣
-                        </div>
-                        <div class="message parker">
-                            어, 이 사람의 문제가 무엇입니까, 스타크 씨? 🤔
-                        </div>
-                        <div class="message stark">
-                            어, 우주에서 왔어 마법사의 목걸이를 훔치러 왔어
-                        </div>
+
                         <div class="message stark">
                             <div class="typing typing-1"></div>
                             <div class="typing typing-2"></div>
@@ -376,8 +456,8 @@
                         </div>
                     </div>
                     <div class="input">
-                        <i class="fas fa-camera"></i><i class="far fa-laugh-beam"></i><input
-                            placeholder="Type your message here!" type="text"><i class="fa-solid fa-paper-plane"></i>
+                        <input id="chat-input" placeholder="Type your message here!" type="text">
+                        <i class="fa-solid fa-paper-plane" id="chat-submit"></i>
                     </div>
                 </div>
             </div>
