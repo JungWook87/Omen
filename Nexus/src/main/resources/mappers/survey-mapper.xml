@@ -30,7 +30,7 @@
 	</resultMap>
 	
 	<!-- 설문생성 -->
-	<insert id="createSurvey" parameterType="survey" useGeneratedKeys="true">
+	<insert id="createSurvey" parameterType="survey" useGeneratedKeys="true" keyProperty="surveyNo" >
 		<selectKey keyProperty="surveyNo" resultType="_int" order="BEFORE">
 			SELECT SEQ_SURVEY_NO.NEXTVAL FROM DUAL
 		</selectKey>
@@ -38,6 +38,7 @@
 		#{surveyNo}, #{surveyTopic}, #{surveyContent}, DEFAULT, #{end}
 		)
 	</insert>
+	
 	<!-- 지문생성 -->
 	<insert id="createResult" parameterType="surveyResult" >
 		INSERT INTO SURVEY_RESULT VALUES (
@@ -45,19 +46,21 @@
 		)
 	</insert>
 	
+	<!-- 설문수 총합 -->
 	<select id="totalCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM SURVEY
 	</select>
 	
+	<!-- 전체 설문 리스트 조회 -->
 	<select id="surveyList" parameterType="_int"  resultMap="surveyPreview_rm">
 		SELECT
 		  S.SURVEY_NO,
 		  TOPIC,
-		  TO_CHAR("START", 'YYYY-MM-DD') AS "START",
-		  TO_CHAR("END", 'YYYY-MM-DD') AS "END",
-		  COUNT(DISTINCT R.MEM_NO) AS RESP_MEMBER,
-		  (SELECT COUNT(*) FROM MEMBER) AS TOTAL_MEMBER,
+		  TO_CHAR("START", 'YYYY.MM.DD') AS "START",
+		  TO_CHAR("END", 'YYYY.MM.DD') AS "END",
+		  COUNT(DISTINCT R.MEM_NO)-1 AS RESP_MEMBER,
+		  (SELECT COUNT(*) FROM MEMBER)-1 AS TOTAL_MEMBER,
 		  CASE WHEN EXISTS (
 		    SELECT 1
 		    FROM SURVEY_RESULT
@@ -68,4 +71,51 @@
 		LEFT JOIN SURVEY_RESULT R ON S.SURVEY_NO = R.SURVEY_NO
 		GROUP BY S.SURVEY_NO, TOPIC, "START", "END"
 	</select>
+	
+	<!-- 설문디테일조회 -->
+	<select id="surveyDetail" parameterType="_int" resultMap="survey_rm">
+		SELECT SURVEY_NO, TOPIC, CONTENT, 
+		  TO_CHAR("START", 'YYYY.MM.DD') AS "START",
+		  TO_CHAR("END", 'YYYY.MM.DD') AS "END"
+		FROM SURVEY s
+		WHERE SURVEY_NO = #{surveyNo}
+	</select>
+	<!-- 지문리스트조회 -->
+	<select id="surveyResultList" parameterType="_int" resultMap="surveyResult_rm">
+		SELECT SURVEY_NO, MEM_NO, MEM_NAME QUESTION, OPTION_NO, OPTION_ANNOTATION
+		FROM SURVEY_RESULT
+		JOIN MEMBER USING (MEM_NO)
+		WHERE SURVEY_NO = #{surveyNo} AND MEM_NO = 0
+		ORDER BY OPTION_NO ASC
+	</select>
+	
+	<!-- 설문참여 -->
+	<insert id="surveyParticipate" parameterType="surveyResult">
+		INSERT INTO SURVEY_RESULT VALUES (
+		#{surveyNo}, #{memNo}, DEFAULT, #{optionNo}, DEFAULT )		
+	</insert>
+	
+	<!-- 전체 멤버 수 조회 -->
+	<select id="totalMember" resultType="_int">
+		SELECT COUNT(*)-1 AS TOTAL_MEMBER
+		FROM MEMBER 
+	</select>
+	
+	<!-- 응답 인원 수 조회 -->
+	<select id="respMember" parameterType="_int" resultType="_int">
+		SELECT COUNT(DISTINCT R.MEM_NO)-1 AS RESP_MEMBER
+		FROM SURVEY S
+		LEFT JOIN SURVEY_RESULT R ON S.SURVEY_NO = R.SURVEY_NO
+		WHERE S.SURVEY_NO = #{surveyNo}	
+	</select>
+	
+	<!-- 옵션별 참여인원 조회 -->
+	<select id="optionMemberCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(DISTINCT MEM_NO)-1
+		FROM SURVEY_RESULT
+		WHERE SURVEY_NO = #{surveyNo}
+		GROUP BY OPTION_NO
+		ORDER BY OPTION_NO ASC
+	</select>	
+	
 </mapper>

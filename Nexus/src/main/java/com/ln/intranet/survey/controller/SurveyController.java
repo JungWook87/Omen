@@ -1,15 +1,20 @@
 package com.ln.intranet.survey.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +33,8 @@ public class SurveyController {
 	
 	@Autowired
 	private SurveyService service;
+	
+	private Logger logger = LoggerFactory.getLogger(SurveyController.class);
 	
 	// 설문 목록 조회
 	@GetMapping("surveyList")
@@ -50,7 +57,7 @@ public class SurveyController {
 		
 	}
 	
-	
+	// 설문 생성/관리창
 	@GetMapping("surveyManage")
 	public String surveyManage(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
@@ -58,12 +65,29 @@ public class SurveyController {
 			HttpSession session
 			) {
 		
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		int memNo = loginMember.getMemNo();
+		
+		Map<String,Object> map = null;
+		
+		map = service.surveyList(cp,memNo);
+		
+		model.addAttribute("map",map);
+		
 		return "/survey/survey-manage";
 
 	}
 	
 	@GetMapping("/surveyDetail/{surveyNo}")
-	public String surveyDetail(@PathVariable("surveyNo") int surveyNo) {
+	public String surveyDetail(
+			@PathVariable("surveyNo") int surveyNo,
+			Model model) {
+		
+		Map<String,Object> map =  new HashMap<String,Object>();
+		
+		map = service.surveyDetail(surveyNo);
+		
+		model.addAttribute("map",map);
 		
 		return "survey/survey-detail";
 	}
@@ -98,10 +122,12 @@ public class SurveyController {
         for (int i = 0; i < optionList.size(); i++) {
        
             SurveyResult surveyResult = new SurveyResult();     
-		    //관리자 넘버로 지문생성
+		
+            //관리자 넘버로 지문생성
 		    surveyResult.setMemNo(0); 
 		    surveyResult.setQuestion(question); 
-            String option = optionList.get(i);
+            
+		    String option = optionList.get(i);
             surveyResult.setOptionNo(i + 1); 
             surveyResult.setOptionAnnotation(option); 
             
@@ -109,8 +135,45 @@ public class SurveyController {
         }
         
         int result = service.createSurvey(survey,resultList);
+        
+        // 예외처리 필요
 
 		return "redirect:/survey/surveyList";
+	}
+	
+	// 설문참여
+	@PostMapping("/surveyParticipate")
+	public String surveyParticipate(
+			@RequestParam("surveyNo") int surveyNo, 
+			@RequestParam("radioInput") int radio,
+			@ModelAttribute("loginMember") Member loginMember
+			) {
+		
+		SurveyResult surveyResult = new SurveyResult();
+		
+		surveyResult.setSurveyNo(surveyNo);
+		surveyResult.setOptionNo(radio);
+		surveyResult.setMemNo(loginMember.getMemNo());
+		
+		int result = service.surveyParticipate(surveyResult);
+		
+		return "redirect:/survey/surveyList";
+	}
+	
+	// 설문결과창
+	@GetMapping("/surveyResult/{surveyNo}")
+	public String surveyResult(
+			@PathVariable("surveyNo") int surveyNo,
+			Model model
+			) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map = service.surveyTotal(surveyNo);
+		
+		model.addAttribute("map",map);
+		
+		return "/survey/survey-result";
 	}
 
 }

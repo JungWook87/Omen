@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
+<c:set var="pagination" value="${map.pagination}" />
+<c:set var="surveyList" value="${map.surveyList}" />
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,15 +78,27 @@
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td id="status-color">진행중</td>
-                        <td>파이널 프로젝트 목업 디자인에 관한 설문</td>
-                        <td>23.05.25</td>
-                        <td id="clip"></td>
-                        <td>1/4</td>
-                        <td><button id="survey-result-btn">결과 보기</button></td>                                
-                        <td> 삭제 </td>
-                    </tr>
+                    <c:choose>
+                      <c:when test="${empty surveyList}">
+                          <tr>
+                              <th colspan="6">설문이 존재하지 않습니다.</th>
+                          </tr>
+                      </c:when>
+                      
+                      <c:otherwise>
+                          <c:forEach var="survey" items="${surveyList}">
+                              <tr>
+                                  <td id="status-color">${survey.end}</td>
+                                  <td>${survey.surveyTopic}</td>
+                                  <td>${survey.start}</td>
+                                  <td id="clip"></td>
+                                  <td>${survey.respMember}/${survey.totalMember}</td>
+                                  <td><a id="survey-result-btn" href="../survey/surveyResult/${survey.surveyNo}">결과 보기</a></td>                                
+                                  <td> 삭제 </td>
+                              </tr>
+                          </c:forEach>
+                      </c:otherwise>
+                    </c:choose>
                     </tbody>
                 </table>
             </div>
