@@ -18,20 +18,48 @@
 		<id property="memNo" column="MEM_NO" />
 		<id property="mContent" column="M_CONTENT" />
 		<id property="mDate" column="M_DATE" />
+		<id property="memberNick" column="MEMBER_NICK" />
 		
 	</resultMap>
 	
 
 
-
-	<select id="selectChatRoomList">
+<!-- 채팅방 리스트 조회 -->
+	<select id="selectChatRoomList" resultMap="chatroom_rm">
 		SELECT *
-		FROM CHATROOM
-		JOIN CHATROOM_JOIN USING (CM_NO)
-		WHERE MEM_NO = #{memNo}
-		AND STATUS = 'N'
-		ORDER BY STATUS, CM_NO
+		FROM CHAT_ROOM
+		JOIN CHAT_ROOM_JOIN USING (CM_NO)
+		WHERE CHAT_ROOM_JOIN.MEM_NO = #{memNo}
+		AND STATUS = 'Y'
+		ORDER BY CM_NO
 	</select>
+	
+<!-- 채팅 메세지 목록 조회 -->
+	<select id="selectChatMessageList" resultMap="message_rm">
+	 	SELECT M_NO,M_CONTENT, M_DATE, MEMBER_NICK, CM_NO
+		FROM MESSAGE
+		JOIN MEMBER USING (MEM_NO);
+		WHERE CM_NO = ${cmNo}
+		ORDER BY M_NO
+	</select>
+	
+	<insert id="insertMessage">
+		INSERT INTO MESSAGE VALUES(
+		SEQ_CM_NO.NEXTVAL, #{cmNo}, #{memNo}, #{mContent}, DEFAULT, #{memberNick}
+		)
+	</insert>
+	
+	<insert id="CreateChatRoom" parameterType="chatroom_rm" useGeneratedKeys="true">
+	    <selectKey keyProperty="cmNo" resultType="_int" order="BEFORE">
+	        SELECT SEQ_CR_NO.NEXTVAL FROM DUAL
+	    </selectKey>
+	    INSERT INTO CHAT_ROOM_JOIN VALUES(#{memNo}, #{cmNo})
+	</insert>
+	
+		<insert id="inviteMember">
+		INSERT INTO CHAT_ROOM_JOIN VALUES(#{memNo}, #{cmNo})
+	</insert>
+	
 	
 	
 

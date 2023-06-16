@@ -1,5 +1,7 @@
 package com.ln.intranet.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,10 @@ public class MemberDAO {
 		Member loginMember = sqlSession.selectOne("memberMapper.login",inputMember);
 		
 		return loginMember;
+	}
+	
+	public List<Member> selectChatMemberList() {
+		return sqlSession.selectList("memberMapper.selectChatMember");
 	}
 
 }

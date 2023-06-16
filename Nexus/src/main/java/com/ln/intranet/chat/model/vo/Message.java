@@ -16,5 +16,6 @@ public class Message {
 	private int memNo;
 	private String mContent;
 	private Date mDate;
+	private String memberNick;
 	
 }

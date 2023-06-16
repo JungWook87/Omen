@@ -37,5 +37,13 @@
 		AND SECESSION = 'N'
 	</select>
 	
+		
+	<select id="selectChatMember" parameterType="member" resultMap="member_rm">
+		SELECT JOB_NO, JOB_NAME, TEAM_NO, MEM_NAME FROM MEMBER
+		ORDER BY DEPT_NO DESC
+		
+	</select>
+	
+	
 	
 </mapper>
