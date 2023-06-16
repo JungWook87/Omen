@@ -9,8 +9,8 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  height: 100%;
   min-width: 80px;
+  height: 100%;
   background-color: var(--side);
 
 }
@@ -20,63 +20,6 @@ section {
   padding: 0;
 }
 
-/* 사이드바 반응형 테스트 */
-
-.side-bar a {
-  
-  display: block;
-  opacity: 1;
-}
-
-.side-bar ::before{
-  font-family: 'Material Icons';
-  font-size: 1.5em;
-  float: left;
-  clear: left;
-  text-align: center;
-  padding: 25px;
-}
-
-#expand-menu { /* 체크박스 폼 요소 감춤 */
-  display: none;
-}
-#expand-menu:checked ~ ul { /*체크박스 체크되었으면 메뉴 목록 표시 - 반응형 표시용*/
-  display: block;
-  height: auto;
-}
-
-
-
-@media screen and (max-width:1500px) {
- 
-   /* 1단계 */
-  .side-bar label::before{ content: '\e5d2'; }
-  .side-bar li:nth-child(1) a::before{ content: '\f02e'; } 
-  .side-bar li:nth-child(2) a::before{ content: '\e8d6'; }
-  .side-bar li:nth-child(3) a::before{ content: '\e88a'; }
-  .side-bar li:nth-child(4) a::before{ content: '\e8cc'; }
-  .side-bar li:nth-child(5) a::before{ content: '\e87d'; }
-  .side-bar li:nth-child(6) a::before{ content: '\e8b8'; } 
-
-  .side-bar li a span {display: none;}
-
-  .side-bar { 
-    
-    width: 80px;
-    background-color: var(--primary500);
-    overflow: hidden; /* 반응형 애니메이션용 */
-    transition: all 3s ease; /* 반응형 애니메이션 */
-    
-  }
-
-}
-/* 2단계 */
-@media screen and (max-width:1100px) {
-  .side-bar #expand-menu:not(:checked) ~ ul { 
-      /* display: none; */
-  }
-
-}
 
 /* 사이드바 제목 스타일 */
 .side-bar h1 {
@@ -95,125 +38,71 @@ section {
   list-style: none;
 
 }
-
-.side-bar li>a {
-  padding-left: 40px;
+/* 사이드바 (모바일버전) */
+.mobile {
+  display: none;
 }
 
+/* 사이드바 (데스크탑 버전) */
+.desktop a{
 
-/* 사이드바 선택 되었을때 스타일 */
-/* FIXME:아래 주석처리 되어 있는 코드를 바꿔서 현재페이지에 맞게 지정 해주면 될것 */
-/* .side-bar li:nth-child(2) {   
-  border-left: 10px solid var(--primary500);
-
-  background-color: rgb(230, 232, 236, 50%);
-  
-}
-
-.side-bar li:first-child>a:first-child>span:first-child {
-
-  color: var(--primary400);
-}
-
-.side-bar li:first-child>a:first-child {
-  padding-left: 30px;
-}
-*/
-/* 사이드바 메뉴 선택부분이 두번째 이상일때 */
-/* .side-bar li:nth-child(2)>a:first-child>span:first-child {
-
-  color: var(--primary400);
-}
-
-.side-bar li:nth-child(2)>a:first-child {
-  padding-left: 30px;
-} */
-
-
-/* 사이드바 호버 스타일 시작 ------------------------------*/
-
-*,
-*:after,
-*:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-a:hover,
-a:focus {
-  outline: none;
-}
-
-.side-bar a span {
-  display: block;
-  padding: 7px 15px;
-  text-transform: uppercase;
-  /* text-align: center; */
-  transition: all 0.5s ease 0s;
-}
-
-.side-bar a:hover span {
-  color: var(--primary600);
-}
-
-.side-bar a:before,
-.side-bar a:after,
-.side-bar a span:before,
-.side-bar a span:after {
-  content: "";
-  width: 25%;
-  height: 100%;
-  border-radius: 30px;
-  /* border: 1px solid var(--primary500); */
-  border-left: none;
-  border-right: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.3s ease 0s;
-  background-color: rgb(230, 232, 236, 50%);
-
-}
-
-.side-bar a:after {
-  left: 25%;
-}
-
-.side-bar a span:before {
-  left: 50%;
-}
-
-.side-bar a span:after {
-  left: 75%;
-}
-
-.side-bar a:hover:before,
-.side-bar a:hover:after,
-.side-bar a:hover span:before,
-.side-bar a:hover span:after {
-  border-radius: 0;
-  opacity: 1;
-  transform: scale(1);
-}
-
-
-
-.menu a {
   color: var(--black);
-
   padding: 15px 0 5px 55px;
-
-
   font-size: 24px;
-
   position: relative;
   display: block;
   text-decoration: none;
   text-transform: uppercase;
 }
+
+/* 사이드바 미디어쿼리 */
+@media screen and (max-width:1500px) {
+
+   /* 1단계 */
+  .side-bar{
+    width: 110px;
+    background-color: var(--gray200);
+    transition: all 3s ease-in-out; /* 반응형 애니메이션 */
+
+  }
+
+  .desktop{display: none;}
+
+  .mobile {
+      display: block;
+      width: 80px;
+      background-color: var(--gray100);
+      border-radius: 5px;
+      margin-top: 20%;
+      padding-top: 30%;
+      padding-bottom: 30%;
+      overflow: hidden; /* 반응형 애니메이션용 */
+      transition: all 3s ease ease-in-out; /* 반응형 애니메이션 */
+      font-size: xx-large;
+  }
+  .mobile ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  }
+  .mobile a{
+      display: block;
+      text-align: center;
+      margin-top: 20%;
+      cursor: pointer;
+      color: #151515;
+  }
+
+
+}
+/* 2단계 */
+@media screen and (max-width:1100px) {
+  .mobile #expand-menu:not(:checked) ~ ul { 
+      display: none;
+  }
+
+}
+
 
 /* 사이드바 호버 스타일 끝 ------------------------------*/
 
