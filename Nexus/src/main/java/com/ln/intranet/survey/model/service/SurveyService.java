@@ -12,4 +12,10 @@ public interface SurveyService {
 
 	Map<String, Object> surveyList(int cp, int memNo);
 
+	Map<String, Object> surveyDetail(int surveyNo);
+
+	int surveyParticipate(SurveyResult surveyResult);
+
+	Map<String, Object> surveyTotal(int surveyNo);
+
 }

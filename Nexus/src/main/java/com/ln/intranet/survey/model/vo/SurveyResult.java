@@ -17,5 +17,4 @@ public class SurveyResult {
 	private String question;
 	private int optionNo;
 	private String optionAnnotation;
-	
 }

@@ -3,6 +3,8 @@
 
 <c:set var="survey" value="${map.survey}" />
 <c:set var="surveyResultList" value="${map.surveyResultList}" />
+<c:set var="optionMemberCount" value="${map.optionMemberCount}" />
+<c:set var="respMember" value="${map.respMember}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +16,7 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-detail.css ">
+  <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-result.css ">
     <!-- sweetAlert2 cdn -->
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -26,7 +28,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>설문 - 설문세부사항조회</title>
+    <title>설문 - 설문 결과</title>
 </head>
 
 <body>
@@ -46,32 +48,38 @@
 	      </ul>
 	    </div>
 
+		
         <!-- 컨텐츠 내용 -->
         <div class="content-all-page">
 
             <!-- 윗부분 -->
-            <div class="survey-create-top">
+           <div class="survey-result-top">
                 <h1>${survey.surveyTopic}</h1>
                 <span>${survey.surveyContent}</span>
+                <br>
+                <br>
             </div>
 
             <!-- 가운데 -->
-            <form action="../surveyParticipate" method="post">
-            <div class="survey-create-content">
-                <input type="hidden" name="surveyNo" value="${survey.surveyNo}">
-            	<span>질문 : ${surveyResultList[0].question}</span>
+            <div class="survey-result-content">
+            	<span>질문 : ${surveyResultList[0].question}</span> <br> <br>
                 <c:forEach var="surveyResult" items="${surveyResultList}">
-                    <div>
-                        <input name="radioInput" type="radio" value="${surveyResult.optionNo}" ><span>${surveyResult.optionAnnotation}</span>
-                    </div>
+					<input id="${surveyResult.optionNo}" type="hidden" value="${surveyResult.optionAnnotation}">
                 </c:forEach>
+                <div id="survey-result-content-detail">
+		            <c:forEach var="optionMemberCount" items="${optionMemberCount}">
+		                <span></span>
+		                <span>${optionMemberCount} 명 참여</span>
+						<progress value="${optionMemberCount}" max="${respMember}"></progress>
+		            </c:forEach>                
+                </div>
             </div>
+
             <!-- 아래 취소 저장 부분 -->
-            <div class="survey-create-bottom">
-                <button type="button" id="survey-create-bottom-cancle">목록으로</button>
-                <button type="submit" id="survey-create-bottom-submit">제출하기</button>
+            <div class="survey-result-bottom">
+                <button type=button id="survey-result-bottom-cancle">목록으로</button>
             </div>
-            </form>
+
 
         </div>
 
@@ -86,7 +94,7 @@
     </section>
 
 
-    <script src="${contextPath}/resources/js/survey/survey-detail.js"></script>
+    <script src="${contextPath}/resources/js/survey/survey-result.js"></script>
 
 </body>
 
