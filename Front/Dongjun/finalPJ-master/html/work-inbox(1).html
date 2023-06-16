@@ -13,6 +13,9 @@
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
+
   <!-- 날짜조회api-->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -38,12 +41,27 @@
       </div>
 
       <!-- 페이지마다 바뀌는 부제목 -->
-      <ul>
-        <li><a href="work-inbox(1).html"><span>결재할문서</span> </a></li>
-        <li><a href="work-inbox-ing(2).html"><span>결재진행중</span> </a></li>
-        <li><a href="work-inbox-end(3).html"><span>결재완료</span> </a></li>
-        <li><a href="work-inbox-cancle(4).html"><span>결재취소</span> </a></li>
-      </ul>
+      <div class="desktop">
+
+        <ul>
+          <li><a href="work-inbox(1).html"><span>결재할문서</span> </a></li>
+          <li><a href="work-inbox-ing(2).html"><span>결재진행중</span> </a></li>
+          <li><a href="work-inbox-end(3).html"><span>결재완료</span> </a></li>
+          <li><a href="work-inbox-cancle(4).html"><span>결재취소</span> </a></li>
+        </ul>
+
+      </div>
+      
+      <div class="mobile">
+        
+        <ul>
+            <li><a href="#" class="item"><i class="fa-sharp fa-solid fa-file-export"></i></a></li>
+            <li><a href="#" class="item"><div><i class="fa-solid fa-box"></i></div></a></li>
+            <li><a href="#" class="item"><i class="fa-solid fa-floppy-disk"></i></a></li>
+            <li><a href="#" class="item"><i class="fa-solid fa-download"></i></i></a></li>
+        </ul>
+      </div>
+
     </div>
 
     <!-- 컨텐츠 내용 -->
@@ -129,11 +147,6 @@
               <p>제목</p>
               <input type="text" placeholder="제목을 입력해주세요" required>
             </div>
-            <!-- 출장지 -->
-            <div class="work-modal-businessArea">
-              <p>출장지</p>
-              <input type="text">
-            </div>
             <!-- 시작날짜 -->
             <div class="work-modal-startDate">
               <p>시작날짜</p>
@@ -170,6 +183,12 @@
                 <input type="text">
               </div>
             <!-- 결재자 -->
+            <div class ="work-modal-approverBox">
+              <span id="pulsApprover">
+                <img src="../images/plus.png" alt="">
+                결재자 추가
+              </span>  
+            </div>
             <div class="work-modal-approver">
               <p>결재자</p>
               <input type="text">
@@ -194,8 +213,110 @@
               <button id="success-btn">확인</button>
             </div>
             <!-- </form> -->
+
+            
           </div>
         </div>
+        
+        <!-- 결재자 추가 모달창 -->
+        <div id="approver-modal-wrap">
+          <div class="approver-modal-Body">
+            <span id="approver-closeBtn">
+              <img src="../images/Xbtn.png" alt="">
+            </span>
+            <h1>결재 라인 설정</h1>
+            <!-- 선1 -->
+            <div class="approver-modal-line1"></div>
+
+            <div class="approver-modal-container">
+
+
+              <div id="approver-box">
+
+                <ul class="M01">
+            
+                    <li><p href="#">임원</p>
+            
+                        <ul class="M02">
+            
+                            <li><p href="#">대표이사<input type="radio" name="appprover-check" class="approver-checkBox" value="대표이사"></p></li>
+            
+                            <li><p href="#">전무이사<input type="radio" name="appprover-check" class="approver-checkBox" value="전무이사"></p></li>
+            
+                        </ul>
+            
+                    </li>
+            
+                    <li><p href="#">부서</p>
+            
+                        <ul class="M02 dept">
+            
+                            <li><p href="#">관리기획부</p>
+            
+                                <ul class="M03">
+            
+                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
+            
+                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
+            
+                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
+            
+                                </ul>
+            
+                            </li>
+            
+                            <li><p href="#">인사총무팀</p>
+            
+                                <ul class="M03">
+            
+                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
+            
+                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
+            
+                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
+            
+                                </ul>
+            
+                            </li>
+            
+                            <li><p href="#">기술영업팀</p>
+            
+                                <ul class="M03">
+            
+                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
+            
+                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
+            
+                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
+            
+                                </ul>
+            
+                            </li>
+            
+                        </ul>
+            
+                    </li>
+            
+            
+                </ul>
+            
+              </div>
+
+            </div>
+
+
+            <!-- 선2 -->
+            <div class="approver-modal-line2"></div>
+            <!-- 버튼 -->
+            <div class="approver-submit-reset-btns">
+              <button type="reset" id="approver-cancell-btn">취소</button>
+              <button id="approver-success-btn">확인</button>
+            </div>
+            <!-- </form> -->
+          </div>
+        </div>
+
+      </div>
 
         <div class="content-all-bottom-area-content">
 

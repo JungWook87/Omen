@@ -14,6 +14,9 @@
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
+
   <!-- 날짜조회api-->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -28,18 +31,33 @@
   <header style="height: 90px;"></header>
   <section>
 
-    <!-- 사이드 바 -->
-    <div class="side-bar menu">
+   <!-- 사이드 바 -->
+   <div class="side-bar menu">
+
+    <div class="desktop">
       <!-- 페이지마다 바뀌는 제목 -->
-      <h1>임시저장</h1>
+      <h1>결재</h1>
+      
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
         <li><a href="work-send.html"><span>상신함</span> </a></li>
         <li><a href="work-inbox(1).html"><span>수신함</span> </a></li>
-        <li><a href="work-temporaryStorage.html"><span>임시저장</span> </a></li>
+        <li><a href="work-temp.html"><span>임시저장</span> </a></li>
         <li><a href="work- template.html"><span>템플릿</span> </a></li>
       </ul>
     </div>
+    
+    <div class="mobile">
+      
+      <ul>
+          <li><a href="#" class="item"><i class="fa-sharp fa-solid fa-file-export"></i></a></li>
+          <li><a href="#" class="item"><div><i class="fa-solid fa-box"></i></div></a></li>
+          <li><a href="#" class="item"><i class="fa-solid fa-floppy-disk"></i></a></li>
+          <li><a href="#" class="item"><i class="fa-solid fa-download"></i></i></a></li>
+      </ul>
+    </div>
+
+  </div>
 
     <!-- 컨텐츠 내용 -->
     <div class="content-all-page">
