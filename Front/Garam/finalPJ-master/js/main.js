@@ -381,3 +381,9 @@ function getEvents() {
   }
   eventsArr.push(...JSON.parse(localStorage.getItem("events")));
 }
+
+
+
+
+
+
