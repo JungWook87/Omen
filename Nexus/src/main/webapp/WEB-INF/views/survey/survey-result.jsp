@@ -43,8 +43,8 @@
 	
 	      <!-- 페이지마다 바뀌는 부제목 -->
 	      <ul>
-	        <li><a href="surveyList"><span>설문 리스트</span> </a></li>
-	        <li><a href="surveyManage"><span>설문 생성/관리</span> </a></li>
+	        <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+	        <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
 	      </ul>
 	    </div>
 
@@ -62,15 +62,19 @@
 
             <!-- 가운데 -->
             <div class="survey-result-content">
-            	<span>질문 : ${surveyResultList[0].question}</span> <br> <br>
-                <c:forEach var="surveyResult" items="${surveyResultList}">
-					<input id="${surveyResult.optionNo}" type="hidden" value="${surveyResult.optionAnnotation}">
-                </c:forEach>
+            	<span class="survey-question">질문 : ${surveyResultList[0].question}</span>
+                <span class="survey-respMember">전체응답 : ${respMember}명</span>
                 <div id="survey-result-content-detail">
-		            <c:forEach var="optionMemberCount" items="${optionMemberCount}">
-		                <span></span>
-		                <span>${optionMemberCount} 명 참여</span>
-						<progress value="${optionMemberCount}" max="${respMember}"></progress>
+		            <c:forEach var="surveyResult" items="${surveyResultList}">
+                        <div id="result-box">
+                            <div id="result-span-box">
+                                <span>${surveyResult.optionAnnotation} - </span>
+                                <span>${surveyResult.optionMemberCount}명</span>   
+                            </div>
+                            <div>
+                                <progress class="progress" id="progressBar" value="${surveyResult.optionMemberCount}" max="${respMember}"></progress>
+                            </div>
+                        </div>
 		            </c:forEach>                
                 </div>
             </div>

@@ -49,7 +49,7 @@
 		)
 	</insert>
 	
-	<insert id="CreateChatRoom" parameterType="chatroom_rm" useGeneratedKeys="true">
+	<insert id="CreateChatRoom" parameterType="chatroom" useGeneratedKeys="true">
 	    <selectKey keyProperty="cmNo" resultType="_int" order="BEFORE">
 	        SELECT SEQ_CR_NO.NEXTVAL FROM DUAL
 	    </selectKey>

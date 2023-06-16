@@ -76,17 +76,13 @@ public class SurveyDAO {
 		Survey survey = sqlSession.selectOne("surveyMapper.surveyDetail",surveyNo);
 		map.put("survey",survey);
 		
-		// 지문 리스트 map에 담기
+		// 지문 리스트 + 투표인원 map에 담기
 		List<SurveyResult> surveyResultList = sqlSession.selectList("surveyMapper.surveyResultList",surveyNo);
 		map.put("surveyResultList", surveyResultList);
 		
-		// 지문별 인원수 map에 담기
-		List<Integer> optionMemberCount = sqlSession.selectList("surveyMapper.optionMemberCount",surveyNo);
-		map.put("optionMemberCount", optionMemberCount);
-		
 		// 전체 멤버 수 map에 담기
  		int respMember = sqlSession.selectOne("surveyMapper.respMember",surveyNo);
- 		map.put("totalMember", respMember);
+ 		map.put("respMember", respMember);
 		
 		return map;
 	}

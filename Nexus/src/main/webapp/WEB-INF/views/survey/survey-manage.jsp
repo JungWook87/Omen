@@ -37,8 +37,8 @@
 
       <!-- 페이지마다 바뀌는 부제목 -->
       <ul>
-        <li><a href="surveyList"><span>설문 리스트</span> </a></li>
-        <li><a href="surveyManage"><span>설문 생성/관리</span> </a></li>
+        <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+        <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
       </ul>
     </div>
 
