@@ -618,5 +618,3 @@ checkSuccessBtn.addEventListener('click', function() {
   }
 });
 
-
-// 사이드바 테스트

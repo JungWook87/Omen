@@ -32,6 +32,22 @@ section {
   color: var(--black);
 }
 
+.desktop li:nth-child(1) {
+  border-left: 10px solid var(--primary500);
+
+  background-color: rgb(230, 232, 236, 50%);
+
+}
+
+.desktop li:first-child>a:first-child>span:first-child {
+
+  color: var(--primary400);
+}
+
+.desktop li:first-child>a:first-child {
+  padding-left: 30px;
+}
+
 
 /* 사이드바 부제목 스타일 */
 .side-bar li {
@@ -61,8 +77,8 @@ section {
    /* 1단계 */
   .side-bar{
     width: 110px;
-    background-color: var(--gray200);
-    transition: all 3s ease-in-out; /* 반응형 애니메이션 */
+    background-color: var(--gray100);
+    transition: all 2s ease-in-out; /* 반응형 애니메이션 */
 
   }
 
@@ -71,13 +87,13 @@ section {
   .mobile {
       display: block;
       width: 80px;
-      background-color: var(--gray100);
+      background-color: var(--gray50);
       border-radius: 5px;
       margin-top: 20%;
       padding-top: 30%;
       padding-bottom: 30%;
       overflow: hidden; /* 반응형 애니메이션용 */
-      transition: all 3s ease ease-in-out; /* 반응형 애니메이션 */
+      transition: all 2s ease ease-in-out; /* 반응형 애니메이션 */
       font-size: xx-large;
   }
   .mobile ul {
@@ -90,21 +106,106 @@ section {
       text-align: center;
       margin-top: 20%;
       cursor: pointer;
-      color: #151515;
+      color: var(--primary500)
   }
 
+  .mobile li{
+  margin-bottom: 50%;
+  }
 
 }
 /* 2단계 */
 @media screen and (max-width:1100px) {
-  .mobile #expand-menu:not(:checked) ~ ul { 
+  .side-bar { 
       display: none;
   }
 
 }
 
-
 /* 사이드바 호버 스타일 끝 ------------------------------*/
+
+a:hover,
+a:focus {
+  outline: none;
+}
+
+.desktop a span {
+  display: block;
+  padding: 7px 15px;
+  text-transform: uppercase;
+  /* text-align: center; */
+  transition: all 0.5s ease 0s;
+}
+
+.side-bar a:hover span {
+  color: var(--primary600);
+}
+
+.desktop a:before,
+.desktop a:after,
+.desktop a span:before,
+.desktop a span:after {
+  content: "";
+  width: 25%;
+  height: 100%;
+  border-radius: 30px;
+  /* border: 1px solid var(--primary500); */
+  border-left: none;
+  border-right: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease 0s;
+  background-color: rgb(230, 232, 236, 50%);
+
+}
+
+.desktop a:after {
+  left: 25%;
+}
+
+.desktop a span:before {
+  left: 50%;
+}
+
+.desktop a span:after {
+  left: 75%;
+}
+
+.desktop a:hover:before,
+.desktop a:hover:after,
+.desktop a:hover span:before,
+.desktop a:hover span:after {
+  border-radius: 0;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 사이드 바 호버 (모바일)*/
+.mobile ul li:nth-of-type(1):hover::after{
+  content: "상신함";
+  font-size: medium;
+  float: right;
+}
+.mobile ul li:nth-of-type(2):hover::after{
+  content: "수신함";
+  font-size: medium;
+  float: right;
+}
+.mobile ul li:nth-of-type(3):hover::after{
+  content: "임시저장";
+  font-size: medium;
+  float: right;
+}
+.mobile ul li:nth-of-type(4):hover::after{
+  content: "템플릿";
+  font-size: medium;
+  float: right;
+}
+
+/* ---------------------------------------------- */
 
 /* 컨텐츠 영역 전체 */
 .content-all-page {

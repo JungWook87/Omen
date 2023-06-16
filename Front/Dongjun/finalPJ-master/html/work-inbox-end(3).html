@@ -13,6 +13,9 @@
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
+
   <!-- 날짜조회api-->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -35,15 +38,29 @@
             <img src="../images/leftArrow.png" alt="">
           </a>
         <h1>수신함</h1>
-      </div>
+        </div>
 
-      <!-- 페이지마다 바뀌는 부제목 -->
-      <ul>
-        <li><a href="work-inbox(1).html"><span>결재할문서</span> </a></li>
-        <li><a href="work-inbox-ing(2).html"><span>결재진행중</span> </a></li>
-        <li><a href="work-inbox-end(3).html"><span>결재완료</span> </a></li>
-        <li><a href="work-inbox-cancle(4).html"><span>결재취소</span> </a></li>
-      </ul>
+        <!-- 페이지마다 바뀌는 부제목 -->
+        <div class="desktop">
+          <ul>
+            <li><a href="work-inbox(1).html"><span>결재할문서</span> </a></li>
+            <li><a href="work-inbox-ing(2).html"><span>결재진행중</span> </a></li>
+            <li><a href="work-inbox-end(3).html"><span>결재완료</span> </a></li>
+            <li><a href="work-inbox-cancle(4).html"><span>결재취소</span> </a></li>
+          </ul>
+          
+        </div>
+        
+        <div class="mobile">
+          
+          <ul>
+              <li><a href="#" class="item"><i class="fa-sharp fa-solid fa-file-export"></i></a></li>
+              <li><a href="#" class="item"><div><i class="fa-solid fa-box"></i></div></a></li>
+              <li><a href="#" class="item"><i class="fa-solid fa-floppy-disk"></i></a></li>
+              <li><a href="#" class="item"><i class="fa-solid fa-download"></i></i></a></li>
+          </ul>
+        </div>
+
     </div>
 
     <!-- 컨텐츠 내용 -->
