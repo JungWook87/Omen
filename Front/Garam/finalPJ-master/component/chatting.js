@@ -2,6 +2,7 @@ var chat = document.getElementById('chat');
 
 const chatOpen = document.getElementById("chatting-function"),
       chatClose = document.getElementById("close");
+      
 
 // 채팅창 오픈 이벤트
 chatOpen.addEventListener('click', () => {
@@ -151,13 +152,18 @@ friendsList.addEventListener('click', () => {
 })
 
 employeeList.addEventListener('click', () => {
+  employeeListChange();
+})
+
+// 채팅화면으로 전환
+function employeeListChange() {
   contactArea.style.display = 'block';
   employeeArea.style.display = 'none';
   contactH2.innerText = '채팅'
   employeeList.style.display = 'none';
   friendsList.style.display = 'block';
   contactHeader.style.padding = '0.1rem 0 1rem 0';
-})
+}
 
 // 직원목록 드랍박스 
 const employeeDropBox = document.querySelectorAll(".employee-dropBox"),
@@ -208,7 +214,24 @@ employeeNameBoxes.forEach((nameBox) => {
   });
 });
 
+// 초대 버튼 눌렀을때
+const inviteButton = document.querySelectorAll(".invite-button");
 
+inviteButton.forEach((button) => {
+  button.addEventListener("click", () => {
+    employeeListChange();
+    contactArea.innerHTML += `
+      <div class="contact contact-hover">
+        <div class="name">
+          캐롤 댄버스
+        </div>
+        <div class="message">
+          이봐 피터 파커, 나한테 줄거 있어?
+        </div>
+      </div>
+    `;
+  });
+});
 
 
 

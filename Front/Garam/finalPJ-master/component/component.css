@@ -996,12 +996,25 @@ option {
 }
 
 .employee-name-box input[type="radio"]:checked + span {
-    background-color: #FFC759;
+    /* background-color: #FFC759; */
     color: white !important;
 }
 
 .employee-name-box .invite-button {
     display: none;
+    padding: 6px 10px;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    background-color: white;
+    color: var(--green);
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.invite-button:hover {
+    background-color: var(--green);
+    color: white;
 }
 
 .employee-name-box input[type="radio"]:checked + .invite-button {
