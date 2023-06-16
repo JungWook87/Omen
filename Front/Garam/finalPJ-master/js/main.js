@@ -199,33 +199,6 @@ function nextMonth() {
 prev.addEventListener("click", prevMonth);
 next.addEventListener("click", nextMonth)
 
-todayBtn2.addEventListener("click", () => {
-  today = new Date();
-  month = today.getMonth();
-  year = today.getFullYear();
-  initCalendar();
-});
-
-dateInput.addEventListener("input", (e) => {
-  
-  dateInput.value = dateInput.value.replace(/[^0-9/]/g, "");
-  if(dateInput.value.length === 2) {
-    dateInput.value += "/";
-  }
-  
-  if(dateInput.value.length > 7) {
-    dateInput.value = dateInput.value.slice(0, 7);
-  }
-
-  if(e.inputType === "deleteContentBackward") {
-    if(dateInput.value.length === 3) {
-      dateInput.value = dateInput.value.slice(0, 2);
-    }
-  }
-});
-
-gotoBtn.addEventListener("click", gotoDate);
-
 function gotoDate() {
   
   const dateArr = dateInput.value.split("/");
@@ -252,46 +225,8 @@ const addEventBtn = document.querySelector(".add-event"),
       addEventFrom = document.querySelector(".event-time-from"),
       addEventTo = document.querySelector(".event-time-to");
 
-addEventBtn.addEventListener("click", () => {
-  addEventContainer.classList.toggle("active");
-});
-
-addEventCloseBtn.addEventListener("click", () => {
-  addEventContainer.classList.remove("active");
-});
-
-document.addEventListener("click", (e) => {
-  if(e.target !== addEventBtn && !addEventContainer.contains(e.target)) {
-    addEventContainer.classList.remove("active");
-  }
-})
 
 
-addEventTitle.addEventListener("input", (e) => {
-  addEventTitle.value = addEventTitle.value.slice(0, 50);
-});
-
-addEventFrom.addEventListener("input", (e) => {
-  addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
-  if (addEventFrom.value.length === 2) {
-    addEventFrom.value += ":";
-  }
-  
-  if(addEventFrom.value.length > 5) {
-    addEventFrom.value = addEventFrom.value.slice(0, 5);
-  }
-});
-
-addEventTo.addEventListener("input", (e) => {
-  addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
-  if (addEventTo.value.length === 2) {
-    addEventTo.value += ":";
-  }
-  
-  if(addEventTo.value.length > 5) {
-    addEventTo.value = addEventTo.value.slice(0, 5);
-  }
-});
 
 
 function addListner() {
@@ -392,78 +327,6 @@ function updateEvents(date) {
   saveEvents();
 
 }
-
-addEventSubmit.addEventListener("click", () => {
-  const eventTitle = addEventTitle.value;
-  const eventTimeFrom = addEventFrom.value;
-  const eventTimeTo = addEventTo.value;
-
-  if(eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
-    Swal.fire("모든 내용을 입력해 주세요");
-    return;
-  }
-
-  const timeFromArr = eventTimeFrom.split(":");
-  const timeToArr = eventTimeTo.split(":");
-
-  if(
-    timeFromArr.length !== 2 ||
-    timeToArr.length !== 2 ||
-    timeFromArr[0] > 23 ||
-    timeFromArr[1] > 59 ||
-    timeToArr[0] > 23 ||
-    timeToArr[1] > 59
-  ) {
-    Swal.fire("잘못된 시간 형식입니다.");
-  }
-
-  const timeFrom = convertTime(eventTimeFrom);
-  const timeTo = convertTime(eventTimeTo);
-
-  const newEvent = {
-    title : eventTitle,
-    time: timeFrom + " - " + timeTo,
-  };
-
-  let eventAdded = false;
-
-  if(eventsArr.length > 0) {
-    eventsArr.forEach((item) => {
-      if(
-        item.day === activeDay &&
-        item.month === month + 1 &&
-        item.year === year
-      ) {
-        item.events.push(newEvent);
-        eventAdded = true;
-      }
-    })
-  }
-
-  if(!eventAdded) {
-    eventsArr.push({
-      day: activeDay,
-      month:month + 1,
-      year: year,
-      events : [newEvent],
-    })
-  }
-
-  addEventContainer.classList.remove("active");
-
-  addEventTitle.value = "";
-  addEventFrom.value = "";
-  addEventTo.value = "";
-
-  updateEvents(activeDay);
-
-  const activeDayElem = document.querySelector(".day.active");
-  if(!activeDayElem.classList.contains("event")) {
-    activeDayElem.classList.add("event");
-  }
-
-
-})
 
 
 function convertTime(time) {

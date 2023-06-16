@@ -14,6 +14,10 @@
   <!-- jquery cdn -->
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
+  <!-- font-awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>부서 게시판</title>
 </head>
 
@@ -37,6 +41,7 @@
 
     <!-- 컨텐츠 내용 -->
     <div class="content-all-page">
+      <a href="#" id="sidebar-toggle"></a>
 
       <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
@@ -53,7 +58,7 @@
           <div>
             <button class="omen-btn" id="popupBtn">글쓰기</button>
           </div>
-       
+
           <div id="modalWrap">
             <div class="modalBody">
               <span id="closeBtn">
@@ -123,7 +128,7 @@
                 <td>2023년 6월 4일(일)</td>
               </tr>
 
-           
+
             </tbody>
           </table>
         </div>
@@ -177,6 +182,8 @@
   </section>
 
   <script src="../js/dept-board.js"></script>
+  <script src="../component/component.js"></script>
+
 </body>
 
 </html>
