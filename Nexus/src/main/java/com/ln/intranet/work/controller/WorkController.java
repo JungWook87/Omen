@@ -3,6 +3,7 @@ package com.ln.intranet.work.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,32 +73,39 @@ public class WorkController {
 	
 	// 결재 상신 작성
 	@ResponseBody
-	@PostMapping("/workSend/write")
+	@PostMapping("/write")
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,
-			@RequestParam Map<String, Object> map) {
+			@RequestParam("file-uploads") MultipartFile uploadFile,
+			@RequestParam Map<String, Object> map,
+			HttpServletRequest req) {
 		
 		map.put("memNo", loginMember.getMemNo());
 		
 		Map<String, Object> resultMap = null;
+		String workTypeWord = map.get("workTypeWord").toString();
+		int typeNo = 0;
 		
 		// type == 결재 타입(일반, 연차, 출장 ..)
 		// 연차 attnType = 4 // workType = 2
-		// 출장 attnType = 5 // workType = 3
-		int type = Integer.parseInt(map.get("typeNo").toString());
+		// 출장 attnType = 5 // workType = 3 
+		if(workTypeWord.equals("normal-check")) typeNo = 1;
+		else if(workTypeWord.equals("vacation")) typeNo = 2;
+		else if(workTypeWord.equals("business-trip")) typeNo = 3;
 		
-		System.out.println(map.get("uploadsFile"));
+		map.put("typeNo", typeNo);
+	
+		System.out.println(map);
+		System.out.println(uploadFile);
 		
-		if(type == 1) {
+		if(typeNo == 1) {
 			
-			resultMap = service.workWrite(map);
+			resultMap = service.workWrite(map, uploadFile, req);
 			
-		} else if(type == 2 || type ==3) {
+		} else if(typeNo == 2 || typeNo ==3) {
 			
 		}
 		
-		Gson gson = new Gson();
-		
-		return gson.toJson(resultMap);
+		return "";
 	}
 	
 	// 결재 수신함 (결재할것) 페이지 진입

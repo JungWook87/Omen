@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
 
 @Repository
@@ -25,9 +26,19 @@ public class WorkDAO {
 		return sqlSession.selectList("workMapper.workSendSelectDate", map);
 	}
 
-	// 결재 상신 작성
+	// 결재 상신 작성(날짜 없음)
 	public int workWrite(Map<String, Object> map) {
 		return sqlSession.insert("workMapper.workWrite", map);
+	}
+
+	// 결재 파일 올리기
+	public int insertWorkFile(UploadFile file) {
+		System.out.println("1 ///" + file.getWorkNo());
+		System.out.println("2 ///" + file.getFileOrigin());
+		System.out.println("3 ///" +file.getFileReName());
+
+		
+		return sqlSession.insert("workMapper.insertWorkFile", file);
 	}
 	
 }
