@@ -102,7 +102,7 @@
             <div id="main-attn-check" class="main-box">
                 <div class="main-attn-area">
                     <div id="main-attn-circle"></div>
-                    <span class="main-font-title">업무중 : 100시간 20분</span>
+                    <span class="main-font-title">업무중 : --시간 --분</span>
                 </div>
                 <div>
                     <table>
@@ -111,14 +111,14 @@
                             <th>퇴근시간</th>
                         </tr>
                         <tr>
-                            <td>9 : 00</td>
-                            <td>18 : 00</td>
+                            <td id="attn-start">-- : --</td>
+                            <td id="attn-end">-- : --</td>
                         </tr>
                     </table>
                 </div>
                 <div class="main-attn-btns">
-                    <button class="main-attn-btn1">자리비움</button>
-                    <button class="main-attn-btn2">업무종료</button>
+                    <button class="main-attn-btn1">마이페이지</button>
+                    <button class="main-attn-btn2">업무시작</button>
                 </div>
             </div>
 
@@ -298,50 +298,31 @@
                         <i class="fa-solid fa-comment fa-2x" id="employee-list"></i>
                     </div>
                     <div id="contact-area">
-                        <div class="contact contact-hover">
-                            <div class="name">
-                                스티브 로저스
-                            </div>
-                            <div class="message">
-                                그것은 미국의 엉덩이입니다 🇺🇸🍑
-                            </div>
-                        </div>
-                        <div class="contact contact-hover">
 
-                            <div class="name">
-                                토니 스타크
-                            </div>
-                            <div class="message">
-                                어, 우주에서 왔어 마법사의 목걸이를 훔치러 왔어
-                            </div>
-                        </div>
-                        <div class="contact contact-hover">
-
-                            <div class="name">
-                                브루스 배너
-                            </div>
-                            <div class="message">
-                                Ant-Man 과 Spider-Man이 있습니까?
-                            </div>
-                        </div>
-                        <div class="contact contact-hover">
-
-                            <div class="name">
-                                토르 오딘슨
-                            </div>
-
-                            <div class="message">
-                                난이게 좋아
-                            </div>
-                        </div>
-                      
-                        
                     </div>
+
+                    <div class="employee-arrow">
+                        <i class="fa-solid fa-caret-right fa-beat-fade fa-lg"></i>
+                        <span>오른쪽 화면에 나타납니다</span>
+                    </div>
+
+
+                </div>
+
+
+                <div id="chat-main">
+                    <div class="chat-main-bar">
+                        <div class="chat-header">
+                            <h2>직원목록</h2>
+                            <i class="fas fa-times" id="close"></i>
+                        </div>
+                    </div>
+
                     <div id="employee-area">
                         <div class="employee-group">
                             <div class="employee-dropBox">
                                 <span>CEO</span>
-                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-ceo" ></i>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-ceo"></i>
                             </div>
                             <ul class="employee-dropBox-ul">
                                 <li>
@@ -384,51 +365,51 @@
                                         <button class="invite-button">초대</button>
                                     </label>
                                 </li>
-                               
+
                             </ul>
                         </div>
                         <div class="employee-group">
                             <div class="employee-dropBox">
                                 <span>Director</span>
-                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-director" ></i>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-director"></i>
                             </div>
-                    
+
                         </div>
                         <div class="employee-group">
                             <div class="employee-dropBox">
                                 <span>Manager</span>
-                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-manager" ></i>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-manager"></i>
                             </div>
                         </div>
                         <div class="employee-group">
                             <div class="employee-dropBox">
                                 <span>Senior</span>
-                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-senior" ></i>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-senior"></i>
                             </div>
                         </div>
                         <div class="employee-group">
                             <div class="employee-dropBox">
                                 <span>Junior</span>
-                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-junior" ></i>
+                                <i class="fa-solid fa-angle-down fa-lg employee-dropBox-i employee-junior"></i>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="chat">
-                    <div class="contact bar">
+                    <div class="bar">
                         <div class="chat-header">
-                            <div class="name">
-                                토니 스타크
+                            <div class="chat-name">
+
                             </div>
-                            <i class="fas fa-times" id="close"></i>
+                            <i class="fas fa-times" id="chat-close"></i>
 
                         </div>
 
                     </div>
+
+
                     <div class="messages" id="chat">
                         <div class="time">
-                            오늘 11:41
                         </div>
 
                         <div class="message stark">
@@ -438,10 +419,17 @@
                         </div>
                     </div>
                     <div class="input">
-                        <input id="chat-input" placeholder="Type your message here!" type="text">
-                        <i class="fa-solid fa-paper-plane" id="chat-submit"></i>
+                        <form action="#" class="chat-form">
+                            <input id="chat-input" autocomplete="off" placeholder="메시지를 입력해주세요!" type="text">
+                            <i class="fa-solid fa-paper-plane" id="chat-submit"></i>
+                        </form>
                     </div>
                 </div>
+
+
+
+
+
             </div>
         </div>
 
