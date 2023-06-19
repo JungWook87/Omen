@@ -1,7 +1,7 @@
 // sweetAlert 
 const Toast = Swal.mixin({
   toast: true,
-  position: 'top-right',
+  position: 'bottom-right',
   iconColor: 'white',
   customClass: {
     popup: 'colored-toast'
@@ -85,24 +85,17 @@ const Toast = Swal.mixin({
 
 
 
-// url 복사 js
-const clip = document.getElementById("clip");
-
-
-// url 눌렀을때 이벤트
-
-  clip.addEventListener("click", () => {
-
+function copyURL(surveyNo){
     // 이걸로 지정한 값이 복사댐
-    const textToCopy = "https://www.naver.com";
+    const textToCopy = "http://localhost:8080/intranet/survey/surveyDetail/"+surveyNo;
 
     const textarea = document.createElement('textarea');
     textarea.value = textToCopy;
     document.body.appendChild(textarea);
-  
+
     textarea.select();
     textarea.setSelectionRange(0, textarea.value.length);
-  
+
     try {
       document.execCommand('copy');
       Toast.fire({
@@ -112,15 +105,69 @@ const clip = document.getElementById("clip");
     } catch (err) {
       console.error('복사에 실패했습니다.', err);
     }
-  
+
     document.body.removeChild(textarea);
+ 
+}
+
+// // url 복사 js
+// const clip = document.getElementById("clip");
+
+// // url 눌렀을때 이벤트
+
+//   clip.addEventListener("click", () => {
+
+//     // 이걸로 지정한 값이 복사댐
+//     const textToCopy = "https://www.naver.com";
+
+//     const textarea = document.createElement('textarea');
+//     textarea.value = textToCopy;
+//     document.body.appendChild(textarea);
+  
+//     textarea.select();
+//     textarea.setSelectionRange(0, textarea.value.length);
+  
+//     try {
+//       document.execCommand('copy');
+//       Toast.fire({
+//         icon: 'success',
+//         title: '복사가 되었습니다'
+//       });
+//     } catch (err) {
+//       console.error('복사에 실패했습니다.', err);
+//     }
+  
+//     document.body.removeChild(textarea);
     
-})
+// })
 
 
+// 현재 날짜를 가져오는 함수
+function getCurrentDate() {
+  var currentDate = new Date();
+  var year = currentDate.getFullYear();
+  var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+  var day = currentDate.getDate().toString().padStart(2, '0');
+  var currentDateStr = year + '-' + month + '-' + day;
+  return currentDateStr;
+}
 
+// 날짜를 비교하여 '진행중' 라벨을 추가하는 함수
+function addStatusLabel() {
+  var endDateElements = document.querySelectorAll('#status-color');
+  var currentDate = getCurrentDate();
 
+  endDateElements.forEach(function (element) {
+      var endDate = element.textContent.trim();
+      if (endDate >= currentDate) {
+          element.textContent = '진행중';
+      }
+  });
+}
 
-
+// 페이지 로드 시 함수 실행
+window.addEventListener('DOMContentLoaded', function () {
+  addStatusLabel();
+});
 
 
