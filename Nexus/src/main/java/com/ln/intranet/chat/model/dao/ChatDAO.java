@@ -39,13 +39,14 @@ public class ChatDAO {
 		return sqlSession.selectList("chatMapper.chatMemberList");
 	}
 
-	public void inviteMember(Map<String, Object> paramMap) {
+	public int inviteMember(Map<String, Object> paramMap) {
 		
-		sqlSession.insert("chatMapper.inviteMemberList", paramMap);
+		
+		return sqlSession.insert("chatMapper.inviteMemberList", paramMap);
 	}
 
-	public int CreateChatRoom(ChatRoomJoin join) {
-	    int result = sqlSession.insert("chatMapper.CreateChatRoom", join);
+	public int CreateChatRoomJoin(ChatRoomJoin join) {
+	    int result = sqlSession.insert("chatMapper.createChatRoomJoin", join);
 	    
 	    if (result > 0) {
 	        return join.getCmNo();
@@ -53,6 +54,14 @@ public class ChatDAO {
 	    
 	    return 0;
 	}
+
+	public int CreateChatRoom(Map<String, Object> paramMap) {
+		
+		return sqlSession.insert("chatMapper.createChatRoom", paramMap);
+		
+	}
+
+
 	
 	
 

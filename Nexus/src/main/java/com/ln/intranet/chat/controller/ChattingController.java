@@ -1,69 +1,69 @@
-package com.ln.intranet.chat.controller;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+	package com.ln.intranet.chat.controller;
+	
+	import java.util.HashMap;
+	import java.util.List;
+	import java.util.Map;
+	
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.stereotype.Controller;
+	import org.springframework.ui.Model;
+	import org.springframework.web.bind.annotation.GetMapping;
+	import org.springframework.web.bind.annotation.ModelAttribute;
+	import org.springframework.web.bind.annotation.PathVariable;
+	import org.springframework.web.bind.annotation.PostMapping;
+	import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.google.gson.Gson;
-import com.ln.intranet.chat.model.service.ChatService;
-import com.ln.intranet.chat.model.vo.ChatRoom;
-import com.ln.intranet.chat.model.vo.ChatRoomJoin;
-import com.ln.intranet.chat.model.vo.Message;
-import com.ln.intranet.member.model.service.MemberService;
-import com.ln.intranet.member.model.vo.Member;
-
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@RequestMapping("/chat")
-@Controller
-public class ChattingController {
-
-	@Autowired
-	private ChatService service;
+	import org.springframework.web.bind.annotation.ResponseBody;
+	import org.springframework.web.bind.annotation.RestController;
+	import org.springframework.web.bind.annotation.SessionAttributes;
+	import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	
-	@Autowired
-	private MemberService mService;
+	import com.google.gson.Gson;
+	import com.ln.intranet.chat.model.service.ChatService;
+	import com.ln.intranet.chat.model.vo.ChatRoom;
+	import com.ln.intranet.chat.model.vo.ChatRoomJoin;
+	import com.ln.intranet.chat.model.vo.Message;
+	import com.ln.intranet.member.model.service.MemberService;
+	import com.ln.intranet.member.model.vo.Member;
 	
-
-	 
-	/** 해당된 채팅방 리스트 조회
-	 * @param loginMember
-	 * @return Gson(RoomList)
-	 */
-	@ResponseBody
-	@PostMapping("/chatRoomList")
-	public String chatRoomList(@ModelAttribute("loginMember") Member loginMember) {
-
-		log.info("loginMember's memNo : " + loginMember.getMemNo());
-
-		int memNo = loginMember.getMemNo();
-
-		Map<String, Object> map = new HashMap<>();
-
-		map.put("memNo", memNo);
-
-		List<ChatRoom> RoomList = service.selectChatRoomList(map);
-
-		log.debug(RoomList + "");
-
-		return new Gson().toJson(RoomList);
-
-	}
+	import lombok.extern.slf4j.Slf4j;
+	
+	@Slf4j
+	@Controller
+	public class ChattingController {
+	
+		@Autowired
+		private ChatService service;
+		
+		@Autowired
+		private MemberService mService;
+		
+	
+		 
+		/** 해당된 채팅방 리스트 조회
+		 * @param loginMember
+		 * @return Gson(RoomList)
+		 */
+		@ResponseBody
+		@RequestMapping(value = "/chatRoomList", method = RequestMethod.POST)
+		public String chatRoomList(@ModelAttribute("loginMember") Member loginMember) {
+	
+			log.info("loginMember's memNo : " + loginMember.getMemNo());
+	
+			int memNo = loginMember.getMemNo();
+	
+			Map<String, Object> map = new HashMap<>();
+	
+			map.put("memNo", memNo);
+	
+			List<ChatRoom> RoomList = service.selectChatRoomList(map);
+	
+			log.debug(RoomList + "");
+	
+			return new Gson().toJson(RoomList);
+	
+		}
 
 
 	/** 채팅방 채팅 조회
@@ -80,7 +80,7 @@ public class ChattingController {
 		
 		
 		
-		return new Gson().toJson(chatMessageList);
+		return new Gson().toJson(chatMessageList);	
 	}
 	
 
@@ -88,7 +88,7 @@ public class ChattingController {
 	 * @return Gson(chatMember)
 	 */ 
 	@ResponseBody
-	@GetMapping("/chatRoom/memberList")
+	@RequestMapping(value = "/chatMemberList", method = RequestMethod.GET)
 	private String ChatMemberList() {
 		
 	List<Member> chatMember = mService.selectChatMemberList();
@@ -107,14 +107,19 @@ public class ChattingController {
 	 * @return result
 	 */
 	@ResponseBody
-	@PostMapping("/inviteMember")
+	@RequestMapping(value = "/inviteMember", method = RequestMethod.POST)
 	private int inviteMember(@ModelAttribute("loginMember") Member loginMember,
-								@RequestParam Map<String, Object> paramMap,
+			@RequestParam("name") String name,
 								ChatRoomJoin join,
 								RedirectAttributes ra
 			) {
 		
 		
+		System.out.println(name);
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		
+		paramMap.put("inviteName", name);
 		
 		int memNo = loginMember.getMemNo();
 		

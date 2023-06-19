@@ -373,11 +373,30 @@ const inviteButton = document.querySelectorAll(".invite-button"),
 
 inviteButton.forEach((button) => {
   button.addEventListener("click", async () => {
-    const listItem = button.closest("li");
-    const nameElement = listItem.querySelector("p");
-    const name = nameElement.textContent;
-    console.log(name);
-    inviteName.textContent = name;
+    $.ajax({
+      url : "inviteMember",
+      data : { "name" : pName},
+      type : "POST",
+      dataType : "JSON",
+      success : function(response){
+
+         console.log(response);
+
+         const listItem = button.closest("li");
+         const nameElement = listItem.querySelector("p");
+         const pName = nameElement.textContent;
+         console.log(name);
+         inviteName.textContent = pName;
+
+      },error : function(req, status, error){
+        console.log("에러 발생");
+        console.log(req.responseText);
+    
+      }
+
+    })
+
+    
 
     // 중복 추가 방지 로직
     const existingContacts = contactArea.querySelectorAll('.contact .name');
