@@ -327,7 +327,7 @@
             <!-- 버튼 -->
             <div class="approver-submit-reset-btns">
               <button type="reset" id="approver-cancell-btn">취소</button>
-              <button id="approver-success-btn">확인</button>
+              <button type="button" id="approver-success-btn">확인</button>
             </div>
             <!-- </form> -->
           </div>
@@ -460,6 +460,24 @@
             <p>내용</p>
             <textarea name="" id="" onkeydown="handleResizeHeight(this)"
               onkeyup="handleResizeHeight(this)"></textarea>
+          </div>
+          <div class="inbox-file-box">
+            <p>첨부파일</p>
+            <button type="button" id="file-remove">파일 지우기</button>
+            <label for="file-uploads">파일 올리기</label>
+            <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+          </div>
+          <!-- 선택된 파일 -->
+          <div class="check-preview"></div>
+          <!-- 의견 -->
+          <div class="inbox-modal-coment">
+            <p>의견</p>
+            <input type="text" readonly>
+          </div>
+          <!-- 결재자 -->
+          <div class="inbox-modal-approver">
+            <p>결재자</p>
+            <input type="text" readonly>
           </div>
           <!-- 의견 -->
           <div class="inbox-modal-coment">
