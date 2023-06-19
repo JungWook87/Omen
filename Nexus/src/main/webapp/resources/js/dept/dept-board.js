@@ -250,6 +250,7 @@ const checkCancellBtn = document.getElementById('check-cancell-btn');
 const checkModalTitle = document.querySelector('.check-modal-title');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
+const removeBtn = document.getElementById("check-remove-btn");
 
 // 게시글 디테일 창 오픈
 function detailModal(boardNo) {
@@ -279,7 +280,11 @@ function detailModal(boardNo) {
       checkPreviewA.href = "/intranet" + detail.boardFileRename;
       checkPreviewA.download = detail.boardFileOrigin;
       checkPreview.append(checkPreviewA); 
-      
+
+      removeBtn.addEventListener("click", function (){
+        boardDelete(boardNo);
+      });
+
       // 모달창 열기
       checkModal.style.display = 'block';
       checkModalBody.classList.add('check-modal-open');    
@@ -290,8 +295,6 @@ function detailModal(boardNo) {
       console.log(req.responseText);
   }
   })
-  
-
 }
 
 // 수정 모달창 닫기
@@ -334,6 +337,8 @@ checkCancellBtn.addEventListener("click", () => {
   checkModalClose();
 });
 
-
-
-
+// 게시글삭제
+function boardDelete(boardNo){
+  var url = "../dept/boardDelete/" + boardNo; 
+  window.location.href = url; 
+}

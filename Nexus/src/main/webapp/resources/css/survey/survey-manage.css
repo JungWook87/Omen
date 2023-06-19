@@ -236,7 +236,7 @@ a:focus {
   border-collapse: collapse;
 }
 
-
+/* 테이블 스타일 */
 th {
   color: var(--gray600);
 
@@ -249,7 +249,6 @@ th {
 
   text-align: center;
 }
-
 
 td {
   color: var(--black);
@@ -270,7 +269,6 @@ tr:hover {
 td:nth-child(2){
   text-align: left;
 }
-
 
 th:nth-child(2){
   text-align: left;

@@ -86,5 +86,12 @@ public class SurveyDAO {
 		
 		return map;
 	}
+	
+	// 설문삭제
+	public int surveyDelete(int surveyNo) {
+		int deleteSurvey = sqlSession.delete("surveyMapper.surveyDelete",surveyNo);
+		int deleteResult = sqlSession.delete("surveyMapper.surveyResultDelete",surveyNo);
+		return deleteSurvey + deleteResult;
+	}
 
 }

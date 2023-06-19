@@ -221,7 +221,7 @@
           <div class="notice-submit-reset-btns">
 
 
-            <button id="check-remove-btn">삭제</button>
+            <button type="button" id="check-remove-btn">삭제</button>
             <button type="reset" id="check-cancell-btn">닫기</button>
             <button id="check-success-btn">수정</button>
             

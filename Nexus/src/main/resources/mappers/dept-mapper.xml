@@ -91,6 +91,12 @@
 			WHERE BOARD_NO = #{boardNo}
 	</select>
 	
-
+	<delete id="boardFileDelete" parameterType="_int">
+			DELETE FROM UPLOAD_FILE WHERE BOARD_NO = #{boardNo}
+	</delete>
+	
+	<delete id="boardDelete" parameterType="_int">
+			DELETE FROM BOARD WHERE BOARD_NO = #{boardNo}
+	</delete>
 
 </mapper>

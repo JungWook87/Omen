@@ -113,6 +113,13 @@ public class SurveyServiceImp implements SurveyService {
 		
 		return map;
 	}
+	
+	// 설문삭제
+	@Override
+	public int surveyDelete(int surveyNo) {
+		
+		return dao.surveyDelete(surveyNo);
+	}
 
 	
 }

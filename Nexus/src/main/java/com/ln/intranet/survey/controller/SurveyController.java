@@ -89,7 +89,7 @@ public class SurveyController {
 		
 		model.addAttribute("map",map);
 		
-		return "survey/survey-detail";
+		return "/survey/survey-detail";
 	}
 	
 	@GetMapping("/surveyCreate")
@@ -157,7 +157,7 @@ public class SurveyController {
 		
 		int result = service.surveyParticipate(surveyResult);
 		
-		return "redirect:/survey/surveyList";
+		return "redirect:/survey/surveyResult/" + surveyNo;
 	}
 	
 	// 설문결과창
@@ -175,5 +175,17 @@ public class SurveyController {
 		
 		return "/survey/survey-result";
 	}
+	
+	//설문삭제
+	@GetMapping("/surveyDelete/{surveyNo}")
+	public String surveyDelete(
+			@PathVariable("surveyNo") int surveyNo
+			) {
+		
+		int result = service.surveyDelete(surveyNo);
+		
+		return "redirect:/survey/surveyManage";
+	}
+	
 
 }

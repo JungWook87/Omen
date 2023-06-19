@@ -4,6 +4,7 @@
 <c:set var="pagination" value="${map.pagination}" />
 <c:set var="surveyList" value="${map.surveyList}" />
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,9 +53,9 @@
 
           <!-- 컨텐츠 제목 부분 -->
           <div class="content-all-top-texts">
-            <a href="" class="content-all-top-text">전체(1)</a>
-            <a href="" class="content-all-top-text2">미참여(0)</a>
-            <a href="" class="content-all-top-text3">참여(1)</a>
+            <a href="" class="content-all-top-text" onclick="filterSurveyList('all')">전체(<span></span>)</a>
+            <a href="" class="content-all-top-text2" onclick="filterSurveyList('notparticipated')">미참여(<span></span>)</a>
+            <a href="" class="content-all-top-text3" onclick="filterSurveyList('participated')">참여(<span></span>)</a>
           </div>
           
 
@@ -90,7 +91,7 @@
                         <tr onclick="surveyDetail('${survey.surveyNo}', '${survey.participation}')">
                             <td id="status-color">${survey.end}</td>
                             <td>${survey.surveyTopic}</td>
-                            <td>${survey.start}~${survey.end}</td>
+                            <td>${survey.start} ~ ${survey.end}</td>
                             <td id="participation-color">${survey.participation}</td>
                         </tr>
                     </c:forEach>

@@ -24,5 +24,7 @@ public interface DeptService {
 
 	int writeNotice(String webPath, String folderPath, MultipartFile uploadFile, Map<String, Object> map) throws IOException;
 
+	int boardDelete(int boardNo);
+
 
 }

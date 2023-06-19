@@ -97,6 +97,16 @@ public class DeptDAO {
 		
 		return sqlSession.insert("noticeMapper.insertDeptNoticeFile", file);
 	}
+	
+	// 게시글 삭제 + 파일 삭제
+	public int boardDelete(int boardNo) {
+		
+		int boardFileDelete = sqlSession.delete("deptMapper.boardFileDelete",boardNo);
+		
+		int boardDelete = sqlSession.delete("deptMapper.boardDelete",boardNo);
+		
+		return boardFileDelete + boardDelete;
+	}
 
 	
 	
