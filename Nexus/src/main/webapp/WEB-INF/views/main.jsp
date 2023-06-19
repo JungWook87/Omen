@@ -17,6 +17,15 @@
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <!-- font-awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
     <title>메인페이지</title>
 </head>
 
@@ -24,14 +33,30 @@
 
     <!-- 메인 헤더 부분 시작 -->
     <header>
-        <div class="main-banner-top">
+        <div class="main-header">
+            <div class="main-banner-top">
 
-            <!-- 로고 -->
-            <div>
-                <a href="main">
-                    <img src="${contextPath}/resources/images/logo-width.png" alt="">
-                </a>
+                <!-- 로고 -->
+                <div>
+                    <a href="main">
+                        <img src="${contextPath}/resources/images/logo-width.png" alt="">
+                    </a>
+                </div>
+    
+                <!-- 네비바 -->
+                <div>
+                    <ul class="main-header-ul">
+                        <li><a href="${contextPath}/main">홈</a> </li>
+                        <li><a href="${contextPath}/notice/list">공지사항</a> </li>
+                        <li><a href="${contextPath}/dept/deptNotice">부서</a> </li>
+                        <li><a href="${contextPath}/work/workSend">결재</a> </li>
+                        <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
+                        <li><a href="${contextPath}/meeting">회의실</a> </li>
+                        <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
+                    </ul>
+                </div>
             </div>
+
 
             <!-- 네비바 -->
             <div>
@@ -44,21 +69,42 @@
                     <li><a href="${contextPath}/meetingRoom">회의실</a> </li>
                     <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
                 </ul>
-            </div>
-        </div>
 
-        <!-- 배너 텍스트 부분 -->
-        <div class="main-banner-bottom">
-            <div class="main-banner-text1">
-                혁신을 밝히는 기업
-            </div>
-            <div class="main-banner-text2">
-                <div>
-                    사람과 공간을 연결해 새로운 삶의 문화가 되다
+    
+            <!-- 배너 텍스트 부분 -->
+            <div class="main-banner-bottom">
+                <div class="main-banner-text1">
+                    혁신을 밝히는 기업
                 </div>
-
+                <div class="main-banner-text2">
+                    <div>
+                        사람과 공간을 연결해 새로운 삶의 문화가 되다
+                    </div>
+    
+                </div>
+              
             </div>
         </div>
+
+        <div class="Responsive-header">
+
+            <a href="">
+                <img src="${contextPath}/resources/images/logo-width.png" alt="">
+            </a>
+            <input type="checkbox" class="menu-btn" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu">
+                <li><a href="${contextPath}/main">홈</a> </li>
+                <li><a href="${contextPath}/notice/list">공지사항</a> </li>
+                <li><a href="${contextPath}/dept/deptNotice">부서</a> </li>
+                <li><a href="${contextPath}/work/workSend">결재</a> </li>
+                <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
+                <li><a href="${contextPath}/meeting">회의실</a> </li>
+                <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
+            </ul>
+        </div>
+
+        
 
 
     </header>
@@ -232,13 +278,14 @@
                         <span>오늘의 알림</span>
                     </div>
                     <div class="main-box-title-right">
-                        <img class="main-today-alert-pencil" src="${contextPath}/resources/images/PencilSimple.png" alt="">
+                        <button id="main-today-alert-btn">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                     </div>
                 </div>
 
                 <div class="main-today-line-box">
-                    <p>집에가고싶다  ~~ 세션 테스트 "${loginMember.memName}"" 의 접속 ~~</p>
-
+                    <input type="text" id="main-today-input" maxlength="70" readonly>
                 </div>
             </div>
 
@@ -289,11 +336,7 @@
         </div>
 
         <!-- 채팅창 -->
-        <div id="chatting-function" class="chatting-box">
-            <a href="#">
-                <img class="chatting-img" src="${contextPath}/resources/images/chattImg.png" alt="">
-            </a>
-        </div>
+        <jsp:include page="/WEB-INF/views/common/chat-modal.jsp"/>
     </section>
 
     <script src="${contextPath}/resources/js/main.js"></script>

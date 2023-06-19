@@ -6,7 +6,7 @@
 	
 		<id property="cmNo" column="CM_NO"/>
 		<result property="memNo" column="MEM_NO"/>
-		<result property="title" column="TITLE"/>
+		<result property="inviteName" column="INVITE_NAME"/>
 		<result property="status" column="STATUS"/>
 	
 	</resultMap>

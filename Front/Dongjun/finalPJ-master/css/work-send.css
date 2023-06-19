@@ -425,7 +425,7 @@ select{
 }
 
 /* 닫기 버튼 */
-#closeBtn, #approver-closeBtn {
+#closeBtn, #approver-closeBtn ,#write-closeBtn {
   float: right;
   color: var(--black);
 
@@ -434,7 +434,7 @@ select{
 }
 
 /* 닫기 버튼 이미지 */
-#closeBtn img, #approver-closeBtn img{
+#closeBtn img, #approver-closeBtn img, #write-closeBtn img {
   width: 18px;
   height: 18px;
 }
@@ -720,15 +720,24 @@ select{
 }
 
 /* 파일 올리기 지우기 버튼 스타일 */
-.work-file-box {
-  margin-top: 20px;
+.inbox-file-box {
+  margin : 20px 0px 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.work-file-box label {
+.inbox-file-box > p{
+  margin-top: 0;
+}
+
+.inbox-file-box label {
   width: 90px;
   height: 35px;
 
   padding: 13px;
+
+  margin-right: 0;
   display: inline-block;
 
   font-size: 14px;
@@ -748,6 +757,24 @@ select{
 
 }
 
+.work-file-box{
+  margin-top: 20px;
+}
+
+.work-file-box label {
+  width: 90px;
+  height: 35px;
+  padding: 13px;
+  display: inline-block;
+  font-size: 14px;
+  color: white;
+  background-color: var(--primary400);
+  vertical-align: middle;
+  line-height: normal;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .work-file-box label:hover {
   background-color: var(--primary500);
   transition: all 1s;
@@ -765,25 +792,17 @@ select{
 }
 
 
-.work-file-box button {
+.work-file-box button, .inbox-file-box button {
   width: 90px;
   height: 35px;
-
   padding: 13px;
-
   font-size: 14px;
-
   color: var(--black);
-
   background-color: var(--gray50);
-
   border: none;
   border-radius: 5px;
-
   vertical-align: middle;
-
   line-height: normal;
-
   cursor: pointer;
 }
 
@@ -926,6 +945,19 @@ select{
   font-size: 16px;
 }
 
+#inbox-closeBtn {
+  float: right;
+  color: var(--black);
+
+  cursor: pointer;
+
+}
+
+#inbox-closeBtn img {
+  width: 18px;
+  height: 18px;
+}
+
 /* 모달 테이블영역 */
 
 .inbox-modal-table-body{
@@ -1030,6 +1062,45 @@ select{
 
 .inbox-modal-checkbox label {
   margin-right: 0;
+}
+
+.copy-btn, .print-btn{
+  cursor: pointer;
+}
+
+#edit-btn{
+width: 60px;
+height: 30px;
+color: white;
+font-size: 14px;
+border: none;
+border-radius: 5px;
+background-color: var(--gray200);
+padding-top: 5px;
+cursor: pointer;
+}
+
+#inbox-cancell-btn{width: 60px;
+  height: 30px;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(252, 50, 50, 0.8);
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+#inbox-success-btn{
+  width: 60px;
+height: 30px;
+color: white;
+font-size: 14px;
+border: none;
+border-radius: 5px;
+background-color: var(--primary400);
+padding-top: 5px;
+cursor: pointer;
 }
 
 /* 수정모달창 */
