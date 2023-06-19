@@ -11,7 +11,7 @@ public class ChatRoom {
 
 	private int cmNo;
 	private int memNo;
-	private String title;
+	private String inviteName;
 	private String status;
 	
 	

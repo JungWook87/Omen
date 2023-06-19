@@ -94,3 +94,54 @@ attn_btn2[0].addEventListener("click", function() {
 
 }); 
 
+
+
+// 오늘의 알림 기능
+const todayBtn = document.getElementById("main-today-alert-btn");
+const todayInput = document.getElementById("main-today-input");
+
+// 페이지가 로드될 때 저장된 값 설정
+window.addEventListener('load', () => {
+    const savedTodayText = localStorage.getItem('TODAY_TEXT');
+    if (savedTodayText) {
+        todayInput.value = savedTodayText;
+    }
+});
+
+// 오늘의 알림 연필 눌렀을때 이벤트
+todayBtn.addEventListener('click', () => {
+    todayInput.readOnly = false;
+    todayInput.focus();
+    // 인풋창에 글을 쓰고 엔터 눌렀을때 이벤트
+    todayInput.addEventListener('keyup', () => {
+        if(window.event.keyCode == '13') {
+            todayInput.readOnly = true;
+            const todayText = todayInput.value;
+            localStorage.setItem('TODAY_TEXT', todayText);
+            const savedTodayText = localStorage.getItem('TODAY_TEXT');
+            
+            todayInput.value = savedTodayText;
+
+            // 매 분마다 함수를 호출하여 시간을 체크합니다.
+            setInterval(todayInputUpdate, 60000);
+           
+        }
+
+    })
+});
+
+
+// 밤12시가 지나면 로컬스토리지 내용 삭제 되는 함수
+function todayInputUpdate() {
+    const day = new Date();
+    const hour = day.getHours();
+  
+    if (hour >= 0 && hour < 1) {
+      localStorage.removeItem('TODAY_TEXT');
+      todayInput.value = '';
+    }
+  }
+  
+
+
+
