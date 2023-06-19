@@ -238,8 +238,8 @@ a:focus {
   border-collapse: collapse;
 }
 
-
-.survey-table table th {
+/* 테이블 스타일 */
+th {
   color: var(--gray600);
 
   border-bottom: 1px solid var(--gray300);
@@ -249,33 +249,41 @@ a:focus {
   font-size: 14px;
   font-weight: 100;
 
-  text-align: left;
+  text-align: center;
 }
 
-/* .survey-table table th:nth-child(1) {
-  width: 100px;
-}
-
-.survey-table table th:nth-child(2) {
-  width: 500px;
-}
-
-.survey-table table th:nth-child(3) {
-  width: 200px;
-} */
-
-.survey-table table td {
+td {
   color: var(--black);
 
   border-bottom: 1px solid var(--gray100);
 
   padding: 20px 0;
+  text-align: center;
 }
 
-.survey-table tbody>tr:hover {
+tr:hover {
   cursor: pointer;
 
-  background-color: var(--gray50)
+  background-color: var(--gray50);
+  text-align: center;
+}
+td:nth-child(1){
+  width : 10%;
+}
+
+td:nth-child(2){
+  text-align: left;
+  width : 50%;
+}
+th:nth-child(2){
+  text-align: left;
+}
+
+td:nth-child(3){
+  text-align: left;
+}
+th:nth-child(3){
+  text-align: left;
 }
 
 

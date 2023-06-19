@@ -71,6 +71,7 @@
 		FROM SURVEY S
 		LEFT JOIN SURVEY_RESULT R ON S.SURVEY_NO = R.SURVEY_NO
 		GROUP BY S.SURVEY_NO, TOPIC, "START", "END"
+		ORDER BY S.SURVEY_NO DESC
 	</select>
 	
 	<!-- 설문디테일조회 -->
@@ -125,5 +126,13 @@
 		GROUP BY OPTION_NO
 		ORDER BY OPTION_NO ASC
 	</select>	
+	
+	<!-- 설문삭제 + 설문지문삭제 -->
+	<delete id="surveyDelete" parameterType="_int">
+		DELETE FROM SURVEY WHERE SURVEY_NO = #{surveyNo}
+	</delete>
+	<delete id="surveyResultDelete" parameterType="_int">
+		DELETE FROM SURVEY_RESULT WHERE SURVEY_NO = #{surveyNo}
+	</delete>
 	
 </mapper>

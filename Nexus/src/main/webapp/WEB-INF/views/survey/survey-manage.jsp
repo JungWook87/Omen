@@ -18,6 +18,10 @@
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <!-- fontawesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- jquery cdn -->
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
@@ -93,8 +97,12 @@
                                   <td>${survey.start}</td>
                                   <td id="clip" onclick="return copyURL(${survey.surveyNo})"></td>
                                   <td>${survey.respMember}/${survey.totalMember}</td>
-                                  <td><a id="survey-result-btn" href="../survey/surveyResult/${survey.surveyNo}">결과 보기</a></td>                                
-                                  <td> 삭제 </td>
+                                  <td>
+                                    <a id="survey-result-btn" href="../survey/surveyResult/${survey.surveyNo}">결과 보기</a>
+                                  </td>                                
+                                  <td>
+                                    <a href="../survey/surveyDelete/${survey.surveyNo}" class="fa-solid fa-trash" style="color: #c7c7c7;"></a>
+                                  </td>
                               </tr>
                           </c:forEach>
                       </c:otherwise>

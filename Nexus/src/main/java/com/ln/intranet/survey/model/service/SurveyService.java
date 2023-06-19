@@ -18,4 +18,6 @@ public interface SurveyService {
 
 	Map<String, Object> surveyTotal(int surveyNo);
 
+	int surveyDelete(int surveyNo);
+
 }

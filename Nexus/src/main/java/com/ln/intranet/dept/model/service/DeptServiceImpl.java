@@ -167,6 +167,13 @@ public class DeptServiceImpl implements DeptService{
 		return noticeNo;
 	}
 
+	// 게시글삭제
+	@Override
+	public int boardDelete(int boardNo) {
+		
+		return dao.boardDelete(boardNo);
+	}
+
 	
 
 
