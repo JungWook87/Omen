@@ -55,6 +55,22 @@ section {
 
 }
 
+.desktop li:nth-child(1) {
+  border-left: 10px solid var(--primary500);
+
+  background-color: rgb(230, 232, 236, 50%);
+
+}
+
+.desktop li:first-child>a:first-child>span:first-child {
+
+  color: var(--primary400);
+}
+
+.desktop li:first-child>a:first-child {
+  padding-left: 30px;
+}
+
 .desktop li>a {
   padding-left: 40px;
 }
@@ -270,6 +286,7 @@ select{
 
 .content-all-bottom-area-content{
   margin-top: 50px;
+  
 }
 
 .content-all-bottom-area-content table{
@@ -510,6 +527,10 @@ select{
   align-items: center;
 }
 
+#check-modal-checkbox{
+  height: 15px;
+  width: 20px;
+}
 
 
 /* 파일업로드된 스타일 */

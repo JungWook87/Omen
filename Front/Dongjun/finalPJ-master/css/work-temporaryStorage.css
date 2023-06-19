@@ -1,7 +1,15 @@
-.content-all-bottom-area-header{
-  display: flex;
-  justify-content: flex-end;
-}
+/* 사이드바 제목 스타일 */
+.side-bar h1 {
+    font-size: 30px;
+  
+    margin: 0;
+  
+    padding: 60px 0 40px 35px;
+  
+    color: var(--black);
+  }
+  
+  
 
 /* 사이드바 부제목 스타일 */
 .side-bar li {
@@ -25,20 +33,18 @@
     padding-left: 50px;
   }
   
-  .desktop li:nth-child(3) {
+  .desktop li:nth-child(4) {
     border-left: 10px solid var(--primary500);
   
     background-color: rgb(230, 232, 236, 50%);
   
   }
   
-  .desktop li:nth-child(3)>a:first-child>span:first-child {
+  .desktop li:nth-child(4)>a:first-child>span:first-child {
   
     color: var(--primary400);
   }
   
-  .desktop li:nth-child(3)>a:first-child {
+  .desktop li:nth-child(4)>a:first-child {
     padding-left: 45px;
   }
-  
-  
