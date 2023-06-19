@@ -91,7 +91,7 @@
                                   <td id="status-color">${survey.end}</td>
                                   <td>${survey.surveyTopic}</td>
                                   <td>${survey.start}</td>
-                                  <td id="clip"></td>
+                                  <td id="clip" onclick="return copyURL(${survey.surveyNo})"></td>
                                   <td>${survey.respMember}/${survey.totalMember}</td>
                                   <td><a id="survey-result-btn" href="../survey/surveyResult/${survey.surveyNo}">결과 보기</a></td>                                
                                   <td> 삭제 </td>

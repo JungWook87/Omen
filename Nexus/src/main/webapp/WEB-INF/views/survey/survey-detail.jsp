@@ -53,6 +53,7 @@
             <div class="survey-create-top">
                 <h1>${survey.surveyTopic}</h1>
                 <span>${survey.surveyContent}</span>
+                <br>
             </div>
 
             <!-- 가운데 -->

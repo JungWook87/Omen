@@ -237,7 +237,7 @@ a:focus {
 }
 
 
-.survey-table table th {
+th {
   color: var(--gray600);
 
   border-bottom: 1px solid var(--gray300);
@@ -247,23 +247,36 @@ a:focus {
   font-size: 14px;
   font-weight: 100;
 
-  text-align: left;
+  text-align: center;
 }
 
 
-.survey-table table td {
+td {
   color: var(--black);
 
   border-bottom: 1px solid var(--gray100);
 
   padding: 20px 0;
+  text-align: center;
 }
 
-.survey-table tbody>tr:hover {
+tr:hover {
   cursor: pointer;
 
-  background-color: var(--gray50)
+  background-color: var(--gray50);
+  text-align: center;
 }
+
+td:nth-child(2){
+  text-align: left;
+}
+
+
+th:nth-child(2){
+  text-align: left;
+}
+
+
 
 
 /* 상태 컬러 */

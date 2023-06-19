@@ -57,7 +57,6 @@
                 <h1>${survey.surveyTopic}</h1>
                 <span>${survey.surveyContent}</span>
                 <br>
-                <br>
             </div>
 
             <!-- 가운데 -->
