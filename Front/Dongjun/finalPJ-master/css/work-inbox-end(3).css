@@ -1,8 +1,3 @@
-.content-all-bottom-area-header{
-  display: flex;
-  justify-content: flex-end;
-}
-
 /* 사이드바 부제목 스타일 */
 .side-bar li {
     list-style: none;
@@ -15,14 +10,14 @@
     background-color:  var(--side);
   
   }
-
+  
   .desktop li:first-child>a:first-child>span:first-child {
   
     color: var(--black);
   }
   
   .desktop li:first-child>a:first-child {
-    padding-left: 50px;
+    padding-left: 40px;
   }
   
   .desktop li:nth-child(3) {
@@ -38,7 +33,7 @@
   }
   
   .desktop li:nth-child(3)>a:first-child {
-    padding-left: 45px;
+    padding-left: 30px;
   }
   
   

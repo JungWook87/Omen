@@ -5,7 +5,7 @@ section {
 
   display: flex;
 }
-
+/* -------------------------------------- */
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
@@ -19,7 +19,7 @@ section {
   margin: 0;
   padding: 0;
 }
-
+/* -------------------------------------- */
 
 /* 사이드바 제목 스타일 */
 .side-bar h1 {
@@ -45,9 +45,13 @@ section {
 }
 
 .desktop li:first-child>a:first-child {
-  padding-left: 30px;
+  padding-left: 40px;
 }
 
+.desktop li:first-child>a{
+  padding-left: 30px;
+}
+/* -------------------------------------- */
 
 /* 사이드바 부제목 스타일 */
 .side-bar li {
@@ -121,9 +125,9 @@ section {
   }
 
 }
+/* -------------------------------------- */
 
-/* 사이드바 호버 스타일 끝 ------------------------------*/
-
+/* 사이드바 호버 스타일 (데스크탑) */
 a:hover,
 a:focus {
   outline: none;
@@ -205,7 +209,7 @@ a:focus {
   float: right;
 }
 
-/* ---------------------------------------------- */
+/* -------------------------------------- */
 
 /* 컨텐츠 영역 전체 */
 .content-all-page {
@@ -237,8 +241,6 @@ a:focus {
   color: var(--black);
 }
 
-
-
 /* 결재 시작일 종료일 조회영역 */
 .content-all-date{
 display: flex;
@@ -257,7 +259,7 @@ margin-top: 30px;
 }
 
 .date-p:nth-of-type(2){
-  margin-inline: 10%;
+  margin-inline: 8%;
 }
 
 .content-all-date-input > input{
@@ -271,6 +273,7 @@ label{
   font-size: x-large;
   margin-right: 50px;
 }
+/* -------------------------------------- */
 
 /* 컨텐츠 하단 부분 */
 .content-all-bottom-area {
@@ -309,8 +312,9 @@ select{
   cursor: pointer;
   margin-right: 10px;
 }
+/* -------------------------------------- */
 
-/* 결재 테이블 영역 */
+/* 컨텐츠 하단 부분 테이블 */
 
 .content-all-bottom-area-content{
   margin-top: 50px;
@@ -339,6 +343,7 @@ select{
   color: black;
   padding: 20px;
 }
+/* -------------------------------------- */
 
 /* 모달 박스 스타일 */
 /* 결재 모달창 */
@@ -419,7 +424,7 @@ select{
   font-size: 24px;
 }
 
-
+/* 닫기 버튼 */
 #closeBtn, #approver-closeBtn {
   float: right;
   color: var(--black);
@@ -428,8 +433,7 @@ select{
 
 }
 
-
-
+/* 닫기 버튼 이미지 */
 #closeBtn img, #approver-closeBtn img{
   width: 18px;
   height: 18px;
@@ -442,8 +446,9 @@ select{
   margin-top: 20px;
 }
 
+/* -------------------------------------- */
 
-/* 제목 , 내용 스타일 */
+/*모달 제목 , 내용 스타일 */
 .work-modalBody p {
   color: var(--gray400);
 
@@ -521,8 +526,165 @@ select{
   outline: none;
 
 }
+/* -------------------------------------- */
 
-/* ---------------결재 라인 설정-------------------------- */
+/* 일반 체크  */
+#normal-checkd {
+  display: none;
+}
+/* 프로젝트 체크 */
+#project-checked{
+  display: none;
+}
+/* 과제 체크 */
+#assignment-checked{
+  display: none;
+}
+
+/* 선탁창 일반 체크 시 템플릿 */
+.work-modal-template-select{
+  display: flex;
+}
+
+.work-modal-template-select select {
+  margin-right: 10px;
+}
+/* 프로젝트 박스 (과제추가버튼)*/
+.work-modal-projectBox{
+  float: right;
+  margin-block: 5px;
+}
+/* 프로젝트 박스 (과제명, 과제내용) */
+.projectBox {
+  margin-top: 36px;
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+/* 프로젝트 박스 (버튼) */
+.projectBox div > button{
+  width: 50px;
+  height: 30px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--black);
+  background-color: var(--gray50);
+  border: none;
+  border-radius: 5px;
+  vertical-align: middle;
+  line-height: normal;
+  cursor: pointer;
+}
+/* 결재자 박스 */
+.work-modal-approverBox{
+  float: right;
+  margin-block: 20px;
+  cursor: pointer;
+}
+
+/*결재자 메뉴*/
+
+*{
+  text-decoration: none;
+}
+
+#approver-box p {
+
+  display: block;
+  
+  color: #333;
+  
+  }
+    
+  .M01 {
+      list-style: none;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+  }
+    
+  .M01>li, .M02>li, .M03>li {
+  
+      position: relative;
+      width: 100%;
+      height: 50px;
+      border: 1px solid var(--gray300);
+      border-radius: 5px;
+      text-align: center;
+      gap: 10px;
+      line-height: 50px;
+  
+  }
+   
+  .M01>li:hover .M02 {
+  
+  left: 100px;
+  
+  }
+      
+  .M01>li p:hover {
+  
+  display: block;
+  
+  background: var(--primary400);
+  
+  color: white;
+  
+  }
+   
+  .M02, .M03 {
+  
+  margin: 0px 210px;
+
+  transition: all 0s ease-out 0.5s;
+
+  width: 300px;
+  
+  list-style: none;
+  
+  position: absolute;
+  
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+  
+  top: 0;
+  
+  left: -9999px;
+  
+  }
+       
+  .M02>li:hover .M03 {
+  
+  left: 100px;
+  
+  }
+  
+  .M02>li p:hover {
+  
+  display: block;
+  background: var(--primary400);
+  
+  }
+
+  .M03>li p:hover {   
+  display: block;   
+  background: var(--primary400);
+  }
+
+  .approver-checkBox{
+    margin: 5px;
+    width: 20%;
+    height: 20%;
+  }
+
+/* 결재자 박스 */
 
 .approver-modal-container{
   width: 100%;
@@ -546,70 +708,6 @@ select{
 /* 확인 취소 버튼 */
 .approver-submit-reset-btns{
   float: right;
-}
-
-/* ---------------------------------------------------- */
-
-
-
-/* 일반 체크 박스 */
-#normal-checkd {
-  display: none;
-}
-
-#project-checked{
-  display: none;
-}
-
-#assignment-checked{
-  display: none;
-}
-
-/* 선탁창 일반 체크 시 템플릿 */
-.work-modal-template-select{
-  display: flex;
-}
-
-.work-modal-template-select select {
-  margin-right: 10px;
-}
-
-.work-modal-businessArea{
-  display: none;
-}
-
-.work-modal-projectBox{
-  float: right;
-  margin-block: 5px;
-}
-
-.projectBox {
-  margin-top: 36px;
-  border: 1px solid var(--gray300);
-  border-radius: 5px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.projectBox div > button{
-  width: 50px;
-  height: 30px;
-  margin-top: 10px;
-  font-size: 14px;
-  color: var(--black);
-  background-color: var(--gray50);
-  border: none;
-  border-radius: 5px;
-  vertical-align: middle;
-  line-height: normal;
-  cursor: pointer;
-}
-
-.work-modal-approverBox{
-  float: right;
-  margin-block: 20px;
-  cursor: pointer;
 }
 
 /* 파일업로드된 스타일 */
@@ -714,7 +812,6 @@ select{
 
 }
 
-
 /* 확인 취소 버튼 */
 .work-submit-reset-btns {
   margin-top: 20px;
@@ -768,21 +865,220 @@ select{
   transition: all 1s;
 }
 
-/* 수정모달창------------------------------------------------------ */
+/* -------------------------------------- */
 
-.check-modal-template {
+#inbox-modalWrap {
+  position: fixed;
+  z-index: 1;
+
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+
+}
+
+.inbox-modalBody {
+  min-width: 570px;
+  min-height: 100px;
+  max-width: 80%;
+  max-height: calc(100vh - 90px);
+
+  background: white;
+  border-radius: 10px;
+
+  margin: 0 auto;
+  margin-top: 100px;
+
+  position: relative;
+  padding: 30px;
+  overflow: auto;
+  width: 80%;
+}
+
+/* 모달 */
+.inbox-modal-header{
+  background-color: var(--gray50);
+  
+}
+/* 모달 헤더 */
+.inbox-modal-modal-headerbox{
+  margin-top: 29px;
+  font-size: 16px;
+}
+.inbox-modal-headerbox-content{
+  padding: 3px 0px;
+}
+
+.inbox-modal-headerbox-footer{
+  padding: 20px 0px;
+}
+
+.inbox-modal-headerbox-footer button{
+  color: inherit;
+  height: 32px;
+  padding: 8px 12px;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* 모달 테이블영역 */
+
+.inbox-modal-table-body{
+  margin-top: 50px;
+}
+
+.inbox-modal-table-body table{
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.inbox-modal-table-body table th {
+  color: var(--gray600);
+  border-bottom: 1px solid var(--gray300);
+  padding-bottom: 10px;
+}
+
+.inbox-modal-table-body table tbody tr:nth-of-type(1){
+  background-color: var(--primary100);
+  border-radius: 10px;
+}
+.inbox-modal-table-body table tbody tr:nth-of-type(2){
+  background-color: var(--primary200);
+  border-radius: 10px;
+}
+.inbox-modal-table-body table tbody tr:nth-of-type(3){
+  background-color: var(--primary300);
+  border-radius: 10px;
+}
+
+
+.inbox-modal-table-body table td{
+  color: black;
+  padding: 20px;
+}
+
+
+/*모달 내용 스타일 */
+.inbox-modalBody p {
+  color: var(--gray400);
+
+  margin-top: 36px;
+}
+
+.inbox-modal-table-body h2{
+  margin-bottom: 20px;
+}
+
+.inbox-modal-detail textarea {
+  width: 100%;
+  max-height: 350px;
+
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+
+  padding: 10px;
+
+  font-size: 16px;
+
+  overflow: hidden;
+
+  outline: none;
+  resize: none;
+}
+
+.inbox-modal-coment input{
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+}
+
+.inbox-modal-approver input{
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--gray300);
+  border-radius: 5px;
+  background-color: var(--gray50);
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+
+}
+
+.inbox-modal-checkbox{
+  margin: 10px 0px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  font-size: large;
+  align-items: center;
+}
+
+#inbox-modal-checkbox{
+  height: 15px;
+  width: 20px;
+}
+
+.inbox-modal-checkbox label {
+  margin-right: 0;
+}
+
+/* 수정모달창 */
+
+#write-modalWrap {
+  position: fixed;
+  z-index: 1;
+
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+
+}
+
+.write-modalBody {
+  min-width: 570px;
+  min-height: 100px;
+  max-width: 80%;
+  max-height: calc(100vh - 90px);
+
+  background: white;
+  border-radius: 10px;
+
+  margin: 0 auto;
+  margin-top: 100px;
+
+  position: relative;
+  padding: 30px;
+  overflow: auto;
+  width: 80%;
+}
+
+.write-modal-template {
   width: 25%;
   height: 40px;
   display: none;
 }
 
-.check-modal-title,
-.check-modal-businessArea,
-.check-modal-startDate,
-.check-modal-endDate,
-.check-modal-detail,
-.check-modal-businessDetail,
-.check-modal-approver
+.write-modal-title,
+.write-modal-businessArea,
+.write-modal-startDate,
+.write-modal-endDate,
+.write-modal-detail,
+.write-modal-businessDetail,
+.write-modal-approver
 {
   width: 100%;
   max-height: 350px;
@@ -801,12 +1097,12 @@ select{
   resize: none;
 }
 
-.check-modal-detail>p {
+.write-modal-detail>p {
   color: var(--gray700);
 }
 
 
-.check-modalBody input {
+.write-modalBody input {
   width: 100%;
   height: 50px;
   border: none;
@@ -818,7 +1114,7 @@ select{
   outline: none;
 }
 
-.check-modalBody textarea {
+.write-modalBody textarea {
   width: 100%;
   max-height: 350px;
   border: 1px solid var(--gray300);
@@ -831,7 +1127,7 @@ select{
 }
 
 /* 파일업로드된 스타일 */
-.check-preview {
+.write-preview {
   width: 100%;
   height: 50px;
 
@@ -854,16 +1150,14 @@ select{
   cursor: pointer;
 }
 
-
-
-/* 삭제 닫기 수정 버튼 */
-.notice-submit-reset-btns {
+/* 수정 모달창 삭제 닫기 수정 버튼 */
+.write-submit-reset-btns {
   margin-top: 20px;
 
   float: right;
 }
 
-#check-cancell-btn {
+#write-cancell-btn {
   width: 60px;
   height: 30px;
 
@@ -881,12 +1175,12 @@ select{
   cursor: pointer;
 }
 
-#check-cancell-btn:hover {
+#write-cancell-btn:hover {
   background-color: var(--gray100);
   transition: all 1s;
 }
 
-#check-success-btn {
+#write-success-btn {
   width: 60px;
   height: 30px;
 
@@ -904,12 +1198,12 @@ select{
   cursor: pointer;
 }
 
-#check-success-btn:hover {
+#write-success-btn:hover {
   background-color: var(--primary500);
   transition: all 1s;
 }
 
-#check-remove-btn {
+#write-remove-btn {
   width: 60px;
   height: 30px;
 
@@ -927,107 +1221,7 @@ select{
   cursor: pointer;
 }
 
-#check-remove-btn:hover {
+#write-remove-btn:hover {
   background-color: var(--gray50);
   transition: all 1s;
 }
-
-/*결재자 메뉴*/
-
-*{
-  text-decoration: none;
-}
-
-#approver-box p {
-
-  display: block;
-  
-  color: #333;
-  
-  }
-    
-  .M01 {
-      list-style: none;
-      width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-  
-  }
-    
-  .M01>li, .M02>li, .M03>li {
-  
-      position: relative;
-      width: 100%;
-      height: 50px;
-      border: 1px solid var(--gray300);
-      border-radius: 5px;
-      text-align: center;
-      gap: 10px;
-      line-height: 50px;
-  
-  }
-   
-  .M01>li:hover .M02 {
-  
-  left: 100px;
-  
-  }
-      
-  .M01>li p:hover {
-  
-  display: block;
-  
-  background: var(--primary400);
-  
-  color: white;
-  
-  }
-   
-  .M02, .M03 {
-  
-  margin: 0px 210px;
-
-  transition: all 0s ease-out 0.5s;
-
-  width: 300px;
-  
-  list-style: none;
-  
-  position: absolute;
-  
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-  
-  top: 0;
-  
-  left: -9999px;
-  
-  }
-       
-  .M02>li:hover .M03 {
-  
-  left: 100px;
-  
-  }
-  
-  .M02>li p:hover {
-  
-  display: block;
-  background: var(--primary400);
-  
-  }
-
-  .M03>li p:hover {   
-  display: block;   
-  background: var(--primary400);
-  }
-
-  .approver-checkBox{
-    margin: 5px;
-    width: 20%;
-    height: 20%;
-  }
