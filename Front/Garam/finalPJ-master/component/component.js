@@ -5,3 +5,10 @@ $(document).ready(function () {
     });
 
 });
+
+// $(document).ready(function () {
+//     if($(".check-modal-open").css("display")){
+
+//     }
+    
+// });

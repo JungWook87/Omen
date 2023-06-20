@@ -597,6 +597,7 @@ option {
 
     margin: 0 auto;
     margin-top: 100px;
+    margin-bottom: 100px;
 
     position: relative;
     padding: 30px;
@@ -691,6 +692,7 @@ option {
 
     outline: none;
     resize: none;
+
 }
 
 .check-modal-detail>p {
