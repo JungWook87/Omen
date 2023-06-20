@@ -98,6 +98,12 @@ public class WorkServiceImp implements WorkService {
 		return result;
 	}
 
+	// 결재 수신함 - 결재할 문서
+	@Override
+	public List<WorkGeneralList> workInbox(int memNo) {
+		return dao.workInbox(memNo);
+	}
+
 	
 	
 	

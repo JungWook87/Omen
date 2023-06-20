@@ -36,9 +36,7 @@ public class WorkController {
 	
 	// 결재 상신함 페이지 진입
 	@GetMapping("/workSend")
-	public String workSend(
-			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
-			Model model,
+	public String workSend(Model model,
 			@ModelAttribute("loginMember") Member loginMember,
 			RedirectAttributes ra) {
 		
@@ -63,8 +61,7 @@ public class WorkController {
 	// 결재 상신함 페이지 일정 지정
 	@ResponseBody
 	@GetMapping("/workSendSelectDate")
-	public String workSendSelectDate(@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
-									Model model,
+	public String workSendSelectDate(Model model,
 									@ModelAttribute("loginMember") Member loginMember,
 									@RequestParam Map<String, Object> map) {
 		
@@ -118,12 +115,12 @@ public class WorkController {
 	
 	// 결재 수신함 (결재할것) 페이지 진입
 	@GetMapping("/workInbox")
-	public String workInbox(
-			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
-			Model model,
-			@ModelAttribute("loginMember") Member loginMember
-			) {
+	public String workInbox(Model model,
+			@ModelAttribute("loginMember") Member loginMember) {
 			
+		List <WorkGeneralList> list = service.workInbox(loginMember.getMemNo());
+		
+		model.addAttribute("list", list);
 		
 		return "/work/work-inbox(1)";
 	}
@@ -135,7 +132,8 @@ public class WorkController {
 			Model model,
 			@ModelAttribute("loginMember") Member loginMember
 			) {
-			
+		
+		
 		
 		return "/work/work-inbox-ing(2)";
 	}

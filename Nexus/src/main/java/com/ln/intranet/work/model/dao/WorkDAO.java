@@ -37,6 +37,11 @@ public class WorkDAO {
 		return sqlSession.insert("workMapper.insertWorkFile", file);
 	}
 
+	// 결재 수신함 - 결재할 문서
+	public List<WorkGeneralList> workInbox(int memNo) {
+		return sqlSession.selectList("workMapper.workInbox", memNo);
+	}
+
 
 	
 }

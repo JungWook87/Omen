@@ -39,20 +39,34 @@ public class ChatDAO {
 		return sqlSession.selectList("chatMapper.chatMemberList");
 	}
 
-	public void inviteMember(Map<String, Object> paramMap) {
+	public int inviteMember(ChatRoomJoin join) {
 		
-		sqlSession.insert("chatMapper.inviteMemberList", paramMap);
+		
+		return sqlSession.insert("chatMapper.inviteMember", join);
+	}
+	
+
+	public int CreateChatRoomJoin(ChatRoomJoin join) {
+	    return  sqlSession.insert("chatMapper.createChatRoomJoin", join);
+	    
+	
+	    
+	    
 	}
 
-	public int CreateChatRoom(ChatRoomJoin join) {
-	    int result = sqlSession.insert("chatMapper.CreateChatRoom", join);
-	    
-	    if (result > 0) {
-	        return join.getCmNo();
-	    }
-	    
-	    return 0;
+	public int CreateChatRoom(Map<String, Object> paramMap) {
+		
+		sqlSession.insert("chatMapper.createChatRoom", paramMap);
+		
+		return (int) paramMap.get("cmNo");
+		
 	}
+
+	public int selectInviteMember(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("chatMapper.selectInviteMember", paramMap);
+	}
+
+
 	
 	
 

@@ -9,11 +9,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../component/component.css">
-  <link rel="stylesheet" href="../component/variable.css">
-  <link rel="stylesheet" href="../css/work-send.css">
-  <link rel="stylesheet" href="../css/work-inbox(1).css">
-  <link rel="stylesheet" href="../css/work-inbox-end(3).css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox(1).css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox-end(3).css">
 
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -33,7 +34,7 @@
 
 <body>
 
-  <header style="height: 90px;"></header>
+  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <section>
 
 <!--------------------------------------------------- 사이드 바 --------------------------------------------------->
@@ -41,7 +42,7 @@
   <!------------------------------------------- 페이지마다 바뀌는 제목 ------------------------------------------->
   <div class="side-barTitle">
     <a href="work-send.html" id="side-barTitle-a">
-      <img src="../images/leftArrow.png" alt="">
+      <img src="${contextPath}/resources/images/leftArrow.png" alt="">
     </a>
   <h1>수신함</h1>
   </div>
@@ -128,7 +129,7 @@
     <div id="modalWrap">
       <div class="work-modalBody">
         <span id="closeBtn">
-          <img src="../images/Xbtn.png" alt="">
+          <img src="${contextPath}/resources/images/Xbtn.png" alt="">
         </span>
         <h1>결제상신</h1>
         <!-- 선1 -->
@@ -202,7 +203,7 @@
         <!-- 프로젝트박스 -->
         <div class="work-modal-projectBox">
           <span id="pulsProject">
-            <img src="../images/plus.png" alt="">
+            <img src="${contextPath}/resources/images/plus.png" alt="">
             과제 추가
           </span>
         </div>
@@ -215,7 +216,7 @@
         <!-- 결재자 -->
         <div class ="work-modal-approverBox">
           <span id="pulsApprover">
-            <img src="../images/plus.png" alt="">
+            <img src="${contextPath}/resources/images/plus.png" alt="">
             결재자 추가
           </span>  
         </div>
@@ -250,7 +251,7 @@
     <div id="approver-modal-wrap">
       <div class="approver-modal-Body">
         <span id="approver-closeBtn">
-          <img src="../images/Xbtn.png" alt="">
+          <img src="${contextPath}/resources/images/Xbtn.png" alt="">
         </span>
         <h1>결재 라인 설정</h1>
         <!-- 선1 -->
@@ -384,7 +385,7 @@
       <div id="check-modalWrap">
         <div class="check-modalBody">
           <span id="check-closeBtn">
-            <img src="../images/Xbtn.png" alt="">
+            <img src="${contextPath}/resources/images/Xbtn.png" alt="">
           </span>
           <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
             
@@ -518,11 +519,11 @@
     <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
       <a href="#">
-        <img class="chatting-img" src="../images/chattImg.png" alt="">
+        <img class="chatting-img" src="${contextPath}/resources/images/chattImg.png" alt="">
       </a>
     </div>
   </section>
 </body>
 
-<script src="../js/work-inbox-ing(2).js"></script>
+<script src="${contextPath}/resources/js/work/work-inbox-ing(2).js"></script>
 </html>
