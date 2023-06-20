@@ -320,7 +320,7 @@ function updateImageDisplay(event) {
   const fileInfo = `${upFile.name}`;
 
   reader.onload = function(e) {
-    checkPreview.innerText = fileInfo;
+    checkedPreview.innerText = fileInfo;
   };
 
   reader.readAsDataURL(upFile);
@@ -449,7 +449,7 @@ successBtn.addEventListener("click", () => {
     
     // 내가 작성한 글 모달창 열기
     tr.addEventListener("click", function() {
-      inboxModalOpen();
+      checkedModalOpen();
     })
         
     // 모달 닫기
@@ -458,37 +458,59 @@ successBtn.addEventListener("click", () => {
   }
 
 // 내가 작성한 글모달창
-const inboxModal = document.getElementById('inbox-modalWrap');
-const inboxCloseBtn = document.getElementById('inbox-closeBtn');
-const inboxModalBody = document.querySelector('.inbox-modalBody');
-const inboxCancellBtn = document.getElementById('inbox-cancell-btn');
-const inboxModalTitle = document.querySelector('.inbox-modal-title > input');
-const inboxModalDetail = document.querySelector('.inbox-modal-detail');
-const inboxPreview = document.querySelector('.inbox-preview');
-const inboxCopyBtn = document.querySelector('.copy-btn');
-const inboxSuccessBtn = document.getElementById('inbox-success-btn');
-const inboxEditBtn = document.getElementById('edit-btn');
-const inboxModalApprover = document.querySelector('.inbox-modal-approver > input');
-
+const checkedModal = document.getElementById('checked-modalWrap');
+const checkedCloseBtn = document.getElementById('checked-closeBtn');
+const checkedModalBody = document.querySelector('.checked-modalBody');
+const checkedCancellBtn = document.getElementById('checked-cancell-btn');
+const checkedModalTitle = document.querySelector('.checked-modal-title');
+const checkedModalDetail = document.querySelector('.checked-modal-detail');
+const checkedPreview = document.querySelector('.checked-preview');
+const checkedCopyBtn = document.querySelector('.copy-btn');
+const checkedSuccessBtn = document.getElementById('checked-success-btn');
+const checkedEditBtn = document.getElementById('checked-edit-btn');
+const checkedModalApprover = document.querySelector('.checked-modal-approver');
+const checkedModalComent = document.querySelector('.checked-modal-coment');
 
 // 내가 작성한 글 모달창 오픈
-function inboxModalOpen() {
+function checkedModalOpen() {
+
+    // 제목 밸류값 들고오기
+    checkedModalTitle.innerHTML = workTitle.value;
+
+    // textarea 밸류값 들고오기
+    checkedModalDetail.innerHTML = workContent.value;
+
+    // 결재자 밸류값 들고오기
+    checkedModalApprover.innerHTML = workContent.value;
+
+    checkedModalComent.innerHTML = "작성된 의견이 없습니다";
+    
+    // // 시작날짜 밸류값 들고오기
+    // checkedStartDate.value = workStartDateText.value;
+    // // 종료날짜 밸류값 들고오기
+    // checkedEndDate.value= workEndDateText.value;
+    // // 출장내용 밸류값 들고오기
+    // checkedBusinessDetail.value = workBusinessDetailText.value
+  
+  
+  
+    // 결재자 밸류값 들고오기
   
   // 모달창 열기
-  inboxModal.style.display = 'block';
-  inboxModalBody.classList.add('.inbox-modal-open');
+  checkedModal.style.display = 'block';
+  checkedModalBody.classList.add('.checked-modal-open');
 
 
 }
 
 // 내가 작성한 글 모달창 닫기
 // 내가 작성한 글 모달창 닫는 함수
-function inboxModalClose() {
-  inboxModalBody.classList.add('.inbox-modal-close');
+function checkedModalClose() {
+  checkedModalBody.classList.add('.checked-modal-close');
   
   setTimeout(() => {
-    inboxModal.style.display = 'none';
-    inboxModalBody.classList.remove(".inbox-modal-close");
+    checkedModal.style.display = 'none';
+    checkedModalBody.classList.remove(".checked-modal-close");
   }, 350);
 
   workContent.style.overflow = 'hidden';
@@ -497,38 +519,30 @@ function inboxModalClose() {
 }
 
 // 모달창 엑스 버튼
-inboxCloseBtn.addEventListener("click", () => {
-  inboxModalClose();
+checkedCloseBtn.addEventListener("click", () => {
+  checkedModalClose();
 });
 
 // 모달창 외부 영역 이벤트
 $(window).click(function(event) {
-  if (event.target == inboxModal) {
-    inboxModalClose();
+  if (event.target == checkedModal) {
+    checkedModalClose();
   }
 });
 
 // 취소버튼 이벤트
-inboxCancellBtn.addEventListener("click", () => {
-  inboxModalClose();
+checkedCancellBtn.addEventListener("click", () => {
+  checkedModalClose();
 });
 // 수정버튼 이벤트
-inboxEditBtn.addEventListener("click", () => {
+checkedEditBtn.addEventListener("click", () => {
   writeModalOpen();
 });
 
 //복사버튼 이벤트
-inboxCopyBtn.addEventListener("click", () => {
+checkedCopyBtn.addEventListener("click", () => {
   writeModalOpen();
 });
-
-//체크박스 체크
-function is_checked() {
-  // 체크박스 상태 확인
-  var checkbox = document.getElementById('inbox-modal-checkbox');
-  var is_checked = checkbox.checked;
-
-}  
 
 // 수정 모달창
 const writeModal = document.getElementById('write-modalWrap');
@@ -557,8 +571,6 @@ const writeApprover = document.querySelector('.write-modal-approver');
 const writeApproverText = document.querySelector('.write-modal-approver > input');
 
 const writePreview = document.querySelector('.write-preview');
-
-
 
 
 // 수정 모달창 오픈

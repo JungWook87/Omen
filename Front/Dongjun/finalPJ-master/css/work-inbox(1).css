@@ -545,6 +545,8 @@ select{
 /* 파일 올리기 지우기 버튼 스타일 */
 .work-file-box {
   margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .work-file-box label {
@@ -567,6 +569,8 @@ select{
   border-radius: 5px;
 
   cursor: pointer;
+  
+  margin-right: 0;
 
 
 }
