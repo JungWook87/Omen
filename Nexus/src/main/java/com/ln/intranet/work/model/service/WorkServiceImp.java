@@ -36,20 +36,33 @@ public class WorkServiceImp implements WorkService {
 		return dao.workSendSelectDate(map);
 	}
 
-	// 결재 상신 작성(날짜 없음)
+	// 결재 상신 작성(일반결재)
 	@Override
 	@Transactional
-	public Map<String, Object> workWrite(Map<String, Object> map, MultipartFile uploadFile, HttpServletRequest req) {
+	public int workWrite(Map<String, Object> map, MultipartFile uploadFile, HttpServletRequest req) {
 		
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+		int result = 0;
 		
-		map.put("title", Util.XSSHandling(map.get("title").toString()));
-		map.put("content", Util.XSSHandling(map.get("content").toString()));
-		map.put("content", Util.newLineHandling(map.get("content").toString()));
+		int typeNo = Integer.parseInt(map.get("typeNo").toString());
+		
+		// 결재 타입에 따른 결재 테이블에 값 넣기
+		if(typeNo == 1) {
+			
+			map.put("title", Util.XSSHandling(map.get("title").toString()));
+			map.put("content", Util.XSSHandling(map.get("content").toString()));
+			map.put("content", Util.newLineHandling(map.get("content").toString()));
+			
+		} else if(typeNo == 3) {
+			
+			map.put("content", Util.XSSHandling(map.get("content").toString()));
+			map.put("content", Util.newLineHandling(map.get("content").toString()));
+		}
 		
 		
+		// 파일 올리기
 		int insertResult = dao.workWrite(map);
 		int workNo = Integer.parseInt(map.get("workNo").toString());
+		int memNo = Integer.parseInt(map.get("memNo").toString());
 		
 		if(insertResult != 0) {
 			
@@ -67,7 +80,7 @@ public class WorkServiceImp implements WorkService {
 				file.setFileOrigin(uploadFile.getOriginalFilename());
 				file.setFileReName(webPath + reName);
 				
-				int result = dao.insertWorkFile(file);
+				result = dao.insertWorkFile(file);
 					
 				if(result != 0) {
 					try {
@@ -76,25 +89,18 @@ public class WorkServiceImp implements WorkService {
 						e.printStackTrace();
 					}
 				}
-				
+			} else {
+				result = insertResult;
 			}
-			
-			int memNo = Integer.parseInt(map.get("memNo").toString());
-					
-			List<WorkGeneralList> list = dao.workSend(memNo);
-			
-			resultMap.put("message", 1);
-			resultMap.put("list", list);
-			
-		} else {
-			
-			resultMap.put("message", 0);
 			
 		}
 		
-		
-		return resultMap;
+		return result;
 	}
+
+	
+	
+	
 	
 	
 	
