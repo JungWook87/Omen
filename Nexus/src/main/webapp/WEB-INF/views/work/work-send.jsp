@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/write-approval.css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -45,6 +46,7 @@
   </c:if>
 
   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  <jsp:include page="/WEB-INF/views/work/write-approval.jsp"/>
   <section>
 
 <!--------------------------------------------------- 사이드 바 --------------------------------------------------->
@@ -651,5 +653,6 @@
 </body>
 
 <script src="${contextPath}/resources/js/work/work-send.js"></script>
+<script src="${contextPath}/resources/js/work/write-approval.js"></script>
 </html>
 

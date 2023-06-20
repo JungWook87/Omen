@@ -9,24 +9,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../component/component.css">
-  <link rel="stylesheet" href="../component/variable.css">
-  <link rel="stylesheet" href="../css/work-send.css">
-  <!-- <link rel="stylesheet" href="../css/work-inbox(1).css"> -->
-  <link rel="stylesheet" href="../css/work-temp.css">
-  <!-- sweetAlert2 cdn -->
-  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-
-    <!-- 폰트어썸 -->
-    <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
-
-  <!-- 날짜조회api-->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
   <title>결재 작성하기</title>
 </head>
 <body>
@@ -95,12 +77,6 @@
             <!-- 내용 -->
             <div class="work-modal-detail">
               <p>내용</p>
-              <textarea name="" id="" onkeydown="handleResizeHeight(this)"
-                onkeyup="handleResizeHeight(this)"></textarea>
-            </div>
-            <!-- 출장내용 -->
-            <div class="work-modal-businessDetail">
-              <p>출장 내용</p>
               <textarea name="" id="" onkeydown="handleResizeHeight(this)"
                 onkeyup="handleResizeHeight(this)"></textarea>
             </div>

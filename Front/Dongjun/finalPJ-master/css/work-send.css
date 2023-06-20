@@ -1155,7 +1155,7 @@ cursor: pointer;
   width: 80%;
 }
 
-.write-modalBody p{
+.write-modalBody{
   color: var(--gray400);
 
   margin-top: 36px;
