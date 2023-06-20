@@ -13,17 +13,23 @@
 	</resultMap>
 	
 	<!-- 회의실 예약 -->
-	<insert id="reservationRoom" parameterType="meetingRoom" useGeneratedKeys="true" keyProperty="reservationNo" >
-		<selectKey keyProperty="reservationNo" resultType="_int" order="BEFORE">
-			SELECT SEQ_RESERVATION_NO.NEXTVAL FROM DUAL
-		</selectKey>
-		INSERT INTO MEETING_ROOM VALUES (
-		#{reservationNo}, #{memNo}, #{reservationDate}, #{reservationTime}, #{roomNo}
-		)
+	<insert id="reservationRoom" parameterType="meetingRoom" useGeneratedKeys="true" keyProperty="reservationNo">
+	  <selectKey keyProperty="reservationNo" resultType="_int" order="BEFORE">
+	    SELECT SEQ_RESERVATION_NO.NEXTVAL FROM DUAL
+	  </selectKey>
+	  INSERT INTO MEETING_ROOM (RESERVATION_NO, MEM_NO, RESERVATION_DATE, RESERVATION_TIME, ROOM_NO)
+	  SELECT #{reservationNo}, #{memNo}, #{reservationDate}, #{reservationTime}, #{roomNo}
+	  FROM DUAL
+	  WHERE NOT EXISTS (
+	    SELECT 1 FROM MEETING_ROOM
+	    WHERE RESERVATION_DATE = #{reservationDate}
+	    AND RESERVATION_TIME = #{reservationTime}
+	    AND ROOM_NO = #{roomNo}
+	  )
 	</insert>
 	
 	<!-- 예약한 회의실 조회 -->
-	<select id="returnResult" parameterType="_int" resultMap="meetingRoom_rm">
+	<select id="reservationList" parameterType="_int" resultMap="meetingRoom_rm">
 		SELECT 
 			RESERVATION_NO, MEM_NO, 
 			MEM_NAME, JOB_NAME, ROOM_NO, 

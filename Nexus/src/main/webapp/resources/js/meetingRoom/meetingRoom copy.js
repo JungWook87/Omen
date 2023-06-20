@@ -31,6 +31,8 @@ const months = [
   "12월",
 ];
 
+
+
 let eventsArr = [];
 
 // getEvents();
@@ -140,9 +142,11 @@ const addEventBtn = document.querySelector(".add-event"),
 addEventBtn.addEventListener("click", () => {
   addEventContainer.classList.toggle("active");
 });
+
 addEventCloseBtn.addEventListener("click", () => {
   addEventContainer.classList.remove("active");
 });
+
 document.addEventListener("click", (e) => {
   if(e.target !== addEventBtn && !addEventContainer.contains(e.target)) {
     addEventContainer.classList.remove("active");
@@ -254,6 +258,35 @@ function updateEvents(date) {
     }
   })
 
+  // if(resvBox === "") {
+  //   resvBox = `<div class = "no-event">
+  //               <h3>예약된 회의실이 없습니다.</h3>
+  //             </div>`
+  // }
+
+  // eventsContainer.innerHTML = resvBox;
+
+  // const availableRoomsText = document.querySelector(".available-rooms");
+  // if (availableRoomsText) {
+  //   availableRoomsText.remove(); // Remove existing text if it exists
+  // }
+
+  // if (availableRooms >= 0) {
+  //   const roomsText = document.createElement("div");
+  //   roomsText.className = "available-rooms";
+  //   roomsText.innerHTML = `예약 가능한 회의실: ${availableRooms}`;
+  //   daysContainer.appendChild(roomsText);
+  // }
+
+  // 먼지 잘 모르겟음
+  // const eventWindow = document.querySelector(".event-window");
+  // if (eventWindow) {
+  //   eventWindow.style.display = "none"; 
+  // }
+
+
+  // saveEvents();
+
 }
 
 // 예약버튼 눌렀을 때 이벤트
@@ -285,54 +318,62 @@ addEventSubmit.addEventListener("click", () => {
   }
 
 
+
+  // const newEvent = {
+  //   title : selectedText,
+  //   time: morningChecked ? "오전" : afternoonChecked ? "오후" : "",
+  // };
+
+  // let eventAdded = false;
+
+  // if(eventsArr.length > 0) {
+  //   eventsArr.forEach((item) => {
+  //     if(
+  //       item.day === activeDay &&
+  //       item.month === month + 1 &&
+  //       item.year === year
+  //     ) {
+  //       item.events.push(newEvent);
+  //       eventAdded = true;
+  //     }
+  //   })
+  // }
+
+  // if(!eventAdded) {
+  //   eventsArr.push({
+  //     day: activeDay,
+  //     month:month + 1,
+  //     year: year,
+  //     events : [newEvent],
+  //   })
+  // }
+
   // 예약 버튼을 누르면 모달창이 닫힘
   addEventContainer.classList.remove("active");
 
+  // 선택한 회의실 번호 유지
+  // dropdown.textContent = selectedText;
+
+ // 기존 내용 초기화
+  // dropdown.dataset.value = "placeholder";
+  // dropdown.textContent = "회의실 선택";
   morningRadio.checked = false;
   afternoonRadio.checked = false;
 
 
   updateEvents(activeDay);
 
+
+  // 이벤트가 추가되면 날짜 밑에 밑줄이 생김
+  // const activeDayElem = document.querySelector(".day.active");
+  // if(!activeDayElem.classList.contains("event")) {
+  //   activeDayElem.classList.add("event");
+  // }
+
+
 })
 
-// 사이트 진입시 ajax 연결 (모든 예약정보 받아오기)
-$(document).ready(function() {
-  $.ajax({
-    url: 'allReservation', 
-    method: 'GET',
-    success: function(result) {
 
-      var resvList = result['resvList'];
-      
-      for (var i = 0; i < resvList.length; i++) {
-        var item = resvList[i];
-  
-        var reservationNo = item.reservationNo;
-        var memNo = item.memNo;
-        var reservationDate = item.reservationDate;
-        var reservationTime = item.reservationTime;
-        var roomNo = item.roomNo;
-  
-        console.log("Reservation No: " + reservationNo);
-        console.log("Member No: " + memNo);
-        console.log("Reservation Date: " + reservationDate);
-        console.log("Reservation Time: " + reservationTime);
-        console.log("Room No: " + roomNo);
-  
-        $('#reservationTable').append('<tr><td>' + reservationNo + '</td><td>' + memNo + '</td><td>' + reservationDate + '</td><td>' + reservationTime + '</td><td>' + roomNo + '</td></tr>');
-      }
-    },
-    error: function(xhr, status, error) {
-      
-      console.log('Error:', status, error);
-    }
-  });
-});
-
-
-
-// 회의실 예약 ajax
 const reservationBox = document.querySelector(".reservation-box");
 
 $(".add-event-btn").click(function() {
@@ -421,4 +462,38 @@ $(document).ready(function() {
     }, 400);
   }
 });
+
+// eventsContainer.addEventListener("click", (e) => {
+//   if(e.target.classList.contains("event")) {
+//     const eventTitle = e.target.children[0].children[1].innerHTML;
+
+//     eventsArr.forEach((event) => {
+//       if(
+//         event.day === activeDay &&
+//         event.month === month + 1 &&
+//         event.year === year
+//       ) {
+//         event.events.forEach((item, index) => {
+//           if(item.title === eventTitle) {
+//             event.events.splice(index, 1);
+//           }
+//         })
+
+//         if(event.events.length === 0) {
+//           eventsArr.splice(eventsArr.indexOf(event), 1);
+
+//           const activeDayElem = document.querySelector(".day.active");
+//           if(activeDayElem.classList.contains("event")) {
+//             activeDayElem.classList.remove("event");
+//           }
+//         }
+//       }
+//     })
+
+//     updateEvents(activeDay);
+//   }
+ 
+// })
+
+
 
