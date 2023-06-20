@@ -43,8 +43,6 @@ public class MainController {
 		
 		Attendance todayAttn = attnService.selectOne(map);
 		
-		System.out.println(todayAttn);
-		
 		model.addAttribute("todayAttn" , todayAttn);
 		
 		return "/main";

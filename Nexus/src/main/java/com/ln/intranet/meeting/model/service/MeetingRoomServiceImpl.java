@@ -1,5 +1,7 @@
 package com.ln.intranet.meeting.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,14 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	
 	@Autowired
 	private MeetingRoomDAO dao;
+
+	// 모든 예약 조회
+	@Override
+	public List<MeetingRoom> allReservation() {
+		return dao.allReservation();
+	}
+	
+	
 	
 	// 회의실 예약 
 	@Override
@@ -18,5 +28,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		
 		return dao.reservationRoom(meetingRoom);
 	}
+	
+
 
 }
