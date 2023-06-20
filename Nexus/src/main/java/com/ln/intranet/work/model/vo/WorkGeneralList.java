@@ -19,5 +19,6 @@ public class WorkGeneralList {
 	private String fileRename; // 파일 경로, null -> 0, not null -> 1
 	private String sendDate; // 작성일
 	private String opinion; // 의견, null -> 0, not null -> 개수
+	private String memName; // 작성자 이름
 	
 }

@@ -22,4 +22,7 @@ public interface WorkService {
 	// 결재 상신 작성(일반결재)
 	int workWrite(Map<String, Object> map, MultipartFile uploadFile, HttpServletRequest req);
 
+	// 결재 수신함 - 결재할 문서
+	List<WorkGeneralList> workInbox(int memNo);
+
 }
