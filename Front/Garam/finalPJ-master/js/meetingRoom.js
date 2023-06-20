@@ -106,8 +106,6 @@ function initCalendar() {
   addListner();
 }
 
-
-
 initCalendar();
 
 
@@ -134,57 +132,13 @@ function nextMonth() {
 prev.addEventListener("click", prevMonth);
 next.addEventListener("click", nextMonth)
 
-todayBtn.addEventListener("click", () => {
-  today = new Date();
-  month = today.getMonth();
-  year = today.getFullYear();
-  initCalendar();
-});
-
-dateInput.addEventListener("input", (e) => {
-  
-  dateInput.value = dateInput.value.replace(/[^0-9/]/g, "");
-  if(dateInput.value.length === 2) {
-    dateInput.value += "/";
-  }
-  
-  if(dateInput.value.length > 7) {
-    dateInput.value = dateInput.value.slice(0, 7);
-  }
-
-  if(e.inputType === "deleteContentBackward") {
-    if(dateInput.value.length === 3) {
-      dateInput.value = dateInput.value.slice(0, 2);
-    }
-  }
-});
-
-gotoBtn.addEventListener("click", gotoDate);
-
-function gotoDate() {
-  
-  const dateArr = dateInput.value.split("/");
-
-  if(dateArr.length === 2) {
-    if(dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
-      month = dateArr[0] - 1;
-      year = dateArr[1];
-      initCalendar();
-      dateInput.value = '';
-      return;
-    }
-  }
-
-  Swal.fire("잘못된 날짜입니다.")
-}
-
 
 // 이벤트 추가
 const addEventBtn = document.querySelector(".add-event"),
       addEventContainer = document.querySelector(".add-event-wrapper"),
       addEventCloseBtn = document.querySelector(".close");
       
-
+// 더하기 버튼 누르면 모달창이 뜸
 addEventBtn.addEventListener("click", () => {
   addEventContainer.classList.toggle("active");
 });
@@ -200,12 +154,15 @@ document.addEventListener("click", (e) => {
 })
 
 
-
+// 클릭했을때 이벤트
 function addListner() {
   const days = document.querySelectorAll(".day");
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
       
+      // 해당 날짜를 보여주는 콘솔로그
+      console.log(day.innerHTML);
+
       getActiveDay(e.target.innerHTML);
       updateEvents(Number(e.target.innerHTML));
       activeDay = Number(e.target.innerHTML);
@@ -214,6 +171,7 @@ function addListner() {
         day.classList.remove("active");
       })
 
+      // 이전 달과 다음달을 오갈수 있는 클릭 이벤트
       if(e.target.classList.contains("prev-date")) {
         prevMonth();
 
@@ -253,8 +211,7 @@ function addListner() {
   })
 }
 
-
-
+// 오른쪽에 요일과 년도를 보여주는 함수
 function getActiveDay(date) {
   const dayNames = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
   const day = new Date(year, month, date);
@@ -263,10 +220,13 @@ function getActiveDay(date) {
   eventDate.innerHTML = year + "년" + " " + months[month] + " " + date + "일";
 }
 
-function updateEvents(date) {
-  let events = "";
-  let availableRooms = 8; // Total available rooms
 
+// 이벤트 업데이트 함수
+function updateEvents(date) {
+  // let resvBox = "";
+  // let availableRooms = 8; 
+
+  // 날짜를 보여줌(지우면 날짜가 안보이게 댐)
   eventsArr.forEach((event) => {
     if(
       date === event.day &&
@@ -274,55 +234,62 @@ function updateEvents(date) {
       year === event.year
     ) {
 
-      event.events.forEach((event) => {
-        events += `
-        <div class = "event">
-          <div class = "title">
-            <i class = "fas fa-circle"></i>
-            <h3 class = "event-title">${event.title}</h3>
-          </div>
-          <div class = "event-time">
-            <span class = "event-time">${event.time}</span>
-          </div>
-        </div>`
-        if (event.title !== "회의실 선택") {
-          availableRooms--; // Decrease available rooms count for each reserved room
-        }
-      })
+      // 오른쪽에 나타나는 이벤트 추가
+      // event.resvBox.forEach((event) => {
+      //   resvBox += `
+      //   <div class = "event">
+      //     <div class = "title">
+      //       <i class = "fas fa-circle"></i>
+      //       <h3 class = "event-title">${event.title}</h3>
+      //     </div>
+      //     <div class = "event-time">
+      //       <span class = "event-time">${event.time}</span>
+      //     </div>
+      //   </div>`
+
+        // 회의실을 선택할때마다 예약가능한 수가 1씩 줄어듬
+        // if (event.title !== "회의실 선택") {
+        //   availableRooms--; 
+        // }
+
+
+      // })
 
     }
   })
 
-  if(events === "") {
-    events = `<div class = "no-event">
-                <h3>예약된 회의실이 없습니다.</h3>
-              </div>`
-  }
+  // if(resvBox === "") {
+  //   resvBox = `<div class = "no-event">
+  //               <h3>예약된 회의실이 없습니다.</h3>
+  //             </div>`
+  // }
 
-  eventsContainer.innerHTML = events;
+  // eventsContainer.innerHTML = resvBox;
 
-  const availableRoomsText = document.querySelector(".available-rooms");
-  if (availableRoomsText) {
-    availableRoomsText.remove(); // Remove existing text if it exists
-  }
+  // const availableRoomsText = document.querySelector(".available-rooms");
+  // if (availableRoomsText) {
+  //   availableRoomsText.remove(); // Remove existing text if it exists
+  // }
 
-  if (availableRooms >= 0) {
-    const roomsText = document.createElement("div");
-    roomsText.className = "available-rooms";
-    roomsText.innerHTML = `예약 가능한 회의실: ${availableRooms}`;
-    daysContainer.appendChild(roomsText);
-  }
+  // if (availableRooms >= 0) {
+  //   const roomsText = document.createElement("div");
+  //   roomsText.className = "available-rooms";
+  //   roomsText.innerHTML = `예약 가능한 회의실: ${availableRooms}`;
+  //   daysContainer.appendChild(roomsText);
+  // }
 
-  const eventWindow = document.querySelector(".event-window");
-  if (eventWindow) {
-    eventWindow.style.display = "none"; // Hide the event window
-  }
+  // 먼지 잘 모르겟음
+  // const eventWindow = document.querySelector(".event-window");
+  // if (eventWindow) {
+  //   eventWindow.style.display = "none"; 
+  // }
 
 
   // saveEvents();
 
 }
 
+// 예약버튼 눌렀을 때 이벤트
 addEventSubmit.addEventListener("click", () => {
   // 드롭다운 요소 선택
   const dropdown = document.querySelector(".drop .option.active");
@@ -343,6 +310,7 @@ addEventSubmit.addEventListener("click", () => {
   console.log("Morning radio checked:", morningChecked);
   console.log("Afternoon radio checked:", afternoonChecked);
 
+  // 회의실을 선택 안했거나 오전과 오후중 선택을 안했을때 알림창이 뜸
   if(selectedValue === "placeholder") {
     Swal.fire("회의실을 선택해 주세요");
   } else if(morningChecked === false && afternoonChecked === false) {
@@ -350,76 +318,41 @@ addEventSubmit.addEventListener("click", () => {
   }
 
 
- // 중복 체크
- const isDuplicate = eventsArr.some((item) => {
-  return (
-    item.day === activeDay &&
-    item.month === month + 1 &&
-    item.year === year &&
-    item.events.some((event) => {
-      return (
-        event.title === selectedText &&
-        event.time === (morningChecked ? "오전" : "오후")
-      );
-    })
-  );
-});
 
-if (isDuplicate) {
-  Swal.fire("이미 해당 시간에 예약이 있습니다");
-  return;
-}
+  // const newEvent = {
+  //   title : selectedText,
+  //   time: morningChecked ? "오전" : afternoonChecked ? "오후" : "",
+  // };
 
-// 회의실 중복 체크
-const roomEvents = eventsArr.flatMap((item) => item.events);
-const roomDuplicateCount = roomEvents.reduce((count, event) => {
-  if (event.title !== "회의실 선택" && event.time === (morningChecked ? "오전" : "오후")) {
-    return count + 1;
-  }
-  return count;
-}, 0);
+  // let eventAdded = false;
 
-if (roomDuplicateCount >= 8) {
-  Swal.fire("더 이상 예약할 수 없습니다");
-  return;
-}
+  // if(eventsArr.length > 0) {
+  //   eventsArr.forEach((item) => {
+  //     if(
+  //       item.day === activeDay &&
+  //       item.month === month + 1 &&
+  //       item.year === year
+  //     ) {
+  //       item.events.push(newEvent);
+  //       eventAdded = true;
+  //     }
+  //   })
+  // }
 
- 
+  // if(!eventAdded) {
+  //   eventsArr.push({
+  //     day: activeDay,
+  //     month:month + 1,
+  //     year: year,
+  //     events : [newEvent],
+  //   })
+  // }
 
-
-  const newEvent = {
-    title : selectedText,
-    time: morningChecked ? "오전" : afternoonChecked ? "오후" : "",
-  };
-
-  let eventAdded = false;
-
-  if(eventsArr.length > 0) {
-    eventsArr.forEach((item) => {
-      if(
-        item.day === activeDay &&
-        item.month === month + 1 &&
-        item.year === year
-      ) {
-        item.events.push(newEvent);
-        eventAdded = true;
-      }
-    })
-  }
-
-  if(!eventAdded) {
-    eventsArr.push({
-      day: activeDay,
-      month:month + 1,
-      year: year,
-      events : [newEvent],
-    })
-  }
-
+  // 예약 버튼을 누르면 모달창이 닫힘
   addEventContainer.classList.remove("active");
 
   // 선택한 회의실 번호 유지
-  dropdown.textContent = selectedText;
+  // dropdown.textContent = selectedText;
 
  // 기존 내용 초기화
   // dropdown.dataset.value = "placeholder";
@@ -430,10 +363,12 @@ if (roomDuplicateCount >= 8) {
 
   updateEvents(activeDay);
 
-  const activeDayElem = document.querySelector(".day.active");
-  if(!activeDayElem.classList.contains("event")) {
-    activeDayElem.classList.add("event");
-  }
+
+  // 이벤트가 추가되면 날짜 밑에 밑줄이 생김
+  // const activeDayElem = document.querySelector(".day.active");
+  // if(!activeDayElem.classList.contains("event")) {
+  //   activeDayElem.classList.add("event");
+  // }
 
 
 })
@@ -441,49 +376,40 @@ if (roomDuplicateCount >= 8) {
 
 
 
-eventsContainer.addEventListener("click", (e) => {
-  if(e.target.classList.contains("event")) {
-    const eventTitle = e.target.children[0].children[1].innerHTML;
+// eventsContainer.addEventListener("click", (e) => {
+//   if(e.target.classList.contains("event")) {
+//     const eventTitle = e.target.children[0].children[1].innerHTML;
 
-    eventsArr.forEach((event) => {
-      if(
-        event.day === activeDay &&
-        event.month === month + 1 &&
-        event.year === year
-      ) {
-        event.events.forEach((item, index) => {
-          if(item.title === eventTitle) {
-            event.events.splice(index, 1);
-          }
-        })
+//     eventsArr.forEach((event) => {
+//       if(
+//         event.day === activeDay &&
+//         event.month === month + 1 &&
+//         event.year === year
+//       ) {
+//         event.events.forEach((item, index) => {
+//           if(item.title === eventTitle) {
+//             event.events.splice(index, 1);
+//           }
+//         })
 
-        if(event.events.length === 0) {
-          eventsArr.splice(eventsArr.indexOf(event), 1);
+//         if(event.events.length === 0) {
+//           eventsArr.splice(eventsArr.indexOf(event), 1);
 
-          const activeDayElem = document.querySelector(".day.active");
-          if(activeDayElem.classList.contains("event")) {
-            activeDayElem.classList.remove("event");
-          }
-        }
-      }
-    })
+//           const activeDayElem = document.querySelector(".day.active");
+//           if(activeDayElem.classList.contains("event")) {
+//             activeDayElem.classList.remove("event");
+//           }
+//         }
+//       }
+//     })
 
-    updateEvents(activeDay);
-  }
- 
-})
-
-
-// function saveEvents() {
-//   localStorage.setItem("events", JSON.stringify(eventsArr)); 
-// }
-
-// function getEvents() {
-//   if(localStorage.getItem("events") === null) {
-//     return;
+//     updateEvents(activeDay);
 //   }
-//   eventsArr.push(...JSON.parse(localStorage.getItem("events")));
-// }
+ 
+// })
+
+
+
 
 
 

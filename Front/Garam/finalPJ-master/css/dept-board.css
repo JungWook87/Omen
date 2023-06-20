@@ -404,3 +404,16 @@ details[open] summary::before {
   font-size: 12px;
   color: var(--gray400);
 }
+
+.comment-edit-btn {
+  border: none;
+  background-color: transparent;
+  color: var(--gray500);
+}
+
+.comment-delete-btn {
+  border: none;
+  background-color: transparent;
+ 
+  color: red;
+}

@@ -188,6 +188,8 @@ successBtn.addEventListener("click", () => {
     // 수정 모달창 열기
     tr.addEventListener("click", function() {
       modifyModal();
+     
+      
     })
     
     // 모달 닫기
@@ -208,7 +210,8 @@ const checkPreview = document.querySelector('.check-preview');
 
 // 수정 모달창 오픈
 function modifyModal() {
-  
+  document.querySelector("body").style.overflow = 'hidden!important';
+
   // 제목 밸류값 들고오기
   checkModalTitle.value = noticeTitle.value;
 
@@ -230,11 +233,13 @@ function modifyModal() {
   checkModal.style.display = 'block';
   checkModalBody.classList.add('check-modal-open');
 
+  
 }
 
 // 수정 모달창 닫기
 // 수정 모달창 닫는 함수
 function checkModalClose() {
+  document.querySelector("body").style.overflow = 'auto!important';
   checkModalBody.classList.add('check-modal-close');
   
   setTimeout(() => {
