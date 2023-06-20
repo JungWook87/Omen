@@ -19,7 +19,7 @@ public interface WorkService {
 	// 결재 상신 날짜 지정
 	List<WorkGeneralList> workSendSelectDate(Map<String, Object> map);
 
-	// 결재 상신 작성(날짜 없음)
-	Map<String, Object> workWrite(Map<String, Object> map, MultipartFile uploadFile, HttpServletRequest req);
+	// 결재 상신 작성(일반결재)
+	int workWrite(Map<String, Object> map, MultipartFile uploadFile, HttpServletRequest req);
 
 }

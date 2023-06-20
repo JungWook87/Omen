@@ -62,10 +62,22 @@
 		<selectKey keyProperty="workNo" resultType="_int" order="BEFORE">
 				SELECT SEQ_WORK_NO.NEXTVAL FROM DUAL
 		</selectKey>
+		
 		<if test="typeNo == 1">
 			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, NEXT, WORK_STATE)
 			VALUES (#{workNo}, ${memNo}, ${typeNo}, #{title}, DEFAULT, #{content}, ${next}, DEFAULT)
 		</if>
+		
+		<if test="typeNo == 2">
+			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, "START", "END", NEXT, WORK_STATE)
+			VALUES (#{workNo}, ${memNo}, ${typeNo}, '연차 결재', DEFAULT, #{start}, #{end}, ${next}, DEFAULT)
+		</if>
+	
+		<if test="typeNo == 3">
+			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "START", "END", NEXT, WORK_STATE)
+			VALUES (#{workNo}, ${memNo}, ${typeNo}, '출장 결재', DEFAULT, #{content}, #{start}, #{end}, ${next}, DEFAULT)
+		</if>	
+		
 	</insert>
 	
 	<!-- 결재 파일 입력하기 -->

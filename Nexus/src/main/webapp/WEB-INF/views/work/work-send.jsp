@@ -31,6 +31,18 @@
 </head>
 
 <body>
+  <c:if test="${not empty messageFlag}">
+    <c:if test="${messageFlag == '성공'}">
+      <script>
+        Swal.fire('결재 상신이 완료되었습니다.', '', 'success');
+      </script>
+    </c:if>
+    <c:if test="${messageFlag == '실패'}">
+      <script>
+        Swal.fire('결재 상신이 실패하였습니다.', '다시 시도해주세요.', 'warning');
+      </script> 
+    </c:if>
+  </c:if>
 
   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <section>
@@ -60,7 +72,7 @@
             <li><a href="#" class="item"><i class="fa-sharp fa-solid fa-file-export"></i></a></li>
             <li><a href="#" class="item"><div><i class="fa-solid fa-box"></i></div></a></li>
             <li><a href="#" class="item"><i class="fa-solid fa-floppy-disk"></i></a></li>
-            <li><a href="#" class="item"><i class="fa-solid fa-download"></i></i></a></li>
+            <li><a href="#" class="item"><i class="fa-solid fa-download"></i></a></li>
         </ul>
       </div>
       <!--------------------------------- 페이지마다 바뀌는 부제목 (모바일) 끝--------------------------------->

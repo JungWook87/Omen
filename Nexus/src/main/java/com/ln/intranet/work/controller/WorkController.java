@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.ln.intranet.member.model.vo.Member;
@@ -38,16 +39,26 @@ public class WorkController {
 	public String workSend(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
-			@ModelAttribute("loginMember") Member loginMember
-			) {
+			@ModelAttribute("loginMember") Member loginMember,
+			RedirectAttributes ra) {
 		
 		
 		List<WorkGeneralList> list = service.workSend(loginMember.getMemNo());
 		
 		model.addAttribute("list", list);
 		
+		String messageFlag = null;
+		
+		if(ra != null) {
+			messageFlag = (String)model.getAttribute("message");
+		}
+		
+		model.addAttribute("messageFlag", messageFlag);
+		
+		
 		return "/work/work-send";
 	}
+	
 	
 	// 결재 상신함 페이지 일정 지정
 	@ResponseBody
@@ -57,8 +68,6 @@ public class WorkController {
 									@ModelAttribute("loginMember") Member loginMember,
 									@RequestParam Map<String, Object> map) {
 		
-		System.out.println(map.get("start"));
-		System.out.println(map.get("end"));
 		
 		map.put("memNo", loginMember.getMemNo());
 		
@@ -71,17 +80,17 @@ public class WorkController {
 		return gson.toJson(list);
 	}
 	
+	
 	// 결재 상신 작성
-	@ResponseBody
 	@PostMapping("/write")
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,
 			@RequestParam("file-uploads") MultipartFile uploadFile,
 			@RequestParam Map<String, Object> map,
-			HttpServletRequest req) {
+			HttpServletRequest req,
+			RedirectAttributes ra) {
 		
 		map.put("memNo", loginMember.getMemNo());
 		
-		Map<String, Object> resultMap = null;
 		String workTypeWord = map.get("workTypeWord").toString();
 		int typeNo = 0;
 		
@@ -94,19 +103,18 @@ public class WorkController {
 		
 		map.put("typeNo", typeNo);
 	
-		System.out.println(map);
-		System.out.println(uploadFile);
+		int result = service.workWrite(map, uploadFile, req);
 		
-		if(typeNo == 1) {
-			
-			resultMap = service.workWrite(map, uploadFile, req);
-			
-		} else if(typeNo == 2 || typeNo ==3) {
-			
-		}
+		String message = "";
+		if(result != 0) message = "성공";
+		else message = "실패";
 		
-		return "";
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:workSend";
 	}
+	
+	
 	
 	// 결재 수신함 (결재할것) 페이지 진입
 	@GetMapping("/workInbox")
