@@ -9,6 +9,7 @@
 		<result property="inviteName" column="INVITE_NAME"/>
 		<result property="status" column="STATUS"/>
 		<result property="createMemberName" column="CREATE_MEMBER_NAME" />
+		<result property="result" column="RESULT" />
 	
 	</resultMap>
 	
@@ -59,7 +60,7 @@
 		<selectKey keyProperty="cmNo" resultType="_int" order="BEFORE">
 			SELECT SEQ_CR_NO.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO CHAT_ROOM VALUES(#{cmNo}, #{memNo}, #{inviteName}, DEFAULT, #{createMemberName})
+		INSERT INTO CHAT_ROOM VALUES(#{cmNo}, #{memNo}, #{inviteName}, DEFAULT, #{createMemberName}, DEFAULT)
 	</insert>
 	
 	<insert id="createChatRoomJoin">

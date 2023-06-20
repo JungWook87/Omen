@@ -73,6 +73,10 @@ window.addEventListener('click', function(event) {
 
 // 채팅 버튼 눌렀을 때 이전 채팅방이 보임
 function getChattingList() {
+
+    const contactArea = document.getElementById('contact-area');
+    contactArea.innerHTML = '';
+    
     $.ajax({
         url: "chatRoomList",
         type : "POST",
@@ -97,7 +101,7 @@ function getChattingList() {
                 </div>
                 </div>
             `;
-
+			
 	
 
             // 글이 길어지면 ... 표시
