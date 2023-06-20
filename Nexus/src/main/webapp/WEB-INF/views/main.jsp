@@ -51,26 +51,12 @@
                         <li><a href="${contextPath}/dept/deptNotice">부서</a> </li>
                         <li><a href="${contextPath}/work/workSend">결재</a> </li>
                         <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
-                        <li><a href="${contextPath}/meeting">회의실</a> </li>
+                        <li><a href="${contextPath}/meetingRoom/reservation">회의실</a> </li>
                         <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
                     </ul>
                 </div>
             </div>
-
-
-            <!-- 네비바 -->
-            <div>
-                <ul class="main-header-ul">
-                    <li><a href="${contextPath}/main">홈</a> </li>
-                    <li><a href="${contextPath}/notice/list">공지사항</a> </li>
-                    <li><a href="${contextPath}/dept/deptNotice">부서</a> </li>
-                    <li><a href="${contextPath}/work/workSend">결재</a> </li>
-                    <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
-                    <li><a href="${contextPath}/meetingRoom">회의실</a> </li>
-                    <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
-                </ul>
-
-    
+            
             <!-- 배너 텍스트 부분 -->
             <div class="main-banner-bottom">
                 <div class="main-banner-text1">
