@@ -330,11 +330,13 @@ a:focus {
   width: 14.28%;
   height: 90px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+
   cursor: pointer;
   color: var(--primary400);
   border: 1px solid #f5f5f5;
+  
+  align-content: flex-start;
+  flex-direction: row-reverse;
 }
 
 .calendar .day:not(.prev-date, .next-date):hover {

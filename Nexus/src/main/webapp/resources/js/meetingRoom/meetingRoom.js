@@ -522,3 +522,18 @@ $(document).ready(function() {
 });
 
 
+$(".option").click(function() {
+  var selectedRoom = $(this).attr("data-value");
+  var selectedTime = $("input[name='day-time']:checked").val();
+  $.ajax({
+    url: "/reservationRoom",
+    type: "GET",
+    data: { room: selectedRoom, time: selectedTime }, 
+    success: function(response) {
+ 
+    },
+    error: function(int) {
+ 
+    }
+  });
+});

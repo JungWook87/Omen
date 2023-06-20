@@ -109,46 +109,48 @@
                 <div class="title">회의실 예약</div>
                 <i class="fas fa-times close"></i>
               </div>
-              <div class="add-event-body">
+              <form action="POST">
+                <div class="add-event-body">
 
 
-                <div class="meetingRoom-box">
-                  <div class="drop">
-                    <div class="option active placeholder" data-value="placeholder">
-                      회의실 선택
-                    </div>
-                    <div class="option" data-value="meetingRoom1" id="meetingRoom1">
-                      회의실 1
-                    </div>
-                    <div class="option" data-value="meetingRoom2" id="meetingRoom2">
-                      회의실 2
-                    </div>
-                    <div class="option" data-value="meetingRoom3" id="meetingRoom3">
-                      회의실 3
-                    </div>
-                    <div class="option" data-value="meetingRoom4" id="meetingRoom4">
-                      회의실 4
+                  <div class="meetingRoom-box">
+                    <div class="drop">
+                      <div class="option active placeholder" data-value="placeholder">
+                        회의실 선택
+                      </div>
+                      <div class="option" data-value="meetingRoom1" id="meetingRoom1">
+                        회의실 1
+                      </div>
+                      <div class="option" data-value="meetingRoom2" id="meetingRoom2">
+                        회의실 2
+                      </div>
+                      <div class="option" data-value="meetingRoom3" id="meetingRoom3">
+                        회의실 3
+                      </div>
+                      <div class="option" data-value="meetingRoom4" id="meetingRoom4">
+                        회의실 4
+                      </div>
                     </div>
                   </div>
+
+                  <div class="day-time-box">
+                    <label class="day-times">
+                      <input type="radio" name="day-time" id="morning" value="morning">
+                      <span>오전</span>
+                    </label>
+                    <label class="day-times">
+                      <input type="radio" name="day-time" id="afternoon" value="afternoon">
+                      <span>오후</span>
+                    </label>
+                  </div>
+
+
+
                 </div>
-
-                <div class="day-time-box">
-                  <label class="day-times">
-                    <input type="radio" name="day-time" id="morning" value="morning">
-                    <span>오전</span>
-                  </label>
-                  <label class="day-times">
-                    <input type="radio" name="day-time" id="afternoon" value="afternoon">
-                    <span>오후</span>
-                  </label>
+                <div class="add-event-footer">
+                  <button class="add-event-btn">예약</button>
                 </div>
-
-
-
-              </div>
-              <div class="add-event-footer">
-                <button class="add-event-btn">예약</button>
-              </div>
+              </form>
             </div>
 
 

@@ -23,9 +23,11 @@
 		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoom" alias="chatRoom"/>
 		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
 		<typeAlias type="com.ln.intranet.chat.model.vo.Message" alias="message"/>
+		<typeAlias type="com.ln.intranet.meeting.model.vo.MeetingRoom" alias="meetingRoom"/>		
 	</typeAliases>
 	
 	<mappers>
+		 <mapper resource="/mappers/meetingRoom-mapper.xml"/>
 		 <mapper resource="/mappers/survey-mapper.xml"/>
 		 <mapper resource="/mappers/dept-mapper.xml"/>
 		 <mapper resource="/mappers/member-mapper.xml"/>
