@@ -14,6 +14,7 @@ public class ChatRoom {
 	private String inviteName;
 	private String status;
 	private String createMemberName;
+	private int result;
 	
 	
 }

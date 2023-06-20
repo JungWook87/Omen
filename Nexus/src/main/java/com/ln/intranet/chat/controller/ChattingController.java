@@ -63,6 +63,15 @@
 	
 			List<ChatRoom> RoomList = service.selectChatRoomList(map);
 	
+			   for (ChatRoom chatRoom : RoomList) {
+			        String createMemberName = chatRoom.getCreateMemberName();
+			        if (loginMember.getMemName().equals(createMemberName)) {
+			            chatRoom.setResult(1);
+			        } else {
+			            chatRoom.setResult(0);
+			        }
+			    }
+			
 			log.debug(RoomList + "");
 	
 			return new Gson().toJson(RoomList);
