@@ -8,7 +8,7 @@ const chatMain = document.getElementById('chat-main'),
 // 채팅창 오픈 이벤트
 chatOpen.addEventListener('click', () => {
   openChatBox();
-//   getChattingList();
+  getChattingList();
 })
 
 // 채팅창 닫기 이벤트
@@ -79,11 +79,12 @@ function getChattingList() {
         dataType : "JSON",
         success : function(RoomList) {
             console.log(RoomList);
+             for (var i = 0; i < RoomList.length; i++) {
             const newContact = document.createElement('div');
             newContact.classList.add('contact', 'contact-hover');
             newContact.innerHTML = `
                 <div>
-                <div class="name">${name}</div>
+                <div class="name">${RoomList[i].inviteName}</div>
                 <div class="contact-message">${chatVal.value}</div>
                 </div>
                 <div class="delete-btn-set">
@@ -97,7 +98,7 @@ function getChattingList() {
                 </div>
             `;
 
-
+	
 
             // 글이 길어지면 ... 표시
             const message = newContact.querySelector('.contact-message');
@@ -182,19 +183,37 @@ function getChattingList() {
                 hideEmptyChatMessage();
                 newContact.addEventListener('click', () => {
                 console.log('존나 힘들다 시발');
+                 openChatModal(cmNo);
 
                 
                 })
 
             }
 
-        
+        }
         },
         error : function(req, status, error) {
             console.log(req.responseText);
         }
     })
 }
+
+
+		function openChatModal(cmNo) {
+		  // 모달 열기 코드 작성
+		  
+		  // AJAX 요청으로 채팅 내용 가져오기
+		  $.ajax({
+		    url: '/chatRoomList/' + cmNo,
+		    type: 'GET',
+		    success: function(chatMessageList) {
+		      console.log(chatMessageList)
+		    },
+		    error: function(error) {
+		      // 에러 처리 로직 작성
+		    }
+		  });
+		}
 
 
 

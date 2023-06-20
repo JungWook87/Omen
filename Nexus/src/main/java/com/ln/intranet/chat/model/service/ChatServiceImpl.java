@@ -1,5 +1,6 @@
 package com.ln.intranet.chat.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,10 @@ import com.ln.intranet.chat.model.vo.Message;
 import com.ln.intranet.common.Util;
 import com.ln.intranet.member.model.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 @Service
 public class ChatServiceImpl implements ChatService{
 
@@ -22,7 +27,7 @@ public class ChatServiceImpl implements ChatService{
 	// 해당된 채팅방 리스트 조회
 	@Override
 	public List<ChatRoom> selectChatRoomList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		
 		return dao.selectChatRoomList(map);
 	}
 
@@ -38,15 +43,45 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public int inviteMember(Map<String, Object> paramMap, ChatRoomJoin join) {
 		
-		int result = dao.CreateChatRoom(join);
 		
+		// 채팅방을 생성해야함
+		// seq 사용해서 방의 cmNo를 생성함
+		// loginMember에서 getMemNo 가져오기 = join에 들어있음
+		// memberName = paramMap에서 가져올거임
+		
+		paramMap.put("memNo", join.getMemNo());
+		
+		
+		System.out.println(paramMap);
+		
+		// SEQ_CR_NO 받아옴
+		int result = dao.CreateChatRoom(paramMap);
+		
+
+		// insert에 성공한다면
 		if(result > 0) {
+			// join안에 memNo들어있음 
+			// 채팅방 join시키기
+			join.setCmNo(result);
+			int success = dao.CreateChatRoomJoin(join);
 			
-			paramMap.put("cmNo", result);
-			
-			dao.inviteMember(paramMap);
-			
+			if(success > 0) {
+				// 초대받은 사람의 memNo사용해야함
+				
+				log.debug(paramMap + "");
+				
+				
+				System.out.println(paramMap);
+				
+				int inviteMemNo = dao.selectInviteMember(paramMap);
+				
+				join.setMemNo(inviteMemNo);
+				
+				dao.inviteMember(join);
+				
+			}
 		}
+		
 		return result;
 
 		
@@ -58,25 +93,6 @@ public class ChatServiceImpl implements ChatService{
 		chatMessage.setMContent(Util.newLineHandling(chatMessage.getMContent()));
 		return dao.insertMessage(chatMessage);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
