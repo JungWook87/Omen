@@ -11,5 +11,28 @@
 		<result property="reservationDate" column="RESERVATION_DATE"/>
 		<result property="reservationTime" column="RESERVATION_TIME"/>		
 	</resultMap>
+	
+	<!-- 회의실 예약 -->
+	<insert id="reservationRoom" parameterType="meetingRoom" useGeneratedKeys="true" keyProperty="reservationNo" >
+		<selectKey keyProperty="reservationNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_RESERVATION_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO MEETING_ROOM VALUES (
+		#{reservationNo}, #{memNo}, #{reservationDate}, #{reservationTime}, #{roomNo}
+		)
+	</insert>
+	
+	<!-- 예약한 회의실 조회 -->
+	<select id="returnResult" parameterType="_int" resultMap="meetingRoom_rm">
+		SELECT 
+			RESERVATION_NO, MEM_NO, 
+			MEM_NAME, JOB_NAME, ROOM_NO, 
+			TO_CHAR(RESERVATION_DATE, 'YYYY-MM-DD') AS RESERVATION_DATE, RESERVATION_TIME
+		FROM MEETING_ROOM 
+		JOIN MEMBER USING(MEM_NO)
+		JOIN JOB  USING(JOB_NO)
+		WHERE RESERVATION_NO = #{reservationNo}
+	</select>
+	
 
 </mapper>
