@@ -58,6 +58,43 @@ function workSendList(obj){
 
 }
 
+// 타입 선택별 리스트 변화(kjw)
+const attnTypeSelect = document.getElementById("attnTypeSelect");
+const listTr = document.getElementsByClassName("listTr");
+const listTypeNo = document.getElementsByClassName("listTypeNo");
+const cntList = document.getElementsByClassName("content-all-top-text2");
+
+attnTypeSelect.addEventListener("change", function(){
+
+  let cnt = 0;
+
+  for(let i = 0; i < listTr.length; i++){
+    listTr[i].style.display = 'table-row';
+  }
+
+  if(attnTypeSelect.value == 0){
+
+    for(let i = 0; i < listTr.length; i++){
+        listTr[i].style.display = 'table-row';
+        cnt++;
+    }
+
+  } else{
+
+    for(let i = 0; i < listTr.length; i++){
+      if(listTypeNo[i].innerText != attnTypeSelect.value){
+        listTr[i].style.display = 'none';
+      } else{
+        cnt++;
+      }
+    }
+
+  }
+
+  cntList[0].innerText = "내가 작성한 결재(" + cnt + ")";
+  
+});
+
 
 // 날짜 조회 (kjw)
 $(function() {
@@ -577,17 +614,17 @@ function workWrite() {
   
 
 // 내가 작성한 글모달창
-const inboxModal = document.getElementById('inbox-modalWrap');
-const inboxCloseBtn = document.getElementById('inbox-closeBtn');
-const inboxModalBody = document.querySelector('.inbox-modalBody');
-const inboxCancellBtn = document.getElementById('inbox-cancell-btn');
-const inboxModalTitle = document.querySelector('.inbox-modal-title > input');
-const inboxModalDetail = document.querySelector('.inbox-modal-detail');
-const inboxPreview = document.querySelector('.inbox-preview');
-const inboxCopyBtn = document.querySelector('.copy-btn');
-const inboxSuccessBtn = document.getElementById('inbox-success-btn');
-const inboxEditBtn = document.getElementById('edit-btn');
-const inboxModalApprover = document.querySelector('.inbox-modal-approver > input');
+const checkedModal = document.getElementById('checked-modalWrap');
+const checkedCloseBtn = document.getElementById('checked-closeBtn');
+const checkedModalBody = document.querySelector('.checked-modalBody');
+const checkedCancellBtn = document.getElementById('checked-cancell-btn');
+const checkedModalTitle = document.querySelector('.checked-modal-title');
+const checkedModalDetail = document.querySelector('.checked-modal-detail');
+const checkedPreview = document.querySelector('.checked-preview');
+const checkedCopyBtn = document.querySelector('.copy-btn');
+const checkedSuccessBtn = document.getElementById('checked-success-btn');
+const checkedEditBtn = document.getElementById('checked-edit-btn');
+const checkedModalApprover = document.querySelector('.checked-modal-approver');
 
 
 // 내가 작성한 글 모달창 오픈

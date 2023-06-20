@@ -10,10 +10,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../component/component.css">
-  <link rel="stylesheet" href="../component/variable.css">
-  <link rel="stylesheet" href="../css/work-send.css">
-  <link rel="stylesheet" href="../css/work-inbox(1).css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox(1).css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -32,15 +33,15 @@
 
 <body>
 
-  <header style="height: 90px;"></header>
+  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <section>
 
     <!------------------------------------- 사이드 바 --------------------------------------------------->
     <div class="side-bar menu">
       <!----------------------------------- 페이지마다 바뀌는 제목 ----------------------------------->
       <div class="side-barTitle">
-        <a href="work-send.html" id="side-barTitle-a">
-          <img src="../images/leftArrow.png" alt="">
+        <a href="workSend" id="side-barTitle-a">
+          <img src="${contextPath}/resources/images/leftArrow.png" alt="">
         </a>
       <h1>수신함</h1>
       </div>
@@ -52,7 +53,6 @@
           <li><a href="work-inbox(1).html"><span>결재할문서</span> </a></li>
           <li><a href="work-inbox-ing(2).html"><span>결재진행중</span> </a></li>
           <li><a href="work-inbox-end(3).html"><span>결재완료</span> </a></li>
-          <li><a href="work-inbox-cancle(4).html"><span>결재취소</span> </a></li>
         </ul>
 
       </div>
@@ -76,7 +76,7 @@
       <!--------------------------------------------- 컨텐츠 내용 윗부분 -------------------------------------------------------->
       <div class="content-all-top-area">
         <p class="content-all-top-text1">결재 / </p>
-        <p class="content-all-top-text2">결재할 문서(1)</p>
+        <p class="content-all-top-text2">결재할 문서(${fn:length(list)})</p>
       </div>
       <!---------------------------------- 컨텐츠 내용 윗부분 영역 끝------------------------------------------------------------->
       <!---------------------------------------- 컨텐츠 내용 아랫부분 ----------------------------------------------------------->
@@ -84,12 +84,11 @@
         <!-------------------------------------------------- 컨텐츠 내용 아랫부분 헤더------------------------------------------>
         <div class="content-all-bottom-area-header">
 
-            <select placeholder="전체">
-              <option value="전체">전체</option>
-              <option value="진행중">근태</option>
-              <option value="근무">근무</option>
-              <option value="비용">비용</option>
-              <option value="일반">일반</option>
+            <select placeholder="전체" id="attnTypeSelect">
+              <option value="0">전체</option>
+              <option value="1">일반</option>
+              <option value="2">연차</option>
+              <option value="3">출장</option>
             </select>
 
             <div class="button-box">
@@ -112,7 +111,7 @@
                 <th>종류</th>
                 <th>결재 번호</th>
                 <th>제목</th>
-                <th>상태</th>
+                <th>작성자</th>
                 <th>첨부파일</th>
                 <th>작성일</th>
               </tr>
@@ -120,20 +119,25 @@
             </thead>
 
             <tbody>
-              <tr class="row">
-                <td>1</td>
-                <td>1234</td>
-                <td>테스트입니다</td>
-                <td>결재완료</td>
-                <td>없음</td>
-                <td>2023.5.10</td>
-              </tr>
+              <c:forEach var="list" items="${list}">
+                <tr class="listTr">
+                  <td class="listTypeNo" style="display: none;">${list.typeNo}</td>
+                  <td>${list.typeName}</td>
+                  <td>${list.workNo}</td>
+                  <td>${list.title}</td>
+                  <td>${list.memName}</td>
+                  <c:if test="${empty list.fileRename}">
+                    <td>없음</td>
+                  </c:if>
+                  <c:if test="${not empty list.fileRename}">
+                    <td>있음</td>
+                  </c:if>
+                  <td>${fn:substring(list.sendDate, 0, 11)}</td>
+                </tr>
+              </c:forEach>
             </tbody>
-
-
             
           </table>
-
 
         </div>
         <!-------------------------------------------------- 컨텐츠 내용 아랫부분 내용 끝--------------------------------------------->
@@ -142,7 +146,7 @@
         <div id="modalWrap">
           <div class="work-modalBody">
             <span id="closeBtn">
-              <img src="../images/Xbtn.png" alt="">
+              <img src="${contextPath}/resources/images/Xbtn.png" alt="">
             </span>
             <h1>결제상신</h1>
             <!-- 선1 -->
@@ -216,7 +220,7 @@
             <!-- 프로젝트박스 -->
             <div class="work-modal-projectBox">
               <span id="pulsProject">
-                <img src="../images/plus.png" alt="">
+                <img src="${contextPath}/resources/images/plus.png" alt="">
                 과제 추가
               </span>
             </div>
@@ -229,7 +233,7 @@
             <!-- 결재자 -->
             <div class ="work-modal-approverBox">
               <span id="pulsApprover">
-                <img src="../images/plus.png" alt="">
+                <img src="${contextPath}/resources/images/plus.png" alt="">
                 결재자 추가
               </span>  
             </div>
@@ -266,7 +270,7 @@
         <div id="approver-modal-wrap">
           <div class="approver-modal-Body">
             <span id="approver-closeBtn">
-              <img src="../images/Xbtn.png" alt="">
+              <img src="${contextPath}/resources/images/Xbtn.png" alt="">
             </span>
             <h1>결재 라인 설정</h1>
             <!-- 선1 -->
@@ -366,7 +370,7 @@
       <div id="check-modalWrap">
         <div class="check-modalBody">
           <span id="check-closeBtn">
-            <img src="../images/Xbtn.png" alt="">
+            <img src="${contextPath}/resources/images/Xbtn.png" alt="">
           </span>
           <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
             
@@ -492,10 +496,10 @@
     <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
       <a href="#">
-        <img class="chatting-img" src="../images/chattImg.png" alt="">
+        <img class="chatting-img" src="${contextPath}/resources/images/chattImg.png" alt="">
       </a>
     </div>
   </section>
 </body>
 
-<script src="../js/work-inbox(1).js"></script>
+<script src="${contextPath}/resources/js/work/work-inbox(1).js"></script>
