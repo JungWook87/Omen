@@ -1,7 +1,11 @@
+body {
+	overflow: hidden;
+}
+
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
 
-  height: calc(100vh - 90px);
+  /*  height: calc(100vh - 90px);*/
 
   display: flex;
 }
@@ -76,7 +80,7 @@ section {
 }
 
 /* 사이드바 미디어쿼리 */
-@media screen and (max-width:1500px) {
+@media screen and (max-width:1024px) {
 
    /* 1단계 */
   .side-bar{
@@ -85,12 +89,18 @@ section {
     transition: all 2s ease-in-out; /* 반응형 애니메이션 */
 
   }
-
+  
+  .content-all-page{
+   	width: calc(100% - 100px) !important;
+  }
+  
+  .side-bar h1 {display : none;}
+	
   .desktop{display: none;}
 
   .mobile {
       display: block;
-      width: 80px;
+      width: 100px;
       background-color: var(--gray50);
       border-radius: 5px;
       margin-top: 20%;
@@ -119,7 +129,7 @@ section {
 
 }
 /* 2단계 */
-@media screen and (max-width:1100px) {
+@media screen and (max-width:768px) {
   .side-bar { 
       display: none;
   }
@@ -213,9 +223,10 @@ a:focus {
 
 /* 컨텐츠 영역 전체 */
 .content-all-page {
-  width: 100%;
-
-
+	width: 100%;
+	height: calc(100vh - 90px);
+	overflow-y : auto;
+	padding-bottom : 200px;
 }
 
 /* 컨텐츠 상단 부분 */
@@ -294,6 +305,7 @@ label{
 
 select{
   width: 140px;
+  margin-right: 10px;
   padding: 0px 20px;
   border-radius: 5px;
   font-size: large;

@@ -1,8 +1,5 @@
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
-
-  height: calc(100vh - 90px);
-
   display: flex;
 }
 /* -------------------------------------- */
@@ -10,7 +7,7 @@ section {
 .side-bar {
   width: 300px;
   min-width: 80px;
-  height: 100%;
+  min-height: 100vh;
   background-color: var(--side);
 
 }
@@ -214,8 +211,8 @@ a:focus {
 /* 컨텐츠 영역 전체 */
 .content-all-page {
   width: 100%;
-
-
+  overflow-y: auto;
+  height: calc(100vh - 90px );
 }
 
 /* 컨텐츠 상단 부분 */
@@ -1156,6 +1153,12 @@ cursor: pointer;
   padding: 30px;
   overflow: auto;
   width: 80%;
+}
+
+.write-modalBody p{
+  color: var(--gray400);
+
+  margin-top: 36px;
 }
 
 .write-modal-template {
