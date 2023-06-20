@@ -474,18 +474,6 @@ eventsContainer.addEventListener("click", (e) => {
 })
 
 
-// function saveEvents() {
-//   localStorage.setItem("events", JSON.stringify(eventsArr)); 
-// }
-
-// function getEvents() {
-//   if(localStorage.getItem("events") === null) {
-//     return;
-//   }
-//   eventsArr.push(...JSON.parse(localStorage.getItem("events")));
-// }
-
-
 
 // 회의실 예약 스타일
 $(document).ready(function() {

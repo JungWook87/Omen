@@ -143,9 +143,6 @@
                       <span>오후</span>
                     </label>
                   </div>
-
-
-
                 </div>
                 <div class="add-event-footer">
                   <button class="add-event-btn">예약</button>

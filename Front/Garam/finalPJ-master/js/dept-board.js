@@ -381,10 +381,37 @@ function addComment(commentText) {
   commentName.innerHTML = '<p>오가람</p>';
   commentName.appendChild(commentTimestamp);
 
+  const commentEditButton = document.createElement('button');
+  commentEditButton.innerText = '수정';
+  commentEditButton.classList.add('comment-edit-btn');
+
+  commentEditButton.addEventListener('click', () => {
+    if (commentEditButton.innerText === '수정') {
+      commentContent.contentEditable = true;
+      commentContent.focus();
+      commentEditButton.innerText = '수정 완료';
+    } else if (commentEditButton.innerText === '수정 완료') {
+      commentContent.contentEditable = false;
+      commentEditButton.innerText = '수정';
+    }
+  });
+
+  const commentDeleteButton = document.createElement('button');
+  commentDeleteButton.innerText = '삭제';
+  commentDeleteButton.classList.add('comment-delete-btn');
+  commentDeleteButton.addEventListener('click', () => {
+    
+    newComment.remove(); // 댓글 삭제
+  });
+
   newComment.appendChild(commentName);
   newComment.appendChild(commentContent);
+  newComment.appendChild(commentEditButton);
+  newComment.appendChild(commentDeleteButton);
 
   commentsContainer.appendChild(newComment);
+
+  
 }
 
 
