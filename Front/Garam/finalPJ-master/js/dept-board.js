@@ -335,4 +335,95 @@ checkCancellBtn.addEventListener("click", () => {
 
 
 
+// 댓글 추가 버튼 클릭 이벤트 리스너 등록
+const addCommentBtn = document.getElementById('add-comment-btn');
+addCommentBtn.addEventListener('click', () => {
+  const commentInput = document.querySelector('.comment-input input');
+  const commentText = commentInput.value.trim();
 
+  if (commentText !== '') {
+    commentInput.value = '';
+    addComment(commentText);
+    updateTimestamps(); // 댓글 추가 후 타임스탬프 업데이트
+  }
+});
+
+// 인풋창 엔터 키 이벤트 리스너 등록
+const commentInput = document.querySelector('.comment-input input');
+commentInput.addEventListener('keyup', (event) => {
+  if (event.keyCode === 13) {
+    const commentText = commentInput.value.trim();
+
+    if (commentText !== '') {
+      commentInput.value = '';
+      addComment(commentText);
+      updateTimestamps(); // 댓글 추가 후 타임스탬프 업데이트
+    }
+  }
+});
+
+// 댓글 추가 함수
+function addComment(commentText) {
+  const commentsContainer = document.querySelector('.comment-content');
+  const newComment = document.createElement('div');
+  newComment.classList.add('comment-list');
+
+  const commentName = document.createElement('div');
+  commentName.classList.add('comment-name');
+  
+  const commentContent = document.createElement('span');
+  commentContent.innerText = commentText;
+  
+  const commentTimestamp = document.createElement('span');
+  commentTimestamp.innerText = formatTimestamp(new Date());
+  commentTimestamp.setAttribute('data-timestamp', new Date().toISOString()); // 타임스탬프 설정
+
+  commentName.innerHTML = '<p>오가람</p>';
+  commentName.appendChild(commentTimestamp);
+
+  newComment.appendChild(commentName);
+  newComment.appendChild(commentContent);
+
+  commentsContainer.appendChild(newComment);
+}
+
+
+
+// 타임스탬프 형식을 변환하여 표시하는 함수
+function formatTimestamp(timestamp) {
+  const commentTime = new Date(timestamp);
+  const currentTime = new Date();
+  const timeDiff = Math.abs(currentTime - commentTime);
+
+  const minutesDiff = Math.floor(timeDiff / (1000 * 60));
+  const hoursDiff = Math.floor(minutesDiff / 60);
+  const daysDiff = Math.floor(hoursDiff / 24);
+
+  if (minutesDiff < 1) {
+    return "방금 전";
+  } else if (minutesDiff < 60) {
+    return `${minutesDiff}분 전`;
+  } else if (hoursDiff < 24) {
+    return `${hoursDiff}시간 전`;
+  } else if (hoursDiff < 48) {
+    return "1일 전";
+  } else {
+    return `${daysDiff}일 전`;
+  }
+}
+
+function updateTimestamps() {
+  const commentTimestamps = document.querySelectorAll('.comment-name span');
+  commentTimestamps.forEach((timestampElement) => {
+    const timestamp = timestampElement.getAttribute('data-timestamp');
+    if (timestamp) {
+      const formattedTimestamp = formatTimestamp(timestamp);
+      timestampElement.innerText = formattedTimestamp;
+    }
+  });
+}
+
+// 일정 간격으로 타임스탬프 업데이트
+setInterval(updateTimestamps, 60000); // 1분마다 업데이트
+
+updateTimestamps();
