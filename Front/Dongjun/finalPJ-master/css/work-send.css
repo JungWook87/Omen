@@ -720,18 +720,15 @@ select{
 }
 
 /* 파일 올리기 지우기 버튼 스타일 */
-.inbox-file-box {
-  margin : 20px 0px 10px;
+.checked-file-box {
+  margin: 20px 0px 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  line-height: 5px;
 }
 
-.inbox-file-box > p{
-  margin-top: 0;
-}
-
-.inbox-file-box label {
+.checked-file-box label {
   width: 90px;
   height: 35px;
 
@@ -792,7 +789,7 @@ select{
 }
 
 
-.work-file-box button, .inbox-file-box button {
+.work-file-box button, .checked-file-box button {
   width: 90px;
   height: 35px;
   padding: 13px;
@@ -885,8 +882,8 @@ select{
 }
 
 /* -------------------------------------- */
-
-#inbox-modalWrap {
+/* 체크 모달창 */
+#checked-modalWrap {
   position: fixed;
   z-index: 1;
 
@@ -900,7 +897,7 @@ select{
 
 }
 
-.inbox-modalBody {
+.checked-modalBody {
   min-width: 570px;
   min-height: 100px;
   max-width: 80%;
@@ -918,25 +915,41 @@ select{
   width: 80%;
 }
 
-/* 모달 */
-.inbox-modal-header{
+.checked-modal-title, .checked-modal-detail, .checked-preview, .checked-modal-coment, .checked-modal-approver{
+  width: 100%;
+  height: 50px;
+  line-height: 25px;
+  border: none;
+  border-radius: 5px;
+  color: var(--gray700);
+  background-color: var(--gray50);
+  font-family: 'Baloo 2';
+  padding: 10px;
+  font-size: 16px;
+  list-style: none;
+}
+
+/* 체크 모달창 헤더 */
+.checked-modal-header{
   background-color: var(--gray50);
   
 }
-/* 모달 헤더 */
-.inbox-modal-modal-headerbox{
-  margin-top: 29px;
+/* 체크 모달창 헤더영역*/
+.checked-modal-modal-headerbox{
+  margin-top: 20px;
+  padding: 10px;
   font-size: 16px;
 }
-.inbox-modal-headerbox-content{
+/* 체크 모달창 헤더 내용 */
+.checked-modal-headerbox-content{
   padding: 3px 0px;
 }
-
-.inbox-modal-headerbox-footer{
+/* 체크 모달창 헤더 아랫부분 */
+.checked-modal-headerbox-footer{
   padding: 20px 0px;
 }
-
-.inbox-modal-headerbox-footer button{
+/* 체크 모달창 헤더 아랫부분 버튼 */
+.checked-modal-headerbox-footer button{
   color: inherit;
   height: 32px;
   padding: 8px 12px;
@@ -945,69 +958,70 @@ select{
   font-size: 16px;
 }
 
-#inbox-closeBtn {
+#checked-closeBtn {
   float: right;
+  padding: 10px;
   color: var(--black);
-
   cursor: pointer;
+  
 
 }
 
-#inbox-closeBtn img {
+#checked-closeBtn img {
   width: 18px;
   height: 18px;
 }
 
 /* 모달 테이블영역 */
 
-.inbox-modal-table-body{
+.checked-modal-table-body{
   margin-top: 50px;
 }
 
-.inbox-modal-table-body table{
+.checked-modal-table-body table{
   width: 100%;
   border-collapse: collapse;
   text-align: center;
 }
 
-.inbox-modal-table-body table th {
+.checked-modal-table-body table th {
   color: var(--gray600);
   border-bottom: 1px solid var(--gray300);
   padding-bottom: 10px;
 }
 
-.inbox-modal-table-body table tbody tr:nth-of-type(1){
+.checked-modal-table-body table tbody tr:nth-of-type(1){
   background-color: var(--primary100);
   border-radius: 10px;
 }
-.inbox-modal-table-body table tbody tr:nth-of-type(2){
+.checked-modal-table-body table tbody tr:nth-of-type(2){
   background-color: var(--primary200);
   border-radius: 10px;
 }
-.inbox-modal-table-body table tbody tr:nth-of-type(3){
+.checked-modal-table-body table tbody tr:nth-of-type(3){
   background-color: var(--primary300);
   border-radius: 10px;
 }
 
 
-.inbox-modal-table-body table td{
+.checked-modal-table-body table td{
   color: black;
   padding: 20px;
 }
 
 
 /*모달 내용 스타일 */
-.inbox-modalBody p {
+.checked-modalBody p {
   color: var(--gray400);
 
   margin-top: 36px;
 }
 
-.inbox-modal-table-body h2{
+.checked-modal-table-body h2{
   margin-bottom: 20px;
 }
 
-.inbox-modal-detail textarea {
+.checked-modal-detail textarea {
   width: 100%;
   max-height: 350px;
 
@@ -1024,7 +1038,7 @@ select{
   resize: none;
 }
 
-.inbox-modal-coment input{
+.checked-modal-coment input{
   width: 100%;
   height: 50px;
   border: 1px solid var(--gray300);
@@ -1034,7 +1048,7 @@ select{
   outline: none;
 }
 
-.inbox-modal-approver input{
+.checked-modal-approver input{
   width: 100%;
   height: 50px;
   border: 1px solid var(--gray300);
@@ -1046,7 +1060,7 @@ select{
 
 }
 
-.inbox-modal-checkbox{
+.checked-modal-checkbox{
   margin: 10px 0px 10px;
   width: 100%;
   display: flex;
@@ -1055,12 +1069,12 @@ select{
   align-items: center;
 }
 
-#inbox-modal-checkbox{
+#checked-modal-checkbox{
   height: 15px;
   width: 20px;
 }
 
-.inbox-modal-checkbox label {
+.checked-modal-checkbox label {
   margin-right: 0;
 }
 
@@ -1068,7 +1082,7 @@ select{
   cursor: pointer;
 }
 
-#edit-btn{
+#checked-edit-btn{
 width: 60px;
 height: 30px;
 color: white;
@@ -1080,7 +1094,7 @@ padding-top: 5px;
 cursor: pointer;
 }
 
-#inbox-cancell-btn{width: 60px;
+#checked-cancell-btn{width: 60px;
   height: 30px;
   color: white;
   font-size: 14px;
@@ -1091,7 +1105,7 @@ cursor: pointer;
   cursor: pointer;
 }
 
-#inbox-success-btn{
+#checked-success-btn{
   width: 60px;
 height: 30px;
 color: white;
@@ -1101,6 +1115,13 @@ border-radius: 5px;
 background-color: var(--primary400);
 padding-top: 5px;
 cursor: pointer;
+}
+
+/* 체크 모달창 확인 취소 버튼 */
+.checked-submit-reset-btns {
+  margin-top: 20px;
+
+  float: right;
 }
 
 /* 수정모달창 */

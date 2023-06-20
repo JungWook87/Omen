@@ -367,40 +367,42 @@
 
         </div>
   </div>
-<!---------------------------------------- 수신함 모달창 열기 ---------------------------------------->
+<!---------------------------------------- 체크 모달창 열기 ---------------------------------------->
 
-      <div id="inbox-modalWrap">
-        <div class="inbox-modalBody">
-          <span id="inbox-closeBtn">
+      <div id="checked-modalWrap">
+        <div class="checked-modalBody">
+          <span id="checked-closeBtn">
             <img src="../images/Xbtn.png" alt="">
           </span>
           <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
             
             <!-- 모달창 시작 -->
-            <div class="inbox-modal-header">
+            <div class="checked-modal-header">
               <!-- 제목 -->
-              <h1 class="inbox-modal-title">결재 예시</h1>
+              <div class="checked-modal-title">
+                <h1>결재 예시</h1>
+              </div>
               <!-- 결재항목박스 -->
-              <div class="inbox-modal-modal-headerbox">
+              <div class="checked-modal-modal-headerbox">
                 <!-- 결재항목 내용 -->
-                <div class="inbox-modal-headerbox-content">
+                <div class="checked-modal-headerbox-content">
                   <!-- 문서번호 -->
-                  <span class="inbox-modal-modal-headerbox-content-a">문서번호 :</span>  
-                  <span class="inbox-modal-modal-headerbox-content-b">2023-05-26-20001990</span>
+                  <span class="checked-modal-modal-headerbox-content-a">문서번호 :</span>  
+                  <span class="checked-modal-modal-headerbox-content-b">2023-05-26-20001990</span>
                 </div>
                 
-                <div class="inbox-modal-headerbox-content">
+                <div class="checked-modal-headerbox-content">
                   <!-- 작성자 -->
-                  <span class="inbox-modal-headerbox-content-a">작성자 :</span>  
-                  <span class="inbox-modal-headerbox-content-b">이재혁 ( abcde@gmail.com )</span>
+                  <span class="checked-modal-headerbox-content-a">작성자 :</span>  
+                  <span class="checked-modal-headerbox-content-b">이재혁 ( abcde@gmail.com )</span>
                 </div>
-                <div class="inbox-modal-headerbox-content">
+                <div class="checked-modal-headerbox-content">
                   <!-- 작성일 -->
-                  <span class="inbox-modal-modal-headerbox-content-a">작성일 :</span>  
-                  <span class="inbox-modal-modal-headerbox-content-b">2023-05-26 14:19</span>
+                  <span class="checked-modal-modal-headerbox-content-a">작성일 :</span>  
+                  <span class="checked-modal-modal-headerbox-content-b">2023-05-26 14:19</span>
                 </div>
 
-                <div class="inbox-modal-headerbox-footer">
+                <div class="checked-modal-headerbox-footer">
                     <button class="copy-btn">
                       <span>꓋ 문서복사</span>
                     </button>
@@ -413,7 +415,7 @@
               
             </div>
             
-            <div class="inbox-modal-table-body">
+            <div class="checked-modal-table-body">
               
               <h2>결재경로</h2>
 
@@ -456,56 +458,27 @@
             </div>
 
           <!-- 내용 -->
-          <div class="inbox-modal-detail">
-            <p>내용</p>
-            <textarea name="" id="" onkeydown="handleResizeHeight(this)"
-              onkeyup="handleResizeHeight(this)"></textarea>
-          </div>
-          <div class="inbox-file-box">
-            <p>첨부파일</p>
-            <button type="button" id="file-remove">파일 지우기</button>
-            <label for="file-uploads">파일 올리기</label>
-            <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+          <p>내용</p>
+          <div class="checked-modal-detail">
           </div>
           <!-- 선택된 파일 -->
-          <div class="check-preview"></div>
+          <p>첨부파일</p>
+          <div class="checked-preview"></div>
           <!-- 의견 -->
-          <div class="inbox-modal-coment">
-            <p>의견</p>
-            <input type="text" readonly>
-          </div>
+          <p>의견</p>
+          <div class="checked-modal-coment"></div>
           <!-- 결재자 -->
-          <div class="inbox-modal-approver">
-            <p>결재자</p>
-            <input type="text" readonly>
-          </div>
-          <!-- 의견 -->
-          <div class="inbox-modal-coment">
-            <p>의견</p>
-            <input type="text">
-          </div>
-          <!-- 결재자 -->
-          <div class="inbox-modal-approver">
-            <p>결재자</p>
-            <input type="text">
-          </div>
+          <p>결재자</p>
+          <div class="checked-modal-approver"></div>
         
           <!-- 선2 -->
-          <div class="work-modal-line"></div>
-          <!-- 최종승인 버튼 -->
-          <div class="inbox-modal-checkbox">
-            <label for="">
-              <input type="checkbox" id='inbox-modal-checkbox' onclick='is_inboxed()'> 
-              최종 승인
-            </label>
-          </div>
+          <div class="checked-modal-line"></div>
           
-
           <!-- 버튼 -->
-          <div class="work-submit-reset-btns">
-            <button type="submit" id="edit-btn">수정</button>
-            <button type="reset" id="inbox-cancell-btn">결재취소</button>
-            <button id="inbox-success-btn">확인</button>
+          <div class="checked-submit-reset-btns">
+            <button type="submit" id="checked-edit-btn">수정</button>
+            <button type="reset" id="checked-cancell-btn">결재취소</button>
+            <button id="checked-success-btn">확인</button>
           </div>
           <!-- </form> -->
         </div>
