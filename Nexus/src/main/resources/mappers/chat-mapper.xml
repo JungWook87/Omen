@@ -8,7 +8,13 @@
 		<result property="memNo" column="MEM_NO"/>
 		<result property="inviteName" column="INVITE_NAME"/>
 		<result property="status" column="STATUS"/>
+		<result property="createMemberName" column="CREATE_MEMBER_NAME" />
 	
+	</resultMap>
+	
+	<resultMap type="chatRoomJoin" id="chatroomjoin_rm">
+		<id property="cmNo" column="CM_NO" />
+		<result property="memNo" column="MEM_NO"/>
 	</resultMap>
 	
 	<resultMap type="message" id="message_rm">
@@ -28,8 +34,7 @@
 	<select id="selectChatRoomList" resultMap="chatroom_rm">
 		SELECT *
 		FROM CHAT_ROOM
-		JOIN CHAT_ROOM_JOIN USING (CM_NO)
-		WHERE CHAT_ROOM_JOIN.MEM_NO = #{memNo}
+		WHERE MEM_NO = #{memNo} OR INVITE_NAME = #{memName}
 		AND STATUS = 'Y'
 		ORDER BY CM_NO
 	</select>
@@ -49,16 +54,27 @@
 		)
 	</insert>
 	
-	<insert id="CreateChatRoom" parameterType="chatroom" useGeneratedKeys="true">
-	    <selectKey keyProperty="cmNo" resultType="_int" order="BEFORE">
-	        SELECT SEQ_CR_NO.NEXTVAL FROM DUAL
-	    </selectKey>
+	
+	<insert id="createChatRoom" parameterType="chatroom" useGeneratedKeys="true">
+		<selectKey keyProperty="cmNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_CR_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO CHAT_ROOM VALUES(#{cmNo}, #{memNo}, #{inviteName}, DEFAULT, #{createMemberName})
+	</insert>
+	
+	<insert id="createChatRoomJoin">
 	    INSERT INTO CHAT_ROOM_JOIN VALUES(#{memNo}, #{cmNo})
 	</insert>
 	
-		<insert id="inviteMember">
+	<insert id="inviteMember">
 		INSERT INTO CHAT_ROOM_JOIN VALUES(#{memNo}, #{cmNo})
 	</insert>
+	
+	<select id="selectInviteMember" resultType="_int">
+		SELECT MEM_NO FROM MEMBER 
+		WHERE MEM_NAME = #{inviteName}
+	</select>
+	
 	
 	
 	

@@ -13,6 +13,7 @@ public class ChatRoom {
 	private int memNo;
 	private String inviteName;
 	private String status;
+	private String createMemberName;
 	
 	
 }

@@ -46,7 +46,6 @@ public class MemberController {
 			model.addAttribute("loginMember",loginMember);
 			
 			logger.info("로그인 회원 : " + inputMember.getMemId());
-			
 			return "redirect:/main";
 
 		} else {
