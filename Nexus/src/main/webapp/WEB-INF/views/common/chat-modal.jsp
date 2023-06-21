@@ -142,7 +142,51 @@
 
             </div>
         </div>
+        
+        
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	
+	<!-- https://github.com/sockjs/sockjs-client -->
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script>
+		
+		const cmNo = "${cmNo}";
+		const contextPath = "${contextPath}";
+		let memName = '${memName}';
+		
+		console.log(memName);
 
+
+		// 로그인이 되어 있을 경우에만
+		// /chat 이라는 요청 주소로 통신할 수 있는  WebSocket 객체 생성
+		const chattingSock = new SockJS(contextPath+"/chat");
+			// -> websocket 프로토콜을 이용해서 해당 주소로 데이터를 송/수신 할 수 있다.
+
+
+		/*  WebSocket
+		
+		- 브라우저와 웹 서버간의 전이중 통신을 지원하는 프로토콜
+
+		* 전이중 통신(Full Duplex) : 두대의 단말기가 데이터를 동시에 송/수신 하기 위해
+		  각각 독립된 회선을 사용하는 통신 방식(ex. 전화 )
+
+		- HTML5 부터 지원
+		- Java 7 부터 지원 (8 버전 이상 사용 권장)
+		- Spring Framework 4 이상 부터 지원
+		*/
+
+
+	</script>
+	<script src='${contextPath}/resources/js/chat.js'></script>
+	<!-- <script src="${contextPath}/resources/js/bootstrapjs/rightsidebar.js"></script> -->
+	<script>
+		// 페이지 로딩 완료 시 채팅창을 제일 밑으로 내리기
+
+
+
+
+
+	</script>
 
         <script src="${contextPath}/resources/js/chat/chatting.js"></script>
 </body>

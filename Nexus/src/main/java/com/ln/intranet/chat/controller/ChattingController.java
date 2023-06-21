@@ -83,6 +83,7 @@ import java.util.HashMap;
 	
 			map.put("memNo", memNo);
 			map.put("memName", memName);
+			
 	
 			List<ChatRoom> RoomList = service.selectChatRoomList(map);
 	
@@ -158,9 +159,13 @@ import java.util.HashMap;
 		int memNo = loginMember.getMemNo();
 		String memberName = loginMember.getMemName();
 		
+		
+		
 		paramMap.put("inviteName", name);
 		paramMap.put("createMemberName", memberName);
 
+		
+		
 		
 		
 		join.setMemNo(memNo);

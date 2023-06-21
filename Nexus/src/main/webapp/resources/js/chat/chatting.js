@@ -103,6 +103,7 @@ function getChattingList() {
             </div>
           `;
 
+
             // 글이 길어지면 ... 표시
             const message = newContact.querySelector('.contact-message');
             message.style.overflow = 'hidden';
@@ -266,6 +267,8 @@ function getChattingList() {
                  }
 
 
+
+
                  chatMain.style.display = 'none';
                  chatting.style.display = 'flex';
 
@@ -278,6 +281,7 @@ function getChattingList() {
 
             contactArea.appendChild(newContact);
 
+
           });
                 
         },
@@ -286,9 +290,6 @@ function getChattingList() {
         }
     })
 }
-
-
-
 
 
 
