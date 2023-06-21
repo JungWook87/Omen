@@ -1,10 +1,10 @@
-const chatMain = document.getElementById('chat-main'), 
+const chatMain = document.getElementById('chat-main'),
   chat = document.getElementById('chat'),
   chatOpen = document.getElementById("chatting-function"),
   chatClose = document.getElementById("close"),
   chattingClose = document.getElementById('chat-close'),
   chatting = document.querySelector('.chat');
-  
+ 
 // 채팅창 오픈 이벤트
 chatOpen.addEventListener('click', () => {
   openChatBox();
@@ -20,7 +20,7 @@ chatClose.addEventListener('click', () => {
 chattingClose.addEventListener('click', () => {
   closeChatBox();
   chattingHeaderChange();
-  
+ 
 })
 
 // 채팅창 여는 함수
@@ -33,22 +33,22 @@ function openChatBox() {
   chatOpen.classList.add('fade-out');
   setTimeout(function() {
     chatOpen.style.display = 'none';
-  }, 100); 
-}   
+  }, 100);
+}  
 
 // 채팅창 끄는 함수
 function closeChatBox() {
   var chatBox = document.querySelector('.chat-box');
   chatBox.classList.remove('open');
-  
  
-  
+ 
+ 
   // 버튼에 페이드 인 애니메이션 클래스를 추가합니다.
   chatOpen.classList.add('fade-in');
   setTimeout(function() {
     chatOpen.style.display = 'block';
-  }, 200); 
-  
+  }, 200);
+ 
 }
 
 // 바깥영역 클릭시 채팅창 사라짐
@@ -63,7 +63,7 @@ window.addEventListener('click', function(event) {
     chatOpen.classList.add('fade-in');
   setTimeout(function() {
     chatOpen.style.display = 'block';
-  }, 200); 
+  }, 200);
 
   chattingHeaderChange();
 
@@ -76,40 +76,39 @@ function getChattingList() {
 
     const contactArea = document.getElementById('contact-area');
     contactArea.innerHTML = '';
-    
+   
     $.ajax({
         url: "chatRoomList",
         type : "POST",
         dataType : "JSON",
         success : function(RoomList) {
-            console.log(RoomList);
-             for (var i = 0; i < RoomList.length; i++) {
-            const newContact = document.createElement('div');
-            newContact.classList.add('contact', 'contact-hover');
-            newContact.innerHTML = `
-                <div>
-                <div class="name">${RoomList[i].inviteName}</div>
-                <div class="contact-message">${chatVal.value}</div>
-                </div>
-                <div class="delete-btn-set">
-                <div class="arrow-button">
-                    <i class="fa-solid fa-angles-left fa-beat-fade"></i>
-                </div>
-                <div class="flex-btn">
-                    <div class="cancle-button">취소</div>
-                    <div class="delete-button">나가기</div>
-                </div>
-                </div>
-            `;
-			
-	
+          console.log(RoomList);
+          RoomList.forEach((room) => {
+          const newContact = document.createElement('div');
+          newContact.classList.add('contact', 'contact-hover');
+          newContact.setAttribute('data-cmno', room.cmNo);
+          newContact.innerHTML = `
+            <div>
+              <div class="name">${room.inviteName}</div>
+              <div class="contact-message">${chatVal.value}</div>
+            </div>
+            <div class="delete-btn-set">
+              <div class="arrow-button">
+                <i class="fa-solid fa-angles-left fa-beat-fade"></i>
+              </div>
+              <div class="flex-btn">
+                <div class="cancle-button">취소</div>
+                <div class="delete-button">나가기</div>
+              </div>
+            </div>
+          `;
 
             // 글이 길어지면 ... 표시
             const message = newContact.querySelector('.contact-message');
             message.style.overflow = 'hidden';
             message.style.whiteSpace = 'nowrap';
             message.style.textOverflow = 'ellipsis';
-            
+           
             // 화살표 버튼을 클릭하여 삭제 버튼 표시
             const arrowButton = newContact.querySelector('.arrow-button');
             arrowButton.addEventListener('click', () => {
@@ -134,7 +133,7 @@ function getChattingList() {
                 deleteButton.style.display = 'none';
                 cancleButton.style.display = 'none';
             };
-            
+           
             // 화살표 버튼을 보여주는 함수
             const showArrowButton = () => {
                 arrowButton.style.display = 'block';
@@ -175,26 +174,112 @@ function getChattingList() {
                 showArrowButton();
             })
 
-            
+            // 채팅방에서 클릭 이벤트
+            newContact.addEventListener('click', function() {
+                const cmNo = this.getAttribute('data-cmno');
+
+                // AJAX 요청으로 채팅 내용 가져오기
+                $.ajax({
+                  url: 'chatRoomList/' + cmNo,
+                  type: 'GET',
+                  dataType : 'JSON',
+                  success: function(chatMessageList) {
+                    console.log(chatMessageList)
+                    
+
+                    for (let i = 0; i < chatMessageList.length; i++) {
+                                            
+                        $.ajax({
+                          url : 'loginMember',
+                          type : 'POST',
+                          dataType : 'JSON',
+                          success : function(loginMemberInfo) {
+                            console.log(loginMemberInfo);
+                            
+                            const message = chatMessageList[i].mContent;
+                            const chatMessage = document.createElement('div');
+                            if(loginMemberInfo.memNo === chatMessageList[i].memNo) {
+                              chatMessage.classList.add("message", "parker");
+
+                              const timeSub = document.createElement('div');
+                              timeSub.className = 'time-sub';
+                              const time = chatMessageList[i].mDate; 
+                              timeSub.textContent = time;
+
+                              const content = document.createElement('div');
+                              content.className = 'content';
+
+                              chatMessage.appendChild(timeSub, content);
+
+                            } else {
+                              chatMessage.classList.add("message", "stark");
+
+                              const timeSub = document.createElement('div');
+                              timeSub.className = 'time-sub';
+                              const time = chatMessageList[i].mDate; 
+                              timeSub.textContent = time;
+
+                              const content = document.createElement('div');
+                              content.className = 'content';
+
+                              chatMessage.appendChild(timeSub, content);
+                            }
+                            
+                            chatMessage.textContent = message;
+                            chat.appendChild(chatMessage);
+
+                          },
+                          error : function() {
+                            console.log("에러");
+                          }
+                        })
+
+                      
+                     
+                    }
+                  },
+                  error: function(error) {
+                    console.log("에러");
+                  }
+                });
+
+                 // 채팅창 화면 로직
+                 const chatHeader = document.querySelector('.chat-name');
+                 const chatName = this.querySelector('.name').textContent;
+                 chatHeader.textContent = chatName;
+
+                 chat.innerHTML = '';
+
+                 const todayTime = document.createElement('div');
+                 todayTime.className = 'time';
+                 chat.appendChild(todayTime);
+
+                 // 현재 날짜와 비교하여 "오늘" 표시 업데이트
+                 const timeElement = document.querySelector('.time');
+                 const chatToday = new Date();
+                 const messageDate = currentDate.getDate();
+
+                 if (messageDate === chatToday.getDate() && timeElement.textContent !== '오늘') {
+                     timeElement.textContent = '오늘';
+                 } else {
+                     timeElement.textContent = `${chatYear}년 ${chatMonth}월 ${chatDay}일`;
+                 }
+
+
+                 chatMain.style.display = 'none';
+                 chatting.style.display = 'flex';
+
+                 if (contactArea.style.display === 'none') {
+                     employeeListChange();
+                 }
+                
+              
+            });
 
             contactArea.appendChild(newContact);
-            
 
-            // 채팅방에서 클릭 이벤트
-            if (contactArea.innerHTML.trim() === '') {
-                showEmptyChatMessage();
-            } else {
-                hideEmptyChatMessage();
-                newContact.addEventListener('click', () => {
-                console.log('존나 힘들다 시발');
-                 openChatModal(cmNo);
-
+          });
                 
-                })
-
-            }
-
-        }
         },
         error : function(req, status, error) {
             console.log(req.responseText);
@@ -203,21 +288,8 @@ function getChattingList() {
 }
 
 
-		function openChatModal(cmNo) {
-		  // 모달 열기 코드 작성
-		  
-		  // AJAX 요청으로 채팅 내용 가져오기
-		  $.ajax({
-		    url: '/chatRoomList/' + cmNo,
-		    type: 'GET',
-		    success: function(chatMessageList) {
-		      console.log(chatMessageList)
-		    },
-		    error: function(error) {
-		      // 에러 처리 로직 작성
-		    }
-		  });
-		}
+
+
 
 
 
@@ -236,7 +308,7 @@ friendsList.addEventListener('click', () => {
     friendsList.style.display = 'none';
     employeeList.style.display = 'block';
     contactHeader.style.padding = '0.1rem 0 1rem 0';
-    
+   
     chattingHeaderChange();
 })
 
@@ -254,7 +326,7 @@ function employeeListChange() {
   contactHeader.style.padding = '0.1rem 0 1rem 0';
 }
 
-// 화면전환 
+// 화면전환
 function chattingHeaderChange() {
   if(
     chatMain.style.display === 'none' &&
@@ -266,10 +338,7 @@ function chattingHeaderChange() {
 
 
 
-
-
-
-// 직원목록 드랍박스 
+// 직원목록 드랍박스
 const employeeDropBox = document.querySelectorAll(".employee-dropBox"),
   employeeDropBoxUl = document.querySelectorAll(".employee-dropBox-ul"),
   employeeDropBoxI = document.querySelectorAll(".employee-dropBox-i");
@@ -301,7 +370,7 @@ employeeDropBox.forEach((dropBox, index) => {
         employeeDirector.innerHTML = '';
         employeeSenior.innerHTML = '';
         employeeJunior.innerHTML = '';
-        
+       
         chatMember.forEach((member, i) => {
             if (member.jobNo === 4) {
               const employeeList = employeeRankList(member.memName, count + i);
@@ -317,7 +386,7 @@ employeeDropBox.forEach((dropBox, index) => {
               employeeJunior.appendChild(employeeList);
             }
           });
-          
+         
           function employeeRankList(memName, index) {
             const employeeList = document.createElement('li');
             employeeList.classList.add('employee-list');
@@ -335,8 +404,8 @@ employeeDropBox.forEach((dropBox, index) => {
             `;
             return employeeList;
           }
-          
-          
+         
+         
         // 라디오 버튼 생기고 사라지는 이벤트
         const employeeNameBoxes = document.querySelectorAll(".employee-name-box");
 
@@ -352,7 +421,7 @@ employeeDropBox.forEach((dropBox, index) => {
                 const boxRadioInput = box.querySelector("input[type='radio']");
                 const boxLabel = box.querySelector("span");
                 const boxInviteButton = box.querySelector(".invite-button");
-                
+               
                 if (box === nameBox) {
                 // 선택된 라디오 버튼인 경우
                 boxLabel.style.display = "none";
@@ -378,7 +447,6 @@ employeeDropBox.forEach((dropBox, index) => {
             const listItem = button.closest("li");
             const nameElement = listItem.querySelector("p");
             const pName = nameElement.textContent;
-            console.log(pName);
             inviteName.textContent = pName;
 
             $.ajax({
@@ -393,7 +461,7 @@ employeeDropBox.forEach((dropBox, index) => {
                     console.log("에러");
                 }
             })
-        
+       
         // 중복 추가 방지 로직
         const existingContacts = contactArea.querySelectorAll('.contact .name');
         const duplicateContact = Array.from(existingContacts).find(contact => contact.textContent.trim() === name);
@@ -454,7 +522,7 @@ employeeDropBox.forEach((dropBox, index) => {
             showArrowButton();
             }
         })
-        
+       
         chattingClose.addEventListener('click', () => {
             closeChatBox();
             chattingHeaderChange();
@@ -468,18 +536,18 @@ employeeDropBox.forEach((dropBox, index) => {
         window.addEventListener('click', function(event) {
             var chatBox = document.querySelector('.chat-box');
             var chatButton = document.getElementById('chatting-function');
-        
-        
-        
+       
+       
+       
             if (!chatBox.contains(event.target) && !chatButton.contains(event.target)) {
             chatBox.classList.remove('open');
             chatOpen.classList.add('fade-in');
             setTimeout(function() {
             chatOpen.style.display = 'block';
-            }, 200); 
-        
+            }, 200);
+       
             chattingHeaderChange();
-        
+       
             if(deleteButton.style.display === 'block') {
             hideDeleteButton();
             showArrowButton();
@@ -503,14 +571,14 @@ employeeDropBox.forEach((dropBox, index) => {
     // 채팅창 끌때 이벤트
     chatClose.addEventListener('click', () => {
       closeChatBox();
-      
+     
       if (employeeDropBoxUl[index].style.display === 'block') {
         employeeDropBoxUl[index].style.display = 'none';
         employeeDropBoxI[index].classList.remove("fa-bounce");
 
       }
     })
-    
+   
     chattingClose.addEventListener('click', () => {
       closeChatBox();
       chattingHeaderChange();
@@ -526,24 +594,24 @@ employeeDropBox.forEach((dropBox, index) => {
     window.addEventListener('click', function(event) {
       var chatBox = document.querySelector('.chat-box');
       var chatButton = document.getElementById('chatting-function');
-    
+   
      
-    
+   
       if (!chatBox.contains(event.target) && !chatButton.contains(event.target)) {
         chatBox.classList.remove('open');
         chatOpen.classList.add('fade-in');
       setTimeout(function() {
         chatOpen.style.display = 'block';
-      }, 200); 
-    
+      }, 200);
+   
       chattingHeaderChange();
-    
+   
       if (employeeDropBoxUl[index].style.display === 'block') {
         employeeDropBoxUl[index].style.display = 'none';
         employeeDropBoxI[index].classList.remove("fa-bounce");
 
       }
-      
+     
       }
     })
 
@@ -585,7 +653,7 @@ function getTimeString() {
   let chatHours = chatNow.getHours();
   const chatMinutes = String(chatNow.getMinutes()).padStart(2, '0');
   let timeString = '';
-  
+ 
   if (chatHours >= 12) {
     timeString = '오후 ';
     if (chatHours > 12) {
@@ -632,9 +700,54 @@ chatVal.addEventListener('input', () => {
   }
 });
 
+// 기본엔터 동작 방지 함수
+function handleKeyPress(event) {
+  if(event.key === "Enter") {
+    event.preventDefault();
+    sendMessage();
+  }
+}
+
 //인풋창에 글자를 입력하고 엔터를 눌렀을때 이벤트
-chatVal.addEventListener('keydown', (event) => {
+function sendMessage() {
   if (event.keyCode === 13 && chatVal.value.trim() !== '') {
+    const message = document.createElement('div');
+    message.className = 'message parker';
+    const time = getTimeString();
+    const content = document.createElement('div');
+    content.className = 'content';
+    content.textContent = chatVal.value;
+    message.appendChild(content);
+    chat.appendChild(message);
+    chatVal.value = '';
+
+    // 글자 수에 따라 .long-message 클래스 추가
+    if (content.offsetHeight < content.scrollHeight) {
+      content.classList.add('long-message');
+    }
+
+    const timeSub = document.createElement('div');
+    timeSub.className = 'time-sub';
+    timeSub.textContent = time;
+    message.insertBefore(timeSub, content);
+
+    if (isTyping) {
+      isTyping = false;
+      if (typingIndicator && typingIndicator.parentNode === chat) {
+        chat.removeChild(typingIndicator);
+        typingIndicator = null;
+      }
+    }
+
+    scrollToBottom();
+  }
+}
+
+// 인풋창 옆에 종이비행기 버튼 이벤트
+const chatSubmit = document.getElementById("chat-submit");
+
+chatSubmit.addEventListener('click', () => {
+  if (chatVal.value.trim() !== '') {
     const message = document.createElement('div');
     message.className = 'message parker';
     const time = getTimeString();
@@ -667,32 +780,6 @@ chatVal.addEventListener('keydown', (event) => {
   }
 });
 
-// 인풋창 옆에 종이비행기 버튼 이벤트
-const chatSubmit = document.getElementById("chat-submit");
-
-chatSubmit.addEventListener('click', () => {
-  if (chatVal.value.trim() !== '') {
-    const message = document.createElement('div');
-    message.className = 'message parker';
-    const time = getTimeString(); // 현재 시간 가져오기
-    message.innerHTML = `
-      <div class="time">${time}</div>
-      <div class="content">${chatVal.value}</div>
-    `;
-    chat.appendChild(message);
-    chatVal.value = '';
-
-    if (isTyping) {
-      isTyping = false;
-      if (typingIndicator && typingIndicator.parentNode === chat) {
-        chat.removeChild(typingIndicator);
-        typingIndicator = null;
-      }
-    }
-
-    scrollToBottom();
-  }
-});
 
 
 // 스크롤 이벤트
@@ -707,17 +794,3 @@ function scrollToBottom() {
 if (contactArea.innerHTML.trim() === '') {
   showEmptyChatMessage();
 }
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
