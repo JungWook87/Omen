@@ -20,26 +20,23 @@ public class MeetingRoomDAO {
 	
 	private Logger logger = LoggerFactory.getLogger(MeetingRoomDAO.class);
 	
-	// 모든 예약 정보 조회
+	// 페이지 진입시 모든 예약 정보 조회 + AJAX 송신
 	public List<MeetingRoom> allReservation() {
 		
 		return sqlSession.selectList("meetingRoomMapper.reservationList");
 	}
 	
+	
 	// 회의실 예약 후 예약 정보 반환
-	public MeetingRoom reservationRoom(MeetingRoom meetingRoom) {
+	public int reservationRoom(MeetingRoom meetingRoom) {
 		
 		int resultNo = sqlSession.insert("meetingRoomMapper.reservationRoom",meetingRoom);
 		
-		MeetingRoom result = new MeetingRoom();
-		
-		result = null;
+		int result = 0;
 		
 		if(resultNo > 0) {
 			result = sqlSession.selectOne("meetingRoomMapper.returnResult",resultNo);
 		} 
-		
-		logger.info("result : " + result);
 		
 		return result;
 	}

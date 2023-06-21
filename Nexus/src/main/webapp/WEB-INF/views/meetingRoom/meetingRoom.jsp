@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
 
 
   <title>회의실</title>
@@ -93,8 +95,10 @@
               <div class="event-day"></div>
               <div class="event-date"></div>
             </div>
-            <div class="events reservation-box">
-              <!-- 이벤트 js -->
+
+
+            <!-- 해당 날짜의 회의실 등록 확인 -->
+            <div class="events reservationBox">
             </div>
 
             <div class="add-event-wrapper">

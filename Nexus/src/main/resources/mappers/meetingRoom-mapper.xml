@@ -14,22 +14,24 @@
 	
 	<!-- 회의실 예약 -->
 	<insert id="reservationRoom" parameterType="meetingRoom" useGeneratedKeys="true" keyProperty="reservationNo">
-	  <selectKey keyProperty="reservationNo" resultType="_int" order="BEFORE">
-	    SELECT SEQ_RESERVATION_NO.NEXTVAL FROM DUAL
-	  </selectKey>
-	  INSERT INTO MEETING_ROOM (RESERVATION_NO, MEM_NO, RESERVATION_DATE, RESERVATION_TIME, ROOM_NO)
-	  SELECT #{reservationNo}, #{memNo}, #{reservationDate}, #{reservationTime}, #{roomNo}
-	  FROM DUAL
-	  WHERE NOT EXISTS (
-	    SELECT 1 FROM MEETING_ROOM
-	    WHERE RESERVATION_DATE = #{reservationDate}
-	    AND RESERVATION_TIME = #{reservationTime}
-	    AND ROOM_NO = #{roomNo}
-	  )
+		<selectKey keyProperty="reservationNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_RESERVATION_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO MEETING_ROOM (RESERVATION_NO, MEM_NO, RESERVATION_DATE, RESERVATION_TIME, ROOM_NO)
+		SELECT #{reservationNo}, #{memNo},
+		to_date(#{reservationDate}, 'YYYY-MM-DD'),
+		#{reservationTime}, #{roomNo}
+		FROM DUAL
+		WHERE NOT EXISTS (
+		SELECT 1 FROM MEETING_ROOM
+		WHERE to_date(RESERVATION_DATE,'YYYY-MM-DD') = to_date(#{reservationDate}, 'YYYY-MM-DD')
+		AND RESERVATION_TIME = #{reservationTime}
+		AND ROOM_NO = #{roomNo}
+		)
 	</insert>
 	
 	<!-- 예약한 회의실 조회 -->
-	<select id="reservationList" parameterType="_int" resultMap="meetingRoom_rm">
+	<select id="returnResult" parameterType="_int" resultMap="meetingRoom_rm">
 		SELECT 
 			RESERVATION_NO, MEM_NO, 
 			MEM_NAME, JOB_NAME, ROOM_NO, 
@@ -37,7 +39,17 @@
 		FROM MEETING_ROOM 
 		JOIN MEMBER USING(MEM_NO)
 		JOIN JOB  USING(JOB_NO)
-		WHERE RESERVATION_NO = #{reservationNo}
+		WHERE RESERVATION_NO = #{resultNo}
+	</select>
+	
+	<select id="reservationList" resultMap="meetingRoom_rm">
+		SELECT 
+			RESERVATION_NO, MEM_NO, 
+			MEM_NAME, JOB_NAME, ROOM_NO, 
+			TO_CHAR(RESERVATION_DATE, 'YYYY-MM-DD') AS RESERVATION_DATE, RESERVATION_TIME
+		FROM MEETING_ROOM 
+		JOIN MEMBER USING(MEM_NO)
+		JOIN JOB j USING(JOB_NO)
 	</select>
 	
 
