@@ -16,6 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ln.intranet.common.Util;
 import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.work.model.dao.WorkDAO;
+import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.WorkDetail;
+import com.ln.intranet.work.model.vo.WorkGeneral;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
 
 @Service
@@ -34,6 +37,12 @@ public class WorkServiceImp implements WorkService {
 	@Override
 	public List<WorkGeneralList> workSendSelectDate(Map<String, Object> map) {
 		return dao.workSendSelectDate(map);
+	}
+	
+	// 결재 디테일 조회
+	@Override
+	public WorkDetail detailSelect(int workNo) {
+		return dao.detailSelect(workNo);
 	}
 
 	// 결재 상신 작성(일반결재)
@@ -97,12 +106,21 @@ public class WorkServiceImp implements WorkService {
 		
 		return result;
 	}
+	
+	// 결재자 모달창
+	@Override
+	public List<ApprovalMember> approvalMember() {
+		return dao.approvalMember();
+	}
 
 	// 결재 수신함 - 결재할 문서
 	@Override
 	public List<WorkGeneralList> workInbox(int memNo) {
 		return dao.workInbox(memNo);
 	}
+
+
+
 
 	
 	

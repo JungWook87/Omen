@@ -134,7 +134,7 @@
                     </div>
                     <div class="input">
                         <form action="#" class="chat-form">
-                            <input id="chat-input" autocomplete="off" placeholder="메시지를 입력해주세요!" type="text">
+                            <input id="chat-input" autocomplete="off" placeholder="메시지를 입력해주세요!" type="text" onkeypress="handleKeyPress(event)">
                             <i class="fa-solid fa-paper-plane" id="chat-submit"></i>
                         </form>
                     </div>

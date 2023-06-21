@@ -23,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.service.WorkService;
+import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
 
 @Controller
@@ -77,8 +79,19 @@ public class WorkController {
 		return gson.toJson(list);
 	}
 	
+	// 결재 디테일 조회
+	@ResponseBody
+	@GetMapping("/detail")
+	public String detailSelect(@RequestParam("workNo") int workNo) {
+		
+		WorkDetail detailSelect = service.detailSelect(workNo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(detailSelect);
+	}
 	
-	// 결재 상신 작성
+	// 결재 상신 작성(일반결재)
 	@PostMapping("/write")
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,
 			@RequestParam("file-uploads") MultipartFile uploadFile,
@@ -111,6 +124,17 @@ public class WorkController {
 		return "redirect:workSend";
 	}
 	
+	// 결재자 모달창
+	@ResponseBody
+	@GetMapping("/approvalMember")
+	public String approvalMember() {
+		
+		List <ApprovalMember> approvalMemberList = service.approvalMember();
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(approvalMemberList);
+	}
 	
 	
 	// 결재 수신함 (결재할것) 페이지 진입

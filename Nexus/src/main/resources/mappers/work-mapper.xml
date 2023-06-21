@@ -35,6 +35,31 @@
 		<result property="fileRename" column="FILE_RENAME"/>
 	</resultMap>
 	
+	<resultMap type="workDetail" id="workDetail_rm">
+		<id property="workNo" column="WORK_NO" />
+		<result property="typeNo" column="TYPE_NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="sendDate" column="SEND_DATE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="next" column="NEXT"/>
+		<result property="approvalList" column="APPROVAL_LIST"/>
+		<result property="opinion" column="OPINION"/>
+		<result property="fileRename" column="FILE_RENAME"/>
+		<result property="fileOrigin" column="FILE_ORIGIN"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="nextMemName" column="NEXT_MEM_NAME"/>
+		<result property="nextMemEmail" column="NEXT_MEM_EMAIL"/>
+	</resultMap>
+	
+	<resultMap type="approvalMember" id="approvalMember_rm">
+		<id property="memNo" column="MEM_NO" />
+		<result property="jobNo" column="JOB_NO"/>
+		<result property="teamNo" column="TEAM_NO"/>
+		<result property="deptNo" column="DEPT_NO"/>
+		<result property="memName" column="MEM_NAME"/>
+	</resultMap>
+	
 	<!-- 상신함 리스트 -->
 	<select id="workSendList" resultMap="workGeneralList_rm">
 		SELECT WORK_NO, TYPE_NO, TITLE , SEND_DATE ,WORK_STATE , OPINION , TYPE_NAME, FILE_RENAME 
@@ -56,6 +81,17 @@
 		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') BETWEEN #{start} AND #{end}
 		ORDER BY SEND_DATE DESC
 	</select>
+	
+	<!-- 결재 디테일 조회 -->
+	<select id="detailSelect" parameterType="_int" resultMap="workDetail_rm">
+		SELECT WORK_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "NEXT", APPROVAL_LIST, OPINION, FILE_RENAME, FILE_ORIGIN, MEM_NAME, EMAIL, 
+		(SELECT MEM_NAME FROM "MEMBER" m WHERE MEM_NO = w."NEXT") AS NEXT_MEM_NAME, (SELECT EMAIL FROM "MEMBER" m WHERE MEM_NO = w."NEXT") AS NEXT_MEM_EMAIL
+		FROM "WORK" w
+		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
+		LEFT JOIN MEMBER USING(MEM_NO)
+		WHERE WORK_NO = ${workNo}
+	</select>
+	
 	
 	<!-- 결재 입력하기 -->
 	<insert id="workWrite" useGeneratedKeys="true"> 
@@ -88,6 +124,12 @@
 		INSERT INTO UPLOAD_FILE(WORK_NO, FILE_RENAME, FILE_ORIGIN, FILE_NO) 
 		VALUES(#{workNo}, #{fileReName}, #{fileOrigin}, #{fileNo})
 	</insert>
+	
+	<select id="approvalMember" resultMap="approvalMember_rm">
+		SELECT MEM_NO , JOB_NO , TEAM_NO , DEPT_NO , MEM_NAME 
+		FROM "MEMBER" 
+	</select>
+	
 	
 </mapper>
 

@@ -24,7 +24,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 	
 	// 회의실 예약 
 	@Override
-	public MeetingRoom reservationRoom(MeetingRoom meetingRoom) {
+	public int reservationRoom(MeetingRoom meetingRoom) {
 		
 		return dao.reservationRoom(meetingRoom);
 	}
