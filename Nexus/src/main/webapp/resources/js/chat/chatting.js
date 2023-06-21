@@ -86,6 +86,7 @@ function getChattingList() {
              for (var i = 0; i < RoomList.length; i++) {
             const newContact = document.createElement('div');
             newContact.classList.add('contact', 'contact-hover');
+         	 newContact.setAttribute('data-cmno', RoomList[i].cmNo);
             newContact.innerHTML = `
                 <div>
                 <div class="name">${RoomList[i].inviteName}</div>
@@ -181,18 +182,10 @@ function getChattingList() {
             
 
             // 채팅방에서 클릭 이벤트
-            if (contactArea.innerHTML.trim() === '') {
-                showEmptyChatMessage();
-            } else {
-                hideEmptyChatMessage();
-                newContact.addEventListener('click', () => {
-                console.log('존나 힘들다 시발');
-                 openChatModal(cmNo);
-
-                
-                })
-
-            }
+                    newContact.addEventListener('click', function() {
+                        const cmNo = this.getAttribute('data-cmno');
+                        openChatModal(cmNo);
+                    });
 
         }
         },
@@ -208,7 +201,7 @@ function getChattingList() {
 		  
 		  // AJAX 요청으로 채팅 내용 가져오기
 		  $.ajax({
-		    url: '/chatRoomList/' + cmNo,
+		    url: 'chatRoomList/' + cmNo,
 		    type: 'GET',
 		    success: function(chatMessageList) {
 		      console.log(chatMessageList)
@@ -378,7 +371,6 @@ employeeDropBox.forEach((dropBox, index) => {
             const listItem = button.closest("li");
             const nameElement = listItem.querySelector("p");
             const pName = nameElement.textContent;
-            console.log(pName);
             inviteName.textContent = pName;
 
             $.ajax({
