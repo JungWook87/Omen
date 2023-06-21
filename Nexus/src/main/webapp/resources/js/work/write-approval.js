@@ -22,8 +22,6 @@ const projectCheckSelect = document.getElementById('project-checked'); // 프로
 const assignmentCheckSelect = document.getElementById('assignment-checked'); // 과제 선택
 const workDetail = document.querySelector('.work-modal-detail'); // 모달창 내용
 const workProjectbox = document.querySelector('.projectBox'); // 과제명, 과제 내용
-const workBusinessDetail = document.querySelector('.work-modal-businessDetail'); // 출장 내용
-const workBusinessDetailText = document.querySelector('.work-modal-businessDetail > textarea'); // 출장 내용 (textarea)
 const modalProjectbox = document.querySelector('.work-modal-projectBox'); // 과제추가 버튼
 const workStartDateText = document.querySelector('.work-modal-startDate > input'); // 시작 날짜 
 const workEndDateText = document.querySelector('.work-modal-endDate > input'); // 종료 날짜 
@@ -34,9 +32,7 @@ btn.addEventListener("click", () => {
   workTitle.value = '';
   workContent.value = '';
   workApprover.value = '';
-  workBusinessDetail.querySelector('textarea').value = '';
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
-  
 
   workTemplateSelect.value = 'normal-check';
 
@@ -47,7 +43,6 @@ btn.addEventListener("click", () => {
   workProjectbox.style.display = 'none';
   workStartDate.style.display = 'none'; 
   workEndDate.style.display = 'none';
-  workBusinessDetail.style.display = 'none' 
   projectCheckSelect.style.display = 'none';
   assignmentCheckSelect.style.display = 'none';
   modalBody.classList.add('modal-open');
@@ -57,7 +52,6 @@ btn.addEventListener("click", () => {
 // 모달창 엑스 버튼
 closeBtn.addEventListener("click", () => {
   modalClose();
-  console.log("hi");
 });
 
 // 모달창 플러스 버튼
@@ -132,7 +126,7 @@ workTemplateSelect.addEventListener('change', () => {
   workTitle.value = '';
   workContent.value = '';
   workApprover.value = '';
-  workBusinessDetail.querySelector('textarea').value = '';
+  workDetail.querySelector('textarea').value = '';
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
 
 
@@ -140,7 +134,6 @@ workTemplateSelect.addEventListener('change', () => {
   workModaltitle.style.display='none';
   workStartDate.style.display = 'none';
   workEndDate.style.display = 'none'; 
-  workBusinessDetail.style.display = 'none';
   workDetail.style.display = 'none';
   workProjectbox.style.display = 'none';
   modalProjectbox.style.display = 'none';
@@ -151,13 +144,22 @@ workTemplateSelect.addEventListener('change', () => {
     normalCheckSelect.style.display = 'block';
     workModaltitle.style.display = 'block'; 
     workDetail.style.display = 'block';
+    workContent.value = '';
 
   } 
 
+  // kjw
   if(selectedValue === 'business-trip') {
     workStartDate.style.display = 'block'; 
-    workEndDate.style.display = 'block'; 
-    workBusinessDetail.style.display = 'block'; 
+    workEndDate.style.display = 'block';
+    workDetail.style.display = 'block';
+    workContent.value = 
+    '\n***** 출장 신청서 *****\n\n\n' + 
+    '1. 출장 인원(성명/소속/직급/사번) :  \n' + 
+    '   1) \n\n\n' +
+    '2. 출장지 : \n\n\n' +
+    '3. 출장 내용 : \n\n\n' +
+    '4. 비고 : ';
   }
 
   if(selectedValue === 'vacation') {
@@ -179,12 +181,67 @@ workTemplateSelect.addEventListener('change', () => {
     workDetail.style.display = 'block'
   }
   
-})
+});
+
+// 일반 결재의 세부사항 선택창 변경시 내용 변경(kjw)
+normalCheckSelect.addEventListener("change", function(){
+  workContent.value = '';
+
+  if(normalCheckSelect.value == 'normalEx1'){
+    workContent.value = 
+    '\n***** 경조금 지급 신청서 *****\n\n\n' + 
+    '1. 경조금 수혜자\n' + 
+    '   소속 :  \n' +
+    '   성명 :  \n\n\n' + 
+    '2. 지급사유\n' +
+    '   경조 대상자 성명 :  \n' + 
+    '   관계 :  \n' + 
+    '   경조일(장례시 발인일 입력) :  \n' + 
+    '   경조 내용 :  \n\n\n' + 
+    '3. 지급 금액 : \n\n\n' +
+    '4. 지급 계좌 : ';
+  } else if(normalCheckSelect.value == 'normalEx2'){
+    workContent.value = 
+    '\n***** 구매 요청서 *****\n\n\n' + 
+    '1. 구매 요청 부서 :  \n\n\n' + 
+    '2. 구매 목적(필요성) :  \n\n\n' +
+    '3. 희망 납기일 : \n\n\n' +
+    '4. 구매 요청 품목 (품목명 / 모델명 / 수량 / 단가 / 금액 / 사용부서(사용자)) \n' +
+    '   1) \n\n\n' +
+    '5. 합계 금액 : \n\n\n' +
+    '6. 관련 구매 링크 : '
+  } else if(normalCheckSelect.value == 'normalEx3'){
+    workContent.value = 
+    '\n***** 자산 요청서 *****\n\n\n' + 
+    '1. 자산 요청 부서 :  \n\n\n' + 
+    '2. 자산 요청 목적(필요성) :  \n\n\n' +
+    '4. 자산 요청 품목 (품목명 / 모델명 / 수량 / 사용부서(사용자)) \n' +
+    '   1) \n\n\n';
+  } else if(normalCheckSelect.value == 'normalEx4'){
+    workContent.value = 
+    '\n***** 지출 결의서 *****\n\n\n' + 
+    '1. 지출 결의서 (거래일 / 거래처명 / 내용 / 금액 / 지급요청일 / 예금주 / 은행 / 계죄번호)  \n' + 
+    '   1) \n';
+  }
+
+});
 
 // 결재자 클릭 이벤트
 pulsApproverBtn.addEventListener("click",() => {
+
+  
+  $.ajax({
+    url : "approvalMember",
+    type : "GET",
+    dataType : "JSON",
+    // 동준작성
+    success : function(list) {
+      console.log(list);
+    }
+  });
+
   approverModal.style.display = 'block';
-  approverModalBody.classList.add('approver-modal-open')
+  approverModalBody.classList.add('approver-modal-open');
 })
 
 // 결재자 모달창 외부 영역 이벤트
@@ -216,7 +273,6 @@ function aproverModalClose() {
 }
 
  // 결재자 클릭 이벤트 핸들러
-
 const approverSuccessBtn = document.getElementById('approver-success-btn');
 const approverCheckBtn = document.querySelectorAll('.approver-checkBox');
 
@@ -233,15 +289,10 @@ approverSuccessBtn.addEventListener("click", () => {
 
 });
 
-
-
-
 // 자동 높이 조정 textarea
-
 function handleResizeHeight(obj) {
   obj.style.height = 'auto';
   obj.style.height = obj.scrollHeight + 'px';
- 
   
   const computedStyles = window.getComputedStyle(obj);
   if (obj.scrollHeight >= parseInt(computedStyles.maxHeight)) {
@@ -301,9 +352,7 @@ function updateImageDisplay(event) {
 
   reader.readAsDataURL(upFile);
 
-
   // 다운로드
-  
 
 }
 
@@ -348,87 +397,69 @@ const successBtn = document.getElementById('success-btn');
 
 successBtn.addEventListener("click", () => {
 
-
   if(workTemplateSelect.value === 'normal-check'){
 
     if(workTitle.value === "") {
       Swal.fire('제목을 입력해 주세요');
+      return false;
     } else if(workContent.value === "") {
       Swal.fire('내용을 입력해 주세요');
+      return false;
     } else if(workApprover.value === '') {
       Swal.fire('결재자를 입력해 주세요')
+      return false;
     } else{
-      modalCheckAdd();
+      return true;
     }
 
   } else if(workTemplateSelect.value === 'business-trip'){
       if(workStartDateText.value === "") {
         Swal.fire('시작날짜를 입력해 주세요');
+        return false;
       } else if(workEndDateText.value === "") {
         Swal.fire('종료날짜를 입력해 주세요');
-      } else if(workBusinessDetailText.value === "") {
+        return false;
+      } else if(workContent.value === "") {
         Swal.fire('출장내용을 입력해 주세요');
+        return false;
       } else if(workApprover.value === '') {
         Swal.fire('결재자를 입력해 주세요')
+        return false;
       } else{
-        modalCheckAdd();
+        return true;
       }
 
     } else if(workTemplateSelect.value === 'vacation'){
       if(workStartDateText.value === "") {
         Swal.fire('시작날짜를 입력해 주세요');
+        return false;
       } else if(workEndDateText.value === "") {
         Swal.fire('종료날짜를 입력해 주세요');
+        return false;
       } else if(workApprover.value == '') {
         Swal.fire('결재자를 입력해 주세요')
+        return false;
       } else{
-        modalCheckAdd();
+        return true;
       }
 
     } else if(workTemplateSelect.value === 'project'){
       if(workTitle.value === "") {
         Swal.fire('제목을 입력해 주세요');
+        return false;
       } else if(workContent.value === "") {
         Swal.fire('내용을 입력해 주세요');
+        return false;
       } else if(workProjectboxText.value === "") {
         Swal.fire('프로젝트 내용을 입력해 주세요');
+        return false;
       } else if(workApprover.value === '') {
         Swal.fire('결재자를 입력해 주세요')
+        return false;
       } else { 
-        modalCheckAdd();
+        return true;
       }
     
-    } else {
-      
-      
-
-    }
+    } 
 
   })
-
-  // 모달창 체크 완료시 테이블 생성
-  function modalCheckAdd(){ 
-
-    const tr = document.createElement('tr');
-    const tdType = document.createElement('td');
-    const tdNum = document.createElement('td');
-    const tdTitle = document.createElement('td');
-    const tdSituation = document.createElement('td');
-    const tdNode = document.createTextNode(workTitle.value);
-    const tdFile = document.createElement('td');
-    const tdDate = document.createElement('td');
-  
-    tdTitle.append(tdNode);
-    tr.append(tdType,tdNum, tdTitle, tdSituation, tdFile, tdDate);
-  
-    document.querySelector('tbody').append(tr);
-    
-    // 내가 작성한 글 모달창 열기
-    tr.addEventListener("click", function() {
-      checkedModalOpen();
-    })
-        
-    // 모달 닫기
-    modalClose();
-
-  }

@@ -43,6 +43,13 @@
               <option value="">프로젝트4(예시)</option>
             </select>
 
+            <select name="" id="assignment-checked">
+              <option value="">과제1(예시)</option>
+              <option value="">과제2(예시)</option>
+              <option value="">과제3(예시)</option>
+              <option value="">과제4(예시)</option>
+            </select>
+
           </div>
 
           <!-- 제목 -->
@@ -157,7 +164,7 @@
                             <li><p href="#">관리기획부</p>
             
                                 <ul class="M03">
-            
+                                  
                                     <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
             
                                     <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
