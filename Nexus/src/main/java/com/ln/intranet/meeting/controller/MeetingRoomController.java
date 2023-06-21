@@ -53,9 +53,7 @@ public class MeetingRoomController {
 	   meetingRoom.setMemNo(loginMember.getMemNo());
 	   meetingRoom.setReservationDate(reservationDate);
 	  
-	   MeetingRoom result = new MeetingRoom();
-	   
-	   result = service.reservationRoom(meetingRoom);
+	   int result = service.reservationRoom(meetingRoom);
        
 	   return new Gson().toJson(result);
    }
@@ -67,6 +65,8 @@ public class MeetingRoomController {
 	   List<MeetingRoom> resvList = new ArrayList<MeetingRoom>();
 	   
 	   resvList = service.allReservation();
+	   
+	   logger.info(resvList.get(0).getReservationDate());
 	   
 	   return resvList;
    }
