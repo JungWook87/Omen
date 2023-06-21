@@ -42,16 +42,16 @@
 	
 <!-- 채팅 메세지 목록 조회 -->
 	<select id="selectChatMessageList" resultMap="message_rm">
-	 	SELECT M_NO,M_CONTENT, M_DATE, MEMBER_NICK, CM_NO
+	 	SELECT M_NO,M_CONTENT, M_DATE, MEMBER_NICK, CM_NO, MEM_NO
 		FROM MESSAGE
-		JOIN MEMBER USING (MEM_NO);
+		JOIN MEMBER USING (MEM_NO)
 		WHERE CM_NO = ${cmNo}
 		ORDER BY M_NO
 	</select>
 	
 	<insert id="insertMessage">
 		INSERT INTO MESSAGE VALUES(
-		SEQ_CM_NO.NEXTVAL, #{cmNo}, #{memNo}, #{mContent}, DEFAULT, #{memberNick}
+		SEQ_CM_NO.NEXTVAL, #{cmNo}, #{memNo}, #{mContent}, S, #{memberNick}
 		)
 	</insert>
 	

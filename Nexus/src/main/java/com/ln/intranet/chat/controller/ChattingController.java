@@ -1,6 +1,7 @@
 	package com.ln.intranet.chat.controller;
 	
-	import java.util.HashMap;
+	import java.util.ArrayList;
+import java.util.HashMap;
 	import java.util.List;
 	import java.util.Map;
 	
@@ -41,6 +42,28 @@
 		@Autowired
 		private MemberService mService;
 		
+		
+		
+		
+		/** loginMember js로 전달
+		 * @param loginMember
+		 * @return Json(loginMemberInfo)
+		 */
+		@ResponseBody
+		@RequestMapping(value = "/loginMember", method = RequestMethod.POST)
+		public String getLoginMember(@ModelAttribute("loginMember") Member loginMember) {
+			
+			Map<String, Object> loginMemberInfo = new HashMap<>();
+			
+			loginMemberInfo.put("memNo", loginMember.getMemNo());
+			loginMemberInfo.put("memName", loginMember.getMemName());
+			
+			
+			return new Gson().toJson(loginMemberInfo);
+					
+			}
+		
+	
 	
 		 
 		/** 해당된 채팅방 리스트 조회
@@ -89,9 +112,10 @@
 	public String joinChatRoom(@PathVariable("cmNo") int cmNo) {
 		
 		
+		
 		List<Message> chatMessageList = service.selectChatMessageList(cmNo);
 		
-		
+		log.debug(chatMessageList + "");
 		
 		return new Gson().toJson(chatMessageList);	
 	}
