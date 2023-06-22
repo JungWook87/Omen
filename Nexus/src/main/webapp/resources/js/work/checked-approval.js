@@ -16,8 +16,6 @@ const checkedModalApprover = document.querySelector('.checked-modal-approver'); 
 const checkedStartDate = document.getElementsByClassName("checked-modal-startDate"); // 시작일
 const checkedEndDate = document.getElementsByClassName("checked-modal-endDate"); // 종료일
 
-
-
 // ajax 성공 후 결재 디테일 모달창 내용 입력(kjw)
 function successDetailModal(obj){
 

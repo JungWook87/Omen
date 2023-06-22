@@ -39,7 +39,6 @@
               <!-- 작성일 -->
               <span class="checked-modal-modal-headerbox-content-a">작성일 :</span>  
               <span class="checked-modal-modal-headerbox-content-b" id="sendDate"></span>
-
             </div>
 
             <div class="checked-modal-headerbox-footer">
@@ -134,15 +133,17 @@
           <div class="work-modal-line"></div>
           
           <!-- 최종승인 버튼 -->
-          <!--
-          <div class="checked-modal-checkbox">
-            <label for="">
-              <input type="checkbox" id='checked-modal-checkbox' onclick='is_checkeded()'> 
-              최종 승인
-            </label>
-          </div>
+          <c:if test="${flag == 1}">
+            <div class="checked-modal-checkbox">
+              <label for="">
+                <input type="checkbox" id='checked-modal-checkbox' onclick='is_checkeded()'> 
+                최종 승인
+              </label>
+            </div>
+          </c:if>
+
         </div>
-        -->
+       
 
         <!-- 버튼 -->
         <div class="work-submit-reset-btns">
