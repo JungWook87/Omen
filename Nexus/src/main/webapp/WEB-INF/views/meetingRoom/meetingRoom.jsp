@@ -163,6 +163,8 @@
     </div>
   </section>
 
+  <input type="hidden" id="memNo" value="${loginMember.memNo}">
+
   <script src="${contextPath}/resources/js/meetingRoom/meetingRoom.js"></script>
   <script src="${contextPath}/resources/js/component.js"></script>
 

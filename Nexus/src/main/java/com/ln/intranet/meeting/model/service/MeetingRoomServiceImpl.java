@@ -20,13 +20,19 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		return dao.allReservation();
 	}
 	
-	
-	
+
 	// 회의실 예약 
 	@Override
 	public int reservationRoom(MeetingRoom meetingRoom) {
 		
 		return dao.reservationRoom(meetingRoom);
+	}
+
+	// 예약 취소
+	@Override
+	public int deleteReservation(int reservationNo) {
+		
+		return dao.deleteReservation(reservationNo);
 	}
 	
 

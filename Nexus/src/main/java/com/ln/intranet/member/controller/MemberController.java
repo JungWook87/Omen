@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,20 +39,57 @@ public class MemberController {
 			HttpServletRequest req
 			) {
 		
-		logger.info("----로그인컨트롤러----");
-		
 		Member loginMember = service.login(inputMember);
+
+		model.addAttribute("loginMember",loginMember);
 		
 		if(loginMember != null) {
-			model.addAttribute("loginMember",loginMember);
-			
-			logger.info("로그인 회원 : " + inputMember.getMemId());
-			return "redirect:/main";
-
-		} else {
-			ra.addFlashAttribute("message","아이디 또는 비밀번호가 일치하지 않습니다.");
-			return "redirect:";
+			if ( loginMember.getDeptNo() != 100 ) {
+				
+				logger.info("로그인 회원 : " + loginMember.getMemName());
+				return "redirect:/main";	
+				
+			} else if ( loginMember.getDeptNo() == 100 ){
+				logger.info("관리자접속 : " + loginMember.getDeptNo());
+				return "redirect:memberAdd";
+			}
 		}
+		return "redirect:/";
 		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+//	-------------------------------------------------------
+
+	
+	@RequestMapping("memberAdd")
+	public String managerEmployAdd () {
+	
+		return "manager/manager-employeeAdd";
+	}
+	
+	@GetMapping("memberUpdate")
+	public String managerEmployeeUpdate() {
+		
+		
+		return "manager/manager-employeeUpdate";
+	}
+	
+	@GetMapping("memberDelete")
+	public String managerEmployeeDelete() {
+		
+		return "manager/manager-employee";
+	}
+	
+	@GetMapping("notice")
+	public String managerNotice() {
+		
+		return "manager/manager-notice";
 	}
 }

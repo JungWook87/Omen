@@ -168,16 +168,32 @@ $(document).ready(function() {
 
 
 
+// ---------------------------------------------------------------------
+// ---------- 객체 생성 -------------------------------------------------
+// ---------------------------------------------------------------------
+
+
+
+// 세션에서 멤버정보 가져오기
+var loginMemNo = $("input[id='memNo']").val();
+console.log("memNo = " + loginMemNo);
+
+
+// ---------------------------------------------------------------------
+// ---------- 이벤트 목록 -----------------------------------------------
+// ---------------------------------------------------------------------
+
+
+// 달력조작 이벤트
 prev.addEventListener("click", prevMonth);
 next.addEventListener("click", nextMonth)
-
 
 // 이벤트 추가
 const addEventBtn = document.querySelector(".add-event"),
       addEventContainer = document.querySelector(".add-event-wrapper"),
       addEventCloseBtn = document.querySelector(".close");
       
-// 더하기 버튼 누르면 모달창이 뜸
+// 회의실 예약 모달창 생성 클릭이벤트
 addEventBtn.addEventListener("click", () => {
   addEventContainer.classList.toggle("active");
 });
@@ -191,57 +207,115 @@ document.addEventListener("click", (e) => {
 })
 
 
-// // 예약버튼 눌렀을 때 이벤트
-// addEventSubmit.addEventListener("click", () => {
-//   // 드롭다운 요소 선택
-//   const dropdown = document.querySelector(".drop .option.active");
-//   // 라디오 버튼 선택
-//   const morningRadio = document.getElementById("morning");
-//   const afternoonRadio = document.getElementById("afternoon");
 
-//   // 회의실을 선택 안했거나 오전과 오후중 선택을 안했을때 알림창이 뜸
-//   if(selectedValue === "placeholder") {
-//     Swal.fire("회의실을 선택해 주세요");
-//   } else if(morningChecked === false && afternoonChecked === false) {
-//     Swal.fire("오전과 오후중 선택해 주세요");
-//   }
+// 사이트 진입시 ajax 연결
+$(document).ready(function() {});
 
+// 예약 버튼 클릭 이벤트 + ajax
+$(".add-event-btn").click(function() {
+  // 옵션
+  var selectedRoom = $(".drop .option.active").attr("data-value");
+  // 라디오값
+  var selectedReservationTime = $("input[name='time']:checked").val();
+  // 날짜정보
+  var trueMonth = month + 1;
+  var dayDate = year + "-" + trueMonth + "-" + activeDay;
 
-//   // 예약 버튼을 누르면 모달창이 닫힘
-//   addEventContainer.classList.remove("active");
-
-//   morningRadio.checked = false;
-//   afternoonRadio.checked = false;
-
-
-//   updateEvents(activeDay);
-
-// })
-
-
-// 사이트 진입시 ajax 연결 (모든 예약정보 받아오기)
-$(document).ready(function() {
-//  searchResv();
+  // 회의실, 오전/오후 미선택시 알림창
+  if(selectedRoom === "placeholder") {
+    Swal.fire("회의실을 선택해 주세요");
+  } else if ($("input[name='time']:checked").val() == undefined) {
+    Swal.fire("오전과 오후중 선택해 주세요");
+  } else (
+    // 회의실 예약 ajax
+    $.ajax({
+      url: "reservationRoom",
+      type: "GET",
+      dataType : "JSON",
+      data: { room: selectedRoom, time: selectedReservationTime, reservationDate: dayDate}, 
+      success: function(result) {
+        
+        // 예약 조작
+        if(result === 0) {
+          Swal.fire("이미 예약된 회의실입니다.");
+        } else {
+          // 전체 리스트 업데이트
+          searchResv();
+        }
+        // 모달창 + 라디오체크 오프
+        addEventContainer.classList.remove("active");
+        $("input[name='time']:checked").prop('checked', false);
+      },
+      error: function(int) {
+        console.log(int);
+      }
+    })
+  )
 });
+
+// 회의실 예약 취소 클릭이벤트 (memNo,reservationNo)
+$(document).on('click','.event', function(){
+
+  // data-(카멜케이스 안먹힘) ==> memNo => memno 로표기
+  var memNo = $(this).data('memno');
+  var reservationNo = $(this).data('reservationno');
+  
+  console.log("memNo = " + memNo);
+  console.log("reservationNo = " + reservationNo);
+
+  if(loginMemNo == memNo){
+
+    $.ajax({
+      url : "deleteResv",
+      type : "GET",
+      data : { reservationNo : reservationNo },
+      success : function(result){
+
+        if(result > 0) {
+          Swal.fire("예약 정보가 삭제되었습니다.");
+          searchResv();
+        } else {
+          Swal.fire("다시 시도해 주세요");
+        }
+
+      },
+      error : function(error) {
+        console.log(error);
+      }
+    })
+  } 
+
+})
+
+
+
+
+
+
+
+
+
+
+
 
 // ---------------------------------------------------------------------
 // ---------- 함수 목록 -------------------------------------------------
 // ---------------------------------------------------------------------
 
-// activeDay에 대한 예약 정보 div 추가하는 함수
+// 모든 회의실 예약정보 조회
 function searchResv(){
   $.ajax({
     url: 'allReservation', 
     method: 'GET',
     success: function(results) {
 
-      // 이전에 불러온 이벤트들을 초기화
+      // events DIV 초기화
       $(".events").empty();
-
       eventsArr = [];
       
       let events = "";
 
+      // 날짜 분류후 객체 전부 저장
       for(let i = 0; i<results.length; i++){
         var result = results[i];
 
@@ -261,6 +335,7 @@ function searchResv(){
         });
       }
 
+      // 현재 activeDay에 해당하는 데이터만 회의실예약정보창에 div 추가
       eventsArr.forEach((resvInfo) => {
         if(
           resvInfo.day === activeDay &&
@@ -268,7 +343,7 @@ function searchResv(){
           resvInfo.year === year
         ) {
             events += `
-            <div class="event">
+            <div class="event" data-memno="${resvInfo.memNo}" data-reservationno="${resvInfo.reservationNo}">
               <div class="title">
                 <i class="fas fa-circle"></i>
                 <h3 class="event-title">회의실 ${resvInfo.roomNo}</h3>
@@ -299,64 +374,9 @@ function getActiveDay(date) {
   eventDate.innerHTML = year + "년" + " " + months[month] + " " + date + "일";
 }
 
-
-// 이벤트 업데이트 함수
-function updateEvents() {
-  searchResv();
-}
-
-
-// 회의실 예약 클릭 이벤트 + ajax
-const reservationBox = document.querySelector(".reservation-box");
-
-$(".add-event-btn").click(function() {
-  var selectedRoom = $(".drop .option.active").attr("data-value");
-  var selectedReservationTime = $("input[name='time']:checked").val();
-  var trueMonth = month + 1;
-  var dayDate = year + "-" + trueMonth + "-" + activeDay;
-
-  // 회의실을 선택 안했거나 오전과 오후중 선택을 안했을때 알림창이 뜸
-  if(selectedRoom === "placeholder") {
-    Swal.fire("회의실을 선택해 주세요");
-  } else if ($("input[name='time']:checked").val() == undefined) {
-    Swal.fire("오전과 오후중 선택해 주세요");
-  } else (
-    $.ajax({
-      url: "reservationRoom",
-      type: "GET",
-      dataType : "JSON",
-      data: { room: selectedRoom, time: selectedReservationTime, reservationDate: dayDate}, 
-      success: function(result) {
-  
-        searchResv();
-        
-        addEventContainer.classList.remove("active");
-        $("input[name='time']:checked").prop('checked', false);
-      },
-      error: function(int) {
-        console.log(int);
-      }
-    })
-  )
-  
-});
-
-
-
-//   // 예약 버튼을 누르면 모달창이 닫힘
-//   addEventContainer.classList.remove("active");
-
-//   morningRadio.checked = false;
-//   afternoonRadio.checked = false;
-
-
-
-
-//----------------------------------------------------------------------
-// 모든 이벤트
-//----------------------------------------------------------------------
+// 달력에 날짜를 클릭함으로써 acticeDay를 바꿔주는 함수
 function addListner() {
-  // days 하위의 day 클래스로된 div에 click 이벤트를 거는 
+  // days 하위의 day 클래스로된 div에 click 이벤트
   const days = document.querySelectorAll(".day");
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
@@ -410,4 +430,9 @@ function addListner() {
 
     })
   })
+}
+
+// 이벤트 업데이트 함수
+function updateEvents() {
+  searchResv();
 }
