@@ -122,7 +122,7 @@
                             </table>
                         </div>
                         <div class="main-attn-btns">
-                            <button class="main-attn-btn1">마이페이지</button>
+                            <button class="main-attn-btn1" onclick="return myPageEntry()">마이페이지</button>
                             <button class="main-attn-btn2">업무시작</button>
                         </div>
                     </div>
@@ -325,7 +325,18 @@
         <jsp:include page="/WEB-INF/views/common/chat-modal.jsp"/>
     </section>
 
+    <div id="contextPath" data-path="<%= request.getContextPath() %>"></div>
     <script src="${contextPath}/resources/js/main.js"></script>
+
+    <c:if test="${ !empty message }">
+	    <script>
+	        Swal.fire("${message}");
+	        // EL 작성 시 scope를 지정하지 않으면
+	        // page -> request -> session -> application 순서로 검색하여
+	        // 일치하는 속성이 있으면 출력
+	        
+	    </script>
+	</c:if> 
 
 </body>
 
