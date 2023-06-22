@@ -56,23 +56,17 @@ public class MemberController {
 				return "redirect:/main";	
 				
 			} else if ( loginMember.getDeptNo() == 100 ){
+				
 				logger.info("관리자접속 : " + loginMember.getDeptNo());
+				
 				return "redirect:memberAdd";
 			}
-
-			model.addAttribute("loginMember",loginMember);
-			
-			logger.info("로그인 회원 : " + inputMember.getMemId());
-			return "redirect:/main";
-
-		} else {
-			ra.addFlashAttribute("message","아이디 또는 비밀번호가 일치하지 않습니다.");
-			return "redirect:/";
 		}
 		
+		ra.addFlashAttribute("message","아이디 또는 비밀번호가 일치하지 않습니다.");
+		return "redirect:/";
+		
 	}
-	
-	
 	
 	
 	// 마이페이지 화면 전환
@@ -141,18 +135,14 @@ public class MemberController {
 	@GetMapping("memberDelete")
 	public String managerEmployeeDelete() {
 		
-		return "manager/manager-employee";
+		return "manager/manager-employeeDelete";
 	}
 	
 	@GetMapping("notice")
 	public String managerNotice() {
 		
 
-		return "manager/manager-notice";
-
-		ra.addFlashAttribute("message", message);
-		
-		return  "redirect:" + path;
+		return  "manager/manager-notice";
 
 	}
 }
