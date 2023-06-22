@@ -42,4 +42,11 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.changePw", paramMap);
 	}
 
+	
+	// 직원 추가 
+	public int signUp(Member member) {
+		
+		return sqlSession.insert("memberMapper.signUp", member);
+	}
+
 }

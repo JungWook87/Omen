@@ -25,6 +25,11 @@ const regSsn = /\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-][1-6]\d{6}/;
 //const regSsn = /\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-]*[1-6]\d{6}/;
 
 $("#employee-ssn").on("input", function() {
+    const jumin = $(this).val();
+    if (jumin.length === 6) {
+      $(this).val(jumin + '-');
+    }
+
     if (regSsn.test($(this).val())) {
         $('#ssn-check').text('유효한 형식입니다');
         $('#ssn-check').css('color', 'var(--green');
@@ -45,6 +50,11 @@ $("#employee-ssn").on("input", function() {
   const regTel = /\b010-\d{3,4}-\d{4}\b/;
 
   $("#employee-tel").on("input", function() {
+    const phone = $(this).val();
+    if (phone.length === 3) {
+      $(this).val(phone + '-');
+    }
+
     if (regTel.test($(this).val())) {
         $('#tel-check').text('유효한 형식입니다');
         $('#tel-check').css('color', 'var(--green');

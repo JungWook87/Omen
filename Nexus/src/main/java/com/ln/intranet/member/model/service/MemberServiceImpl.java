@@ -68,4 +68,24 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 
+	
+	// 직원 추가 서비스 구현
+	@Override
+	public int signUp(Member member) {
+		
+		int result = dao.signUp(member);
+		
+		return result;
+	}
+
+	// 마지막 추가 회원 조회
+	@Override
+	public List<Member> getAllMembers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+
 }
