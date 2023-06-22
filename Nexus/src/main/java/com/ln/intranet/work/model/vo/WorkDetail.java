@@ -16,6 +16,8 @@ public class WorkDetail {
 	private String title; // 제목
 	private String sendDate; // 작성일
 	private String content; // 내용(일반, 출장)
+	private String start; // 시작일
+	private String end; // 종료일
 	private String next; // 다음 승인자 사원번호
 	private String approvalList; // 결재 진행 흐름
 	private String opinion; // 의견

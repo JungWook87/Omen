@@ -41,6 +41,8 @@
 		<result property="title" column="TITLE"/>
 		<result property="sendDate" column="SEND_DATE"/>
 		<result property="content" column="CONTENT"/>
+		<result property="start" column="START"/>
+		<result property="end" column="END"/>
 		<result property="next" column="NEXT"/>
 		<result property="approvalList" column="APPROVAL_LIST"/>
 		<result property="opinion" column="OPINION"/>
@@ -84,13 +86,27 @@
 	
 	<!-- 결재 디테일 조회 -->
 	<select id="detailSelect" parameterType="_int" resultMap="workDetail_rm">
-		SELECT WORK_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "NEXT", APPROVAL_LIST, OPINION, FILE_RENAME, FILE_ORIGIN, MEM_NAME, EMAIL, 
+		SELECT WORK_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "START", "END", "NEXT", APPROVAL_LIST, OPINION, FILE_RENAME, FILE_ORIGIN, MEM_NAME, EMAIL, 
 		(SELECT MEM_NAME FROM "MEMBER" m WHERE MEM_NO = w."NEXT") AS NEXT_MEM_NAME, (SELECT EMAIL FROM "MEMBER" m WHERE MEM_NO = w."NEXT") AS NEXT_MEM_EMAIL
 		FROM "WORK" w
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
 		LEFT JOIN MEMBER USING(MEM_NO)
 		WHERE WORK_NO = ${workNo}
 	</select>
+	
+	<delete id="workCancle" parameterType="_int">
+		DELETE FROM "WORK" WHERE WORK_NO = ${workNo}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<!-- 결재 입력하기 -->

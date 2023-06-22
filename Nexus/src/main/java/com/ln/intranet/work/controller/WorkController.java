@@ -91,6 +91,31 @@ public class WorkController {
 		return gson.toJson(detailSelect);
 	}
 	
+	// 결재 취소
+	@ResponseBody
+	@GetMapping("/workCancle")
+	public int workCancle(@RequestParam("workNo") int workNo) {
+		System.out.println(workNo);
+		
+		int result = service.workCancle(workNo);
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 결재 상신 작성(일반결재)
 	@PostMapping("/write")
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,

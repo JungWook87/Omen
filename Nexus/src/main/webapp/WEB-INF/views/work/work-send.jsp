@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/work/write-approval.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/checked-approval.css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

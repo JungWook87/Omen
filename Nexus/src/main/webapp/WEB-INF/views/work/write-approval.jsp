@@ -61,20 +61,20 @@
           <!-- 시작날짜 -->
           <div class="work-modal-startDate">
             <p>시작날짜</p>
-            <input type="date" name="start">
+            <input type="date" name="start" >
           </div>
 
           <!-- 종료날짜 -->
           <div class="work-modal-endDate">
             <p>종료날짜</p>
-            <input type="date" name="end">
+            <input type="date" name="end" >
           </div>
 
           <!-- 내용 -->
           <div class="work-modal-detail">
             <p>내용</p>
             <textarea name="content" id="" onkeydown="handleResizeHeight(this)"
-              onkeyup="handleResizeHeight(this)"></textarea>
+              onkeyup="handleResizeHeight(this)" ></textarea>
           </div>
 
           <!-- 프로젝트박스 -->
