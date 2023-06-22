@@ -44,11 +44,22 @@ public class MemberController {
 			HttpServletRequest req
 			) {
 		
-		logger.info("----로그인컨트롤러----");
-		
 		Member loginMember = service.login(inputMember);
+
+		model.addAttribute("loginMember",loginMember);
 		
 		if(loginMember != null) {
+
+			if ( loginMember.getDeptNo() != 100 ) {
+				
+				logger.info("로그인 회원 : " + loginMember.getMemName());
+				return "redirect:/main";	
+				
+			} else if ( loginMember.getDeptNo() == 100 ){
+				logger.info("관리자접속 : " + loginMember.getDeptNo());
+				return "redirect:memberAdd";
+			}
+
 			model.addAttribute("loginMember",loginMember);
 			
 			logger.info("로그인 회원 : " + inputMember.getMemId());
@@ -98,10 +109,50 @@ public class MemberController {
 		} else {
 			message = "비밀번호가 일치하지 않습니다.";
 			path = "myPagePwChangeFunction";
+
 		}
+		return "redirect:/";
 		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+//	-------------------------------------------------------
+
+	
+	@RequestMapping("memberAdd")
+	public String managerEmployAdd () {
+	
+		return "manager/manager-employeeAdd";
+	}
+	
+	@GetMapping("memberUpdate")
+	public String managerEmployeeUpdate() {
+		
+		
+		return "manager/manager-employeeUpdate";
+	}
+	
+	@GetMapping("memberDelete")
+	public String managerEmployeeDelete() {
+		
+		return "manager/manager-employee";
+	}
+	
+	@GetMapping("notice")
+	public String managerNotice() {
+		
+
+		return "manager/manager-notice";
+
 		ra.addFlashAttribute("message", message);
 		
 		return  "redirect:" + path;
+
 	}
 }

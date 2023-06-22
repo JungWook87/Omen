@@ -10,6 +10,7 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String loginforward() {
 		
+		
 		return "/member/login";
 	}
 	

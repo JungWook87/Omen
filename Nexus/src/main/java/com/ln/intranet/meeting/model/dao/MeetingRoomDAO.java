@@ -30,15 +30,15 @@ public class MeetingRoomDAO {
 	// 회의실 예약 후 예약 정보 반환
 	public int reservationRoom(MeetingRoom meetingRoom) {
 		
-		int resultNo = sqlSession.insert("meetingRoomMapper.reservationRoom",meetingRoom);
-		
-		int result = 0;
-		
-		if(resultNo > 0) {
-			result = sqlSession.selectOne("meetingRoomMapper.returnResult",resultNo);
-		} 
-		
+		int result = sqlSession.insert("meetingRoomMapper.reservationRoom",meetingRoom);
+
 		return result;
+	}
+
+	// 예약 취소
+	public int deleteReservation(int reservationNo) {
+		
+		return sqlSession.delete("meetingRoomMapper.deleteReservation",reservationNo);
 	}
 
 

@@ -49,6 +49,8 @@
     </div>
 
     <script src="${contextPath}/resources/js/member/login.js"></script>
+
+
     <c:if test="${ !empty message }">
 	    <script>
 	        Swal.fire("${message}");
@@ -58,6 +60,7 @@
 	        
 	    </script>
 	</c:if> 
+
 </body>
 
 </html>

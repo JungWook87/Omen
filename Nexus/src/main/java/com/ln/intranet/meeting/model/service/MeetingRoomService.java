@@ -11,4 +11,6 @@ public interface MeetingRoomService {
 
 	List<MeetingRoom> allReservation();
 
+	int deleteReservation(int reservationNo);
+
 }

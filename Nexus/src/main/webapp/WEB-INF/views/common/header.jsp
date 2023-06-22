@@ -32,7 +32,7 @@
 
      <!-- 개인 정보 -->
      <div class="content-header-btn-area">
-       <button id="content-header-btn">${loginMember.memName} ${loginMember.jobName}</button>
+       <button id="content-header-btn" onclick="return myPage(${loginMember.memNo})">${loginMember.memName} ${loginMember.jobName}</button>
      </div>
 
    </div>
