@@ -8,6 +8,7 @@ function workSendList(obj){
   for(let item of obj){
     const tr = document.createElement("tr");
     tr.classList.add('listTr');
+    tr.setAttribute("onclick", "detailModal(" + item.workNo + ")");
     
     const td1 = document.createElement("td");
     td1.innerText = item.typeNo;

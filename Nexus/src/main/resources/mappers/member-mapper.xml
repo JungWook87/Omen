@@ -44,6 +44,19 @@
 		
 	</select>
 	
+	<!-- 현재 비밀번호 암호화 조회 -->
+	<select id="selectEncPw" resultType="string">
+		SELECT MEM_PW
+		FROM MEMBER
+		WHERE MEM_NO = ${memNo}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<select id="changePw">
+		UPDATE MEMBER SET
+		MEM_PW = #{newPw}
+		WHERE MEM_NO = ${memNo}
+	</select>
 	
 	
 </mapper>

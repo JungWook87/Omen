@@ -176,7 +176,9 @@ function getChattingList() {
             })
 
             // 채팅방에서 클릭 이벤트
+
             newContact.addEventListener('click', function() {
+               const contacts = document.querySelectorAll('.contact');
                 const cmNo = this.getAttribute('data-cmno');
 
                 // AJAX 요청으로 채팅 내용 가져오기
@@ -188,46 +190,48 @@ function getChattingList() {
                     console.log(chatMessageList)
                     
 
-                    for (let i = 0; i < chatMessageList.length; i++) {
-                                            
-                        $.ajax({
-                          url : 'loginMember',
-                          type : 'POST',
-                          dataType : 'JSON',
-                          success : function(loginMemberInfo) {
-                            console.log(loginMemberInfo);
-                            
+                    
+                    $.ajax({
+                      url : 'loginMember',
+                      type : 'POST',
+                      dataType : 'JSON',
+                      success : function(loginMemberInfo) {
+                        console.log(loginMemberInfo);
+                        
+                        for (let i = 0; i < chatMessageList.length; i++) {
                             const message = chatMessageList[i].mContent;
                             const chatMessage = document.createElement('div');
                             if(loginMemberInfo.memNo === chatMessageList[i].memNo) {
                               chatMessage.classList.add("message", "parker");
 
-                              const timeSub = document.createElement('div');
-                              timeSub.className = 'time-sub';
-                              const time = chatMessageList[i].mDate; 
-                              timeSub.textContent = time;
-
-                              const content = document.createElement('div');
-                              content.className = 'content';
-
-                              chatMessage.appendChild(timeSub, content);
-
                             } else {
                               chatMessage.classList.add("message", "stark");
 
-                              const timeSub = document.createElement('div');
-                              timeSub.className = 'time-sub';
-                              const time = chatMessageList[i].mDate; 
-                              timeSub.textContent = time;
-
-                              const content = document.createElement('div');
-                              content.className = 'content';
-
-                              chatMessage.appendChild(timeSub, content);
                             }
+
                             
-                            chatMessage.textContent = message;
+                            const timeSub = document.createElement('div');
+                            timeSub.className = 'time-sub';
+                            const time = chatMessageList[i].mDate; 
+                            timeSub.textContent = time;
+
+
+                           
+                          
+                            
+
+                            
+
+                            chatMessage.appendChild(timeSub);
+
+                            const content = document.createElement('div');
+                            content.className = 'content';
+                            content.textContent = message;
+
+                            chatMessage.appendChild(content);
+
                             chat.appendChild(chatMessage);
+                          }
 
                           },
                           error : function() {
@@ -237,7 +241,6 @@ function getChattingList() {
 
                       
                      
-                    }
                   },
                   error: function(error) {
                     console.log("에러");

@@ -467,7 +467,7 @@ td:last-child {
     width: 130px;
     height: 45px;
 
-    background-color: var(--primary400);
+    background-color: #FFC759;
     color: white;
 
     font-size: 20px;
@@ -484,12 +484,18 @@ td:last-child {
     padding: 15px;
 }
 
+.main-attn-btn1:hover {
+    background-color:#ffb000;
+    color: whitesmoke;
+    transition: all 1s;
+}
+
 .main-attn-btn2 {
     width: 130px;
     height: 45px;
 
-    background-color: var(--primary100);
-    color: var(--gray700);
+    background-color: var(--primary400);
+    color: white;
 
     font-size: 20px;
     font-weight: bold;
@@ -502,6 +508,11 @@ td:last-child {
     padding: 15px;
 }
 
+.main-attn-btn2:hover {
+    background-color:var(--primary500);
+    color: whitesmoke;
+    transition: all 1s;
+}
 
 /* 결재진행 상황 */
 #main-work-progress {

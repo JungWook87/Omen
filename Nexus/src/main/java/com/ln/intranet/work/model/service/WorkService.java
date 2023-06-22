@@ -34,6 +34,9 @@ public interface WorkService {
 	// 결재 수신함 - 결재할 문서
 	List<WorkGeneralList> workInbox(int memNo);
 
+	// 결재 취소
+	int workCancle(int workNo);
+
 
 
 

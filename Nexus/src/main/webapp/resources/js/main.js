@@ -12,6 +12,15 @@ attn_btn2[0].addEventListener("click", function() {
     
     let working_time = document.getElementsByClassName("main-font-title");
 
+    attn_btn2[0].addEventListener('mouseover', function() {
+        attn_btn2[0].style.backgroundColor = 'var(--gray500)';
+      });
+      
+      attn_btn2[0].addEventListener('mouseout', function() {
+        attn_btn2[0].style.backgroundColor = 'var(--gray400)';
+      });
+
+
     if(attn_time_hours < 10){
         attn_time_hours = "0" + attn_time_hours;
     }
@@ -27,7 +36,7 @@ attn_btn2[0].addEventListener("click", function() {
         if(true){
             attn_start.innerText = attn_start_hours + " : " + attn_start_minutes;
             attn_btn2[0].innerText = "업무종료";
-            attn_btn2[0].style.backgroundColor = '#E6E8EC';
+            attn_btn2[0].style.backgroundColor = 'var(--gray400)';
     
             document.getElementById("main-attn-circle").style.backgroundColor = 'springgreen';
             working_time[0].innerText = "업무중 : 0시간 0분";
@@ -144,4 +153,11 @@ function todayInputUpdate() {
   
 
 
+// 마이페이지 이동
+
+function myPageEntry() {
+    const url = "member/myPageProfile";
+    console.log(url);
+    window.location.href = url;
+}
 

@@ -1,6 +1,7 @@
 package com.ln.intranet.member.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -28,6 +29,17 @@ public class MemberDAO {
 	
 	public List<Member> selectChatMemberList() {
 		return sqlSession.selectList("memberMapper.selectChatMember");
+	}
+
+	// 현재 암호화된 비밀번호 조회
+	public String selectEncPw(int memNo) {
+		
+		return sqlSession.selectOne("memberMapper.selectEncPw", memNo);
+	}
+
+	// 비밀번호 변경
+	public int changePw(Map<String, Object> paramMap) {
+		return sqlSession.update("memberMapper.changePw", paramMap);
 	}
 
 }
