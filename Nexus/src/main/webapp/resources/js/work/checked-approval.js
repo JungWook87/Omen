@@ -5,29 +5,105 @@
 const checkedModal = document.getElementById('checked-modalWrap');
 const checkedCloseBtn = document.getElementById('checked-closeBtn');
 const checkedModalBody = document.querySelector('.checked-modalBody');
-const checkedCancellBtn = document.getElementById('checked-cancell-btn');
+const checkedCancellBtn = document.getElementById('checked-cancell-btn'); // 결재취소
 const checkedModalTitle = document.querySelector('.checked-modal-title');
-const checkedModalDetail = document.querySelector('.checked-modal-detail');
+const checkedModalDetail = document.querySelector('.checked-modal-detail'); // 내용
 const checkedPreview = document.querySelector('.checked-preview');
 const checkedCopyBtn = document.querySelector('.copy-btn');
-const checkedSuccessBtn = document.getElementById('checked-success-btn');
-const checkedEditBtn = document.getElementById('checked-edit-btn');
-const checkedModalApprover = document.querySelector('.checked-modal-approver');
+const checkedSuccessBtn = document.getElementById('checked-success-btn'); //확인
+const checkedEditBtn = document.getElementById('checked-edit-btn'); // 결재내용 수정
+const checkedModalApprover = document.querySelector('.checked-modal-approver'); // 결재자
+const checkedStartDate = document.getElementsByClassName("checked-modal-startDate"); // 시작일
+const checkedEndDate = document.getElementsByClassName("checked-modal-endDate"); // 종료일
 
 
-// ajax 성공 후 결재 디테일 모달창 내용 입력
+
+// ajax 성공 후 결재 디테일 모달창 내용 입력(kjw)
 function successDetailModal(obj){
-    const workNo = document.getElementById("workNo");
 
+  const workNo = document.getElementById("workNo");
+  const memName = document.getElementById("memName");
+  const sendDate = document.getElementById("sendDate");
+  const content = document.getElementById("content");
+  const opinion = document.getElementById("opinion");
+  const next = document.getElementById("next");
+  const start = document.getElementById("start");
+  const end = document.getElementById("end");
 
-    console.log(obj);
-    checkedModalTitle.innerHTML = obj.title;
-    workNo.innerText = obj.workNo;
+  checkedModalDetail.style.display = 'none';
+  checkedStartDate[0].style.display = 'none';
+  checkedEndDate[0].style.display = 'none';
 
-    // obj 정보 바탕으로 값 넣기
+  checkedModalTitle.innerHTML = "";
+  workNo.innerText = "";
+  memName.innerText = "";
+  sendDate.innerText = "";
+  opinion.innerText = "";
+  next.innerText = "";
+  content.value = "";
+  start.value = "";
+  end.value = "";
 
-    checkedModalOpen()
+  checkedModalTitle.innerHTML = "<h1>" + obj.title;
+  workNo.innerText = obj.workNo;
+  memName.innerText = obj.memName + " (" + obj.email +")";
+  sendDate.innerText = obj.sendDate;
+  
+  if(obj.typeNo == 1){
+    content.value = obj.content;
+    opinion.innerText = obj.opinion;
+    next.innerText = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 
+    checkedModalDetail.style.display = 'block';
+
+  } else if(obj.typeNo == 2){
+    start.value = obj.start.substr(0,10);
+    end.value = obj.end.substr(0,10);
+    opinion.innerText = obj.opinion;
+    next.innerText = obj.nextMemName + " (" + obj.nextMemEmail + ")";
+
+    checkedStartDate[0].style.display = 'block';
+    checkedEndDate[0].style.display = 'block';
+
+  } else if(obj.typeNo == 3){
+    content.value = obj.content;
+    start.value = obj.start.substr(0,10);
+    end.value = obj.end.substr(0,10);
+    opinion.innerText = obj.opinion;
+    next.innerText = obj.nextMemName + " (" + obj.nextMemEmail + ")";
+
+    checkedModalDetail.style.display = 'block';
+    checkedStartDate[0].style.display = 'block';
+    checkedEndDate[0].style.display = 'block';
+
+  }
+
+  console.log(obj);
+  
+  // 디테일 모달창 열기
+  checkedModalOpen();
+
+  const tempObj = obj;
+
+  // 취소버튼 이벤트(kjw)
+  checkedCancellBtn.addEventListener("click", function(tempObj) {
+    console.log("then obj1 : " + tempObj);
+    Swal.fire({
+      title: '결재를 취소하시겠습니까?',
+      text: '',
+      icon: 'warning',
+      
+      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+      cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+      cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
+   }).then(result => {
+    console.log("then obj : " + tempObj);
+    workDelete(obj);
+   })
+
+  });
 }
 
 
@@ -43,6 +119,7 @@ function checkedModalOpen() {
 // 내가 작성한 글 모달창 닫기
 // 내가 작성한 글 모달창 닫는 함수
 function checkedModalClose() {
+
   checkedModalBody.classList.add('.checked-modal-close');
   
   setTimeout(() => {
@@ -50,9 +127,6 @@ function checkedModalClose() {
     checkedModalBody.classList.remove(".checked-modal-close");
   }, 350);
 
-  workContent.style.overflow = 'hidden';
-
-  workContent.style.height = 'inherit';
 }
 
 // 모달창 엑스 버튼
@@ -67,10 +141,65 @@ $(window).click(function(event) {
   }
 });
 
-// 취소버튼 이벤트
-checkedCancellBtn.addEventListener("click", () => {
-  checkedModalClose();
-});
+
+
+// 취소버튼 작동(kjw)
+function workDelete(obj){
+  
+  console.log(obj.workNo);
+  console.log(obj.approvalList);
+
+  if(obj.approvalList != null){
+
+    Swal.fire(
+      '결재가 이미 진행중입니다.',
+      '취소가 불가능 합니다.',
+      'warning'
+    );
+
+  } else{
+
+    $.ajax({
+      url : "workCancle",
+      type : "GET",
+      dataType : "JSON",
+      data : {
+        "workNo" : obj.workNo
+      },
+      success : function(result){
+        if(result != 0){
+          Swal.fire(
+            '결재취소를 완료했습니다',
+            '',
+            'success'
+          );
+          
+          checkedModalClose();
+          
+          setTimeout(function(){
+            location.reload();
+          }, 3000);
+          
+        } else{
+          Swal.fire(
+            '결재취소를 실패했습니다',
+            '다시 시도해주세요.',
+            'warning'
+          );
+
+          checkedModalClose();
+
+        }
+      },
+      error : function(){
+        console.log("결재취소 서버 접속 실패");
+      }
+
+    });
+
+  }
+}
+
 // 수정버튼 이벤트
 checkedEditBtn.addEventListener("click", () => {
   writeModalOpen();

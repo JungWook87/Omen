@@ -18,7 +18,7 @@
         <div class="checked-modal-header">
 
           <!-- 제목 -->
-          <h1 class="checked-modal-title"></h1>
+          <div class="checked-modal-title"></div>
           
           <!-- 결재항목박스 -->
           <div class="checked-modal-modal-headerbox">
@@ -32,22 +32,24 @@
             <div class="checked-modal-headerbox-content">
               <!-- 작성자 -->
               <span class="checked-modal-headerbox-content-a">작성자 :</span>  
-              <span class="checked-modal-headerbox-content-b" id="memName">이재혁 ( abcde@gmail.com )</span>
+              <span class="checked-modal-headerbox-content-b" id="memName"></span>
             </div>
 
             <div class="checked-modal-headerbox-content">
               <!-- 작성일 -->
               <span class="checked-modal-modal-headerbox-content-a">작성일 :</span>  
-              <span class="checked-modal-modal-headerbox-content-b">2023-05-26 14:19</span>
+              <span class="checked-modal-modal-headerbox-content-b" id="sendDate"></span>
 
             </div>
 
             <div class="checked-modal-headerbox-footer">
                 <button class="copy-btn">
-                  <span>꓋ 문서복사</span>
+                  <img src="${contextPath}/resources/images/paste-regular.svg" alt="">
+                  <span>문서복사</span> 
                 </button>
                 <button class="print-btn">
-                  <span> ✁  문서출력</span>
+                  <img src="${contextPath}/resources/images/print-solid.svg" alt="">
+                  <span>문서출력</span>
                 </button>
             </div>
         
@@ -96,43 +98,58 @@
 
         </div>
 
-      <!-- 내용 -->
-      <div class="checked-modal-detail">
-        <p>내용</p>
-        <textarea name="" id="" onkeydown="handleResizeHeight(this)"
-          onkeyup="handleResizeHeight(this)"></textarea>
-      </div>
+        <div id="container">
+          <!-- 시작날짜 -->
+          <div class="checked-modal-startDate">
+            <p>시작날짜</p>
+            <input type="date" id="start" readonly>
+          </div>
 
-      <!-- 의견 -->
-      <div class="checked-modal-coment">
-        <p>의견</p>
-        <input type="text">
-      </div>
+          <!-- 종료날짜-->
+          <div class="checked-modal-endDate">
+            <p>종료날짜</p>
+            <input type="date" id="end" readonly>
+          </div>
 
-      <!-- 결재자 -->
-      <div class="checked-modal-approver">
-        <p>결재자</p>
-        <input type="text">
-      </div>
-    
-      <!-- 선2 -->
-      <div class="work-modal-line"></div>
+          <!-- 내용 -->
+          <div class="checked-modal-detail">
+            <p>내용</p>
+            <textarea name="" id="content" onkeydown="handleResizeHeight(this)"
+              onkeyup="handleResizeHeight(this)" readonly></textarea>
+          </div>
 
-      <!-- 최종승인 버튼 -->
-      <div class="checked-modal-checkbox">
-        <label for="">
-          <input type="checkbox" id='checked-modal-checkbox' onclick='is_checkeded()'> 
-          최종 승인
-        </label>
-      </div>
-      
+          <!-- 의견 -->
+          <div class="checked-modal-coment">
+            <p>의견</p>
+            <input type="text" id="opinion" readonly>
+          </div>
 
-      <!-- 버튼 -->
-      <div class="work-submit-reset-btns">
-        <button type="submit" id="checked-edit-btn">수정</button>
-        <button type="reset" id="checked-cancell-btn">결재취소</button>
-        <button id="checked-success-btn">확인</button>
-      </div>
+          <!-- 결재자 -->
+          <div class="checked-modal-approver">
+            <p>결재자</p>
+            <input type="text" id="next" readonly>
+          </div>
+        
+          <!-- 선2 -->
+          <div class="work-modal-line"></div>
+          
+          <!-- 최종승인 버튼 -->
+          <!--
+          <div class="checked-modal-checkbox">
+            <label for="">
+              <input type="checkbox" id='checked-modal-checkbox' onclick='is_checkeded()'> 
+              최종 승인
+            </label>
+          </div>
+        </div>
+        -->
+
+        <!-- 버튼 -->
+        <div class="work-submit-reset-btns">
+          <button type="button" id="checked-edit-btn">수정</button>
+          <button type="button" id="checked-cancell-btn">결재취소</button>
+          <button id="checked-success-btn" type="button" onclick="checkedModalClose()">확인</button>
+        </div>
 
       </form>
 

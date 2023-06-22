@@ -42,8 +42,35 @@ public class WorkServiceImp implements WorkService {
 	// 결재 디테일 조회
 	@Override
 	public WorkDetail detailSelect(int workNo) {
-		return dao.detailSelect(workNo);
+		
+		WorkDetail detailSelect = dao.detailSelect(workNo);
+		
+		if(detailSelect.getContent() != null) {			
+			detailSelect.setContent(Util.newLineClear(detailSelect.getContent()));
+		}
+		
+		return detailSelect;
 	}
+	
+	// 결재취소
+	@Override
+	public int workCancle(int workNo) {
+		return dao.workCancle(workNo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 
 	// 결재 상신 작성(일반결재)
 	@Override
