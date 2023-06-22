@@ -1254,13 +1254,16 @@ option {
     word-wrap: break-word;
 }
 
-/* .chat .messages .message.stark .time-sub {
-    left: unset;
-    right: auto;
+.chat .messages .message.stark .time-sub {
+    font-size: 0.6rem;
+    color: #999;
+    position: absolute;
     top: auto;
+    left: 100%;
     bottom: 0;
     transform: translateX(0.5rem);
-} */
+    white-space: nowrap;
+}
 
 .chat .messages .message {
     box-sizing: border-box;
