@@ -146,6 +146,14 @@
 		FROM "MEMBER" 
 	</select>
 	
+	<select id="workInbox" resultMap="workGeneralList_rm">
+		SELECT WORK_NO, TYPE_NO, TITLE , SEND_DATE ,WORK_STATE , OPINION , TYPE_NAME, FILE_RENAME 
+		FROM "WORK"
+		LEFT JOIN WORK_TYPE USING(TYPE_NO)
+		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
+		WHERE NEXT = ${memNo}
+		ORDER BY SEND_DATE DESC
+	</select>
 	
 </mapper>
 
