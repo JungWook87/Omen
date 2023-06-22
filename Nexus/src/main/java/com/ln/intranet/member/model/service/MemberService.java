@@ -14,4 +14,12 @@ public interface MemberService {
 
 	int changePw(Map<String, Object> paramMap);
 
+	// 직원 추가
+	int signUp(Member member);
+
+	// 마지막 추가 회원 조회
+	List<Member> getAllMembers();
+
+	
+
 }

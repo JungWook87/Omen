@@ -118,13 +118,15 @@ public class MemberController {
 	
 //	-------------------------------------------------------
 
-	
+	// 직원 추가 화면 전환
 	@RequestMapping("memberAdd")
 	public String managerEmployAdd () {
 	
 		return "manager/manager-employeeAdd";
 	}
 	
+	
+	// 직원 정보 수정 화면 전환
 	@GetMapping("memberUpdate")
 	public String managerEmployeeUpdate() {
 		
@@ -132,12 +134,15 @@ public class MemberController {
 		return "manager/manager-employeeUpdate";
 	}
 	
+	// 직원 삭제 화면 전환
 	@GetMapping("memberDelete")
 	public String managerEmployeeDelete() {
 		
 		return "manager/manager-employeeDelete";
 	}
 	
+	
+	// 공지사항 화면 전환
 	@GetMapping("notice")
 	public String managerNotice() {
 		
@@ -145,4 +150,6 @@ public class MemberController {
 		return  "manager/manager-notice";
 
 	}
+	
+	
 }

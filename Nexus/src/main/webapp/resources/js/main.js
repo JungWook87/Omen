@@ -154,10 +154,15 @@ function todayInputUpdate() {
 
 
 // 마이페이지 이동
+const myPageBtn = document.querySelector(".main-attn-btn1");
 
-function myPageEntry() {
+myPageBtn.addEventListener('click', () => {
+    
     const url = "member/myPageProfile";
     console.log(url);
     window.location.href = url;
-}
+})
+
+
+
 
