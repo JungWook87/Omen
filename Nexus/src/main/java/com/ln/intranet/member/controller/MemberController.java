@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.ln.intranet.member.model.service.MemberService;
 import com.ln.intranet.member.model.vo.Member;
 
@@ -151,5 +153,40 @@ public class MemberController {
 
 	}
 	
+	// 직원 추가 
+	@PostMapping("signUp")
+	public String signUp(Member member,
+						String[] memberAddress,
+						RedirectAttributes ra
+						) {
+		
+		int result = service.signUp(member);
+		
+		
+		String message = null;
+		
+		
+		if(result > 0) {
+			message = "직원이 추가 되었습니다.";
+		} else {
+			message = "직원 추가 실패";
+
+		}
+		
+		ra.addFlashAttribute("message", message);
+		return  "redirect:/member/memberAdd";
+	}
+	
+	
+	// 직원 검색
+	@GetMapping("searchMember")
+	@ResponseBody
+	public String searchMember(@RequestParam("search") int memNo) {
+		Member searchedMem = service.searchMember(memNo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(searchedMem);
+	}
 	
 }

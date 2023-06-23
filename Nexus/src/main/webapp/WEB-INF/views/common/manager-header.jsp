@@ -22,4 +22,16 @@
 
    </div>
 
+   
+
  </header>
+
+ <c:if test="${ !empty message }">
+  <script>
+      Swal.fire("${message}");
+      // EL 작성 시 scope를 지정하지 않으면
+      // page -> request -> session -> application 순서로 검색하여
+      // 일치하는 속성이 있으면 출력
+      
+  </script>
+</c:if> 

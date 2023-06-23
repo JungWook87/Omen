@@ -78,12 +78,15 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	// 마지막 추가 회원 조회
+	// 직원 검색 서비스 구현
 	@Override
-	public List<Member> getAllMembers() {
-		// TODO Auto-generated method stub
-		return null;
+	public Member searchMember(int memNo) {
+		
+		return dao.searchMember(memNo);
 	}
+
+
+	
 	
 	
 	

@@ -203,23 +203,23 @@ a:focus {
 }
 
 
-form div:nth-child(1)>div:nth-child(1) {
+form .employee-area-container:nth-child(1)>div:nth-child(1) {
   width: 452px;
 }
 
-form div:nth-child(2)>div:nth-child(1) {
+form .employee-area-container:nth-child(2)>div:nth-child(1) {
   width: 512px;
 }
 
-form div:nth-child(3)>div:nth-child(1) {
+form .employee-area-container:nth-child(3)>div:nth-child(1) {
   width: 522px;
 }
 
-form div:nth-child(4)>div:nth-child(1) {
+form .employee-area-container:nth-child(4)>div:nth-child(1) {
   width: 534px;
 }
 
-form div:nth-child(5)>div:nth-child(1) {
+form .employee-area-container:nth-child(5)>div:nth-child(1) {
   width: 700px;
 }
 
@@ -321,6 +321,9 @@ form div:nth-child(5)>div:nth-child(1) {
 
 /* 직원찾기 */
 .employee-search {
+  position: relative;
+  width: 30rem;
+  
   margin-top: 100px;
   margin-left: 50px;
 
@@ -328,4 +331,47 @@ form div:nth-child(5)>div:nth-child(1) {
 
   font-size: 22px;
   font-weight: bold;
+}
+
+
+/* 직책과 사원 css */
+.employee-rank {
+  margin-left: 50px;
+  margin-top: 100px;
+}
+
+.employee-rank p {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary400);
+  margin-bottom: 1rem;
+}
+
+.employee-rank-radio-box {
+  display: flex;
+}
+
+.employee-rank-radio {
+  margin-right: 10rem;
+}
+
+.employee-dept {
+  margin-left: 50px;
+  margin-top: 100px;
+}
+
+.employee-dept p {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary400);
+  margin-bottom: 1rem;
+}
+
+#dept {
+  width: 8rem;
+  
+}
+
+#dept-option{
+  width: 8rem;
 }

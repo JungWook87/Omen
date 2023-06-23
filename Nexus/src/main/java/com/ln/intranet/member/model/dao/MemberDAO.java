@@ -49,4 +49,10 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.signUp", member);
 	}
 
+	// 직원 검색
+	public Member searchMember(int memNo) {
+		
+		return sqlSession.selectOne("memberMapper.searchMember", memNo);
+	}
+
 }

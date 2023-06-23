@@ -139,3 +139,70 @@ $("#employee-ssn").on("input", function() {
 
 
 
+// 직원 검색
+const searchBtn = document.getElementById("search-btn");
+const searchInput = document.getElementById("search");
+
+searchBtn.addEventListener('click', () => {
+    $.ajax({
+        url: "searchMember",
+        data: {"search" : searchInput.value},
+        type: "GET",
+        dataType : "JSON",
+        success : function(searchedMem) {
+            const name = document.getElementById("employee-name"),
+            ssn = document.getElementById("employee-ssn"),
+            tel = document.getElementById("employee-tel"),
+            email = document.getElementById("employee-email"),
+            address = document.getElementById("sample3_address"),
+            detailAddress = document.getElementById("sample3_detailAddress"),
+            jobRadios = document.querySelectorAll("input[name='jobNo']"),
+            deptSelect = document.getElementById("dept"),
+            teamSelect = document.getElementById("dept-option");
+        
+
+        // 모든 input 요소의 readOnly 해제
+        const inputElements = document.querySelectorAll('input');
+        inputElements.forEach((input) => {
+            input.readOnly = false;
+            input.disabled = false;
+        });
+
+        // 모든 select 요소의 disabled 해제
+        const selectElements = document.querySelectorAll('select');
+        selectElements.forEach((select) => {
+            select.disabled = false;
+        });  
+        
+
+        name.value = searchedMem.memName;
+        ssn.value = searchedMem.memRNo;
+        tel.value = searchedMem.memTel;
+        email.value = searchedMem.memEmail;
+        address.value = searchedMem.memAddress;
+        detailAddress.value = searchedMem.memDetailAddress;
+
+
+        
+        // 직책 선택
+        for (let i = 0; i < jobRadios.length; i++) {
+            if (jobRadios[i].value === searchedMem.jobNo.toString()) {
+                jobRadios[i].checked = true;
+                break;
+            }
+        }
+        
+        // 부서 선택
+        deptSelect.value = searchedMem.deptNo.toString();
+        
+        teamSelect.value = searchedMem.teamNo.toString();
+
+        },
+        error : function() {
+            console.log("에러");
+        }
+
+    })
+})
+
+
