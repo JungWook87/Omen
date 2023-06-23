@@ -140,78 +140,74 @@
             <div class="approver-modal-line1"></div>
 
             <div class="approver-modal-container">
-
-              <div id="approver-box">
-
-                <ul class="M01">
-            
-                    <li><p href="#">임원</p>
-            
-                        <ul class="M02">
-            
-                            <li><p href="#">대표이사<input type="radio" name="appprover-check" class="approver-checkBox" value="대표이사"></p></li>
-            
-                            <li><p href="#">전무이사<input type="radio" name="appprover-check" class="approver-checkBox" value="전무이사"></p></li>
-            
-                        </ul>
-            
+              <c:forEach var="approval" items="${approvalMemberList}">
+                <div id="approver-box">
+                  <ul>
+                    <li>
+                      <p>임원</p>
+                      <ul class="Executives">
+                        <li>대표이사</li>
+                        <li>전무이사</li>
+                      </ul>
                     </li>
-            
-                    <li><p href="#">부서</p>
-            
-                        <ul class="M02 dept">
-            
-                            <li><p href="#">관리기획부</p>
-            
-                                <ul class="M03">
-                                  
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
-            
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
-            
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
-            
-                                </ul>
-            
-                            </li>
-            
-                            <li><p href="#">인사총무팀</p>
-            
-                                <ul class="M03">
-            
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
-            
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
-            
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
-            
-                                </ul>
-            
-                            </li>
-            
-                            <li><p href="#">기술영업팀</p>
-            
-                                <ul class="M03">
-            
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
-            
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
-            
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
-            
-                                </ul>
-            
-                            </li>
-            
-                        </ul>
-            
+                    <li>
+                      <p>부서</p>
+                      <ul class="Dept">
+                        <li>
+                          <p>관리기획부</p>
+                          <c:choose>
+                            <c:when test="${approval.deptNo eq 1}">
+                              <ul class="Dept-1">
+                                <c:choose>
+                                  <c:when test="${approval.teamNo eq 11}"><li>재무팀</li></c:when>
+                                  <c:when test="${approval.teamNo eq 12}"><li>인사총무팀</li></c:when>
+                                </c:choose>
+                              </ul>
+                            </c:when>
+                            <c:when test="${approval.deptNo eq 2}">
+                              <ul class="Dept-2">
+                                <c:choose>
+                                  <c:when test="${approval.teamNo eq 21}"><li>영업팀</li></c:when>
+                                  <c:when test="${approval.teamNo eq 22}"><li>기술개발팀</li></c:when>
+                                </c:choose>
+                              </ul>
+                            </c:when>
+                            <c:when test="${approval.deptNo eq 3}">
+                              <ul class="Dept-3">
+                                <c:choose>
+                                  <c:when test="${approval.teamNo eq 31}"><li>공사팀</li></c:when>
+                                  <c:when test="${approval.teamNo eq 32}"><li>공무팀</li></c:when>
+                                  <c:when test="${approval.teamNo eq 33}"><li>견적팀</li></c:when>
+                                  <c:when test="${approval.teamNo eq 34}"><li>자재팀</li></c:when>
+                                </c:choose>
+                              </ul>
+                            </c:when>
+                            <c:when test="${approval.deptNo eq 4}">
+                              <ul class="Dept-4">
+                                <c:choose>
+                                  <c:when test="${approval.teamNo eq 41}"><li>개발기획팀</li></c:when>
+                                  <c:when test="${approval.teamNo eq 42}"><li>분양홍보팀</li></c:when>
+                                  <c:when test="${approval.teamNo eq 43}"><li>설계기획팀</li></c:when>
+                                </c:choose>
+                              </ul>
+                            </c:when>
+                            <c:when test="${approval.deptNo eq 5}">
+                              <ul class="Dept-5">
+                                <c:choose>
+                                  <c:when test="${approval.teamNo eq 51}"><li>경영팀</li></c:when>
+                                  <c:when test="${approval.teamNo eq 52}"><li>전략팀</li></c:when>
+                                </c:choose>
+                              </ul>
+                            </c:when>
+                          </c:choose>
+                        </li>
+                      </ul>
                     </li>
-            
-                </ul>
-            
-              </div>
-
+                  </ul>
+                </div>
+              </c:forEach>
             </div>
+              
 
             <!-- 선2 -->
             <div class="approver-modal-line2"></div>
