@@ -44,14 +44,17 @@ public class WorkController {
 		
 		
 		List<WorkGeneralList> list = service.workSend(loginMember.getMemNo());
+		List <ApprovalMember> approvalMemberList = service.approvalMember();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("approvalMemberList", approvalMemberList);
 		
 		String messageFlag = null;
 		
 		if(ra != null) {
 			messageFlag = (String)model.getAttribute("message");
 		}
+		
 		
 		model.addAttribute("messageFlag", messageFlag);
 		
@@ -106,16 +109,6 @@ public class WorkController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// 결재 상신 작성(일반결재)
 	@PostMapping("/write")
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,
@@ -135,6 +128,8 @@ public class WorkController {
 		if(workTypeWord.equals("normal-check")) typeNo = 1;
 		else if(workTypeWord.equals("vacation")) typeNo = 2;
 		else if(workTypeWord.equals("business-trip")) typeNo = 3;
+		else if(workTypeWord.equals("project")) typeNo = 4;
+		else if(workTypeWord.equals("project-task")) typeNo = 5;
 		
 		map.put("typeNo", typeNo);
 	
@@ -222,6 +217,27 @@ public class WorkController {
 		
 		return "/work/work-template";
 	}
+	
+	
+	
+	
+
+	// ----------------------------------------------------------------------------------------------
+	// ----------------------------------       프로젝트      -----------------------------------------------
+	// ----------------------------------------------------------------------------------------------	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

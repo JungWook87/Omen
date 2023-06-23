@@ -173,6 +173,8 @@ workTemplateSelect.addEventListener('change', () => {
     workDetail.style.display = 'block'
     workProjectbox.style.display = 'block';
     modalProjectbox.style.display = 'block';
+    workStartDate.style.display = 'block'; 
+    workEndDate.style.display = 'block'; 
   }
 
   if(selectedValue === 'assignment') {

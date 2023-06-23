@@ -2,7 +2,7 @@ package com.ln.intranet.work.model.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,8 +17,9 @@ import com.ln.intranet.common.Util;
 import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.work.model.dao.WorkDAO;
 import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.Project;
+import com.ln.intranet.work.model.vo.ProjectTask;
 import com.ln.intranet.work.model.vo.WorkDetail;
-import com.ln.intranet.work.model.vo.WorkGeneral;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
 
 @Service
@@ -92,6 +93,40 @@ public class WorkServiceImp implements WorkService {
 			
 			map.put("content", Util.XSSHandling(map.get("content").toString()));
 			map.put("content", Util.newLineHandling(map.get("content").toString()));
+			
+		} else if(typeNo == 4 ) {
+
+			map.put("title", Util.XSSHandling(map.get("title").toString()));
+			map.put("content", Util.XSSHandling(map.get("content").toString()));
+			map.put("content", Util.newLineHandling(map.get("content").toString()));
+			
+			
+			List<String> titleList = (List<String>)map.get("taskTitle");
+			List<String> contentList = (List<String>)map.get("taskContent");
+			
+			List<ProjectTask> taskList = new ArrayList<>();
+			
+			for(int i = 0; i < titleList.size(); i++) {
+				
+				ProjectTask task = new ProjectTask();
+				
+				task.setTitle(titleList.get(i).toString());
+				task.setContent(contentList.get(i).toString());
+				
+				taskList.add(task);
+			}
+
+		} else if(typeNo == 5 ) {
+
+
+			map.put("title", Util.XSSHandling(map.get("title").toString()));
+			map.put("content", Util.XSSHandling(map.get("content").toString()));
+			map.put("content", Util.newLineHandling(map.get("content").toString()));
+			
+			int projectSelect = (Integer)map.get("projectNo");
+			
+			
+			
 		}
 		
 		
