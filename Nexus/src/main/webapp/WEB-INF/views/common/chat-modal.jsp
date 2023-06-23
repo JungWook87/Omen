@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
  
+ 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,8 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
-
+	
+	
     <title>메인페이지</title>
 </head>
 
@@ -150,11 +152,13 @@
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script>
 		
+	
 		const cmNo = "${cmNo}";
+		const memNo = "${memNo}";
 		const contextPath = "${contextPath}";
-		let memName = '${memName}';
+		let memberNick = '${memberNick}';
 		
-		console.log(memName);
+		
 
 
 		// 로그인이 되어 있을 경우에만
@@ -177,7 +181,8 @@
 
 
 	</script>
-	<script src='${contextPath}/resources/js/chat.js'></script>
+	 <script src="${contextPath}/resources/js/chat/chatting.js"></script>
+	 
 	<!-- <script src="${contextPath}/resources/js/bootstrapjs/rightsidebar.js"></script> -->
 	<script>
 		// 페이지 로딩 완료 시 채팅창을 제일 밑으로 내리기
@@ -188,5 +193,5 @@
 
 	</script>
 
-        <script src="${contextPath}/resources/js/chat/chatting.js"></script>
 </body>
+</html>

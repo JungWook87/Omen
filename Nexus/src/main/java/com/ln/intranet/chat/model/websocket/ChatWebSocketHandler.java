@@ -31,9 +31,11 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 			
-		System.out.println(session.getId() + " 연결됨");		
+		System.out.println("Websocket MemberID : " + session.getId() + " Connected");		
 			
 		sessions.add(session);
+		
+		session.sendMessage(new TextMessage("연결이 성립되었습니다."));
 	}
 	
 	

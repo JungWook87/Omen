@@ -71,6 +71,7 @@ window.addEventListener('click', function(event) {
 });
 
 
+
 // 채팅 버튼 눌렀을 때 이전 채팅방이 보임
 function getChattingList() {
 
@@ -174,6 +175,7 @@ function getChattingList() {
                 hideDeleteButton();
                 showArrowButton();
             })
+
 
             // 채팅방에서 클릭 이벤트
 
@@ -704,6 +706,8 @@ chatVal.addEventListener('input', () => {
   }
 });
 
+   
+
 // 기본엔터 동작 방지 함수
 function handleKeyPress(event) {
   if(event.key === "Enter") {
@@ -713,7 +717,7 @@ function handleKeyPress(event) {
 }
 
 //인풋창에 글자를 입력하고 엔터를 눌렀을때 이벤트
-function sendMessage() {
+function sendMessage(sendWebMessage) {
   if (event.keyCode === 13 && chatVal.value.trim() !== '') {
     const message = document.createElement('div');
     message.className = 'message parker';
@@ -747,8 +751,43 @@ function sendMessage() {
   }
 }
 
+// 채팅 보내기 함수
+function sendWebMessage(loginMemberInfo) {
+
+  $.ajax({
+    url: 'loginMember',
+    type: 'POST',
+    dataType: 'JSON',
+    success: function(loginMemberInfo) {
+      console.log(loginMemberInfo);
+      
+       // 메세지 입력 시 필요한 데이터를 js객체로 생성
+  const chatMessage = {
+    "cmNo": cmNo,
+    "memNo" : loginMemberInfo.memNo,
+    "memberNick" : loginMemberInfo.memberNick,
+    "mContent": chatVal.value
+  };
+
+  // JSON.parse(문자열) : JSON -> JS Object
+  // JSON.stringify(객체) :  JS Object -> JSON
+  console.log(chatMessage);
+  console.log(JSON.stringify(chatMessage));
+
+  // chattingSock(웹소켓 객체)을 이용하여 메세지 보내기
+  // chattingSock.send(값) : 웹소켓 핸들러로 값을 보냄
+  chattingSock.send(JSON.stringify(chatMessage));
+    },
+    error: function() {
+      console.log("에러");
+    }
+  });
+}
+
 // 인풋창 옆에 종이비행기 버튼 이벤트
 const chatSubmit = document.getElementById("chat-submit");
+
+chatSubmit.addEventListener('click', sendWebMessage);
 
 chatSubmit.addEventListener('click', () => {
   if (chatVal.value.trim() !== '') {
@@ -783,6 +822,11 @@ chatSubmit.addEventListener('click', () => {
     scrollToBottom();
   }
 });
+
+
+
+
+
 
 
 
