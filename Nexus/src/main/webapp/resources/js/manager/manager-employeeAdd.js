@@ -92,57 +92,95 @@ $("#employee-ssn").on("input", function() {
 
 
 
-  // 카카오 api
-   // 우편번호 찾기 찾기 화면을 넣을 element
-   var element_wrap = document.getElementById('wrap');
+// 카카오 api
+// 우편번호 찾기 찾기 화면을 넣을 element
+var element_wrap = document.getElementById('wrap');
 
-   function foldDaumPostcode() {
-       // iframe을 넣은 element를 안보이게 한다.
-       element_wrap.style.display = 'none';
-   }
+function foldDaumPostcode() {
+    // iframe을 넣은 element를 안보이게 한다.
+    element_wrap.style.display = 'none';
+}
 
-   function sample3_execDaumPostcode() {
-       // 현재 scroll 위치를 저장해놓는다.
-       var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
-       new daum.Postcode({
-           oncomplete: function(data) {
-               // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+function sample3_execDaumPostcode() {
+    // 현재 scroll 위치를 저장해놓는다.
+    var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-               // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-               // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-               var addr = ''; // 주소 변수
-               
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            
 
-               //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-               if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                   addr = data.roadAddress;
-               } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                   addr = data.jibunAddress;
-               }
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
 
-               
+            
 
-               // 우편번호와 주소 정보를 해당 필드에 넣는다.
-               
-               document.getElementById("sample3_address").value = addr;
-               // 커서를 상세주소 필드로 이동한다.
-               document.getElementById("sample3_detailAddress").focus();
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            
+            document.getElementById("sample3_address").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("sample3_detailAddress").focus();
 
-               // iframe을 넣은 element를 안보이게 한다.
-               // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-               element_wrap.style.display = 'none';
+            // iframe을 넣은 element를 안보이게 한다.
+            // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+            element_wrap.style.display = 'none';
 
-               // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-               document.body.scrollTop = currentScroll;
-           },
-           // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-           onresize : function(size) {
-               element_wrap.style.height = size.height+'px';
-           },
-           width : '100%',
-           height : '100%'
-       }).embed(element_wrap);
+            // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+            document.body.scrollTop = currentScroll;
+        },
+        // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+        onresize : function(size) {
+            element_wrap.style.height = size.height+'px';
+        },
+        width : '100%',
+        height : '100%'
+    }).embed(element_wrap);
 
-       // iframe을 넣은 element를 보이게 한다.
-       element_wrap.style.display = 'block';
-   }
+    // iframe을 넣은 element를 보이게 한다.
+    element_wrap.style.display = 'block';
+}
+
+
+// 부서정보
+$("select[name=deptNo]").change(function() {
+   
+    const deptNo = $(this).val();
+    const selectOption = $("select[name=teamNo]");
+
+    selectOption.empty(); // 기존 옵션 제거
+
+    if (deptNo == '1') {
+        selectOption.append('<option value="1">재무팀</option>');
+        selectOption.append('<option value="2">인사총무팀</option>');
+    } else if (deptNo == '2') {
+        selectOption.append('<option value="3">영업팀</option>');
+        selectOption.append('<option value="4">기술개발팀</option>');
+    } else if (deptNo == '3') {
+        selectOption.append('<option value="5">공사팀</option>');
+        selectOption.append('<option value="6">공무팀</option>');
+        selectOption.append('<option value="7">견적팀</option>');
+        selectOption.append('<option value="8">자재팀</option>');
+    } else if (deptNo == '4') {
+        selectOption.append('<option value="9">개발기획팀</option>');
+        selectOption.append('<option value="10">분양홍보팀</option>');
+        selectOption.append('<option value="11">설계기획팀</option>');
+    } else if (deptNo == '5') {
+        selectOption.append('<option value="12">경영팀</option>');
+        selectOption.append('<option value="13">전략팀</option>');
+    }
+})
+
+// 초기화
+$("select[name=deptNo]").trigger("change");
+
+
+
+
+

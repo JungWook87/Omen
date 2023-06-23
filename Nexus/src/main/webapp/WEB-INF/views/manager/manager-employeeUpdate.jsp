@@ -68,23 +68,21 @@
             <!-- 직원 찾기 -->
             <div class="employee-search">
               <p>직원 찾기</p>
-              <form onsubmit="event.preventDefault();">
                 <label for="search"></label>
-                <input id="search" type="search" placeholder="직원 검색" maxlength="10" autocomplete="off" autofocus
+                <input id="search" type="search" name="memNo" placeholder="사원번호를 입력해 주세요" maxlength="10" autocomplete="off" autofocus
                   required />
-                <button type="submit">검색하기</button>
-              </form>
+                <button id="search-btn">검색하기</button>
             </div>
 
 
 
-            <!-- 직원 추가 -->
-            <form action="" method="post">
+            <!-- 직원 수정 -->
+            <form action="update" method="post">
               <!-- 이름 -->
               <div class="employee-area-container">
                 <div class="employee-area">
                   <p>이름</p>
-                  <input type="text" id="employee-name" maxlength="10" autocomplete="off" required readonly>
+                  <input type="text" id="employee-name" name="memName" maxlength="10" autocomplete="off" required readonly>
                 </div>
                 <div id="name-check" class="employee-check">한글 또는 영문으로 2-10글자 이내로 작성해 주세요</div>
               </div>
@@ -92,7 +90,7 @@
               <div class="employee-area-container">
                 <div class="employee-area">
                   <p>주민번호</p>
-                  <input type="text" id="employee-ssn" maxlength="14" autocomplete="off" required readonly>
+                  <input type="text" id="employee-ssn" name="memRNo" maxlength="14" autocomplete="off" required readonly>
                   <span></span>
                 </div>
                 <div id="ssn-check" class="employee-check">하이픈(-)포함 14자 이내로 작성해주세요</div>
@@ -101,7 +99,7 @@
               <div class="employee-area-container">
                 <div class="employee-area">
                   <p>전화번호</p>
-                  <input type="tel" id="employee-tel" maxlength="13" autocomplete="off" required readonly>
+                  <input type="tel" id="employee-tel" name="memTel" maxlength="13" autocomplete="off" required readonly>
                   <span></span>
                 </div>
                 <div id="tel-check" class="employee-check">하이픈(-)포함 010- 으로 시작해 주세요</div>
@@ -110,7 +108,7 @@
               <div class="employee-area-container">
                 <div class="employee-area">
                   <p>이메일</p>
-                  <input type="email" id="employee-email" maxlength="30" autocomplete="off" required readonly>
+                  <input type="email" id="employee-email" name="memEmail" maxlength="30" autocomplete="off" required readonly>
                   <span></span>
                 </div>
                 <div id="email-check" class="employee-check">@포함 이메일 형식으로 작성해 주세요</div>
@@ -119,7 +117,7 @@
               <div class="employee-area-container">
                 <div class="employee-area">
                   <p>주소</p>
-                  <input type="text" id="sample3_address" required readonly>
+                  <input type="text" id="sample3_address" name="memAddress" required readonly>
                   <span></span>
                 </div>
                 <button class="address-btn" type="button" onclick="sample3_execDaumPostcode()" disabled>주소찾기</button>
@@ -132,15 +130,64 @@
               </div>
               <div class="employee-area">
                 <p>상세주소</p>
-                <input type="text" id="sample3_detailAddress" required readonly>
+                <input type="text" id="sample3_detailAddress" name="memAddress" required readonly>
                 <span></span>
               </div>
-              <!-- 입사일 -->
-              <div class="employee-area">
-                <p>입사일</p>
-                <input type="date" id="employee-enroll" required readonly>
-              </div>
-
+              
+                <!-- 직책선택-->
+                <div class="employee-rank">
+                  <p>직책</p>
+                  <div class="employee-rank-radio-box">
+                    <div class="employee-rank-radio">
+                      <input type="radio" name="jobNo" id="job-junior" value="4" disabled>
+                      <label for="job-junior">사원</label>
+                    </div>
+                    <div class="employee-rank-radio">
+                      <input type="radio" name="jobNo" id="job-senior" value="3" disabled>
+                      <label for="job-senior">팀장</label>
+                    </div>
+                    <div class="employee-rank-radio">
+                      <input type="radio" name="jobNo" id="job-director" value="2" disabled>
+                      <label for="job-director">부장</label>
+                    </div>
+                    <div class="employee-rank-radio">
+                      <input type="radio" name="jobNo" id="job-ceo" value="1" disabled>
+                      <label for="job-ceo">사장</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- 부서선택 -->
+                <div class="employee-dept">
+                  <p>부서</p>
+                  <div>
+                    <select name="deptNo" id="dept" disabled>
+                      <option value="" selected>=== 부서선택 ===</option>
+                      <option value="1">관리기획부</option>
+                      <option value="2">업무기획부</option>
+                      <option value="3">공무기획부</option>
+                      <option value="4">개발사업부</option>
+                      <option value="5">전략기획실</option>
+                    </select>
+                    <select name="teamNo" id="dept-option" disabled>
+                      <option value="" selected>=== 팀선택 ===</option>
+                      <option value="11">재무팀</option>
+                      <option value="12">인사총무팀</option>
+                      <option value="21">영업팀</option>
+                      <option value="22">기술개발팀</option>
+                      <option value="31">공사팀</option>
+                      <option value="32">공무팀</option>
+                      <option value="33">견적팀</option>
+                      <option value="34">자재팀</option>
+                      <option value="41">개발기획팀</option>
+                      <option value="42">분양홍보팀</option>
+                      <option value="43">설계기획팀</option>
+                      <option value="51">경영팀</option>
+                      <option value="52">전략팀</option>
+                    </select>
+                  </div>
+                </div>
+  
               <!-- 직원수정 버튼 -->
               <button class="employee-add-btn">수정</button>
             </form>

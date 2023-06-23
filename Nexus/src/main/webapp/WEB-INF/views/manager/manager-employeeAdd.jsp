@@ -123,18 +123,45 @@
                 <span></span>
               </div>
              
-              <!-- 직책 -->
-              <div>
-                <input type="radio" name="" id="">
-                <label for="">사원</label>
-                <input type="radio" name="" id="">
-                <label for="">팀장</label>
-                <input type="radio" name="" id="">
-                <label for="">부장</label>
-                <input type="radio" name="" id="">
-                <label for="">사장</label>
-                
+              <!-- 직책선택-->
+              <div class="employee-rank">
+                <p>직책</p>
+                <div class="employee-rank-radio-box">
+                  <div class="employee-rank-radio">
+                    <input type="radio" name="jobNo" id="job-junior" value="4">
+                    <label for="job-junior">사원</label>
+                  </div>
+                  <div class="employee-rank-radio">
+                    <input type="radio" name="jobNo" id="job-senior" value="3">
+                    <label for="job-senior">팀장</label>
+                  </div>
+                  <div class="employee-rank-radio">
+                    <input type="radio" name="jobNo" id="job-director" value="2">
+                    <label for="job-director">부장</label>
+                  </div>
+                  <div class="employee-rank-radio">
+                    <input type="radio" name="jobNo" id="job-ceo" value="1">
+                    <label for="job-ceo">사장</label>
+                  </div>
+                </div>
               </div>
+
+              <!-- 부서선택 -->
+              <div class="employee-dept">
+                <p>부서</p>
+                <div>
+                  <select name="deptNo" id="dept">
+                    <option value="" selected>=== 부서선택 ===</option>
+                    <option value="1">관리기획부</option>
+                    <option value="2">업무기획부</option>
+                    <option value="3">공무기획부</option>
+                    <option value="4">개발사업부</option>
+                    <option value="5">전략기획실</option>
+                  </select>
+                  <select name="teamNo" id="dept-option"></select>
+                </div>
+              </div>
+
 
               <!-- 직원추가 버튼 -->
               <button class="employee-add-btn">직원 등록</button>
@@ -151,9 +178,12 @@
         </div>
       </section>
 
+      
 
       <script src="${contextPath}/resources/js/manager/manager-employeeAdd.js"></script>
       <script src="${contextPath}/resources/js/component.js"></script>
+
+      
     </body>
 
     </html>

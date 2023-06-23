@@ -55,7 +55,7 @@ button {
 .employee-search button {
   display: none;
   position: absolute;
-  top: 0;
+  top: 27px;
   right: 0;
   width: var(--btn-width);
   font-weight: bold;

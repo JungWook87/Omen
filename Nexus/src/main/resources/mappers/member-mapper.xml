@@ -58,5 +58,30 @@
 		WHERE MEM_NO = ${memNo}
 	</select>
 	
+	<!-- 직원 추가 -->
+	<insert id="signUp" parameterType="member">
+		INSERT INTO MEMBER
+		VALUES(SEQ_MEMBER_NO.NEXTVAL,
+			#{jobNo},
+			#{teamNo},
+			#{deptNo},
+			'NEXUS'||SEQ_MEMBER_NO.CURRVAL,
+			DEFAULT,
+			#{memName},
+			#{memRNo},
+			#{memTel},
+			#{memAddress},
+			#{memEmail},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT
+			)
+	</insert>
 	
+	<!-- 직원 검색 -->
+	<select id="searchMember" parameterType="member" resultMap="member_rm">
+		SELECT MEM_NAME, MEM_RNO, TEL, EMAIL, ADDRESS, JOB_NO, DEPT_NO, TEAM_NO
+		FROM MEMBER
+		WHERE MEM_NO = #{memNo}
+	</select>
 </mapper>
