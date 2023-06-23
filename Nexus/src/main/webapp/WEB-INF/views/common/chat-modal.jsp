@@ -156,9 +156,9 @@
 		const cmNo = "${cmNo}";
 		const memNo = "${memNo}";
 		const contextPath = "${contextPath}";
-		let memberNick = '${memberNick}';
+		let memberNick = '${memName}';
 		
-		
+		console.log(cmNo);
 
 
 		// 로그인이 되어 있을 경우에만

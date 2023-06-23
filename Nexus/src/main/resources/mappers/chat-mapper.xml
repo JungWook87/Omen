@@ -51,7 +51,7 @@
 	
 	<insert id="insertMessage">
 		INSERT INTO MESSAGE VALUES(
-		SEQ_CM_NO.NEXTVAL, #{cmNo}, #{memNo}, #{mContent}, S, #{memberNick}
+		SEQ_CM_NO.NEXTVAL, #{cmNo}, #{memNo}, #{mContent}, SYSDATE, #{memberNick}
 		)
 	</insert>
 	

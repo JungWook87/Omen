@@ -751,8 +751,11 @@ function sendMessage(sendWebMessage) {
   }
 }
 
+
+
 // 채팅 보내기 함수
 function sendWebMessage(loginMemberInfo) {
+  const chatValue = document.querySelector('#chat-input');
 
   $.ajax({
     url: 'loginMember',
@@ -760,23 +763,23 @@ function sendWebMessage(loginMemberInfo) {
     dataType: 'JSON',
     success: function(loginMemberInfo) {
       console.log(loginMemberInfo);
-      
-       // 메세지 입력 시 필요한 데이터를 js객체로 생성
-  const chatMessage = {
-    "cmNo": cmNo,
-    "memNo" : loginMemberInfo.memNo,
-    "memberNick" : loginMemberInfo.memberNick,
-    "mContent": chatVal.value
-  };
+      console.log(chatValue.value);
 
-  // JSON.parse(문자열) : JSON -> JS Object
-  // JSON.stringify(객체) :  JS Object -> JSON
-  console.log(chatMessage);
-  console.log(JSON.stringify(chatMessage));
+      const chatMessage = {
+        "cmNo": cmNo,
+        "memNo": loginMemberInfo.memNo,
+        "memberNick": loginMemberInfo.memName,
+        "mContent": chatValue.value
+      };
 
-  // chattingSock(웹소켓 객체)을 이용하여 메세지 보내기
-  // chattingSock.send(값) : 웹소켓 핸들러로 값을 보냄
-  chattingSock.send(JSON.stringify(chatMessage));
+      // JSON.parse(문자열) : JSON -> JS Object
+      // JSON.stringify(객체) :  JS Object -> JSON
+      console.log(chatMessage);
+      console.log(JSON.stringify(chatMessage));
+
+      // chattingSock(웹소켓 객체)을 이용하여 메세지 보내기
+      // chattingSock.send(값) : 웹소켓 핸들러로 값을 보냄
+      chattingSock.send(JSON.stringify(chatMessage));
     },
     error: function() {
       console.log("에러");
@@ -790,7 +793,8 @@ const chatSubmit = document.getElementById("chat-submit");
 chatSubmit.addEventListener('click', sendWebMessage);
 
 chatSubmit.addEventListener('click', () => {
-  if (chatVal.value.trim() !== '') {
+  const chatValue = document.querySelector('#chat-input');
+  if (chatValue.value.trim() !== '') {
     const message = document.createElement('div');
     message.className = 'message parker';
     const time = getTimeString();
