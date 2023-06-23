@@ -44,8 +44,10 @@ public class WorkController {
 		
 		
 		List<WorkGeneralList> list = service.workSend(loginMember.getMemNo());
+		List <ApprovalMember> approvalMemberList = service.approvalMember();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("approvalMemberList", approvalMemberList);
 		
 		String messageFlag = null;
 		

@@ -140,73 +140,53 @@
             <div class="approver-modal-line1"></div>
 
             <div class="approver-modal-container">
-              <c:forEach var="approval" items="${approvalMemberList}">
                 <div id="approver-box">
                   <ul>
-                    <li>
-                      <p>임원</p>
-                      <ul class="Executives">
-                        <li>대표이사</li>
-                        <li>전무이사</li>
-                      </ul>
+                    <li><p>임원</p>
                     </li>
-                    <li>
-                      <p>부서</p>
-                      <ul class="Dept">
-                        <li>
-                          <p>관리기획부</p>
-                          <c:choose>
-                            <c:when test="${approval.deptNo eq 1}">
-                              <ul class="Dept-1">
-                                <c:choose>
-                                  <c:when test="${approval.teamNo eq 11}"><li>재무팀</li></c:when>
-                                  <c:when test="${approval.teamNo eq 12}"><li>인사총무팀</li></c:when>
-                                </c:choose>
-                              </ul>
-                            </c:when>
-                            <c:when test="${approval.deptNo eq 2}">
-                              <ul class="Dept-2">
-                                <c:choose>
-                                  <c:when test="${approval.teamNo eq 21}"><li>영업팀</li></c:when>
-                                  <c:when test="${approval.teamNo eq 22}"><li>기술개발팀</li></c:when>
-                                </c:choose>
-                              </ul>
-                            </c:when>
-                            <c:when test="${approval.deptNo eq 3}">
-                              <ul class="Dept-3">
-                                <c:choose>
-                                  <c:when test="${approval.teamNo eq 31}"><li>공사팀</li></c:when>
-                                  <c:when test="${approval.teamNo eq 32}"><li>공무팀</li></c:when>
-                                  <c:when test="${approval.teamNo eq 33}"><li>견적팀</li></c:when>
-                                  <c:when test="${approval.teamNo eq 34}"><li>자재팀</li></c:when>
-                                </c:choose>
-                              </ul>
-                            </c:when>
-                            <c:when test="${approval.deptNo eq 4}">
-                              <ul class="Dept-4">
-                                <c:choose>
-                                  <c:when test="${approval.teamNo eq 41}"><li>개발기획팀</li></c:when>
-                                  <c:when test="${approval.teamNo eq 42}"><li>분양홍보팀</li></c:when>
-                                  <c:when test="${approval.teamNo eq 43}"><li>설계기획팀</li></c:when>
-                                </c:choose>
-                              </ul>
-                            </c:when>
-                            <c:when test="${approval.deptNo eq 5}">
-                              <ul class="Dept-5">
-                                <c:choose>
-                                  <c:when test="${approval.teamNo eq 51}"><li>경영팀</li></c:when>
-                                  <c:when test="${approval.teamNo eq 52}"><li>전략팀</li></c:when>
-                                </c:choose>
-                              </ul>
-                            </c:when>
-                          </c:choose>
+                    <li><p>부서</p>
+                      <ul>
+                        <li><p>관리기획부</p>
+                          <ul>
+                            <li class="approval-team"><p>재무팀</p></li>
+                            <li class="approval-team"><p>인시총무팀</p></li>
+                          </ul>
+                        </li>
+                        <li><p>업무기획부</p>
+                          <ul>
+                            <li class="approval-team"><p>영업팀</p></li>
+                            <li class="approval-team"><p>기술개발팀</p></li>
+                          </ul>
+                        </li>
+                        <li><p>공무기획부</p>
+                          <ul>
+                            <li class="approval-team"><p>공사팀</p></li>
+                            <li class="approval-team"><p>공무팀</p></li>
+                            <li class="approval-team"><p>견적팀</p></li>
+                            <li class="approval-team"><p>자재팀</p></li>
+                          </ul>
+                        </li>
+                        <li><p>개발사업부</p>
+                          <ul>
+                            <li class="approval-team"><p>개발기획팀</p></li>
+                            <li class="approval-team"><p>분양홍보팀</p></li>
+                            <li class="approval-team"><p>설계기획팀</p></li>
+                          </ul>
+                        </li>
+                        <li><p>전략기획실</p>
+                          <ul>
+                            <li class="approval-team"><p>경영팀</p></li>
+                            <li class="approval-team"><p>전략팀</p></li>
+                          </ul>
                         </li>
                       </ul>
                     </li>
                   </ul>
                 </div>
-              </c:forEach>
             </div>
+          </div>
+        </div>
+      </div>
               
 
             <!-- 선2 -->
@@ -227,5 +207,7 @@
     </div>
 
   </div>
-
+  <script>
+    const approvalList = ${approvalMemberList};
+  </script>
 </body>

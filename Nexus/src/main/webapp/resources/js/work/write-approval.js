@@ -463,3 +463,192 @@ successBtn.addEventListener("click", () => {
     } 
 
   })
+
+
+  // --------------------------------------------------------------------------------
+
+  const team = document.querySelectorAll(".approval-team");
+
+  (function(){
+
+    for(let value of approvalList){
+
+     console.log(value);
+
+     let div = document.createElement("div");
+     let p1 = document.createElement("p");
+     let p2 = document.createElement("p");
+   
+      if(value.detpNo === 1 ){
+
+        if(value.teamNo === 11){
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[0].append(p1,p2);
+
+          div.appendChild(team[0]);
+
+          console.log(p1);
+          console.log(p2);
+   
+
+        }
+        if(value.teamNo === 12){ 
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[1].append(p1,p2);
+
+          div.appendChild(team[1]);
+
+        }
+
+      } else if(value.detpNo === 2){
+
+        if(value.teamNo === 21){
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[3].append(p1,p2);
+
+          div.appendChild(team[3]);
+
+        }
+        if(value.teamNo === 22){ 
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[4].append(p1,p2);
+
+          div.appendChild(team[4]);
+
+        }
+
+      } else if(value.detpNo === 3){
+
+
+        if(value.teamNo === 31){
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[5].append(p1,p2);
+
+          div.appendChild(team[5]);
+
+        }
+        if(value.teamNo === 32){ 
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[6].append(p1,p2);
+
+          div.appendChild(team[6]);
+
+        }
+        if(value.teamNo === 33){
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[7].append(p1,p2);
+
+          div.appendChild(team[7]);
+
+        }
+        if(value.teamNo === 34){ 
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[8].append(p1,p2);
+
+          div.appendChild(team[8]);
+
+        }
+        
+      } else if(value.detpNo === 4){
+
+
+        if(value.teamNo === 41){
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[9].append(p1,p2);
+
+          div.appendChild(team[9]);
+
+        }
+        if(value.teamNo === 42){ 
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[9].append(p1,p2);
+
+          div.appendChild(team[9]);
+
+        }
+        if(value.teamNo === 43){ 
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[10].append(p1,p2);
+
+          div.appendChild(team[10]);
+
+        }
+        
+      } else if(value.detpNo === 5){
+
+
+        if(value.teamNo === 51){
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[11].append(p1,p2);
+
+          div.appendChild(team[11]);
+
+        }
+        if(value.teamNo === 12){ 
+
+          p1.innerText = value.memName;
+          
+          p2.innerText = value.memNo;
+          
+          team[12].append(p1,p2);
+
+          div.appendChild(team[12]);
+
+        }
+
+      }
+
+      
+    }
+    
+    // div.append(team);
+
+  })();
