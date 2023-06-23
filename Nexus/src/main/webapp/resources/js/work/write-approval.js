@@ -648,7 +648,5 @@ successBtn.addEventListener("click", () => {
 
       
     }
-    
-    // div.append(team);
 
   })();
