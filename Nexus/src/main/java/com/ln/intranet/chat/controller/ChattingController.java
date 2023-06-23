@@ -110,7 +110,9 @@ import java.util.HashMap;
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/chatRoomList/{cmNo}", method = RequestMethod.GET)
-	public String joinChatRoom(@PathVariable("cmNo") int cmNo) {
+	public String joinChatRoom(@PathVariable("cmNo") int cmNo, 
+								Model model
+			) {
 		
 		
 		

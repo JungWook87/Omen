@@ -22,6 +22,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	@Autowired
 	private ChatService service;
 	
+	
 	private Set<WebSocketSession> sessions
 	= Collections.synchronizedSet(new HashSet<WebSocketSession>());
 	
@@ -75,6 +76,8 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 					
 					// 같은방 클라이언트에게 JSON형식 메시지를 보냄
 					s.sendMessage(new TextMessage(new Gson().toJson(chatMessage)));
+					
+				
 						
 				}
 					
