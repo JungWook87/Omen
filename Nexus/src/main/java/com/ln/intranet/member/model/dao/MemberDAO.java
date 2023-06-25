@@ -55,4 +55,35 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.searchMember", memNo);
 	}
 
+	// 직원 정보 수정
+	public int update(Map<String, Object> paramMap) {
+
+		return sqlSession.update("memberMapper.update", paramMap);
+	}
+
+	// 직원 퇴사 처리
+	public int delete(int memNo) {
+
+		return sqlSession.update("memberMapper.delete", memNo);
+	}
+	
+	// 퇴사할 직원 정보 조회
+	public Member deleteSearch(int memNo) {
+
+		return sqlSession.selectOne("memberMapper.deleteSearch", memNo);
+	}
+
+	// 직원 전체 조회
+	public List<Member> selectAll() {
+		
+
+		return sqlSession.selectList("memberMapper.selectAll");
+	}
+
+	// 검색한 직원 조회
+	public List<Member> selectOne(Map<String, Object> paramMap) {
+
+		return sqlSession.selectList("memberMapper.searchMem", paramMap);
+	}
+
 }

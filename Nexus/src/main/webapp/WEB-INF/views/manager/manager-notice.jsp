@@ -40,7 +40,9 @@
           <ul class="employee-ul">
             <li><a href="${contextPath}/member/memberAdd"><span>추가</span> </a></li>
             <li><a href="${contextPath}/member/memberUpdate"><span>정보 수정</span> </a></li>
-            <li><a href="${contextPath}/member/memberDelete"><span>삭제</span> </a></li>
+            <li><a href="${contextPath}/member/memberDelete"><span>퇴사</span> </a></li>
+            <li><a href="${contextPath}/member/memberCheck"><span>조회</span> </a></li>
+
           </ul>
           <h1>공지사항</h1>
           <ul class="notice-ul">

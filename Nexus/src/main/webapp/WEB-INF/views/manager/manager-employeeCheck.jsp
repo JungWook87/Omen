@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
-      <link rel="stylesheet" href="${contextPath}/resources/css/manager/manager-employeeDelete.css">
+      <link rel="stylesheet" href="${contextPath}/resources/css/manager/manager-employeeCheck.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
 
       <!-- sweetAlert2 cdn -->
@@ -25,7 +25,7 @@
       <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
 
 
-      <title>관리자-퇴사</title>
+      <title>관리자-조회</title>
     </head>
 
     <body>
@@ -42,7 +42,6 @@
             <li><a href="${contextPath}/member/memberUpdate"><span>정보 수정</span> </a></li>
             <li><a href="${contextPath}/member/memberDelete"><span>퇴사</span> </a></li>
             <li><a href="${contextPath}/member/memberCheck"><span>조회</span> </a></li>
-
           </ul>
           <h1>공지사항</h1>
           <ul class="notice-ul">
@@ -58,22 +57,55 @@
           <!-- 컨텐츠 내용 윗부분 -->
           <div class="content-all-top-area">
             <p class="content-all-top-text1">직원 / </p>
-            <p class="content-all-top-text2">퇴사</p>
-            <!-- 선 -->
-            <div class="content-all-top-line"></div>
+            <p class="content-all-top-text2">조회</p>
+
+            <!-- 직원 검색 -->
+            <div class="employee-check-search">
+              <div class="employee-search-input">
+                <span>
+                  <input class="gate" id="search-name" type="text" placeholder="이름을 입력해 주세요" /><label for="class">직원
+                    이름</label>
+                </span>
+              </div>
+              <div class="btn-set">
+                <button id="search-btn" class="button button--nina button--text-upper " data-text="검색">
+                  <span>검</span><span>색</span>
+                </button>
+                <button id="memAll-btn" class="button button--nina button--text-upper " data-text="전체보기">
+                  <span>전</span><span>체</span><span>보</span><span>기</span>
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <!-- 컨텐츠 내용 아랫부분 -->
           <div class="content-all-bottom-area">
+            <div class="employee-check-table">
+              <table>
 
-            <!-- 사원 번호 -->
-            <div class="employee-delete-input">
-              <input type="text" name="memNo" id="delete-no" maxlength="30" autocomplete="off" required>
-              <label>사원 번호</label>
-              <span></span>
+                <thead>
+                  <tr>
+                    <th>사원번호</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>직책</th>
+                    <th>부서</th>
+                    <th>팀</th>
+                    <th>주민번호</th>
+                    <th>전화번호</th>
+                    <th>주소</th>
+                    <th>이메일</th>
+                    <th>입사일</th>
+                    <th>퇴사일</th>
+                  </tr>
+                </thead>
+
+                <tbody></tbody>
+
+              </table>
             </div>
 
-            <button id="delete-btn" class="employee-delete-btn">직원 퇴사</button>
 
 
           </div>
@@ -88,8 +120,9 @@
         </div>
       </section>
 
-      <script src="${contextPath}/resources/js/manager/manager-employeeDelete.js"></script>
+
       <script src="${contextPath}/resources/js/component.js"></script>
+      <script src="${contextPath}/resources/js/manager/manager-employeeCheck.js"></script>
     </body>
 
     </html>

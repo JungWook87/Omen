@@ -1,84 +1,131 @@
-// 이름 유효성 검사
-const regName =  /^[가-힣]{2,10}$|^[a-zA-Z]{2,10}$/;
-
-$("#employee-name").on("input", function() {
-  if (regName.test($(this).val())) {
-      $('#name-check').text('유효한 형식입니다');
-      $('#name-check').css('color', 'var(--green');
-      $('#name-check').css('marginLeft', '230px');
-  } else if($(this).val() == '') {
-      $("#name-check").text('한글 또는 영문으로 2-10글자 이내로 작성해 주세요');
-      $('#name-check').css('color', 'var(--gray400)');
-      $('#name-check').css('marginLeft', '30px');
-
-  } else {
-      $('#name-check').text('잘못된 형식입니다');
-      $('#name-check').css('color', 'red');
-      $('#name-check').css('marginLeft', '230px');
-
+function validateName() {
+    const regName = /^[가-힣]{2,10}$|^[a-zA-Z]{2,10}$/;
+    const nameInput = $("#employee-name");
+    const nameCheck = $("#name-check");
+  
+    if (regName.test(nameInput.val())) {
+      nameCheck.text('유효한 형식입니다');
+      nameCheck.css('color', 'var(--green)');
+      nameCheck.css('marginLeft', '230px');
+      return true;
+    } else if (nameInput.val() == '') {
+      nameCheck.text('한글 또는 영문으로 2-10글자 이내로 작성해 주세요');
+      nameCheck.css('color', 'var(--gray400)');
+      nameCheck.css('marginLeft', '30px');
+      return false;
+    } else {
+      nameCheck.text('잘못된 형식입니다');
+      nameCheck.css('color', 'red');
+      nameCheck.css('marginLeft', '230px');
+      return false;
+    }
   }
-});
-
-// 주민번호 유효성 검사
-const regSsn = /\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-][1-6]\d{6}/;
-// 하이픈 있든 없든 둘다 받을려면  
-//const regSsn = /\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-]*[1-6]\d{6}/;
-
-$("#employee-ssn").on("input", function() {
-    if (regSsn.test($(this).val())) {
-        $('#ssn-check').text('유효한 형식입니다');
-        $('#ssn-check').css('color', 'var(--green');
-        $('#ssn-check').css('marginLeft', '170px');
-    } else if($(this).val() == '') {
-        $("#ssn-check").text('하이픈(-)포함 14자 이내로 작성해주세요');
-        $('#ssn-check').css('color', 'var(--gray400)');
-        $('#ssn-check').css('marginLeft', '30px');
-    } else {
-        $('#ssn-check').text('잘못된 형식입니다');
-        $('#ssn-check').css('color', 'red');
-        $('#ssn-check').css('marginLeft', '170px');
+  
+  function validateSsn() {
+    const regSsn = /\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-][1-6]\d{6}/;
+    const ssnInput = $("#employee-ssn");
+    const ssnCheck = $("#ssn-check");
+  
+    const jumin = ssnInput.val();
+    if (jumin.length === 6) {
+      ssnInput.val(jumin + '-');
     }
-  });
-
-
-  // 전화번호 유효성 검사
-  const regTel = /\b010-\d{3,4}-\d{4}\b/;
-
-  $("#employee-tel").on("input", function() {
-    if (regTel.test($(this).val())) {
-        $('#tel-check').text('유효한 형식입니다');
-        $('#tel-check').css('color', 'var(--green');
-        $('#tel-check').css('marginLeft', '160px');
-    } else if($(this).val() == '') {
-        $("#tel-check").text('하이픈(-)포함 010- 으로 시작해 주세요');
-        $('#tel-check').css('color', 'var(--gray400)');
-        $('#tel-check').css('marginLeft', '30px');
+  
+    if (regSsn.test(ssnInput.val())) {
+      ssnCheck.text('유효한 형식입니다');
+      ssnCheck.css('color', 'var(--green)');
+      ssnCheck.css('marginLeft', '170px');
+      return true;
+    } else if (ssnInput.val() == '') {
+      ssnCheck.text('하이픈(-)포함 14자 이내로 작성해주세요');
+      ssnCheck.css('color', 'var(--gray400)');
+      ssnCheck.css('marginLeft', '30px');
+      return false;
     } else {
-        $('#tel-check').text('잘못된 형식입니다');
-        $('#tel-check').css('color', 'red');
-        $('#tel-check').css('marginLeft', '160px');
+      ssnCheck.text('잘못된 형식입니다');
+      ssnCheck.css('color', 'red');
+      ssnCheck.css('marginLeft', '170px');
+      return false;
     }
-  });
-
-
-  // 이메일 유효성 검사
-  const regEmail = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-
-  $("#employee-email").on("input", function() {
-    if (regEmail.test($(this).val())) {
-        $('#email-check').text('유효한 형식입니다');
-        $('#email-check').css('color', 'var(--green');
-        $('#email-check').css('marginLeft', '148px');
-    } else if($(this).val() == '') {
-        $("#email-check").text('@포함 이메일 형식으로 작성해 주세요');
-        $('#email-check').css('color', 'var(--gray400)');
-        $('#email-check').css('marginLeft', '30px');
+  }
+  
+  function validateTel() {
+    const regTel = /\b010-\d{3,4}-\d{4}\b/;
+    const telInput = $("#employee-tel");
+    const telCheck = $("#tel-check");
+  
+    const phone = telInput.val();
+    if (phone.length === 3) {
+      telInput.val(phone + '-');
+    }
+  
+    if (regTel.test(telInput.val())) {
+      telCheck.text('유효한 형식입니다');
+      telCheck.css('color', 'var(--green)');
+      telCheck.css('marginLeft', '160px');
+      return true;
+    } else if (telInput.val() == '') {
+      telCheck.text('하이픈(-)포함 010- 으로 시작해 주세요');
+      telCheck.css('color', 'var(--gray400)');
+      telCheck.css('marginLeft', '30px');
+      return false;
     } else {
-        $('#email-check').text('잘못된 형식입니다');
-        $('#email-check').css('color', 'red');
-        $('#email-check').css('marginLeft', '148px');
+      telCheck.text('잘못된 형식입니다');
+      telCheck.css('color', 'red');
+      telCheck.css('marginLeft', '160px');
+      return false;
     }
-  });
+  }
+  
+  function validateEmail() {
+    const regEmail = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const emailInput = $("#employee-email");
+    const emailCheck = $("#email-check");
+  
+    if (regEmail.test(emailInput.val())) {
+      emailCheck.text('유효한 형식입니다');
+      emailCheck.css('color', 'var(--green)');
+      emailCheck.css('marginLeft', '148px');
+      return true;
+    } else if (emailInput.val() == '') {
+      emailCheck.text('@포함 이메일 형식으로 작성해 주세요');
+      emailCheck.css('color', 'var(--gray400)');
+      emailCheck.css('marginLeft', '30px');
+      return false;
+    } else {
+      emailCheck.text('잘못된 형식입니다');
+      emailCheck.css('color', 'red');
+      emailCheck.css('marginLeft', '148px');
+      return false;
+    }
+  }
+  
+  // input 요소에 이벤트 리스너를 추가합니다.
+  $("#employee-name").on("input", validateName);
+  $("#employee-ssn").on("input", validateSsn);
+  $("#employee-tel").on("input", validateTel);
+  $("#employee-email").on("input", validateEmail);
+  
+  // 폼 제출 시 유효성 검사를 수행합니다.
+  function memberUpdateCheck() {
+    const isNameValid = validateName();
+    const isSsnValid = validateSsn();
+    const isTelValid = validateTel();
+    const isEmailValid = validateEmail();
+  
+    if (!isNameValid) {
+        Swal.fire('이름을 올바르게 적어주세요');
+    } else if (!isSsnValid) {
+        Swal.fire('주민번호를 올바르게 적어주세요');
+    } else if(!isTelValid) {
+        Swal.fire('전화번호를 올바르게 적어주세요');
+    } else if(!isEmailValid) {
+        Swal.fire('이메일을 올바르게 적어주세요');
+    }
+
+    return isNameValid && isSsnValid && isTelValid && isEmailValid;
+  }
+
 
 
 
@@ -143,13 +190,23 @@ $("#employee-ssn").on("input", function() {
 const searchBtn = document.getElementById("search-btn");
 const searchInput = document.getElementById("search");
 
-searchBtn.addEventListener('click', () => {
+searchBtn.addEventListener('click', searchMemberAjax);
+
+searchInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        searchMemberAjax();
+    }
+
+})
+
+function searchMemberAjax() {
     $.ajax({
         url: "searchMember",
         data: {"search" : searchInput.value},
         type: "GET",
         dataType : "JSON",
         success : function(searchedMem) {
+
             const name = document.getElementById("employee-name"),
             ssn = document.getElementById("employee-ssn"),
             tel = document.getElementById("employee-tel"),
@@ -173,14 +230,20 @@ searchBtn.addEventListener('click', () => {
         selectElements.forEach((select) => {
             select.disabled = false;
         });  
+
+        // 모든 버튼 disabled 해제
+        const btnElements = document.querySelectorAll('button');
+        btnElements.forEach((btn) => {
+            btn.disabled = false;
+        })
         
 
         name.value = searchedMem.memName;
         ssn.value = searchedMem.memRNo;
         tel.value = searchedMem.memTel;
         email.value = searchedMem.memEmail;
-        address.value = searchedMem.memAddress;
-        detailAddress.value = searchedMem.memDetailAddress;
+        address.value = searchedMem.memAddress.split(",")[0]; // 첫 번째 주소
+        detailAddress.value = searchedMem.memAddress.split(",")[1]; // 두 번째 주소
 
 
         
@@ -195,14 +258,52 @@ searchBtn.addEventListener('click', () => {
         // 부서 선택
         deptSelect.value = searchedMem.deptNo.toString();
         
+        // 부서에 따라 팀 옵션 설정
+        deptSelect.addEventListener('change', function() {
+        const selectOption = document.querySelector("select[name='teamNo']");
+        selectOption.innerHTML = ""; // 기존 옵션 제거
+
+        const deptNo = parseInt(this.value); // 문자열을 정수로 변환
+
+        if (deptNo === 1) {
+            selectOption.innerHTML += '<option value="11">재무팀</option>';
+            selectOption.innerHTML += '<option value="12">인사총무팀</option>';
+        } else if (deptNo === 2) {
+            selectOption.innerHTML += '<option value="21">영업팀</option>';
+            selectOption.innerHTML += '<option value="22">기술개발팀</option>';
+        } else if (deptNo === 3) {
+            selectOption.innerHTML += '<option value="31">공사팀</option>';
+            selectOption.innerHTML += '<option value="32">공무팀</option>';
+            selectOption.innerHTML += '<option value="33">견적팀</option>';
+            selectOption.innerHTML += '<option value="34">자재팀</option>';
+        } else if (deptNo === 4) {
+            selectOption.innerHTML += '<option value="41">개발기획팀</option>';
+            selectOption.innerHTML += '<option value="42">분양홍보팀</option>';
+            selectOption.innerHTML += '<option value="43">설계기획팀</option>';
+        } else if (deptNo === 5) {
+            selectOption.innerHTML += '<option value="51">경영팀</option>';
+            selectOption.innerHTML += '<option value="52">전략팀</option>';
+        }
+        });
+       
+
+        // 초기화
+        const deptNoSelect = document.querySelector("select[name='deptNo']");
+        deptNoSelect.dispatchEvent(new Event('change'));
+          
+        
         teamSelect.value = searchedMem.teamNo.toString();
 
-        },
-        error : function() {
-            console.log("에러");
-        }
-
-    })
+        // 멤버 번호를 폼의 action URL에 추가하여 설정
+        const updateForm = document.getElementById("update-form");
+        updateForm.setAttribute("action", "update?memNo=" + searchInput.value);
+        
+        
+    },
+    error : function() {
+        console.log("에러");
+    }
+    
 })
-
+}
 

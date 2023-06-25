@@ -14,11 +14,48 @@ public interface MemberService {
 
 	int changePw(Map<String, Object> paramMap);
 
-	// 직원 추가
+	/** 직원 정보 추가
+	 * @param member
+	 * @return result
+	 */
 	int signUp(Member member);
 
-	// 직원 검색
+	/** 직원 검색
+	 * @param memNo
+	 * @return searchedMem
+	 */
 	Member searchMember(int memNo);
+
+	/** 직원 정보 수정
+	 * @param paramMap
+	 * @return result
+	 */
+	int update(Map<String, Object> paramMap);
+
+	/** 직원 퇴사 처리
+	 * @param memNo
+	 * @return result
+	 */
+	int delete(int memNo);
+
+	/** 퇴사할 직원 정보 조회
+	 * @param memNo
+	 * @return memSearch
+	 */
+	Member deleteSearch(int memNo);
+
+	/** 전체 직원 정보 조회
+	 * @return memList
+	 */
+	List<Member> selectAll();
+
+	/** 검색한 직원 조회
+	 * @param paramMap
+	 * @return selectMem
+	 */
+	List<Member> selectOne(Map<String, Object> paramMap);
+
+	
 
 
 
