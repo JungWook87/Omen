@@ -82,6 +82,10 @@ public class WorkServiceImp implements WorkService {
 		
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());
 		
+		// 프로젝트과제 객체 생성
+		List<ProjectTask> taskList = new ArrayList<>();
+
+		
 		// 결재 타입에 따른 결재 테이블에 값 넣기
 		if(typeNo == 1) {
 			
@@ -95,7 +99,8 @@ public class WorkServiceImp implements WorkService {
 			map.put("content", Util.newLineHandling(map.get("content").toString()));
 			
 		} else if(typeNo == 4 ) {
-
+			
+			
 			map.put("title", Util.XSSHandling(map.get("title").toString()));
 			map.put("content", Util.XSSHandling(map.get("content").toString()));
 			map.put("content", Util.newLineHandling(map.get("content").toString()));
@@ -103,9 +108,7 @@ public class WorkServiceImp implements WorkService {
 			
 			List<String> titleList = (List<String>)map.get("taskTitle");
 			List<String> contentList = (List<String>)map.get("taskContent");
-			
-			List<ProjectTask> taskList = new ArrayList<>();
-			
+						
 			for(int i = 0; i < titleList.size(); i++) {
 				
 				ProjectTask task = new ProjectTask();
@@ -129,44 +132,101 @@ public class WorkServiceImp implements WorkService {
 			
 		}
 		
-		
-		// 파일 올리기
-		int insertResult = dao.workWrite(map);
-		int workNo = Integer.parseInt(map.get("workNo").toString());
-		int memNo = Integer.parseInt(map.get("memNo").toString());
-		
-		if(insertResult != 0) {
-			
-			if(uploadFile.getSize() != 0) {
+		// 결재타입 1 2 3 일 때 
+		if (typeNo == 1 ||  typeNo == 2 || typeNo == 3) {
 
-				UploadFile file = new UploadFile();
-				String reName = "";
+			// 파일 올리기
+			int insertResult = dao.workWrite(map);
+			int workNo = Integer.parseInt(map.get("workNo").toString());
+			int memNo = Integer.parseInt(map.get("memNo").toString());
+			
+			if(insertResult != 0) {
 				
-				String webPath = "/resources/file/";
-				String folderPath = req.getSession().getServletContext().getRealPath(webPath);
-				
-				reName = Util.fileRename(uploadFile.getOriginalFilename());
-				
-				file.setWorkNo(workNo);
-				file.setFileOrigin(uploadFile.getOriginalFilename());
-				file.setFileReName(webPath + reName);
-				
-				result = dao.insertWorkFile(file);
+				if(uploadFile.getSize() != 0) {
+
+					UploadFile file = new UploadFile();
+					String reName = "";
 					
-				if(result != 0) {
-					try {
-						uploadFile.transferTo(new File(folderPath + reName));
-					} catch (IOException e) {
-						e.printStackTrace();
+					String webPath = "/resources/file/";
+					String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+					
+					reName = Util.fileRename(uploadFile.getOriginalFilename());
+					
+					file.setWorkNo(workNo);
+					file.setFileOrigin(uploadFile.getOriginalFilename());
+					file.setFileReName(webPath + reName);
+					
+					result = dao.insertWorkFile(file);
+						
+					if(result != 0) {
+						try {
+							uploadFile.transferTo(new File(folderPath + reName));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
+				} else {
+					result = insertResult;
 				}
-			} else {
-				result = insertResult;
+				
+			}
+
+
+			// 프로젝트 생성 + 프로젝트 과제 생성
+		} else {
+			
+			// 파일 올리기
+			int resultNo = dao.createProject(map);
+			int projectNo = Integer.parseInt(map.get("projectNo").toString());
+			int memNo = Integer.parseInt(map.get("memNo").toString());
+			int taskCount = 0;
+			
+			if(resultNo > 0 ) {
+				for (ProjectTask task : taskList) {
+				    task.setProjectNo(projectNo);
+				    int successCount = dao.createTask(task);
+				    if(successCount > 0)  taskCount++;	    
+				}	
 			}
 			
+			
+			
+			
+			if(resultNo != 0) {
+				
+				if(uploadFile.getSize() != 0) {
+
+					UploadFile file = new UploadFile();
+					String reName = "";
+					
+					String webPath = "/resources/file/";
+					String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+					
+					reName = Util.fileRename(uploadFile.getOriginalFilename());
+					
+					file.setWorkNo(projectNo);
+					file.setFileOrigin(uploadFile.getOriginalFilename());
+					file.setFileReName(webPath + reName);
+					
+					result = dao.insertProjectFile(file);
+						
+					if(result != 0) {
+						try {
+							uploadFile.transferTo(new File(folderPath + reName));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				} else {
+					result = resultNo;
+				}
+				
+			}
 		}
 		
 		return result;
+		
+
 	}
 	
 	// 결재자 모달창
