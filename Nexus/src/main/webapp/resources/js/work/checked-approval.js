@@ -41,6 +41,35 @@ function successDetailModal(obj){
   content.value = "";
   start.value = "";
   end.value = "";
+  app_list.innerText = "";
+  
+ let app_list_mem = obj.approvalList.split(",,");
+  let cnt = 0;
+
+  for(let i = 0; i < app_list_mem.length; i++){
+    let memArr = app_list_mem[i].split(",");
+    
+    let tr = document.createElement("tr");
+    
+    let td1 = document.createElement("td");
+    td1.innerText = ++cnt;
+    tr.append(td1);
+
+   let td2 = document.createElement("td");
+    td2.innerText = memArr[0];
+    tr.append(td2);
+
+   let td3 = document.createElement("td");
+    td3.innerText = memArr[1];
+    tr.append(td3);
+
+   let td4 = document.createElement("td");
+    td4.innerText = memArr[2];
+    tr.append(td4);
+
+   app_list.append(tr);
+  }
+  
 
   checkedModalTitle.innerHTML = "<h1>" + obj.title;
   workNo.innerText = obj.workNo;
@@ -83,25 +112,35 @@ function successDetailModal(obj){
 
   const tempObj = obj;
 
-  // 취소버튼 이벤트(kjw)
-  checkedCancellBtn.addEventListener("click", function(tempObj) {
-    console.log("then obj1 : " + tempObj);
-    Swal.fire({
-      title: '결재를 취소하시겠습니까?',
-      text: '',
-      icon: 'warning',
-      
-      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-      cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-      cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
-   }).then(result => {
-    console.log("then obj : " + tempObj);
-    workDelete(obj);
-   })
+  const sendBtn = document.getElementsByClassName("work-send-submit-btn");
+  const inboxBtn = document.getElementsByClassName("work-inbox-submit-btn");
 
-  });
+  // 상신 페이지 : 취소버튼 이벤트(kjw)
+  if(sendBtn.length == 1){
+    checkedCancellBtn.addEventListener("click", function(tempObj) {
+      console.log("then obj1 : " + tempObj);
+      Swal.fire({
+        title: '결재를 취소하시겠습니까?',
+        text: '',
+        icon: 'warning',
+        
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+        cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
+     }).then(result => {
+      console.log("then obj : " + tempObj);
+      workDelete(obj);
+     })
+  
+    });
+
+    // 수정버튼 이벤트
+    checkedEditBtn.addEventListener("click", () => {
+      writeModalOpen();
+    });
+  }
 }
 
 
@@ -215,6 +254,50 @@ function is_checked() {
   var is_checked = checkbox.checked;
 
 }  
+
+// test
+function app_btn_click(name){
+  console.log(name);
+
+  // 반려
+  if(name == 'reject'){
+    Swal.fire({
+      title: '결재를 반려하시겠습니까?',
+      text: '',
+      icon: 'warning',
+      
+      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+      cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+      cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
+   }).then(result => {
+    if(result.isConfirmed){
+      console.log("반려 ok");
+      $.ajax({
+        url : "clickApproval"
+      }); // ajax로 실행하자...
+    }
+   })
+  } else{ // 승인
+    Swal.fire({
+      title: '결재를 승인하시겠습니까?',
+      text: '',
+      icon: 'warning',
+      
+      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+      cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+      cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
+   }).then(result => {
+    if(result.isConfirmed){
+      console.log("승인 ok");
+
+    }
+   })
+  }
+}
 
 
 //--------------------  
