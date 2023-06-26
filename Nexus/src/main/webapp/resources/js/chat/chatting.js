@@ -753,7 +753,7 @@ function handleKeyPress(event) {
 //인풋창에 글자를 입력하고 엔터를 눌렀을때 이벤트
 function sendMessage(sendWebMessage) {
   if (event.keyCode === 13 && chatVal.value.trim() !== '') {
-  const chatValue = document.querySelector('#chat-input');
+    const chatValue = document.querySelector('#chat-input');
     const message = document.createElement('div');
     message.className = 'message parker';
     const time = getTimeString();
