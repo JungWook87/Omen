@@ -242,82 +242,59 @@ pulsApproverBtn.addEventListener("click",() => {
 
       const approvalList = list;
       const team = document.querySelectorAll(".approval-team");
-
+      let teamCreated = []; // 팀 요소가 이미 생성되었는지 여부를 확인하는 배열
 
       for (let i = 0; i < team.length; i++) {
+        teamCreated[i] = false; // 모든 팀의 생성 여부를 초기에는 false로 설정합니다.
 
-        team[i].addEventListener("click", ()=> {
-          
-          let teamCreated = false; // 팀 요소가 이미 생성되었는지 여부를 확인하는 변수
-      
-          
-            // 팀 요소가 이미 생성되었다면 생성하지 않고 종료합니다.
-            if (teamCreated) {
-              
-              return;
-
-            } else {
-      
-            for (let value of approvalList) {
-              let div = document.createElement("div");
-              let p1 = document.createElement("p");
-              p1.innerText = value.memName;
-      
-              if (value.teamNo == 11) {
-                team[0].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              }
-              if (value.teamNo == 11) {
-                team[0].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 12) {
-                team[1].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 21) {
-                team[2].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 22) {
-                team[3].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 31) {
-                team[4].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 32) {
-                team[5].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 33) {
-                team[6].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 34) {
-                team[7].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 41) {
-                team[8].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 42) {
-                team[9].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 43) {
-                team[10].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 51) {
-                team[11].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } else if (value.teamNo == 52) {
-                team[12].append(div);
-                teamCreated = true; // 팀 요소가 생성되었음을 표시합니다.
-              } 
-
-              div.append(p1);
-
-            }
+        team[i].addEventListener("click", () => {
+          // 해당 팀에 이미 요소가 생성된 경우 종료합니다.
+          if (teamCreated[i]) {
+            return;
           }
-          
+
+          for (let value of approvalList) {
+            let div = document.createElement("div");
+            let p1 = document.createElement("p");
+            p1.innerText = value.memName;
+
+              if (value.teamNo === 11 && i === 0) {
+                team[i].append(div);
+              } else if (value.teamNo === 12 && i === 1) {
+                team[i].append(div);
+              } else if (value.teamNo === 21 && i === 2) {
+                team[i].append(div);
+              } else if (value.teamNo === 22 && i === 3) {
+                team[i].append(div);
+              } else if (value.teamNo === 31 && i === 4) {
+                team[i].append(div);
+              } else if (value.teamNo === 32 && i === 5) {
+                team[i].append(div);
+              } else if (value.teamNo === 33 && i === 6) {
+                team[i].append(div);
+              } else if (value.teamNo === 34 && i === 7) {
+                team[i].append(div);
+              } else if (value.teamNo === 41 && i === 8) {
+                team[i].append(div);
+              } else if (value.teamNo === 42 && i === 9) {
+                team[i].append(div);
+              } else if (value.teamNo === 43 && i === 10) {
+                team[i].append(div);
+              } else if (value.teamNo === 51 && i === 11) {
+                team[i].append(div);
+              } else if (value.teamNo === 52 && i === 12) {
+                team[i].append(div);
+              }
+
+            div.append(p1);
+          }
+
+          teamCreated[i] = true; // 팀 요소가 생성되었음을 표시합니다.
         });
       }
-      
 
     }
+    
   });
 
   approverModal.style.display = 'block';
