@@ -96,6 +96,16 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 
+	// 공지사항 수정
+	@Override
+	public int updateNotice(Map<String, Object> paramMap) {
+		
+		return dao.updateNotice(paramMap);
+	}
+
+
+	
+	
 
 
 }

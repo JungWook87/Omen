@@ -237,7 +237,7 @@ const checkModalTitle = document.getElementById('check-modal-title');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
 
-
+let globalNoticeNo = 0;
 // 게시글 디테일 창 오픈
 function detailModal(noticeNo) {
 
@@ -258,8 +258,8 @@ function detailModal(noticeNo) {
       checkModalDetailSpan.innerHTML = detail.content;
       checkModalDetail.append(checkModalDetailSpan);
 
+      globalNoticeNo = noticeNo;
       
-      console.log(detail.fileRename);
 
 
 	if (detail.NoticeFileOrigin) {
@@ -275,26 +275,44 @@ function detailModal(noticeNo) {
 
 	}
 
-  // 수정 버튼 눌렀을때 이벤트
-const modifyBtn = document.getElementById ('check-success-btn');
+    // 수정 버튼 눌렀을때 이벤트
+  const modifyBtn = document.getElementById ('check-success-btn');
 
-modifyBtn.addEventListener('click', () => {
-  if (modifyBtn.innerText === "수정") {
-    enableEditing();
-  } else if (modifyBtn.innerText === "수정 완료") {
-    saveChanges();
-  }
-})
+  modifyBtn.addEventListener('click', () => {
+    if (modifyBtn.innerText === "수정") {
+      enableEditing();
+    } else if (modifyBtn.innerText === "수정 완료") {
+      saveChanges();
+    }
+  })
 
   function enableEditing() {
     const inputFieldTitle = document.createElement("input");
     inputFieldTitle.type = "text";
     inputFieldTitle.value = checkModalTitleSpan.textContent;
     checkModalTitle.replaceChild(inputFieldTitle, checkModalTitleSpan);
-  
+
     const inputFieldDetail = document.createElement("textarea");
     inputFieldDetail.value = checkModalDetailSpan.textContent;
-    checkModalDetail.replaceChild(inputFieldDetail, checkModalDetailSpan);
+    inputFieldDetail.name = "modal-detail-textarea";
+    inputFieldDetail.id = "modal-detail-textarea";
+    inputFieldDetail.addEventListener("keydown", handleResizeHeight);
+    inputFieldDetail.addEventListener("keyup", handleResizeHeight);
+    checkModalDetail.innerHTML = '';
+    checkModalDetail.appendChild(inputFieldDetail);
+
+    function handleResizeHeight(event) {
+      const textarea = event.target;
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+      
+      const computedStyles = window.getComputedStyle(textarea);
+      if (textarea.scrollHeight >= parseInt(computedStyles.maxHeight)) {
+        textarea.style.overflow = "scroll";
+      } else {
+        textarea.style.overflow = "hidden";
+      }
+    }
 
     // 수정 버튼을 수정 완료 버튼으로 변경
     modifyBtn.innerText = "수정 완료";
@@ -303,30 +321,55 @@ modifyBtn.addEventListener('click', () => {
     modifyBtn.addEventListener("click", saveChanges);
   }
 
-  
-  
+
+
   function saveChanges() {
     const updatedTitle = checkModalTitle.querySelector("input").value;
     checkModalTitleSpan.textContent = updatedTitle;
-  
+
     const updatedDetail = checkModalDetail.querySelector("textarea").value;
     checkModalDetailSpan.textContent = updatedDetail;
-  
+
     checkModalTitle.replaceChild(checkModalTitleSpan, checkModalTitle.querySelector("input"));
     checkModalDetail.replaceChild(checkModalDetailSpan, checkModalDetail.querySelector("textarea"));
-  
+
+    console.log(updatedTitle);
+    console.log(updatedDetail);
+     
+  $.ajax({
+    url: "updateNotice",
+    data: {
+      "noticeNo" : globalNoticeNo,
+      "title" : updatedTitle,
+      "content" : updatedDetail
+    },
+    type: "POST",
+    success: function(response) {
+      
+      console.log("업데이트 성공");
+      console.log(response);
+    },
+    error: function(req, status, error) {
+      // 업데이트 실패 또는 오류 발생 시의 처리
+      console.log("에러 발생");
+      
+    }
+  });
+
     // 수정 완료 버튼을 다시 수정 버튼으로 변경
     modifyBtn.innerText = "수정";
     modifyBtn.style.width = "60px"
     modifyBtn.removeEventListener("click", saveChanges);
     modifyBtn.addEventListener("click", enableEditing);
+
+    checkModalClose();
   }
 	    
 
       
-      // 모달창 열기
-      checkModal.style.display = 'block';
-      checkModalBody.classList.add('check-modal-open');    
+    // 모달창 열기
+    checkModal.style.display = 'block';
+    checkModalBody.classList.add('check-modal-open');    
     
     },
     error : function(req, status, error){
