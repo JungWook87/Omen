@@ -31,7 +31,7 @@ import java.util.HashMap;
 	import lombok.extern.slf4j.Slf4j;
 	
 	
-	@SessionAttributes({"loginMember"})
+	@SessionAttributes({"loginMember", "cmNo"})
 	@Slf4j
 	@Controller
 	public class ChattingController {
@@ -118,6 +118,8 @@ import java.util.HashMap;
 		
 		List<Message> chatMessageList = service.selectChatMessageList(cmNo);
 		
+		model.addAttribute("cmNo", cmNo);
+		
 		log.debug(chatMessageList + "");
 		
 		return new Gson().toJson(chatMessageList);	
@@ -166,9 +168,6 @@ import java.util.HashMap;
 		paramMap.put("inviteName", name);
 		paramMap.put("createMemberName", memberName);
 
-		
-		
-		
 		
 		join.setMemNo(memNo);
 		

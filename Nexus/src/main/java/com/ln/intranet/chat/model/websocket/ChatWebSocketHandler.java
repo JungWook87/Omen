@@ -3,6 +3,7 @@ package com.ln.intranet.chat.model.websocket;
 import java.sql.Date;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,8 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		System.out.println(chatMessage);
 		
 		
+		
+		
 		int result = service.insertMessage(chatMessage);
 			
 		if(result > 0) {
@@ -65,9 +68,13 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 			// -> Set<WebSocketSession>에서 같은방 클라이언트만 골라내기
 					
 			for(WebSocketSession s : sessions) {
+				
+				Map<String, Object> attributes = session.getAttributes();
+				System.out.println(attributes);
+				
 					
 				// WebSocketSession == HttpSession(로그인정보, 채팅방번호)을 가로챈 것
-				int chatRoomNo = (Integer)s.getAttributes().get("chatRoomNo");
+				int chatRoomNo = (Integer)s.getAttributes().get("cmNo");
 					
 				// WebSocketSession에 담겨있는 채팅방번호와
 				// 메시지에 담겨있는 채팅방 번호가 같을경우
