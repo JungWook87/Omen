@@ -183,9 +183,6 @@
 
   </div>
 
-  <jsp:include page="/WEB-INF/views/work/write-approval.jsp"/>
-  <jsp:include page="/WEB-INF/views/work/checked-approval.jsp"/>
-  
 <!-------------------------------------------------- 컨텐츠 내용 끝 --------------------------------------------------->
     
     <!-- 채팅창 -->
@@ -196,6 +193,11 @@
     </div>
 
   </section>
+
+
+
+  <jsp:include page="/WEB-INF/views/work/write-approval.jsp"/>
+  <jsp:include page="/WEB-INF/views/work/checked-approval.jsp"/>
 
 </body>
 
