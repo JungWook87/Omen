@@ -128,22 +128,22 @@
        
 
         <!-- 버튼 (kjw) -->
-        <c:choose>
-          <c:when test="${flag == 1}">
-            <div class="work-inbox-submit-btn">
-              <button type="button" id="checked-cancle-btn" onclick="checkedModalClose()" >취소</button>
-              <button type="submit" id="checked-reject-btn" name="reject">반려</button>
-              <button type="submit" id="checked-approve-btn" name="approve">승인</button>
-            </div>
-          </c:when>
-          <c:otherwise>
-            <div class="work-send-submit-btn">
-              <button type="button" id="checked-edit-btn">수정</button>
-              <button type="button" id="checked-cancell-btn">결재취소</button>
-              <button id="checked-success-btn" type="button" onclick="checkedModalClose()">확인</button>
-            </div>
-          </c:otherwise>
-        </c:choose>
+        <c:choose>
+          <c:when test="${flag == 1}">
+            <div class="work-inbox-submit-btn">
+              <button type="button" id="checked-cancle-btn" onclick="checkedModalClose()" >취소</button>
+              <button type="submit" id="checked-reject-btn" name="reject">반려</button>
+              <button type="submit" id="checked-approve-btn" name="approve">승인</button>
+            </div>
+          </c:when>
+          <c:otherwise>
+          <div class="work-send-submit-btn">
+            <button type="button" id="checked-edit-btn">수정</button>
+            <button type="button" id="checked-cancell-btn">결재취소</button>
+            <button id="checked-success-btn" type="button" onclick="checkedModalClose()">확인</button>
+          </div>
+          </c:otherwise>
+        </c:choose>
 
       </form>
 

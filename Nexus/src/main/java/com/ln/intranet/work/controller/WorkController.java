@@ -51,10 +51,9 @@ public class WorkController {
 		
 		if(ra != null) {
 			messageFlag = (String)model.getAttribute("message");
+			System.out.println("messageFlag : " + messageFlag);
+			model.addAttribute("messageFlag", messageFlag);
 		}
-		
-		model.addAttribute("messageFlag", messageFlag);
-		
 		
 		return "/work/work-send";
 	}
@@ -141,8 +140,8 @@ public class WorkController {
 		int result = service.workWrite(map, uploadFile, req);
 		
 		String message = "";
-		if(result != 0) message = "�꽦怨�";
-		else message = "�떎�뙣";
+		if(result != 0) message = "성공";
+		else message = "실패";
 		
 		ra.addFlashAttribute("message", message);
 		
