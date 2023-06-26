@@ -86,6 +86,7 @@ function selectAll() {
     url: "selectAll",
     dataType : "JSON",
     success : function(memList) {
+      console.log(memList);
       for(let item of memList) {
 
         const tr = document.createElement('tr');
@@ -116,6 +117,12 @@ function selectAll() {
         
         const address = document.createElement('td');
         address.innerText = item.memAddress;
+        address.classList.add('data-tooltip');
+        address.setAttribute('data-tooltip', item.memAddress);
+        address.style.maxWidth = '200px'; // 주소가 표시될 최대 너비
+        address.style.overflow = 'hidden';
+        address.style.textOverflow = 'ellipsis'; // 말줄임 표시
+        address.style.whiteSpace = 'nowrap'; // 텍스트 줄바꿈 방지
         
         const email  = document.createElement('td');
         email.innerText = item.memEmail;
@@ -127,6 +134,10 @@ function selectAll() {
         departureDate.innerText = item.departureDate;
 
         tr.append(memNo, memId, memName, jobName, deptName, teamName, memSSN, tel, address, email, enrollDate, departureDate)
+
+      
+       
+
 
         document.querySelector('tbody').append(tr);
       }

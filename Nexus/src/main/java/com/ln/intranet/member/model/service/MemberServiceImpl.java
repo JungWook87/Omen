@@ -1,5 +1,6 @@
 package com.ln.intranet.member.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.ln.intranet.common.model.vo.Pagination;
 import com.ln.intranet.member.model.dao.MemberDAO;
 import com.ln.intranet.member.model.vo.Member;
+import com.ln.intranet.notice.model.vo.Notice;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -124,6 +126,8 @@ public class MemberServiceImpl implements MemberService {
 
 		return dao.selectOne(paramMap);
 	}
+
+   
 	
 	
 

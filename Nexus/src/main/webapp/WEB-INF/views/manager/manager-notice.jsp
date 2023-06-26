@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+  <c:set var="pagination" value="${map.pagination}" />
+  <c:set var="boardList" value="${map.boardList}" />
+  
     <!DOCTYPE html>
     <html lang="en">
 
@@ -76,13 +79,13 @@
               <div id="modalWrap">
                 <div class="modalBody">
                   <span id="closeBtn">
-                    <img src="../images/Xbtn.png" alt="">
+                    <img src="${contextPath}/resources/images/Xbtn.png" alt="">
                   </span>
                   <h1>공지사항</h1>
                   <!-- 선1 -->
                   <div class="modal-line"></div>
 
-                  <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
+                  <form action="writeNotice" method="post" enctype="multipart/form-data">
                   <!-- 제목 -->
                   <div class="modal-title">
                     <p>제목</p>
@@ -109,7 +112,7 @@
                     <button type="reset" id="cancell-btn">취소</button>
                     <button id="success-btn">확인</button>
                   </div>
-                  <!-- </form> -->
+                  </form>
                 </div>
               </div>
 
@@ -134,32 +137,85 @@
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>공지사항입니다</td>
-                    <td>2023년 6월 4일(일)</td>
-                  </tr>
 
+                  <c:choose>
+                    <c:when test="${empty boardList}">
+                        <tr>
+                            <th colspan="4">게시글이 존재하지 않습니다.</th>
+                        </tr>
+                    </c:when>
+    
+                    <c:otherwise>
+                        <c:forEach var="board" items="${boardList}">
+                             <tr onclick="detailModal(${board.noticeNo})">
+                                <td>${board.noticeNo}</td>
+                                <td>${board.title}</td>
+                                <td>${board.createDate}</td>
+                            </tr>
+                        </c:forEach>
+    
+                    </c:otherwise>
+                  </c:choose>
 
                 </tbody>
               </table>
             </div>
+
+            <div class="pagination-area">
+
+              <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
+              <c:set var="url" value="${boardCode}?cp="/>
+    
+    
+              <ul class="pagination">
+                  <!-- 첫 페이지로 이동 -->
+                  <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
+    
+                  <!-- 이전 목록 마지막 번호로 이동 -->
+                  <li><a href="${url}${pagination.prevPage}${sURL}">&lt;</a></li>
+    
+                  <!-- 범위가 정해진 일반 for문 사용 -->
+                  <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+    
+                      <c:choose>
+                          <c:when test="${i == pagination.currentPage}">
+                              <li><a class="current">${i}</a></li>
+                          </c:when>
+    
+                          <c:otherwise>
+                              <li><a href="${url}${i}${sURL}">${i}</a></li>        
+                          </c:otherwise>
+                      </c:choose>
+    
+                  </c:forEach>
+                  
+                  <!-- 다음 목록 시작 번호로 이동 -->
+                  <li><a href="${url}${pagination.nextPage}${sURL}">&gt;</a></li>
+    
+                  <!-- 끝 페이지로 이동 -->
+                  <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+    
+              </ul>
+            </div>
+
+
+
           </div>
 
           <!-- 사용자가 작성한 공지사항 열기 -->
           <div id="check-modalWrap">
             <div class="check-modalBody">
               <span id="check-closeBtn">
-                <img src="../images/Xbtn.png" alt="">
+                <img src="${contextPath}/resources/images/Xbtn.png" alt="">
               </span>
               <h1>공지사항</h1>
               <!-- 선1 -->
               <div class="modal-line"></div>
 
               <!-- 제목 -->
-              <div class="check-modal-title">
+              <div>
                 <p>제목</p>
-                <input type="text" readonly>
+                <div class="check-modal-title" id="check-modal-title"></div>
               </div>
               <!-- 내용 -->
               <div>

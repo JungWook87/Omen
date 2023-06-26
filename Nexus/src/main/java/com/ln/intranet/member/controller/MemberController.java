@@ -23,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.ln.intranet.member.model.service.MemberService;
 import com.ln.intranet.member.model.vo.Member;
+import com.ln.intranet.notice.model.service.NoticeService;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 @Controller
 @RequestMapping("/member")
@@ -33,6 +35,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private NoticeService nService;
 	
 	
 	// 로그인 컨트롤러
@@ -145,13 +150,35 @@ public class MemberController {
 	
 	// 공지사항 화면 전환
 	@GetMapping("notice")
-	public String managerNotice() {
+	public String managerNotice(@RequestParam(value="cp",required=false, defaultValue="1") Integer cp,
+			Model model) {
 		
+
+		Map<String,Object> map = null;	
+		
+		map = nService.selectPublicNoticeList(cp);
+		
+		
+		model.addAttribute("map", map);
+
 
 		return  "manager/manager-notice";
 
 	}
 	
+	// 공지사항 디테일 폼
+	@ResponseBody
+	@GetMapping("noticeDetail")
+	public String noticeDetail(int noticeNo) {
+		  
+		NoticeDetail detail = nService.noticeDetail(noticeNo);
+		  
+		detail.setNoticeNo(noticeNo);
+		  
+		return new Gson().toJson(detail);
+				 
+    }
+
 	
 	// 직원 조회 화면 전환
 		@GetMapping("memberCheck")
@@ -299,5 +326,7 @@ public class MemberController {
 		return new Gson().toJson(selectMem);
 	}
 	
+	
+	 
 	
 }

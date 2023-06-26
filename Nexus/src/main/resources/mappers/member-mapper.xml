@@ -141,4 +141,6 @@
 		WHERE MEM_NAME = #{memName}
 		ORDER BY JOB_NO 
 	</select>
+	
+	
 </mapper>
