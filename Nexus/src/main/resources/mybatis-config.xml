@@ -16,7 +16,6 @@
 		<typeAlias type="com.ln.intranet.notice.model.vo.NoticeDetail" alias="noticeDetail"/>
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkGeneral" alias="workGeneral"/>
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkDetail" alias="workDetail"/>
-		<typeAlias type="com.ln.intranet.work.model.vo.Project" alias="project"/>
 		<typeAlias type="com.ln.intranet.work.model.vo.WorkGeneralList" alias="workGeneralList"/>
 		<typeAlias type="com.ln.intranet.work.model.vo.ApprovalMember" alias="approvalMember"/>
 		<typeAlias type="com.ln.intranet.survey.model.vo.Survey" alias="survey"/>

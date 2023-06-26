@@ -70,7 +70,7 @@ window.addEventListener('click', function(event) {
   }
 });
 
-
+let globalCmNo;
 
 // 채팅 버튼 눌렀을 때 이전 채팅방이 보임
 function getChattingList() {
@@ -88,6 +88,7 @@ function getChattingList() {
           const newContact = document.createElement('div');
           newContact.classList.add('contact', 'contact-hover');
           newContact.setAttribute('data-cmno', room.cmNo);
+           globalCmNo = room.cmNo; 
           newContact.innerHTML = `
             <div>
               <div class="name">${room.inviteName}</div>
@@ -719,6 +720,7 @@ function handleKeyPress(event) {
 //인풋창에 글자를 입력하고 엔터를 눌렀을때 이벤트
 function sendMessage(sendWebMessage) {
   if (event.keyCode === 13 && chatVal.value.trim() !== '') {
+  
     const message = document.createElement('div');
     message.className = 'message parker';
     const time = getTimeString();
@@ -752,8 +754,6 @@ function sendMessage(sendWebMessage) {
 }
 
 
-
-// 채팅 보내기 함수
 function sendWebMessage(loginMemberInfo) {
   const chatValue = document.querySelector('#chat-input');
 
@@ -766,7 +766,7 @@ function sendWebMessage(loginMemberInfo) {
       console.log(chatValue.value);
 
       const chatMessage = {
-        "cmNo": cmNo,
+        "cmNo": globalCmNo,
         "memNo": loginMemberInfo.memNo,
         "memberNick": loginMemberInfo.memName,
         "mContent": chatValue.value
@@ -787,6 +787,7 @@ function sendWebMessage(loginMemberInfo) {
   });
 }
 
+
 // 인풋창 옆에 종이비행기 버튼 이벤트
 const chatSubmit = document.getElementById("chat-submit");
 
@@ -803,7 +804,6 @@ chatSubmit.addEventListener('click', () => {
     content.textContent = chatVal.value;
     message.appendChild(content);
     chat.appendChild(message);
-    chatVal.value = '';
 
     // 글자 수에 따라 .long-message 클래스 추가
     if (content.offsetHeight < content.scrollHeight) {
