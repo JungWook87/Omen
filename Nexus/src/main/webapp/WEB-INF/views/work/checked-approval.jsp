@@ -73,25 +73,7 @@
               
             </thead>
 
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>류정훈</td>
-                <td>승인</td>
-                <td>결재자 / 팀(전체)</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>이동준</td>
-                <td>승인</td>
-                <td>결재자 / 팀(전체)</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>김정욱</td>
-                <td>승인</td>
-                <td>결재자 / 팀(전체)</td>
-              </tr>
+            <tbody id="app_list">
             </tbody>
           </table>
 
@@ -145,12 +127,23 @@
         </div>
        
 
-        <!-- 버튼 -->
-        <div class="work-submit-reset-btns">
-          <button type="button" id="checked-edit-btn">수정</button>
-          <button type="button" id="checked-cancell-btn">결재취소</button>
-          <button id="checked-success-btn" type="button" onclick="checkedModalClose()">확인</button>
-        </div>
+        <!-- 버튼 (kjw) -->
+        <c:choose>
+          <c:when test="${flag == 1}">
+            <div class="work-inbox-submit-btn">
+              <button type="button" id="checked-cancle-btn" onclick="checkedModalClose()" >취소</button>
+              <button type="submit" id="checked-reject-btn" name="reject">반려</button>
+              <button type="submit" id="checked-approve-btn" name="approve">승인</button>
+            </div>
+          </c:when>
+          <c:otherwise>
+            <div class="work-send-submit-btn">
+              <button type="button" id="checked-edit-btn">수정</button>
+              <button type="button" id="checked-cancell-btn">결재취소</button>
+              <button id="checked-success-btn" type="button" onclick="checkedModalClose()">확인</button>
+            </div>
+          </c:otherwise>
+        </c:choose>
 
       </form>
 

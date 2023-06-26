@@ -36,7 +36,7 @@ public class WorkController {
 	WorkService service;
 	
 	
-	// 결재 상신함 페이지 진입
+	// 寃곗옱 �긽�떊�븿 �럹�씠吏� 吏꾩엯
 	@GetMapping("/workSend")
 	public String workSend(Model model,
 			@ModelAttribute("loginMember") Member loginMember,
@@ -44,17 +44,14 @@ public class WorkController {
 		
 		
 		List<WorkGeneralList> list = service.workSend(loginMember.getMemNo());
-		List<ApprovalMember> approvalMemberList = service.approvalMember();
 		
 		model.addAttribute("list", list);
-		model.addAttribute("approvalMemberList", approvalMemberList);
 		
 		String messageFlag = null;
 		
 		if(ra != null) {
 			messageFlag = (String)model.getAttribute("message");
 		}
-		
 		
 		model.addAttribute("messageFlag", messageFlag);
 		
@@ -63,7 +60,7 @@ public class WorkController {
 	}
 	
 	
-	// 결재 상신함 페이지 일정 지정
+	// 寃곗옱 �긽�떊�븿 �럹�씠吏� �씪�젙 吏��젙
 	@ResponseBody
 	@GetMapping("/workSendSelectDate")
 	public String workSendSelectDate(Model model,
@@ -82,7 +79,7 @@ public class WorkController {
 		return gson.toJson(list);
 	}
 	
-	// 결재 디테일 조회
+	// 寃곗옱 �뵒�뀒�씪 議고쉶
 	@ResponseBody
 	@GetMapping("/detail")
 	public String detailSelect(@RequestParam("workNo") int workNo) {
@@ -94,7 +91,15 @@ public class WorkController {
 		return gson.toJson(detailSelect);
 	}
 	
-	// 결재 취소
+	// 반려 / 승인
+	@PostMapping("/clickApproval")
+	public String clickApproval(@RequestParam Map<String, Object> map,
+								Model model) {
+		System.out.println(map);
+		return "";
+	}
+	
+	// 寃곗옱 痍⑥냼
 	@ResponseBody
 	@GetMapping("/workCancle")
 	public int workCancle(@RequestParam("workNo") int workNo) {
@@ -109,7 +114,7 @@ public class WorkController {
 	
 	
 	
-	// 결재 상신 작성(일반결재)
+	// 寃곗옱 �긽�떊 �옉�꽦(�씪諛섍껐�옱)
 	@PostMapping("/write")
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,
 			@RequestParam("file-uploads") MultipartFile uploadFile,
@@ -122,9 +127,9 @@ public class WorkController {
 		String workTypeWord = map.get("workTypeWord").toString();
 		int typeNo = 0;
 		
-		// type == 결재 타입(일반, 연차, 출장 ..)
-		// 연차 attnType = 4 // workType = 2
-		// 출장 attnType = 5 // workType = 3 
+		// type == 寃곗옱 ���엯(�씪諛�, �뿰李�, 異쒖옣 ..)
+		// �뿰李� attnType = 4 // workType = 2
+		// 異쒖옣 attnType = 5 // workType = 3 
 		if(workTypeWord.equals("normal-check")) typeNo = 1;
 		else if(workTypeWord.equals("vacation")) typeNo = 2;
 		else if(workTypeWord.equals("business-trip")) typeNo = 3;
@@ -136,15 +141,15 @@ public class WorkController {
 		int result = service.workWrite(map, uploadFile, req);
 		
 		String message = "";
-		if(result != 0) message = "성공";
-		else message = "실패";
+		if(result != 0) message = "�꽦怨�";
+		else message = "�떎�뙣";
 		
 		ra.addFlashAttribute("message", message);
 		
 		return "redirect:workSend";
 	}
 	
-	// 결재자 모달창
+	// 寃곗옱�옄 紐⑤떖李�
 	@ResponseBody
 	@GetMapping("/approvalMember")
 	public String approvalMember() {
@@ -157,7 +162,7 @@ public class WorkController {
 	}
 	
 	
-	// 결재 수신함 (결재할것) 페이지 진입
+	// 寃곗옱 �닔�떊�븿 (寃곗옱�븷寃�) �럹�씠吏� 吏꾩엯
 	@GetMapping("/workInbox")
 	public String workInbox(Model model,
 			@ModelAttribute("loginMember") Member loginMember) {
@@ -169,7 +174,7 @@ public class WorkController {
 		return "/work/work-inbox(1)";
 	}
 
-	// 결재 수신함 (결재진행중) 페이지 진입
+	// 寃곗옱 �닔�떊�븿 (寃곗옱吏꾪뻾以�) �럹�씠吏� 吏꾩엯
 	@GetMapping("/workInboxIng")
 	public String workIng(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
@@ -182,7 +187,7 @@ public class WorkController {
 		return "/work/work-inbox-ing(2)";
 	}
 	
-	// 결재 수신함 (결재완료) 페이지 진입
+	// 寃곗옱 �닔�떊�븿 (寃곗옱�셿猷�) �럹�씠吏� 吏꾩엯
 	@GetMapping("/workInboxEnd")
 	public String workEnd(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
@@ -194,7 +199,7 @@ public class WorkController {
 		return "/work/work-inobx-end(3)";
 	}
 	
-	// 결재 임시저장 페이지 진입
+	// 寃곗옱 �엫�떆���옣 �럹�씠吏� 吏꾩엯
 	@GetMapping("/workTemp")
 	public String workTemp(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
@@ -206,7 +211,7 @@ public class WorkController {
 		return "/work/work-temp";
 	}
 	
-	// 결재 템플릿 페이지 진입
+	// 寃곗옱 �뀥�뵆由� �럹�씠吏� 吏꾩엯
 	@GetMapping("/workTemplate")
 	public String workTemplate(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
@@ -223,7 +228,7 @@ public class WorkController {
 	
 
 	// ----------------------------------------------------------------------------------------------
-	// ----------------------------------       프로젝트      -----------------------------------------------
+	// ----------------------------------       �봽濡쒖젥�듃      -----------------------------------------------
 	// ----------------------------------------------------------------------------------------------	
 	
 	

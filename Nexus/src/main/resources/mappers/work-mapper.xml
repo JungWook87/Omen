@@ -94,21 +94,11 @@
 		WHERE WORK_NO = ${workNo}
 	</select>
 	
+	<!-- 결재취소 -->
 	<delete id="workCancle" parameterType="_int">
 		DELETE FROM "WORK" WHERE WORK_NO = ${workNo}
 	</delete>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	<!-- 결재 입력하기 -->
 	<insert id="workWrite" useGeneratedKeys="true"> 
 		<selectKey keyProperty="workNo" resultType="_int" order="BEFORE">
@@ -146,12 +136,14 @@
 		FROM "MEMBER" 
 	</select>
 	
+	<!-- 수신함 -->
 	<select id="workInbox" resultMap="workGeneralList_rm">
 		SELECT WORK_NO, TYPE_NO, TITLE , SEND_DATE ,WORK_STATE , OPINION , TYPE_NAME, FILE_RENAME 
 		FROM "WORK"
 		LEFT JOIN WORK_TYPE USING(TYPE_NO)
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
 		WHERE NEXT = ${memNo}
+		AND WORK_STATE = '진행중'
 		ORDER BY SEND_DATE DESC
 	</select>
 	
