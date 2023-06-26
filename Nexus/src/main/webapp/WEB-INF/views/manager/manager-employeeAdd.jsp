@@ -40,7 +40,9 @@
           <ul class="employee-ul">
             <li><a href="${contextPath}/member/memberAdd"><span>추가</span> </a></li>
             <li><a href="${contextPath}/member/memberUpdate"><span>정보 수정</span> </a></li>
-            <li><a href="${contextPath}/member/memberDelete"><span>삭제</span> </a></li>
+            <li><a href="${contextPath}/member/memberDelete"><span>퇴사</span> </a></li>
+            <li><a href="${contextPath}/member/memberCheck"><span>조회</span> </a></li>
+
           </ul>
           <h1>공지사항</h1>
           <ul class="notice-ul">
@@ -64,8 +66,8 @@
           <div class="content-all-bottom-area">
 
             <!-- 직원 추가 -->
-            <form action="signUp" method="post">
-              
+            <form action="signUp" method="post" onsubmit="return memberAddCheck()">
+
               <!-- 이름 -->
               <div class="employee-area-container">
                 <div class="employee-area">
@@ -122,7 +124,7 @@
                 <label>상세주소</label>
                 <span></span>
               </div>
-             
+
               <!-- 직책선택-->
               <div class="employee-rank">
                 <p>직책</p>
@@ -178,12 +180,12 @@
         </div>
       </section>
 
-      
+
 
       <script src="${contextPath}/resources/js/manager/manager-employeeAdd.js"></script>
       <script src="${contextPath}/resources/js/component.js"></script>
 
-      
+
     </body>
 
     </html>

@@ -1,3 +1,5 @@
+console.log("js loaded");
+
 // 모달창 스타일
 const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap');
@@ -7,14 +9,13 @@ const cancellBtn = document.getElementById('cancell-btn');
 const noticeTitle = document.querySelector('.modal-title > input');
 const noticeContent = document.querySelector('.modal-detail > textarea');
 
+
+
+
 // 공지사항 버튼 이벤트
 btn.addEventListener("click", () => {
-  // 초기화
   noticeTitle.value = '';
   noticeContent.value = '';
-  if(preview.firstChild != null) {
-    preview.firstChild.remove();
-  }
 
   modal.style.display = 'block';
   modalBody.classList.add('modal-open');
@@ -64,7 +65,6 @@ function handleResizeHeight(obj) {
   const computedStyles = window.getComputedStyle(obj);
   if (obj.scrollHeight >= parseInt(computedStyles.maxHeight)) {
     obj.style.overflow = "scroll";
-    obj.style.overflowX = "hidden";
   } else {
     obj.style.overflow = "hidden";
   }
@@ -127,6 +127,7 @@ function updateImageDisplay(event) {
 }
 
 const fileTypes = [
+  // 이미지 파일
   "image/apng",
   "image/bmp",
   "image/gif",
@@ -136,8 +137,39 @@ const fileTypes = [
   "image/svg+xml",
   "image/tiff",
   "image/webp",
-  "image/x-icon"
+  "image/x-icon",
+  
+  // 텍스트 파일
+  "text/plain",
+  "text/html",
+  "text/css",
+  "text/javascript",
+  
+  // 음악 파일
+  "audio/mpeg",
+  "audio/ogg",
+  "audio/wav",
+  
+  // 비디오 파일
+  "video/mpeg",
+  "video/mp4",
+  "video/quicktime",
+  
+  // 문서 파일
+  "application/pdf",
+  "application/msword",
+  "application/vnd.ms-excel",
+  "application/vnd.ms-powerpoint",
+  
+  // 압축 파일
+  "application/zip",
+  "application/x-rar-compressed",
+  "application/x-tar",
+  
+  // 기타 파일 유형
+  "application/octet-stream"
 ];
+
 
 function validFileType(file) {
   return fileTypes.includes(file.type);
@@ -169,9 +201,9 @@ const successBtn = document.getElementById('success-btn');
 successBtn.addEventListener("click", () => {
 
   if(noticeTitle.value == "") {
-    Swal.fire('제목을 입력해 주세요','','error');
+    Swal.fire('제목을 입력해 주세요');
   } else if(noticeContent.value == '') {
-    Swal.fire('내용을 입력해 주세요','','warning')
+    Swal.fire('내용을 입력해 주세요')
   } else {
     
     const tr = document.createElement('tr');
@@ -201,34 +233,108 @@ const checkModal = document.getElementById('check-modalWrap');
 const checkCloseBtn = document.getElementById('check-closeBtn');
 const checkModalBody = document.querySelector('.check-modalBody');
 const checkCancellBtn = document.getElementById('check-cancell-btn');
-const checkModalTitle = document.querySelector('.check-modal-title > input');
+const checkModalTitle = document.getElementById('check-modal-title');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
 
 
-// 수정 모달창 오픈
-function modifyModal() {
-  
-  // 제목 밸류값 들고오기
-  checkModalTitle.value = noticeTitle.value;
+// 게시글 디테일 창 오픈
+function detailModal(noticeNo) {
 
-  // textarea 밸류값 들고오기
-  checkModalDetail.innerHTML = "";
-  const checkModalDetailLines = noticeContent.value.split("\n");
-  let resultString = "<p>";
+  console.log(noticeNo);
+
+  $.ajax({
+    url : "noticeDetail",
+    data : {"noticeNo" : noticeNo},
+    type : "GET",
+    dataType : "JSON",
+    success : function(detail){
+
+      const checkModalTitleSpan = document.createElement("span");
+      checkModalTitleSpan.innerText = detail.title;
+      checkModalTitle.append(checkModalTitleSpan);
+
+      const checkModalDetailSpan = document.createElement("span");
+      checkModalDetailSpan.innerHTML = detail.content;
+      checkModalDetail.append(checkModalDetailSpan);
+
+      
+      console.log(detail.fileRename);
+
+
+	if (detail.NoticeFileOrigin) {
+	  const checkPreviewA = document.createElement("a");
+	  checkPreviewA.innerText = detail.NoticeFileOrigin;
+	  checkPreviewA.href = "/intranet" + detail.NoticeFileRename;
+	  checkPreviewA.download = detail.boardFileOrigin;
+	  checkPreview.append(checkPreviewA); 
+	}else{
+		const checkPreviewA = document.createElement("p");
+ 		 checkPreviewA.innerText = "파일 없음";
+ 		 checkPreview.append(checkPreviewA);
+
+	}
+
+  // 수정 버튼 눌렀을때 이벤트
+const modifyBtn = document.getElementById ('check-success-btn');
+
+modifyBtn.addEventListener('click', () => {
+  if (modifyBtn.innerText === "수정") {
+    enableEditing();
+  } else if (modifyBtn.innerText === "수정 완료") {
+    saveChanges();
+  }
+})
+
+  function enableEditing() {
+    const inputFieldTitle = document.createElement("input");
+    inputFieldTitle.type = "text";
+    inputFieldTitle.value = checkModalTitleSpan.textContent;
+    checkModalTitle.replaceChild(inputFieldTitle, checkModalTitleSpan);
   
-  for (let i = 0; i < checkModalDetailLines.length; i++) {
-    resultString += checkModalDetailLines[i] + "<br>";
+    const inputFieldDetail = document.createElement("textarea");
+    inputFieldDetail.value = checkModalDetailSpan.textContent;
+    checkModalDetail.replaceChild(inputFieldDetail, checkModalDetailSpan);
+
+    // 수정 버튼을 수정 완료 버튼으로 변경
+    modifyBtn.innerText = "수정 완료";
+    modifyBtn.style.width = "80px"
+    modifyBtn.removeEventListener("click", enableEditing);
+    modifyBtn.addEventListener("click", saveChanges);
   }
 
-  resultString += "</p>";
+  
+  
+  function saveChanges() {
+    const updatedTitle = checkModalTitle.querySelector("input").value;
+    checkModalTitleSpan.textContent = updatedTitle;
+  
+    const updatedDetail = checkModalDetail.querySelector("textarea").value;
+    checkModalDetailSpan.textContent = updatedDetail;
+  
+    checkModalTitle.replaceChild(checkModalTitleSpan, checkModalTitle.querySelector("input"));
+    checkModalDetail.replaceChild(checkModalDetailSpan, checkModalDetail.querySelector("textarea"));
+  
+    // 수정 완료 버튼을 다시 수정 버튼으로 변경
+    modifyBtn.innerText = "수정";
+    modifyBtn.style.width = "60px"
+    modifyBtn.removeEventListener("click", saveChanges);
+    modifyBtn.addEventListener("click", enableEditing);
+  }
+	    
 
-  checkModalDetail.innerHTML = resultString;
-
-
-  // 모달창 열기
-  checkModal.style.display = 'block';
-  checkModalBody.classList.add('check-modal-open');
+      
+      // 모달창 열기
+      checkModal.style.display = 'block';
+      checkModalBody.classList.add('check-modal-open');    
+    
+    },
+    error : function(req, status, error){
+      console.log("에러 발생");
+      console.log(req.responseText);
+  }
+  })
+  
 
 }
 
@@ -236,6 +342,16 @@ function modifyModal() {
 // 수정 모달창 닫는 함수
 function checkModalClose() {
   checkModalBody.classList.add('check-modal-close');
+
+
+   checkModalTitle.innerHTML = '';
+   checkModalDetail.innerHTML = '';
+   checkPreview.innerHTML = '';
+   
+
+  const modifyBtn = document.getElementById('check-success-btn');
+  modifyBtn.innerText = "수정";
+  modifyBtn.style.width = "60px"
   
   setTimeout(() => {
     checkModal.style.display = 'none';
@@ -259,10 +375,17 @@ $(window).click(function(event) {
   }
 });
 
+
+
 // 취소버튼 이벤트
 checkCancellBtn.addEventListener("click", () => {
   checkModalClose();
 });
+
+
+
+
+
 
 
 

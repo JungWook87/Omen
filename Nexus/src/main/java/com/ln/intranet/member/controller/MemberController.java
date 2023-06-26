@@ -1,15 +1,14 @@
 package com.ln.intranet.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.aspectj.weaver.BCException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.ln.intranet.member.model.service.MemberService;
 import com.ln.intranet.member.model.vo.Member;
+import com.ln.intranet.notice.model.service.NoticeService;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 @Controller
 @RequestMapping("/member")
@@ -34,6 +35,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private NoticeService nService;
 	
 	
 	// 로그인 컨트롤러
@@ -146,12 +150,46 @@ public class MemberController {
 	
 	// 공지사항 화면 전환
 	@GetMapping("notice")
-	public String managerNotice() {
+	public String managerNotice(@RequestParam(value="cp",required=false, defaultValue="1") Integer cp,
+			Model model) {
 		
+
+		Map<String,Object> map = null;	
+		
+		map = nService.selectPublicNoticeList(cp);
+		
+		
+		model.addAttribute("map", map);
+
 
 		return  "manager/manager-notice";
 
 	}
+	
+	// 공지사항 디테일 폼
+	@ResponseBody
+	@GetMapping("noticeDetail")
+	public String noticeDetail(int noticeNo) {
+		  
+		NoticeDetail detail = nService.noticeDetail(noticeNo);
+		  
+		detail.setNoticeNo(noticeNo);
+		  
+		return new Gson().toJson(detail);
+				 
+    }
+
+	
+	// 직원 조회 화면 전환
+		@GetMapping("memberCheck")
+		public String managerCheck() {
+		
+			return "manager/manager-employeeCheck";
+		}
+	
+	
+	
+	
 	
 	// 직원 추가 
 	@PostMapping("signUp")
@@ -162,6 +200,8 @@ public class MemberController {
 		
 		int result = service.signUp(member);
 		
+//		String address = memberAddress[0]; // 주소 필드 값
+//	    String detailAddress = memberAddress[1]; // 상세주소 필드 값
 		
 		String message = null;
 		
@@ -184,9 +224,109 @@ public class MemberController {
 	public String searchMember(@RequestParam("search") int memNo) {
 		Member searchedMem = service.searchMember(memNo);
 		
+		
+		
 		Gson gson = new Gson();
 		
 		return gson.toJson(searchedMem);
 	}
+	
+	
+	// 직원 정보 수정
+	@PostMapping("update")
+	public String update(@RequestParam("memNo") int memNo,
+						@RequestParam Map<String, Object> paramMap,
+						@RequestParam("memAddress") String[] updateAddress,
+						RedirectAttributes ra) {
+	    
+		String address = updateAddress[0]; // 주소 필드 값
+	    String detailAddress = updateAddress[1]; // 상세주소 필드 값
+
+	    String memAddress = address + "," + detailAddress; // 주소와 상세주소 조합
+
+	    paramMap.put("memAddress", memAddress); // paramMap에 memAddress 추가
+	    paramMap.put("memNo", memNo); // paramMap에 memNo 추가
+		
+	    int result = service.update(paramMap);
+		
+		logger.info("paramMap: {}", paramMap);
+		
+		String message = null;
+		
+		if(result > 0) {
+			message = "직원정보가 수정 되었습니다.";
+		} else {
+			message = "정보 수정 실패";
+
+		}
+		
+		
+		ra.addFlashAttribute("message", message);
+		return "redirect:/member/memberUpdate";
+	}
+	
+	
+	// 직원 퇴사 처리
+	@PostMapping("delete")
+	@ResponseBody
+	public String delete(@RequestParam("memNo") int memNo) {
+		
+		int result = service.delete(memNo);
+		
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
+	
+	// 퇴사할 직원 조회
+	@PostMapping("deleteSearch")
+	@ResponseBody
+	public String deleteSearch(@RequestParam("memNo") int memNo) {
+		
+		Member memSearch = service.deleteSearch(memNo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(memSearch);
+	}
+	
+	
+
+	// 직원 전체 조회
+	@GetMapping("selectAll")
+	@ResponseBody
+	public String managerEmployeeCheck() {
+	
+		List<Member> memList = service.selectAll();
+		
+		
+		
+		return new Gson().toJson(memList);
+	}
+	
+	// 검색한 직원 조회
+	@GetMapping("selectMem")
+	@ResponseBody
+	public String selectOne(@RequestParam Map<String, Object> paramMap,
+							RedirectAttributes ra) {
+		
+		List<Member> selectMem = service.selectOne(paramMap);
+		
+		String message = null;
+		if (selectMem.isEmpty()) {
+	        message = "검색 결과가 없습니다.";
+	        ra.addFlashAttribute("message", message);
+		}
+		
+		logger.debug("selectMem: " + selectMem);
+		logger.debug("paramMap: " + paramMap);
+		
+		
+		return new Gson().toJson(selectMem);
+	}
+	
+	
+	 
 	
 }

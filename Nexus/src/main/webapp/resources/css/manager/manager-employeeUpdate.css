@@ -323,7 +323,7 @@ form .employee-area-container:nth-child(5)>div:nth-child(1) {
 .employee-search {
   position: relative;
   width: 30rem;
-  
+
   margin-top: 100px;
   margin-left: 50px;
 
@@ -369,9 +369,18 @@ form .employee-area-container:nth-child(5)>div:nth-child(1) {
 
 #dept {
   width: 8rem;
-  
+
 }
 
-#dept-option{
+#dept-option {
   width: 8rem;
+}
+
+.address-btn:disabled {
+  background-color: #FCECEC;
+}
+
+.employee-add-btn:disabled {
+  background-color: #FCECEC;
+  color: var(--black);
 }

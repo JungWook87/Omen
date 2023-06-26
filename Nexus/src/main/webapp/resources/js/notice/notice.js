@@ -203,6 +203,11 @@ const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
 
 
+btn.style.display = 'none';
+document.getElementById('check-remove-btn').style.display = 'none';
+document.getElementById('check-success-btn').style.display = 'none';
+
+
 // 게시글 디테일 창 오픈
 function detailModal(noticeNo) {
 

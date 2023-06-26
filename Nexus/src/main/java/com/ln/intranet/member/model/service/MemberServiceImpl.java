@@ -1,5 +1,6 @@
 package com.ln.intranet.member.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ln.intranet.common.model.vo.Pagination;
 import com.ln.intranet.member.model.dao.MemberDAO;
 import com.ln.intranet.member.model.vo.Member;
+import com.ln.intranet.notice.model.vo.Notice;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 	
+
+
 	@Autowired
 	private MemberDAO dao;
 	
@@ -85,7 +90,53 @@ public class MemberServiceImpl implements MemberService {
 		return dao.searchMember(memNo);
 	}
 
+	// 직원 정보 수정 서비스 구현
+	@Override
+	public int update(Map<String, Object> paramMap) {
 
+		return dao.update(paramMap);
+	}
+
+	// 직원 퇴사 처리 서비스 구현
+	@Override
+	public int delete(int memNo) {
+
+		return dao.delete(memNo);
+	}
+
+	// 퇴사할 직원 조회 서비스 구현
+	@Override
+	public Member deleteSearch(int memNo) {
+
+		return dao.deleteSearch(memNo);
+	}
+
+	// 직원 전체 정보 조회 서비스 구현
+	@Override
+	public List<Member> selectAll() {
+
+		List<Member> memList = dao.selectAll();
+		
+		return memList;
+	}
+
+	// 검색한 직원 조회
+	@Override
+	public List<Member> selectOne(Map<String, Object> paramMap) {
+
+		return dao.selectOne(paramMap);
+	}
+
+   
+	
+	
+
+	
+
+	
+	
+	
+	
 	
 	
 	
