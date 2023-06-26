@@ -142,23 +142,23 @@
             <div class="approver-modal-container">
                 <div id="approver-box">
                   <ul>
-                    <li><p>임원</p>
+                    <li class="Executives"><p>임원</p>
                     </li>
-                    <li><p>부서</p>
-                      <ul>
-                        <li><p>관리기획부</p>
+                    <li class="dept"><p>부서</p>
+                      <ul >
+                        <li class="dept-list"><p>관리기획부</p>
                           <ul>
                             <li class="approval-team"><p>재무팀</p></li>
                             <li class="approval-team"><p>인시총무팀</p></li>
                           </ul>
                         </li>
-                        <li><p>업무기획부</p>
+                        <li class="dept-list"><p>업무기획부</p>
                           <ul>
                             <li class="approval-team"><p>영업팀</p></li>
                             <li class="approval-team"><p>기술개발팀</p></li>
                           </ul>
                         </li>
-                        <li><p>공무기획부</p>
+                        <li class="dept-list"><p>공무기획부</p>
                           <ul>
                             <li class="approval-team"><p>공사팀</p></li>
                             <li class="approval-team"><p>공무팀</p></li>
@@ -166,14 +166,14 @@
                             <li class="approval-team"><p>자재팀</p></li>
                           </ul>
                         </li>
-                        <li><p>개발사업부</p>
+                        <li class="dept-list"><p>개발사업부</p>
                           <ul>
                             <li class="approval-team"><p>개발기획팀</p></li>
                             <li class="approval-team"><p>분양홍보팀</p></li>
                             <li class="approval-team"><p>설계기획팀</p></li>
                           </ul>
                         </li>
-                        <li><p>전략기획실</p>
+                        <li class="dept-list"><p>전략기획실</p>
                           <ul>
                             <li class="approval-team"><p>경영팀</p></li>
                             <li class="approval-team"><p>전략팀</p></li>
@@ -187,27 +187,12 @@
           </div>
         </div>
       </div>
-              
 
-            <!-- 선2 -->
-            <div class="approver-modal-line2"></div>
-            
-            <!-- 버튼 -->
-            <div class="approver-submit-reset-btns">
-              <button type="reset" id="approver-cancell-btn">취소</button>
-              <button type="button" id="approver-success-btn">확인</button>
-            </div>
-
-          </div>
-
-        </div>
         
       </form>
 
     </div>
 
   </div>
-  <script>
-    const approvalList = ${approvalMemberList};
-  </script>
+
 </body>

@@ -239,12 +239,91 @@ pulsApproverBtn.addEventListener("click",() => {
     // 동준작성
     success : function(list) {
       console.log(list);
+
+      const approvalList = list;
+      const team = document.querySelectorAll(".approval-team");
+      let teamCreated = []; // 팀 요소가 이미 생성되었는지 여부를 확인하는 배열
+
+      for (let i = 0; i < team.length; i++) {
+        teamCreated[i] = false; // 모든 팀의 생성 여부를 초기에는 false로 설정합니다.
+
+        team[i].addEventListener("click", () => {
+          // 해당 팀에 이미 요소가 생성된 경우 종료합니다.
+          if (teamCreated[i]) {
+            return;
+          }
+
+          for (let value of approvalList) {
+            let div = document.createElement("div");
+            let p1 = document.createElement("p");
+            p1.innerText = value.memName;
+
+              if (value.teamNo === 11 && i === 0) {
+                team[i].append(div);
+              } else if (value.teamNo === 12 && i === 1) {
+                team[i].append(div);
+              } else if (value.teamNo === 21 && i === 2) {
+                team[i].append(div);
+              } else if (value.teamNo === 22 && i === 3) {
+                team[i].append(div);
+              } else if (value.teamNo === 31 && i === 4) {
+                team[i].append(div);
+              } else if (value.teamNo === 32 && i === 5) {
+                team[i].append(div);
+              } else if (value.teamNo === 33 && i === 6) {
+                team[i].append(div);
+              } else if (value.teamNo === 34 && i === 7) {
+                team[i].append(div);
+              } else if (value.teamNo === 41 && i === 8) {
+                team[i].append(div);
+              } else if (value.teamNo === 42 && i === 9) {
+                team[i].append(div);
+              } else if (value.teamNo === 43 && i === 10) {
+                team[i].append(div);
+              } else if (value.teamNo === 51 && i === 11) {
+                team[i].append(div);
+              } else if (value.teamNo === 52 && i === 12) {
+                team[i].append(div);
+              }
+
+            div.append(p1);
+          }
+
+          teamCreated[i] = true; // 팀 요소가 생성되었음을 표시합니다.
+        });
+      }
+
     }
+    
   });
 
   approverModal.style.display = 'block';
   approverModalBody.classList.add('approver-modal-open');
 })
+
+// 결재자 부서 클릭 이벤트
+const dept = document.querySelector(".dept");
+const deptList = document.querySelectorAll(".dept-list");
+
+for (let i = 0; i < deptList.length; i++) {
+  deptList[i].addEventListener('click', () => {
+    // 해당 deptList 내부의 팀 요소들을 선택합니다.
+    const teamElements = deptList[i].querySelectorAll('.approval-team');
+
+    // 선택한 deptList 내부의 팀 요소들에 대해 이벤트 전파를 차단합니다.
+    for (let item of teamElements) {
+      item.addEventListener('click', (event) => {
+        event.stopPropagation();
+      });
+    }
+
+    // 선택한 deptList 내부의 팀 요소들을 보여주거나 숨깁니다.
+    for (let item of teamElements) {
+      item.classList.toggle('show');
+    }
+  });
+}
+
 
 // 결재자 모달창 외부 영역 이벤트
 window.onclick = function(event) {
@@ -469,186 +548,203 @@ successBtn.addEventListener("click", () => {
 
   // --------------------------------------------------------------------------------
 
-  const team = document.querySelectorAll(".approval-team");
+  // const team = document.querySelectorAll(".approval-team");
 
-  (function(){
+  // (function(){
 
-    for(let value of approvalList){
+  //   console.log("123 :: "+JSON.parse(approvalList));
 
-     console.log(value);
+  //   console.log(approvalList.length);
 
-     let div = document.createElement("div");
-     let p1 = document.createElement("p");
-     let p2 = document.createElement("p");
+  //   console.log(approvalList[0]);
+  //   console.log(approvalList[1]);
+
+  //   for(let value of approvalList){
+
+  //   //  let div = document.createElement("div");
+  //   //  let p1 = document.createElement("p");
+  //   //  let p2 = document.createElement("p");
+  //   //  let p3 = document.createElement("p");
+
+  //   //  p1.innerText = value.memName;
+    
+
+  //   //  div.append(p1);
+  //   // //  div.append(p2);
+  //   // //  div.append(p3);
+
+  //   // if(value.deptNo ==1 ){
+  //   //   team[0].append(div);
+  //   // }
    
-      if(value.detpNo === 1 ){
+  //   //   if(value.detpNo === 1 ){
 
-        if(value.teamNo === 11){
+  //   //     if(value.teamNo === 11){
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[0].append(p1,p2);
+  //   //       team[0].append(p1,p2);
 
-          div.appendChild(team[0]);
+  //   //       div.appendChild(team[0]);
 
-          console.log(p1);
-          console.log(p2);
+  //   //       console.log(p1);
+  //   //       console.log(p2);
    
 
-        }
-        if(value.teamNo === 12){ 
+  //   //     }
+  //   //     if(value.teamNo === 12){ 
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[1].append(p1,p2);
+  //   //       team[1].append(p1,p2);
 
-          div.appendChild(team[1]);
+  //   //       div.appendChild(team[1]);
 
-        }
+  //   //     }
 
-      } else if(value.detpNo === 2){
+  //   //   } else if(value.detpNo === 2){
 
-        if(value.teamNo === 21){
+  //   //     if(value.teamNo === 21){
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[3].append(p1,p2);
+  //   //       team[3].append(p1,p2);
 
-          div.appendChild(team[3]);
+  //   //       div.appendChild(team[3]);
 
-        }
-        if(value.teamNo === 22){ 
+  //   //     }
+  //   //     if(value.teamNo === 22){ 
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[4].append(p1,p2);
+  //   //       team[4].append(p1,p2);
 
-          div.appendChild(team[4]);
+  //   //       div.appendChild(team[4]);
 
-        }
+  //   //     }
 
-      } else if(value.detpNo === 3){
+  //   //   } else if(value.detpNo === 3){
 
 
-        if(value.teamNo === 31){
+  //   //     if(value.teamNo === 31){
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[5].append(p1,p2);
+  //   //       team[5].append(p1,p2);
 
-          div.appendChild(team[5]);
+  //   //       div.appendChild(team[5]);
 
-        }
-        if(value.teamNo === 32){ 
+  //   //     }
+  //   //     if(value.teamNo === 32){ 
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[6].append(p1,p2);
+  //   //       team[6].append(p1,p2);
 
-          div.appendChild(team[6]);
+  //   //       div.appendChild(team[6]);
 
-        }
-        if(value.teamNo === 33){
+  //   //     }
+  //   //     if(value.teamNo === 33){
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[7].append(p1,p2);
+  //   //       team[7].append(p1,p2);
 
-          div.appendChild(team[7]);
+  //   //       div.appendChild(team[7]);
 
-        }
-        if(value.teamNo === 34){ 
+  //   //     }
+  //   //     if(value.teamNo === 34){ 
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[8].append(p1,p2);
+  //   //       team[8].append(p1,p2);
 
-          div.appendChild(team[8]);
+  //   //       div.appendChild(team[8]);
 
-        }
+  //   //     }
         
-      } else if(value.detpNo === 4){
+  //   //   } else if(value.detpNo === 4){
 
 
-        if(value.teamNo === 41){
+  //   //     if(value.teamNo === 41){
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[9].append(p1,p2);
+  //   //       team[9].append(p1,p2);
 
-          div.appendChild(team[9]);
+  //   //       div.appendChild(team[9]);
 
-        }
-        if(value.teamNo === 42){ 
+  //   //     }
+  //   //     if(value.teamNo === 42){ 
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[9].append(p1,p2);
+  //   //       team[9].append(p1,p2);
 
-          div.appendChild(team[9]);
+  //   //       div.appendChild(team[9]);
 
-        }
-        if(value.teamNo === 43){ 
+  //   //     }
+  //   //     if(value.teamNo === 43){ 
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[10].append(p1,p2);
+  //   //       team[10].append(p1,p2);
 
-          div.appendChild(team[10]);
+  //   //       div.appendChild(team[10]);
 
-        }
+  //   //     }
         
-      } else if(value.detpNo === 5){
+  //   //   } else if(value.detpNo === 5){
 
 
-        if(value.teamNo === 51){
+  //   //     if(value.teamNo === 51){
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[11].append(p1,p2);
+  //   //       team[11].append(p1,p2);
 
-          div.appendChild(team[11]);
+  //   //       div.appendChild(team[11]);
 
-        }
-        if(value.teamNo === 12){ 
+  //   //     }
+  //   //     if(value.teamNo === 12){ 
 
-          p1.innerText = value.memName;
+  //   //       p1.innerText = value.memName;
           
-          p2.innerText = value.memNo;
+  //   //       p2.innerText = value.memNo;
           
-          team[12].append(p1,p2);
+  //   //       team[12].append(p1,p2);
 
-          div.appendChild(team[12]);
+  //   //       div.appendChild(team[12]);
 
-        }
+  //   //     }
 
-      }
+  //   //   }
 
       
-    }
+  //   }
 
-  })();
+  // })();

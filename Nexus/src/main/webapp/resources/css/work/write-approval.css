@@ -14,11 +14,15 @@
 
 }
 
+#approver-modal-wrap {
+  height: 122%;
+}
+
 .work-modalBody, .approver-modal-Body {
   min-width: 570px;
   min-height: 100px;
   max-width: 80%;
-  max-height: calc(100vh - 90px);
+  max-height: 85%;
 
   background: white;
   border-radius: 10px;
@@ -247,95 +251,50 @@
   display: block;
   
   color: #333;
+
+  margin-top: 0;
+
+  padding: 10px;
   
   }
     
-  .Executives {
-      list-style: none;
-      width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-  
+  .Executives, .dept {
+    list-style: none;
+    border: 1px solid var(--gray300);
+    border-radius: 10px;
+    margin: 5px 0px 5px;
+    width: 30%;
+    text-align: center;
   }
-/*     
-  .M01>li, .M02>li, .M03>li {
-  
-      position: relative;
-      width: 100%;
-      height: 50px;
-      border: 1px solid var(--gray300);
-      border-radius: 5px;
-      text-align: center;
-      gap: 10px;
-      line-height: 50px;
-  
+
+  .dept > p {
+    background-color: var(--primary400);
+    color: white !important;
+    border-radius: 10px;
+    margin: 10px !important;
   }
-   
-  .M01>li:hover .M02 {
-  
-  left: 100px;
-  
+
+  .dept-list{
+    /* display: none; */
+    list-style: none;
   }
-      
-  .M01>li p:hover {
-  
-  display: block;
-  
-  background: var(--primary400);
-  
+
+  .approval-team{
+    margin: 10px 5px 10px 5px;
+    display: none;
+    border: 1px solid var(--gray100);
+    background-color: var(--gray100);
+    border-radius: 10px;
+    list-style: none;
+  }
+
+  .approval-team > p{
   color: white;
-  
-  }
-   
-  .M02, .M03 {
-  
-  margin: 0px 210px;
-
-  transition: all 0s ease-out 0.5s;
-
-  width: 300px;
-  
-  list-style: none;
-  
-  position: absolute;
-  
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-  
-  top: 0;
-  
-  left: -9999px;
-  
-  }
-       
-  .M02>li:hover .M03 {
-  
-  left: 100px;
-  
-  }
-  
-  .M02>li p:hover {
-  
-  display: block;
-  background: var(--primary400);
-  
   }
 
-  .M03>li p:hover {   
-  display: block;   
-  background: var(--primary400);
-  } */
-
-  .approver-checkBox{
-    margin: 5px;
-    width: 20%;
-    height: 20%;
+  .show {
+    display: block;
   }
-
 /* 결재자 박스 */
 
 .approver-modal-container{
@@ -532,3 +491,5 @@
   background-color: var(--primary500);
   transition: all 1s;
 }
+
+/* ------------------------------------ */
