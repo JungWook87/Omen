@@ -260,12 +260,19 @@
     
   .Executives, .dept {
     list-style: none;
-    border: 1px solid var(--gray300);
+    border: 2px solid var(--primary400);
     border-radius: 10px;
     margin: 5px 0px 5px;
     width: 30%;
     text-align: center;
   }
+
+  .Executives > p {
+    background-color: var(--primary400);
+    color: white !important;
+    border-radius: 10px;
+    margin: 10px !important;
+  } 
 
   .dept > p {
     background-color: var(--primary400);
@@ -275,9 +282,15 @@
   }
 
   .dept-list{
-    /* display: none; */
+    display: none;
     list-style: none;
   }
+  .Executives:hover,
+  .dept:hover {
+    width: 300px;
+    transition: width ease-in-out 2s;
+  }
+ 
 
   .approval-team{
     margin: 10px 5px 10px 5px;
@@ -295,6 +308,18 @@
   .show {
     display: block;
   }
+
+  .approval-team input {
+    width: 10px;
+    height: 10px;
+  }
+
+  .approval-team label {
+    padding: 5px;
+    font-size: 15px;
+    margin-right: 0;
+}
+
 /* 결재자 박스 */
 
 .approver-modal-container{
