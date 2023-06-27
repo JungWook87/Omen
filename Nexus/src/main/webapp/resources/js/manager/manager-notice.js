@@ -236,6 +236,8 @@ const checkCancellBtn = document.getElementById('check-cancell-btn');
 const checkModalTitle = document.getElementById('check-modal-title');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
+const modifyBtn = document.getElementById('check-success-btn');
+const doneBtn = document.getElementById('done-btn');
 
 let globalNoticeNo = 0;
 // 게시글 디테일 창 오픈
@@ -271,46 +273,53 @@ function detailModal(noticeNo) {
       }
 
       // 수정 버튼 눌렀을 때 이벤트
-      const modifyBtn = document.getElementById('check-success-btn');
+      let isEditMode = false; // 수정 모드 상태를 나타내는 변수
 
       modifyBtn.addEventListener('click', () => {
+
+        if (isEditMode) {
+          // 이미 수정 모드인 경우, 동작을 수행하지 않고 반환
+          return;
+        }
+      
+        isEditMode = true; // 수정 모드로 변경
+
         const noticeTitle = document.querySelector('.check-modal-title');
         const noticeContent = document.querySelector('.check-modal-detail');
-
+       
+        
         const modifyNoticeTitle = document.createElement('input');
         const modifyNoticeContent = document.createElement('textarea');
-
-        modifyNoticeTitle.value = noticeTitle.textContent;
-        modifyNoticeContent.value = noticeContent.textContent;
-
+        
+        modifyNoticeTitle.value = checkModalTitleSpan.innerText;
+        modifyNoticeContent.innerHTML = checkModalDetailSpan.innerText.replace(/<br>/g, '\n');
+       
         noticeTitle.innerHTML = '';
-        noticeContent.innerHTML = '';
-
-        console.log(modifyNoticeTitle.value);
-        console.log(modifyNoticeContent.value);
-        console.log(noticeTitle.textContent);
-        console.log(noticeContent.textContent);
-
         noticeTitle.appendChild(modifyNoticeTitle);
+
+        noticeContent.innerHTML = '';
         noticeContent.appendChild(modifyNoticeContent);
 
-        modifyNoticeContent.addEventListener('keydown', handleResizeHeight);
-        modifyNoticeContent.addEventListener('keyup', handleResizeHeight);
+        modifyNoticeContent.style.minHeight = '350px';
+        modifyNoticeContent.style.overflow = 'auto';
+       
+
+        // 줄바꿈이 적용되도록 스타일 설정
+        modifyNoticeContent.style.whiteSpace = 'pre-wrap';
 
         // 수정 버튼을 none으로 설정
         modifyBtn.style.display = "none";
+
         
-
-        const doneBtn = document.createElement('button');
-        doneBtn.id = 'done-btn';
-        doneBtn.textContent = '수정완료';
-
-        const checkSuccessBtn = document.getElementById('check-success-btn');
-        const btnContainer = checkSuccessBtn.parentNode;
-        btnContainer.appendChild(doneBtn);
+        doneBtn.style.display = "inline-block";
 
         doneBtn.addEventListener('click', () => {
-          console.log("떠라");
+          if (!isEditMode) {
+          // 수정 모드가 아닌 경우, 동작을 수행하지 않고 반환
+          return;
+          }
+
+          isEditMode = false; // 수정 모드 종료
 
           $.ajax({
             url: "updateNotice",
@@ -322,10 +331,13 @@ function detailModal(noticeNo) {
             type: "POST",
             success: function (result) {
               if (result > 0) {
+                
+
                 Swal.fire("수정이 완료되었습니다.")
                   .then((result) => {
                     // 확인 버튼을 누르면 페이지 새로고침
                     if (result.isConfirmed) {
+                      
                       location.reload();
                     }
                   });
@@ -354,20 +366,6 @@ function detailModal(noticeNo) {
 }
 
 
-// textarea 화면 늘려주는 함수
-function handleResizeHeight(event) {
-  const textarea = event.target;
-  textarea.style.height = 'auto';
-  textarea.style.height = textarea.scrollHeight + 'px';
-  
-  const computedStyles = window.getComputedStyle(textarea);
-  if (textarea.scrollHeight >= parseInt(computedStyles.maxHeight)) {
-    textarea.style.overflow = "scroll";
-  } else {
-    textarea.style.overflow = "hidden";
-  }
-}
-
 // 수정 모달창 닫기
 // 수정 모달창 닫는 함수
 function checkModalClose() {
@@ -378,11 +376,8 @@ function checkModalClose() {
    checkModalDetail.innerHTML = '';
    checkPreview.innerHTML = '';
    
-   const modifyBtn = document.getElementById('check-success-btn');
-    const doneBtn = document.getElementById('done-btn');
-
-    doneBtn.style.display = "none";
-    modifyBtn.style.display = "inline-block";
+   doneBtn.style.display = "none";
+   modifyBtn.style.display = "inline-block";
  
     
   setTimeout(() => {

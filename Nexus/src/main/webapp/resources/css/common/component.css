@@ -822,6 +822,10 @@ option {
     transition: all 1s;
 }
 
+#done-btn {
+    display: none;
+}
+
 /* sweetAlert 스타일 */
 .swal2-popup {
     background-color: white !important;
@@ -1033,17 +1037,17 @@ option {
     margin-bottom: 3rem;
     display: flex;
     gap: 11rem;
-  }
-  
-  .employee-details {
+}
+
+.employee-details {
     flex-grow: 1;
-  }
-  
-  .employee-controls {
+}
+
+.employee-controls {
     display: flex;
     align-items: center;
     gap: 1rem;
-  }
+}
 
 .fa-angle-down {
     color: #FFC759;

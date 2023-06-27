@@ -104,7 +104,7 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		detail.setContent(Util.newLineHandling(detail.getContent()));
 		
-		System.out.println(detail);
+		
 	
 		
 		return dao.updateNotice(detail);
