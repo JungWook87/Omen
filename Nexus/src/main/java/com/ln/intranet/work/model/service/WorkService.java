@@ -42,7 +42,8 @@ public interface WorkService {
 	// 프로젝트과제 상신함 리스트
 	List<WorkGeneralList> taskSendList(int memNo);
 
-
+	// 반려 또는 승인	
+	int clickApproval(Map<String, Object> map);
 
 
 }

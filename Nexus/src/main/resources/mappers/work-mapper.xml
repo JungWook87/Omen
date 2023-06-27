@@ -80,7 +80,7 @@
 		LEFT JOIN WORK_TYPE USING(TYPE_NO)
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
 		WHERE MEM_NO = ${memNo}
-		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') BETWEEN #{start} AND #{end}
+		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
 		ORDER BY SEND_DATE DESC
 	</select>
 	
@@ -146,6 +146,16 @@
 		AND WORK_STATE = '진행중'
 		ORDER BY SEND_DATE DESC
 	</select>
+	
+	<!-- 결재자 정보 -->
+	<select id="nextMember" parameterType="_int" resultType="Map">
+		SELECT MEM_NAME , DEPT_NAME, JOB_NAME
+		FROM "MEMBER"
+		LEFT JOIN DEPARTMENT USING (DEPT_NO)
+		LEFT JOIN JOB USING (JOB_NO)
+		WHERE MEM_NO = ${next}
+	</select>
+	
 	
 </mapper>
 

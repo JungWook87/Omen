@@ -122,8 +122,8 @@ $(function() {
       url : "workSendSelectDate",
       type : "GET",
       dataType : "JSON",
-      data : {"start" : start.format('YYYY-MM-DD'),
-              "end" : end.format('YYYY-MM-DD')
+      data : {"startDate" : start.format('YYYY-MM-DD'),
+              "endDate" : end.format('YYYY-MM-DD')
               },
       success : function(list){
         workSendList(list);

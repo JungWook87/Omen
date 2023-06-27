@@ -64,20 +64,6 @@ public class WorkServiceImp implements WorkService {
 	public int workCancle(int workNo) {
 		return dao.workCancle(workNo);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 
 	// 결재 상신 작성(일반결재)
 	@Override
@@ -89,6 +75,11 @@ public class WorkServiceImp implements WorkService {
 		int result = 0;
 		
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());
+		
+		// 다음 결재자 정보 불러오기
+		Map<String, Object> nextMember = dao.nextMember(Integer.parseInt(map.get("next").toString()));
+		String approvalList = nextMember.get("MEM_NAME") + "," + "진행중" + "," + nextMember.get("DEPT_NAME") + " / " + nextMember.get("JOB_NAME") ;
+		map.put("approvalList", approvalList);
 		
 		// 프로젝트과제 객체 생성
 		List<ProjectTask> taskList = new ArrayList<>();
@@ -249,7 +240,31 @@ public class WorkServiceImp implements WorkService {
 		return pDao.taskSendList(memNo);
 	}
 
+	
+	// 반려 승인
+	@Override
+	public int clickApproval(Map<String, Object> map) {
+		
+		String approvalList = "";
+		String[] strArrOne = map.get("approvalList").toString().split(",,");
 
+		if(map.get("btnName").toString().equals("reject")) {
+			String[] strArrTwo = strArrOne[strArrOne.length - 1].split(",");
+			strArrTwo[1] = "반려";
+			
+			strArrOne[strArrOne.length - 1] = strArrTwo[0] + "," + strArrTwo[1] + "," + strArrTwo[2] + ",,";
+
+		}
+		
+		for(int i = 0; i < strArrOne.length; i++) {
+			approvalList += strArrOne[i];
+		}
+		
+		System.out.println(approvalList);
+		// 일단 수정까지는 완료
+		
+		return 0;
+	}
 
 
 	
