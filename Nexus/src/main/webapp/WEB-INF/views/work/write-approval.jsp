@@ -86,10 +86,8 @@
           </div>
         
           <div class="projectBox"> 
-            <p>과제명</p>
+            <p class="taskTitleSpan" style="margin-top: 10px;">과제명</p>
             <input name="taskTitle" type="text">
-            <p>과제내용</p>
-            <input name="taskContent" type="text">
           </div>
         </div>   
 

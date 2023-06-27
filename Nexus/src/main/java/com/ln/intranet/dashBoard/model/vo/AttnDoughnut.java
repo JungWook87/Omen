@@ -1,4 +1,4 @@
-package com.ln.intranet.work.model.vo;
+package com.ln.intranet.dashBoard.model.vo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +9,9 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class WorkProject {
+public class AttnDoughnut {
 
+	private int typeNo;
+	private String typeName;
+	private int typeCount;
 }

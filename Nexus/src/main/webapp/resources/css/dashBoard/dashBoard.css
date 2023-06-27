@@ -1,0 +1,187 @@
+/* 틀을 잡아 놓기 위한 스타일 */
+section {
+  display: flex;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+display: flex;
+flex-direction: column;
+background-color: var(--black);
+}
+
+.container{
+    margin: 40px auto 0;
+    width: 100%;
+    height: 75%;
+    border:3px solid var(--black) ;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#head_bottom{
+    width: 95%;
+    height: 95%;
+    margin: auto;
+}
+
+
+.Head{
+    width: 100%;
+    height: 40%;
+}
+
+.Bottom{
+    width: 100%;
+    height: 50%;
+    margin-top: 5%;
+}
+
+.Doughnut-Bar{
+    display: flex;
+}
+.Doughnut{
+    display: flex;
+    justify-content: center;
+    background-color: var(--black);
+    border: 1px solid transparent;
+    width: 40%;
+}
+.Bar{
+    background-color: var(--black);
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    border: 1px solid transparent;
+
+}
+
+.HeadHr{
+    width: 100%;
+    height: 20%;
+    border-radius: 5px 5px 0px 0px;
+    background-color: var(--black);
+    color: white;
+    display: flex;
+    align-items: start;
+    justify-content: left;
+}
+
+.ProjectHeader{
+    width: 100%;
+    height: 20%;
+    border-radius: 5px 5px 0px 0px;
+    background-color: var(--black);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.ProjectBox{
+    width: 100%;
+    background-color: var(--black);
+    border: 1px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5%;
+}
+
+.ProjectBar{
+    background-color: var(--black);
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#doughnut{
+
+    height: 150px;
+    padding: 10px;
+}
+
+#bar{
+    width: 900px;
+    height: 300px;
+    padding: 10px;
+}
+
+#projectBar{
+    width: 600px;
+    height: 300px;
+    padding: 10px;
+}
+
+p{
+    text-align: center;
+    color:rgba(54, 162, 235, 1);
+    font-size: xx-large;
+    line-height: 100px;
+    padding: 50px;
+}
+
+.tab_content {width: 100%; text-align:right;}
+input[type="radio"] {display:none;} /* input을 안보이게 처리 */
+input[type="radio"] + label {display:inline-block;padding:20px;background:var(--primary700);color:white;cursor:pointer;} /* 버튼 공통 속성 */
+input[type="radio"]:checked + label {background:#999;color:white;} /* 선택된 버튼속성 */
+
+.conbox {display:none;text-align:left;padding:20px 20px;box-sizing:border-box;} /* 컨텐츠박스 공통 속성 */
+input[id="tab01"]:checked ~ .con1 {display:block;} /* 인풋에 체크가 해당 요소보이게 설정 */
+input[id="tab02"]:checked ~ .con2 {display:block;}
+input[id="tab03"]:checked ~ .con3 {display:block;}
+
+
+div{
+
+    border: 1px solid #CDD2D8;
+    border-color: rgb(176, 230, 165);
+}
+
+
+
+:root {
+
+    /* 검정색 대신 쓰일 색 */
+    --black: #02142E;
+
+    /* 포인트 색상 */
+    --primary800: rgb(4, 40, 92);
+    --primary700: rgb(7, 59, 137);
+    --primary600: rgb(9, 79, 183);
+    --primary500: rgb(11, 99, 229);
+    --primary400: rgb(60, 130, 234);
+    --primary300: rgb(109, 161, 239);
+    --primary200: rgb(157, 193, 245);
+    --primary100: #CEE0FA;
+    --primary50: #F0F5FF;
+
+    /* 회색계열 색상 */
+    --gray700: #42526B;
+    --gray600: #6A778B;
+    --gray500: #838E9E;
+    --gray400: #9BA4B1;
+    --gray300: #B4BBC5;
+    --gray200: #CDD2D8;
+    --gray100: #E6E8EC;
+    /* 메인페이지 배경색 */
+    --gray50: #F5F6F7;
+
+    /* 사이드바 색상 */
+    --side: #F9F9F9;
+
+    /* 초록색 */
+    --green: #00cc00;
+
+}

@@ -69,22 +69,6 @@ public class WorkDAO {
 	public List<ApprovalMember> approvalMember() {
 		return sqlSession.selectList("workMapper.approvalMember");
 	}
-	
-	// 프로젝트 작성
-	public int createProject(Map<String, Object> map) {
-		return sqlSession.insert("projectMapper.createProject",map);
-	}
-
-	// 프로젝트 하위 과제 생성
-	public int createTask(ProjectTask task) {
-		return sqlSession.insert("projectMapper.createTask",task);
-	}
-	
-	
-	// 프로젝트 파일 업로드
-	public int insertProjectFile(UploadFile file) {
-		return sqlSession.insert("projectMapper.insertProjectFile",file);
-	}
 
 
 

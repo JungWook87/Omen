@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.service.WorkService;
+import com.ln.intranet.work.model.service.WorkServiceImp;
 import com.ln.intranet.work.model.vo.ApprovalMember;
 import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
@@ -35,6 +38,8 @@ public class WorkController {
 	@Autowired
 	WorkService service;
 	
+	private Logger logger = LoggerFactory.getLogger(WorkController.class);
+	
 	
 	// 寃곗옱 �긽�떊�븿 �럹�씠吏� 吏꾩엯
 	@GetMapping("/workSend")
@@ -42,16 +47,18 @@ public class WorkController {
 			@ModelAttribute("loginMember") Member loginMember,
 			RedirectAttributes ra) {
 		
-		
 		List<WorkGeneralList> list = service.workSend(loginMember.getMemNo());
+		List<WorkGeneralList> projectList = service.projectSendList(loginMember.getMemNo());
+		List<WorkGeneralList> taskList = service.taskSendList(loginMember.getMemNo());
 		
 		model.addAttribute("list", list);
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("taskList", taskList);
 		
 		String messageFlag = null;
 		
 		if(ra != null) {
 			messageFlag = (String)model.getAttribute("message");
-			System.out.println("messageFlag : " + messageFlag);
 			model.addAttribute("messageFlag", messageFlag);
 		}
 		
@@ -118,10 +125,14 @@ public class WorkController {
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,
 			@RequestParam("file-uploads") MultipartFile uploadFile,
 			@RequestParam Map<String, Object> map,
+			@RequestParam("taskTitle") List<String> taskTitleList,
 			HttpServletRequest req,
 			RedirectAttributes ra) {
 		
 		map.put("memNo", loginMember.getMemNo());
+		map.put("deptNo",loginMember.getDeptNo());
+		
+		logger.info("프로젝트/과제 부서입력용 로거 : " + (Integer)map.get("deptNo") );
 		
 		String workTypeWord = map.get("workTypeWord").toString();
 		int typeNo = 0;
@@ -137,7 +148,7 @@ public class WorkController {
 		
 		map.put("typeNo", typeNo);
 	
-		int result = service.workWrite(map, uploadFile, req);
+		int result = service.workWrite(map, uploadFile, req, taskTitleList);
 		
 		String message = "";
 		if(result != 0) message = "성공";
