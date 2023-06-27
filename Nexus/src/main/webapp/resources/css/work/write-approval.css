@@ -285,6 +285,11 @@
     display: none;
     list-style: none;
   }
+
+  .dept-list li{
+    list-style: none;
+  }
+
   .Executives:hover,
   .dept:hover {
     width: 300px;
@@ -295,10 +300,17 @@
   .approval-team{
     margin: 10px 5px 10px 5px;
     display: none;
-    border: 1px solid var(--gray100);
     background-color: var(--gray100);
-    border-radius: 10px;
+    border-radius: 5px;
     list-style: none;
+    
+  }
+
+  .approval-team .show{
+  display: flex;
+  align-items: center;
+  flex-flow: wrap;
+  gap: 10px;
   }
 
   .approval-team > p{
