@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
+import com.ln.intranet.dept.model.vo.BoardDetail;
 import com.ln.intranet.member.model.service.MemberService;
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.notice.model.service.NoticeService;
+import com.ln.intranet.notice.model.vo.Notice;
 import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 @Controller
@@ -178,6 +181,46 @@ public class MemberController {
 		return new Gson().toJson(detail);
 				 
     }
+	
+	// 공지사항 수정
+	@PostMapping("updateNotice")
+	@ResponseBody
+	public String updateNotice(
+							@RequestParam("noticeNo") int noticeNo,
+							@RequestParam("title") String title,
+							@RequestParam("content") String content,
+							RedirectAttributes ra) {
+		
+		NoticeDetail detail = new NoticeDetail();
+		
+		detail.setNoticeNo(noticeNo);
+		detail.setTitle(title);
+		detail.setContent(content);
+		
+		
+		
+		int result = nService.updateNotice(detail);
+		
+		
+		
+		
+		String message = null;
+		
+		if(result > 0) {
+			message = "수정이 완료 되었습니다";
+		} else {
+			message = "수정 실패";
+
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return new Gson().toJson(result);
+		
+	}
+	
+	
+	
 
 	
 	// 직원 조회 화면 전환

@@ -697,6 +697,8 @@ option {
     resize: none;
 }
 
+
+
 .check-modal-detail textarea {
     width: 100%;
     max-height: 350px;
@@ -818,6 +820,10 @@ option {
 #check-remove-btn:hover {
     background-color: var(--gray50);
     transition: all 1s;
+}
+
+#done-btn {
+    display: none;
 }
 
 /* sweetAlert 스타일 */
@@ -1031,17 +1037,17 @@ option {
     margin-bottom: 3rem;
     display: flex;
     gap: 11rem;
-  }
-  
-  .employee-details {
+}
+
+.employee-details {
     flex-grow: 1;
-  }
-  
-  .employee-controls {
+}
+
+.employee-controls {
     display: flex;
     align-items: center;
     gap: 1rem;
-  }
+}
 
 .fa-angle-down {
     color: #FFC759;

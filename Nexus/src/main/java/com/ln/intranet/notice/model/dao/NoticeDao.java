@@ -53,5 +53,11 @@ public class NoticeDao {
 		return sqlSession.selectOne("noticeMapper.noticeDetail", noticeNo);
 	}
 
+	// 공지사항 수정
+	public int updateNotice(NoticeDetail detail) {
+
+		return sqlSession.update("noticeMapper.updateNotice", detail);
+	}
+
 
 }

@@ -18,4 +18,11 @@ public interface NoticeService {
 
 	NoticeDetail noticeDetail(int noticeNo);
 
+	/** 공지사항 수정
+	 * @param noticeNo
+	 * @param detail
+	 * @return result
+	 */
+	int updateNotice(NoticeDetail detail);
+
 }

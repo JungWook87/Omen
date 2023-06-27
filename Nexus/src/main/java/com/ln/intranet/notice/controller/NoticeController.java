@@ -65,6 +65,8 @@ public class NoticeController {
 			  )throws IOException {
 		  	
 		  
+		
+		  
 		  String webPath = "/resources/file/";
 		  String folderPath = req.getSession().getServletContext().getRealPath(webPath);
 		  

@@ -96,6 +96,23 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 
+	// 공지사항 수정
+	@Override
+	public int updateNotice(NoticeDetail detail) {
+		
+		
+		
+		detail.setContent(Util.newLineHandling(detail.getContent()));
+		
+		
+	
+		
+		return dao.updateNotice(detail);
+	}
+
+
+	
+	
 
 
 }
