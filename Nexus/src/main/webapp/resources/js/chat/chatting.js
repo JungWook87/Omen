@@ -707,53 +707,6 @@ chatVal.addEventListener('input', () => {
   }
 });
 
-   
-
-// 기본엔터 동작 방지 함수
-function handleKeyPress(event) {
-  if(event.key === "Enter") {
-    event.preventDefault();
-    sendMessage();
-  }
-}
-
-//인풋창에 글자를 입력하고 엔터를 눌렀을때 이벤트
-function sendMessage(sendWebMessage) {
-  if (event.keyCode === 13 && chatVal.value.trim() !== '') {
-  
-    const message = document.createElement('div');
-    message.className = 'message parker';
-    const time = getTimeString();
-    const content = document.createElement('div');
-    content.className = 'content';
-    content.textContent = chatVal.value;
-    message.appendChild(content);
-    chat.appendChild(message);
-    chatVal.value = '';
-
-    // 글자 수에 따라 .long-message 클래스 추가
-    if (content.offsetHeight < content.scrollHeight) {
-      content.classList.add('long-message');
-    }
-
-    const timeSub = document.createElement('div');
-    timeSub.className = 'time-sub';
-    timeSub.textContent = time;
-    message.insertBefore(timeSub, content);
-
-    if (isTyping) {
-      isTyping = false;
-      if (typingIndicator && typingIndicator.parentNode === chat) {
-        chat.removeChild(typingIndicator);
-        typingIndicator = null;
-      }
-    }
-
-    scrollToBottom();
-  }
-}
-
-
 function sendWebMessage(loginMemberInfo) {
   const chatValue = document.querySelector('#chat-input');
 
@@ -785,6 +738,52 @@ function sendWebMessage(loginMemberInfo) {
       console.log("에러");
     }
   });
+}
+   
+
+// 기본엔터 동작 방지 함수
+function handleKeyPress(event) {
+  if(event.key === "Enter") {
+    event.preventDefault();
+    sendMessage();
+    sendWebMessage();
+  }
+}
+
+//인풋창에 글자를 입력하고 엔터를 눌렀을때 이벤트
+function sendMessage(sendWebMessage) {
+  if (event.keyCode === 13 && chatVal.value.trim() !== '') {
+    const chatValue = document.querySelector('#chat-input');
+    const message = document.createElement('div');
+    message.className = 'message parker';
+    const time = getTimeString();
+    const content = document.createElement('div');
+    content.className = 'content';
+    content.textContent = chatVal.value;
+    message.appendChild(content);
+    chat.appendChild(message);
+
+    // 글자 수에 따라 .long-message 클래스 추가
+    if (content.offsetHeight < content.scrollHeight) {
+      content.classList.add('long-message');
+    }
+
+    const timeSub = document.createElement('div');
+    timeSub.className = 'time-sub';
+    timeSub.textContent = time;
+    message.insertBefore(timeSub, content);
+
+    if (isTyping) {
+      isTyping = false;
+      if (typingIndicator && typingIndicator.parentNode === chat) {
+        chat.removeChild(typingIndicator);
+        typingIndicator = null;
+      }
+    }
+
+    scrollToBottom();
+    
+  }
 }
 
 
