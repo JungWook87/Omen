@@ -146,7 +146,7 @@
               </thead>
 
               <tbody id="listBody">
-
+                
                 <c:forEach var="list" items="${list}">
                   <tr class="listTr" onclick="detailModal(${list.workNo})">
                     <td class="listTypeNo" style="display: none;">${list.typeNo}</td>
@@ -173,6 +173,63 @@
                     <td>${fn:substring(list.sendDate, 0, 11)}</td>
                   </tr>
                 </c:forEach>
+
+                <!-- 프로젝트 리스트 생성 -->
+                <c:forEach var="projectList" items="${projectList}">
+                  <tr class="listTr" onclick="projectDetailModal(${projectList.workNo})">
+                    <td class="listTypeNo" style="display: none;">${projectList.typeNo}</td>
+                    <td>${projectList.typeName}</td>
+                    <td>${projectList.workNo}</td>
+                    <td>${projectList.title}</td>
+                    <c:choose>
+                      <c:when test="${projectList.workState == '진행중'}">
+                        <td style="color: var(--primary400);">${projectList.workState}</td>
+                      </c:when>
+                      <c:when test="${projectList.workState == '승인'}">
+                        <td style="color: var(--green);">${projectList.workState}</td>
+                      </c:when>
+                      <c:otherwise>
+                        <td style="color: red;">${projectList.workState}</td>
+                      </c:otherwise>
+                    </c:choose>
+                    <c:if test="${empty projectList.fileRename}">
+                      <td>없음</td>
+                    </c:if>
+                    <c:if test="${not empty projectList.fileRename}">
+                      <td>있음</td>
+                    </c:if>
+                    <td>${fn:substring(projectList.sendDate, 0, 11)}</td>
+                  </tr>
+                </c:forEach>
+
+                <!-- 과제 리스트 생성 -->
+                <c:forEach var="taskList" items="${taskList}">
+                  <tr class="listTr" onclick="projectDetailModal(${taskList.workNo})">
+                    <td class="listTypeNo" style="display: none;">${taskList.typeNo}</td>
+                    <td>${taskList.typeName}</td>
+                    <td>${taskList.workNo}</td>
+                    <td>${taskList.title}</td>
+                    <c:choose>
+                      <c:when test="${taskList.workState == '진행중'}">
+                        <td style="color: var(--primary400);">${taskList.workState}</td>
+                      </c:when>
+                      <c:when test="${taskList.workState == '승인'}">
+                        <td style="color: var(--green);">${taskList.workState}</td>
+                      </c:when>
+                      <c:otherwise>
+                        <td style="color: red;">${taskList.workState}</td>
+                      </c:otherwise>
+                    </c:choose>
+                    <c:if test="${empty taskList.fileRename}">
+                      <td>없음</td>
+                    </c:if>
+                    <c:if test="${not empty taskList.fileRename}">
+                      <td>있음</td>
+                    </c:if>
+                    <td>${fn:substring(taskList.sendDate, 0, 11)}</td>
+                  </tr>
+                </c:forEach>
+
 
               </tbody>
               

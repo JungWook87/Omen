@@ -2,7 +2,119 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="projectMapper">
 
+	<resultMap type="workGeneralList" id="workList_rm">
+		<id property="workNo" 				column="WORK_NO" />
+		<result property="typeNo" 			column="TYPE_NO"/>
+		<result property="title" 				column="TITLE"/>
+		<result property="sendDate" 		column="SEND_DATE"/>
+		<result property="workState" 		column="WORK_STATE"/>
+		<result property="opinion" 			column="OPINION"/>
+		<result property="typeName" 		column="TYPE_NAME"/>
+		<result property="fileRename" 	column="FILE_RENAME"/>
+	</resultMap>
+	
+	<resultMap type="project" id="project_rm">
+		<id property="projectNo" 			column="PROJECT_NO"/>
+		<result property="memNo" 			column="MEM_NO"/>
+		<result property="memName" 		column="MEM_NAME"/>
+		<result property="title" 				column="TITLE"/>
+		<result property="content" 			column="CONTENT"/>
+		<result property="sendDate" 		column="SEND_DATE"/>
+		<result property="approvalDate" 	column="APPROVAL_DATE"/>
+		<result property="start" 				column="START"/>
+		<result property="end" 				column="END"/>
+		<result property="next" 				column="NEXT"/>
+		<result property="approvalList" 	column="APPROVAL_LIST"/>
+		<result property="tempSave" 		column="TEMP_SAVE"/>
+		<result property="workState" 		column="WORK_STATE"/>
+		<result property="opinion" 			column="OPINION"/>
+		<result property="fileRename" 	column="FILE_RENAME"/>
+		<result property="fileOrigin" 		column="FILE_ORIGIN"/>
+		<result property="deptNo" 			column="DEPT_NO"/>
+	</resultMap>
+	
+	<resultMap type="projectTask" id="task_rm">
+		<id property="taskNo" 				column="TASK_NO"/>
+		<result property="projectNo" 		column="PROJECT_NO"/>
+		<result property="memNo" 			column="MEM_NO"/>
+		<result property="memName" 		column="MEM_NAME"/>
+		<result property="title" 				column="TITLE"/>
+		<result property="content" 			column="CONTENT"/>
+		<result property="sendDate" 		column="SEND_DATE"/>
+		<result property="approvalDate" 	column="APPROVAL_DATE"/>
+		<result property="start" 				column="START"/>
+		<result property="end" 				column="END"/>
+		<result property="next" 				column="NEXT"/>
+		<result property="approvalList" 	column="APPROVAL_LIST"/>
+		<result property="tempSave" 		column="TEMP_SAVE"/>
+		<result property="workState" 		column="WORK_STATE"/>
+		<result property="opinion" 			column="OPINION"/>
+		<result property="fileRename" 	column="FILE_RENAME"/>
+		<result property="fileOrigin" 		column="FILE_ORIGIN"/>
+		<result property="deptNo" 			column="DEPT_NO"/>
+	</resultMap>
+	
+	
+	
+	<!-- 프로젝트 생성 -->
+	<insert id="createProject" useGeneratedKeys="true">
+		<selectKey keyProperty="projectNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_PROJECT_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO PROJECT(PROJECT_NO, MEM_NO, TITLE, CONTENT, 
+		SEND_DATE, "START", "END", NEXT, 
+ 		WORK_STATE, DEPT_NO)
+		VALUES ( #{projectNo}, #{memNo}, #{title}, #{content},
+		DEFAULT, #{start}, #{end}, #{next}, 
+ 		'진행중', #{deptNo})
+	</insert>
+	
+	<!-- 과제생성 -->
+	<insert id="createTask" parameterType="projectTask">
+		<selectKey keyProperty="taskNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_TASK_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO PROJECT_TASK (TASK_NO, PROJECT_NO, TITLE,  DEPT_NO) VALUES (
+		#{taskNo}, #{projectNo}, #{title}, #{deptNo})
+	</insert>
 
+	<!-- 프로젝트파일 업로드 -->
+	<insert id="insertProjectFile" parameterType="file" useGeneratedKeys="true">
+		<selectKey keyProperty="fileNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_FILE_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO UPLOAD_FILE(PROJECT_NO, FILE_RENAME, FILE_ORIGIN, FILE_NO) 
+		VALUES(#{projectNo}, #{fileReName}, #{fileOrigin}, #{fileNo})
+	</insert>
+	
+	<!-- 과제파일 업로드 -->
+	<insert id="insertTaskFile" parameterType="file" useGeneratedKeys="true">
+		<selectKey keyProperty="fileNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_FILE_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO UPLOAD_FILE(TASK_NO, FILE_RENAME, FILE_ORIGIN, FILE_NO) 
+		VALUES(#{taskNo}, #{fileReName}, #{fileOrigin}, #{fileNo})
+	</insert>
 
+	<!-- 상신함 프로젝트 리스트 (현재날짜) -->	
+	<select id="projectSendList" resultMap="workList_rm">
+		SELECT PROJECT_NO ,'4' AS TYPE_NO, '프로젝트' AS TYPE_NAME, TITLE , SEND_DATE ,WORK_STATE, OPINION , FILE_RENAME
+		FROM PROJECT
+		LEFT JOIN UPLOAD_FILE USING(PROJECT_NO)
+		WHERE MEM_NO = #{memNo}
+		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		ORDER BY SEND_DATE DESC
+	</select>
 
+	<!-- 상신함 과제 리스트 (현재날짜) -->
+	<select id="taskSendList" resultMap="workList_rm">
+		SELECT TASK_NO AS WORK_NO ,'5' AS TYPE_NO, '과제' AS TYPE_NAME, TITLE , SEND_DATE ,WORK_STATE, OPINION , FILE_RENAME
+		FROM PROJECT_TASK
+		LEFT JOIN UPLOAD_FILE USING(TASK_NO)
+		WHERE MEM_NO = #{memNo}
+		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		ORDER BY SEND_DATE DESC
+	</select>	
+	
+	
 </mapper>

@@ -57,36 +57,47 @@ closeBtn.addEventListener("click", () => {
 // 모달창 플러스 버튼
 plusBtn.addEventListener("click", () => {
 
-  const div = document.createElement('div');
-  div.style.borderTop = '1px solid var(--gray400)';
-  div.style.marginBlockStart = '20px';
-  div.style.padding = '10px';
-  const projectName = document.createElement('p');
-  projectName.innerText = "과제명"
-  const projectcontentName = document.createElement('p');
-  projectcontentName.innerText = "과제내용"
-  const projectcontent1 = document.createElement('input');
-  const projectcontent2 = document.createElement('input');
-  const buttonDiv = document.createElement('div'); // 취소 버튼을 감싸는 div 요소
-  buttonDiv.style.display = 'flex';
-  buttonDiv.style.justifyContent = 'end';
-  const xbutton = document.createElement('button');
-  xbutton.innerText = "취소";
+  const containerDiv = document.createElement('div'); // 전체를 감싸는 div 요소
+  containerDiv.style.marginTop = '10px'; 
 
-  buttonDiv.appendChild(xbutton); // 취소 버튼을 buttonDiv에 추가
-  div.append(projectName, projectcontent1, projectcontentName, projectcontent2, buttonDiv);
-  workProjectbox.append(div);
+  const div = document.createElement('div');
+  div.style.marginBottom = '10px'; 
+  const projectName = document.createElement('span');
+  projectName.innerText = "과제명";
+  projectName.style.color = 'var(--gray400)'; 
+  projectName.style.marginTop = 'auto'; 
+  const taskTitle = document.createElement('input');
+  taskTitle.name = "taskTitle";
+  const buttonDiv = document.createElement('div');
+  buttonDiv.style.display = 'flex';
+  buttonDiv.style.justifyContent = 'space-between';
+
+  const xbutton = document.createElement('button');
+  xbutton.innerText = "x";
+  xbutton.style.width = '30px';
+  xbutton.style.height = '30px';
+  xbutton.style.border = 'none';
+  xbutton.style.color = 'var(--gray600)'; 
+  xbutton.style.cursor = 'pointer';
+  xbutton.style.backgroundColor = "white";
+
+  buttonDiv.append(projectName, xbutton);
+
+  div.append(buttonDiv, taskTitle);
+  containerDiv.appendChild(div); 
+  workProjectbox.append(containerDiv);
+
 
   xbutton.addEventListener("click", () => {
-    workProjectbox.removeChild(div);
+    workProjectbox.removeChild(containerDiv);
   })
 
   btn.addEventListener("click", () =>{
-     workProjectbox.removeChild(div);
+     workProjectbox.removeChild(containerDiv);
   })
 
   workTemplateSelect.addEventListener('change', () => {
-     workProjectbox.removeChild(div);
+     workProjectbox.removeChild(containerDiv);
   })
 
 });

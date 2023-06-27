@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ln.intranet.common.Util;
 import com.ln.intranet.common.model.vo.UploadFile;
+import com.ln.intranet.work.model.dao.ProjectDAO;
 import com.ln.intranet.work.model.dao.WorkDAO;
 import com.ln.intranet.work.model.vo.ApprovalMember;
-import com.ln.intranet.work.model.vo.Project;
 import com.ln.intranet.work.model.vo.ProjectTask;
 import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
@@ -27,7 +29,11 @@ public class WorkServiceImp implements WorkService {
 	
 	@Autowired
 	WorkDAO dao;
-
+	@Autowired
+	ProjectDAO pDao;
+	
+	private Logger logger = LoggerFactory.getLogger(WorkServiceImp.class);
+	
 	// 결재 상신 리스트 조회
 	@Override
 	public List<WorkGeneralList> workSend(int memNo) {
@@ -76,7 +82,9 @@ public class WorkServiceImp implements WorkService {
 	// 결재 상신 작성(일반결재)
 	@Override
 	@Transactional
-	public int workWrite(Map<String, Object> map, MultipartFile uploadFile, HttpServletRequest req) {
+	public int workWrite(Map<String, Object> map, 
+			MultipartFile uploadFile, HttpServletRequest req,
+			List<String> taskTitleList) {
 		
 		int result = 0;
 		
@@ -100,35 +108,24 @@ public class WorkServiceImp implements WorkService {
 			
 		} else if(typeNo == 4 ) {
 			
-			
 			map.put("title", Util.XSSHandling(map.get("title").toString()));
 			map.put("content", Util.XSSHandling(map.get("content").toString()));
 			map.put("content", Util.newLineHandling(map.get("content").toString()));
 			
-			
-			List<String> titleList = (List<String>)map.get("taskTitle");
-			List<String> contentList = (List<String>)map.get("taskContent");
-						
-			for(int i = 0; i < titleList.size(); i++) {
-				
+	
+			for(int i = 0; i < taskTitleList.size(); i++) {
 				ProjectTask task = new ProjectTask();
-				
-				task.setTitle(titleList.get(i).toString());
-				task.setContent(contentList.get(i).toString());
-				
+				task.setTitle(taskTitleList.get(i));				
 				taskList.add(task);
 			}
 
 		} else if(typeNo == 5 ) {
-
 
 			map.put("title", Util.XSSHandling(map.get("title").toString()));
 			map.put("content", Util.XSSHandling(map.get("content").toString()));
 			map.put("content", Util.newLineHandling(map.get("content").toString()));
 			
 			int projectSelect = (Integer)map.get("projectNo");
-			
-			
 			
 		}
 		
@@ -173,10 +170,10 @@ public class WorkServiceImp implements WorkService {
 
 
 			// 프로젝트 생성 + 프로젝트 과제 생성
-		} else {
+		} else if (typeNo == 4 ){
 			
 			// 파일 올리기
-			int resultNo = dao.createProject(map);
+			int resultNo = pDao.createProject(map);
 			int projectNo = Integer.parseInt(map.get("projectNo").toString());
 			int memNo = Integer.parseInt(map.get("memNo").toString());
 			int taskCount = 0;
@@ -184,13 +181,12 @@ public class WorkServiceImp implements WorkService {
 			if(resultNo > 0 ) {
 				for (ProjectTask task : taskList) {
 				    task.setProjectNo(projectNo);
-				    int successCount = dao.createTask(task);
+				    task.setDeptNo((Integer)map.get("deptNo"));
+				    int successCount = pDao.createTask(task);
 				    if(successCount > 0)  taskCount++;	    
+				    logger.info("생성된 과제 수 : " + taskCount);
 				}	
 			}
-			
-			
-			
 			
 			if(resultNo != 0) {
 				
@@ -208,7 +204,7 @@ public class WorkServiceImp implements WorkService {
 					file.setFileOrigin(uploadFile.getOriginalFilename());
 					file.setFileReName(webPath + reName);
 					
-					result = dao.insertProjectFile(file);
+					result = pDao.insertProjectFile(file);
 						
 					if(result != 0) {
 						try {
@@ -239,6 +235,18 @@ public class WorkServiceImp implements WorkService {
 	@Override
 	public List<WorkGeneralList> workInbox(int memNo) {
 		return dao.workInbox(memNo);
+	}
+	
+	// 프로젝트 상신함 - 프로젝트리스트
+	@Override
+	public List<WorkGeneralList> projectSendList(int memNo) {		
+		return pDao.projectSendList(memNo);
+	}
+
+	// 프로젝트 상신함 - 과제리스트
+	@Override
+	public List<WorkGeneralList> taskSendList(int memNo) {
+		return pDao.taskSendList(memNo);
 	}
 
 

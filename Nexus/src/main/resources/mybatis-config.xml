@@ -24,7 +24,12 @@
 		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoom" alias="chatRoom"/>
 		<typeAlias type="com.ln.intranet.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
 		<typeAlias type="com.ln.intranet.chat.model.vo.Message" alias="message"/>
-		<typeAlias type="com.ln.intranet.meeting.model.vo.MeetingRoom" alias="meetingRoom"/>		
+		<typeAlias type="com.ln.intranet.meeting.model.vo.MeetingRoom" alias="meetingRoom"/>	
+		
+		<typeAlias type="com.ln.intranet.work.model.vo.Project" alias="project"/>
+		<typeAlias type="com.ln.intranet.work.model.vo.ProjectTask" alias="projectTask"/>	
+		
+		<typeAlias type="com.ln.intranet.dashBoard.model.vo.AttnDoughnut" alias="attnDoughnut"/>
 	</typeAliases>
 	
 	<mappers>
@@ -35,6 +40,7 @@
 		 <mapper resource="/mappers/attendance-mapper.xml"/>
 		 <mapper resource="/mappers/notice-mapper.xml"/>
 		 <mapper resource="/mappers/work-mapper.xml"/>
+		 <mapper resource="/mappers/project-mapper.xml"/>
 		 <mapper resource="/mappers/chat-mapper.xml"/>
 	</mappers>
 

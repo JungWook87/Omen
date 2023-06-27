@@ -26,7 +26,7 @@ public interface WorkService {
 	WorkDetail detailSelect(int workNo);
 
 	// 결재 상신 작성(일반결재)
-	int workWrite(Map<String, Object> map, MultipartFile uploadFile, HttpServletRequest req);
+	int workWrite(Map<String, Object> map, MultipartFile uploadFile, HttpServletRequest req, List<String> taskTitleList);
 
 	// 결재자 모달창
 	List<ApprovalMember> approvalMember();
@@ -36,6 +36,11 @@ public interface WorkService {
 
 	// 결재 취소
 	int workCancle(int workNo);
+	
+	// 프로젝트상신함리스트
+	List<WorkGeneralList> projectSendList(int memNo);
+	// 프로젝트과제 상신함 리스트
+	List<WorkGeneralList> taskSendList(int memNo);
 
 
 
