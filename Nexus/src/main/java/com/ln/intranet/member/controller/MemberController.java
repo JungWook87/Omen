@@ -186,17 +186,18 @@ public class MemberController {
 	@PostMapping("updateNotice")
 	@ResponseBody
 	public String updateNotice(
+							@RequestParam("noticeNo") int noticeNo,
 							@RequestParam("title") String title,
 							@RequestParam("content") String content,
 							RedirectAttributes ra) {
 		
 		NoticeDetail detail = new NoticeDetail();
 		
-		
+		detail.setNoticeNo(noticeNo);
 		detail.setTitle(title);
 		detail.setContent(content);
 		
-		System.out.println(detail);
+		
 		
 		int result = nService.updateNotice(detail);
 		
