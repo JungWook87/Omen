@@ -1,4 +1,4 @@
-/* 泥댄겕 紐⑤떖李� */
+/* 체크 모달창 */
 #checked-modalWrap {
     position: fixed;
     z-index: 1;
@@ -60,27 +60,27 @@
     list-style: none;
   }
   
-  /* 泥댄겕 紐⑤떖李� �뿤�뜑 */
+  /* 체크 모달창 헤더 */
   .checked-modal-header{
     background-color: var(--gray50);
     
   }
-  /* 泥댄겕 紐⑤떖李� �뿤�뜑�쁺�뿭*/
+  /* 체크 모달창 헤더영역*/
   .checked-modal-modal-headerbox{
     margin-top: 20px;
     padding: 10px;
     font-size: 16px;
   }
-  /* 泥댄겕 紐⑤떖李� �뿤�뜑 �궡�슜 */
+  /* 체크 모달창 헤더 내용 */
   .checked-modal-headerbox-content{
     padding: 3px 0px;
   }
-  /* 泥댄겕 紐⑤떖李� �뿤�뜑 �븘�옯遺�遺� */
+  /* 체크 모달창 헤더 아랫부분 */
   .checked-modal-headerbox-footer{
     padding: 20px 0px;
     display: flex;
   }
-  /* 泥댄겕 紐⑤떖李� �뿤�뜑 �븘�옯遺�遺� 踰꾪듉 */
+  /* 체크 모달창 헤더 아랫부분 버튼 */
   .checked-modal-headerbox-footer button{
     color: inherit;
     height: 32px;
@@ -90,7 +90,7 @@
     font-size: 16px;
     margin: 0 5px;
   }
-  /* 泥댄겕 紐⑤떖李� �뿤�뜑 �븘�옯遺�遺� �씠誘몄�*/
+  /* 체크 모달창 헤더 아랫부분 이미지*/
   .checked-modal-headerbox-footer img{
     width: 15px;
   }
@@ -100,8 +100,6 @@
     padding: 10px;
     color: var(--black);
     cursor: pointer;
-    
-  
   }
   
   #checked-closeBtn img {
@@ -109,7 +107,7 @@
     height: 18px;
   }
   
-  /* 紐⑤떖 �뀒�씠釉붿쁺�뿭 */
+  /* 모달 테이블영역 */
   
   .checked-modal-table-body{
     margin-top: 50px;
@@ -148,7 +146,7 @@
   }
   
   
-  /*紐⑤떖 �궡�슜 �뒪���씪 */
+   /*모달 내용 스타일 */
   .checked-modalBody p {
     color: var(--gray400);
   }
@@ -202,7 +200,7 @@
   }
   
   .checked-modal-checkbox{
-    margin: 10px 0px 10px;
+    margin: 10px 0px 0px;
     width: 100%;
     display: flex;
     justify-content: end;
@@ -258,14 +256,14 @@
   cursor: pointer;
   }
   
-  /* 泥댄겕 紐⑤떖李� �솗�씤 痍⑥냼 踰꾪듉 */
+  /* 체크 모달창 확인 취소 버튼 */
   .checked-submit-reset-btns {
     margin-top: 20px;
   
     float: right;
   }
 
-  /* �궇吏� 議고쉶李� */
+  /* 날짜 조회창 */
   .checked-modal-startDate input {
     width: 100%;
     height: 50px;
@@ -289,9 +287,9 @@
   }
   
  /* 확인 취소 버튼 */
-.work-inbox-submit-btn, .work-send-submit-btn   {
-  margin-top: 20px;
+.work-inbox-submit-btn, .work-send-submit-btn {
+  margin-top: 20px;
 
- float: right;
+  float: right;
 }
   

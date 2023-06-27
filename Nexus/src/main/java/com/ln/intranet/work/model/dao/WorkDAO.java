@@ -40,14 +40,11 @@ public class WorkDAO {
 		return sqlSession.delete("workMapper.workCancle", workNo);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// 다음 결재자 정보 불러오기
+	public Map<String, Object> nextMember(int next) {
+		return sqlSession.selectOne("workMapper.nextMember", next);
+	}
 	
 	// 결재 상신 작성(일반결재)
 	public int workWrite(Map<String, Object> map) {

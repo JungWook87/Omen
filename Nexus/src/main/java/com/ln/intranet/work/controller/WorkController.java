@@ -41,7 +41,7 @@ public class WorkController {
 	private Logger logger = LoggerFactory.getLogger(WorkController.class);
 	
 	
-	// 寃곗옱 �긽�떊�븿 �럹�씠吏� 吏꾩엯
+	// 결재 상신 리스트 조회
 	@GetMapping("/workSend")
 	public String workSend(Model model,
 			@ModelAttribute("loginMember") Member loginMember,
@@ -66,7 +66,7 @@ public class WorkController {
 	}
 	
 	
-	// 寃곗옱 �긽�떊�븿 �럹�씠吏� �씪�젙 吏��젙
+	// 결재 상신 날짜 지정
 	@ResponseBody
 	@GetMapping("/workSendSelectDate")
 	public String workSendSelectDate(Model model,
@@ -85,7 +85,7 @@ public class WorkController {
 		return gson.toJson(list);
 	}
 	
-	// 寃곗옱 �뵒�뀒�씪 議고쉶
+	// 결재 디테일 조회
 	@ResponseBody
 	@GetMapping("/detail")
 	public String detailSelect(@RequestParam("workNo") int workNo) {
@@ -102,10 +102,13 @@ public class WorkController {
 	public String clickApproval(@RequestParam Map<String, Object> map,
 								Model model) {
 		System.out.println(map);
+		
+		int result = service.clickApproval(map);
+		
 		return "";
 	}
 	
-	// 寃곗옱 痍⑥냼
+	// 결재 취소
 	@ResponseBody
 	@GetMapping("/workCancle")
 	public int workCancle(@RequestParam("workNo") int workNo) {
@@ -116,11 +119,7 @@ public class WorkController {
 		return result;
 	}
 	
-	
-	
-	
-	
-	// 寃곗옱 �긽�떊 �옉�꽦(�씪諛섍껐�옱)
+	// 결재 상신 작성 (일반 결재)
 	@PostMapping("/write")
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,
 			@RequestParam("file-uploads") MultipartFile uploadFile,
@@ -137,9 +136,7 @@ public class WorkController {
 		String workTypeWord = map.get("workTypeWord").toString();
 		int typeNo = 0;
 		
-		// type == 寃곗옱 ���엯(�씪諛�, �뿰李�, 異쒖옣 ..)
-		// �뿰李� attnType = 4 // workType = 2
-		// 異쒖옣 attnType = 5 // workType = 3 
+
 		if(workTypeWord.equals("normal-check")) typeNo = 1;
 		else if(workTypeWord.equals("vacation")) typeNo = 2;
 		else if(workTypeWord.equals("business-trip")) typeNo = 3;
@@ -159,7 +156,7 @@ public class WorkController {
 		return "redirect:workSend";
 	}
 	
-	// 寃곗옱�옄 紐⑤떖李�
+	// 결재자 모달창
 	@ResponseBody
 	@GetMapping("/approvalMember")
 	public String approvalMember() {
@@ -172,7 +169,7 @@ public class WorkController {
 	}
 	
 	
-	// 寃곗옱 �닔�떊�븿 (寃곗옱�븷寃�) �럹�씠吏� 吏꾩엯
+	// 결재 수신함 - 결재할 문서
 	@GetMapping("/workInbox")
 	public String workInbox(Model model,
 			@ModelAttribute("loginMember") Member loginMember) {
@@ -184,7 +181,7 @@ public class WorkController {
 		return "/work/work-inbox(1)";
 	}
 
-	// 寃곗옱 �닔�떊�븿 (寃곗옱吏꾪뻾以�) �럹�씠吏� 吏꾩엯
+	// 결재 수신함 - 결재 진행 중
 	@GetMapping("/workInboxIng")
 	public String workIng(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
@@ -192,12 +189,10 @@ public class WorkController {
 			@ModelAttribute("loginMember") Member loginMember
 			) {
 		
-		
-		
 		return "/work/work-inbox-ing(2)";
 	}
 	
-	// 寃곗옱 �닔�떊�븿 (寃곗옱�셿猷�) �럹�씠吏� 吏꾩엯
+	// 결재 수신함 - 결재 완료
 	@GetMapping("/workInboxEnd")
 	public String workEnd(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
@@ -209,7 +204,7 @@ public class WorkController {
 		return "/work/work-inobx-end(3)";
 	}
 	
-	// 寃곗옱 �엫�떆���옣 �럹�씠吏� 吏꾩엯
+	// 결재 임시 보관함
 	@GetMapping("/workTemp")
 	public String workTemp(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
@@ -221,7 +216,7 @@ public class WorkController {
 		return "/work/work-temp";
 	}
 	
-	// 寃곗옱 �뀥�뵆由� �럹�씠吏� 吏꾩엯
+	// 결재 템플렛
 	@GetMapping("/workTemplate")
 	public String workTemplate(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 

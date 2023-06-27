@@ -43,32 +43,32 @@ function successDetailModal(obj){
   end.value = "";
   app_list.innerText = "";
   
- let app_list_mem = obj.approvalList.split(",,");
-  let cnt = 0;
+  let app_list_mem = obj.approvalList.split(",,");
+  let cnt = 0;
 
-  for(let i = 0; i < app_list_mem.length; i++){
-    let memArr = app_list_mem[i].split(",");
-    
-    let tr = document.createElement("tr");
-    
-    let td1 = document.createElement("td");
-    td1.innerText = ++cnt;
-    tr.append(td1);
+  for(let i = 0; i < app_list_mem.length; i++){
+    let memArr = app_list_mem[i].split(",");
 
-   let td2 = document.createElement("td");
-    td2.innerText = memArr[0];
-    tr.append(td2);
+    let tr = document.createElement("tr");
 
-   let td3 = document.createElement("td");
-    td3.innerText = memArr[1];
-    tr.append(td3);
+    let td1 = document.createElement("td");
+    td1.innerText = ++cnt;
+    tr.append(td1);
 
-   let td4 = document.createElement("td");
-    td4.innerText = memArr[2];
-    tr.append(td4);
+    let td2 = document.createElement("td");
+    td2.innerText = memArr[0];
+    tr.append(td2);  
 
-   app_list.append(tr);
-  }
+    let td3 = document.createElement("td");
+    td3.innerText = memArr[1];
+    tr.append(td3);   
+
+    let td4 = document.createElement("td");
+    td4.innerText = memArr[2];
+    tr.append(td4);  
+
+    app_list.append(tr);
+  }
   
 
   checkedModalTitle.innerHTML = "<h1>" + obj.title;
@@ -105,7 +105,7 @@ function successDetailModal(obj){
 
   }
 
-  console.log(obj);
+
   
   // 디테일 모달창 열기
   checkedModalOpen();
@@ -141,8 +141,32 @@ function successDetailModal(obj){
       writeModalOpen();
     });
   }
-}
 
+  // 반려 또는 승인 버튼 클릭(kjw)
+  // 작업 필요 : 반려의 경우 - 버튼 클릭시 의견창 띄우고 입력된 의견 가져오기
+  //            둘다 - 결재자, 문서번호, 받아오기
+  const rejectBtn = document.getElementById("checked-reject-btn");
+  const approveBtn = document.getElementById("checked-approve-btn");
+  const checkbox = document.getElementById('checked-modal-checkbox');
+
+  // 반려
+  rejectBtn.addEventListener("click", function(){
+    let btnName = "reject"
+    obj.opinion = opinion.value;
+    obj.checkbox_flag = true;
+    obj.next = next.value;
+    app_btn_click(btnName, obj);
+  })
+  // 승인
+  approveBtn.addEventListener("click", function(){
+    let btnName = "approve"
+    checkbox_flag = checkbox.checked;
+    obj.checkbox_flag = checkbox_flag;
+    obj.next = next.value;
+    app_btn_click(btnName, obj);
+  })
+}
+////////////////
 
 // 내가 작성한 글 모달창 오픈
 function checkedModalOpen() {
@@ -237,30 +261,18 @@ function workDelete(obj){
   }
 }
 
-// 수정버튼 이벤트
-checkedEditBtn.addEventListener("click", () => {
-  writeModalOpen();
-});
+
 
 //복사버튼 이벤트
 checkedCopyBtn.addEventListener("click", () => {
   writeModalOpen();
 });
 
-//체크박스 체크
-function is_checked() {
-  // 체크박스 상태 확인
-  var checkbox = document.getElementById('checked-modal-checkbox');
-  var is_checked = checkbox.checked;
-
-}  
-
-// test
-function app_btn_click(name){
-  console.log(name);
+// 반려, 승인 버튼 클릭 작동 (kjw)
+function app_btn_click(btnName, obj, checkbox_flag){
 
   // 반려
-  if(name == 'reject'){
+  if(btnName == 'reject'){
     Swal.fire({
       title: '결재를 반려하시겠습니까?',
       text: '',
@@ -273,10 +285,24 @@ function app_btn_click(name){
       cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
    }).then(result => {
     if(result.isConfirmed){
-      console.log("반려 ok");
       $.ajax({
-        url : "clickApproval"
-      }); // ajax로 실행하자...
+        url : "clickApproval",
+        type : "GET",
+        dataType : "JSON",
+        data : {
+          "workNo" : obj.workNo,
+          "approvalList" : obj.approvalList,
+          "opinion" : obj.opinion,
+          "btnName" : btnName,
+          "checkbox_flag" : obj.checkbox_flag
+        },
+        success : function(){
+
+        },
+        error : function(){
+          console.log("반려 하다가 에러 발생");
+        }
+      });
     }
    })
   } else{ // 승인
@@ -292,8 +318,24 @@ function app_btn_click(name){
       cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
    }).then(result => {
     if(result.isConfirmed){
-      console.log("승인 ok");
+      $.ajax({
+        url : "clickApproval",
+        type : "GET",
+        dataType : "JSON",
+        data : {
+          "workNo" : obj.workNo,
+          "approvalList" : obj.approvalList,
+          "btnName" : btnName,
+          "checkbox_flag" : obj.checkbox_flag,
+          "next" : obj.next
+        },
+        success : function(){
 
+        },
+        error : function(){
+          console.log("승인 하다가 에러 발생");
+        }
+      });
     }
    })
   }
