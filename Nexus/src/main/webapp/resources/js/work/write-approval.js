@@ -231,7 +231,9 @@ normalCheckSelect.addEventListener("change", function(){
 // 결재자 클릭 이벤트
 pulsApproverBtn.addEventListener("click",() => {
 
-  
+  approverModal.style.display = 'block';
+  approverModalBody.classList.add('approver-modal-open');
+
   $.ajax({
     url : "approvalMember",
     type : "GET",
@@ -242,73 +244,102 @@ pulsApproverBtn.addEventListener("click",() => {
 
       const approvalList = list;
       const team = document.querySelectorAll(".approval-team");
-      let teamCreated = []; // 팀 요소가 이미 생성되었는지 여부를 확인하는 배열
 
-      for (let i = 0; i < team.length; i++) {
-        teamCreated[i] = false; // 모든 팀의 생성 여부를 초기에는 false로 설정합니다.
-
-        team[i].addEventListener("click", () => {
-          // 해당 팀에 이미 요소가 생성된 경우 종료합니다.
-          if (teamCreated[i]) {
-            return;
-          }
-
+      for(let i=0; i < team.length; i++){
+        team[i].innerText = "";
+      }
+  
           for (let value of approvalList) {
-            let div = document.createElement("div");
-            let p1 = document.createElement("p");
-            p1.innerText = value.memName;
+            let label = document.createElement("label");
+            label.setAttribute("for", "mem" + value.memNo);
+            label.innerText = value.memName;
+            
+            let input = document.createElement("input");
+            input.setAttribute("type", "radio");
+            input.setAttribute("name", "approver-check");
+            input.setAttribute("id", "mem" + value.memNo);
+            input.classList.add("approver-checkBox");
+            input.value = value.memNo;
 
-              if (value.teamNo === 11 && i === 0) {
-                team[i].append(div);
-              } else if (value.teamNo === 12 && i === 1) {
-                team[i].append(div);
-              } else if (value.teamNo === 21 && i === 2) {
-                team[i].append(div);
-              } else if (value.teamNo === 22 && i === 3) {
-                team[i].append(div);
-              } else if (value.teamNo === 31 && i === 4) {
-                team[i].append(div);
-              } else if (value.teamNo === 32 && i === 5) {
-                team[i].append(div);
-              } else if (value.teamNo === 33 && i === 6) {
-                team[i].append(div);
-              } else if (value.teamNo === 34 && i === 7) {
-                team[i].append(div);
-              } else if (value.teamNo === 41 && i === 8) {
-                team[i].append(div);
-              } else if (value.teamNo === 42 && i === 9) {
-                team[i].append(div);
-              } else if (value.teamNo === 43 && i === 10) {
-                team[i].append(div);
-              } else if (value.teamNo === 51 && i === 11) {
-                team[i].append(div);
-              } else if (value.teamNo === 52 && i === 12) {
-                team[i].append(div);
+              if (value.teamNo == 11) {
+                team[0].append(label);
+                team[0].append(input);
+              } else if (value.teamNo == 12) {
+                team[1].append(label);
+                team[1].append(input);
+              } else if (value.teamNo == 21) {
+                team[2].append(label);
+                team[2].append(input);
+              } else if (value.teamNo == 22) {
+                team[3].append(label);
+                team[3].append(input);
+              } else if (value.teamNo == 31) {
+                team[4].append(label);
+                team[4].append(input);
+              } else if (value.teamNo == 32) {
+                team[5].append(label);
+                team[5].append(input);
+              } else if (value.teamNo == 33) {
+                team[6].append(label);
+                team[6].append(input);
+              } else if (value.teamNo == 34) {
+                team[7].append(label);
+                team[7].append(input);
+              } else if (value.teamNo == 41) {
+                team[8].append(label);
+                team[8].append(input);
+              } else if (value.teamNo == 42) {
+                team[9].append(label);
+                team[9].append(input);
+              } else if (value.teamNo == 43) {
+                team[10].append(label);
+                team[10].append(input);
+              } else if (value.teamNo == 51) {
+                team[11].append(label);
+                team[11].append(input);
+              } else if (value.teamNo == 52) {
+                team[12].append(label);
+                team[12].append(input);
               }
 
-            div.append(p1);
-          }
-
-          teamCreated[i] = true; // 팀 요소가 생성되었음을 표시합니다.
-        });
-      }
-
-    }
+            }
+            
+          //  // 결재자 클릭 이벤트 핸들러
+          const approverSuccessBtn = document.getElementById('approver-success-btn');
+          const approverCheckBtn = document.getElementsByClassName('approver-checkBox');
+          
+          approverSuccessBtn.addEventListener("click", () => {
+            for (let i = 0; i < approverCheckBtn.length; i++) {
+              let radio = approverCheckBtn[i]; // <input[=radio]> 태그 내부의 라디오 버튼 선택
+              if (radio.checked) {  
+                workApprover.value = radio.value; // 체크된 라디오 버튼의 값을 가져옵니다.
+                const showMember = document.getElementById("showMemName");
+                showMember.innerText = radio.previousElementSibling.innerText; 
+                aproverModalClose();
+              }
+            } 
+          });
     
+    }
+
   });
 
-  approverModal.style.display = 'block';
-  approverModalBody.classList.add('approver-modal-open');
 })
 
 // 결재자 부서 클릭 이벤트
 const dept = document.querySelector(".dept");
 const deptList = document.querySelectorAll(".dept-list");
 
+dept.querySelector("p").addEventListener("click", ()=> {
+  for(let a of deptList){
+    a.classList.toggle('show');
+  }
+})
+
 for (let i = 0; i < deptList.length; i++) {
   deptList[i].addEventListener('click', () => {
     // 해당 deptList 내부의 팀 요소들을 선택합니다.
-    const teamElements = deptList[i].querySelectorAll('.approval-team');
+    var teamElements = deptList[i].querySelectorAll('.approval-team');
 
     // 선택한 deptList 내부의 팀 요소들에 대해 이벤트 전파를 차단합니다.
     for (let item of teamElements) {
@@ -323,6 +354,8 @@ for (let i = 0; i < deptList.length; i++) {
     }
   });
 }
+
+
 
 
 // 결재자 모달창 외부 영역 이벤트
@@ -353,22 +386,22 @@ function aproverModalClose() {
 
 }
 
- // 결재자 클릭 이벤트 핸들러
-const approverSuccessBtn = document.getElementById('approver-success-btn');
-const approverCheckBtn = document.querySelectorAll('.approver-checkBox');
+//  // 결재자 클릭 이벤트 핸들러
+// const approverSuccessBtn = document.getElementById('approver-success-btn');
+// const approverCheckBtn = document.getElementsByClassName('.approver-checkBox');
 
+// approverSuccessBtn.addEventListener("click", () => {
+//   console.log(approverCheckBtn.length);
+//   for (let i = 0; i < approverCheckBtn.length; i++) {
+//     console.log("zmfflrehla");
+//     let radio = approverCheckBtn[i]; // <input[=ridio]> 태그 내부의 라디오 버튼 선택
+//     if (radio.checked) {
+//       workApprover.value = radio.checked.previousSibling.innerText; // 체크된 라디오 버튼의 값 가져오기 어떻게??
+//       aproverModalClose();
+//     }
+//   } 
 
-approverSuccessBtn.addEventListener("click", () => {
-
-  for (let i = 0; i < approverCheckBtn.length; i++) {
-    let radio = approverCheckBtn[i]; // <input[=ridio]> 태그 내부의 라디오 버튼 선택
-    if (radio.checked) {
-      workApprover.value = radio.value; // 체크된 라디오 버튼의 값 가져오기
-      aproverModalClose();
-    }
-  } 
-
-});
+// });
 
 // 자동 높이 조정 textarea
 function handleResizeHeight(obj) {

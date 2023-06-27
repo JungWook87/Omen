@@ -103,7 +103,8 @@
 
         <div class="work-modal-approver">
           <p>결재자</p>
-          <input type="text" name="next">
+          <div id="showMemName">결재자</div>
+          <input style="display: none;" type="text" name="next">
         </div>
 
         <!-- 파일 업로드 -->
@@ -148,35 +149,74 @@
                       <ul >
                         <li class="dept-list"><p>관리기획부</p>
                           <ul>
-                            <li class="approval-team"><p>재무팀</p></li>
-                            <li class="approval-team"><p>인시총무팀</p></li>
+                            <li>
+                              <p>재무팀</p>
+                              <li class="approval-team"></li>
+                            </li>
+                            <li>
+                              <p>인사총무팀</p>
+                              <li class="approval-team"></li>
+                            </li>
                           </ul>
                         </li>
                         <li class="dept-list"><p>업무기획부</p>
                           <ul>
-                            <li class="approval-team"><p>영업팀</p></li>
-                            <li class="approval-team"><p>기술개발팀</p></li>
+                            <li>
+                              <p>영업팀</p>
+                              <li class="approval-team"></li>
+                            </li>
+                            <li>
+                              <p>기술개발팀</p>
+                              <li class="approval-team"></li>
+                            </li>
                           </ul>
                         </li>
                         <li class="dept-list"><p>공무기획부</p>
                           <ul>
-                            <li class="approval-team"><p>공사팀</p></li>
-                            <li class="approval-team"><p>공무팀</p></li>
-                            <li class="approval-team"><p>견적팀</p></li>
-                            <li class="approval-team"><p>자재팀</p></li>
+                            <li>
+                              <p>공사팀</p>
+                              <li class="approval-team"></li>
+                            </li>
+                            <li>
+                              <p>공무팀</p>
+                              <li class="approval-team"></li>
+                            </li>
+                            <li>
+                              <p>견적팀</p>
+                              <li class="approval-team"></li>
+                            </li>
+                            <li>
+                              <p>자재팀</p>
+                              <li class="approval-team"></li>
+                            </li>
                           </ul>
                         </li>
                         <li class="dept-list"><p>개발사업부</p>
                           <ul>
-                            <li class="approval-team"><p>개발기획팀</p></li>
-                            <li class="approval-team"><p>분양홍보팀</p></li>
-                            <li class="approval-team"><p>설계기획팀</p></li>
+                            <li>
+                              <p>개발기획팀</p>
+                              <li class="approval-team"></li>
+                            </li>
+                            <li>
+                              <p>분양홍보팀</p>
+                              <li class="approval-team"></li>
+                            </li>
+                            <li>
+                              <p>설계기획팀</p>
+                              <li class="approval-team"></li>
+                            </li>
                           </ul>
                         </li>
                         <li class="dept-list"><p>전략기획실</p>
                           <ul>
-                            <li class="approval-team"><p>경영팀</p></li>
-                            <li class="approval-team"><p>전략팀</p></li>
+                            <li>
+                              <p>경영팀</p>
+                              <li class="approval-team"></li>
+                            </li>
+                            <li>
+                              <p>전략팀</p>
+                              <li class="approval-team"></li>
+                            </li>
                           </ul>
                         </li>
                       </ul>
@@ -184,8 +224,19 @@
                   </ul>
                 </div>
             </div>
+
+            <div class="approver-modal-line2"></div>
+            <!-- 버튼 -->
+            <div class="approver-submit-reset-btns">
+              <button type="reset" id="approver-cancell-btn">취소</button>
+              <button type="button" id="approver-success-btn">확인</button>
+            </div>
+          
           </div>
+
+        
         </div>
+      
       </div>
 
         
