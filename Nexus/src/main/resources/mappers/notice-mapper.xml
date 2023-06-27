@@ -105,7 +105,7 @@
 		UPDATE NOTICE SET 
 		TITLE = #{title},
 		CONTENT = #{content}
-		WHERE NOTICE_NO = #{notice}
+		WHERE NOTICE_NO = #{noticeNo}
 	</update>
 
 	

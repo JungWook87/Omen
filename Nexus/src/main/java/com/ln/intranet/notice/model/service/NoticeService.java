@@ -20,9 +20,9 @@ public interface NoticeService {
 
 	/** 공지사항 수정
 	 * @param noticeNo
-	 * @param paramMap
+	 * @param detail
 	 * @return result
 	 */
-	int updateNotice(Map<String, Object> paramMap);
+	int updateNotice(NoticeDetail detail);
 
 }

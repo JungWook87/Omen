@@ -98,9 +98,16 @@ public class NoticeServiceImpl implements NoticeService{
 
 	// 공지사항 수정
 	@Override
-	public int updateNotice(Map<String, Object> paramMap) {
+	public int updateNotice(NoticeDetail detail) {
 		
-		return dao.updateNotice(paramMap);
+		
+		
+		detail.setContent(Util.newLineHandling(detail.getContent()));
+		
+		System.out.println(detail);
+	
+		
+		return dao.updateNotice(detail);
 	}
 
 

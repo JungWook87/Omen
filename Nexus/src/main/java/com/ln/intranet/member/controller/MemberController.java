@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
+import com.ln.intranet.dept.model.vo.BoardDetail;
 import com.ln.intranet.member.model.service.MemberService;
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.notice.model.service.NoticeService;
@@ -185,28 +186,35 @@ public class MemberController {
 	@PostMapping("updateNotice")
 	@ResponseBody
 	public String updateNotice(
-							@RequestBody Notice notice,
+							@RequestParam("title") String title,
+							@RequestParam("content") String content,
 							RedirectAttributes ra) {
 		
+		NoticeDetail detail = new NoticeDetail();
 		
 		
-		logger.debug("나와라:", notice);
+		detail.setTitle(title);
+		detail.setContent(content);
+		
+		System.out.println(detail);
+		
+		int result = nService.updateNotice(detail);
 		
 		
-		int result = nService.updateNotice(paramMap);
 		
 		
 		String message = null;
 		
 		if(result > 0) {
-			message = "직원이 추가 되었습니다.";
+			message = "수정이 완료 되었습니다";
 		} else {
-			message = "직원 추가 실패";
+			message = "수정 실패";
 
 		}
 		
 		ra.addFlashAttribute("message", message);
-		return  "redirect:/member/notice";
+		
+		return new Gson().toJson(result);
 		
 	}
 	

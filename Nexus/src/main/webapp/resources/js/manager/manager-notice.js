@@ -255,7 +255,7 @@ function detailModal(noticeNo) {
       checkModalTitle.append(checkModalTitleSpan);
 
       const checkModalDetailSpan = document.createElement("span");
-      checkModalDetailSpan.innerHTML = detail.content;
+      checkModalDetailSpan.textContent = detail.content;
       checkModalDetail.append(checkModalDetailSpan);
 
       globalNoticeNo = noticeNo;
@@ -279,106 +279,101 @@ function detailModal(noticeNo) {
   const modifyBtn = document.getElementById ('check-success-btn');
 
   modifyBtn.addEventListener('click', () => {
-    if (modifyBtn.innerText === "수정") {
-      enableEditing();
-    } else if (modifyBtn.innerText === "수정 완료") {
-      saveChanges();
-    }
-  })
-
-  function enableEditing() {
-    const inputFieldTitle = document.createElement("input");
-    inputFieldTitle.type = "text";
-    inputFieldTitle.value = checkModalTitleSpan.textContent;
-    checkModalTitle.replaceChild(inputFieldTitle, checkModalTitleSpan);
-
-    const inputFieldDetail = document.createElement("textarea");
-    inputFieldDetail.value = checkModalDetailSpan.textContent;
-    inputFieldDetail.name = "modal-detail-textarea";
-    inputFieldDetail.id = "modal-detail-textarea";
-    inputFieldDetail.addEventListener("keydown", handleResizeHeight);
-    inputFieldDetail.addEventListener("keyup", handleResizeHeight);
-    checkModalDetail.innerHTML = '';
-    checkModalDetail.appendChild(inputFieldDetail);
-
-    function handleResizeHeight(event) {
-      const textarea = event.target;
-      textarea.style.height = 'auto';
-      textarea.style.height = textarea.scrollHeight + 'px';
-      
-      const computedStyles = window.getComputedStyle(textarea);
-      if (textarea.scrollHeight >= parseInt(computedStyles.maxHeight)) {
-        textarea.style.overflow = "scroll";
-      } else {
-        textarea.style.overflow = "hidden";
-      }
-    }
-
-    // 수정 버튼을 수정 완료 버튼으로 변경
-    modifyBtn.innerText = "수정 완료";
-    modifyBtn.style.width = "80px"
-    modifyBtn.removeEventListener("click", enableEditing);
-    modifyBtn.addEventListener("click", saveChanges);
-  }
-
-
-
-  function saveChanges() {
-    const updatedTitle = checkModalTitle.querySelector("input").value;
-    checkModalTitleSpan.textContent = updatedTitle;
-
-    const updatedDetail = checkModalDetail.querySelector("textarea").value;
-    checkModalDetailSpan.textContent = updatedDetail;
-
-    checkModalTitle.replaceChild(checkModalTitleSpan, checkModalTitle.querySelector("input"));
-    checkModalDetail.replaceChild(checkModalDetailSpan, checkModalDetail.querySelector("textarea"));
-
-    console.log(updatedTitle);
-    console.log(updatedDetail);
-     
-  $.ajax({
-    url: "updateNotice",
-    data: {
-      "noticeNo" : globalNoticeNo,
-      "title" : updatedTitle,
-      "content" : updatedDetail
-    },
-    type: "POST",
-    success: function(response) {
-      
-      console.log("업데이트 성공");
-      console.log(response);
-    },
-    error: function(req, status, error) {
-      // 업데이트 실패 또는 오류 발생 시의 처리
-      console.log("에러 발생");
-      
-    }
-  });
-
-    // 수정 완료 버튼을 다시 수정 버튼으로 변경
-    modifyBtn.innerText = "수정";
-    modifyBtn.style.width = "60px"
-    modifyBtn.removeEventListener("click", saveChanges);
-    modifyBtn.addEventListener("click", enableEditing);
-
-    checkModalClose();
-  }
-	    
-
-      
-    // 모달창 열기
-    checkModal.style.display = 'block';
-    checkModalBody.classList.add('check-modal-open');    
     
+  const noticeTitle = document.querySelector('.check-modal-title');
+  const noticeContent = document.querySelector('.check-modal-detail');
+
+  const modifyNoticeTitle = document.createElement('input');
+  const modifyNoticeContent = document.createElement('textarea');
+
+  modifyNoticeTitle.value = noticeTitle.textContent;
+  modifyNoticeContent.value = noticeContent.textContent;
+
+  noticeTitle.innerHTML = '';
+  noticeContent.innerHTML = '';
+
+  noticeTitle.appendChild(modifyNoticeTitle);
+  noticeContent.appendChild(modifyNoticeContent);
+
+  modifyNoticeContent.addEventListener('keydown', handleResizeHeight);
+  modifyNoticeContent.addEventListener('keyup', handleResizeHeight);
+    
+
+  // 수정 버튼을 수정 완료 버튼으로 변경
+  modifyBtn.innerText = "수정 완료";
+  modifyBtn.style.width = "80px"
+  
+  if(modifyBtn.innerText = "수정 완료") {
+
+    modifyBtn.addEventListener('click', () => {
+
+      $.ajax({
+        url: "updateNotice",
+        data: {
+          "noticeNo" : globalNoticeNo,
+          "title" : modifyNoticeTitle.value,
+          "content" : modifyNoticeContent.value
+        },
+        type: "POST",
+        success: function(result) {
+          
+          if(result > 0) {
+            Swal.fire("수정이 완료되었습니다.")
+            .then((result) => {
+              // 확인 버튼을 누르면 페이지 새로고침
+              if (result.isConfirmed) {
+                location.reload();
+              }
+            });
+
+            
+            // 수정 완료 버튼을 다시 수정 버튼으로 변경
+            modifyBtn.innerText = "수정";
+            modifyBtn.style.width = "60px"
+  
+
+            checkModalClose();
+          }
+          
+          
+
+        },
+        error: function(req, status, error) {
+          // 업데이트 실패 또는 오류 발생 시의 처리
+          console.log("에러 발생");
+          
+        }
+         });
+     
+        })
+ 
+        }
+  
+      })
+      checkModal.style.display = 'block';
+      checkModalBody.classList.add('check-modal-open');    
     },
     error : function(req, status, error){
       console.log("에러 발생");
       console.log(req.responseText);
-  }
+    }
   })
   
 
+}
+
+// textarea 화면 늘려주는 함수
+function handleResizeHeight(event) {
+  const textarea = event.target;
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+  
+  const computedStyles = window.getComputedStyle(textarea);
+  if (textarea.scrollHeight >= parseInt(computedStyles.maxHeight)) {
+    textarea.style.overflow = "scroll";
+  } else {
+    textarea.style.overflow = "hidden";
+  }
 }
 
 // 수정 모달창 닫기

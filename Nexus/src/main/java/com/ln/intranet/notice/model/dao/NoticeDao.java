@@ -54,9 +54,9 @@ public class NoticeDao {
 	}
 
 	// 공지사항 수정
-	public int updateNotice(Map<String, Object> paramMap) {
+	public int updateNotice(NoticeDetail detail) {
 
-		return sqlSession.update("noticeMapper.updateNotice", paramMap);
+		return sqlSession.update("noticeMapper.updateNotice", detail);
 	}
 
 
