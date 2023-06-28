@@ -4,6 +4,8 @@ const chatMain = document.getElementById('chat-main'),
   chatClose = document.getElementById("close"),
   chattingClose = document.getElementById('chat-close'),
   chatting = document.querySelector('.chat');
+
+  let loginMemberName;
  
 // 채팅창 오픈 이벤트
 chatOpen.addEventListener('click', () => {
@@ -72,7 +74,7 @@ window.addEventListener('click', function(event) {
 
 let globalCmNo;
 
-// 채팅 버튼 눌렀을 때 이전 채팅방이 보임
+// 채팅 버튼 눌렀을 때 이전 채팅이 보임
 function getChattingList() {
 
     const contactArea = document.getElementById('contact-area');
@@ -89,9 +91,28 @@ function getChattingList() {
           newContact.classList.add('contact', 'contact-hover');
           newContact.setAttribute('data-cmno', room.cmNo);
            globalCmNo = room.cmNo; 
-          newContact.innerHTML = `
+           console.log(globalCmNo);
+
+           if(room.createMemberName === loginMemberName){
+             newContact.innerHTML = `
+               <div>
+                 <div class="name">${room.inviteName}</div>
+                 <div class="contact-message">${chatVal.value}</div>
+               </div>
+               <div class="delete-btn-set">
+                 <div class="arrow-button">
+                   <i class="fa-solid fa-angles-left fa-beat-fade"></i>
+                 </div>
+                 <div class="flex-btn">
+                   <div class="cancle-button">취소</div>
+                   <div class="delete-button">나가기</div>
+                 </div>
+               </div>
+             `;
+           }else{
+            newContact.innerHTML = `
             <div>
-              <div class="name">${room.inviteName}</div>
+              <div class="name">${room.createMemberName}</div>
               <div class="contact-message">${chatVal.value}</div>
             </div>
             <div class="delete-btn-set">
@@ -104,6 +125,9 @@ function getChattingList() {
               </div>
             </div>
           `;
+
+
+           }
 
 
             // 글이 길어지면 ... 표시
@@ -179,6 +203,9 @@ function getChattingList() {
 
 
             // 채팅방에서 클릭 이벤트
+            
+            let loginMemberNumber;
+            
 
             newContact.addEventListener('click', function() {
                const contacts = document.querySelectorAll('.contact');
@@ -200,8 +227,13 @@ function getChattingList() {
                       dataType : 'JSON',
                       success : function(loginMemberInfo) {
                         console.log(loginMemberInfo);
+
+                        loginMemberNumber = loginMemberInfo.memNo;
+                        loginMemberName = loginMemberInfo.memName;
+                        
                         
                         for (let i = 0; i < chatMessageList.length; i++) {
+                          chatMessageNumber = chatMessageList[i].memNo;
                             const message = chatMessageList[i].mContent;
                             const chatMessage = document.createElement('div');
                             if(loginMemberInfo.memNo === chatMessageList[i].memNo) {
@@ -211,26 +243,14 @@ function getChattingList() {
                               chatMessage.classList.add("message", "stark");
 
                             }
-
-                            
                             const timeSub = document.createElement('div');
                             timeSub.className = 'time-sub';
                             const time = chatMessageList[i].mDate; 
                             timeSub.textContent = time;
-
-
-                           
-                          
-                            
-
-                            
-
                             chatMessage.appendChild(timeSub);
-
                             const content = document.createElement('div');
                             content.className = 'content';
                             content.textContent = message;
-
                             chatMessage.appendChild(content);
 
                             chat.appendChild(chatMessage);
@@ -714,7 +734,7 @@ function sendWebMessage(loginMemberInfo) {
     url: 'loginMember',
     type: 'POST',
     dataType: 'JSON',
-    success: function(loginMemberInfo) {
+    success: function(loginMemberInfo) { 
       console.log(loginMemberInfo);
       console.log(chatValue.value);
 
@@ -741,50 +761,16 @@ function sendWebMessage(loginMemberInfo) {
 }
    
 
-// 기본엔터 동작 방지 함수
 function handleKeyPress(event) {
-  if(event.key === "Enter") {
+  if (event.key === "Enter") {
     event.preventDefault();
-    sendMessage();
-    sendWebMessage();
+    const loginMemberInfo = {}; // 필요한 로그인 멤버 정보를 적절히 설정
+    sendWebMessage(loginMemberInfo);
   }
 }
 
-//인풋창에 글자를 입력하고 엔터를 눌렀을때 이벤트
-function sendMessage(sendWebMessage) {
-  if (event.keyCode === 13 && chatVal.value.trim() !== '') {
-    const chatValue = document.querySelector('#chat-input');
-    const message = document.createElement('div');
-    message.className = 'message parker';
-    const time = getTimeString();
-    const content = document.createElement('div');
-    content.className = 'content';
-    content.textContent = chatVal.value;
-    message.appendChild(content);
-    chat.appendChild(message);
 
-    // 글자 수에 따라 .long-message 클래스 추가
-    if (content.offsetHeight < content.scrollHeight) {
-      content.classList.add('long-message');
-    }
 
-    const timeSub = document.createElement('div');
-    timeSub.className = 'time-sub';
-    timeSub.textContent = time;
-    message.insertBefore(timeSub, content);
-
-    if (isTyping) {
-      isTyping = false;
-      if (typingIndicator && typingIndicator.parentNode === chat) {
-        chat.removeChild(typingIndicator);
-        typingIndicator = null;
-      }
-    }
-
-    scrollToBottom();
-    
-  }
-}
 
 
 // 인풋창 옆에 종이비행기 버튼 이벤트
@@ -845,3 +831,58 @@ function scrollToBottom() {
 if (contactArea.innerHTML.trim() === '') {
   showEmptyChatMessage();
 }
+
+$.ajax({
+  url : 'loginMember',
+  type : 'POST',
+  dataType : 'JSON',
+  success : function(loginMemberInfo) {
+  chattingSock.onmessage = function(e) {
+
+const chatMessage = JSON.parse(e.data);
+console.log(chatMessage);
+
+const message = document.createElement('div');
+if(chatMessage.memNo === loginMemberInfo.memNo){
+message.className = 'message parker';
+}else{
+message.className = "message stark";
+
+}
+const time = getTimeString();
+const content = document.createElement('div');
+content.className = 'content';
+content.textContent = chatMessage.mContent;
+message.appendChild(content);
+chat.appendChild(message);
+
+// 글자 수에 따라 .long-message 클래스 추가
+if (content.offsetHeight < content.scrollHeight) {
+content.classList.add('long-message');
+}
+
+const timeSub = document.createElement('div');
+timeSub.className = 'time-sub';
+timeSub.textContent = time;
+message.insertBefore(timeSub, content);
+
+if (isTyping) {
+isTyping = false;
+if (typingIndicator && typingIndicator.parentNode === chat) {
+chat.removeChild(typingIndicator);
+typingIndicator = null;
+}
+}
+
+scrollToBottom();
+};
+  
+  },
+  error: function() {
+console.log("에러");
+}
+});
+
+
+
+
