@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ln.intranet.attendance.model.dao.AttendanceDAO;
 import com.ln.intranet.common.Util;
 import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.work.model.dao.ProjectDAO;
@@ -31,6 +32,8 @@ public class WorkServiceImp implements WorkService {
 	WorkDAO dao;
 	@Autowired
 	ProjectDAO pDao;
+	@Autowired
+	AttendanceDAO attnDao;
 	
 	private Logger logger = LoggerFactory.getLogger(WorkServiceImp.class);
 	
@@ -78,7 +81,7 @@ public class WorkServiceImp implements WorkService {
 		
 		// 다음 결재자 정보 불러오기
 		Map<String, Object> nextMember = dao.nextMember(Integer.parseInt(map.get("next").toString()));
-		String approvalList = nextMember.get("MEM_NAME") + "," + "진행중" + "," + nextMember.get("DEPT_NAME") + " / " + nextMember.get("JOB_NAME") ;
+		String approvalList = nextMember.get("MEM_NAME") + "," + "진행중" + "," + nextMember.get("DEPT_NAME") + " / " + nextMember.get("JOB_NAME") + ",,";
 		map.put("approvalList", approvalList);
 		
 		// 프로젝트과제 객체 생성
@@ -245,6 +248,7 @@ public class WorkServiceImp implements WorkService {
 	@Override
 	public int clickApproval(Map<String, Object> map) {
 		
+		// 결재자 경로 변경 및 추가
 		String approvalList = "";
 		String[] strArrOne = map.get("approvalList").toString().split(",,");
 
@@ -252,18 +256,60 @@ public class WorkServiceImp implements WorkService {
 			String[] strArrTwo = strArrOne[strArrOne.length - 1].split(",");
 			strArrTwo[1] = "반려";
 			
-			strArrOne[strArrOne.length - 1] = strArrTwo[0] + "," + strArrTwo[1] + "," + strArrTwo[2] + ",,";
+			strArrOne[strArrOne.length - 1] = strArrTwo[0] + "," + strArrTwo[1] + "," + strArrTwo[2];
 
+		} else {
+			String[] strArrTwo = strArrOne[strArrOne.length - 1].split(",");
+			strArrTwo[1] = "승인";
+			
+			strArrOne[strArrOne.length - 1] = strArrTwo[0] + "," + strArrTwo[1] + "," + strArrTwo[2];
 		}
 		
 		for(int i = 0; i < strArrOne.length; i++) {
-			approvalList += strArrOne[i];
+			approvalList += strArrOne[i] + ",,";
+		}
+		map.put("approvalList", approvalList);
+		
+		String checkbox_flag = map.get("checkbox_flag").toString();
+		if(checkbox_flag.equals("false")) {
+			Map<String, Object> nextMember = dao.nextMember(Integer.parseInt(map.get("next").toString()));
+			approvalList += nextMember.get("MEM_NAME") + "," + "진행중" + "," + nextMember.get("DEPT_NAME") + " / " + nextMember.get("JOB_NAME") + ",,";
+			map.put("approvalList", approvalList);
 		}
 		
-		System.out.println(approvalList);
-		// 일단 수정까지는 완료
+		// 반려시 의견이 있다면 보안적용
+		if(map.get("btnName").toString().equals("reject") && map.get("opinion") != null) {
+			map.put("opinion", Util.XSSHandling(map.get("opinion").toString()));
+			map.put("opinion", Util.newLineHandling(map.get("opinion").toString()));
+		}
 		
-		return 0;
+		System.out.println(map);
+		// 연차 또는 출장 관련 결재 최종 승인 시 근태 테이블에 값 넣기
+		int typeNo = Integer.parseInt(map.get("typeNo").toString());
+			
+		if(typeNo == 2 || typeNo == 3 && checkbox_flag.equals("true")) {
+			String[] tempS = map.get("start").toString().split("-");
+			String[] tempE = map.get("end").toString().split("-");
+			
+			int startDay = Integer.parseInt(tempS[2].substring(0, 2));
+			int endDay = Integer.parseInt(tempE[2].substring(0, 2));
+			
+			int year = Integer.parseInt(tempS[0].substring(2, 4));
+			int month = Integer.parseInt(tempS[1]);
+			
+			System.out.println("startDay : " + startDay);
+			System.out.println("endDay : " + endDay);
+			System.out.println("year : " + year);
+			System.out.println("month : " + month);
+//			while(true) {
+//				String today = year + "/" + month + "/" + startDay;
+//				dao.insertAttn();
+//			}
+		}
+		
+
+		
+		return dao.clickApproval(map);
 	}
 
 

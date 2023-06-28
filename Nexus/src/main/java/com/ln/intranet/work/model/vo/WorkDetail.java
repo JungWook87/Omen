@@ -13,6 +13,7 @@ public class WorkDetail {
 	
 	private int workNo; // 문서번호
 	private int typeNo; // 타입
+	private int memNo; // 초기 작성자 사원번호
 	private String title; // 제목
 	private String sendDate; // 작성일
 	private String content; // 내용(일반, 출장)

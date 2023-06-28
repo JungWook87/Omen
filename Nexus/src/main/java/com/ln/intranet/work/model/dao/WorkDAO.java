@@ -34,7 +34,7 @@ public class WorkDAO {
 	public WorkDetail detailSelect(int workNo) {
 		return sqlSession.selectOne("workMapper.detailSelect", workNo);
 	}
-
+	
 	// 결재취소
 	public int workCancle(int workNo) {
 		return sqlSession.delete("workMapper.workCancle", workNo);
@@ -66,6 +66,13 @@ public class WorkDAO {
 	public List<ApprovalMember> approvalMember() {
 		return sqlSession.selectList("workMapper.approvalMember");
 	}
+
+	// 반려 승인
+	public int clickApproval(Map<String, Object> map) {
+		return sqlSession.update("workMapper.clickApproval", map);
+	}
+
+
 
 
 

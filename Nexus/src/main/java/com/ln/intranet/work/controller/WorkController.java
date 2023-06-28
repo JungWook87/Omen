@@ -98,14 +98,14 @@ public class WorkController {
 	}
 	
 	// 반려 / 승인
-	@PostMapping("/clickApproval")
-	public String clickApproval(@RequestParam Map<String, Object> map,
+	@GetMapping("/clickApproval")
+	@ResponseBody
+	public int clickApproval(@RequestParam Map<String, Object> map,
 								Model model) {
-		System.out.println(map);
 		
 		int result = service.clickApproval(map);
 		
-		return "";
+		return result;
 	}
 	
 	// 결재 취소

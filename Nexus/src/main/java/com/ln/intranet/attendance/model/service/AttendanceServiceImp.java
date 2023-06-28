@@ -118,7 +118,7 @@ public class AttendanceServiceImp implements AttendanceService {
 		String extendedWH = "";
 		
 		if(tempEx >= 0) {
-			extendedWH = tempEx + " 시간 " + workingMinute + "분";
+			extendedWH = tempEx + " 시간 " + workingMinute + " 분";
 		} else {
 			extendedWH = "0 시간 0 분";
 		}

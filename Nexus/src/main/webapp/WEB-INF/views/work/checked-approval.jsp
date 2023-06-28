@@ -100,13 +100,26 @@
         <!-- 의견 -->
         <div class="checked-modal-coment">
           <p>의견</p>
-          <input type="text" id="opinion" placeholder="반려 시 사유를 적어주세요.">
+          <c:choose>
+            <c:when test="${flag == 1}">
+              <input type="text" id="opinion" placeholder="반려 시 사유를 적어주세요.">
+            </c:when>
+            <c:otherwise>
+              <input type="text" id="opinion">
+            </c:otherwise>
+          </c:choose>
         </div>
 
         <!-- 결재자 -->
         <div class="checked-modal-approver">
           <p>결재자</p>
           <input type="text" id="next">
+        </div>
+
+        <!-- 업로드 파일(kjw) -->
+        <div class="file_div">
+          <p>첨부파일</p>
+          <div class="upload_file" id="upload_file"></div>
         </div>
       
         <!-- 선2 -->
@@ -115,10 +128,8 @@
         <!-- 최종승인 버튼 -->
         <c:if test="${flag == 1}">
           <div class="checked-modal-checkbox">
-            <label for="">
-              <input type="checkbox" id='checked-modal-checkbox' onclick='is_checkeded()'> 
-              최종 승인
-            </label>
+            <input type="checkbox" id='checked-modal-checkbox'> 
+            <label for="checked-modal-checkbox">최종 승인</label>
           </div>
         </c:if>
 
