@@ -18,7 +18,8 @@ import java.util.HashMap;
 	import org.springframework.web.bind.annotation.ResponseBody;
 	import org.springframework.web.bind.annotation.RestController;
 	import org.springframework.web.bind.annotation.SessionAttributes;
-	import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	
 	import com.google.gson.Gson;
 	import com.ln.intranet.chat.model.service.ChatService;
@@ -189,5 +190,17 @@ import java.util.HashMap;
 		
 		return result;
 	}	 
+	
+	// 로그아웃
+		@GetMapping("/logout")
+		public String logout(SessionStatus status) {
+
+			
+			log.info("로그아웃 수행됨");
+			
+			status.setComplete(); 
+			
+			return "redirect:/"; 
+		}
 
 }

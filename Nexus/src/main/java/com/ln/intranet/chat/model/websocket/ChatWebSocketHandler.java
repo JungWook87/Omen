@@ -37,7 +37,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 			
 		sessions.add(session);
 		
-		session.sendMessage(new TextMessage("연결이 성립되었습니다."));
 	}
 	
 	
@@ -53,7 +52,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 				
 		Message chatMessage = objectMapper.readValue(message.getPayload(), Message.class);
 				
-		chatMessage.setMDate(new Date(System.currentTimeMillis()));
 				
 		System.out.println(chatMessage);
 		
