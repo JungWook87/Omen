@@ -85,6 +85,8 @@ header {
 .content-header-btn-area {
   margin-top: 30px;
   margin-right: 30px;
+  display: flex;
+  gap: 2rem;
 }
 
 #content-header-btn {
@@ -102,4 +104,179 @@ header {
   color: var(--primary400);
 
   cursor: pointer;
+}
+
+/* 로그아웃 */
+.header-log-out-box {
+  margin-top: 7px;
+}
+
+.header-log-out {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  position: relative;
+}
+
+.header-log-out:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #ffb000;
+  transition: width 0.5s ease 0s, left 0.5s ease 0s;
+  width: 0;
+
+
+}
+
+.header-log-out:hover:after {
+  width: 100%;
+  left: 0;
+
+}
+
+.header-log-out {
+  text-decoration: none;
+  color: white;
+}
+
+.header-log-out:hover {
+  color: var(--primary300);
+}
+
+/* 반응형 */
+.Responsive-header {
+  background-color: var(--primary800);
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
+  width: 100%;
+  z-index: 3;
+  display: none;
+}
+
+.Responsive-header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: var(--black);
+  text-align: center;
+}
+
+.Responsive-header li a {
+  display: block;
+  padding: 20px 20px;
+  border-right: 1px solid #f4f4f4;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+.Responsive-header li a:hover,
+.Responsive-header .menu-btn:hover {
+  background-color: #FFC759;
+}
+
+.Responsive-header .logo {
+  display: inline-block;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+/* menu */
+
+.Responsive-header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.Responsive-header .menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.Responsive-header .menu-icon .navicon {
+  background: white;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+.Responsive-header .menu-icon .navicon:before,
+.Responsive-header .menu-icon .navicon:after {
+  background: white;
+  content: '';
+  display: block;
+  height: 2px;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 18px;
+}
+
+.Responsive-header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.Responsive-header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.Responsive-header .menu-btn {
+  display: none;
+}
+
+.Responsive-header .menu-btn:checked~.menu {
+  max-height: 500px;
+}
+
+.Responsive-header .menu-btn:checked~.menu-icon .navicon {
+  background: transparent;
+}
+
+.Responsive-header .menu-btn:checked~.menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.Responsive-header .menu-btn:checked~.menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.Responsive-header .menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
+.Responsive-header .menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+
+@media(max-width:1170px) {
+  header {
+    position: relative !important;
+  }
+
+  .content-header-area {
+    display: none !important;
+  }
+
+  .Responsive-header {
+    display: block !important;
+    position: absolute !important;
+  }
 }

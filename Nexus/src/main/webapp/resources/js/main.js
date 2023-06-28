@@ -165,4 +165,46 @@ myPageBtn.addEventListener('click', () => {
 
 
 
+// 로그아웃 클릭 이벤트
+const logBtn = document.querySelector('.log-out-btn'),
+logBtn2 = document.querySelector('.log-out');
+
+logBtn.addEventListener('click', logoutEvent);
+logBtn2.addEventListener('click', logoutEvent);
+
+function logoutEvent() {
+    Swal.fire({
+        title: '로그아웃을 하시겠습니까?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '그래, 할거야!',
+        cancelButtonText: '아직..나에게는 할일이 남아있어..'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            confetti({
+                particleCount: 150,
+                spread: 60
+              });
+          Swal.fire(
+            '축하합니다',
+            '퇴근하십시오.',
+            'success'
+          ).then((result) => {
+            
+                const url = "member/logout";
+                window.location.href = url;
+            
+          })
+        }
+      })
+}
+
+  
+    
+    
+
+
 

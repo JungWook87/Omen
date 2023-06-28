@@ -26,6 +26,9 @@
             <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
             <!-- Bootstrap icons-->
             <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+
+
             <title>메인페이지</title>
         </head>
 
@@ -56,6 +59,17 @@
                                 <li><a href="${contextPath}/dashBoard/dashBoardMain">대쉬보드</a></li>
                             </ul>
                         </div>
+
+                        <!-- 로그아웃 -->
+
+                        <button class="log-out-btn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            로그아웃
+                        </button>
+
                     </div>
 
                     <!-- 배너 텍스트 부분 -->
@@ -88,6 +102,7 @@
                         <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
                         <li><a href="${contextPath}/meetingRoom/reservation">회의실</a> </li>
                         <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
+                        <li><a class="log-out">로그아웃</a></li>
                     </ul>
                 </div>
 
@@ -326,7 +341,7 @@
                 <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
             </section>
 
-
+            <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
             <script src="${contextPath}/resources/js/main.js"></script>
 
             <c:if test="${ !empty message }">
