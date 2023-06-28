@@ -257,68 +257,66 @@
   padding: 10px;
   
   }
-    
-  .Executives, .dept {
-    list-style: none;
+  /* 결재영역 3등분 */
+  .dept-1, .team-1, .teamone-1 {
     border: 2px solid var(--primary400);
+    overflow-y: auto;
     border-radius: 10px;
     margin: 5px 0px 5px;
     width: 30%;
+    list-style: none;
     text-align: center;
   }
-
-  .Executives > p {
+  /* 결재영역 p태그 */
+  .dept-1 > p ,.team-1 > p {
     background-color: var(--primary400);
     color: white !important;
     border-radius: 10px;
     margin: 10px !important;
   } 
 
-  .dept > p {
-    background-color: var(--primary400);
-    color: white !important;
-    border-radius: 10px;
-    margin: 10px !important;
+  .executives{
+    list-style: none;
   }
+
+  .executives > p ,.dept > p{
+    color: var(--primary400);
+  } 
 
   .dept-list{
     display: none;
     list-style: none;
   }
 
-  .dept-list li{
-    list-style: none;
-  }
-
-  .Executives:hover,
-  .dept:hover {
-    width: 300px;
-    transition: width ease-in-out 2s;
-  }
- 
-
-  .approval-team{
-    margin: 10px 5px 10px 5px;
+  .team-list{
     display: none;
-    background-color: var(--gray100);
-    border-radius: 5px;
-    list-style: none;
-    
   }
 
-  .approval-team .show{
-  display: flex;
-  align-items: center;
-  flex-flow: wrap;
-  gap: 10px;
+  .teamone-1{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .team-1 ul {
+    list-style: none;
+  }
+
+  .dept-list ul{
+    display: none;
+    position: relative;
+  }
+
+  .approval-team {
+    display: none;
+    margin: 10px 5px 10px 5px;
+    border-radius: 5px;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100%;
   }
 
   .approval-team > p{
   color: white;
-  }
-
-  .show {
-    display: block;
   }
 
   .approval-team input {
@@ -330,6 +328,10 @@
     padding: 5px;
     font-size: 15px;
     margin-right: 0;
+}
+
+.show{
+  display: block;
 }
 
 /* 결재자 박스 */
@@ -344,7 +346,13 @@
   font-size: 18px;
   outline: none;
   overflow: auto;
+  display: flex;
+  gap: 5%;
   max-height: 300px; /* 원하는 최대 높이 설정 */
+}
+
+.approver-modal-container p{
+  margin: 10px 0px 10px;
 }
 
 /* 결재자 모달선 */
