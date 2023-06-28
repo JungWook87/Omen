@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ln.intranet.dashBoard.model.dao.DashBoardDAO;
 import com.ln.intranet.dashBoard.model.vo.AttnDoughnut;
+import com.ln.intranet.dashBoard.model.vo.HumanResourceManage;
 
 @Service
 public class DashBoardServiceImpl implements DashBoardService {
@@ -19,5 +20,13 @@ public class DashBoardServiceImpl implements DashBoardService {
 	public List<AttnDoughnut> doughnutList(int deptNo) {
 
 		return dao.doughnutList(deptNo);
+	}
+	
+	
+	// 인적 자원 총정보
+	@Override
+	public List<HumanResourceManage> hrList(int deptNo) {
+
+		return dao.hrList(deptNo);
 	}
 }

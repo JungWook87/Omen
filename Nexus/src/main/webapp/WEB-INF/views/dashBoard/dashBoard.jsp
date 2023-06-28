@@ -11,13 +11,23 @@
   <title>Document</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.jsb"></script>
   
+  <!-- sweetAlert2 cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <!-- jquery cdn -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
+
   <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/dashBoard/dashBoard.css">
+  
 </head>
 <body>
 
@@ -27,71 +37,61 @@
 
     <div class="container">
 
-        <div id="head_bottom">
-
-            <div class="Head">
-
-            <div class="HeadHr">
-                <h2>❐ 인사 관리</h2>
-            </div>
-            <div class="Doughnut-Bar">
-
-            
-                <div class="Doughnut">
+        <div id="hr-div">
+            <div class="left">
+                <div class="hr-head">
+                    <a class="managePageA" href="/dashBoard/humanResourceManage">❐ 인사 관리</a>
+                </div>
+                <div class="doughnut-div">
                     <canvas id="doughnut"></canvas>
                 </div>
-                <div class="Bar">
-                    
-                    <div class="tab_content">
+            </div>
 
-                        <!-- 버튼요소 -->
-                        <input type="radio" name="tabmenu" id="tab01" checked>
-                        <label for="tab01">근무 시간 현황</label>
-                        <input type="radio" name="tabmenu" id="tab02">
-                        <label for="tab02">연장 근무 시간</label>
-                        <input type="radio" name="tabmenu" id="tab03">
-                        <label for="tab03">야간 근무 시간</label>
-                    
-                        <!-- 컨텐츠 요소 -->
-                        <div class="conbox con1"> <canvas id="bar1"></canvas></div>
-                        <div class="conbox con2"><canvas id="bar2" width="800px" height="200px"></canvas></div>
-                        <div class="conbox con3"><canvas id="bar3"></canvas> </div>
-                    
+            <div class="hr-content">            
+                <div class="info-div">
+                    <div class="team-selector">
+
+                        <input type="radio" id="team1-radio" name="team" value="team1" checked>
+                        <label for="team1-radio">팀 1</label><br>
+                        <input type="radio" id="team2-radio" name="team" value="team2">
+                        <label for="team2-radio">팀 2</label><br>
                     </div>
-                    
+                
+                    <div class="team-work-status">
+                        <div id="attn-info-div" class="team-bar">
+                            <div class="mem-info">
+                                <span class="name">이재혁</span>
+                                <span class="job">수석디자이너</span>
+                            </div>
+                            <div class="bar-info">
+                                <div>
+                                    <progress class="progress" id="progressBar" value="170" max="160"></progress>
+                                </div>
+                                <div class="progressTemp">
+                                    <span>0H</span>
+                                    <span>160H</span>
+                                </div>
+                            </div>
+                            <div class="work-time">
+                                <span class="week-total">41 시간 28 분</span>
+                                <span class="extend">+1H 28M</span>
+                            </div>  
+                        </div>
+                    </div>
                 </div>
-
             </div>
             
         </div>
 
-        <div class="Bottom">
+        <div class="project-div">
 
-            <div class="ProjectHeader">
-                <h2>❐ 프로젝트 관리</h2>
-
-                    <!-- 버튼요소 -->
-                <input type="radio" name="tabmenu2" id="tab04" checked>
-                <label for="tab04">1팀</label>
-                <input type="radio" name="tabmenu2" id="tab05">
-                <label for="tab05">2팀</label>
-                <input type="radio" name="tabmenu2" id="tab06">
-                <label for="tab06">3팀</label>
+            <div class="project-head">
+                <a class="managePageA" href="/dashBoard/projectManage">❐ 프로젝트 관리</a>
             </div>
 
-            <div class="ProjectBox">
-
-                <p>
-                    총 프로젝트<br>13 건
-                </p>
-                
-                완료 20건
-                진행중 11건
-                요청건 3건
-        
-                <div class="ProjectBar">
-                    <canvas id="projectBar"></canvas>
-                </div>
+            <div class="project-content">
+                <div></div>
+                <div></div>
             </div>
 
         </div>
@@ -103,93 +103,10 @@
 
 <!-- 근태 도넛그래프 -->
 <script>
-    $(document).ready(function(){
-        $.ajax({
-            url : 'attnDoughnut',
-            type : 'GET',
-            success : function(data){
-
-                console.log("타입넘버 : " + data[1].typeName);
-
-                var attnLabel = [];
-                var attnCount = [];
-                $.each(data, function(index, item) {
-                    attnLabel.push(item.typeName);
-                    attnCount.push(item.attnCount);
-                });
-
-
-                var context = document
-                    .getElementById('doughnut')
-                    .getContext('2d');
-                var myChart = new Chart(context, {
-                    type: 'doughnut', // 차트의 형태
-                    data: { // 차트에 들어갈 데이터
-                        datasets: [
-                            { //데이터
-                                cutout: "0", 
-                                label: '근무시간', 
-                                fill: false, 
-                                data: attnCount,
-                                backgroundColor: [
-                                    //색상
-                                    'rgb(7, 59, 137)',
-                                    'rgb(9, 79, 183)',
-                                    'rgb(11, 99, 229)',
-                                    'rgb(60, 130, 234)',
-                                    'rgb(109, 161, 239)',
-                                    'rgb(157, 193, 245)',
-                                ],
-                                borderColor: [
-                                    //경계선 색상
-                                    'rgba(0, 0, 0, 0)',
-                                    'rgba(0, 0, 0, 0)',
-                                    'rgba(0, 0, 0, 0)',
-                                    'rgba(0, 0, 0, 0)',
-                                    'rgba(0, 0, 0, 0)',
-                                    'rgba(0, 0, 0, 0)',
-                                ],
-                                borderWidth: 10 //경계선 굵기
-                            }
-                        ],
-                        labels: attnLabel,
-                    },
-                    options: {
-                        
-                        responsive: true,
-
-                        plugins:{ 
-                    
-                            legend: {
-                                display: true, // 범례 유무
-                                position: 'right', // 범례위치
-                                align: 'center', // 범례 정렬
-                                
-                                labels:{
-                                    padding: 10, // 범례 패딩
-                                    font:{size: 20}, // 범례 폰트 사이즈
-                                }
-                            },
-                        },
-                        
-                        maintainAspectRatio :false
-
-                    }
-                });
-
-            },
-            error : function(error){
-                console.log(error);
-            }
-
-
-        })
-
-    })
-
+  
 </script>
  
-
+<script src="${contextPath}/resources/js/dashBoard/dashBoardMain.js"></script>
 
 </body>
 </html>

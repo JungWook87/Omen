@@ -5,21 +5,70 @@
 
 	<resultMap type="attnDoughnut" id="attnDoughnut_rm">
 		<id property="typeNo"  column="TYPE_NO"/>
-		<result property="typeName" column="ATTN_TYPE_NAME"/>	
+		<result property="typeName" column="TYPE_NAME"/>	
 		<result property="typeCount" column="COUNT"/>			
+	</resultMap>
+	
+	<resultMap type="hrManage" id="hrManage_rm">
+		<id property="memNo" 			column="MEM_NO"/>
+		<result property="memName" 	column="MEM_NAME"/>
+		<result property="deptNo" 		column="DEPT_NO"/>
+		<result property="deptName" 	column="DEPT_NAME"/>
+		<result property="jobNo" 		column="JOB_NO"/>
+		<result property="jobName" 	column="JOB_NAME"/>
+		<result property="workDay" 	column="WORK_DAY"/>
+		<result property="workTime" 	column="WORK_TIME"/>
+		<result property="workMin" 	column="WORK_MIN"/>
+		<result property="exTime" 		column="EX_TIME"/>
+		<result property="exMin" 		column="EX_MIN"/>
 	</resultMap>
 
 
 
 	<select id="doughnutList" parameterType="_int" resultMap="attnDoughnut_rm">
-		SELECT ATTD_TYPE_NO AS TYPE_NO, ATTD_TYPE_NAME, COUNT(*) AS COUNT
+		SELECT ATTD_TYPE_NO AS TYPE_NO, ATTD_TYPE_NAME AS TYPE_NAME , COUNT(*) AS COUNT
 		FROM ATTENDANCE
 		JOIN ATTD_TYPE USING (ATTD_TYPE_NO)
 		JOIN "MEMBER" USING (MEM_NO)
 		WHERE DEPT_NO = #{deptNo}
 		AND TODAY = TO_CHAR(SYSDATE, 'YY/MM/DD')
 		GROUP BY ATTD_TYPE_NO, ATTD_TYPE_NAME
-		ORDER BY ATTD_TYPE_NO ASC;	
+		ORDER BY ATTD_TYPE_NO ASC
+	</select>
+	
+	<select id="hrList" parameterType="_int" resultMap="hrManage_rm">
+		SELECT 
+		    MEM_NO, 
+		    MEM_NAME, 
+		    DEPARTMENT.DEPT_NO, 
+		    DEPT_NAME, 
+		    JOB_NO, 
+		    JOB_NAME , 
+		    COUNT(*) AS WORK_DAY,
+		    SUM(TO_NUMBER(SUBSTR(WORKING_HOURS , 1, INSTR(WORKING_HOURS, ' 시간') - 1))) as WORK_TIME, 
+		    SUM(TO_NUMBER(SUBSTR(WORKING_HOURS, INSTR(WORKING_HOURS, '시간') + 2, 
+		    INSTR(WORKING_HOURS, ' 분') - INSTR(WORKING_HOURS, '시간') - 2))) as WORK_MIN,
+		    SUM(TO_NUMBER(SUBSTR(EXTENDED_WORKING_HOURS , 1, INSTR(EXTENDED_WORKING_HOURS, ' 시간') - 1))) as EX_TIME, 
+		    SUM(TO_NUMBER(SUBSTR(EXTENDED_WORKING_HOURS, INSTR(EXTENDED_WORKING_HOURS, '시간') + 2, 
+		    INSTR(EXTENDED_WORKING_HOURS, ' 분') - INSTR(EXTENDED_WORKING_HOURS, '시간') - 2))) as EX_MIN 
+		FROM 
+		    ATTENDANCE
+		JOIN 
+		    "MEMBER" USING (MEM_NO)
+		JOIN 
+		    JOB USING (JOB_NO)
+		JOIN 
+		    TEAM USING (TEAM_NO)
+		JOIN 
+		    DEPARTMENT ON MEMBER.DEPT_NO = DEPARTMENT.DEPT_NO 
+		WHERE 
+		    ATTENDANCE.ATTD_TYPE_NO IN (1, 2, 4, 5)
+		GROUP BY 
+		    MEM_NO,MEM_NAME, 
+		    DEPARTMENT.DEPT_NO, 
+		    DEPT_NAME, 
+		    JOB_NO, 
+		    JOB_NAME
 	</select>
 
 </mapper>
