@@ -139,7 +139,63 @@
             <div class="approver-modal-line1"></div>
 
             <div class="approver-modal-container">
-                <div id="approver-box">
+
+                <div class="dept-1">
+                  <ul class="executives"><p>임원</p>
+
+                  </ul>
+
+                  <ul class="dept"><p>부서</p>
+                    <li class="dept-list"><p>관리기획부</p>
+                    <li class="dept-list"><p>업무기획부</p>
+                    <li class="dept-list"><p>공무기획부</p>
+                    <li class="dept-list"><p>개발사업부</p>
+                    <li class="dept-list"><p>전략기획실</p>
+                  </ul>
+                </div>
+
+                <div class="team-1">
+                  <ul class="team">
+                    <li class="team-list"><p>재무팀</p></li>
+                    <li class="team-list"><p>인사총무팀</p></li>
+
+                    <li class="team-list"><p>영업팀</p></li>
+                    <li class="team-list"><p>기술개발팀</p></li>
+
+                    <li class="team-list"><p>공사팀</p></li>                     
+                    <li class="team-list"><p>공무팀</p></li>
+                    <li class="team-list"><p>견적팀</p></li>
+                    <li class="team-list"><p>자재팀</p></li>
+
+                    <li class="team-list"><p>개발기획팀</p></li>
+                    <li class="team-list"><p>분양홍보팀</p></li>
+                    <li class="team-list"><p>설계기획팀</p></li>
+
+                    <li class="team-list"><p>경영팀</p></li>
+                    <li class="team-list"><p>전략팀</p></li>
+                  </ul>
+                </div>
+
+                <div class="teamone-1">
+
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+                  <li class="approval-team"></li>
+
+
+                </div>
+
+                <!-- <div id="approver-box">
                   <ul>
                     <li class="Executives"><p>임원</p>
                     </li>
@@ -220,7 +276,7 @@
                       </ul>
                     </li>
                   </ul>
-                </div>
+                </div> -->
             </div>
 
             <div class="approver-modal-line2"></div>

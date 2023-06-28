@@ -340,6 +340,7 @@ pulsApproverBtn.addEventListener("click",() => {
 // 결재자 부서 클릭 이벤트
 const dept = document.querySelector(".dept");
 const deptList = document.querySelectorAll(".dept-list");
+const teamList = document.querySelectorAll(".team-list");
 
 dept.querySelector("p").addEventListener("click", ()=> {
   for(let a of deptList){
@@ -347,23 +348,66 @@ dept.querySelector("p").addEventListener("click", ()=> {
   }
 })
 
-for (let i = 0; i < deptList.length; i++) {
-  deptList[i].addEventListener('click', () => {
-    // 해당 deptList 내부의 팀 요소들을 선택합니다.
-    var teamElements = deptList[i].querySelectorAll('.approval-team');
+//팀과 팀원을 맞춰줘야된다
 
-    // 선택한 deptList 내부의 팀 요소들에 대해 이벤트 전파를 차단합니다.
-    for (let item of teamElements) {
-      item.addEventListener('click', (event) => {
-        event.stopPropagation();
-      });
+for(let i= 0; i < deptList.length; i++ ){
+
+  deptList[i].addEventListener("click", () => {
+
+    
+  
+    if(i === 0){
+      teamList[0].classList.toggle('show');
+      teamList[1].classList.toggle('show');
+    } else if(i === 1){
+      teamList[2].classList.toggle('show');
+      teamList[3].classList.toggle('show');
+    } else if(i === 2){
+      teamList[4].classList.toggle('show');
+      teamList[5].classList.toggle('show');
+      teamList[6].classList.toggle('show');
+      teamList[7].classList.toggle('show');
+    } else if(i === 3){
+      teamList[8].classList.toggle('show');
+      teamList[9].classList.toggle('show');
+      teamList[10].classList.toggle('show');
+    } else if(i === 4){
+      teamList[11].classList.toggle('show');
+      teamList[12].classList.toggle('show');
     }
+
+  }
+  
+  
+  )
+
+}
+
+for (let i = 0; i < teamList.length; i++) {
+  teamList[i].addEventListener('click', () => {
+    // 해당 deptList 내부의 팀 요소들을 선택합니다.
+    const approvalTeam = document.querySelectorAll('.approval-team');
 
     // 선택한 deptList 내부의 팀 요소들을 보여주거나 숨깁니다.
-    for (let item of teamElements) {
-      item.classList.toggle('show');
-    }
-  });
+    switch(i){
+      case 0 : approvalTeam[0].classList.toggle('show');break;
+      case 1 : approvalTeam[1].classList.toggle('show');break;
+      case 2 : approvalTeam[2].classList.toggle('show');break; 
+      case 3 : approvalTeam[3].classList.toggle('show');break;
+      case 4 : approvalTeam[4].classList.toggle('show');break;
+      case 5 : approvalTeam[5].classList.toggle('show');break;
+      case 6 : approvalTeam[6].classList.toggle('show');break;
+      case 7 : approvalTeam[7].classList.toggle('show');break;
+      case 8 : approvalTeam[8].classList.toggle('show');break;
+      case 9 : approvalTeam[9].classList.toggle('show');break;
+      case 10 : approvalTeam[10].classList.toggle('show');break;
+      case 11 : approvalTeam[11].classList.toggle('show');break;
+      case 12 : approvalTeam[12].classList.toggle('show');break;
+      default : return;
+    }   
+
+  })
+
 }
 
 
@@ -516,12 +560,8 @@ fileRemove.addEventListener("click", () => {
   
 })
 
-
-// 글 추가시 나타나는 기능
-const successBtn = document.getElementById('success-btn');
-
-successBtn.addEventListener("click", () => {
-
+// 제출전 조건 확인
+function workWrite(){
   if(workTemplateSelect.value === 'normal-check'){
 
     if(workTitle.value === "") {
@@ -585,9 +625,9 @@ successBtn.addEventListener("click", () => {
         return true;
       }
     
-    } 
+    }
+}
 
-  })
 
 
   // --------------------------------------------------------------------------------
