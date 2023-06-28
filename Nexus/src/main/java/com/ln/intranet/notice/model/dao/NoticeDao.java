@@ -34,11 +34,11 @@ public class NoticeDao {
 	}
 
 	// 공지사항 작성
-	public int insertNotice(Map<String, Object> map) {
+	public int insertNotice(Notice notice) {
 		
-		int result = sqlSession.insert("noticeMapper.insertNotice", map);
+		int result = sqlSession.insert("noticeMapper.insertNotice", notice);
 		
-		if(result > 0) result = (int) map.get("noticeNo");
+		if(result > 0) result = (int) notice.getNoticeNo();
 		
 		return result;
 	}
@@ -57,6 +57,27 @@ public class NoticeDao {
 	public int updateNotice(NoticeDetail detail) {
 
 		return sqlSession.update("noticeMapper.updateNotice", detail);
+	}
+
+	// 공지사항 삭제
+	public int deleteNotice(int noticeNo) {
+		
+		int file = sqlSession.delete("noticeMapper.deleteFileNotice", noticeNo);
+
+		 int notice = sqlSession.delete("noticeMapper.deleteNotice", noticeNo);
+		 
+		return file + notice;
+	}
+
+	// 파일 삭제
+	public void deleteFileNotice(Map<String, Object> paramMap) {
+		sqlSession.delete("noticeMapper.deleteFileNotice", paramMap);
+	}
+
+	// 파일 수정
+	public int updateNoticeFile(UploadFile file) {
+		
+		return sqlSession.update("noticeMapper.updateFileNotice", file);
 	}
 
 

@@ -80,7 +80,7 @@
 	
 	<!-- 직원 검색 -->
 	<select id="searchMember" parameterType="member" resultMap="member_rm">
-		SELECT MEM_NAME, MEM_RNO, TEL, EMAIL, ADDRESS, JOB_NO, DEPT_NO, TEAM_NO
+		SELECT MEM_NAME, MEM_RNO, TEL, EMAIL, ADDRESS, JOB_NO, DEPT_NO, TEAM_NO, SECESSION, MEM_NO
 		FROM MEMBER
 		WHERE MEM_NO = #{memNo}
 	</select>
@@ -109,7 +109,7 @@
 	
 	<!-- 퇴사할 직원 정보 조회 -->
 	<select id="deleteSearch" parameterType="member" resultMap="member_rm">
-		SELECT MEM_NAME, JOB_NAME, TW_NAME, DEPT_NAME
+		SELECT MEM_NAME, JOB_NAME, TW_NAME, DEPT_NAME, SECESSION, MEM_NO
 		FROM MEMBER
 		JOIN JOB USING (JOB_NO)
 		JOIN TEAM USING (TEAM_NO)

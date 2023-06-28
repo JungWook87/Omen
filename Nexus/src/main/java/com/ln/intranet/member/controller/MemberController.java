@@ -1,5 +1,6 @@
 package com.ln.intranet.member.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
@@ -182,6 +184,47 @@ public class MemberController {
 				 
     }
 	
+	
+	 // 공지사항 추가
+	  @PostMapping("writeNotice")
+	  public String writeNotice(@RequestParam("uploadFile") MultipartFile uploadFile,
+			  					@ModelAttribute("loginMember") Member loginMember,
+			  					@RequestParam("content") String content,
+			  					@RequestParam("title")String title,
+			  					HttpServletRequest req,
+			  					RedirectAttributes ra
+			  					
+			  )throws IOException {
+		  	
+		  
+		  Notice notice = new Notice();
+		  
+		  notice.setContent(content);
+		  notice.setTitle(title);
+		  notice.setNoticeType(loginMember.getDeptNo());
+		  
+		
+		  
+		  String webPath = "/resources/file/";
+		  String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+		  
+		  int result = nService.writeNotice(webPath, folderPath, uploadFile ,notice);
+		  
+		  String message = null;
+		  
+		  if(result > 0) {
+			  
+			  message = "공지사항 등록됨";
+		  }else {
+			  message = "공지사항 등록 실패";
+		  }
+		  ra.addFlashAttribute("message", message);
+		  
+		  return "redirect:/member/notice";
+	  }
+	  
+	  
+	
 	// 공지사항 수정
 	@PostMapping("updateNotice")
 	@ResponseBody
@@ -189,17 +232,22 @@ public class MemberController {
 							@RequestParam("noticeNo") int noticeNo,
 							@RequestParam("title") String title,
 							@RequestParam("content") String content,
-							RedirectAttributes ra) {
+							@RequestParam("uploadFile") MultipartFile uploadFile,
+							HttpServletRequest req,
+							RedirectAttributes ra)throws IOException {
 		
 		NoticeDetail detail = new NoticeDetail();
+		
+		
 		
 		detail.setNoticeNo(noticeNo);
 		detail.setTitle(title);
 		detail.setContent(content);
+	
+		String webPath = "/resources/file/";
+		String folderPath = req.getSession().getServletContext().getRealPath(webPath);
 		
-		
-		
-		int result = nService.updateNotice(detail);
+		int result = nService.updateNotice(detail, uploadFile, webPath, folderPath);
 		
 		
 		
@@ -213,11 +261,24 @@ public class MemberController {
 
 		}
 		
+	 
 		ra.addFlashAttribute("message", message);
 		
 		return new Gson().toJson(result);
 		
 	}
+	
+	// 공지사항 삭제
+	@PostMapping("deleteNotice")
+	@ResponseBody
+	public String deleteNotice(@RequestParam("noticeNo") int noticeNo
+							) {
+				
+		int result = nService.deleteNotice(noticeNo);
+		
+		return new Gson().toJson(result);
+	}
+	
 	
 	
 	
@@ -265,9 +326,10 @@ public class MemberController {
 	@GetMapping("searchMember")
 	@ResponseBody
 	public String searchMember(@RequestParam("search") int memNo) {
+		
 		Member searchedMem = service.searchMember(memNo);
 		
-		
+	
 		
 		Gson gson = new Gson();
 		

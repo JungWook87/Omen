@@ -207,97 +207,105 @@ function searchMemberAjax() {
         dataType : "JSON",
         success : function(searchedMem) {
 
+          if(searchedMem === null || searchedMem === undefined){
+            Swal.fire('해당하는 사원이 없습니다');
+          } else if(searchedMem.secession === 'Y') {
+            Swal.fire('이미 퇴사한 사원입니다');
+          } else {
             const name = document.getElementById("employee-name"),
-            ssn = document.getElementById("employee-ssn"),
-            tel = document.getElementById("employee-tel"),
-            email = document.getElementById("employee-email"),
-            address = document.getElementById("sample3_address"),
-            detailAddress = document.getElementById("sample3_detailAddress"),
-            jobRadios = document.querySelectorAll("input[name='jobNo']"),
-            deptSelect = document.getElementById("dept"),
-            teamSelect = document.getElementById("dept-option");
-        
-
-        // 모든 input 요소의 readOnly 해제
-        const inputElements = document.querySelectorAll('input');
-        inputElements.forEach((input) => {
-            input.readOnly = false;
-            input.disabled = false;
-        });
-
-        // 모든 select 요소의 disabled 해제
-        const selectElements = document.querySelectorAll('select');
-        selectElements.forEach((select) => {
-            select.disabled = false;
-        });  
-
-        // 모든 버튼 disabled 해제
-        const btnElements = document.querySelectorAll('button');
-        btnElements.forEach((btn) => {
-            btn.disabled = false;
-        })
-        
-
-        name.value = searchedMem.memName;
-        ssn.value = searchedMem.memRNo;
-        tel.value = searchedMem.memTel;
-        email.value = searchedMem.memEmail;
-        address.value = searchedMem.memAddress.split(",")[0]; // 첫 번째 주소
-        detailAddress.value = searchedMem.memAddress.split(",")[1]; // 두 번째 주소
-
-
-        
-        // 직책 선택
-        for (let i = 0; i < jobRadios.length; i++) {
-            if (jobRadios[i].value === searchedMem.jobNo.toString()) {
-                jobRadios[i].checked = true;
-                break;
-            }
-        }
-        
-        // 부서 선택
-        deptSelect.value = searchedMem.deptNo.toString();
-        
-        // 부서에 따라 팀 옵션 설정
-        deptSelect.addEventListener('change', function() {
-        const selectOption = document.querySelector("select[name='teamNo']");
-        selectOption.innerHTML = ""; // 기존 옵션 제거
-
-        const deptNo = parseInt(this.value); // 문자열을 정수로 변환
-
-        if (deptNo === 1) {
-            selectOption.innerHTML += '<option value="11">재무팀</option>';
-            selectOption.innerHTML += '<option value="12">인사총무팀</option>';
-        } else if (deptNo === 2) {
-            selectOption.innerHTML += '<option value="21">영업팀</option>';
-            selectOption.innerHTML += '<option value="22">기술개발팀</option>';
-        } else if (deptNo === 3) {
-            selectOption.innerHTML += '<option value="31">공사팀</option>';
-            selectOption.innerHTML += '<option value="32">공무팀</option>';
-            selectOption.innerHTML += '<option value="33">견적팀</option>';
-            selectOption.innerHTML += '<option value="34">자재팀</option>';
-        } else if (deptNo === 4) {
-            selectOption.innerHTML += '<option value="41">개발기획팀</option>';
-            selectOption.innerHTML += '<option value="42">분양홍보팀</option>';
-            selectOption.innerHTML += '<option value="43">설계기획팀</option>';
-        } else if (deptNo === 5) {
-            selectOption.innerHTML += '<option value="51">경영팀</option>';
-            selectOption.innerHTML += '<option value="52">전략팀</option>';
-        }
-        });
-       
-
-        // 초기화
-        const deptNoSelect = document.querySelector("select[name='deptNo']");
-        deptNoSelect.dispatchEvent(new Event('change'));
+              ssn = document.getElementById("employee-ssn"),
+              tel = document.getElementById("employee-tel"),
+              email = document.getElementById("employee-email"),
+              address = document.getElementById("sample3_address"),
+              detailAddress = document.getElementById("sample3_detailAddress"),
+              jobRadios = document.querySelectorAll("input[name='jobNo']"),
+              deptSelect = document.getElementById("dept"),
+              teamSelect = document.getElementById("dept-option");
           
-        
-        teamSelect.value = searchedMem.teamNo.toString();
+  
+            // 모든 input 요소의 readOnly 해제
+            const inputElements = document.querySelectorAll('input');
+            inputElements.forEach((input) => {
+                input.readOnly = false;
+                input.disabled = false;
+            });
+    
+            // 모든 select 요소의 disabled 해제
+            const selectElements = document.querySelectorAll('select');
+            selectElements.forEach((select) => {
+                select.disabled = false;
+            });  
+    
+            // 모든 버튼 disabled 해제
+            const btnElements = document.querySelectorAll('button');
+            btnElements.forEach((btn) => {
+                btn.disabled = false;
+            })
+            
+    
+            name.value = searchedMem.memName;
+            ssn.value = searchedMem.memRNo;
+            tel.value = searchedMem.memTel;
+            email.value = searchedMem.memEmail;
+            address.value = searchedMem.memAddress.split(",")[0]; // 첫 번째 주소
+            detailAddress.value = searchedMem.memAddress.split(",")[1]; // 두 번째 주소
+    
+    
+            
+            // 직책 선택
+            for (let i = 0; i < jobRadios.length; i++) {
+                if (jobRadios[i].value === searchedMem.jobNo.toString()) {
+                    jobRadios[i].checked = true;
+                    break;
+                }
+            }
+            
+            // 부서 선택
+            deptSelect.value = searchedMem.deptNo.toString();
+            
+            // 부서에 따라 팀 옵션 설정
+            deptSelect.addEventListener('change', function() {
+            const selectOption = document.querySelector("select[name='teamNo']");
+            selectOption.innerHTML = ""; // 기존 옵션 제거
+    
+            const deptNo = parseInt(this.value); // 문자열을 정수로 변환
+    
+            if (deptNo === 1) {
+                selectOption.innerHTML += '<option value="11">재무팀</option>';
+                selectOption.innerHTML += '<option value="12">인사총무팀</option>';
+            } else if (deptNo === 2) {
+                selectOption.innerHTML += '<option value="21">영업팀</option>';
+                selectOption.innerHTML += '<option value="22">기술개발팀</option>';
+            } else if (deptNo === 3) {
+                selectOption.innerHTML += '<option value="31">공사팀</option>';
+                selectOption.innerHTML += '<option value="32">공무팀</option>';
+                selectOption.innerHTML += '<option value="33">견적팀</option>';
+                selectOption.innerHTML += '<option value="34">자재팀</option>';
+            } else if (deptNo === 4) {
+                selectOption.innerHTML += '<option value="41">개발기획팀</option>';
+                selectOption.innerHTML += '<option value="42">분양홍보팀</option>';
+                selectOption.innerHTML += '<option value="43">설계기획팀</option>';
+            } else if (deptNo === 5) {
+                selectOption.innerHTML += '<option value="51">경영팀</option>';
+                selectOption.innerHTML += '<option value="52">전략팀</option>';
+            }
+            });
+          
+    
+            // 초기화
+            const deptNoSelect = document.querySelector("select[name='deptNo']");
+            deptNoSelect.dispatchEvent(new Event('change'));
+              
+            
+            teamSelect.value = searchedMem.teamNo.toString();
+    
+            // 멤버 번호를 폼의 action URL에 추가하여 설정
+            const updateForm = document.getElementById("update-form");
+            updateForm.setAttribute("action", "update?memNo=" + searchInput.value);
+          
+          }
 
-        // 멤버 번호를 폼의 action URL에 추가하여 설정
-        const updateForm = document.getElementById("update-form");
-        updateForm.setAttribute("action", "update?memNo=" + searchInput.value);
-        
+       
         
     },
     error : function() {

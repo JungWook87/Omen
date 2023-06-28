@@ -100,13 +100,33 @@
 			
 		</insert>
 	
-	
-	<update id="updateNotice">
-		UPDATE NOTICE SET 
-		TITLE = #{title},
-		CONTENT = #{content}
-		WHERE NOTICE_NO = #{noticeNo}
-	</update>
+		<!-- 공지사항 수정 -->
+		<update id="updateNotice">
+			UPDATE NOTICE SET 
+			TITLE = #{title},
+			CONTENT = #{content}
+			WHERE NOTICE_NO = #{noticeNo}
+		</update>
+		
+		<!-- 공지사항 삭제 -->
+		<delete id="deleteNotice">
+			DELETE NOTICE
+			WHERE NOTICE_NO = #{noticeNo}
+		</delete>
+		
+		<!-- 공지사항 파일 삭제 -->
+		<delete id="deleteFileNotice">
+			DELETE UPLOAD_FILE 
+			WHERE NOTICE_NO =  #{noticeNo}
+			
+		</delete>
 
+		<!-- 파일 수정 -->
+		<update id="updateFileNotice">
+			 UPDATE UPLOAD_FILE SET
+			 FILE_RENAME = #{fileReName},
+			 FILE_ORIGIN = #{fileOrigin}
+			 WHERE NOTICE_NO = #{noticeNo}
+		</update>
 	
 </mapper>
