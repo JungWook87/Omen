@@ -89,19 +89,19 @@
                     <!-- 제목 -->
                     <div class="modal-title">
                       <p>제목</p>
-                      <input type="text" placeholder="제목을 입력해주세요" required>
+                      <input type="text" name="title" placeholder="제목을 입력해주세요" required>
                     </div>
                     <!-- 내용 -->
                     <div class="modal-detail">
                       <p>내용</p>
-                      <textarea name="" id="" onkeydown="handleResizeHeight(this)"
+                      <textarea name="content" id="" onkeydown="handleResizeHeight(this)"
                         onkeyup="handleResizeHeight(this)"></textarea>
                     </div>
                     <!-- 파일 업로드 -->
                     <div class="file-box">
                       <button type="button" id="file-remove">파일 지우기</button>
                       <label for="file-uploads">파일 올리기</label>
-                      <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
+                      <input type="file" id="file-uploads" name="uploadFile" accept="" multiple>
                     </div>
                     <!-- 선택된 파일 -->
                     <div class="preview"></div>
@@ -226,6 +226,14 @@
               <!-- 선택된 파일 -->
               <p>첨부파일</p>
               <div class="check-preview"></div>
+              
+              <!-- 파일 업로드 -->
+              <div class="check-file-box">
+                <button type="button" id="check-file-remove">파일 지우기</button>
+                <label for="file-uploads">파일 올리기</label>
+                <input type="file" id="check-file-uploads" name="uploadFile" accept="" multiple>
+              </div>
+
               <!-- 선2 -->
               <div class="modal-line"></div>
               <!-- 버튼 -->

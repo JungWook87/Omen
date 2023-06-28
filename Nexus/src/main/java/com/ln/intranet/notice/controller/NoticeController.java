@@ -54,36 +54,7 @@ public class NoticeController {
 	  }
 	  
 	  
-	  // 공지사항 추가
-	  @PostMapping("writeNotice")
-	  public String writeNotice(@RequestParam("uploadFile") MultipartFile uploadFile,
-			  					@ModelAttribute("loginMember") Member loginMember,
-			  					@RequestParam Map<String, Object> map,
-			  					HttpServletRequest req,
-			  					RedirectAttributes ra
-			  					
-			  )throws IOException {
-		  	
-		  
-		
-		  
-		  String webPath = "/resources/file/";
-		  String folderPath = req.getSession().getServletContext().getRealPath(webPath);
-		  
-		  int result = service.writeNotice(webPath, folderPath, uploadFile ,map);
-		  
-		  String message = null;
-		  
-		  if(result > 0) {
-			  
-			  message = "공지사항 등록됨";
-		  }else {
-			  message = "공지사항 등록 실패";
-		  }
-		  ra.addFlashAttribute("message", message);
-		  
-		  return "redirect:/notice/list";
-	  }
+
 	  
 	  
 	  // 공지사항 디테일 폼

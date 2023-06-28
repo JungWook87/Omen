@@ -514,6 +514,87 @@ option {
     transition: all 1s;
 }
 
+/* 수정했을때 파일 */
+.check-file-box {
+    margin-top: 20px;
+    display: none;
+}
+
+.check-file-box label {
+    width: 90px;
+    height: 35px;
+
+    padding: 13px;
+    display: inline-block;
+
+    font-size: 14px;
+
+    color: white;
+
+    background-color: var(--primary400);
+
+    vertical-align: middle;
+
+    line-height: normal;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+
+}
+
+.check-file-box label:hover {
+    background-color: var(--primary500);
+    transition: all 1s;
+}
+
+.check-filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+.check-file-box button {
+    width: 90px;
+    height: 35px;
+
+    padding: 13px;
+
+    font-size: 14px;
+
+    color: var(--black);
+
+    background-color: var(--gray50);
+
+    border: none;
+    border-radius: 5px;
+
+    vertical-align: middle;
+
+    line-height: normal;
+
+    cursor: pointer;
+}
+
+.check-file-box button:hover {
+    background-color: var(--gray100);
+    transition: all 1s;
+}
+
+#check-file-uploads {
+    opacity: 0;
+}
+
+
+
+
 /* 확인 취소 버튼 */
 .notice-submit-reset-btns {
     margin-top: 20px;
@@ -796,6 +877,29 @@ option {
 
 #check-success-btn:hover {
     background-color: var(--primary500);
+    transition: all 1s;
+}
+
+#done-btn {
+    width: 80px;
+    height: 30px;
+
+    color: white;
+
+    font-size: 14px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #FFC759;
+
+    padding-top: 5px;
+
+    cursor: pointer;
+}
+
+#done-btn:hover {
+    background-color: #ffb000;
     transition: all 1s;
 }
 

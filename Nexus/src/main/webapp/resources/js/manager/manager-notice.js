@@ -238,6 +238,7 @@ const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
 const modifyBtn = document.getElementById('check-success-btn');
 const doneBtn = document.getElementById('done-btn');
+const fileBox = document.querySelector('.check-file-box');
 
 let globalNoticeNo = 0;
 // 게시글 디테일 창 오픈
@@ -302,7 +303,9 @@ function detailModal(noticeNo) {
 
         modifyNoticeContent.style.minHeight = '350px';
         modifyNoticeContent.style.overflow = 'auto';
-       
+
+        fileBox.style.display = 'block';
+        
 
         // 줄바꿈이 적용되도록 스타일 설정
         modifyNoticeContent.style.whiteSpace = 'pre-wrap';
@@ -321,15 +324,26 @@ function detailModal(noticeNo) {
 
           isEditMode = false; // 수정 모드 종료
 
+          const formData = new FormData();
+          formData.append('noticeNo', globalNoticeNo);
+          formData.append('title', modifyNoticeTitle.value);
+          formData.append('content', modifyNoticeContent.value);
+
+          // 파일 추가
+          const fileInput = document.getElementById('file-uploads');
+          const files = fileInput.files;
+          for (let i = 0; i < files.length; i++) {
+            formData.append('uploadFile', files[i]);
+          }
+          
           $.ajax({
             url: "updateNotice",
-            data: {
-              "noticeNo": globalNoticeNo,
-              "title": modifyNoticeTitle.value,
-              "content": modifyNoticeContent.value
-            },
+            data :formData,
             type: "POST",
+            processData: false,
+            contentType: false,
             success: function (result) {
+              
               if (result > 0) {
                 
 
@@ -363,6 +377,51 @@ function detailModal(noticeNo) {
       console.log(req.responseText);
     }
   });
+
+  // 삭제 버튼 이벤트
+const deleteBtn = document.getElementById('check-remove-btn');
+
+deleteBtn.addEventListener('click', () => {
+  console.log(globalNoticeNo);
+  Swal.fire({
+    title: '정말 삭제 하시겠습니까?',
+    html: `<div style="text-align:center">삭제 하시면 되돌릴수 없습니다</div>`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '네, 삭제할게요!',
+    cancelButtonText: '취소'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url : "deleteNotice",
+        data : {"noticeNo" : globalNoticeNo},
+        type : "POST",
+        dataType : "JSON",
+        success : function() {
+          checkModalClose();
+          Swal.fire(
+            '삭제완료!',
+            '',
+            'success'
+          )
+          .then((result) => {
+            if (result.isConfirmed) {
+              location.reload();
+            }
+          })
+        },
+        error : function() {
+          console.log('에러');
+        }
+      })
+    }
+  })
+})
+
+
+
 }
 
 
@@ -378,6 +437,8 @@ function checkModalClose() {
    
    doneBtn.style.display = "none";
    modifyBtn.style.display = "inline-block";
+
+   fileBox.style.display = 'none';
  
     
   setTimeout(() => {

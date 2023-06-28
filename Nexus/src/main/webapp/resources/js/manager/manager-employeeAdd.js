@@ -55,10 +55,14 @@ function validateName() {
     const telCheck = $("#tel-check");
   
     const phone = telInput.val();
-    if (phone.length === 3) {
-      telInput.val(phone + '-');
-    }
-  
+    const formattedPhone = formatPhoneNumber(phone);
+    telInput.val(formattedPhone);
+
+    // if (phone.length === 3) {
+    //   telInput.val(phone + '-');
+    // }
+
+   
     if (regTel.test(telInput.val())) {
       telCheck.text('유효한 형식입니다');
       telCheck.css('color', 'var(--green)');
@@ -75,6 +79,18 @@ function validateName() {
       telCheck.css('marginLeft', '160px');
       return false;
     }
+  }
+
+  function formatPhoneNumber(phone) {
+    let formattedPhone = phone.replace(/[^0-9]/g, ""); // 숫자 이외의 문자 제거
+  
+    if (formattedPhone.length >= 4 && formattedPhone.length <= 7) {
+      formattedPhone = formattedPhone.replace(/(\d{3})(\d+)/, "$1-$2");
+    } else if (formattedPhone.length >= 8) {
+      formattedPhone = formattedPhone.replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3");
+    }
+  
+    return formattedPhone;
   }
   
   function validateEmail() {

@@ -52,9 +52,11 @@ public class NoticeServiceImpl implements NoticeService{
 	 */
 	@Transactional(rollbackFor = {Exception.class})
 	@Override
-	public int writeNotice(String webPath, String folderPath, MultipartFile uploadFile, Map<String, Object> map)throws IOException {
+	public int writeNotice(String webPath, String folderPath, MultipartFile uploadFile, Notice notice)throws IOException {
 		
-		int noticeNo = dao.insertNotice(map);
+		notice.setContent(Util.newLineHandling(notice.getContent()));
+		
+		int noticeNo = dao.insertNotice(notice);
 		
 		log.debug("noticeNo = " + noticeNo + "");
 		
@@ -97,17 +99,50 @@ public class NoticeServiceImpl implements NoticeService{
 
 
 	// 공지사항 수정
+	@Transactional(rollbackFor = {Exception.class})
 	@Override
-	public int updateNotice(NoticeDetail detail) {
-		
-		
+	public int updateNotice(NoticeDetail detail, MultipartFile uploadFile, String webPath, String folderPath)throws IOException {
 		
 		detail.setContent(Util.newLineHandling(detail.getContent()));
+		
+		int result =  dao.updateNotice(detail);
+		
+		UploadFile file = new UploadFile();
+		String reName = null;
+		
+		if(result > 0) {
+			if(uploadFile.getSize() > 0) {
+				reName = Util.fileRename(uploadFile.getOriginalFilename());
+				
+				file.setNoticeNo(detail.getNoticeNo());
+				file.setFileOrigin(uploadFile.getOriginalFilename());
+				file.setFileReName(webPath + reName);
+				
+				int insertFile = dao.updateNoticeFile(file);
+				
+				if(insertFile > 0) {
+					uploadFile.transferTo(new File(folderPath + reName));
+				} else {
+					throw new InsertFailException();
+				}
+			}
+		}
+		
+		
+		
 		
 		
 	
 		
-		return dao.updateNotice(detail);
+		return result;
+	}
+
+	// 공지사항 삭제
+	@Override
+	public int deleteNotice(int noticeNo) {
+
+		
+		return dao.deleteNotice(noticeNo);
 	}
 
 
