@@ -32,7 +32,7 @@
   }
   
   .checked-modal-title, .checked-preview, .checked-modal-coment, .checked-modal-approver,
-  .checked-modal-startDate, .checked-modal-endDate {
+  .checked-modal-startDate, .checked-modal-endDate, .file_div {
     width: 100%;
     /* height: 50px; */
     line-height: 25px;
@@ -126,15 +126,15 @@
     padding-bottom: 10px;
   }
   
-  .checked-modal-table-body table tbody tr:nth-of-type(1){
+  .checked-modal-table-body table tbody tr:nth-of-type(3n-2){
     background-color: var(--primary100);
     border-radius: 10px;
   }
-  .checked-modal-table-body table tbody tr:nth-of-type(2){
+  .checked-modal-table-body table tbody tr:nth-of-type(3n-1){
     background-color: var(--primary200);
     border-radius: 10px;
   }
-  .checked-modal-table-body table tbody tr:nth-of-type(3){
+  .checked-modal-table-body table tbody tr:nth-of-type(3n){
     background-color: var(--primary300);
     border-radius: 10px;
   }

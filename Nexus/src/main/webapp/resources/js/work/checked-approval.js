@@ -28,6 +28,9 @@ function successDetailModal(obj){
   const start = document.getElementById("start");
   const end = document.getElementById("end");
 
+  const uploadFile = document.getElementById("upload_file");
+
+
   checkedModalDetail.style.display = 'none';
   checkedStartDate[0].style.display = 'none';
   checkedEndDate[0].style.display = 'none';
@@ -42,11 +45,13 @@ function successDetailModal(obj){
   start.value = "";
   end.value = "";
   app_list.innerText = "";
+  uploadFile.innerText = "";
   
+  // 결재자 경로 
   let app_list_mem = obj.approvalList.split(",,");
   let cnt = 0;
 
-  for(let i = 0; i < app_list_mem.length; i++){
+  for(let i = 0; i < app_list_mem.length - 1; i++){
     let memArr = app_list_mem[i].split(",");
 
     let tr = document.createElement("tr");
@@ -61,6 +66,9 @@ function successDetailModal(obj){
 
     let td3 = document.createElement("td");
     td3.innerText = memArr[1];
+    if(td3.innerText == '진행중') td3.style.color = "var(--primary400)";
+    else if(td3.innerText == '승인') td3.style.color = "var(--green)";
+    else td3.style.color = "red";
     tr.append(td3);   
 
     let td4 = document.createElement("td");
@@ -69,8 +77,19 @@ function successDetailModal(obj){
 
     app_list.append(tr);
   }
-  
 
+
+  // 첨부파일
+  if(obj.fileOrigin != null){
+    const fileNameA = document.createElement("a");
+    fileNameA.innerText = obj.fileOrigin;
+    fileNameA.href = +"${contextPath}" +  obj.fileRename;
+    fileNameA.download = obj.fileOrigin;
+    uploadFile.append(fileNameA);
+  }
+
+
+  // 결재 타입에 따른 화면구성
   checkedModalTitle.innerHTML = "<h1>" + obj.title;
   workNo.innerText = obj.workNo;
   memName.innerText = obj.memName + " (" + obj.email +")";
@@ -118,7 +137,6 @@ function successDetailModal(obj){
   // 상신 페이지 : 취소버튼 이벤트(kjw)
   if(sendBtn.length == 1){
     checkedCancellBtn.addEventListener("click", function(tempObj) {
-      console.log("then obj1 : " + tempObj);
       Swal.fire({
         title: '결재를 취소하시겠습니까?',
         text: '',
@@ -130,7 +148,6 @@ function successDetailModal(obj){
         confirmButtonText: '확인', // confirm 버튼 텍스트 지정
         cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
      }).then(result => {
-      console.log("then obj : " + tempObj);
       workDelete(obj);
      })
   
@@ -149,6 +166,7 @@ function successDetailModal(obj){
   const approveBtn = document.getElementById("checked-approve-btn");
   const checkbox = document.getElementById('checked-modal-checkbox');
 
+  console.log(obj);
   // 반려
   rejectBtn.addEventListener("click", function(){
     let btnName = "reject"
@@ -163,7 +181,23 @@ function successDetailModal(obj){
     checkbox_flag = checkbox.checked;
     obj.checkbox_flag = checkbox_flag;
     obj.next = next.value;
-    app_btn_click(btnName, obj);
+
+    if(checkbox_flag == false && next.value == ''){
+      Swal.fire(
+        '결재자 혹은 최종승인을 체크해 주세요.',
+        '',
+        'warning'
+      );
+    } else if(checkbox_flag == true && next.value != ''){
+      Swal.fire(
+        '결재자 혹은 최종승인 중 \n 하나만 체크해 주세요.',
+        '',
+        'warning'
+      );
+    } else{
+      app_btn_click(btnName, obj);
+    }
+
   })
 }
 ////////////////
@@ -210,7 +244,9 @@ function workDelete(obj){
   console.log(obj.workNo);
   console.log(obj.approvalList);
 
-  if(obj.approvalList != null){
+  let cancleFlag = obj.approvalList.split(",,");
+
+  if(cancleFlag.length > 2){
 
     Swal.fire(
       '결재가 이미 진행중입니다.',
@@ -229,18 +265,21 @@ function workDelete(obj){
       },
       success : function(result){
         if(result != 0){
-          Swal.fire(
-            '결재취소를 완료했습니다',
-            '',
-            'success'
-          );
-          
-          checkedModalClose();
-          
-          setTimeout(function(){
-            location.reload();
-          }, 3000);
-          
+          Swal.fire({
+            title: '결재취소를 완료했습니다.',
+            text: '',
+            icon: 'success',
+            
+            showCancelButton: false, // cancel버튼 보이기. 기본은 원래 없음
+            confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+            cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+            confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+            cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
+         }).then(result => {
+            if(result.isConfirmed){
+              window.location.reload();
+            }
+          }) 
         } else{
           Swal.fire(
             '결재취소를 실패했습니다',
@@ -297,7 +336,21 @@ function app_btn_click(btnName, obj, checkbox_flag){
           "checkbox_flag" : obj.checkbox_flag
         },
         success : function(){
-
+          Swal.fire({
+            title: '결재를 완료했습니다.',
+            text: '',
+            icon: 'success',
+            
+            showCancelButton: false, // cancel버튼 보이기. 기본은 원래 없음
+            confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+            cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+            confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+            cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
+         }).then(result => {
+            if(result.isConfirmed){
+              window.location.reload();
+            }
+          }) 
         },
         error : function(){
           console.log("반려 하다가 에러 발생");
@@ -327,10 +380,28 @@ function app_btn_click(btnName, obj, checkbox_flag){
           "approvalList" : obj.approvalList,
           "btnName" : btnName,
           "checkbox_flag" : obj.checkbox_flag,
-          "next" : obj.next
+          "next" : obj.next,
+          "typeNo" : obj.typeNo,
+          "start" : obj.start,
+          "end" : obj.end,
+          "memNo" : obj.memNo
         },
         success : function(){
-
+          Swal.fire({
+            title: '결재를 완료했습니다.',
+            text: '',
+            icon: 'success',
+            
+            showCancelButton: false, // cancel버튼 보이기. 기본은 원래 없음
+            confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+            cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+            confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+            cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
+         }).then(result => {
+            if(result.isConfirmed){
+              window.location.reload();
+            }
+          }) 
         },
         error : function(){
           console.log("승인 하다가 에러 발생");

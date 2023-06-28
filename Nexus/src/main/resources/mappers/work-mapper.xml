@@ -38,6 +38,7 @@
 	<resultMap type="workDetail" id="workDetail_rm">
 		<id property="workNo" column="WORK_NO" />
 		<result property="typeNo" column="TYPE_NO"/>
+		<result property="memNo" column="MEM_NO"/>
 		<result property="title" column="TITLE"/>
 		<result property="sendDate" column="SEND_DATE"/>
 		<result property="content" column="CONTENT"/>
@@ -86,7 +87,7 @@
 	
 	<!-- 결재 디테일 조회 -->
 	<select id="detailSelect" parameterType="_int" resultMap="workDetail_rm">
-		SELECT WORK_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "START", "END", "NEXT", APPROVAL_LIST, OPINION, FILE_RENAME, FILE_ORIGIN, MEM_NAME, EMAIL, 
+		SELECT WORK_NO, TYPE_NO, MEM_NO, TITLE, SEND_DATE, CONTENT, "START", "END", "NEXT", APPROVAL_LIST, OPINION, FILE_RENAME, FILE_ORIGIN, MEM_NAME, EMAIL, 
 		(SELECT MEM_NAME FROM "MEMBER" m WHERE MEM_NO = w."NEXT") AS NEXT_MEM_NAME, (SELECT EMAIL FROM "MEMBER" m WHERE MEM_NO = w."NEXT") AS NEXT_MEM_EMAIL
 		FROM "WORK" w
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
@@ -106,18 +107,18 @@
 		</selectKey>
 		
 		<if test="typeNo == 1">
-			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, NEXT, WORK_STATE)
-			VALUES (#{workNo}, ${memNo}, ${typeNo}, #{title}, DEFAULT, #{content}, ${next}, DEFAULT)
+			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, NEXT, APPROVAL_LIST, WORK_STATE)
+			VALUES (#{workNo}, ${memNo}, ${typeNo}, #{title}, DEFAULT, #{content}, ${next}, #{approvalList}, DEFAULT)
 		</if>
 		
 		<if test="typeNo == 2">
-			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, "START", "END", NEXT, WORK_STATE)
-			VALUES (#{workNo}, ${memNo}, ${typeNo}, '연차 결재', DEFAULT, #{start}, #{end}, ${next}, DEFAULT)
+			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, "START", "END", NEXT, APPROVAL_LIST, WORK_STATE)
+			VALUES (#{workNo}, ${memNo}, ${typeNo}, '연차 결재', DEFAULT, #{start}, #{end}, ${next}, #{approvalList}, DEFAULT)
 		</if>
 	
 		<if test="typeNo == 3">
-			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "START", "END", NEXT, WORK_STATE)
-			VALUES (#{workNo}, ${memNo}, ${typeNo}, '출장 결재', DEFAULT, #{content}, #{start}, #{end}, ${next}, DEFAULT)
+			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "START", "END", NEXT, APPROVAL_LIST, WORK_STATE)
+			VALUES (#{workNo}, ${memNo}, ${typeNo}, '출장 결재', DEFAULT, #{content}, #{start}, #{end}, ${next}, #{approvalList}, DEFAULT)
 		</if>	
 		
 	</insert>
@@ -155,6 +156,34 @@
 		LEFT JOIN JOB USING (JOB_NO)
 		WHERE MEM_NO = ${next}
 	</select>
+	
+	<!-- 반려 승인 -->
+	<update id="clickApproval">
+		<if test="btnName == 'reject'">
+			UPDATE "WORK"
+			<set>
+				APPROVAL_DATE = SYSDATE,
+				WORK_STATE = '반려',
+				APPROVAL_LIST = #{approvalList},
+				<if test="opinion != null">OPINION = #{opinion}</if>
+			</set>
+			WHERE WORK_NO = ${workNo}
+		</if>
+		<if test="btnName == 'approve'">
+			UPDATE "WORK"
+			<set>
+				APPROVAL_DATE = SYSDATE,
+				<if test = "next == ''">
+					WORK_STATE = '승인',				
+				</if>
+				<if test = "next != ''">
+					NEXT = ${next},
+				</if>
+				APPROVAL_LIST = #{approvalList}			
+			</set>
+			WHERE WORK_NO = ${workNo}
+		</if>
+	</update>
 	
 	
 </mapper>
