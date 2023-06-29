@@ -296,7 +296,7 @@ pulsApproverBtn.addEventListener("click",() => {
   
           for (let value of approvalList) {
             let div = document.createElement("div");
-            div.className = "momo"
+            div.className = "divBox"
 
             let label = document.createElement("label");
             label.setAttribute("for", "mem" + value.memNo);
@@ -310,68 +310,68 @@ pulsApproverBtn.addEventListener("click",() => {
             input.value = value.memNo;
 
               if (value.teamNo == 11) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[0].append(div);
               } else if (value.teamNo == 12) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[1].append(div);
               } else if (value.teamNo == 21) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[2].append(div);
               } else if (value.teamNo == 22) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[3].append(div);
               } else if (value.teamNo == 31) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[4].append(div);
               } else if (value.teamNo == 32) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[5].append(div);
               } else if (value.teamNo == 33) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[6].append(div);
               } else if (value.teamNo == 34) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[7].append(div);
               } else if (value.teamNo == 41) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[8].append(div);
               } else if (value.teamNo == 42) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[9].append(div);
               } else if (value.teamNo == 43) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[10].append(div);
               } else if (value.teamNo == 51) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[11].append(div);
               } else if (value.teamNo == 52) {
-                div.append(label);
                 div.append(input);
+                div.append(label);
 
                 team[12].append(div);
               }
@@ -390,7 +390,7 @@ pulsApproverBtn.addEventListener("click",() => {
               if (radio.checked) {  
                 workApprover.value = radio.value; // 체크된 라디오 버튼의 값을 가져옵니다.
                 const showMember = document.getElementById("showMemName");
-                showMember.innerText = radio.previousElementSibling.innerText; 
+                showMember.innerText = radio.nextElementSibling.innerText; 
                 aproverModalClose();
               }
             } 
@@ -418,23 +418,34 @@ for(let i= 0; i < deptList.length; i++ ){
 
   deptList[i].addEventListener("click", () => {
 
+    for(let x = 0; x < teamList.length; x++) {
+      teamList[x].classList.remove('show');
+    }
 
     if(i === 0){
+
       teamList[0].classList.toggle('show');
       teamList[1].classList.toggle('show');
+
     } else if(i === 1){
+
       teamList[2].classList.toggle('show');
       teamList[3].classList.toggle('show');
+
     } else if(i === 2){
+
       teamList[4].classList.toggle('show');
       teamList[5].classList.toggle('show');
       teamList[6].classList.toggle('show');
       teamList[7].classList.toggle('show');
+
     } else if(i === 3){
+
       teamList[8].classList.toggle('show');
       teamList[9].classList.toggle('show');
       teamList[10].classList.toggle('show');
     } else if(i === 4){
+
       teamList[11].classList.toggle('show');
       teamList[12].classList.toggle('show');
     } 
@@ -450,6 +461,10 @@ for (let i = 0; i < teamList.length; i++) {
   teamList[i].addEventListener('click', () => {
     // 해당 deptList 내부의 팀 요소들을 선택합니다.
     const approvalTeam = document.querySelectorAll('.approval-team');
+    
+    for(let x = 0; x < approvalTeam.length; x++) {
+      approvalTeam[x].classList.remove('show');
+    }
 
     // 선택한 deptList 내부의 팀 요소들을 보여주거나 숨깁니다.
     switch(i){
@@ -472,6 +487,7 @@ for (let i = 0; i < teamList.length; i++) {
   })
 
 }
+
 
 
 
@@ -504,22 +520,6 @@ function aproverModalClose() {
 
 }
 
-//  // 결재자 클릭 이벤트 핸들러
-// const approverSuccessBtn = document.getElementById('approver-success-btn');
-// const approverCheckBtn = document.getElementsByClassName('.approver-checkBox');
-
-// approverSuccessBtn.addEventListener("click", () => {
-//   console.log(approverCheckBtn.length);
-//   for (let i = 0; i < approverCheckBtn.length; i++) {
-//     console.log("zmfflrehla");
-//     let radio = approverCheckBtn[i]; // <input[=ridio]> 태그 내부의 라디오 버튼 선택
-//     if (radio.checked) {
-//       workApprover.value = radio.checked.previousSibling.innerText; // 체크된 라디오 버튼의 값 가져오기 어떻게??
-//       aproverModalClose();
-//     }
-//   } 
-
-// });
 
 // 자동 높이 조정 textarea
 function handleResizeHeight(obj) {
