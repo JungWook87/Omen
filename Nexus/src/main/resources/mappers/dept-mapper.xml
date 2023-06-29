@@ -98,5 +98,11 @@
 	<delete id="boardDelete" parameterType="_int">
 			DELETE FROM BOARD WHERE BOARD_NO = #{boardNo}
 	</delete>
+	
+	<!-- 본인 부서 프로젝트 리스트 조회(kjw) -->
+	<select id="">
+		SELECT TITLE, "START", "END" FROM "PROJECT"
+		WHERE DPET_NO = ${deptNo}
+	</select>
 
 </mapper>

@@ -14,8 +14,10 @@ import com.ln.intranet.common.model.vo.Pagination;
 import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.dept.model.vo.Board;
 import com.ln.intranet.dept.model.vo.BoardDetail;
+import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.notice.model.vo.Notice;
 import com.ln.intranet.notice.model.vo.NoticeDetail;
+import com.ln.intranet.work.model.vo.Project;
 
 
 @Repository
@@ -106,6 +108,11 @@ public class DeptDAO {
 		int boardDelete = sqlSession.delete("deptMapper.boardDelete",boardNo);
 		
 		return boardFileDelete + boardDelete;
+	}
+
+	// 본인 부서 프로젝트 리스트 조회(kjw)
+	public List projectList(Member loginMember) {
+		return sqlSession.selectList("deptMapper.projectList", loginMember);
 	}
 
 	
