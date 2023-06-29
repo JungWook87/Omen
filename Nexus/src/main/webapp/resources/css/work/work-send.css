@@ -101,7 +101,6 @@ section {
   .mobile {
       display: block;
       width: 100px;
-      background-color: var(--gray50);
       border-radius: 5px;
       margin-top: 20%;
       padding-top: 30%;
