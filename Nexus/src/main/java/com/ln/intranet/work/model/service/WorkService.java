@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.ProjectList;
+import com.ln.intranet.work.model.vo.ProjectTaskList;
 import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneral;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
@@ -44,6 +46,10 @@ public interface WorkService {
 
 	// 반려 또는 승인	
 	int clickApproval(Map<String, Object> map);
+
+	List<ProjectTaskList> ptList(int deptNo);
+
+	List<ProjectList> pList(int deptNo);
 
 
 }

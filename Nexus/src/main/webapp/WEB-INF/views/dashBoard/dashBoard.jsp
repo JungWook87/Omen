@@ -71,6 +71,7 @@
                                         <div class="bar-info">
                                             <div>
                                                 <progress name="progress" class="progress" id="progressBar" value="${hrList.workTime}" max="160"></progress>
+                                                <span class="tooltiptext" id="tooltipText"></span>
                                             </div>
                                             <div class="progressTemp">
                                                 <span>0H</span>

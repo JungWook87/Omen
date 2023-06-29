@@ -19,7 +19,7 @@ const workApprover = document.querySelector('.work-modal-approver > input'); // 
 const workTemplateSelect = document.getElementById('work-template'); // 모달창 템플릿
 const normalCheckSelect = document.getElementById('normal-checked'); // 일반 선택
 const projectCheckSelect = document.getElementById('project-checked'); // 프로젝트 선택
-const assignmentCheckSelect = document.getElementById('assignment-checked'); // 과제 선택
+const assignmentCheckSelect = document.querySelectorAll('.assignment-checked'); // 과제 선택
 const workDetail = document.querySelector('.work-modal-detail'); // 모달창 내용
 const workProjectbox = document.querySelector('.projectBox'); // 과제명, 과제 내용
 const modalProjectbox = document.querySelector('.work-modal-projectBox'); // 과제추가 버튼
@@ -44,7 +44,10 @@ btn.addEventListener("click", () => {
   workStartDate.style.display = 'none'; 
   workEndDate.style.display = 'none';
   projectCheckSelect.style.display = 'none';
-  assignmentCheckSelect.style.display = 'none';
+
+  assignmentCheckSelect.forEach(select => {
+    select.style.display = 'none';
+  });
   modalBody.classList.add('modal-open');
 
 }) 
@@ -149,8 +152,10 @@ workTemplateSelect.addEventListener('change', () => {
   workProjectbox.style.display = 'none';
   modalProjectbox.style.display = 'none';
   projectCheckSelect.style.display = 'none';
-  assignmentCheckSelect.style.display = 'none';
-
+  assignmentCheckSelect.forEach(select => {
+    select.style.display = 'none';
+  });
+  
   if (selectedValue === 'normal-check') {
     normalCheckSelect.style.display = 'block';
     workModaltitle.style.display = 'block'; 
@@ -190,8 +195,37 @@ workTemplateSelect.addEventListener('change', () => {
 
   if(selectedValue === 'assignment') {
     projectCheckSelect.style.display = 'block';
-    assignmentCheckSelect.style.display = 'block';
+    assignmentCheckSelect.forEach(select => {
+      select.style.display = 'none';
+    });
     workDetail.style.display = 'block'
+
+    document.getElementById('project-checked').addEventListener('change', function() {
+      var projectNo = this.value;
+      
+      // 각 'assignment-checked' select 요소를 숨기고 
+      // 선택한 프로젝트 번호에 일치하는 것만 표시합니다.
+      var assignmentSelects = document.getElementsByClassName('assignment-checked');
+
+      for (var i = 0; i < assignmentSelects.length; i++) {
+        var select = assignmentSelects[i];
+        select.addEventListener('click', function() {
+          var taskNo = this.value;
+          document.getElementsByName('taskNo')[0].value = taskNo;
+          console.log(taskNo);
+        });
+      }
+
+      for (var i = 0; i < assignmentSelects.length; i++) {
+          var select = assignmentSelects[i];
+          if (select.getAttribute('data-project-no') == projectNo) {
+          select.style.display = 'block';
+          } else {
+          select.style.display = 'none';
+          }
+      }
+      });
+
   }
   
 });
@@ -347,8 +381,10 @@ pulsApproverBtn.addEventListener("click",() => {
           //  // 결재자 클릭 이벤트 핸들러
           const approverSuccessBtn = document.getElementById('approver-success-btn');
           const approverCheckBtn = document.getElementsByClassName('approver-checkBox');
+
           
           approverSuccessBtn.addEventListener("click", () => {
+
             for (let i = 0; i < approverCheckBtn.length; i++) {
               let radio = approverCheckBtn[i]; // <input[=radio]> 태그 내부의 라디오 버튼 선택
               if (radio.checked) {  

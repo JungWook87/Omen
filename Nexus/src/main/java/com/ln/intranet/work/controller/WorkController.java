@@ -4,12 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,16 +21,21 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
+import com.ln.intranet.dashBoard.controller.DashBoardController;
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.service.WorkService;
-import com.ln.intranet.work.model.service.WorkServiceImp;
 import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.ProjectList;
+import com.ln.intranet.work.model.vo.ProjectTaskList;
 import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @SessionAttributes({"loginMember"})
 @RequestMapping("/work")
+@Slf4j
 public class WorkController {
 	
 	@Autowired
@@ -50,10 +53,15 @@ public class WorkController {
 		List<WorkGeneralList> list = service.workSend(loginMember.getMemNo());
 		List<WorkGeneralList> projectList = service.projectSendList(loginMember.getMemNo());
 		List<WorkGeneralList> taskList = service.taskSendList(loginMember.getMemNo());
+		List<ProjectList> pList = service.pList(loginMember.getDeptNo());
+		List<ProjectTaskList> ptList = service.ptList(loginMember.getDeptNo());
 		
 		model.addAttribute("list", list);
 		model.addAttribute("projectList", projectList);
-		model.addAttribute("taskList", taskList);
+		model.addAttribute("taskList", taskList);		
+		// 프로젝트/과제 리스트
+		model.addAttribute("pList", pList);
+		model.addAttribute("ptList", ptList);
 		
 		String messageFlag = null;
 		
@@ -136,6 +144,7 @@ public class WorkController {
 		String workTypeWord = map.get("workTypeWord").toString();
 		int typeNo = 0;
 		
+		log.info("과제 번호 : "  + map.get("taskNo"));
 
 		if(workTypeWord.equals("normal-check")) typeNo = 1;
 		else if(workTypeWord.equals("vacation")) typeNo = 2;
