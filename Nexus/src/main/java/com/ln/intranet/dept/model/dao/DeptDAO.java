@@ -108,6 +108,18 @@ public class DeptDAO {
 		return boardFileDelete + boardDelete;
 	}
 
+	// 부서 공지사항 수정
+	public int updateDeptNotice(NoticeDetail detail) {
+
+		return sqlSession.update("deptMapper.updateDeptNotice", detail);
+	}
+
+	// 파일 수정
+	public int updateNoticeFile(UploadFile file) {
+		
+		return sqlSession.update("deptMapper.updateDeptFileNotice", file);
+	}
+
 	
 	
 }

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ import com.ln.intranet.common.Util;
 import com.ln.intranet.common.model.exception.InsertFailException;
 import com.ln.intranet.common.model.vo.Pagination;
 import com.ln.intranet.common.model.vo.UploadFile;
+import com.ln.intranet.dept.controller.DeptController;
 import com.ln.intranet.dept.model.dao.DeptDAO;
 import com.ln.intranet.dept.model.vo.Board;
 import com.ln.intranet.dept.model.vo.BoardDetail;
@@ -28,6 +31,9 @@ public class DeptServiceImpl implements DeptService{
 	
 	@Autowired
 	private DeptDAO dao;
+	
+	private Logger logger = LoggerFactory.getLogger(DeptController.class);
+	
 
 	
 	/** 부서 게시판 글목록 조회 서비스
@@ -174,6 +180,46 @@ public class DeptServiceImpl implements DeptService{
 		return dao.boardDelete(boardNo);
 	}
 
+
+	// 부서 공지사항 수정
+	@Transactional(rollbackFor = {Exception.class})
+	@Override
+	public int updateDeptNotice(NoticeDetail detail, MultipartFile uploadFile, String webPath, String folderPath)throws IOException {
+		
+		detail.setContent(Util.newLineHandling(detail.getContent()));
+		
+		int result =  dao.updateDeptNotice(detail);
+		
+		UploadFile file = new UploadFile();
+		String reName = null;
+		
+		logger.debug("result" + result);
+		
+		if(result > 0) {
+			if(uploadFile.getSize() > 0) {
+				reName = Util.fileRename(uploadFile.getOriginalFilename());
+				
+				file.setNoticeNo(detail.getNoticeNo());
+				file.setFileOrigin(uploadFile.getOriginalFilename());
+				file.setFileReName(webPath + reName);
+				
+				int insertFile = dao.updateNoticeFile(file);
+				
+				if(insertFile > 0) {
+					uploadFile.transferTo(new File(folderPath + reName));
+				} else {
+					throw new InsertFailException();
+				}
+			}
+		}
+		
+		
+		return result;
+	}
+
+
+	
+	
 	
 
 

@@ -129,11 +129,6 @@ public class NoticeServiceImpl implements NoticeService{
 		}
 		
 		
-		
-		
-		
-	
-		
 		return result;
 	}
 

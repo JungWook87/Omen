@@ -118,6 +118,39 @@ public class DeptController {
 		  return new Gson().toJson(detail);
 				 
 	  }
+	  
+	  	// 부서 공지사항 수정
+	  	@PostMapping("updateDeptNotice")
+		@ResponseBody
+		public String updateDeptNotice(
+								@RequestParam("noticeNo") int noticeNo,
+								@RequestParam("title") String title,
+								@RequestParam("content") String content,
+								@RequestParam("uploadFile") MultipartFile uploadFile,
+								HttpServletRequest req
+								)throws IOException {
+			
+			NoticeDetail detail = new NoticeDetail();
+			
+			
+			
+			detail.setNoticeNo(noticeNo);
+			detail.setTitle(title);
+			detail.setContent(content);
+		
+			String webPath = "/resources/file/";
+			String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+			
+			int result = service.updateDeptNotice(detail, uploadFile, webPath, folderPath);
+			
+			
+			
+			
+	
+			
+			return new Gson().toJson(result);
+			
+		}
 	
 	
 	
@@ -187,6 +220,13 @@ public class DeptController {
 		
 		return "redirect:/dept/deptBoard";
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	// 게시글 삭제
 	@GetMapping("/boardDelete/{boardNo}")

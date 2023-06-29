@@ -208,10 +208,12 @@ const checkCancellBtn = document.getElementById('check-cancell-btn');
 const checkModalTitle = document.getElementById('check-modal-title');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
+const modifyBtn = document.getElementById('check-success-btn');
+const doneBtn = document.getElementById('done-btn');
+const fileBox = document.querySelector('.check-file-box');
 
 
-
-
+let globalNoticeNo = 0;
 // 게시글 디테일 창 오픈
 function detailModal(noticeNo) {
 
@@ -232,9 +234,7 @@ function detailModal(noticeNo) {
       checkModalDetailSpan.innerHTML = detail.content;
       checkModalDetail.append(checkModalDetailSpan);
 
-      
-      console.log(detail.fileRename);
-
+      globalNoticeNo = noticeNo;
 
 	if (detail.NoticeFileOrigin) {
 	  const checkPreviewA = document.createElement("a");
@@ -248,21 +248,160 @@ function detailModal(noticeNo) {
  		 checkPreview.append(checkPreviewA);
 
 	}
+
+  // 수정 버튼 눌렀을 때 이벤트
+  let isEditMode = false; // 수정 모드 상태를 나타내는 변수
+
+  modifyBtn.addEventListener('click', () => {
+
+    if (isEditMode) {
+      // 이미 수정 모드인 경우, 동작을 수행하지 않고 반환
+      return;
+    }
+  
+    isEditMode = true; // 수정 모드로 변경
+
+    const noticeTitle = document.querySelector('.check-modal-title');
+    const noticeContent = document.querySelector('.check-modal-detail');
+   
+    
+    const modifyNoticeTitle = document.createElement('input');
+    const modifyNoticeContent = document.createElement('textarea');
+    
+    modifyNoticeTitle.value = checkModalTitleSpan.innerText;
+    modifyNoticeContent.innerHTML = checkModalDetailSpan.innerText.replace(/<br>/g, '\n');
+   
+    noticeTitle.innerHTML = '';
+    noticeTitle.appendChild(modifyNoticeTitle);
+
+    noticeContent.innerHTML = '';
+    noticeContent.appendChild(modifyNoticeContent);
+
+    modifyNoticeContent.style.minHeight = '350px';
+    modifyNoticeContent.style.overflow = 'auto';
+
+    fileBox.style.display = 'block';
+    
+
+    // 줄바꿈이 적용되도록 스타일 설정
+    modifyNoticeContent.style.whiteSpace = 'pre-wrap';
+
+    // 수정 버튼을 none으로 설정
+    modifyBtn.style.display = "none";
+
+    
+    doneBtn.style.display = "inline-block";
+
+    doneBtn.addEventListener('click', () => {
+      if (!isEditMode) {
+      // 수정 모드가 아닌 경우, 동작을 수행하지 않고 반환
+      return;
+      }
+
+      isEditMode = false; // 수정 모드 종료
+
+      const formData = new FormData();
+      formData.append('noticeNo', globalNoticeNo);
+      formData.append('title', modifyNoticeTitle.value);
+      formData.append('content', modifyNoticeContent.value);
+
+      // 파일 추가
+      const fileInput = document.getElementById('file-uploads');
+      const files = fileInput.files;
+      for (let i = 0; i < files.length; i++) {
+        formData.append('uploadFile', files[i]);
+      }
+      console.log(formData.get('noticeNo'));
+    console.log(formData.get('title'));
+    console.log(formData.get('content'));
+      $.ajax({
+        url: "updateDeptNotice",
+        data :formData,
+        type: "POST",
+        processData: false,
+        contentType: false,
+        success: function (result) {
+          
+          if (result > 0) {
+            
+
+            Swal.fire("수정이 완료되었습니다.")
+              .then((result) => {
+                // 확인 버튼을 누르면 페이지 새로고침
+                if (result.isConfirmed) {
+                  
+                  location.reload();
+                }
+              });
+
+          
+
+            checkModalClose();
+          }
+        },
+        error: function (req, status, error) {
+          // 업데이트 실패 또는 오류 발생 시의 처리
+          console.log("에러 발생");
+        }
+      });
+    });
+  });
 	
-	      
       
-      
-      // 모달창 열기
-      checkModal.style.display = 'block';
-      checkModalBody.classList.add('check-modal-open');    
+    // 모달창 열기
+    checkModal.style.display = 'block';
+    checkModalBody.classList.add('check-modal-open');    
     
     },
     error : function(req, status, error){
       console.log("에러 발생");
       console.log(req.responseText);
-  }
+    }
   })
   
+
+   // 삭제 버튼 이벤트
+  const deleteBtn = document.getElementById('check-remove-btn');
+
+  deleteBtn.addEventListener('click', () => {
+    console.log(globalNoticeNo);
+    Swal.fire({
+      title: '정말 삭제 하시겠습니까?',
+      html: `<div style="text-align:center">삭제 하시면 되돌릴수 없습니다</div>`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '네, 삭제할게요!',
+      cancelButtonText: '취소'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url : "deleteNotice",
+          data : {"noticeNo" : globalNoticeNo},
+          type : "POST",
+          dataType : "JSON",
+          success : function() {
+            checkModalClose();
+            Swal.fire(
+              '삭제완료!',
+              '',
+              'success'
+            )
+            .then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
+            })
+          },
+          error : function() {
+            console.log('에러');
+          }
+        })
+      }
+    })
+  })
+
 
 }
 
@@ -276,6 +415,12 @@ function checkModalClose() {
    checkModalDetail.innerHTML = '';
    checkPreview.innerHTML = '';
   
+
+   doneBtn.style.display = "none";
+   modifyBtn.style.display = "inline-block";
+
+   fileBox.style.display = 'none';
+
   setTimeout(() => {
     checkModal.style.display = 'none';
     checkModalBody.classList.remove("check-modal-close");

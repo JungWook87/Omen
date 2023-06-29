@@ -1,11 +1,7 @@
-body {
-	overflow: hidden;
-}
-
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
 
-  /*  height: calc(100vh - 90px);*/
+ 
 
   display: flex;
 }
@@ -13,8 +9,8 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  min-width: 80px;
-  height: 100%;
+  
+  height: 100vh;
   background-color: var(--side);
 
 }
@@ -36,113 +32,52 @@ section {
   color: var(--black);
 }
 
-.desktop li:nth-child(1) {
+/* 사이드바 부제목 스타일 */
+.side-bar li {
+  list-style: none;
+
+}
+
+.side-bar li:nth-child(1) {
   border-left: 10px solid var(--primary500);
 
   background-color: rgb(230, 232, 236, 50%);
 
 }
 
-.desktop li:first-child>a:first-child>span:first-child {
+.side-bar li:first-child>a:first-child>span:first-child {
 
   color: var(--primary400);
 }
 
-.desktop li:first-child>a:first-child {
+.side-bar li:first-child>a:first-child {
   padding-left: 40px;
 }
 
-.desktop li:first-child>a{
+.side-bar li:first-child>a{
   padding-left: 30px;
 }
-/* -------------------------------------- */
 
-/* 사이드바 부제목 스타일 */
-.side-bar li {
-  list-style: none;
 
-}
-/* 사이드바 (모바일버전) */
-.mobile {
-  display: none;
-}
 
-/* 사이드바 (데스크탑 버전) */
-.desktop a{
 
-  color: var(--black);
-  padding: 15px 0 5px 55px;
-  font-size: 24px;
-  position: relative;
-  display: block;
-  text-decoration: none;
-  text-transform: uppercase;
+/* 사이드바 호버 스타일 */
+
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/* 사이드바 미디어쿼리 */
-@media screen and (max-width:1024px) {
 
-   /* 1단계 */
-  .side-bar{
-    width: 110px;
-    background-color: var(--gray100);
-    transition: all 2s ease-in-out; /* 반응형 애니메이션 */
-
-  }
-  
-  .content-all-page{
-   	width: calc(100% - 100px) !important;
-  }
-  
-  .side-bar h1 {display : none;}
-	
-  .desktop{display: none;}
-
-  .mobile {
-      display: block;
-      width: 100px;
-      border-radius: 5px;
-      margin-top: 20%;
-      padding-top: 30%;
-      padding-bottom: 30%;
-      overflow: hidden; /* 반응형 애니메이션용 */
-      transition: all 2s ease ease-in-out; /* 반응형 애니메이션 */
-      font-size: xx-large;
-  }
-  .mobile ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-  }
-  .mobile a{
-      display: block;
-      text-align: center;
-      margin-top: 20%;
-      cursor: pointer;
-      color: var(--primary500)
-  }
-
-  .mobile li{
-  margin-bottom: 50%;
-  }
-
-}
-/* 2단계 */
-@media screen and (max-width:768px) {
-  .side-bar { 
-      display: none;
-  }
-
-}
-/* -------------------------------------- */
-
-/* 사이드바 호버 스타일 (데스크탑) */
 a:hover,
 a:focus {
   outline: none;
 }
 
-.desktop a span {
+.side-bar a span {
   display: block;
   padding: 7px 15px;
   text-transform: uppercase;
@@ -154,10 +89,10 @@ a:focus {
   color: var(--primary600);
 }
 
-.desktop a:before,
-.desktop a:after,
-.desktop a span:before,
-.desktop a span:after {
+.side-bar a:before,
+.side-bar a:after,
+.side-bar a span:before,
+.side-bar a span:after {
   content: "";
   width: 25%;
   height: 100%;
@@ -175,47 +110,39 @@ a:focus {
 
 }
 
-.desktop a:after {
+.side-bar a:after {
   left: 25%;
 }
 
-.desktop a span:before {
+.side-bar a span:before {
   left: 50%;
 }
 
-.desktop a span:after {
+.side-bar a span:after {
   left: 75%;
 }
 
-.desktop a:hover:before,
-.desktop a:hover:after,
-.desktop a:hover span:before,
-.desktop a:hover span:after {
+.side-bar a:hover:before,
+.side-bar a:hover:after,
+.side-bar a:hover span:before,
+.side-bar a:hover span:after {
   border-radius: 0;
   opacity: 1;
   transform: scale(1);
 }
 
-/* 사이드 바 호버 (모바일)*/
-.mobile ul li:nth-of-type(1):hover::after{
-  content: "상신함";
-  font-size: medium;
-  float: right;
-}
-.mobile ul li:nth-of-type(2):hover::after{
-  content: "수신함";
-  font-size: medium;
-  float: right;
-}
-.mobile ul li:nth-of-type(3):hover::after{
-  content: "임시저장";
-  font-size: medium;
-  float: right;
-}
-.mobile ul li:nth-of-type(4):hover::after{
-  content: "템플릿";
-  font-size: medium;
-  float: right;
+.menu a {
+  color: var(--black);
+
+  padding: 15px 0 5px 55px;
+
+
+  font-size: 24px;
+
+  position: relative;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 /* -------------------------------------- */
@@ -223,9 +150,8 @@ a:focus {
 /* 컨텐츠 영역 전체 */
 .content-all-page {
 	width: 100%;
-	height: calc(100vh - 90px);
-	overflow-y : auto;
-	padding-bottom : 200px;
+	height: 100%
+	
 }
 
 /* 컨텐츠 상단 부분 */

@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
   <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox(1).css">
-  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox-ing(2).css">
+  <!-- <link rel="stylesheet" href="${contextPath}/resources/css/work-inbox(1).css"> -->
+  <link rel="stylesheet" href="${contextPath}/resources/css/work/work-temp.css">
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -28,7 +28,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-  <title>결재-수신함-결재 진행중</title>
+  <title>결재-임시저장</title>
 </head>
 
 <body>
@@ -36,67 +36,47 @@
   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <section>
 
-<!--------------------------------------------------- 사이드 바 --------------------------------------------------->
-    <div class="side-bar menu">
-      <div class="side-barTitle">
-        <a href="work-send.html" id="side-barTitle-a">
-          <img src="${contextPath}/resources/images/leftArrow.png" alt="">
-        </a>
-      <h1>수신함</h1>
-      </div>
+   <!-- 사이드 바 -->
+   <div class="side-bar menu">
 
-        <ul>
-          <li><a href="work-inbox(1).html"><span>결재할문서</span> </a></li>
-          <li><a href="work-inbox-ing(2).html"><span>결재진행중</span> </a></li>
-          <li><a href="work-inbox-end(3).html"><span>결재완료</span> </a></li>
-          <li><a href="work-inbox-cancle(4).html"><span>결재취소</span> </a></li>
-        </ul>
-        
-    
+    <div class="desktop">
+      <!-- 페이지마다 바뀌는 제목 -->
+      <h1>결재</h1>
+      
+      <!-- 페이지마다 바뀌는 부제목 -->
+      <ul>
+        <li><a href="work-send.html"><span>상신함</span> </a></li>
+        <li><a href="work-inbox(1).html"><span>수신함</span> </a></li>
+        <li><a href="work-temp.html"><span>임시저장</span> </a></li>
+        <li><a href="work- template.html"><span>템플릿</span> </a></li>
+      </ul>
     </div>
-<!------------------------------------------------- 사이드바 영역 끝 ------------------------------------------------->
-    <!------------------------------------------------- 컨텐츠 내용 ------------------------------------------------->
+    
+    <div class="mobile">
+      
+      <ul>
+          <li><a href="#" class="item"><i class="fa-sharp fa-solid fa-file-export"></i></a></li>
+          <li><a href="#" class="item"><div><i class="fa-solid fa-box"></i></div></a></li>
+          <li><a href="#" class="item"><i class="fa-solid fa-floppy-disk"></i></a></li>
+          <li><a href="#" class="item"><i class="fa-solid fa-download"></i></i></a></li>
+      </ul>
+    </div>
+
+  </div>
+
+    <!-- 컨텐츠 내용 -->
     <div class="content-all-page">
 
-      <!--------------------------------------------------- 컨텐츠 내용 윗부분 --------------------------------------------------->
+      <!-- 컨텐츠 내용 윗부분 -->
       <div class="content-all-top-area">
         <p class="content-all-top-text1">결재 / </p>
-        <p class="content-all-top-text2">결재 진행중</p>
-        <!-------------------- 시작일 / 종료일 (DATE.API) 영역 -------------------->
-        <div class="content-all-date">
-          
-          <div class="content-all-date-p">
-
-            <p class="date-p">
-              시작일
-            </p>
-            
-            <p class="date-p">
-              종료일
-            </p>
-
-          </div>
-          <!-------------------------- 날짜 API (DATE.API) -------------------------->
-          <div class="content-all-date-input">           
-            <input type="text" id="dateClick" name="daterange" value="01/01/2023 - 01/15/2023" />
-          </div>
-          <!-------------------------- 날짜 API (DATE.API) 끝------------------------->
-        </div>
-        <!------------------------- 시작일 / 종료일 (DATE.API) 영역 끝------------------------->
+        <p class="content-all-top-text2">임시 저장(2)</p>
       </div>
-      <!---------------------------------- 컨텐츠 내용 윗부분 영역 끝---------------------------------->
+
       <!-- 컨텐츠 내용 아랫부분 -->
       <div class="content-all-bottom-area">
-        <!------------------------------------------ 컨텐츠 내용 아랫부분 헤더------------------------------------------>
+        
         <div class="content-all-bottom-area-header">
-
-            <select placeholder="전체">
-              <option value="전체">전체</option>
-              <option value="진행중">근태</option>
-              <option value="근무">근무</option>
-              <option value="비용">비용</option>
-              <option value="일반">일반</option>
-            </select>
 
             <div class="button-box">
 
@@ -106,8 +86,7 @@
             </div>    
 
         </div>
-        <!----------------------------------------- 컨텐츠 내용 아랫부분 헤더 끝----------------------------------------->
-        <!------------------------------------------------ 결재 작성하기 모달창 영역------------------------------------------------> 
+
         <div id="modalWrap">
           <div class="work-modalBody">
             <span id="closeBtn">
@@ -160,6 +139,11 @@
               <p>제목</p>
               <input type="text" placeholder="제목을 입력해주세요" required>
             </div>
+            <!-- 출장지 -->
+            <div class="work-modal-businessArea">
+              <p>출장지</p>
+              <input type="text">
+            </div>
             <!-- 시작날짜 -->
             <div class="work-modal-startDate">
               <p>시작날짜</p>
@@ -196,12 +180,6 @@
                 <input type="text">
               </div>
             <!-- 결재자 -->
-            <div class ="work-modal-approverBox">
-              <span id="pulsApprover">
-                <img src="${contextPath}/resources/images/plus.png" alt="">
-                결재자 추가
-              </span>  
-            </div>
             <div class="work-modal-approver">
               <p>결재자</p>
               <input type="text">
@@ -228,105 +206,7 @@
             <!-- </form> -->
           </div>
         </div>
-        <!------------------------------------------------ 결재 작성하기 모달창 영역 끝------------------------------------------------>
-        <!------------------------------------------------ 결재 작성하기 결재자 추가 모달창 영역 ------------------------------------------------>
-        <div id="approver-modal-wrap">
-          <div class="approver-modal-Body">
-            <span id="approver-closeBtn">
-              <img src="${contextPath}/resources/images/Xbtn.png" alt="">
-            </span>
-            <h1>결재 라인 설정</h1>
-            <!-- 선1 -->
-            <div class="approver-modal-line1"></div>
 
-            <div class="approver-modal-container">
-
-
-              <div id="approver-box">
-
-                <ul class="M01">
-            
-                    <li><p href="#">임원</p>
-            
-                        <ul class="M02">
-            
-                            <li><p href="#">대표이사<input type="radio" name="appprover-check" class="approver-checkBox" value="대표이사"></p></li>
-            
-                            <li><p href="#">전무이사<input type="radio" name="appprover-check" class="approver-checkBox" value="전무이사"></p></li>
-            
-                        </ul>
-            
-                    </li>
-            
-                    <li><p href="#">부서</p>
-            
-                        <ul class="M02 dept">
-            
-                            <li><p href="#">관리기획부</p>
-            
-                                <ul class="M03">
-            
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
-            
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
-            
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
-            
-                                </ul>
-            
-                            </li>
-            
-                            <li><p href="#">인사총무팀</p>
-            
-                                <ul class="M03">
-            
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
-            
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
-            
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
-            
-                                </ul>
-            
-                            </li>
-            
-                            <li><p href="#">기술영업팀</p>
-            
-                                <ul class="M03">
-            
-                                    <li><p href="#">A직원<input type="radio" name="appprover-check" class="approver-checkBox" value="A직원"></p></li>
-            
-                                    <li><p href="#">B직원<input type="radio" name="appprover-check" class="approver-checkBox" value="B직원"></p></li>
-            
-                                    <li><p href="#">C직원<input type="radio" name="appprover-check" class="approver-checkBox" value="C직원"></p></li>
-            
-                                </ul>
-            
-                            </li>
-            
-                        </ul>
-            
-                    </li>
-            
-            
-                </ul>
-            
-              </div>
-
-            </div>
-
-
-            <!-- 선2 -->
-            <div class="approver-modal-line2"></div>
-            <!-- 버튼 -->
-            <div class="approver-submit-reset-btns">
-              <button type="reset" id="approver-cancell-btn">취소</button>
-              <button id="approver-success-btn">확인</button>
-            </div>
-            <!-- </form> -->
-          </div>
-        </div>
-        <!------------------------------------------------ 결재 작성하기 결재자 추가 모달창 영역 끝------------------------------------------------>
         <div class="content-all-bottom-area-content">
 
           <table>
@@ -334,35 +214,37 @@
             <thead>
               
               <tr>
-                <th>종류</th>
-                <th>결재 번호</th>
                 <th>제목</th>
-                <th>작성자</th>
-                <th>첨부파일</th>
-                <th>결재의견</th>
                 <th>작성일</th>
+                <th>삭제</th>
               </tr>
               
             </thead>
 
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>1234</td>
-                <td>테스트입니다</td>
-                <td>테스터</td>
-                <td>없음</td>
-                <td>없음</td>
-                <td>2023.5.10</td>
+              <tr class="row">
+                <td>임시저장</td>
+                <td>2023.05.22 15:16</td>
+                <td> </td>
+              </tr>
+              <tr class="row">
+                <td>호반 저감 시설 견적서</td>
+                <td>2023.05.22 15:11</td>
+                <td> </td>
               </tr>
             </tbody>
 
+
+            
           </table>
+
 
         </div>
 
+      
+
       </div>
-<!---------------------------------------- 수신함 모달창 열기 ---------------------------------------->
+
       <div id="check-modalWrap">
         <div class="check-modalBody">
           <span id="check-closeBtn">
@@ -445,7 +327,6 @@
                   </tr>
                 </tbody>
               </table>
-            
 
             </div>
 
@@ -465,15 +346,7 @@
             <p>결재자</p>
             <input type="text">
           </div>
-          <!-- 선택된 파일 -->
-          <p>선택파일</p>
-          <div class="check-preview"></div>
-          <!-- 파일 업로드 -->
-          <div class="work-file-box">
-            <button type="button" id="file-remove">파일 지우기</button>
-            <label for="file-uploads">파일 올리기</label>
-            <input type="file" id="file-uploads" name="file-uploads" accept="" multiple>
-          </div>
+         
           <!-- 선2 -->
           <div class="work-modal-line"></div>
            <!-- 최종승인 버튼 -->
@@ -494,9 +367,9 @@
           <!-- </form> -->
         </div>
       </div>
-<!----------------------------------------- 수신함 모달창 끝----------------------------------------->
+
     </div>
-    <!------------------------------------------------ 컨텐츠 내용 끝 ------------------------------------------------>
+
     <!-- 채팅창 -->
     <div id="chatting-function" class="chatting-box">
       <a href="#">
@@ -506,5 +379,5 @@
   </section>
 </body>
 
-<script src="${contextPath}/resources/js/work/work-inbox-ing(2).js"></script>
+<script src="${contextPath}/resources/js/work/work-inbox(1).js"></script>
 </html>

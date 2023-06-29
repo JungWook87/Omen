@@ -53,35 +53,15 @@
   <section>
 
     <div class="side-bar menu">
-
-     
       <h1>결재</h1>
-     
-      <!-- 데스크탑 -->
-      <div class="desktop">
 
-        <ul>
+      <ul>
           <li><a href="workSend"><span>상신함</span> </a></li>
           <li><a href="workInbox"><span>수신함</span> </a></li>
           <li><a href="workTemp"><span>임시저장</span> </a></li>
-          <li><a href="workTemplate"><span>템플릿</span> </a></li>
-        </ul>
-
-      </div>
-      
-      <!-- 모바일 -->
-      <div class="mobile">
-
-        <ul>
-            <li><a href="#" class="item"><i class="fa-sharp fa-solid fa-file-export"></i></a></li>
-            <li><a href="#" class="item"><div><i class="fa-solid fa-box"></i></div></a></li>
-            <li><a href="#" class="item"><i class="fa-solid fa-floppy-disk"></i></a></li>
-            <li><a href="#" class="item"><i class="fa-solid fa-download"></i></a></li>
-        </ul>
-      </div>
-     
+      </ul>
     </div>
-<!-------------------------------------------------- 사이드바 영역 끝 -------------------------------------------------->
+  <!-------------------------------------------------- 사이드바 영역 끝 -------------------------------------------------->
 
 <!---------------------------------------------------- 컨텐츠 내용 ----------------------------------------------------->
   <div class="content-all-page">

@@ -234,12 +234,12 @@ public class MemberController {
 							@RequestParam("title") String title,
 							@RequestParam("content") String content,
 							@RequestParam("uploadFile") MultipartFile uploadFile,
-							HttpServletRequest req,
-							RedirectAttributes ra)throws IOException {
+							HttpServletRequest req
+							)throws IOException {
 		
 		NoticeDetail detail = new NoticeDetail();
 		
-		
+		System.out.println("확인용");
 		
 		detail.setNoticeNo(noticeNo);
 		detail.setTitle(title);
@@ -252,19 +252,7 @@ public class MemberController {
 		
 		
 		
-		
-		String message = null;
-		
-		if(result > 0) {
-			message = "수정이 완료 되었습니다";
-		} else {
-			message = "수정 실패";
 
-		}
-		
-	 
-		ra.addFlashAttribute("message", message);
-		
 		return new Gson().toJson(result);
 		
 	}

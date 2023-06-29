@@ -257,9 +257,9 @@
         </div>
       </section>
 
-
       <script src="${contextPath}/resources/js/manager/manager-notice.js"></script>
       <script src="${contextPath}/resources/js/component.js"></script>
+
     </body>
 
     </html>

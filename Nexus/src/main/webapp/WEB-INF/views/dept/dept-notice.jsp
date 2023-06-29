@@ -64,7 +64,7 @@
                   <div id="modalWrap">
                     <div class="modalBody">
                       <span id="closeBtn">
-                        <img src="../images/Xbtn.png" alt="">
+                        <img src="${contextPath}/resources/images/Xbtn.png" alt="">
                       </span>
                       <h1>부서 공지사항</h1>
                       <!-- 선1 -->
@@ -206,6 +206,14 @@
                 <!-- 선택된 파일 -->
                 <p>첨부파일</p>
                 <div class="check-preview"></div>
+
+                <!-- 파일 업로드 -->
+                <div class="check-file-box">
+                  <button type="button" id="check-file-remove">파일 지우기</button>
+                  <label for="file-uploads">파일 올리기</label>
+                  <input type="file" id="check-file-uploads" name="uploadFile" accept="" multiple>
+                </div>
+
                 <!-- 선2 -->
                 <div class="modal-line"></div>
                 <!-- 버튼 -->
@@ -213,6 +221,8 @@
                   <button id="check-remove-btn">삭제</button>
                   <button type="reset" id="check-cancell-btn">닫기</button>
                   <button id="check-success-btn">수정</button>
+                  <button id="done-btn">수정완료</button>
+
                 </div>
 
               </div>
@@ -237,7 +247,6 @@
 
       <script src="${contextPath}/resources/js/dept/dept-notice.js"></script>
       <script src="${contextPath}/resources/js/common.js"></script>
-
 
     </body>
 
