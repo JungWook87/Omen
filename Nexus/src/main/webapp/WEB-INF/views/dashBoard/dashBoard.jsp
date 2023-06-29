@@ -49,35 +49,43 @@
 
             <div class="hr-content">            
                 <div class="info-div">
-                    <div class="team-selector">
 
-                        <input type="radio" id="team1-radio" name="team" value="team1" checked>
-                        <label for="team1-radio">팀 1</label><br>
-                        <input type="radio" id="team2-radio" name="team" value="team2">
-                        <label for="team2-radio">팀 2</label><br>
+                    <!-- 팀라디오 선택 -->
+                    <div class="team-selector">
+                        <c:forEach var="team" items="${dtList}">
+                            <input type="radio" id="team${team.teamNo}-radio" name="team" value="${team.teamNo}">
+                            <label for="team${team.teamNo}-radio">${team.teamName}</label><br>
+                        </c:forEach>
                     </div>
-                
-                    <div class="team-work-status">
-                        <div id="attn-info-div" class="team-bar">
-                            <div class="mem-info">
-                                <span class="name">이재혁</span>
-                                <span class="job">수석디자이너</span>
-                            </div>
-                            <div class="bar-info">
-                                <div>
-                                    <progress class="progress" id="progressBar" value="170" max="160"></progress>
-                                </div>
-                                <div class="progressTemp">
-                                    <span>0H</span>
-                                    <span>160H</span>
-                                </div>
-                            </div>
-                            <div class="work-time">
-                                <span class="week-total">41 시간 28 분</span>
-                                <span class="extend">+1H 28M</span>
-                            </div>  
+
+                    <!-- 팀별 조회용 기본적으로 display : none -->
+                    <c:forEach var="team" items="${dtList}" >
+                        <div id="team-${team.teamNo}-data" class="team-data" style="display: none">
+                            <c:forEach var="hrList" items="${hrList}">
+                                <c:if test="${hrList.teamNo == team.teamNo}">
+                                    <div id="attn-info-div" class="team-bar">
+                                        <div class="mem-info">
+                                            <span class="name">${hrList.memName}</span>
+                                            <span class="job">${hrList.jobName}</span>
+                                        </div>
+                                        <div class="bar-info">
+                                            <div>
+                                                <progress name="progress" class="progress" id="progressBar" value="${hrList.workTime}" max="160"></progress>
+                                            </div>
+                                            <div class="progressTemp">
+                                                <span>0H</span>
+                                                <span>160H</span>
+                                            </div>
+                                        </div>
+                                        <div class="work-time">
+                                            <span class="week-total">${hrList.workTime} 시간 ${hrList.workMin} 분</span>
+                                            <span class="extend">+${hrList.exTime}H ${hrList.exMin}M</span>
+                                        </div>  
+                                    </div>                  
+                                </c:if>
+                            </c:forEach>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
             
@@ -92,7 +100,8 @@
             <div class="project-content">
                 <div></div>
                 <div></div>
-            </div>
+            </div> 
+
 
         </div>
 

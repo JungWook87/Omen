@@ -1,9 +1,3 @@
-// 프로그레스바 밸류값 css
-var progressBar = document.getElementById('progressBar');
-if (progressBar.value > progressBar.max) {
-    progressBar.classList.add('exceeds-max');
-}
-
 $(document).ready(function(){
     $.ajax({
         url : 'attnDoughnut',
@@ -34,23 +28,23 @@ $(document).ready(function(){
                             data: attnCount,
                             backgroundColor: [
                                 //색상
-                                'rgb(7, 59, 137)',
-                                'rgb(9, 79, 183)',
-                                'rgb(11, 99, 229)',
-                                'rgb(60, 130, 234)',
-                                'rgb(109, 161, 239)',
+                                '#40128B',
+                                '#9336B4',
+                                '#DD58D6',
+                                '#FFE79B',
+                                '#2CD3E1',
                                 'rgb(157, 193, 245)',
                             ],
                             borderColor: [
                                 //경계선 색상
-                                'rgba(0, 0, 0, 0)',
-                                'rgba(0, 0, 0, 0)',
-                                'rgba(0, 0, 0, 0)',
-                                'rgba(0, 0, 0, 0)',
-                                'rgba(0, 0, 0, 0)',
-                                'rgba(0, 0, 0, 0)',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
                             ],
-                            borderWidth: 10 //경계선 굵기
+                            borderWidth: 1 //경계선 굵기
                             
                         }
                     ],
@@ -88,27 +82,45 @@ $(document).ready(function(){
 })
 
 
-var horizontalBar = document
-.getElementById('horizontalBar')
-.getContext('2d');
-var myBarChart = new Chart(horizontalBar, {
-    type: 'horizontalBar',
-    data: {
-        datasets: [{
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-            data: [10, 20, 30, 40, 50, 60, 70]
-        }]
-    },
-    options:{
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    offsetGridLines: true
-                }
-            }]
+
+// 온로드 기능
+window.onload = function() {
+
+    // 프로그레스바 밸류값에의한 css 수정
+    var progressBars = document.getElementsByClassName('progress');
+    for (var i = 0; i < progressBars.length; i++) {
+        var progressBar = progressBars[i];
+        if (parseInt(progressBar.getAttribute('value')) > parseInt(progressBar.getAttribute('max'))) {
+            progressBar.classList.add('overOrange');
+        } else if(parseInt(progressBar.getAttribute('value')) < 120 ) {
+            progressBar.classList.add('underBlue');
         }
     }
-});
+
+    // 생성된 라디오 버튼들
+    var teamRadios = document.querySelectorAll('input[name="team"]');
+ 
+    teamRadios[0].checked = true;
+    document.querySelector('#team-' + teamRadios[0].value + '-data').style.display = 'block';
+    
+
+    // 에 대하여 이벤트 부여
+    for (var i = 0; i < teamRadios.length; i++) {
+        teamRadios[i].addEventListener('change', function() {
+            // 클릭된 라디오의 밸류 (team.teamNo)
+            var selectedTeamNo = this.value;
+            console.log(selectedTeamNo);
+            var hrDivs = document.querySelectorAll('.team-data');
+            // 팀넘버에따라 부여된 id로 div 추적/동작
+            for (var j = 0; j < hrDivs.length; j++) {
+                if (hrDivs[j].id == 'team-' + selectedTeamNo + '-data') {
+                    hrDivs[j].style.display = 'block';
+                } else {
+                    hrDivs[j].style.display = 'none';
+                }
+            }
+        });
+    }
+}
+
+

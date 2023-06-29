@@ -14,6 +14,8 @@
 		<result property="memName" 	column="MEM_NAME"/>
 		<result property="deptNo" 		column="DEPT_NO"/>
 		<result property="deptName" 	column="DEPT_NAME"/>
+		<result property="teamNo" 		column="TEAM_NO"/>
+		<result property="teamName" 	column="TW_NAME"/>
 		<result property="jobNo" 		column="JOB_NO"/>
 		<result property="jobName" 	column="JOB_NAME"/>
 		<result property="workDay" 	column="WORK_DAY"/>
@@ -22,6 +24,16 @@
 		<result property="exTime" 		column="EX_TIME"/>
 		<result property="exMin" 		column="EX_MIN"/>
 	</resultMap>
+	
+	
+		
+	<resultMap type="deptTeam" id="deptTeam_rm">
+		<id property="deptNo" 		column="DEPT_NO"/>
+		<result property="deptName" 	column="DEPT_NAME"/>
+		<result property="teamNo" 		column="TEAM_NO"/>
+		<result property="teamName" 	column="TW_NAME"/>
+	</resultMap>
+	
 
 
 
@@ -38,12 +50,10 @@
 	
 	<select id="hrList" parameterType="_int" resultMap="hrManage_rm">
 		SELECT 
-		    MEM_NO, 
-		    MEM_NAME, 
-		    DEPARTMENT.DEPT_NO, 
-		    DEPT_NAME, 
-		    JOB_NO, 
-		    JOB_NAME , 
+		    MEM_NO, MEM_NAME, 
+		    DEPARTMENT.DEPT_NO, DEPT_NAME, 
+		    JOB_NO, JOB_NAME , 
+		    TEAM_NO, TW_NAME,
 		    COUNT(*) AS WORK_DAY,
 		    SUM(TO_NUMBER(SUBSTR(WORKING_HOURS , 1, INSTR(WORKING_HOURS, ' 시간') - 1))) as WORK_TIME, 
 		    SUM(TO_NUMBER(SUBSTR(WORKING_HOURS, INSTR(WORKING_HOURS, '시간') + 2, 
@@ -64,11 +74,18 @@
 		WHERE 
 		    ATTENDANCE.ATTD_TYPE_NO IN (1, 2, 4, 5)
 		GROUP BY 
-		    MEM_NO,MEM_NAME, 
-		    DEPARTMENT.DEPT_NO, 
-		    DEPT_NAME, 
-		    JOB_NO, 
-		    JOB_NAME
+		    MEM_NO, MEM_NAME, 
+		    DEPARTMENT.DEPT_NO, DEPT_NAME, 
+		    JOB_NO, JOB_NAME,
+		    TEAM_NO, TW_NAME
+		ORDER BY JOB_NO ASC
+	</select>
+	
+	<select id="dtList" parameterType="_int" resultMap="deptTeam_rm">
+		SELECT TEAM_NO, TW_NAME , DEPT_NAME 
+		FROM TEAM
+		JOIN DEPARTMENT USING (DEPT_NO)
+		WHERE DEPT_NO = #{deptNo}
 	</select>
 
 </mapper>
