@@ -54,6 +54,19 @@
 		<result property="deptNo" 			column="DEPT_NO"/>
 	</resultMap>
 	
+	<resultMap type="projectList" id="projectList_rm">		
+		<id property="projectNo" column="PROJECT_NO"/>		
+		<result property="projectTitle" column="PROJECT_TITLE"/>	
+	</resultMap>
+	
+	
+	<resultMap type="projectTaskList" id="projectTaskList_rm">
+		<id property="taskNo" column="TASK_NO"/>
+		<result property="taskTitle" column="TASK_TITLE"/>				
+		<result property="projectNo" column="PROJECT_NO"/>		
+		<result property="projectTitle" column="PROJECT_TITLE"/>	
+	</resultMap>
+	
 	
 	
 	<!-- 프로젝트 생성 -->
@@ -77,7 +90,18 @@
 		INSERT INTO PROJECT_TASK (TASK_NO, PROJECT_NO, TITLE,  DEPT_NO) VALUES (
 		#{taskNo}, #{projectNo}, #{title}, #{deptNo})
 	</insert>
-
+	
+	<!-- 과제업로드 -->
+	<update id="updateTask">
+		UPDATE PROJECT_TASK
+		SET MEM_NO = #{memNo},
+			CONTENT = #{content},
+			SEND_DATE = SYSDATE,
+			"NEXT" = #{next},
+			WORK_STATE = '진행중'
+		WHERE TASK_NO = #{taskNo}			
+	</update>
+	
 	<!-- 프로젝트파일 업로드 -->
 	<insert id="insertProjectFile" parameterType="file" useGeneratedKeys="true">
 		<selectKey keyProperty="fileNo" resultType="_int" order="BEFORE">
@@ -98,7 +122,7 @@
 
 	<!-- 상신함 프로젝트 리스트 (현재날짜) -->	
 	<select id="projectSendList" resultMap="workList_rm">
-		SELECT PROJECT_NO ,'4' AS TYPE_NO, '프로젝트' AS TYPE_NAME, TITLE , SEND_DATE ,WORK_STATE, OPINION , FILE_RENAME
+		SELECT PROJECT_NO AS WORK_NO ,'4' AS TYPE_NO, '프로젝트' AS TYPE_NAME, TITLE , SEND_DATE ,WORK_STATE, OPINION , FILE_RENAME
 		FROM PROJECT
 		LEFT JOIN UPLOAD_FILE USING(PROJECT_NO)
 		WHERE MEM_NO = #{memNo}
@@ -115,6 +139,29 @@
 		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 		ORDER BY SEND_DATE DESC
 	</select>	
+	
+	<!-- 프로젝트 리스트 조회  -->
+	<select id="pList" parameterType="_int" resultMap="projectList_rm">
+		SELECT PROJECT_NO , TITLE AS PROJECT_TITLE
+		FROM PROJECT
+		WHERE DEPT_NO = #{deptNo}
+		AND WORK_STATE = '승인'
+		ORDER BY PROJECT_NO ASC
+	</select>
+	
+	<!-- 프로젝트/과제 리스트 조회  -->
+	<select id="ptList" parameterType="_int" resultMap="projectTaskList_rm">
+		SELECT PROJECT_NO , P.TITLE AS PROJECT_TITLE, TASK_NO, PT.TITLE AS TASK_TITLE 
+		FROM PROJECT P
+		JOIN PROJECT_TASK PT USING (PROJECT_NO)
+		WHERE PT.DEPT_NO = #{deptNo}
+		AND P.WORK_STATE = '승인' 
+		AND PT.WORK_STATE IS NULL
+		ORDER BY PT.TASK_NO ASC
+	</select>
+	
+	
+
 	
 	
 </mapper>

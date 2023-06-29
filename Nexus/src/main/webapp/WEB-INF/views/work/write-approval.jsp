@@ -36,20 +36,24 @@
               <option value="normalEx4">지출결의서(예시)</option>
             </select>
 
-            <select name="" id="project-checked">
-              <option value="">프로젝트1(예시)</option>
-              <option value="">프로젝트2(예시)</option>
-              <option value="">프로젝트3(예시)</option>
-              <option value="">프로젝트4(예시)</option>
+            <select name="projectNo" id="project-checked">
+              <c:forEach var="pList" items="${pList}">
+                <option value="${pList.projectNo}">${pList.projectTitle}</option>
+              </c:forEach>
             </select>
 
-            <select name="" id="assignment-checked">
-              <option value="">과제1(예시)</option>
-              <option value="">과제2(예시)</option>
-              <option value="">과제3(예시)</option>
-              <option value="">과제4(예시)</option>
-            </select>
+            <c:forEach var="pList" items="${pList}">
+              <select name="" class="assignment-checked" data-project-no="${pList.projectNo}">
+                <c:forEach var="ptList" items="${ptList}" varStatus="status">
+                  <c:if test="${ptList.projectNo == pList.projectNo}">
+                    <option value="${ptList.taskNo}">${ptList.taskTitle}</option>
+                  </c:if>
+                </c:forEach>
+              </select>
+            </c:forEach>
 
+            <input name="taskNo" type="hidden">
+            
           </div>
 
           <!-- 제목 -->
@@ -140,7 +144,7 @@
 
             <div class="approver-modal-container">
 
-                <div class="dept-1">
+                <div class="dept-Box">
                   <ul class="executives"><p>임원</p>
 
                   </ul>
@@ -154,7 +158,7 @@
                   </ul>
                 </div>
 
-                <div class="team-1">
+                <div class="team-Box">
                   <ul class="team">
                     <li class="team-list"><p>재무팀</p></li>
                     <li class="team-list"><p>인사총무팀</p></li>
@@ -176,7 +180,7 @@
                   </ul>
                 </div>
 
-                <div class="teamone-1">
+                <div class="teamone-Box">
 
                   <ul style="display: flex; flex-direction: column;">
 

@@ -21,7 +21,9 @@ import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.work.model.dao.ProjectDAO;
 import com.ln.intranet.work.model.dao.WorkDAO;
 import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.ProjectList;
 import com.ln.intranet.work.model.vo.ProjectTask;
+import com.ln.intranet.work.model.vo.ProjectTaskList;
 import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
 
@@ -119,8 +121,6 @@ public class WorkServiceImp implements WorkService {
 			map.put("content", Util.XSSHandling(map.get("content").toString()));
 			map.put("content", Util.newLineHandling(map.get("content").toString()));
 			
-			int projectSelect = (Integer)map.get("projectNo");
-			
 		}
 		
 		// 결재타입 1 2 3 일 때 
@@ -194,7 +194,7 @@ public class WorkServiceImp implements WorkService {
 					
 					reName = Util.fileRename(uploadFile.getOriginalFilename());
 					
-					file.setWorkNo(projectNo);
+					file.setProjectNo(projectNo);
 					file.setFileOrigin(uploadFile.getOriginalFilename());
 					file.setFileReName(webPath + reName);
 					
@@ -212,6 +212,45 @@ public class WorkServiceImp implements WorkService {
 				}
 				
 			}
+			
+		} else {
+			
+			// 파일 올리기
+			int resultNo = pDao.updateTask(map);
+			int taskNo = Integer.parseInt(map.get("taskNo").toString());
+			int memNo = Integer.parseInt(map.get("memNo").toString());
+			
+			if(resultNo != 0) {
+				
+				if(uploadFile.getSize() != 0) {
+
+					UploadFile file = new UploadFile();
+					String reName = "";
+					
+					String webPath = "/resources/file/";
+					String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+					
+					reName = Util.fileRename(uploadFile.getOriginalFilename());
+					
+					file.setTaskNo(taskNo);
+					file.setFileOrigin(uploadFile.getOriginalFilename());
+					file.setFileReName(webPath + reName);
+					
+					result = pDao.insertTaskFile(file);
+						
+					if(result != 0) {
+						try {
+							uploadFile.transferTo(new File(folderPath + reName));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				} else {
+					result = resultNo;
+				}
+				
+			}
+			
 		}
 		
 		return result;
@@ -294,6 +333,18 @@ public class WorkServiceImp implements WorkService {
 
 		
 		return dao.clickApproval(map);
+	}
+
+	// 프로젝트과제 리스트 뽑기용
+	@Override
+	public List<ProjectTaskList> ptList(int deptNo) {
+		return pDao.ptList(deptNo);
+	}
+
+	// 프로젝트 리스트 뽑기용
+	@Override
+	public List<ProjectList> pList(int deptNo) {
+		return pDao.pList(deptNo);
 	}
 
 

@@ -27,7 +27,9 @@
 		<typeAlias type="com.ln.intranet.meeting.model.vo.MeetingRoom" alias="meetingRoom"/>	
 		<!-- 프로젝트 -->
 		<typeAlias type="com.ln.intranet.work.model.vo.Project" alias="project"/>
-		<typeAlias type="com.ln.intranet.work.model.vo.ProjectTask" alias="projectTask"/>	
+		<typeAlias type="com.ln.intranet.work.model.vo.ProjectTask" alias="projectTask"/>
+		<typeAlias type="com.ln.intranet.work.model.vo.ProjectList" alias="projectList"/>		
+		<typeAlias type="com.ln.intranet.work.model.vo.ProjectTaskList" alias="projectTaskList"/>	
 		<!-- 대시보드 -->		
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.AttnDoughnut" alias="attnDoughnut"/>
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.HumanResourceManage" alias="hrManage"/>
