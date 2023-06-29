@@ -30,8 +30,7 @@
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
       <section>
 
-        <div id="wrapper">
-          <nav id="sidebar">
+        
             <!-- 사이드 바 -->
             <div class="side-bar menu">
               <!-- 페이지마다 바뀌는 제목 -->
@@ -43,11 +42,7 @@
 
               </ul>
             </div>
-          </nav>
-
-
-          <div id="content">
-            <a href="#" id="sidebar-toggle"></a>
+         
             <!-- 컨텐츠 내용 -->
             <div class="content-all-page">
 
@@ -228,9 +223,7 @@
 
             </div>
 
-          </div>
-
-        </div>
+         
 
 
 

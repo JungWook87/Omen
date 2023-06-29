@@ -223,11 +223,7 @@ option {
     transition: all 1s;
 }
 
-/* 사이드바 */
-.side-bar {
-    min-width: 300px;
-    min-height: 100vh;
-}
+
 
 
 /* 공지사항 테이블스타일 */
@@ -1521,83 +1517,3 @@ option {
 
 
 /* 사이드바 반응형 */
-#wrapper {
-    display: flex;
-    width: 100%;
-}
-
-#sidebar {
-    height: 100%;
-    min-height: 100vh;
-    position: relative;
-    transition: all 0.25s;
-    width: 299px;
-}
-
-.side-bar {
-    position: absolute;
-}
-
-#content {
-    height: 100%;
-    min-height: 100vh;
-    position: absolute;
-    right: 0;
-    transition: all 0.25s;
-    width: calc(100% - 299px);
-}
-
-.no-sidebar #sidebar {
-    margin-left: -299px;
-}
-
-.no-sidebar #content {
-    width: 100%;
-}
-
-
-#sidebar-toggle {
-    background-color: orange;
-    border-radius: 50%;
-    display: block;
-    height: 2.2rem;
-    left: -1.15rem;
-    position: absolute;
-    text-decoration: none;
-    top: 7px;
-    width: 2.2rem;
-
-}
-
-#sidebar-toggle::after {
-    content: "🡐";
-    color: white;
-    display: block;
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin: -.2rem 0 0 0;
-    text-align: center;
-}
-
-#sidebar-toggle:hover {
-    background-color: goldenrod;
-}
-
-.no-sidebar #sidebar-toggle::after {
-    content: "🡒";
-    margin-left: .2rem;
-}
-
-@media print {
-    #sidebar {
-        display: none;
-    }
-
-    #sidebar-toggle {
-        display: none;
-    }
-
-    #content {
-        width: 100%;
-    }
-}

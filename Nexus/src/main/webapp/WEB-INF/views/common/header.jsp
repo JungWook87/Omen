@@ -77,14 +77,7 @@
     </c:if>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
     <script>
-      // 사이드바
-      $(document).ready(function () {
-
-        $("#sidebar-toggle").on("click", function () {
-          $("#wrapper").toggleClass("no-sidebar");
-        });
-
-      });
+    
 
 
 
