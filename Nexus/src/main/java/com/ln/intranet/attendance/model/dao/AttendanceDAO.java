@@ -39,6 +39,11 @@ public class AttendanceDAO {
 	public Attendance selectOne(Map<String, Object> map) {
 		return sqlSession.selectOne("attendanceMapper.selectOne", map);
 	}
+	
+	// 연차, 출장 데이터 입력하기
+	public int insertAttn(Map<String, Object> map) {
+		return sqlSession.insert("attendanceMapper.insertAttn", map);
+	}
 
 
 }

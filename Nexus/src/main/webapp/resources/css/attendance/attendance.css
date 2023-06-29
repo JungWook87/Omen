@@ -241,39 +241,26 @@ a:focus {
 
 /* 년월 선택 */
 .YMSelect {
-	display:flex;
-	margin-top: 80px;
-	align-items: center;
+  display: flex;
+  margin-top: 80px;
+  align-items: center;
 }
 
 .YMSelect button {
-	background-color: transparent;
-	border : none;
-	cursor: pointer;
-	margin-left : 10px;
-	margin-right : 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.YMSelect > p {
-	padding-top : 7px;
-	font-size: 20px;
+.YMSelect>p {
+  padding-top: 7px;
+  font-size: 20px;
 }
 
 
 .YMSelect button img {
-	height : 22px;
-	padding-top : 7px;
+  height: 22px;
+  padding-top: 7px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

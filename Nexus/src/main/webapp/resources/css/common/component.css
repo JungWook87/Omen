@@ -223,11 +223,7 @@ option {
     transition: all 1s;
 }
 
-/* 사이드바 */
-.side-bar {
-    min-width: 300px;
 
-}
 
 
 /* 공지사항 테이블스타일 */
@@ -1519,117 +1515,5 @@ option {
 
 /* 채팅----------------------------------------------------------- */
 
-/* 사이드바 */
-/* .side-bar {
-    position: fixed !important;
-    transition: all 0.25s !important;
-}
 
-
-.no-sidebar .side-bar {
-    margin-left: -300px !important;
-}
-
-.no-sidebar .content-all-page {
-    width: 100% !important;
-}
-
-
-.content-all-page {
-    min-height: 100vh;
-    position: absolute !important;
-    right: 0 !important;
-    transition: all 0.25s !important;
-    width: calc(100% - 300px) !important;
-}
-
-#sidebar-toggle {
-    background-color: orange;
-    border-radius: 50%;
-    display: block;
-    height: 2.2rem;
-    left: -1.15rem;
-    position: absolute;
-    text-decoration: none;
-    top: 7px;
-    width: 2.2rem;
-}
-
-#sidebar-toggle::after {
-    content: "🡐";
-    color: white;
-    display: block;
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin: -.2rem 0 0 0;
-    text-align: center;
-}
-
-#sidebar-toggle:hover {
-    background-color: goldenrod;
-}
-
-.no-sidebar #sidebar-toggle::after {
-    content: "🡒";
-    margin-left: .2rem;
-   
-}
-
- */
-
-.side-bar {
-    position: fixed !important;
-    transition: all 0.25s !important;
-}
-
-
-.no-sidebar .side-bar {
-    margin-left: -300px !important;
-}
-
-.no-sidebar .content-all-page {
-    width: 100% !important;
-}
-
-
-.content-all-page {
-    min-height: 100vh;
-    position: absolute !important;
-    right: 0 !important;
-    transition: all 0.25s !important;
-    width: calc(100% - 300px) !important;
-}
-
-
-#sidebar-toggle {
-    background-color: orange;
-    border-radius: 50%;
-    display: block;
-    height: 2.2rem;
-    left: 0.05rem;
-    position: fixed;
-    text-decoration: none;
-    top: 75px;
-    width: 2.2rem;
-    z-index: 9999;
-    /* Ensure the button is above other elements */
-}
-
-#sidebar-toggle::after {
-    content: "🡐";
-    color: white;
-    display: block;
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin: -0.2rem 0 0 0;
-    text-align: center;
-}
-
-#sidebar-toggle:hover {
-    background-color: goldenrod;
-}
-
-.no-sidebar #sidebar-toggle::after {
-    content: "🡒";
-    margin-left: 0.2rem;
-}
+/* 사이드바 반응형 */

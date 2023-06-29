@@ -255,12 +255,15 @@ pulsApproverBtn.addEventListener("click",() => {
 
       const approvalList = list;
       const team = document.querySelectorAll(".approval-team");
-
+      
       for(let i=0; i < team.length; i++){
         team[i].innerText = "";
       }
   
           for (let value of approvalList) {
+            let div = document.createElement("div");
+            div.className = "momo"
+
             let label = document.createElement("label");
             label.setAttribute("for", "mem" + value.memNo);
             label.innerText = value.memName;
@@ -273,44 +276,70 @@ pulsApproverBtn.addEventListener("click",() => {
             input.value = value.memNo;
 
               if (value.teamNo == 11) {
-                team[0].append(label);
-                team[0].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[0].append(div);
               } else if (value.teamNo == 12) {
-                team[1].append(label);
-                team[1].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[1].append(div);
               } else if (value.teamNo == 21) {
-                team[2].append(label);
-                team[2].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[2].append(div);
               } else if (value.teamNo == 22) {
-                team[3].append(label);
-                team[3].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[3].append(div);
               } else if (value.teamNo == 31) {
-                team[4].append(label);
-                team[4].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[4].append(div);
               } else if (value.teamNo == 32) {
-                team[5].append(label);
-                team[5].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[5].append(div);
               } else if (value.teamNo == 33) {
-                team[6].append(label);
-                team[6].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[6].append(div);
               } else if (value.teamNo == 34) {
-                team[7].append(label);
-                team[7].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[7].append(div);
               } else if (value.teamNo == 41) {
-                team[8].append(label);
-                team[8].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[8].append(div);
               } else if (value.teamNo == 42) {
-                team[9].append(label);
-                team[9].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[9].append(div);
               } else if (value.teamNo == 43) {
-                team[10].append(label);
-                team[10].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[10].append(div);
               } else if (value.teamNo == 51) {
-                team[11].append(label);
-                team[11].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[11].append(div);
               } else if (value.teamNo == 52) {
-                team[12].append(label);
-                team[12].append(input);
+                div.append(label);
+                div.append(input);
+
+                team[12].append(div);
               }
 
             }
@@ -348,14 +377,12 @@ dept.querySelector("p").addEventListener("click", ()=> {
   }
 })
 
-//팀과 팀원을 맞춰줘야된다
-
+// 팀 조회 이벤트
 for(let i= 0; i < deptList.length; i++ ){
 
   deptList[i].addEventListener("click", () => {
 
-    
-  
+
     if(i === 0){
       teamList[0].classList.toggle('show');
       teamList[1].classList.toggle('show');
@@ -374,15 +401,15 @@ for(let i= 0; i < deptList.length; i++ ){
     } else if(i === 4){
       teamList[11].classList.toggle('show');
       teamList[12].classList.toggle('show');
-    }
+    } 
 
   }
-  
   
   )
 
 }
 
+// 팀원 조회 이벤트
 for (let i = 0; i < teamList.length; i++) {
   teamList[i].addEventListener('click', () => {
     // 해당 deptList 내부의 팀 요소들을 선택합니다.

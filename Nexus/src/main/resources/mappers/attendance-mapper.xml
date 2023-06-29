@@ -15,6 +15,7 @@
 		
 	</resultMap>
 	
+	<!-- 근무/휴가 페이지 접속 -->
 	<select id="selectAttendanceList" parameterType="_int" resultMap="attendance_rm">
 		SELECT ATTD_TYPE_NAME , TODAY, ATTN_START, ATTN_END, WORKING_HOURS, EXTENDED_WORKING_HOURS  
 		FROM ATTENDANCE 
@@ -26,33 +27,65 @@
 		ORDER BY TODAY DESC
 	</select>
 	
+	<!-- 출근 시간 입력 -->
 	<insert id="startHours" >
 		INSERT INTO ATTENDANCE VALUES (
 			ATTENDANCE_NO.NEXTVAL, ${memNo}, ${attdTypeNo}, TO_CHAR(SYSDATE, 'YY/MM/DD'), #{attnStart}, '-- : --', '-', '-' 	
 		)
 	</insert>
 	
+	<!-- 출근 시작 시간 조회 -->
 	<select id="selectStartTime" resultType="string">
 		SELECT ATTN_START FROM ATTENDANCE 
 		WHERE MEM_NO = ${memNo}
 		AND TODAY = TO_CHAR(SYSDATE, 'YY/MM/DD')
 	</select>
 	
-	
+	<!-- 퇴근 시간 입력 -->
 	<update id="endHours">
 		UPDATE ATTENDANCE SET ATTN_END = #{attnEnd}, WORKING_HOURS = #{workingHours}, EXTENDED_WORKING_HOURS = #{extendedWH}
 		WHERE MEM_NO = ${memNo}
 		AND TODAY = TO_CHAR(SYSDATE, 'YY/MM/DD')
 	</update>
 	
+	<!-- DB에서 오늘 날짜 조회 -->
 	<select id="selectOne" resultMap="attendance_rm">
 		SELECT ATTN_START, ATTN_END, WORKING_HOURS FROM ATTENDANCE
 		WHERE MEM_NO = ${memNo}
 		AND TODAY = #{today}
 	</select>
 
-
-
+	<!-- 연차 출장 결재 승인 후 값 넣기 -->
+	<insert id="insertAttn">
+		<if test = "typeNo == 2">
+			DECLARE
+			  START_DATE DATE := TRUNC(TO_DATE(#{start}, 'YYYY-MM-DD HH24:MI:SS'));
+			  END_DATE DATE := TRUNC(TO_DATE(#{end}, 'YYYY-MM-DD HH24:MI:SS')) + 1;
+			BEGIN
+			  LOOP
+			    INSERT INTO ATTENDANCE VALUES (ATTENDANCE_NO.NEXTVAL, ${memNo}, 4, TO_CHAR(START_DATE, 'YY/MM/DD'), '-', '-', '-', '-');
+			    START_DATE := START_DATE + 1;
+			    IF START_DATE = END_DATE THEN
+			      EXIT;
+			    END IF;
+			  END LOOP;
+			END;
+		</if>
+		<if test = "typeNo == 3">
+			DECLARE
+			  START_DATE DATE := TRUNC(TO_DATE(#{start}, 'YYYY-MM-DD HH24:MI:SS'));
+			  END_DATE DATE := TRUNC(TO_DATE(#{end}, 'YYYY-MM-DD HH24:MI:SS')) + 1;
+			BEGIN
+			  LOOP
+			    INSERT INTO ATTENDANCE VALUES (ATTENDANCE_NO.NEXTVAL, ${memNo}, 5, TO_CHAR(START_DATE, 'YY/MM/DD'), '-', '-', '8 시간 0 분', '-');
+			    START_DATE := START_DATE + 1;
+			    IF START_DATE = END_DATE THEN
+			      EXIT;
+			    END IF;
+			  END LOOP;
+			END;
+		</if>
+	</insert>
 
 
 

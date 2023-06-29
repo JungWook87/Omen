@@ -178,105 +178,25 @@
 
                 <div class="teamone-1">
 
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
-                  <li class="approval-team"></li>
+                  <ul style="display: flex; flex-direction: column;">
 
-
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                    <li class="approval-team"></li>
+                      
+                  </ul>
                 </div>
 
-                <!-- <div id="approver-box">
-                  <ul>
-                    <li class="Executives"><p>임원</p>
-                    </li>
-                    <li class="dept"><p>부서</p>
-                      <ul >
-                        <li class="dept-list"><p>관리기획부</p>
-                          <ul>
-                            <li>
-                              <p>재무팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                            <li>
-                              <p>인사총무팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="dept-list"><p>업무기획부</p>
-                          <ul>
-                            <li>
-                              <p>영업팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                            <li>
-                              <p>기술개발팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="dept-list"><p>공무기획부</p>
-                          <ul>
-                            <li>
-                              <p>공사팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                            <li>
-                              <p>공무팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                            <li>
-                              <p>견적팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                            <li>
-                              <p>자재팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="dept-list"><p>개발사업부</p>
-                          <ul>
-                            <li>
-                              <p>개발기획팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                            <li>
-                              <p>분양홍보팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                            <li>
-                              <p>설계기획팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="dept-list"><p>전략기획실</p>
-                          <ul>
-                            <li>
-                              <p>경영팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                            <li>
-                              <p>전략팀</p>
-                              <li class="approval-team"></li>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div> -->
             </div>
 
             <div class="approver-modal-line2"></div>
