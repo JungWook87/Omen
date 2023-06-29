@@ -30,165 +30,43 @@
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
       <section>
 
-        
-            <!-- 사이드 바 -->
-            <div class="side-bar menu">
-              <!-- 페이지마다 바뀌는 제목 -->
-              <h1>공지사항</h1>
 
-              <!-- 페이지마다 바뀌는 부제목 -->
-              <ul>
-                <li><a href=""><span>공지사항</span> </a></li>
+        <!-- 사이드 바 -->
+        <div class="side-bar menu">
+          <!-- 페이지마다 바뀌는 제목 -->
+          <h1>공지사항</h1>
 
-              </ul>
-            </div>
-         
-            <!-- 컨텐츠 내용 -->
-            <div class="content-all-page">
+          <!-- 페이지마다 바뀌는 부제목 -->
+          <ul>
+            <li><a href=""><span>공지사항</span> </a></li>
 
-              <!-- 컨텐츠 내용 윗부분 -->
-              <div class="content-all-top-area">
+          </ul>
+        </div>
 
-                <div class="content-all-top-area-detail">
+        <!-- 컨텐츠 내용 -->
+        <div class="content-all-page">
 
-                  <!-- 컨텐츠 제목 부분 -->
-                  <div>
-                    <p class="content-all-top-text1">공지사항 / </p>
-                    <p class="content-all-top-text2">공지사항</p>
-                  </div>
+          <!-- 컨텐츠 내용 윗부분 -->
+          <div class="content-all-top-area">
 
-                  <!-- 오른쪽 버튼 부분 -->
+            <div class="content-all-top-area-detail">
 
-                  <!-- 공지사항 모달창 -->
-                  <div>
-                    <button type="button" class="omen-btn" id="popupBtn">공지사항 추가</button>
-                  </div>
-
-                  <div id="modalWrap">
-                    <div class="modalBody">
-                      <span id="closeBtn">
-                        <img src="${contextPath}/resources/images/Xbtn.png" alt="">
-                      </span>
-                      <h1>공지사항</h1>
-                      <!-- 선1 -->
-                      <div class="modal-line"></div>
-
-                      <!-- 제목 -->
-                      <form action="writeNotice" enctype="multipart/form-data" method="post">
-                        <div class="modal-title">
-                          <p>제목</p>
-                          <input type="text" name="title" placeholder="제목을 입력해주세요" required>
-                        </div>
-                        <!-- 내용 -->
-                        <div class="modal-detail">
-                          <p>내용</p>
-                          <textarea name="content" id="" onkeydown="handleResizeHeight(this)"
-                            onkeyup="handleResizeHeight(this)"></textarea>
-                        </div>
-                        <!-- 파일 업로드 -->
-                        <div class="file-box">
-                          <button type="button" id="file-remove">파일 지우기</button>
-                          <label for="file-uploads">파일 올리기</label>
-                          <input type="file" id="file-uploads" name=" uploadFile" accept="" multiple>
-                        </div>
-                        <!-- 선택된 파일 -->
-                        <div class="preview"></div>
-                        <!-- 선2 -->
-                        <div class="modal-line"></div>
-                        <!-- 버튼 -->
-                        <div class="notice-submit-reset-btns">
-                          <button type="reset" id="cancell-btn">취소</button>
-                          <button id="success-btn">확인</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-
-                </div>
-
-
-
-
+              <!-- 컨텐츠 제목 부분 -->
+              <div>
+                <p class="content-all-top-text1">공지사항 / </p>
+                <p class="content-all-top-text2">공지사항</p>
               </div>
 
-              <!-- 컨텐츠 내용 아랫부분 -->
-              <div class="content-all-bottom-area">
-                <div class="notice-table">
-                  <table>
+              <!-- 오른쪽 버튼 부분 -->
 
-                    <thead>
-                      <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성일</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      <c:choose>
-                        <c:when test="${empty boardList}">
-                          <tr>
-                            <th colspan="4">게시글이 존재하지 않습니다.</th>
-                          </tr>
-                        </c:when>
-
-                        <c:otherwise>
-                          <c:forEach var="board" items="${boardList}">
-                            <tr onclick="detailModal(${board.noticeNo})">
-                              <td>${board.noticeNo}</td>
-                              <td>${board.title}</td>
-                              <td>${board.createDate}</td>
-                            </tr>
-                          </c:forEach>
-
-                        </c:otherwise>
-                      </c:choose>
-
-                    </tbody>
-                  </table>
-                </div>
-                <div class="pagination-area">
-
-                  <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
-                  <c:set var="url" value="${boardCode}?cp=" />
-
-
-                  <ul class="pagination">
-                    <!-- 첫 페이지로 이동 -->
-                    <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
-
-                    <!-- 이전 목록 마지막 번호로 이동 -->
-                    <li><a href="${url}${pagination.prevPage}${sURL}">&lt;</a></li>
-
-                    <!-- 범위가 정해진 일반 for문 사용 -->
-                    <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
-
-                      <c:choose>
-                        <c:when test="${i == pagination.currentPage}">
-                          <li><a class="current">${i}</a></li>
-                        </c:when>
-
-                        <c:otherwise>
-                          <li><a href="${url}${i}${sURL}">${i}</a></li>
-                        </c:otherwise>
-                      </c:choose>
-
-                    </c:forEach>
-
-                    <!-- 다음 목록 시작 번호로 이동 -->
-                    <li><a href="${url}${pagination.nextPage}${sURL}">&gt;</a></li>
-
-                    <!-- 끝 페이지로 이동 -->
-                    <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
-
-                  </ul>
-                </div>
+              <!-- 공지사항 모달창 -->
+              <div>
+                <button type="button" class="omen-btn" id="popupBtn">공지사항 추가</button>
               </div>
 
-              <!-- 사용자가 작성한 공지사항 열기 -->
-              <div id="check-modalWrap">
-                <div class="check-modalBody">
-                  <span id="check-closeBtn">
+              <div id="modalWrap">
+                <div class="modalBody">
+                  <span id="closeBtn">
                     <img src="${contextPath}/resources/images/Xbtn.png" alt="">
                   </span>
                   <h1>공지사항</h1>
@@ -196,34 +74,153 @@
                   <div class="modal-line"></div>
 
                   <!-- 제목 -->
-                  <div>
-                    <p>제목</p>
-                    <div class="check-modal-title" id="check-modal-title"></div>
-                  </div>
-                  <!-- 내용 -->
-                  <div>
-                    <p>내용</p>
-                    <div class="check-modal-detail"></div>
-                  </div>
-
-                  <!-- 선택된 파일 -->
-                  <p>첨부파일</p>
-                  <div class="check-preview"></div>
-                  <!-- 선2 -->
-                  <div class="modal-line"></div>
-                  <!-- 버튼 -->
-                  <div class="notice-submit-reset-btns">
-                    <button id="check-remove-btn">삭제</button>
-                    <button type="reset" id="check-cancell-btn">닫기</button>
-                    <button id="check-success-btn">수정</button>
-                  </div>
-
+                  <form action="writeNotice" enctype="multipart/form-data" method="post">
+                    <div class="modal-title">
+                      <p>제목</p>
+                      <input type="text" name="title" placeholder="제목을 입력해주세요" required>
+                    </div>
+                    <!-- 내용 -->
+                    <div class="modal-detail">
+                      <p>내용</p>
+                      <textarea name="content" id="" onkeydown="handleResizeHeight(this)"
+                        onkeyup="handleResizeHeight(this)"></textarea>
+                    </div>
+                    <!-- 파일 업로드 -->
+                    <div class="file-box">
+                      <button type="button" id="file-remove">파일 지우기</button>
+                      <label for="file-uploads">파일 올리기</label>
+                      <input type="file" id="file-uploads" name=" uploadFile" accept="" multiple>
+                    </div>
+                    <!-- 선택된 파일 -->
+                    <div class="preview"></div>
+                    <!-- 선2 -->
+                    <div class="modal-line"></div>
+                    <!-- 버튼 -->
+                    <div class="notice-submit-reset-btns">
+                      <button type="reset" id="cancell-btn">취소</button>
+                      <button id="success-btn">확인</button>
+                    </div>
+                  </form>
                 </div>
               </div>
 
             </div>
 
-         
+
+
+
+          </div>
+
+          <!-- 컨텐츠 내용 아랫부분 -->
+          <div class="content-all-bottom-area">
+            <div class="notice-table">
+              <table>
+
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <c:choose>
+                    <c:when test="${empty boardList}">
+                      <tr>
+                        <th colspan="4">게시글이 존재하지 않습니다.</th>
+                      </tr>
+                    </c:when>
+
+                    <c:otherwise>
+                      <c:forEach var="board" items="${boardList}">
+                        <tr onclick="detailModal(${board.noticeNo})">
+                          <td>${board.noticeNo}</td>
+                          <td>${board.title}</td>
+                          <td>${board.createDate}</td>
+                        </tr>
+                      </c:forEach>
+
+                    </c:otherwise>
+                  </c:choose>
+
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pagination-area">
+              <c:set var="url" value="${boardCode}?cp=" />
+
+              <ul class="pagination">
+                <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
+
+                <c:if test="${pagination.currentPage > 1}">
+                  <li class="prevPage"><a href="${url}${pagination.currentPage - 1}${sURL}" class="blue">이전</a></li>
+                </c:if>
+                <c:if test="${pagination.currentPage == 1}">
+                  <li class="prevPage"><a href="javascript:void(0);">이전</a></li>
+                </c:if>
+
+                <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+                  <c:if test="${i == pagination.currentPage}">
+                    <li><a class="current">${i}</a></li>
+                  </c:if>
+                  <c:if test="${i != pagination.currentPage}">
+                    <li><a href="${url}${i}${sURL}">${i}</a></li>
+                  </c:if>
+                </c:forEach>
+
+                <c:if test="${pagination.currentPage < pagination.maxPage}">
+                  <li class="nextPage"><a href="${url}${pagination.currentPage + 1}${sURL}" class="blue">다음</a></li>
+                </c:if>
+                <c:if test="${pagination.currentPage == pagination.maxPage}">
+                  <li class="nextPage"><a href="javascript:void(0);">다음</a></li>
+                </c:if>
+
+                <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 사용자가 작성한 공지사항 열기 -->
+          <div id="check-modalWrap">
+            <div class="check-modalBody">
+              <span id="check-closeBtn">
+                <img src="${contextPath}/resources/images/Xbtn.png" alt="">
+              </span>
+              <h1>공지사항</h1>
+              <!-- 선1 -->
+              <div class="modal-line"></div>
+
+              <!-- 제목 -->
+              <div>
+                <p>제목</p>
+                <div class="check-modal-title" id="check-modal-title"></div>
+              </div>
+              <!-- 내용 -->
+              <div>
+                <p>내용</p>
+                <div class="check-modal-detail"></div>
+              </div>
+
+              <!-- 선택된 파일 -->
+              <p>첨부파일</p>
+              <div class="check-preview"></div>
+              <!-- 선2 -->
+              <div class="modal-line"></div>
+              <!-- 버튼 -->
+              <div class="notice-submit-reset-btns">
+                <button id="check-remove-btn">삭제</button>
+                <button type="reset" id="check-cancell-btn">닫기</button>
+                <button id="check-success-btn">수정</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
 
 
 

@@ -9,17 +9,40 @@ const cancellBtn = document.getElementById('cancell-btn');
 const noticeTitle = document.querySelector('.modal-title > input');
 const noticeContent = document.querySelector('.modal-detail > textarea');
 
+
+const jobNoRegex = /jobNo=(\d+)/;
+const jobNoMatch = loginMember.match(jobNoRegex);
+const loginMemberJobNo = jobNoMatch[1];
+console.log(loginMemberJobNo);
+
 // 공지사항 버튼 이벤트
 btn.addEventListener("click", () => {
-  // 초기화
-  noticeTitle.value = '';
-  noticeContent.value = '';
-  if(preview.firstChild != null) {
-    preview.firstChild.remove();
+  if(parseInt(loginMemberJobNo) === 4) {
+    Swal.fire({
+      html: `
+        <div class="custom-message">
+          <h2>안내드립니다.</h2>
+          <p>현재 로그인한 사용자의 직급으로 인해 해당 기능에 접근할 수 없습니다.</p>
+          <p>권한이 있는 직급을 가진 사용자만 해당 기능을 이용하실 수 있습니다.</p>
+          <p>감사합니다.</p>
+        </div>
+      `,
+      customClass: {
+        container: 'custom-modal-container',
+        content: 'custom-modal-content'
+      }
+    });
+  } else {
+    // 초기화
+    noticeTitle.value = '';
+    noticeContent.value = '';
+    if(preview.firstChild != null) {
+      preview.firstChild.remove();
+    }
+  
+    modal.style.display = 'block';
+    modalBody.classList.add('modal-open');
   }
-
-  modal.style.display = 'block';
-  modalBody.classList.add('modal-open');
 
 }) 
 
@@ -211,6 +234,7 @@ const checkPreview = document.querySelector('.check-preview');
 const modifyBtn = document.getElementById('check-success-btn');
 const doneBtn = document.getElementById('done-btn');
 const fileBox = document.querySelector('.check-file-box');
+const deleteBtn = document.getElementById('check-remove-btn');
 
 
 let globalNoticeNo = 0;
@@ -226,6 +250,15 @@ function detailModal(noticeNo) {
     dataType : "JSON",
     success : function(detail){
 
+
+      const isMyJob = (parseInt(loginMemberJobNo) === 4);
+
+      if (isMyJob) {
+        modifyBtn.style.display = 'none';
+        deleteBtn.style.display = 'none';
+      } 
+      
+
       const checkModalTitleSpan = document.createElement("span");
       checkModalTitleSpan.innerText = detail.title;
       checkModalTitle.append(checkModalTitleSpan);
@@ -236,18 +269,18 @@ function detailModal(noticeNo) {
 
       globalNoticeNo = noticeNo;
 
-	if (detail.NoticeFileOrigin) {
-	  const checkPreviewA = document.createElement("a");
-	  checkPreviewA.innerText = detail.NoticeFileOrigin;
-	  checkPreviewA.href = "/intranet" + detail.NoticeFileRename;
-	  checkPreviewA.download = detail.boardFileOrigin;
-	  checkPreview.append(checkPreviewA); 
-	}else{
-		const checkPreviewA = document.createElement("p");
- 		 checkPreviewA.innerText = "파일 없음";
- 		 checkPreview.append(checkPreviewA);
+      if (detail.NoticeFileOrigin) {
+        const checkPreviewA = document.createElement("a");
+        checkPreviewA.innerText = detail.NoticeFileOrigin;
+        checkPreviewA.href = "/intranet" + detail.NoticeFileRename;
+        checkPreviewA.download = detail.boardFileOrigin;
+        checkPreview.append(checkPreviewA); 
+      }else{
+        const checkPreviewA = document.createElement("p");
+        checkPreviewA.innerText = "파일 없음";
+        checkPreview.append(checkPreviewA);
 
-	}
+      }
 
   // 수정 버튼 눌렀을 때 이벤트
   let isEditMode = false; // 수정 모드 상태를 나타내는 변수
@@ -311,9 +344,7 @@ function detailModal(noticeNo) {
       for (let i = 0; i < files.length; i++) {
         formData.append('uploadFile', files[i]);
       }
-      console.log(formData.get('noticeNo'));
-    console.log(formData.get('title'));
-    console.log(formData.get('content'));
+      
       $.ajax({
         url: "updateDeptNotice",
         data :formData,
@@ -361,7 +392,7 @@ function detailModal(noticeNo) {
   
 
    // 삭제 버튼 이벤트
-  const deleteBtn = document.getElementById('check-remove-btn');
+  
 
   deleteBtn.addEventListener('click', () => {
     console.log(globalNoticeNo);
@@ -377,7 +408,7 @@ function detailModal(noticeNo) {
     }).then((result) => {
       if (result.isConfirmed) {
         $.ajax({
-          url : "deleteNotice",
+          url : "deleteDeptNotice",
           data : {"noticeNo" : globalNoticeNo},
           type : "POST",
           dataType : "JSON",
@@ -447,7 +478,6 @@ $(window).click(function(event) {
 checkCancellBtn.addEventListener("click", () => {
   checkModalClose();
 });
-
 
 
 

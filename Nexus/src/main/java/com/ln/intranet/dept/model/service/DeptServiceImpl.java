@@ -198,7 +198,7 @@ public class DeptServiceImpl implements DeptService{
 		logger.debug("result" + result);
 		
 		if(result > 0) {
-			if(uploadFile.getSize() > 0) {
+			if(uploadFile != null) {
 				reName = Util.fileRename(uploadFile.getOriginalFilename());
 				
 				file.setNoticeNo(detail.getNoticeNo());
@@ -218,6 +218,14 @@ public class DeptServiceImpl implements DeptService{
 		
 		return result;
 	}
+	
+	
+	// 부서 공지사항 삭제
+	@Override
+	public int deleteNotice(int noticeNo) {
+
+		return dao.deleteNotice(noticeNo);
+	}
 
 
 	// 본인 부서 프로젝트 리스트(kjw)
@@ -227,6 +235,42 @@ public class DeptServiceImpl implements DeptService{
 	}
 
 
+	// 부서 게시판 수정
+	@Transactional(rollbackFor = {Exception.class})
+	@Override
+	public int updateBoardNotice(BoardDetail detail, MultipartFile uploadFile, String webPath, String folderPath)throws IOException {
+
+		detail.setBoardContent(Util.newLineHandling(detail.getBoardContent()));
+		
+		int result =  dao.updateBoardNotice(detail);
+		
+		UploadFile file = new UploadFile();
+		String reName = null;
+		
+		if(result > 0) {
+			if(uploadFile != null) {
+				reName = Util.fileRename(uploadFile.getOriginalFilename());
+				
+				file.setBoardNo(detail.getBoardNo());
+				file.setFileOrigin(uploadFile.getOriginalFilename());
+				file.setFileReName(webPath + reName);
+				
+				int insertFile = dao.updateBoardNoticeFile(file);
+				
+				if(insertFile > 0) {
+					uploadFile.transferTo(new File(folderPath + reName));
+				} else {
+					throw new InsertFailException();
+				}
+			}
+		}
+		
+		
+		return result;
+	}
+
+
+	
 	
 
 

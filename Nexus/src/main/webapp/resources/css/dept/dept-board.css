@@ -7,7 +7,7 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  
+  height: 100vh;
   background-color: var(--side);
 
 }
@@ -262,45 +262,4 @@ a:focus {
 .dept-notice-table table th:nth-child(4) {
 
   text-align: left;
-}
-
-
-
-/* 페이지네이션(Pagination) */
-
-
-.pagination a{
-	text-decoration: none;
-	color: black;
-	font-size: 20px;
-}
-
-.pagination{
-	margin-top : 40px;
-    padding: 0;
-    list-style: none;
-
-    display: flex;
-    justify-content: center;
-}
-
-.pagination > li{
-    width: 20px;
-    margin: 0 20px;
-    text-align: center;
-}
-
-.pagination a{
-    width: 100%;
-    height: 100%;
-    display: block;
-    /* letter-spacing : -2px; */
-}
-
-/* 현재 페이지 번호 */
-.pagination .current{
-    background-color: #455ba8;
-    border-radius: 50%;
-    color: white;
-    font-weight: bold;
 }

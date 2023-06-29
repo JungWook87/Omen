@@ -121,6 +121,34 @@
 		SELECT TITLE, "START", "END" FROM "PROJECT"
 		WHERE DPET_NO = ${deptNo}
 	</select>
+	
+	<!-- 부서 공지사항 삭제 -->
+	<delete id="deleteDeptNotice">
+		DELETE NOTICE
+		WHERE NOTICE_NO = #{noticeNo}
+	</delete>
+	
+	<!-- 부서 공지사항 파일 삭제 -->
+	<delete id="deleteFileDeptNotice">
+		DELETE UPLOAD_FILE 
+		WHERE NOTICE_NO =  #{noticeNo}
+	</delete>
+	
+	<!-- 부서 게시판 수정 -->
+	<update id="updateBoardNotice">
+		UPDATE BOARD SET 
+		BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 부서 게시판 파일 수정 -->
+	<update id="updateBoardFileNotice">
+		 UPDATE UPLOAD_FILE SET
+		 FILE_RENAME = #{fileReName},
+		 FILE_ORIGIN = #{fileOrigin}
+		 WHERE BOARD_NO = #{boardNo}
+	</update>
 
 
 </mapper>

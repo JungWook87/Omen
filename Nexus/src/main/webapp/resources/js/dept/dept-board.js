@@ -214,32 +214,6 @@ successBtn.addEventListener("click", () => {
 })
 
 
-
-// 게시글 작성 유효성 검사
-// function writeValidate(){
-//   const noticeTitle = document.getElementsByName("noticeTitle")[0];
-//   const noticeContent = document.querySelector("[name='noticeContent']");
-
-//   if(noticeTitle.value.trim().length == 0){
-//       alert("제목을 입력해주세요!!!");
-//       noticeTitle.value = "";
-//       noticeTitle.focus();
-//       return false;
-//   }
-
-//   if(noticeContent.value.trim().length == 0){
-//       alert("내용을 입력해주세요!!!");
-//       noticeContent.value = "";
-//       noticeContent.focus();
-//       return false;
-//   }
-//   return true;
-// }
-
-
-
-
-
 // 게시글디테일
 const contextPath = "${contextPath}";
 
@@ -251,11 +225,18 @@ const checkModalTitle = document.querySelector('.check-modal-title');
 const checkModalDetail = document.querySelector('.check-modal-detail');
 const checkPreview = document.querySelector('.check-preview');
 const removeBtn = document.getElementById("check-remove-btn");
+const modifyBtn = document.getElementById('check-success-btn');
+const doneBtn = document.getElementById('done-btn');
+const fileBox = document.querySelector('.check-file-box');
+
+
+const memNoRegex = /memNo=(\d+)/;
+const memNoMatch = loginMember.match(memNoRegex);
+const loginMemberMemNo = memNoMatch[1];
+console.log(loginMemberMemNo);
 
 // 게시글 디테일 창 오픈
 function detailModal(boardNo) {
-
-  console.log(boardNo);
 
   $.ajax({
     url : "deptBoard/boardDetail",
@@ -263,6 +244,20 @@ function detailModal(boardNo) {
     type : "GET",
     dataType : "JSON",
     success : function(detail){
+
+      const authorMemNo = detail.memNo;
+      const isMyPost = (parseInt(loginMemberMemNo) === authorMemNo);
+
+      console.log(authorMemNo);
+      console.log(isMyPost);
+
+      if (isMyPost) {
+        modifyBtn.style.display = 'inline-block';
+        removeBtn.style.display = 'inline-block';
+      } else {
+        modifyBtn.style.display = 'none';
+        removeBtn.style.display = 'none';
+      }
 
       const checkModalTitleSpan = document.createElement("span");
       checkModalTitleSpan.innerText = detail.boardTitle;
@@ -272,18 +267,119 @@ function detailModal(boardNo) {
       checkModalDetailSpan.innerHTML = detail.boardContent;
       checkModalDetail.append(checkModalDetailSpan);
 
-      
-      console.log(detail.fileRename);
 
-      const checkPreviewA = document.createElement("a");
-      checkPreviewA.innerText = detail.boardFileOrigin;
-      checkPreviewA.href = "/intranet" + detail.boardFileRename;
-      checkPreviewA.download = detail.boardFileOrigin;
-      checkPreview.append(checkPreviewA); 
+      if (detail.NoticeFileOrigin) {
+        const checkPreviewA = document.createElement("a");
+        checkPreviewA.innerText = detail.boardFileOrigin;
+        checkPreviewA.href = "/intranet" + detail.boardFileRename;
+        checkPreviewA.download = detail.boardFileOrigin;
+        checkPreview.append(checkPreviewA); 
+      }else{
+        const checkPreviewA = document.createElement("p");
+        checkPreviewA.innerText = "파일 없음";
+        checkPreview.append(checkPreviewA);
+      } 
 
       removeBtn.addEventListener("click", function (){
         boardDelete(boardNo);
       });
+
+      // 수정 버튼 눌렀을 때 이벤트
+    let isEditMode = false; // 수정 모드 상태를 나타내는 변수
+
+    modifyBtn.addEventListener('click', () => {
+
+      if (isEditMode) {
+        // 이미 수정 모드인 경우, 동작을 수행하지 않고 반환
+        return;
+      }
+    
+      isEditMode = true; // 수정 모드로 변경
+
+      const noticeTitle = document.querySelector('.check-modal-title');
+      const noticeContent = document.querySelector('.check-modal-detail');
+    
+      
+      const modifyNoticeTitle = document.createElement('input');
+      const modifyNoticeContent = document.createElement('textarea');
+      
+      modifyNoticeTitle.value = checkModalTitleSpan.innerText;
+      modifyNoticeContent.innerHTML = checkModalDetailSpan.innerText.replace(/<br>/g, '\n');
+    
+      noticeTitle.innerHTML = '';
+      noticeTitle.appendChild(modifyNoticeTitle);
+
+      noticeContent.innerHTML = '';
+      noticeContent.appendChild(modifyNoticeContent);
+
+      modifyNoticeContent.style.minHeight = '350px';
+      modifyNoticeContent.style.overflow = 'auto';
+
+      fileBox.style.display = 'block';
+      
+
+      // 줄바꿈이 적용되도록 스타일 설정
+      modifyNoticeContent.style.whiteSpace = 'pre-wrap';
+
+      // 수정 버튼을 none으로 설정
+      modifyBtn.style.display = "none";
+
+      
+      doneBtn.style.display = "inline-block";
+
+      doneBtn.addEventListener('click', () => {
+        if (!isEditMode) {
+        // 수정 모드가 아닌 경우, 동작을 수행하지 않고 반환
+        return;
+        }
+
+        isEditMode = false; // 수정 모드 종료
+
+        const formData = new FormData();
+        formData.append('boardNo', boardNo);
+        formData.append('boardTitle', modifyNoticeTitle.value);
+        formData.append('boardContent', modifyNoticeContent.value);
+
+        // 파일 추가
+        const fileInput = document.getElementById('file-uploads');
+        const files = fileInput.files;
+        for (let i = 0; i < files.length; i++) {
+          formData.append('uploadFile', files[i]);
+        }
+        
+          $.ajax({
+            url: "updateDeptBoardNotice",
+            data :formData,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            success: function (result) {
+              
+              if (result > 0) {
+                
+
+                Swal.fire("수정이 완료되었습니다.")
+                  .then((result) => {
+                    // 확인 버튼을 누르면 페이지 새로고침
+                    if (result.isConfirmed) {
+                      
+                      location.reload();
+                    }
+                  });
+
+              
+
+                checkModalClose();
+              }
+            },
+            error: function (req, status, error) {
+              // 업데이트 실패 또는 오류 발생 시의 처리
+              console.log("에러 발생");
+            }
+          });
+        });
+      });
+	
 
       // 모달창 열기
       checkModal.style.display = 'block';
@@ -309,6 +405,11 @@ function checkModalClose() {
    checkModalDetail.innerHTML = '';
    // checkPreview 비우기
    checkPreview.innerHTML = '';
+
+   doneBtn.style.display = "none";
+   modifyBtn.style.display = "inline-block";
+
+   fileBox.style.display = 'none';
 
   setTimeout(() => {
     checkModal.style.display = 'none';
@@ -342,3 +443,8 @@ function boardDelete(boardNo){
   var url = "../dept/boardDelete/" + boardNo; 
   window.location.href = url; 
 }
+
+
+
+
+ 

@@ -40,6 +40,21 @@ public interface DeptService {
 	// 본인 부서 프로젝트 조회하기(kjw)
 	List projectList(Member loginMember);
 
+	/** 부서 공지사항 삭제
+	 * @param noticeNo
+	 * @return result
+	 */
+	int deleteNotice(int noticeNo);
+
+	/** 부서 게시판 수정
+	 * @param detail
+	 * @param uploadFile
+	 * @param webPath
+	 * @param folderPath
+	 * @return result
+	 */
+	int updateBoardNotice(BoardDetail detail, MultipartFile uploadFile, String webPath, String folderPath) throws IOException;
+
 
 
 }

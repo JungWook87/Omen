@@ -344,6 +344,7 @@ function detailModal(noticeNo) {
             url: "updateNotice",
             data :formData,
             type: "POST",
+            dataType: "JSON",
             processData: false,
             contentType: false,
             success: function (result) {
