@@ -120,6 +120,7 @@ public class DeptDAO {
 	public int updateNoticeFile(UploadFile file) {
 		
 		return sqlSession.update("deptMapper.updateDeptFileNotice", file);
+	}
 
 	// 본인 부서 프로젝트 리스트 조회(kjw)
 	public List projectList(Member loginMember) {
