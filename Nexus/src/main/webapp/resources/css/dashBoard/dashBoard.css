@@ -15,10 +15,8 @@ body{
 section {
     display: flex;
 }
-span {
-    color : white;
-}
-p {
+span, p{
+    margin-top: 4px;
     color : white;
 }
 
@@ -55,15 +53,18 @@ div{
 
 #hr-div{
     display: flex;
-
 }
 
+#hr-div > div {
+    margin : 0 20px;
+}
 .hr-content{
     display: flex;
+    border-radius: 20px;
 }
 
 #doughnut{
-    width : 350px;
+    width : 400px;
     height : 30%;
 }
 
@@ -72,11 +73,17 @@ div{
 .info-div {
 }
 
+.team-work-status{
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* 팀별 인포 조작 */
 .mem-info{
     display: flex;
     flex-direction: column;
+    width : 60px;
 }
 .name {
     font-weight: bold;
@@ -87,11 +94,14 @@ div{
 
 
 
+
+
 /* 자동생성 css */
 
 .team-selector{
     display: flex;
     width : 100%;
+    margin-bottom: 10px;
 }
 .team-work-status {
     display: flex;
@@ -109,7 +119,7 @@ div{
 .bar-info {
     display: flex;
     flex-direction: column;
-    width : 350px;
+    width : 450px;
 }
 
 /* 프로그레스바 스타일 */
@@ -126,10 +136,23 @@ div{
 }
 #progressBar::-webkit-progress-value {
     border-radius:4px;
-    background: #1D976C;
+    background: #3a4f48;
     background: -webkit-linear-gradient(to right, var(--primary600), var(--primary300));
     background: linear-gradient(to right, var(--primary600), var(--primary300));
 }
+
+#progressBar.underBlue::-webkit-progress-value {
+    border-radius:4px;
+    background: var(--gray400); 
+}
+
+#progressBar.overOrange::-webkit-progress-value {
+    border-radius:4px;
+    background: rgb(223, 94, 2); 
+    background: -webkit-linear-gradient(to right, rgb(221, 124, 75), rgb(221, 124, 75));
+    background: linear-gradient(to right, rgb(221, 124, 75), rgb(221, 124, 75));
+}
+
 .progressTemp {
     display: flex;
     justify-content: space-between;
@@ -139,11 +162,6 @@ div{
     margin-top: 4px;
     font-size: 12px;
 }
-.progress.exceeds-max {
-    color: orange;  /* 이는 모든 브라우저에서 작동하지 않을 수 있습니다. */
-    background: orange; /* IE11 대응 */
-}
-
 
 
 /* 워크타임 */
@@ -157,6 +175,7 @@ div{
 }
 .extend{
     color : var(--primary300);
+    font-size: 14px;
 }
 
 

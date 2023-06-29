@@ -9,25 +9,11 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class HumanResourceManage {
-	
-	private int memNo;
-	private String memName;
+public class DeptTeam {
 	
 	private int deptNo;
 	private String deptName;
-	
-	private int jobNo;
-	private String jobName;
-	
 	private int teamNo;
 	private String teamName;
-	
-	private int workDay;
-	
-	private int workTime;
-	private int workMin;
-	
-	private int exTime;
-	private int exMin;
+
 }

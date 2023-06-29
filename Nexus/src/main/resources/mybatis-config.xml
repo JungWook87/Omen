@@ -30,7 +30,8 @@
 		<typeAlias type="com.ln.intranet.work.model.vo.ProjectTask" alias="projectTask"/>	
 		<!-- 대시보드 -->		
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.AttnDoughnut" alias="attnDoughnut"/>
-		<typeAlias type="com.ln.intranet.dashBoard.model.vo.HumanResourceManage" alias="hrManage"/>		
+		<typeAlias type="com.ln.intranet.dashBoard.model.vo.HumanResourceManage" alias="hrManage"/>
+		<typeAlias type="com.ln.intranet.dashBoard.model.vo.DeptTeam" alias="deptTeam"/>		
 	</typeAliases>
 	
 	<mappers>

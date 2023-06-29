@@ -53,7 +53,7 @@
                                 <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
                                 <li><a href="${contextPath}/meetingRoom/reservation">회의실</a> </li>
                                 <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
-                                <li><a href="${contextPath}/dashBoard/dashBoardMain">대쉬보드</a></li>
+                                <li><a href="${contextPath}/dashBoard/dashBoardMain">대시보드</a></li>
                             </ul>
                         </div>
                     </div>

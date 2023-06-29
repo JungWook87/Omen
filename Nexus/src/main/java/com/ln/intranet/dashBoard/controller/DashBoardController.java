@@ -1,6 +1,5 @@
 package com.ln.intranet.dashBoard.controller;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ln.intranet.dashBoard.model.service.DashBoardService;
 import com.ln.intranet.dashBoard.model.vo.AttnDoughnut;
+import com.ln.intranet.dashBoard.model.vo.DeptTeam;
 import com.ln.intranet.dashBoard.model.vo.HumanResourceManage;
 import com.ln.intranet.member.model.vo.Member;
 
@@ -43,8 +43,34 @@ public class DashBoardController {
 		
 		hrList = service.hrList(deptNo);
 		
-		model.addAttribute("hrList", hrList);
+		for(int i = 0; i < hrList.size(); i++) {
+			HumanResourceManage hr = hrList.get(i);
+			
+			if(hr.getWorkMin() > 60) {
+				int plusTime = hr.getWorkMin()/60;
+				int newMin = hr.getWorkMin()%60;
+				
+				hr.setWorkMin(newMin);
+				hr.setWorkTime(hr.getWorkTime()+plusTime);
+				log.info("워크타임 : " + hr.getWorkTime() + "시/" + hr.getWorkMin() + "분");
+			}
+			
+			if(hr.getExMin() > 60) {
+				int plusTime = hr.getExMin()/60;
+				int newMin = hr.getExMin()%60;
+				
+				hr.setExMin(newMin);
+				hr.setExTime(hr.getExTime()+plusTime);
+				log.info("연장근무 : " + hr.getExTime() + "시/" + hr.getExMin() + "분");
+			}
+		}
 		
+		List<DeptTeam> dtList = new ArrayList<DeptTeam>();
+		
+		dtList = service.dtList(deptNo);
+		
+		model.addAttribute("hrList", hrList);
+		model.addAttribute("dtList", dtList);
 		
 			
 		return "/dashBoard/dashBoard";
