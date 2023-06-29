@@ -27,63 +27,50 @@
 
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-      <section>
+      <section> 
+        <!-- 사이드 바 -->
+        <div class="side-bar menu">
+          <!-- 페이지마다 바뀌는 제목 -->
+          <h1>부서</h1>
 
-       
-            <!-- 사이드 바 -->
-            <div class="side-bar menu">
-              <!-- 페이지마다 바뀌는 제목 -->
-              <h1>부서</h1>
+          <!-- 페이지마다 바뀌는 부제목 -->
+          <ul>
+            <li><a href="deptNotice"><span>부서 공지사항</span> </a></li>
+            <li><a href="deptBoard"><span>부서 게시판</span> </a></li>
+            <li><a href="deptSchedule"><span>부서 일정</span> </a></li>
+          </ul>
+        </div>
+    
+        <!-- 컨텐츠 내용 -->
+        <div class="content-all-page">
 
-              <!-- 페이지마다 바뀌는 부제목 -->
-              <ul>
-                <li><a href="deptNotice"><span>부서 공지사항</span> </a></li>
-                <li><a href="deptBoard"><span>부서 게시판</span> </a></li>
-                <li><a href="deptSchedule"><span>부서 일정</span> </a></li>
-              </ul>
-            </div>
-       
-            <!-- 컨텐츠 내용 -->
-            <div class="content-all-page">
+          <!-- 컨텐츠 내용 윗부분 -->
+          <div class="content-all-top-area">
 
-              <!-- 컨텐츠 내용 윗부분 -->
-              <div class="content-all-top-area">
+            <div class="content-all-top-area-detail">
 
-                <div class="content-all-top-area-detail">
-
-                  <!-- 컨텐츠 제목 부분 -->
-                  <div>
-                    <p class="content-all-top-text1">부서 / </p>
-                    <p class="content-all-top-text2">부서 일정</p>
-                  </div>
-
-
-                </div>
-
+              <!-- 컨텐츠 제목 부분 -->
+              <div>
+                <p class="content-all-top-text1">부서 / </p>
+                <p class="content-all-top-text2">부서 일정</p>
               </div>
-
-              <!-- 컨텐츠 내용 아랫부분 -->
-
-              <div class="content-all-bottom-area">
-
-                <!-- 부서일정 -->
-                <!-- calendar 태그 -->
-                <div id='calendar-container'>
-                  <div id='calendar'></div>
-                </div>
-
-
-              </div>
-
 
             </div>
 
-        
+          </div>
 
+          <!-- 컨텐츠 내용 아랫부분 -->
+          <div class="content-all-bottom-area">
 
+            <!-- 부서일정 -->
+            <!-- calendar 태그 -->
+            <div id='calendar-container'>
+              <div id='calendar'></div>
+            </div>
 
+          </div>
 
-
+        </div>
 
         <!-- 채팅창 -->
         <div id="chatting-function" class="chatting-box">

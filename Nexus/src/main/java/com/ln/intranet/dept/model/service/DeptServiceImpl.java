@@ -19,8 +19,10 @@ import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.dept.model.dao.DeptDAO;
 import com.ln.intranet.dept.model.vo.Board;
 import com.ln.intranet.dept.model.vo.BoardDetail;
+import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.notice.model.vo.Notice;
 import com.ln.intranet.notice.model.vo.NoticeDetail;
+import com.ln.intranet.work.model.vo.Project;
 
 
 @Service
@@ -172,6 +174,13 @@ public class DeptServiceImpl implements DeptService{
 	public int boardDelete(int boardNo) {
 		
 		return dao.boardDelete(boardNo);
+	}
+
+
+	// 본인 부서 프로젝트 리스트(kjw)
+	@Override
+	public List projectList(Member loginMember) {
+		return dao.projectList(loginMember);
 	}
 
 	

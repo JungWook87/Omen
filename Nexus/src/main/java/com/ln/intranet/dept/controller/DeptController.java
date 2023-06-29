@@ -2,6 +2,7 @@ package com.ln.intranet.dept.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ import com.ln.intranet.dept.model.service.DeptService;
 import com.ln.intranet.dept.model.vo.BoardDetail;
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.notice.model.vo.NoticeDetail;
+import com.ln.intranet.work.model.vo.Project;
 
 @Controller
 @SessionAttributes({"loginMember"})
@@ -155,9 +157,19 @@ public class DeptController {
 		return new Gson().toJson(detail);
 	}
 	
-	// 부서 일정 접속
+	// 부서 일정 접속(kjw)
 	@GetMapping("deptSchedule")
-	public String deptSchedule() {
+	public String deptSchedule(@ModelAttribute("loginMember") Member loginMember,
+								Model model) {
+		// 부서별 승인된 프로젝트의 일정
+		// (제목, 시작일, 종료일)
+		List projectList = service.projectList(loginMember);
+		model.addAttribute("projectList", projectList);
+		
+		// 부서원 - 팀 연차, 출장
+		// (연차 : 팀별 , 출장 : 팀별)
+		
+		
 		return "/dept/dept-schedule";
 	}
 	

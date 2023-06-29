@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ln.intranet.dept.model.vo.BoardDetail;
+import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.notice.model.vo.NoticeDetail;
+import com.ln.intranet.work.model.vo.Project;
 
 public interface DeptService {
 
@@ -25,6 +27,9 @@ public interface DeptService {
 	int writeNotice(String webPath, String folderPath, MultipartFile uploadFile, Map<String, Object> map) throws IOException;
 
 	int boardDelete(int boardNo);
+
+	// 본인 부서 프로젝트 조회하기(kjw)
+	List projectList(Member loginMember);
 
 
 }
