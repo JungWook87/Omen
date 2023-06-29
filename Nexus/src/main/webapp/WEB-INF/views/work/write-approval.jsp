@@ -140,7 +140,7 @@
 
             <div class="approver-modal-container">
 
-                <div class="dept-1">
+                <div class="dept-Box">
                   <ul class="executives"><p>임원</p>
 
                   </ul>
@@ -154,7 +154,7 @@
                   </ul>
                 </div>
 
-                <div class="team-1">
+                <div class="team-Box">
                   <ul class="team">
                     <li class="team-list"><p>재무팀</p></li>
                     <li class="team-list"><p>인사총무팀</p></li>
@@ -176,7 +176,7 @@
                   </ul>
                 </div>
 
-                <div class="teamone-1">
+                <div class="teamone-Box">
 
                   <ul style="display: flex; flex-direction: column;">
 

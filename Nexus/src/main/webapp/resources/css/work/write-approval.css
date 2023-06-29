@@ -258,7 +258,7 @@
   
   }
   /* 결재영역 3등분 */
-  .dept-1, .team-1, .teamone-1 {
+  .dept-Box, .team-Box, .teamone-Box {
     border: 2px solid var(--primary400);
     overflow-y: auto;
     border-radius: 10px;
@@ -268,7 +268,7 @@
     text-align: center;
   }
   /* 결재영역 p태그 */
-  .dept-1 > p ,.team-1 > p {
+  .dept-Box > p ,.team-Box > p {
     background-color: var(--primary400);
     color: white !important;
     border-radius: 10px;
@@ -282,7 +282,7 @@
   .executives > p ,.dept > p{
     margin: 0 !important;
     height: 30px;
-    background-color: var(--primary400);
+    background-color: var(--primary500);
     color: white;
   } 
 
@@ -293,23 +293,28 @@
     border-top: 1px solid var(--gray300);
     cursor: pointer;
   }
+  
 
-  .dept-list >p :hover{
+  .dept-list > p:hover{
     background: var(--gray300);
     color:white !important;
-    transition: 1s ease-in-out;
+    transition: 1s;
+    transform-origin: top;
+    transform: translatey(-100%) rotatex(90deg);
   }
+ 
 
   .team-list{
     display: none;
   }
 
-  .teamone-1{
+  .teamone-Box{
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
   }
 
-  .team-1 ul {
+  .team-Box ul {
     list-style: none;
   }
 
@@ -335,13 +340,42 @@
   .approval-team input {
     width: 10px;
     height: 10px;
+    display: none;
   }
 
   .approval-team label {
+    color: var(--primary500);
     padding: 5px;
-    font-size: 15px;
+    font-size: 17px;
     margin-right: 0;
+    text-shadow: 1px 1px var(--primary200);
 }
+
+/* 체크된 라벨 영역 */
+.divBox{
+  margin: 8px 0px 8px 0px;
+}
+
+input:checked + label{
+  padding: 5px 45px 5px 45px;
+  font-weight: 300;
+  text-align: center;
+  line-height: 5px;
+  color: #FFF;
+  border-radius: 5px;
+  transition: all 0.2s;
+  background: var(--primary500);
+  box-shadow: 0px 5px 0px 0px var(--primary300);
+}
+
+input:checked + label:hover{
+  margin-top: 15px;
+  margin-bottom: 5px; 
+  box-shadow: 0px 0px 0px 0px var(--primary300);
+}
+
+
+/* 여기까지 */
 
 .show{
   display: block;
@@ -555,15 +589,4 @@
 
 .taskTitleSpan{
   margin-top : 10px;
-}
-
-
-.approval-team input {
-  /* display: none; */
-}
-
-.momo input[type="radio"]:checked ~ label{
-  color: red;
-  width: 1px;
-  height: 1px;
 }
