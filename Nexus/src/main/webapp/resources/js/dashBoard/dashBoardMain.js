@@ -121,6 +121,18 @@ window.onload = function() {
             }
         });
     }
-}
 
+
+    // // 프로그래스바 툴팁 호버 이벤트
+    // var progressBars = document.querySelectorAll('progress');
+
+    // for (var i = 0; i < progressBars.length; i++) {
+    //     progressBars[i].addEventListener('mouseover', function() {
+    //         var value = this.value;
+    //         var tooltipText = this.parentNode.querySelector('.tooltiptext');
+    //         tooltipText.innerHTML = value;
+    //     });
+    // }
+
+}
 

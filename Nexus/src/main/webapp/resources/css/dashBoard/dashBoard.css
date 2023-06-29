@@ -63,6 +63,7 @@ div{
     border-radius: 20px;
 }
 
+/* 도넛타입 */
 #doughnut{
     width : 400px;
     height : 30%;
@@ -70,9 +71,6 @@ div{
 
 
 /* 오른쪽 div */
-.info-div {
-}
-
 .team-work-status{
     display: flex;
     flex-direction: column;
@@ -119,7 +117,7 @@ div{
 .bar-info {
     display: flex;
     flex-direction: column;
-    width : 450px;
+    width : 550px;
 }
 
 /* 프로그레스바 스타일 */
@@ -163,6 +161,38 @@ div{
     font-size: 12px;
 }
 
+/* 프로그레스바 호버 툴팁 */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Tooltip 위치를 조정하세요 */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    
+    position: absolute;
+    transform: translate(-50%, -100%);
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
 
 /* 워크타임 */
 .work-time{
@@ -170,13 +200,18 @@ div{
     flex-direction: column;
 }
 
-.week-total{
-
-}
 .extend{
     color : var(--primary300);
     font-size: 14px;
 }
+
+
+
+
+
+
+
+
 
 
 .tab_content {width: 100%; text-align:right;}

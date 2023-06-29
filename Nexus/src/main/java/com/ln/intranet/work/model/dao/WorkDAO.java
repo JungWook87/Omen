@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ln.intranet.common.model.vo.UploadFile;
 import com.ln.intranet.work.model.vo.ApprovalMember;
-import com.ln.intranet.work.model.vo.ProjectTask;
 import com.ln.intranet.work.model.vo.WorkDetail;
-import com.ln.intranet.work.model.vo.WorkGeneral;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
 
 @Repository
@@ -71,6 +69,7 @@ public class WorkDAO {
 	public int clickApproval(Map<String, Object> map) {
 		return sqlSession.update("workMapper.clickApproval", map);
 	}
+	
 
 
 
