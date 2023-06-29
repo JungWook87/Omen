@@ -1,8 +1,4 @@
-/* 사이드바 부제목 스타일 */
-.side-bar li {
-    list-style: none;
-  
-  }
+
   
   .desktop li:nth-child(1) {
     border-left: none;

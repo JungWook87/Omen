@@ -51,28 +51,12 @@
 
       </div>
 
-      <!-- 데스크 탑 -->
-      <div class="desktop">
-
         <ul>
           <li><a href="workInbox"><span>결재할문서</span> </a></li>
           <li><a href="workInbox"><span>결재진행중</span> </a></li>
           <li><a href="workInboxEnd"><span>결재완료</span> </a></li>
         </ul>
 
-      </div>
-      
-      <!-- 모바일 -->
-      <div class="mobile">
-        
-        <ul>
-            <li><a href="#" class="item"><i class="fa-sharp fa-solid fa-file-export"></i></a></li>
-            <li><a href="#" class="item"><div><i class="fa-solid fa-box"></i></div></a></li>
-            <li><a href="#" class="item"><i class="fa-solid fa-floppy-disk"></i></a></li>
-            <li><a href="#" class="item"><i class="fa-solid fa-download"></i></i></a></li>
-        </ul>
-
-      </div>
 
     </div>
 <!------------------------------------- 사이드 바 끝 ------------------------------------------------->

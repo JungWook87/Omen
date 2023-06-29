@@ -35,11 +35,15 @@
         </div>
 
         <!-- 개인 정보 -->
-        <div class="content-header-btn-area">
-          <button id="content-header-btn" onclick="return myPage(${loginMember.memNo})">${loginMember.memName}
-            ${loginMember.jobName}</button>
-          <!-- 로그아웃 -->
-          <div class="header-log-out-box"><button class="header-log-out">로그아웃</button></div>
+      
+        <div class="container">
+          <button class="btn"><span>${loginMember.memName}
+            ${loginMember.jobName}</span>
+            <ul class="dropdown">
+              <li><a href="${contextPath}/member/myPageProfile">마이페이지</a></li>
+              <li><a class="header-log-out">Log Out</a></li>
+            </ul>
+          </button>
         </div>
 
       </div>
@@ -60,6 +64,7 @@
           <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
           <li><a href="${contextPath}/meetingRoom/reservation">회의실</a> </li>
           <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
+          <li><a href="${contextPath}/member/myPageProfile">마이페이지</a> </li>
           <li><a class="log-out">로그아웃</a></li>
         </ul>
       </div>
@@ -78,10 +83,11 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
     
     <script>
-    
       // 로그아웃
       const logOut = document.querySelector('.header-log-out');
+      const logOut2 = document.querySelector('.log-out');
       logOut.addEventListener('click', logoutEvent);
+      logOut2.addEventListener('click', logoutEvent);
 
       function logoutEvent() {
         Swal.fire({

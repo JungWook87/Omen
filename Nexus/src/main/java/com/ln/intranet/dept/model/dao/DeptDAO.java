@@ -110,9 +110,21 @@ public class DeptDAO {
 		return boardFileDelete + boardDelete;
 	}
 
+	// 부서 공지사항 수정
+	public int updateDeptNotice(NoticeDetail detail) {
+
+		return sqlSession.update("deptMapper.updateDeptNotice", detail);
+	}
+
+	// 파일 수정
+	public int updateNoticeFile(UploadFile file) {
+		
+		return sqlSession.update("deptMapper.updateDeptFileNotice", file);
+
 	// 본인 부서 프로젝트 리스트 조회(kjw)
 	public List projectList(Member loginMember) {
 		return sqlSession.selectList("deptMapper.projectList", loginMember);
+
 	}
 
 	

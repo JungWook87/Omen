@@ -335,6 +335,10 @@ function detailModal(noticeNo) {
           for (let i = 0; i < files.length; i++) {
             formData.append('uploadFile', files[i]);
           }
+
+          console.log(formData.get('noticeNo'));
+          console.log(formData.get('title'));
+          console.log(formData.get('content'));
           
           $.ajax({
             url: "updateNotice",
@@ -364,6 +368,7 @@ function detailModal(noticeNo) {
             error: function (req, status, error) {
               // 업데이트 실패 또는 오류 발생 시의 처리
               console.log("에러 발생");
+              
             }
           });
         });

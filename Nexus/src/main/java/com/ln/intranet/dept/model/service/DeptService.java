@@ -28,8 +28,18 @@ public interface DeptService {
 
 	int boardDelete(int boardNo);
 
+	/** 부서 공지사항 수정
+	 * @param detail
+	 * @param uploadFile
+	 * @param webPath
+	 * @param folderPath
+	 * @return
+	 */
+	int updateDeptNotice(NoticeDetail detail, MultipartFile uploadFile, String webPath, String folderPath) throws IOException;
+
 	// 본인 부서 프로젝트 조회하기(kjw)
 	List projectList(Member loginMember);
+
 
 
 }

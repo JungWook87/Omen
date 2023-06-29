@@ -22,7 +22,7 @@ header {
 
   color: white;
 
-  margin: 0 100px;
+  margin: 0 0 0 100px;
   padding: 0;
 
   white-space: nowrap;
@@ -83,10 +83,8 @@ header {
 
 /* 개인정보 버튼 */
 .content-header-btn-area {
-  margin-top: 30px;
+  margin-top: 22px;
   margin-right: 30px;
-  display: flex;
-  gap: 2rem;
 }
 
 #content-header-btn {
@@ -107,50 +105,11 @@ header {
 }
 
 /* 로그아웃 */
-.header-log-out-box {
-  margin-top: 7px;
-}
-
-.header-log-out {
+.log-out {
   cursor: pointer;
-  text-decoration: none;
-  font-size: 16px;
-  color: white;
-  display: inline-block;
-  border: none;
-  background-color: transparent;
-  position: relative;
 }
 
-.header-log-out:after {
-  background: none repeat scroll 0 0 transparent;
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 50%;
-  position: absolute;
-  background: #ffb000;
-  transition: width 0.5s ease 0s, left 0.5s ease 0s;
-  width: 0;
 
-
-}
-
-.header-log-out:hover:after {
-  width: 100%;
-  left: 0;
-
-}
-
-.header-log-out {
-  text-decoration: none;
-  color: white;
-}
-
-.header-log-out:hover {
-  color: var(--primary300);
-}
 
 /* 반응형 */
 .Responsive-header {
@@ -245,7 +204,7 @@ header {
 }
 
 .Responsive-header .menu-btn:checked~.menu {
-  max-height: 500px;
+  max-height: 550px;
 }
 
 .Responsive-header .menu-btn:checked~.menu-icon .navicon {
@@ -266,7 +225,7 @@ header {
 }
 
 
-@media(max-width:1170px) {
+@media(max-width:1475px) {
   header {
     position: relative !important;
   }
@@ -280,3 +239,95 @@ header {
     position: absolute !important;
   }
 }
+
+
+
+/* 마이인포 */
+.container {
+  position: relative;
+  margin-top: 22px;
+  margin-right: 30px;
+  
+}
+.btn {
+  outline: 0;
+  background: #5380f7;
+  min-width: 100px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+  padding: 16px 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btn:focus .dropdown, .btn:active .dropdown {
+  transform: translate(0, 20px);
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn .dropdown {
+  list-style: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+.btn .dropdown:before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  box-shadow: 2px -2px 6px rgba(0, 0, 0, .05);
+  border-top: 6px solid #fff;
+  border-right: 6px solid #fff;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid transparent;
+  transform: rotate(-45deg);
+  mix-blend-mode: multiple;
+}
+.btn .dropdown li {
+  z-index: 1;
+  position: relative;
+  background: #fff;
+  padding: 0 20px;
+  color: #666;
+}
+
+.btn .dropdown li:hover {
+  background-color: aquamarine;
+}
+
+.btn .dropdown li:first-child {
+  border-radius: 4px 4px 0 0;
+}
+.btn .dropdown li:last-child {
+  border-radius: 0 0 4px 4px;
+}
+.btn .dropdown li:last-child a {
+  border-bottom: 0;
+}
+.btn .dropdown a {
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+  padding: 16px 0;
+  color: inherit;
+  font-size: 10px;
+  text-decoration: none;
+}
+
