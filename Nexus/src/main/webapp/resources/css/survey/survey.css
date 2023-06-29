@@ -10,7 +10,7 @@ section {
 .side-bar {
   width: 300px;
 
-  min-height: 100vh;
+  
 
   background-color: var(--side);
 
@@ -164,7 +164,7 @@ a:focus {
 .content-all-page {
   width: 100%;
 
-
+  height: 100%;
 }
 
 /* 컨텐츠 상단 부분 */

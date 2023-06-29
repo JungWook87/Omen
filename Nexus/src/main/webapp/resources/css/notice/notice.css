@@ -1,7 +1,7 @@
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
 
-  height: calc(100vh - 90px);
+
 
   display: flex;
 }
@@ -9,7 +9,6 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  height: 100%;
 
   background-color: var(--side);
 
@@ -149,7 +148,7 @@ a:focus {
 /* 컨텐츠 영역 전체 */
 .content-all-page {
   width: 100%;
-
+  height: 100%;
 
 }
 
@@ -195,38 +194,38 @@ a:focus {
 /* 페이지네이션(Pagination) */
 
 
-.pagination a{
-	text-decoration: none;
-	color: black;
-	font-size: 20px;
+.pagination a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
 }
 
-.pagination{
-	margin-top : 40px;
-    padding: 0;
-    list-style: none;
+.pagination {
+  margin-top: 40px;
+  padding: 0;
+  list-style: none;
 
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.pagination > li{
-    width: 20px;
-    margin: 0 20px;
-    text-align: center;
+.pagination>li {
+  width: 20px;
+  margin: 0 20px;
+  text-align: center;
 }
 
-.pagination a{
-    width: 100%;
-    height: 100%;
-    display: block;
-    /* letter-spacing : -2px; */
+.pagination a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* letter-spacing : -2px; */
 }
 
 /* 현재 페이지 번호 */
-.pagination .current{
-    background-color: #455ba8;
-    border-radius: 50%;
-    color: white;
-    font-weight: bold;
+.pagination .current {
+  background-color: #455ba8;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
 }
