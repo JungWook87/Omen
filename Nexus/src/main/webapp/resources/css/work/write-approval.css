@@ -280,12 +280,24 @@
   }
 
   .executives > p ,.dept > p{
-    color: var(--primary400);
+    margin: 0 !important;
+    height: 30px;
+    background-color: var(--primary400);
+    color: white;
   } 
 
   .dept-list{
     display: none;
     list-style: none;
+    height: 40px;
+    border-top: 1px solid var(--gray300);
+    cursor: pointer;
+  }
+
+  .dept-list >p :hover{
+    background: var(--gray300);
+    color:white !important;
+    transition: 1s ease-in-out;
   }
 
   .team-list{
@@ -308,6 +320,7 @@
 
   .approval-team {
     display: none;
+    flex-direction: column;
     margin: 10px 5px 10px 5px;
     border-radius: 5px;
     align-items: center !important;
@@ -542,4 +555,15 @@
 
 .taskTitleSpan{
   margin-top : 10px;
+}
+
+
+.approval-team input {
+  /* display: none; */
+}
+
+.momo input[type="radio"]:checked ~ label{
+  color: red;
+  width: 1px;
+  height: 1px;
 }
