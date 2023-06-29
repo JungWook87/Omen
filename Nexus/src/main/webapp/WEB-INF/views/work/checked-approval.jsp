@@ -105,7 +105,7 @@
               <input type="text" id="opinion" placeholder="반려 시 사유를 적어주세요.">
             </c:when>
             <c:otherwise>
-              <input type="text" id="opinion">
+              <input type="text" id="opinion" readonly>
             </c:otherwise>
           </c:choose>
         </div>
@@ -113,7 +113,15 @@
         <!-- 결재자 -->
         <div class="checked-modal-approver">
           <p>결재자</p>
-          <input type="text" id="next">
+          <c:choose>
+            <c:when test="${flag == 1}">
+              <input type="text" id="next1">
+              <input style="display: none;" type="text" id="next2" readonly>
+            </c:when>
+            <c:otherwise>
+              <input type="text" id="next2" readonly>
+            </c:otherwise>
+          </c:choose>
         </div>
 
         <!-- 업로드 파일(kjw) -->

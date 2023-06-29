@@ -288,23 +288,7 @@ public class WorkServiceImp implements WorkService {
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());
 			
 		if(typeNo == 2 || typeNo == 3 && checkbox_flag.equals("true")) {
-			String[] tempS = map.get("start").toString().split("-");
-			String[] tempE = map.get("end").toString().split("-");
-			
-			int startDay = Integer.parseInt(tempS[2].substring(0, 2));
-			int endDay = Integer.parseInt(tempE[2].substring(0, 2));
-			
-			int year = Integer.parseInt(tempS[0].substring(2, 4));
-			int month = Integer.parseInt(tempS[1]);
-			
-			System.out.println("startDay : " + startDay);
-			System.out.println("endDay : " + endDay);
-			System.out.println("year : " + year);
-			System.out.println("month : " + month);
-//			while(true) {
-//				String today = year + "/" + month + "/" + startDay;
-//				dao.insertAttn();
-//			}
+			int attnResult = attnDao.insertAttn(map);
 		}
 		
 

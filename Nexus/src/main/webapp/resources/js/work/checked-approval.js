@@ -24,7 +24,8 @@ function successDetailModal(obj){
   const sendDate = document.getElementById("sendDate");
   const content = document.getElementById("content");
   const opinion = document.getElementById("opinion");
-  const next = document.getElementById("next");
+  const next1 = document.getElementById("next1");
+  const next2 = document.getElementById("next2");
   const start = document.getElementById("start");
   const end = document.getElementById("end");
 
@@ -39,13 +40,17 @@ function successDetailModal(obj){
   workNo.innerText = "";
   memName.innerText = "";
   sendDate.innerText = "";
-  opinion.innerText = "";
-  next.innerText = "";
+  opinion.value = "";
+  next2.value = "";
   content.value = "";
   start.value = "";
   end.value = "";
   app_list.innerText = "";
   uploadFile.innerText = "";
+
+  if(obj.opinion == null){
+    obj.opinion = "";
+  }
   
   // 결재자 경로 
   let app_list_mem = obj.approvalList.split(",,");
@@ -97,16 +102,16 @@ function successDetailModal(obj){
   
   if(obj.typeNo == 1){
     content.value = obj.content;
-    opinion.innerText = obj.opinion;
-    next.innerText = obj.nextMemName + " (" + obj.nextMemEmail + ")";
+    opinion.value = obj.opinion;
+    next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 
     checkedModalDetail.style.display = 'block';
 
   } else if(obj.typeNo == 2){
     start.value = obj.start.substr(0,10);
     end.value = obj.end.substr(0,10);
-    opinion.innerText = obj.opinion;
-    next.innerText = obj.nextMemName + " (" + obj.nextMemEmail + ")";
+    opinion.value = obj.opinion;
+    next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 
     checkedStartDate[0].style.display = 'block';
     checkedEndDate[0].style.display = 'block';
@@ -115,8 +120,8 @@ function successDetailModal(obj){
     content.value = obj.content;
     start.value = obj.start.substr(0,10);
     end.value = obj.end.substr(0,10);
-    opinion.innerText = obj.opinion;
-    next.innerText = obj.nextMemName + " (" + obj.nextMemEmail + ")";
+    opinion.value = obj.opinion;
+    next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 
     checkedModalDetail.style.display = 'block';
     checkedStartDate[0].style.display = 'block';
@@ -167,38 +172,42 @@ function successDetailModal(obj){
   const checkbox = document.getElementById('checked-modal-checkbox');
 
   console.log(obj);
-  // 반려
-  rejectBtn.addEventListener("click", function(){
-    let btnName = "reject"
-    obj.opinion = opinion.value;
-    obj.checkbox_flag = true;
-    obj.next = next.value;
-    app_btn_click(btnName, obj);
-  })
-  // 승인
-  approveBtn.addEventListener("click", function(){
-    let btnName = "approve"
-    checkbox_flag = checkbox.checked;
-    obj.checkbox_flag = checkbox_flag;
-    obj.next = next.value;
+  // 수신함 : 버튼 활성화
+  if(inboxBtn.length == 1){
 
-    if(checkbox_flag == false && next.value == ''){
-      Swal.fire(
-        '결재자 혹은 최종승인을 체크해 주세요.',
-        '',
-        'warning'
-      );
-    } else if(checkbox_flag == true && next.value != ''){
-      Swal.fire(
-        '결재자 혹은 최종승인 중 \n 하나만 체크해 주세요.',
-        '',
-        'warning'
-      );
-    } else{
+    // 반려
+    rejectBtn.addEventListener("click", function(){
+      let btnName = "reject"
+      obj.opinion = opinion.value;
+      obj.checkbox_flag = true;
+      obj.next = next1.value;
       app_btn_click(btnName, obj);
-    }
+    })
+    // 승인
+    approveBtn.addEventListener("click", function(){
+      let btnName = "approve"
+      checkbox_flag = checkbox.checked;
+      obj.checkbox_flag = checkbox_flag;
+      obj.next = next1.value;
 
-  })
+      if(checkbox_flag == false && next1.value == ''){
+        Swal.fire(
+          '결재자 혹은 최종승인을 체크해 주세요.',
+          '',
+          'warning'
+        );
+      } else if(checkbox_flag == true && next1.value != ''){
+        Swal.fire(
+          '결재자 혹은 최종승인 중 \n 하나만 체크해 주세요.',
+          '',
+          'warning'
+        );
+      } else{
+        app_btn_click(btnName, obj);
+      }
+
+    })
+  }
 }
 ////////////////
 
@@ -243,10 +252,13 @@ function workDelete(obj){
   
   console.log(obj.workNo);
   console.log(obj.approvalList);
+  console.log(obj);
 
   let cancleFlag = obj.approvalList.split(",,");
+  let cancleFlag2 = cancleFlag[cancleFlag.length-2].split(",");
 
-  if(cancleFlag.length > 2){
+  console.log(cancleFlag2[1]);
+  if(cancleFlag.length > 2 || cancleFlag2[1] != '진행중'){
 
     Swal.fire(
       '결재가 이미 진행중입니다.',
