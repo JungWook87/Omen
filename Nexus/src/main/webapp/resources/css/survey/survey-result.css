@@ -9,7 +9,7 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-
+  height: 100vh;
 
   background-color: var(--side);
 
@@ -284,17 +284,17 @@ a:focus {
   transition: all 0.5s;
 }
 
-.survey-question{
-  font-size : 20px;
+.survey-question {
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.survey-respMember{
+.survey-respMember {
   color: rgb(150, 161, 181);
   margin-bottom: 15px;
   text-align: right;
-  margin-right : 20px;
+  margin-right: 20px;
 
 }
 
@@ -302,26 +302,28 @@ a:focus {
   margin-bottom: 35px;
 }
 
-#result-span-box > span {
-  color : var(--grey300);
+#result-span-box>span {
+  color: var(--grey300);
 }
 
-#result-span-box{
+#result-span-box {
   margin: 0 0 3px 3px;
 }
 
 #progressBar {
   appearance: none;
 }
+
 #progressBar::-webkit-progress-bar {
-  width : 500px;
-  height : 35px;
-  background:#f0f0f0;
-  border-radius:10px;
+  width: 500px;
+  height: 35px;
+  background: #f0f0f0;
+  border-radius: 10px;
   box-shadow: inset 3px 3px 10px #ccc;
 }
+
 #progressBar::-webkit-progress-value {
-  border-radius:10px;
+  border-radius: 10px;
   background: #1D976C;
   background: -webkit-linear-gradient(to right, var(--primary600), var(--primary300));
   background: linear-gradient(to right, var(--primary600), var(--primary300));

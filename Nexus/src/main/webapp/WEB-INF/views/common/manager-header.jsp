@@ -1,37 +1,85 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
- 
- <header>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-   <div class="content-header-area">
+    <style>
+      .btn {
+        font-size: 20px !important;
+      }
+    </style>
 
-     <div class="content-header-area-left">
 
-       <!-- 로고 -->
-       <div>
-         <a>
-           <img src="${contextPath}/resources/images/logo-width.png" alt="">
-         </a>
-       </div>
-     </div>
+    <header>
 
-     <!-- 개인 정보 -->
-     <div class="content-header-btn-area">
-       <button id="content-header-btn">${loginMember.memName}</button>
-     </div>
+      <div class="content-header-area">
 
-   </div>
+        <div class="content-header-area-left">
 
-   
+          <!-- 로고 -->
+          <div>
+            <a>
+              <img src="${contextPath}/resources/images/logo-width.png" alt="">
+            </a>
+          </div>
+        </div>
 
- </header>
+        <!-- 개인 정보 -->
+        <div class="btn-container">
+          <button class="btn"><span>관리자님 안녕하세요! 저를 누르면 로그아웃을 할수 있습니다.</span>
+            <ul class="dropdown">
+              <li><a class="header-log-out">Log Out</a></li>
+            </ul>
+          </button>
+        </div>
 
- <c:if test="${ !empty message }">
-  <script>
-      Swal.fire("${message}");
-      // EL 작성 시 scope를 지정하지 않으면
-      // page -> request -> session -> application 순서로 검색하여
-      // 일치하는 속성이 있으면 출력
-      
-  </script>
-</c:if> 
+      </div>
+
+
+
+    </header>
+
+    <c:if test="${ !empty message }">
+      <script>
+        Swal.fire("${message}");
+
+      </script>
+    </c:if>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+
+    <script>
+      // 로그아웃
+      const logOut = document.querySelector('.header-log-out');
+      const logOut2 = document.querySelector('.log-out');
+      logOut.addEventListener('click', logoutEvent);
+      logOut2.addEventListener('click', logoutEvent);
+
+      function logoutEvent() {
+        Swal.fire({
+          title: '로그아웃을 하시겠습니까?',
+          text: "",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: '그래, 할거야!',
+          cancelButtonText: '아직..나에게는 할일이 남아있어..'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            confetti({
+              particleCount: 150,
+              spread: 60
+            });
+            Swal.fire(
+              '축하합니다',
+              '퇴근하십시오.',
+              'success'
+            ).then((result) => {
+
+              const url = "/intranet";
+              window.location.href = url;
+
+            })
+          }
+        })
+      }
+
+    </script>

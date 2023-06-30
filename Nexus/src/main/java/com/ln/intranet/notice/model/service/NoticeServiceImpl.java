@@ -111,7 +111,7 @@ public class NoticeServiceImpl implements NoticeService{
 		String reName = null;
 		
 		if(result > 0) {
-			if(uploadFile.getSize() > 0) {
+			if(uploadFile != null) {
 				reName = Util.fileRename(uploadFile.getOriginalFilename());
 				
 				file.setNoticeNo(detail.getNoticeNo());

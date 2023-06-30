@@ -768,7 +768,8 @@ option {
 
     font-size: 16px;
 
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     outline: none;
     resize: none;
@@ -1516,4 +1517,66 @@ option {
 /* 채팅----------------------------------------------------------- */
 
 
-/* 사이드바 반응형 */
+
+/* 페이지네이션(Pagination) */
+
+
+.pagination a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.pagination {
+    margin-top: 40px;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    justify-content: center;
+}
+
+.pagination>li {
+    width: 50px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    border: 1px solid var(--gray200);
+    margin-right: 10px;
+}
+
+.pagination a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--gray600);
+}
+
+.pagination a:hover {
+    background-color: var(--gray50);
+}
+
+/* 현재 페이지 번호 */
+.pagination .current {
+    background-color: var(--primary400);
+    color: white;
+    font-weight: bold;
+}
+
+.pagination .current:hover {
+    background-color: var(--primary400);
+}
+
+.prevPage {
+    width: 80px !important;
+}
+
+.blue {
+    color: var(--primary400) !important;
+}
+
+.nextPage {
+    width: 80px !important;
+}

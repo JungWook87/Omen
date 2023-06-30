@@ -9,8 +9,7 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-
-
+  
   background-color: var(--side);
 
   z-index: 100;
@@ -19,7 +18,7 @@ section {
 .side-bar ul {
   margin: 0;
   padding: 0;
-  
+
 }
 
 
@@ -162,7 +161,7 @@ a:focus {
 /* 컨텐츠 영역 전체 */
 .content-all-page {
   width: 100%;
-  height: 100% ;
+  height: 100%;
 
   margin: auto;
   margin-top: 70px;
@@ -179,6 +178,7 @@ a:focus {
   display: flex;
   flex-direction: column;
 }
+
 .survey-create-top input {
   height: 35px;
   line-height: 35px;
@@ -232,7 +232,7 @@ a:focus {
 
   border: 1px solid var(--gray300);
   border-radius: 10px;
-  
+
 }
 
 .survey-create-content input {
@@ -243,15 +243,16 @@ a:focus {
   outline: none;
 
 }
+
 .survey-create-content input:focus::placeholder {
   color: var(--gray200);
 }
 
 .survey-create-content div:nth-child(1) input {
   font-size: 20px;
-  
+
   border-bottom: 1px solid var(--gray200);
-  
+
   margin-bottom: 80px;
 
   padding-bottom: 10px;
@@ -294,8 +295,8 @@ a:focus {
   cursor: pointer;
 }
 
-#survey-option-delete > i {
-  
+#survey-option-delete>i {
+
   color: var(--gray500);
 }
 

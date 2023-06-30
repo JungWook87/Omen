@@ -9,8 +9,8 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
+  height: 100vh;
 
-  
 
   background-color: var(--side);
 
@@ -266,11 +266,11 @@ tr:hover {
   text-align: center;
 }
 
-td:nth-child(2){
+td:nth-child(2) {
   text-align: left;
 }
 
-th:nth-child(2){
+th:nth-child(2) {
   text-align: left;
 }
 
@@ -307,7 +307,7 @@ th:nth-child(2){
 #survey-result-btn {
   text-decoration: none;
 
-  padding : 7px;
+  padding: 7px;
   padding-top: 14px;
 
   border: 1px solid var(--primary500);
@@ -318,6 +318,6 @@ th:nth-child(2){
   color: var(--primary500);
 
   font-size: 16px;
-  
+
   cursor: pointer;
 }
