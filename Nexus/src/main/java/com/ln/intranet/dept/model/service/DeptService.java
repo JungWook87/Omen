@@ -39,6 +39,12 @@ public interface DeptService {
 
 	// 본인 부서 프로젝트 조회하기(kjw)
 	List projectList(Member loginMember);
+	
+	// 본인 팀 연차 현황 조회(kjw)
+	List vacationList(Member loginMember);
+
+	// 본인 팀 출장 현황 조회(kjw)
+	List businessList(Member loginMember);
 
 
 

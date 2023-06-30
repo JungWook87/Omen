@@ -812,3 +812,76 @@ td:last-child {
 .log-out {
     cursor: pointer;
 }
+
+/* 켈린더 css (kjw) */
+/* 일요일 날짜 빨간색 */
+.fc-day-sun a {
+    color: red;
+    text-decoration: none;
+  }
+  
+  /* 토요일 날짜 파란색 */
+  .fc-day-sat a {
+    color: blue;
+    text-decoration: none;
+  }
+  
+  /* 글자 앞에 타임 지우기 */
+  .fc-event-time{
+    display: none;
+  }
+  
+  /* 글자 정렬 */
+  .fc-event-title{
+    padding-top: 5px;
+  }
+  
+  #calendar{
+    height: 350px;
+  }
+
+  .fc .fc-toolbar.fc-header-toolbar{
+    margin-bottom: 0px;
+  }
+
+  .fc{
+    font-size: 0.7em;
+  }
+
+  .fc .fc-button{
+    line-height: 1;
+  }
+
+  .fc-toolbar-chunk > div > button{
+    padding: 0 !important;
+    height: 23px !important;
+  }
+
+  .fc-dayGridMonth-view{
+    z-index: 0;
+  }
+
+  /* 미니 공지사항 */
+  #noticeMin , #deptNoticeMin{
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+  }
+
+  #noticeMin > span:nth-of-type(1), #deptNoticeMin > span:nth-of-type(1){
+    width:200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 2px;
+    padding-top: 2px;
+  }
+
+  #noticeMin:hover, #deptNoticeMin:hover {
+    color: #FFC759;
+  }
+
+
+
+
+

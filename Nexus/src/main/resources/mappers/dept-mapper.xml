@@ -117,10 +117,25 @@
 	</update>
 
 	<!-- 본인 부서 프로젝트 리스트 조회(kjw) -->
-	<select id="projectList">
-		SELECT TITLE, "START", "END" FROM "PROJECT"
-		WHERE DPET_NO = ${deptNo}
+	<select id="projectList" resultType="map">
+		SELECT TITLE AS "title", TO_CHAR("START", 'YYYY-MM-DD') AS "start", TO_CHAR("END", 'YYYY-MM-DD') AS "end" 
+		FROM "PROJECT" WHERE DEPT_NO = ${deptNo}
 	</select>
 
+	<!-- 본인 팀 연차 현횡 조회(kjw) -->
+	<select id="vacationList" resultType="map">
+		SELECT (TO_CHAR(TO_DATE(TODAY, 'YY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS')) AS "start", ('연차 : ' || COUNT(*) || '명') AS "title"
+		FROM ATTENDANCE 
+		WHERE ATTD_TYPE_NO = 4 
+		AND MEM_NO IN (SELECT MEM_NO FROM "MEMBER" WHERE TEAM_NO = (SELECT TEAM_NO FROM "MEMBER" WHERE MEM_NO = ${memNo})) GROUP BY "TODAY"
+	</select>
+	
+	<!-- 본인 팀 출장 현횡 조회(kjw) -->
+	<select id="businessList" resultType="map">
+		SELECT (TO_CHAR(TO_DATE(TODAY, 'YY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS')) AS "start", ('출장 : ' || COUNT(*) || '명') AS "title"
+		FROM ATTENDANCE 
+		WHERE ATTD_TYPE_NO = 5 
+		AND MEM_NO IN (SELECT MEM_NO FROM "MEMBER" WHERE TEAM_NO = (SELECT TEAM_NO FROM "MEMBER" WHERE MEM_NO = ${memNo})) GROUP BY "TODAY"
+	</select>
 
 </mapper>

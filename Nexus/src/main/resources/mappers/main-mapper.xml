@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mainMapper">
+
+
+	<!-- 공지사항 조회 -->
+	<select id="noticeSelect" resultType="map">
+		SELECT TITLE AS "title", CREATE_DATE AS "createDate", NOTICE_TYPE AS "noticeType"
+		FROM (SELECT TITLE, CREATE_DATE, NOTICE_TYPE FROM NOTICE WHERE NOTICE_TYPE = 0 ORDER BY CREATE_DATE DESC)
+		WHERE ROWNUM &lt;= 5
+		
+		UNION ALL
+		
+		SELECT TITLE AS title, CREATE_DATE AS createDate, NOTICE_TYPE AS noticeType
+		FROM (SELECT TITLE, CREATE_DATE, NOTICE_TYPE FROM NOTICE WHERE NOTICE_TYPE = ${deptNo} ORDER BY CREATE_DATE DESC)
+		WHERE ROWNUM &lt;= 5
+	</select>
+
+</mapper>

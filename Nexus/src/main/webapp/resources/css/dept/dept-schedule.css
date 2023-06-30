@@ -252,3 +252,17 @@ a:focus {
   color: blue;
   text-decoration: none;
 }
+
+/* 글자 앞에 타임 지우기 */
+.fc-event-time{
+  display: none;
+}
+
+/* 글자 정렬 */
+.fc-event-title{
+  padding-top: 5px;
+}
+
+#calendar{
+  margin-bottom: 100px;
+}
