@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.vo.ApprovalMember;
 import com.ln.intranet.work.model.vo.ProjectList;
 import com.ln.intranet.work.model.vo.ProjectTaskList;
@@ -50,6 +51,9 @@ public interface WorkService {
 	List<ProjectTaskList> ptList(int deptNo);
 
 	List<ProjectList> pList(int deptNo);
+	
+	// 임시저장 리스트 불러오기
+	List<WorkDetail> workTemp(Member loginMember);
 
 
 }

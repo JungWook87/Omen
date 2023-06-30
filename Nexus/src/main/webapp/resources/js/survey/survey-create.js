@@ -3,8 +3,11 @@ const optionAdd = document.getElementById("survey-option-add"),
     cancleBtn = document.getElementById("survey-create-bottom-cancle"),
     submitBtn = document.getElementById("survey-create-bottom-submit"),
     surveyTitle = document.getElementById("survey-create-top-title"),
-    surveyQuestion = document.getElementById("survey-create-content-question");
+    surveyQuestion = document.getElementById("survey-create-content-question"),
+    surveyDate = document.querySelector("input[name='end']"),
+    surveyOptionList = document.querySelector("input[name='optionList']");
       
+
 
 
 // 옵션 추가 이벤트
@@ -53,62 +56,36 @@ cancleBtn.addEventListener('click', () => {
     window.history.back();
 })
 
-// 저장 버튼
-submitBtn.addEventListener('click', () => { 
 
-    // const newRow = document.createElement('tr');
+//필수 입력값 지정
+function validation() {
+    if (surveyTitle.value === "") {
+        Swal.fire("제목을 입력해주세요");
+        return false;
+    }
+    
+    if (surveyDate.value === "") {
+        Swal.fire("종료일을 지정해 주세요");
+        return false;
+    }
+    
+    if (new Date(surveyDate.value) < new Date().setHours(0, 0, 0, 0)) {
+        Swal.fire("입력한 날짜는 오늘보다 이전입니다.");
+        return false;
+    }
 
-    // const statusCell = document.createElement('td');
-    // statusCell.textContent = '진행중';
-    // statusCell.id = 'status-color';
+    if (surveyQuestion.value === "") {
+        Swal.fire("질문을 작성해 주세요");
+        return false;
+    }
+    
+    if (surveyOptionList.value === "") {
+        Swal.fire("옵션을 입력해 주세요");
+        return false;
+    }
 
-    // const titleCell = document.createElement('td');
-    // titleCell.textContent = surveyTitle.value;
+    return true;
+}
 
-    // const dateCell = document.createElement('td');
-    // const now = new Date();
-    // const year = now.getFullYear();
-    // const month = now.getMonth() + 1;
-    // if(month < 10) {
-    //  month = "0" + month;    
-    // }
-    // const date = now.getDate();
-    // if(date < 10) {
-    //  date = "0" + date;
-    // }
-    // dateCell.textContent = year + '. ' + month + '. ' + date + '. ' + day;
-
-    // const clipCell = document.createElement('td');
-    // clipCell.id = 'clip';
-
-    // const progressCell = document.createElement('td');
-    // progressCell.textContent = '1/4';
-
-    // const resultBtnCell = document.createElement('td');
-    // const resultBtn = document.createElement('button');
-    // resultBtn.id = 'survey-result-btn';
-    // resultBtn.textContent = '결과 보기';
-    // resultBtnCell.appendChild(resultBtn);
-
-    // const deleteCell = document.createElement('td');
-    // deleteCell.textContent = '삭제';
-
-    // newRow.appendChild(statusCell);
-    // newRow.appendChild(titleCell);
-    // newRow.appendChild(dateCell);
-    // newRow.appendChild(clipCell);
-    // newRow.appendChild(progressCell);
-    // newRow.appendChild(resultBtnCell);
-    // newRow.appendChild(deleteCell);
-
-    // document.querySelector("tbody").appendChild(newRow);
-
-    // 클릭 이벤트가 발생했음을 다른 페이지에서 확인할 수 있도록 LocalStorage에 정보 저장
-    localStorage.setItem('submitClicked', 'true');
-    localStorage.setItem('surveyTitle', surveyTitle.value);
-
-    // 페이지 이동
-    window.location.href = './survey-manage.html';
-})
 
 

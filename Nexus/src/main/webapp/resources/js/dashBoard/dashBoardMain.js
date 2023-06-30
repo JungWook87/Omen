@@ -1,4 +1,10 @@
+// 극좌표차트 클릭으로 보여지는 div들
+var prDivs = document.querySelectorAll('.projectDiv');
+// 오더 초기값 넘버
+var orderNo = 0;
+
 $(document).ready(function(){
+    // 근태 도넛 ajax
     $.ajax({
         url : 'attnDoughnut',
         type : 'GET',
@@ -31,13 +37,15 @@ $(document).ready(function(){
                             fill: false, 
                             data: attnCount,
                             backgroundColor: [
-                                //색상
-                                '#40128B',
-                                '#9336B4',
-                                '#DD58D6',
-                                '#FFE79B',
-                                '#2CD3E1',
-                                'rgb(157, 193, 245)',
+                                '#66347F',
+                                '#9E4784',
+                                '#37306B',
+                                '#D27685',
+                                '#1C8394',
+                                '#154B52',
+                                '#000B0D',
+                                '#390D02',
+                                '#A52502',
                             ],
                             borderColor: [
                                 //경계선 색상
@@ -61,7 +69,7 @@ $(document).ready(function(){
                 
                         legend: {
                             display: true, // 범례 유무
-                            position: 'right', // 범례위치
+                            position: 'bottom', // 범례위치
                             align: 'center', // 범례 정렬
                             labels:{
                                 margin : 10, // 범례 패딩
@@ -81,7 +89,7 @@ $(document).ready(function(){
 
 
     })
-
+    // 프로젝트 극좌표차트 ajax
     $.ajax({
         url : 'projectPolar',
         type : 'GET',
@@ -91,9 +99,11 @@ $(document).ready(function(){
 
             var projectLabel = [];
             var projectCount = [];
+            var projectNo = [];
             $.each(data, function(index, item) {
                 projectLabel.push(item.title);
                 projectCount.push(item.percent);
+                projectNo.push(item.projectNo);
             });
             
             var polarArea = document
@@ -120,12 +130,7 @@ $(document).ready(function(){
                             borderColor: [
                                 //경계선 색상
                                 'white',
-                                'white',
-                                'white',
-                                'white',
-                                'white',
-                                'white',
-                                'white',
+
                            ],
                             borderWidth: 2 //경계선 굵기
                             
@@ -149,19 +154,24 @@ $(document).ready(function(){
                             }
                         },
                         scales: {
-                            r: {
-                                pointLabels: {
-                                display: true,
-                                centerPointLabels: true,
-                                font: {
-                                    size: 16
-                                }
-                                }
-                            }
+                            // r: {
+                            //     pointLabels: {
+                            //     display: true,
+                            //     centerPointLabels: true,
+                            //     font: {
+                            //         size: 16
+                            //     }
+                            //     }
+                            // }
                         },    
-                    },
-                   
 
+                        onClick: function(point, event){
+                            console.log('리스트 순서 : ', event[0]['index']);
+                            console.log('프로젝트넘버 : ', projectNo[event[0]['index']]);
+                            createProjectInfo(projectNo[event[0]['index']]);
+
+                        },
+                    },
                 });
         },
         error : function(error){
@@ -174,8 +184,11 @@ $(document).ready(function(){
 
 
 
+/* =================================================================================================
+================================      함수 모음      =================================================
+=============================================================================================  ====*/
 
-// 온로드 기능
+// 온로드 함수 모음
 window.onload = function() {
 
     // 프로그레스바 밸류값에의한 css 수정
@@ -195,14 +208,15 @@ window.onload = function() {
     teamRadios[0].checked = true;
     document.querySelector('#team-' + teamRadios[0].value + '-data').style.display = 'block';
     
-
     // 에 대하여 이벤트 부여
     for (var i = 0; i < teamRadios.length; i++) {
         teamRadios[i].addEventListener('change', function() {
+
             // 클릭된 라디오의 밸류 (team.teamNo)
             var selectedTeamNo = this.value;
             console.log(selectedTeamNo);
             var hrDivs = document.querySelectorAll('.team-data');
+            
             // 팀넘버에따라 부여된 id로 div 추적/동작
             for (var j = 0; j < hrDivs.length; j++) {
                 if (hrDivs[j].id == 'team-' + selectedTeamNo + '-data') {
@@ -214,17 +228,21 @@ window.onload = function() {
         });
     }
 
-
-    // // 프로그래스바 툴팁 호버 이벤트
-    // var progressBars = document.querySelectorAll('progress');
-
-    // for (var i = 0; i < progressBars.length; i++) {
-    //     progressBars[i].addEventListener('mouseover', function() {
-    //         var value = this.value;
-    //         var tooltipText = this.parentNode.querySelector('.tooltiptext');
-    //         tooltipText.innerHTML = value;
-    //     });
-    // }
+    for (var i = 0; i < prDivs.length; i++) {
+        prDivs[i].style.display = 'none';
+    }
+    prDivs[1].style.display='block';
 
 }
 
+
+// 극좌표 클릭시 프로젝트/과제 전환
+function createProjectInfo(projectNo){
+    for(var i = 0; i <prDivs.length; i++){
+        if(prDivs[i].id == 'projectDiv-'+projectNo ){
+            prDivs[i].style.display = 'block';
+        } else {
+            prDivs[i].style.display = 'none';
+        }
+    }
+}

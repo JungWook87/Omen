@@ -27,7 +27,7 @@ const modalProjectbox = document.querySelector('.work-modal-projectBox'); // 과
 const workStartDateText = document.querySelector('.work-modal-startDate > input'); // 시작 날짜 
 const workEndDateText = document.querySelector('.work-modal-endDate > input'); // 종료 날짜 
 const workProjectboxText = workProjectbox.querySelectorAll('input'); // 과제명, 과제내용 
-
+const showMember = document.getElementById("showMemName");
 // 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
   workTitle.value = '';

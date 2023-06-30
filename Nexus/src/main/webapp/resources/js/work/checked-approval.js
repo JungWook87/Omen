@@ -239,12 +239,11 @@ checkedCloseBtn.addEventListener("click", () => {
 });
 
 // 모달창 외부 영역 이벤트
-$(window).click(function(event) {
-  if (event.target == checkedModal) {
+window.onclick = function(event) {
+  if (event.target == modal) {
     checkedModalClose();
   }
-});
-
+}
 
 
 // 취소버튼 작동(kjw)

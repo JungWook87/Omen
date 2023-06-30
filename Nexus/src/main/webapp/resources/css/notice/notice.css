@@ -190,3 +190,8 @@ a:focus {
   margin-left: 130px;
   margin-right: 130px;
 }
+
+/* 사이드바 반응형 */
+.sidebarMenuInner li span {
+  color: var(--primary500);
+}

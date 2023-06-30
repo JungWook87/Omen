@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ln.intranet.common.model.vo.UploadFile;
+import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.vo.ApprovalMember;
 import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
@@ -68,6 +69,11 @@ public class WorkDAO {
 	// 반려 승인
 	public int clickApproval(Map<String, Object> map) {
 		return sqlSession.update("workMapper.clickApproval", map);
+	}
+
+	// 임시 저장 리스트 불러오기
+	public List<WorkDetail> workTemp(Member loginMember) {
+		return sqlSession.selectList("workMapper.workTemp", loginMember);
 	}
 	
 
