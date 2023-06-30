@@ -28,6 +28,23 @@
 
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
       <section>
+        
+        <!-- 사이드바 반응형 -->
+        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+        <label for="openSidebarMenu" class="sidebarIconToggle">
+          <div class="spinner diagonal part-1"></div>
+          <div class="spinner horizontal"></div>
+          <div class="spinner diagonal part-2"></div>
+        </label>
+        <div id="sidebarMenu">
+          <ul class="sidebarMenuInner">
+            <li>부서</li>
+            <li><a href="${contextPath}/dept/deptNotice"><span>부서 공지사항</span> </a></li>
+            <li><a href="${contextPath}/dept/deptBoard"><span>부서 게시판</span> </a></li>
+            <li><a href="${contextPath}/dept/deptSchedule"><span>부서 일정</span> </a></li>
+          </ul>
+        </div>
+
 
         <!-- 사이드 바 -->
         <div class="side-bar menu">
@@ -223,14 +240,6 @@
 
           </div>
         </div>
-
-
-
-
-
-
-
-
 
 
         <!-- 채팅창 -->

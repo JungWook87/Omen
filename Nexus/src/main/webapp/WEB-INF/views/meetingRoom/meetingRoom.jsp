@@ -35,6 +35,21 @@
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
       <section>
 
+         <!-- 사이드바 반응형 -->
+         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+         <label for="openSidebarMenu" class="sidebarIconToggle">
+           <div class="spinner diagonal part-1"></div>
+           <div class="spinner horizontal"></div>
+           <div class="spinner diagonal part-2"></div>
+         </label>
+         <div id="sidebarMenu">
+           <ul class="sidebarMenuInner">
+             <li>회의실</li>
+             <li><a href="${contextPath}/meetingRoom"><span>예약신청</span> </a></li>
+
+           </ul>
+         </div>
+
   
             <!-- 사이드 바 -->
             <div class="side-bar menu">
