@@ -4,12 +4,14 @@ const optionAdd = document.getElementById("survey-option-add"),
     submitBtn = document.getElementById("survey-create-bottom-submit"),
     surveyTitle = document.getElementById("survey-create-top-title"),
     surveyQuestion = document.getElementById("survey-create-content-question");
-
-
+      
 
 
 // 옵션 추가 이벤트
 optionAdd.addEventListener("click", () => {
+  
+    optionAdd.scrollIntoView();
+
     const optionLi = document.createElement("li");
     optionLi.classList.add("survey-create-content-option");
     

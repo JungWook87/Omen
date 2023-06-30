@@ -233,7 +233,7 @@ public class MemberController {
 							@RequestParam("noticeNo") int noticeNo,
 							@RequestParam("title") String title,
 							@RequestParam("content") String content,
-							@RequestParam("uploadFile") MultipartFile uploadFile,
+							@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile,
 							HttpServletRequest req
 							)throws IOException {
 		
@@ -432,6 +432,8 @@ public class MemberController {
 		
 		return "redirect:/"; 
 	}
+	
+	
 	
 	
 	 

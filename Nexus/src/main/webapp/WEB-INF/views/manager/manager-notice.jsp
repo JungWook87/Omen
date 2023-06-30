@@ -162,39 +162,35 @@
             </div>
 
             <div class="pagination-area">
-
-              <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
               <c:set var="url" value="${boardCode}?cp=" />
 
-
               <ul class="pagination">
-                <!-- 첫 페이지로 이동 -->
                 <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
 
-                <!-- 이전 목록 마지막 번호로 이동 -->
-                <li><a href="${url}${pagination.prevPage}${sURL}">&lt;</a></li>
+                <c:if test="${pagination.currentPage > 1}">
+                  <li class="prevPage"><a href="${url}${pagination.currentPage - 1}${sURL}" class="blue">이전</a></li>
+                </c:if>
+                <c:if test="${pagination.currentPage == 1}">
+                  <li class="prevPage"><a href="javascript:void(0);">이전</a></li>
+                </c:if>
 
-                <!-- 범위가 정해진 일반 for문 사용 -->
                 <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
-
-                  <c:choose>
-                    <c:when test="${i == pagination.currentPage}">
-                      <li><a class="current">${i}</a></li>
-                    </c:when>
-
-                    <c:otherwise>
-                      <li><a href="${url}${i}${sURL}">${i}</a></li>
-                    </c:otherwise>
-                  </c:choose>
-
+                  <c:if test="${i == pagination.currentPage}">
+                    <li><a class="current">${i}</a></li>
+                  </c:if>
+                  <c:if test="${i != pagination.currentPage}">
+                    <li><a href="${url}${i}${sURL}">${i}</a></li>
+                  </c:if>
                 </c:forEach>
 
-                <!-- 다음 목록 시작 번호로 이동 -->
-                <li><a href="${url}${pagination.nextPage}${sURL}">&gt;</a></li>
+                <c:if test="${pagination.currentPage < pagination.maxPage}">
+                  <li class="nextPage"><a href="${url}${pagination.currentPage + 1}${sURL}" class="blue">다음</a></li>
+                </c:if>
+                <c:if test="${pagination.currentPage == pagination.maxPage}">
+                  <li class="nextPage"><a href="javascript:void(0);">다음</a></li>
+                </c:if>
 
-                <!-- 끝 페이지로 이동 -->
                 <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
-
               </ul>
             </div>
 
@@ -226,7 +222,7 @@
               <!-- 선택된 파일 -->
               <p>첨부파일</p>
               <div class="check-preview"></div>
-              
+
               <!-- 파일 업로드 -->
               <div class="check-file-box">
                 <button type="button" id="check-file-remove">파일 지우기</button>

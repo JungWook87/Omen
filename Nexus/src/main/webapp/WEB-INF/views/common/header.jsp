@@ -35,10 +35,10 @@
         </div>
 
         <!-- 개인 정보 -->
-      
-        <div class="container">
+
+        <div class="btn-container">
           <button class="btn"><span>${loginMember.memName}
-            ${loginMember.jobName}</span>
+              ${loginMember.jobName}</span>
             <ul class="dropdown">
               <li><a href="${contextPath}/member/myPageProfile">마이페이지</a></li>
               <li><a class="header-log-out">Log Out</a></li>
@@ -81,7 +81,7 @@
       </script>
     </c:if>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
-    
+
     <script>
       // 로그아웃
       const logOut = document.querySelector('.header-log-out');

@@ -9,10 +9,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.jsb"></script>
+  
   
   <!-- sweetAlert2 cdn -->
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -93,14 +92,19 @@
         </div>
 
         <div class="project-div">
-
-            <div class="project-head">
-                <a class="managePageA" href="/dashBoard/projectManage">❐ 프로젝트 관리</a>
+            <div class="left">
+                <div class="project-head">
+                    <a class="managePageA" href="/dashBoard/projectManage">❐ 프로젝트 관리</a>
+                </div>
+                <div class="polar-div">
+                    <canvas id="polarArea" aria-label="Hello ARIA World" role="img"></canvas>
+                </div>
             </div>
 
             <div class="project-content">
-                <div></div>
-                <div></div>
+                <div class="info-div">
+
+                </div>
             </div> 
 
 
@@ -113,7 +117,7 @@
 
 <!-- 근태 도넛그래프 -->
 <script>
-  
+
 </script>
  
 <script src="${contextPath}/resources/js/dashBoard/dashBoardMain.js"></script>

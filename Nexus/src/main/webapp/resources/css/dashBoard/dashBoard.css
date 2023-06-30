@@ -7,8 +7,7 @@
 body{
     display: flex;
     flex-direction: column;
-    background-color: var(--black);
-    color : white;
+    color : black;
 }
     
 /* 틀을 잡아 놓기 위한 스타일 */
@@ -17,7 +16,7 @@ section {
 }
 span, p{
     margin-top: 4px;
-    color : white;
+    color : black;
 }
 
 
@@ -35,8 +34,6 @@ div{
     margin: 20px auto 0;
     width: 100%;
     height: 75%;
-    border:3px solid var(--black) ;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,12 +42,13 @@ div{
 
 .managePageA{
     font-size: 30px;
-    color: white;
+    color : black;
     text-decoration: none;
+    font-weight : bold;
 }
 
 
-
+/* 인적자원 div */
 #hr-div{
     display: flex;
 }
@@ -65,8 +63,14 @@ div{
 
 /* 도넛타입 */
 #doughnut{
+    margin-top: 50px;
     width : 400px;
-    height : 30%;
+    height : 300px;
+}
+/* 극좌표형 타입 */
+#polarArea {
+    width : 800px;
+    height : 500px;
 }
 
 
@@ -206,9 +210,20 @@ div{
 }
 
 
+/*==========================================================================
+========================      프로젝트      =================================
+===========================================================================*/
 
 
+.project-div {
+    display : flex;
+}
 
+.project-content {
+    display : flex;
+    flex-direction: column;
+    padding: 20px;
+}
 
 
 

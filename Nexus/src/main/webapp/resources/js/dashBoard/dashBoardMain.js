@@ -13,6 +13,10 @@ $(document).ready(function(){
                 attnCount.push(item.typeCount);
             });
 
+            const centerText = {
+                id : 'centerText',
+            }
+
 
             var doughnut = document
                 .getElementById('doughnut')
@@ -37,14 +41,15 @@ $(document).ready(function(){
                             ],
                             borderColor: [
                                 //경계선 색상
-                                'black',
-                                'black',
-                                'black',
-                                'black',
-                                'black',
-                                'black',
+                                'white',
+                                'white',
+                                'white',
+                                'white',
+                                'white',
+                                'white',
+                                'white',
                             ],
-                            borderWidth: 1 //경계선 굵기
+                            borderWidth: 4 //경계선 굵기
                             
                         }
                     ],
@@ -58,17 +63,15 @@ $(document).ready(function(){
                             display: true, // 범례 유무
                             position: 'right', // 범례위치
                             align: 'center', // 범례 정렬
-                            
                             labels:{
                                 margin : 10, // 범례 패딩
-                                font:{size: 20}, // 범례 폰트 사이즈
+                                font:{size: 15}, // 범례 폰트 사이즈
+                                fontColor: 'black',
+                            }
                             }
                         },
-                    },
-                    
-                    maintainAspectRatio :false
-
-                }
+                },
+                maintainAspectRatio :false
             });
 
         },
@@ -79,7 +82,96 @@ $(document).ready(function(){
 
     })
 
+    $.ajax({
+        url : 'projectPolar',
+        type : 'GET',
+        success : function(data){
+
+            console.log("프로젝트 : " + data[1].typeName);
+
+            var projectLabel = [];
+            var projectCount = [];
+            $.each(data, function(index, item) {
+                projectLabel.push(item.title);
+                projectCount.push(item.percent);
+            });
+            
+            var polarArea = document
+            .getElementById('polarArea')
+            .getContext('2d');
+            var polarChart = new Chart(polarArea, {
+                type: 'polarArea', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: projectLabel,
+                    datasets: [
+                        {
+                            data: projectCount,
+                            backgroundColor: [
+                                //색상
+                                '#F67280',
+                                '#C06C84',
+                                '#6C5B7B',
+                                '#355C7D',
+                                '#FFF3E2',
+                                '#FFE5CA',
+                                '#FA9884',
+                                '#E74646',
+                            ],
+                            borderColor: [
+                                //경계선 색상
+                                'white',
+                                'white',
+                                'white',
+                                'white',
+                                'white',
+                                'white',
+                                'white',
+                           ],
+                            borderWidth: 2 //경계선 굵기
+                            
+                        }
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio :false,
+                    plugins:{ 
+                
+                        legend: {
+                            display: false, // 범례 유무
+                            position: 'bottom', // 범례위치
+                            align: 'center', // 범례 정렬
+                            labels:{
+                                margin : 10, // 범례 패딩
+                                font:{size: 12}, // 범례 폰트 사이즈
+                                fontColor: 'black',
+                            }
+                            }
+                        },
+                        scales: {
+                            r: {
+                                pointLabels: {
+                                display: true,
+                                centerPointLabels: true,
+                                font: {
+                                    size: 16
+                                }
+                                }
+                            }
+                        },    
+                    },
+                   
+
+                });
+        },
+        error : function(error){
+            console.log(error);
+        }
+
+    })
+
 })
+
 
 
 

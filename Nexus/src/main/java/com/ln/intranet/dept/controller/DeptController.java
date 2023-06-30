@@ -128,7 +128,7 @@ public class DeptController {
 								@RequestParam("noticeNo") int noticeNo,
 								@RequestParam("title") String title,
 								@RequestParam("content") String content,
-								@RequestParam("uploadFile") MultipartFile uploadFile,
+								@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile,
 								HttpServletRequest req
 								)throws IOException {
 			
@@ -153,6 +153,18 @@ public class DeptController {
 			return new Gson().toJson(result);
 			
 		}
+	  	
+	  	// 부서 공지사항 삭제
+	  	@PostMapping("deleteDeptNotice")
+		@ResponseBody
+		public String deleteNotice(@RequestParam("noticeNo") int noticeNo
+								) {
+					
+			int result = service.deleteNotice(noticeNo);
+			
+			return new Gson().toJson(result);
+		}
+
 	
 	
 	
@@ -245,6 +257,38 @@ public class DeptController {
 	}
 	
 	
+	// 부서 게시판 수정
+	@PostMapping("updateDeptBoardNotice")
+	@ResponseBody
+	public String updateDeptBoardNotice(
+									@RequestParam("boardNo") int boardNo,
+									@RequestParam("boardTitle") String boardTitle,
+									@RequestParam("boardContent") String boardContent,
+									@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile,
+									@ModelAttribute("loginMember") Member loginMember,
+									HttpServletRequest req
+									)throws IOException {
+		
+		BoardDetail detail = new BoardDetail();
+		
+		
+		detail.setBoardNo(boardNo);
+		detail.setBoardTitle(boardTitle);
+		detail.setBoardContent(boardContent);
+		detail.setMemNo(loginMember.getMemNo());
+		detail.setDeptNo(loginMember.getDeptNo());
+	
+		String webPath = "/resources/file/";
+		String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+		
+		int result = service.updateBoardNotice(detail, uploadFile, webPath, folderPath);
+		
+		
+		
+
+		return new Gson().toJson(result);
+		
+	}
 	
 	
 	
