@@ -10,6 +10,7 @@ import com.ln.intranet.dashBoard.model.vo.AttnDoughnut;
 import com.ln.intranet.dashBoard.model.vo.DeptTeam;
 import com.ln.intranet.dashBoard.model.vo.HumanResourceManage;
 import com.ln.intranet.dashBoard.model.vo.ProjectPolar;
+import com.ln.intranet.dashBoard.model.vo.ProjectTotal;
 
 @Service
 public class DashBoardServiceImpl implements DashBoardService {
@@ -39,10 +40,15 @@ public class DashBoardServiceImpl implements DashBoardService {
 		return dao.dtList(deptNo);
 	}
 
-	// 부서 팀 과제
+	// 부서 프로젝트 극좌표 그래프
 	@Override
 	public List<ProjectPolar> polarList(int deptNo) {
-	
 		return dao.polarList(deptNo);
+	}
+
+	// 부서 모든 프로젝트/과제
+	@Override
+	public List<ProjectTotal> prList(int deptNo) {
+		return dao.prList(deptNo);
 	}
 }
