@@ -234,6 +234,18 @@ public class DeptServiceImpl implements DeptService{
 		return dao.projectList(loginMember);
 	}
 
+	// 본인 팀 연차현황 조회(kjw)
+	@Override
+	public List vacationList(Member loginMember) {
+		return dao.vacationList(loginMember);
+	}
+
+	// 본인 팀 출장 현황 조회(kjw)
+	@Override
+	public List businessList(Member loginMember) {
+		return dao.businessList(loginMember);
+	}
+
 
 	// 부서 게시판 수정
 	@Transactional(rollbackFor = {Exception.class})

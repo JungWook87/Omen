@@ -206,14 +206,25 @@ public class DeptController {
 	@GetMapping("deptSchedule")
 	public String deptSchedule(@ModelAttribute("loginMember") Member loginMember,
 								Model model) {
+		Gson gson = new Gson();
+		
 		// 부서별 승인된 프로젝트의 일정
 		// (제목, 시작일, 종료일)
 		List projectList = service.projectList(loginMember);
-		model.addAttribute("projectList", projectList);
+		String pList = gson.toJson(projectList);
+		model.addAttribute("pList", pList);
 		
 		// 부서원 - 팀 연차, 출장
 		// (연차 : 팀별 , 출장 : 팀별)
+		// 연차
+		List vacationList = service.vacationList(loginMember);
+		String vList = gson.toJson(vacationList);
+		model.addAttribute("vList", vList);
 		
+		// 출장
+		List businessList = service.businessList(loginMember);
+		String bList = gson.toJson(businessList);
+		model.addAttribute("bList", bList);
 		
 		return "/dept/dept-schedule";
 	}

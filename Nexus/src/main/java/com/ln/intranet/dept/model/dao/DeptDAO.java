@@ -127,6 +127,16 @@ public class DeptDAO {
 		return sqlSession.selectList("deptMapper.projectList", loginMember);
 
 	}
+	
+	// 본인 팀 연차현황 조회(kjw)
+	public List vacationList(Member loginMember) {
+		return sqlSession.selectList("deptMapper.vacationList", loginMember);
+	}
+
+	// 본인 팀 출장 현황 조회(kjw)
+	public List businessList(Member loginMember) {
+		return sqlSession.selectList("deptMapper.businessList", loginMember);
+	}
 
 	// 부서 공지사항 삭제
 	public int deleteNotice(int noticeNo) {

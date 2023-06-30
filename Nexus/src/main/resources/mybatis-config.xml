@@ -48,6 +48,7 @@
 		 <mapper resource="/mappers/project-mapper.xml"/>
 		 <mapper resource="/mappers/chat-mapper.xml"/>
 		 <mapper resource="/mappers/dashBoard-mapper.xml"/>
+		 <mapper resource="/mappers/main-mapper.xml"/>
 	</mappers>
 
 </configuration>
