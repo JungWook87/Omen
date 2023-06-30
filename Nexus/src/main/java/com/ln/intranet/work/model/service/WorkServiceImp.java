@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ln.intranet.attendance.model.dao.AttendanceDAO;
 import com.ln.intranet.common.Util;
 import com.ln.intranet.common.model.vo.UploadFile;
+import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.dao.ProjectDAO;
 import com.ln.intranet.work.model.dao.WorkDAO;
 import com.ln.intranet.work.model.vo.ApprovalMember;
@@ -345,6 +346,12 @@ public class WorkServiceImp implements WorkService {
 	@Override
 	public List<ProjectList> pList(int deptNo) {
 		return pDao.pList(deptNo);
+	}
+
+	// 임시저장 리스트 불러오기
+	@Override
+	public List<WorkDetail> workTemp(Member loginMember) {
+		return dao.workTemp(loginMember);
 	}
 
 

@@ -71,6 +71,7 @@
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
 		WHERE MEM_NO = ${memNo}
 		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		AND TEMP_SAVE IS NULL
 		ORDER BY SEND_DATE DESC
 	</select>
 	
@@ -145,6 +146,7 @@
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
 		WHERE NEXT = ${memNo}
 		AND WORK_STATE = '진행중'
+		AND TEMP_SAVE IS NULL
 		ORDER BY SEND_DATE DESC
 	</select>
 	
@@ -184,6 +186,17 @@
 			WHERE WORK_NO = ${workNo}
 		</if>
 	</update>
+	
+	
+	<!-- 임시저장 리스트 불러오기 -->
+	<select id="workTemp" resultMap="workGeneralList_rm">
+		SELECT WORK_NO , TYPE_NO , TITLE , SEND_DATE , TYPE_NAME
+		FROM "WORK"
+		LEFT JOIN WORK_TYPE USING (TYPE_NO)
+		WHERE MEM_NO = ${memNo}
+		AND TEMP_SAVE = 'Y'
+	</select>
+	
 	
 	
 </mapper>
