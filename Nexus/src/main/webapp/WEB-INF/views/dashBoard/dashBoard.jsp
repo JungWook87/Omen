@@ -36,7 +36,7 @@
 
     <div class="container">
 
-        <div id="hr-div">
+        <div id="hr-div" class="mainDiv">
             <div class="left">
                 <div class="hr-head">
                     <a class="managePageA" href="/dashBoard/humanResourceManage">❐ 인사 관리</a>
@@ -48,7 +48,6 @@
 
             <div class="hr-content">            
                 <div class="info-div">
-
                     <!-- 팀라디오 선택 -->
                     <div class="team-selector">
                         <c:forEach var="team" items="${dtList}">
@@ -56,7 +55,6 @@
                             <label for="team${team.teamNo}-radio">${team.teamName}</label><br>
                         </c:forEach>
                     </div>
-
                     <!-- 팀별 조회용 기본적으로 display : none -->
                     <c:forEach var="team" items="${dtList}" >
                         <div id="team-${team.teamNo}-data" class="team-data" style="display: none">
@@ -91,7 +89,7 @@
             
         </div>
 
-        <div class="project-div">
+        <div class="project-div mainDiv">
             <div class="left">
                 <div class="project-head">
                     <a class="managePageA" href="/dashBoard/projectManage">❐ 프로젝트 관리</a>
@@ -102,8 +100,25 @@
             </div>
 
             <div class="project-content">
-                <div class="info-div">
-
+                <div class="project-info-div">
+                    <c:forEach var="projectTotal" items="${prList}" >
+                        <div id="projectDiv-${projectTotal.projectNo}" class="projectDiv">
+                            <div class="selectedProject">
+                                <span style="display: none;">Project No: ${projectTotal.projectNo}</span>
+                                <span>${projectTotal.title}</span>
+                                <span>${projectTotal.memName} ${projectTotal.teamName} ${projectTotal.jobName}</span>
+                                <span>${projectTotal.start} - ${projectTotal.end}</span>
+                                <span>진행도 : ${projectTotal.percent} %</span>
+                            </div>
+                            <c:forEach var="taskTotal" items="${projectTotal.taskList}">
+                                <div class="selectedTask">
+                                    <span>과제명 : ${taskTotal.title}</span>
+                                    <span>작성자 : ${taskTotal.memName} ${taskTotal.jobName}</span>
+                                    <span>결재상태 : ${taskTotal.workState}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </c:forEach>
                 </div>
             </div> 
 

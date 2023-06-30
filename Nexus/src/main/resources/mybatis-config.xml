@@ -35,6 +35,8 @@
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.HumanResourceManage" alias="hrManage"/>
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.DeptTeam" alias="deptTeam"/>		
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.ProjectPolar" alias="projectPolar"/>		
+		<typeAlias type="com.ln.intranet.dashBoard.model.vo.ProjectTotal" alias="projectTotal"/>		
+		<typeAlias type="com.ln.intranet.dashBoard.model.vo.TaskTotal" alias="taskTotal"/>
 	</typeAliases>
 	
 	<mappers>

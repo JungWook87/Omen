@@ -15,7 +15,7 @@ public class ProjectTask {
 	private int projectNo; // 고유번호
 	
 	private int memNo; // 작성자 사원번호
-	private String memName; // 작성자 이름
+	private String memName; // 작성자
 	
 	private int deptNo;
 	

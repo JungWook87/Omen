@@ -17,6 +17,7 @@ import com.ln.intranet.dashBoard.model.vo.AttnDoughnut;
 import com.ln.intranet.dashBoard.model.vo.DeptTeam;
 import com.ln.intranet.dashBoard.model.vo.HumanResourceManage;
 import com.ln.intranet.dashBoard.model.vo.ProjectPolar;
+import com.ln.intranet.dashBoard.model.vo.ProjectTotal;
 import com.ln.intranet.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -67,11 +68,17 @@ public class DashBoardController {
 		}
 		
 		List<DeptTeam> dtList = new ArrayList<DeptTeam>();
-		
 		dtList = service.dtList(deptNo);
+		
+		// 프로젝트 총 리스트
+		List<ProjectTotal> prList = new ArrayList<ProjectTotal>();
+		prList = service.prList(deptNo);
+		
+		log.info("1번째 프로젝트 이름 : " + prList.get(0).getTitle());
 		
 		model.addAttribute("hrList", hrList);
 		model.addAttribute("dtList", dtList);
+		model.addAttribute("prList", prList);
 		
 			
 		return "/dashBoard/dashBoard";
