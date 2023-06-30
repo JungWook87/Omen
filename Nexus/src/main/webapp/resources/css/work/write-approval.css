@@ -184,7 +184,7 @@
 
 .date-Box{
   display: flex;
-  gap: 10%;
+  gap: 5%;
 }
 
 .work-modal-startDate,.work-modal-endDate {
@@ -218,6 +218,7 @@
 .work-modal-projectBox{
   float: right;
   margin-block: 5px;
+  cursor: pointer;
 }
 /* 프로젝트 박스 (과제명, 과제내용) */
 .projectBox {
@@ -311,6 +312,7 @@
     transform-origin: top;
     transform: translatey(-100%) rotatex(90deg);
   }
+  
  
 
   .team-list{

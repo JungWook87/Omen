@@ -106,8 +106,8 @@
         </div>
 
         <div class="work-modal-approver">
-          <p></p>
-          <div id="showMemName">결재자</div>
+          <p>결재자</p>
+          <div id="showMemName">-</div>
           <input style="display: none;" type="text" name="next">
         </div>
 
@@ -152,11 +152,11 @@
                   </ul>
 
                   <ul class="dept"><p>부서</p>
-                    <li class="dept-list"><p>관리기획부</p>
-                    <li class="dept-list"><p>업무기획부</p>
-                    <li class="dept-list"><p>공무기획부</p>
-                    <li class="dept-list"><p>개발사업부</p>
-                    <li class="dept-list"><p>전략기획실</p>
+                    <li class="dept-list"><p>관리기획부</p></li>
+                    <li class="dept-list"><p>업무기획부</p></li>
+                    <li class="dept-list"><p>공무기획부</p></li>
+                    <li class="dept-list"><p>개발사업부</p></li>
+                    <li class="dept-list"><p>전략기획실</p></li>
                   </ul>
                 </div>
 

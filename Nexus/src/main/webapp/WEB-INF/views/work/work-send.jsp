@@ -104,7 +104,6 @@
               </select>
 
               <div class="button-box">
-                <button type="button" class="search-btn" >검색하기</button>
                 <button type="button" class="omen-btn" id="popupBtn">결재 작성하기</button>              
               </div>    
 

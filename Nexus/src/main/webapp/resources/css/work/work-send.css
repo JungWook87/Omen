@@ -38,6 +38,13 @@ section {
 
 }
 
+.side-bar li>a {
+  padding-left: 40px;
+
+}
+
+
+
 .side-bar li:nth-child(1) {
   border-left: 10px solid var(--primary500);
 
@@ -51,7 +58,7 @@ section {
 }
 
 .side-bar li:first-child>a:first-child {
-  padding-left: 40px;
+  padding-left: 30px;
 }
 
 .side-bar li:first-child>a{
@@ -192,7 +199,7 @@ margin-top: 30px;
   color: gray;
   display: flex;
   justify-content: center;
-  gap: 100px;
+  gap: 114px;
 }
 
 .content-all-date-input > input{
@@ -233,19 +240,6 @@ select{
   font-size: large;
 }
 
-/* 검색하기 버튼 */
-.search-btn{
-  width: 80px;
-  height: 35px;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  background-color:rgba(155,215,255,0.5);
-  font-size: 16px;
-  color: #2778c4;
-  cursor: pointer;
-  margin-right: 10px;
-}
 /* -------------------------------------- */
 
 /* 컨텐츠 하단 부분 테이블 */
@@ -1165,13 +1159,12 @@ input[type='date'] {
   position: relative;
   width: 100%;
   padding: 10px;
-  background: url(../../../assets/Calendar.svg) no-repeat right 10px center / 35px auto;
+  color: var(--gray200);
+  background: url(/Nexus/src/main/webapp/resources/images/date.svg) no-repeat right 10px center / 35px auto;
   background-color: #bbb;
   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  text-align: center;
   font-size: 100%;
-  margin-bottom: 20px;
 }
 input[type='date']::-webkit-calendar-picker-indicator {
   position: absolute;
