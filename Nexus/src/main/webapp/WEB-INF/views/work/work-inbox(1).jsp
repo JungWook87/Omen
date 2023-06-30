@@ -24,12 +24,6 @@
   <!-- 폰트어썸 -->
   <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
 
-  <!-- 날짜조회api-->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
-
   <title>결재-수신함-결재할것</title>
 </head>
 
@@ -39,29 +33,18 @@
 
   <section>
 <!------------------------------------- 사이드 바 --------------------------------------------------->
-    <div class="side-bar menu">
+<div class="side-bar menu">
+  <h1>결재</h1>
 
-      <div class="side-barTitle">
-
-        <a href="workSend" id="side-barTitle-a">
-          <img src="${contextPath}/resources/images/leftArrow.png" alt="">
-        </a>
-
-        <h1>수신함</h1>
-
-      </div>
-
-        <ul>
-          <li><a href="workInbox"><span>결재할문서</span> </a></li>
-          <li><a href="workInbox"><span>결재진행중</span> </a></li>
-          <li><a href="workInboxEnd"><span>결재완료</span> </a></li>
-        </ul>
-
-
-    </div>
+  <ul>
+      <li><a href="workSend"><span>상신함</span> </a></li>
+      <li><a href="workInbox"><span>수신함</span> </a></li>
+      <li><a href="workTemp"><span>임시저장</span> </a></li>
+  </ul>
+</div>
 <!------------------------------------- 사이드 바 끝 ------------------------------------------------->
 
-<!-------------------------------- 컨텐츠 내용 --------------------------------------------------------------------->
+<!------------------------------------- 컨텐츠 내용 -------------------------------------------------->
     <div class="content-all-page">
 
       <div class="content-all-top-area">
@@ -82,7 +65,6 @@
 
             <div class="button-box">
 
-              <button type="button" class="search-btn" >검색하기</button>
               <button type="button" class="omen-btn" id="popupBtn">결재 작성하기</button>
               
             </div>    

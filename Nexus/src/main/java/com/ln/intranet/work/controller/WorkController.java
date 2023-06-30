@@ -178,7 +178,7 @@ public class WorkController {
 	}
 	
 	
-	// 결재 수신함 - 결재할 문서
+	// 결재 수신함
 	@GetMapping("/workInbox")
 	public String workInbox(Model model,
 			@ModelAttribute("loginMember") Member loginMember) {
@@ -189,53 +189,19 @@ public class WorkController {
 		
 		return "/work/work-inbox(1)";
 	}
-
-	// 결재 수신함 - 결재 진행 중
-	@GetMapping("/workInboxIng")
-	public String workIng(
-			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
-			Model model,
-			@ModelAttribute("loginMember") Member loginMember
-			) {
-		
-		return "/work/work-inbox-ing(2)";
-	}
-	
-	// 결재 수신함 - 결재 완료
-	@GetMapping("/workInboxEnd")
-	public String workEnd(
-			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
-			Model model,
-			@ModelAttribute("loginMember") Member loginMember
-			) {
-			
-		
-		return "/work/work-inobx-end(3)";
-	}
 	
 	// 결재 임시 보관함
 	@GetMapping("/workTemp")
-	public String workTemp(
-			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
-			Model model,
-			@ModelAttribute("loginMember") Member loginMember
-			) {
+	public String workTemp( Model model,
+			@ModelAttribute("loginMember") Member loginMember) {
+		
+		List<WorkDetail> tempList = service.workTemp(loginMember);
 			
+		model.addAttribute("tempList", tempList);
 		
 		return "/work/work-temp";
 	}
 	
-	// 결재 템플렛
-	@GetMapping("/workTemplate")
-	public String workTemplate(
-			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
-			Model model,
-			@ModelAttribute("loginMember") Member loginMember
-			) {
-			
-		
-		return "/work/work-template";
-	}
 	
 	
 	
