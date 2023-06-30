@@ -9,6 +9,12 @@
 		<result property="typeCount" column="COUNT"/>			
 	</resultMap>
 	
+	<resultMap type="projectPolar" id="projectPolar_rm">
+		<id property="projectNo" 	column="PROJECT_NO"/>
+		<result property="title" 		column="TITLE"/>
+		<result property="percent" 	column="PERCENT"/>
+	</resultMap>
+	
 	<resultMap type="hrManage" id="hrManage_rm">
 		<id property="memNo" 			column="MEM_NO"/>
 		<result property="memName" 	column="MEM_NAME"/>
@@ -86,6 +92,15 @@
 		FROM TEAM
 		JOIN DEPARTMENT USING (DEPT_NO)
 		WHERE DEPT_NO = #{deptNo}
+	</select>
+	
+	<select id="polarList" parameterType="_int" resultMap="projectPolar_rm">
+		SELECT PROJECT_NO, P.TITLE AS TITLE, ROUND(COUNT(CASE WHEN PT.WORK_STATE='승인' THEN 1 END)/COUNT(*)*100,1) AS PERCENT
+		FROM PROJECT p 
+		JOIN PROJECT_TASK pt USING (PROJECT_NO)
+		WHERE P.DEPT_NO = #{deptNo}
+		GROUP BY PROJECT_NO, P.TITLE
+		ORDER BY PROJECT_NO ASC
 	</select>
 
 </mapper>

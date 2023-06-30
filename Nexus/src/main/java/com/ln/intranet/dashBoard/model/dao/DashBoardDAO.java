@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ln.intranet.dashBoard.model.vo.AttnDoughnut;
 import com.ln.intranet.dashBoard.model.vo.DeptTeam;
 import com.ln.intranet.dashBoard.model.vo.HumanResourceManage;
+import com.ln.intranet.dashBoard.model.vo.ProjectPolar;
 
 @Repository
 public class DashBoardDAO {
@@ -29,6 +30,12 @@ public class DashBoardDAO {
 	// 단순 팀부서 정보 DAO
 	public List<DeptTeam> dtList(int deptNo) {
 		return sqlSession.selectList("dashBoardMapper.dtList",deptNo);
+	}
+
+	// 부서 프로젝트 폴라 리스트
+	public List<ProjectPolar> polarList(int deptNo) {
+
+		return sqlSession.selectList("dashBoardMapper.polarList",deptNo);
 	}
 
 }

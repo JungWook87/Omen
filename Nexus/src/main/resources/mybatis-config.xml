@@ -34,6 +34,7 @@
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.AttnDoughnut" alias="attnDoughnut"/>
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.HumanResourceManage" alias="hrManage"/>
 		<typeAlias type="com.ln.intranet.dashBoard.model.vo.DeptTeam" alias="deptTeam"/>		
+		<typeAlias type="com.ln.intranet.dashBoard.model.vo.ProjectPolar" alias="projectPolar"/>		
 	</typeAliases>
 	
 	<mappers>
