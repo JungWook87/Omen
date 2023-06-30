@@ -16,6 +16,7 @@ import com.ln.intranet.dashBoard.model.service.DashBoardService;
 import com.ln.intranet.dashBoard.model.vo.AttnDoughnut;
 import com.ln.intranet.dashBoard.model.vo.DeptTeam;
 import com.ln.intranet.dashBoard.model.vo.HumanResourceManage;
+import com.ln.intranet.dashBoard.model.vo.ProjectPolar;
 import com.ln.intranet.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -88,6 +89,19 @@ public class DashBoardController {
 
 		log.info("조회한 부서 : " + loginMember.getDeptName());			
 		list = service.doughnutList(loginMember.getDeptNo());
+		
+		return list;
+	}
+	
+	@ResponseBody
+	@GetMapping("projectPolar")
+	public List<ProjectPolar> polarList(
+			@ModelAttribute("loginMember") Member loginMember
+			){
+		
+		List<ProjectPolar> list = new ArrayList<ProjectPolar>();
+		
+		list = service.polarList(loginMember.getDeptNo());
 		
 		return list;
 	}
