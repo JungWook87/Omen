@@ -218,7 +218,7 @@ input {
   padding-left: 10px;
   position: relative;
   background: none;
-  z-index: 5;
+  z-index: 0;
   font-family: sans-serif;
 }
 
@@ -256,8 +256,8 @@ input:focus {
 
 }
 
-input:focus~label,
-input:valid~label {
+.myPage-pw-input input:focus~label,
+.myPage-pw-input input:valid~label {
   font-size: 22px;
   bottom: 40px;
   color: var(--primary400);
@@ -265,8 +265,8 @@ input:valid~label {
 
 }
 
-input:focus~span,
-input:valid~span {
+.myPage-pw-input input:focus~span,
+.myPage-pw-input input:valid~span {
   width: 800px;
 }
 
@@ -322,4 +322,8 @@ input:valid~span {
 
 .swal2-title {
   text-wrap: balance;
+}
+
+#sidebarMenu {
+  z-index: 2;
 }

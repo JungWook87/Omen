@@ -14,7 +14,7 @@ section {
 
   background-color: var(--side);
 
-  z-index: 100;
+  z-index: 2;
 }
 
 .side-bar ul {

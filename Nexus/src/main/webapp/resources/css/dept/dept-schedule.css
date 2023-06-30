@@ -9,7 +9,7 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  height: 100vh;
+  /* height: 100vh; */
 
   background-color: var(--side);
 
@@ -265,4 +265,18 @@ a:focus {
 
 #calendar{
   margin-bottom: 100px;
+}
+
+
+/* 사이드바 반응형 */
+ #sidebarMenu {
+  z-index: 2;
+}
+.sidebarIconToggle {
+  z-index: 3;
+}
+
+
+.sidebarMenuInner li:nth-child(4) span {
+  color: var(--primary500);
 }

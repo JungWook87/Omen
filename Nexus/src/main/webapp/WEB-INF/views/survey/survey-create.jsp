@@ -31,6 +31,22 @@
 
       <section>
 
+        
+        <!-- 사이드바 반응형 -->
+        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+        <label for="openSidebarMenu" class="sidebarIconToggle">
+          <div class="spinner diagonal part-1"></div>
+          <div class="spinner horizontal"></div>
+          <div class="spinner diagonal part-2"></div>
+        </label>
+        <div id="sidebarMenu">
+          <ul class="sidebarMenuInner">
+            <li>설문생성/관리</li>
+            <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+            <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+          </ul>
+        </div>
+
        
             <!-- 사이드 바 -->
             <div class="side-bar menu">
@@ -47,13 +63,15 @@
             <!-- 컨텐츠 내용 -->
             <div class="content-all-page">
 
-              <form action="create" method="post">
+              <form action="create" method="post" onsubmit="return validation()">
                 <!-- 윗부분 -->
                 <div class="survey-create-top">
                   <input id="survey-create-top-title" name="surveyTopic" type="text" placeholder="제목 없는 설문">
                   <input name="surveyContent" type="text" placeholder="설문에 대한 설명을 적어주세요.(선택사항)">
                   <br>
-                  <input name="end" type="text" placeholder="종료일을 설정해주세요">
+                  <!-- <input name="end" type="text" placeholder="종료일을 설정해주세요"> -->
+                  <input type="date" name="end" value="" class="input-txt" id="date" aria-required="true" aria-invalid="false" placeholder="종료일을 지정해 주세요" 
+                  onchange="this.className=(this.value!=''?'has-value':'')">
                 </div>
 
                 <!-- 가운데 -->
