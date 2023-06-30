@@ -2,38 +2,37 @@
 
 #modalWrap, #approver-modal-wrap {
   position: fixed;
-  z-index: 1;
-
+  z-index: 5;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
 
 }
 
 #approver-modal-wrap {
-  height: 122%;
+  z-index: 7;
 }
 
 .work-modalBody, .approver-modal-Body {
   min-width: 570px;
   min-height: 100px;
-  max-width: 80%;
+  max-width: 85%;
   max-height: 85%;
 
   background: white;
   border-radius: 10px;
 
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 10%;
+  margin-bottom: 10%;
 
   position: relative;
   padding: 30px;
   overflow: auto;
-  width: 80%;
 }
 
 .work-modalBody.modal-open {
@@ -182,6 +181,16 @@
   outline: none;
 
 }
+
+.date-Box{
+  display: flex;
+  gap: 10%;
+}
+
+.work-modal-startDate,.work-modal-endDate {
+  width: 50%;
+}
+
 /* -------------------------------------- */
 
 /* 일반 체크  */
@@ -577,6 +586,8 @@ input:checked + label:hover{
   padding-top: 5px;
 
   cursor: pointer;
+
+  margin-bottom: 20%;
 }
 
 #success-btn:hover {

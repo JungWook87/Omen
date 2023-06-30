@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <body>
-  
   <div id="modalWrap">
     <div class="work-modalBody">
       <span id="closeBtn">
@@ -61,19 +60,22 @@
             <p>제목</p>
             <input type="text" placeholder="제목을 입력해주세요" name="title">
           </div>
+          <!-- 날짜 박스 -->
+          <div class="date-Box">
 
-          <!-- 시작날짜 -->
-          <div class="work-modal-startDate">
-            <p>시작날짜</p>
-            <input type="date" name="start" >
+            <!-- 시작날짜 -->
+            <div class="work-modal-startDate">
+              <p>시작날짜</p>
+              <input type="date" name="start" >
+            </div>
+
+            <!-- 종료날짜 -->
+            <div class="work-modal-endDate">
+              <p>종료날짜</p>
+              <input type="date" name="end" >
+            </div>
+
           </div>
-
-          <!-- 종료날짜 -->
-          <div class="work-modal-endDate">
-            <p>종료날짜</p>
-            <input type="date" name="end" >
-          </div>
-
           <!-- 내용 -->
           <div class="work-modal-detail">
             <p>내용</p>
@@ -104,7 +106,7 @@
         </div>
 
         <div class="work-modal-approver">
-          <p>결재자</p>
+          <p></p>
           <div id="showMemName">결재자</div>
           <input style="display: none;" type="text" name="next">
         </div>
