@@ -99,24 +99,90 @@
                 </div>
             </div>
 
+
+            <!-- 프로젝트 생성 -->
             <div class="project-content">
                 <div class="project-info-div">
                     <c:forEach var="projectTotal" items="${prList}" >
                         <div id="projectDiv-${projectTotal.projectNo}" class="projectDiv">
-                            <div class="selectedProject">
-                                <span style="display: none;">Project No: ${projectTotal.projectNo}</span>
-                                <span>${projectTotal.title}</span>
-                                <span>${projectTotal.memName} ${projectTotal.teamName} ${projectTotal.jobName}</span>
-                                <span>${projectTotal.start} - ${projectTotal.end}</span>
-                                <span>진행도 : ${projectTotal.percent} %</span>
-                            </div>
-                            <c:forEach var="taskTotal" items="${projectTotal.taskList}">
-                                <div class="selectedTask">
-                                    <span>과제명 : ${taskTotal.title}</span>
-                                    <span>작성자 : ${taskTotal.memName} ${taskTotal.jobName}</span>
-                                    <span>결재상태 : ${taskTotal.workState}</span>
-                                </div>
-                            </c:forEach>
+                                <table class="projects-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Project</th>
+                                            <th>Deadline</th>
+                                            <th>Leader + Team</th>
+                                            <th class="text-right">Progress</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td>
+                                            <P>${projectTotal.title}</P>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <P>${projectTotal.end}</P>
+                                            <P>마감일</P>
+                                        </td>
+                                        <td>
+                                            <P>${projectTotal.memName} ${projectTotal.jobName}</P>
+                                            <P>${projectTotal.teamName}</P>
+                                        <td class="project-progress">
+                                            <div class="single-chart">
+                                                <svg viewBox="0 0 36 36" class="circular-chart green">
+                                                  <path class="circle-bg"
+                                                    d="M18 2.0845
+                                                      a 10 10 0 0 1 0 31.831
+                                                      a 10 10 0 0 1 0 -31.831"
+                                                  />
+                                                  <path class="circle"
+                                                    stroke-dasharray="${projectTotal.percent}, 100"
+                                                    d="M18 2.0845
+                                                    a 10 10 0 0 1 0 31.831
+                                                    a 10 10 0 0 1 0 -31.831"
+                                                  />
+                                                  <text x="18" y="22" class="percentage">${projectTotal.percent}%</text>
+                                                </svg>
+                                              </div>
+                                        </td>
+                                        <td style="display: none;">
+                                            <P>Project No: ${projectTotal.projectNo}</P>
+                                        </td>
+                                    </tr>
+                                </table>
+                            <table class="projects-table">
+                                <thead>
+                                    <tr>
+                                        <th><p>Project Task</p></th>
+                                        <th><p>SendDate</p></th>
+                                        <th><p>Leader + Team</p></th>
+                                        <th class="text-right">Work State</th>
+                                    </tr>
+                                </thead>
+                                <c:forEach var="taskTotal" items="${projectTotal.taskList}">
+                                    <tr>
+                                        <td>
+                                            <p>${taskTotal.title}</p>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p>${taskTotal.approvalDate}</p>
+                                            <p class="text-danger">제출일</p>
+                                        </td>
+                                        <td class="member">
+                                            <div class="member-info">
+                                                <p>${taskTotal.memName} ${taskTotal.jobName}</p>
+                                                <p>${taskTotal.teamName}</p>
+                                            </div>
+                                        </td>
+                                        <td class="status">
+                                            <span class="status-text" 
+                                            value="${taskTotal.workState}">
+                                            ${taskTotal.workState}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </c:forEach>     
+                            </table>
                         </div>
                     </c:forEach>
                 </div>

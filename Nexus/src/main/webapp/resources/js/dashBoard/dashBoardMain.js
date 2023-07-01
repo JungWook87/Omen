@@ -43,7 +43,7 @@ $(document).ready(function(){
                                 '#F20574',
                                 '#30B893',
                                 '#FBD315',
-                                '#B4BBC5',
+                                '#9BA4B1',
                                 '#EDEBF0',  
                                 '#FF979D',
                                 '#FFB4BF',
@@ -250,3 +250,24 @@ function createProjectInfo(projectNo){
         }
     }
 }
+
+
+
+let status = `${taskTotal.workState}`; 
+let statusClass = "";
+
+switch(status) {
+    case '승인':
+        statusClass = "status-green";
+        break;
+    case '진행중':
+        statusClass = "status-orange";
+        break;
+    case '반려':
+        statusClass = "status-red";
+        break;
+    default:
+        statusClass = "";
+}
+
+document.querySelector(".status-text").classList.add(statusClass);

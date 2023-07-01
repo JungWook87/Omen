@@ -13,6 +13,7 @@ body{
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
     display: flex;
+    
 }
 span, p{
     margin-top: 4px;
@@ -28,11 +29,11 @@ span, p{
 .mainDiv > div{
     margin : 0 20px;
 }
-
+/* 
 div{
     border: 1px solid #CDD2D8;
     border-color: rgb(176, 230, 165);
-}
+} */
 
 
 .container{
@@ -143,12 +144,12 @@ div{
 }
 #progressBar::-webkit-progress-value {
     border-radius:4px;
-    background: var(--primary400);
+    background: #04A2E4;
 }
 
 #progressBar.underBlue::-webkit-progress-value {
     border-radius:4px;
-    background: var(--primary300); 
+    background: #04A2E4; 
 }
 
 #progressBar.overOrange::-webkit-progress-value {
@@ -188,7 +189,7 @@ div{
 
 
 .project-div {
-
+    margin-top: 30px;
 }
 
 .project-content {
@@ -262,4 +263,202 @@ input[id="tab03"]:checked ~ .con3 {display:block;}
     /* 초록색 */
     --green: #00cc00;
 
+}
+
+/* 과제생성 */
+.projects {
+    background-color: #273142;
+    border: 1px solid #313D4F;
+    overflow-x: auto;
+    width: 100%;
+  }
+  
+  .projects-inner {
+    border-radius: 4px;
+  }
+  
+  .projects-header {
+    color: white;
+    padding: 22px;
+  }
+  
+  .projects-header .count,
+  .projects-header .title {
+    display: inline-block;
+  }
+  
+  .projects-header .count {
+    color: #738297;
+  }
+  
+  .projects-header .title {
+    font-size: 21px;
+  }
+  
+  .projects-header .title + .count {
+    margin-left: 5px;
+  }
+  
+  .projects-table {
+    background: white;
+    width: 100%;
+  }
+  
+  .projects-table td{
+    color: var(--gray700);
+    padding: 5px 22px;
+    vertical-align: middle;
+  }
+  .projects-table th {
+    color : var(--gray700);
+    padding: 10px 22px;
+    vertical-align: middle;
+}
+  
+  .projects-table td p {
+    font-size: 15px;
+  }
+  
+  .projects-table td p:last-of-type {
+    color: #738297;
+    font-size: 11px;
+  }
+  
+  .projects-table th {
+    background-color: var(--gray50);
+  }
+  
+  .projects-table tr {
+
+  }
+  
+  .projects-table tr:hover {
+    background-color: #f7f5f2;
+  }
+  
+  .projects-table tr:not(:last-of-type) {
+    border-bottom: 1px solid #313D4F;
+  }
+  
+  
+  .projects-table .status > form {
+    float: right;
+  }
+  
+  .projects-table .status-text {
+    display: inline-block;
+    font-size: 12px;
+    margin: 11px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  
+  .projects-table .status-text:before {
+    border: 3px solid;
+    border-radius: 50%;
+    content: "";
+    height: 14px;
+    left: 0;
+    position: absolute;
+    top: 1px;
+    width: 14px;
+  }
+  
+  .projects-table .status-text.status-blue:before {
+    border-color: #1C93ED;
+  }
+  
+  .projects-table .status-text.status-green:before {
+    border-color: #66B92E;
+  }
+  
+  .projects-table .status-text.status-orange:before {
+    border-color: #DA932C;
+  }
+  
+  .projects-table .status-text.status-red:before {
+    border-color: #D65B4A;
+  }
+  
+  .danger-item {
+    border-left: 4px solid #A84D43;
+  }
+  
+
+
+
+
+   /* 테이블 크기 정하기 */
+   tr :nth-child(1) {
+    text-align: left; 
+   }
+   tr :nth-child(2) {
+    width : 25%;
+    text-align : left;
+   }
+
+   tr > td:nth-child(1){
+    width : 35%;
+    text-align: left;
+   }
+
+   td :nth-child(1) > p {
+    font-size: 16px;
+   }
+   tr :nth-child(3) {
+    width : 15%;
+    text-align : left;
+   }
+
+.project-progress{
+    padding: 10px !important;
+}
+
+/* 진행도표시기 */
+
+.flex-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.single-chart {
+    width: 35%;
+    margin: auto;
+}
+
+.circular-chart {
+    display: block;
+    max-height: 250px;
+}
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 4.5; 
+}
+
+.circle {
+    fill: none;
+    stroke-width: 4; 
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+
+.circular-chart.orange .circle {
+    stroke: #ff9f00;
+}
+
+.circular-chart.green .circle {
+    stroke: #4CC790;
+}
+
+.circular-chart.blue .circle {
+stroke: #3c9ee5;            
+}
+
+.percentage {
+    fill: #666;
+    font-family: sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-anchor: middle;
 }
