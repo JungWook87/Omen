@@ -130,10 +130,6 @@
     
 </section>
 
-<!-- 근태 도넛그래프 -->
-<script>
-
-</script>
  
 <script src="${contextPath}/resources/js/dashBoard/dashBoardMain.js"></script>
 
