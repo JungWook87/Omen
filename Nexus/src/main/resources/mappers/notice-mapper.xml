@@ -41,7 +41,9 @@
 	</select>
 	
 		<select id="selectDeptNoticeList" resultMap="notice_rm">
-		SELECT NOTICE_NO, TITLE, CREATE_DATE FROM NOTICE
+		SELECT NOTICE_NO, TITLE,
+		TO_CHAR(CREATE_DATE , 'YYYY-MM-DD') AS CREATE_DATE 
+		FROM NOTICE
 		WHERE NOTICE_TYPE = #{deptNo}
 		ORDER BY NOTICE_NO DESC
 	</select>

@@ -1,15 +1,16 @@
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
 
- 
+
 
   display: flex;
 }
+
 /* -------------------------------------- */
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  
+
   height: 100vh;
   background-color: var(--side);
 
@@ -19,6 +20,7 @@ section {
   margin: 0;
   padding: 0;
 }
+
 /* -------------------------------------- */
 
 /* 사이드바 제목 스타일 */
@@ -61,7 +63,7 @@ section {
   padding-left: 30px;
 }
 
-.side-bar li:first-child>a{
+.side-bar li:first-child>a {
   padding-left: 30px;
 }
 
@@ -156,9 +158,8 @@ a:focus {
 
 /* 컨텐츠 영역 전체 */
 .content-all-page {
-	width: 100%;
-	height: 100%
-	
+  width: 100%;
+  height: 100%
 }
 
 /* 컨텐츠 상단 부분 */
@@ -185,16 +186,16 @@ a:focus {
 }
 
 /* 결재 시작일 종료일 조회영역 */
-.content-all-date{
-display: flex;
-flex-direction: column;
-justify-content: center;
-text-align: center;
-margin-top: 30px;
+.content-all-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
 }
 
 /* 결재 시작일 종료일 텍스트 및 데이트 */
-.content-all-date-p{
+.content-all-date-p {
   font-size: larger;
   color: gray;
   display: flex;
@@ -202,17 +203,18 @@ margin-top: 30px;
   gap: 114px;
 }
 
-.content-all-date-input > input{
+.content-all-date-input>input {
   width: 310px;
   height: 50px;
   font-size: x-large;
   border: none;
 }
 
-label{
+label {
   font-size: x-large;
   margin-right: 50px;
 }
+
 /* -------------------------------------- */
 
 /* 컨텐츠 하단 부분 */
@@ -223,16 +225,16 @@ label{
   margin-right: 130px;
 }
 
-.content-all-bottom-area-header >button {
+.content-all-bottom-area-header>button {
   float: right;
 }
 
-.content-all-bottom-area-header{
+.content-all-bottom-area-header {
   display: flex;
   justify-content: space-between;
 }
 
-select{
+select {
   width: 140px;
   margin-right: 10px;
   padding: 0px 20px;
@@ -244,11 +246,11 @@ select{
 
 /* 컨텐츠 하단 부분 테이블 */
 
-.content-all-bottom-area-content{
+.content-all-bottom-area-content {
   margin-top: 50px;
 }
 
-.content-all-bottom-area-content table{
+.content-all-bottom-area-content table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
@@ -267,16 +269,18 @@ select{
 }
 
 
-.content-all-bottom-area-content table td{
+.content-all-bottom-area-content table td {
   color: black;
   padding: 20px;
 }
+
 /* -------------------------------------- */
 
 /* 모달 박스 스타일 */
 /* 결재 모달창 */
 
-#modalWrap, #approver-modal-wrap {
+#modalWrap,
+#approver-modal-wrap {
   position: fixed;
   z-index: 1;
 
@@ -290,7 +294,8 @@ select{
 
 }
 
-.work-modalBody, .approver-modal-Body {
+.work-modalBody,
+.approver-modal-Body {
   min-width: 570px;
   min-height: 100px;
   max-width: 80%;
@@ -318,13 +323,13 @@ select{
 @keyframes modalAniOpen {
 
   0% {
-      opacity: 0;
-      transform: translateY(-30px);
+    opacity: 0;
+    transform: translateY(-30px);
   }
 
   100% {
-      opacity: 1;
-      transform: translateY(0px);
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
 
@@ -336,24 +341,26 @@ select{
 /* 모달창 닫을때 애니메이션 효과 */
 @keyframes modalAniClose {
   0% {
-      opacity: 1;
-      transform: translateY(0px);
+    opacity: 1;
+    transform: translateY(0px);
   }
 
   100% {
-      opacity: 0;
-      transform: translateY(-30px);
+    opacity: 0;
+    transform: translateY(-30px);
   }
 }
 
-.work-modalBody h1, .approver-modal-Body h1 {
+.work-modalBody h1,
+.approver-modal-Body h1 {
   color: var(--black);
 
   font-size: 24px;
 }
 
 /* 닫기 버튼 */
-#closeBtn, #approver-closeBtn {
+#closeBtn,
+#approver-closeBtn {
   float: right;
   color: var(--black);
 
@@ -362,7 +369,8 @@ select{
 }
 
 /* 닫기 버튼 이미지 */
-#closeBtn img, #approver-closeBtn img{
+#closeBtn img,
+#approver-closeBtn img {
   width: 18px;
   height: 18px;
 }
@@ -383,7 +391,7 @@ select{
   margin-top: 36px;
 }
 
-.work-modal-template select{
+.work-modal-template select {
   width: 25%;
   height: 40px;
 }
@@ -432,7 +440,7 @@ select{
   resize: none;
 }
 
-.work-modalBody input{
+.work-modalBody input {
   width: 100%;
   height: 50px;
   border: 1px solid var(--gray300);
@@ -443,7 +451,7 @@ select{
   outline: none;
 }
 
-.work-modal-approver input{
+.work-modal-approver input {
   width: 100%;
   height: 50px;
   border: 1px solid var(--gray300);
@@ -454,34 +462,39 @@ select{
   outline: none;
 
 }
+
 /* -------------------------------------- */
 
 /* 일반 체크  */
 #normal-checkd {
   display: none;
 }
+
 /* 프로젝트 체크 */
-#project-checked{
+#project-checked {
   display: none;
 }
+
 /* 과제 체크 */
-#assignment-checked{
+#assignment-checked {
   display: none;
 }
 
 /* 선탁창 일반 체크 시 템플릿 */
-.work-modal-template-select{
+.work-modal-template-select {
   display: flex;
 }
 
 .work-modal-template-select select {
   margin-right: 10px;
 }
+
 /* 프로젝트 박스 (과제추가버튼)*/
-.work-modal-projectBox{
+.work-modal-projectBox {
   float: right;
   margin-block: 5px;
 }
+
 /* 프로젝트 박스 (과제명, 과제내용) */
 .projectBox {
   margin-top: 36px;
@@ -491,8 +504,9 @@ select{
   display: flex;
   flex-direction: column;
 }
+
 /* 프로젝트 박스 (버튼) */
-.projectBox div > button{
+.projectBox div>button {
   width: 50px;
   height: 30px;
   margin-top: 10px;
@@ -505,8 +519,9 @@ select{
   line-height: normal;
   cursor: pointer;
 }
+
 /* 결재자 박스 */
-.work-modal-approverBox{
+.work-modal-approverBox {
   float: right;
   margin-block: 20px;
   cursor: pointer;
@@ -514,26 +529,27 @@ select{
 
 /*결재자 메뉴*/
 
-*{
+* {
   text-decoration: none;
 }
 
 #approver-box p {
 
   display: block;
-  
+
   color: #333;
-  
-  }
-    
-  .Executives {
-      list-style: none;
-      width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-  
-  }
+
+}
+
+.Executives {
+  list-style: none;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
 /*     
   .M01>li, .M02>li, .M03>li {
   
@@ -606,15 +622,15 @@ select{
   background: var(--primary400);
   } */
 
-  .approver-checkBox{
-    margin: 5px;
-    width: 5%;
-    height: 5%;
-  }
+.approver-checkBox {
+  margin: 5px;
+  width: 5%;
+  height: 5%;
+}
 
 /* 결재자 박스 */
 
-.approver-modal-container{
+.approver-modal-container {
   width: 100%;
   height: 300px;
   border: 1px solid var(--gray300);
@@ -624,17 +640,20 @@ select{
   font-size: 18px;
   outline: none;
   overflow: auto;
-  max-height: 300px; /* 원하는 최대 높이 설정 */
+  max-height: 300px;
+  /* 원하는 최대 높이 설정 */
 }
 
 /* 결재자 모달선 */
-.approver-modal-line1, .approver-modal-line2{
+.approver-modal-line1,
+.approver-modal-line2 {
   border-bottom: 1px solid var(--gray300);
-  margin:  20px 0px;
+  margin: 20px 0px;
 
 }
+
 /* 확인 취소 버튼 */
-.approver-submit-reset-btns{
+.approver-submit-reset-btns {
   float: right;
 }
 
@@ -643,7 +662,7 @@ select{
   list-style: none;
 }
 
-#file-uploads{
+#file-uploads {
   display: none;
 }
 
@@ -721,11 +740,12 @@ select{
 }
 
 /* 임시 저장 */
-.work-modal-save{
+.work-modal-save {
   margin-top: 20px;
 }
+
 /* 임시저장 버튼 */
-#save-draft{
+#save-draft {
   width: 90px;
   height: 35px;
   padding: 13px;
@@ -747,7 +767,8 @@ select{
   float: right;
 }
 
-#cancell-btn, #approver-cancell-btn {
+#cancell-btn,
+#approver-cancell-btn {
   width: 60px;
   height: 30px;
 
@@ -770,7 +791,8 @@ select{
   transition: all 1s;
 }
 
-#success-btn, #approver-success-btn {
+#success-btn,
+#approver-success-btn {
   width: 60px;
   height: 30px;
 
@@ -828,24 +850,26 @@ select{
 }
 
 /* 모달 */
-.inbox-modal-header{
+.inbox-modal-header {
   background-color: var(--gray50);
-  
+
 }
+
 /* 모달 헤더 */
-.inbox-modal-modal-headerbox{
+.inbox-modal-modal-headerbox {
   margin-top: 29px;
   font-size: 16px;
 }
-.inbox-modal-headerbox-content{
+
+.inbox-modal-headerbox-content {
   padding: 3px 0px;
 }
 
-.inbox-modal-headerbox-footer{
+.inbox-modal-headerbox-footer {
   padding: 20px 0px;
 }
 
-.inbox-modal-headerbox-footer button{
+.inbox-modal-headerbox-footer button {
   color: inherit;
   height: 32px;
   padding: 8px 12px;
@@ -856,11 +880,11 @@ select{
 
 /* 모달 테이블영역 */
 
-.inbox-modal-table-body{
+.inbox-modal-table-body {
   margin-top: 50px;
 }
 
-.inbox-modal-table-body table{
+.inbox-modal-table-body table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
@@ -872,21 +896,23 @@ select{
   padding-bottom: 10px;
 }
 
-.inbox-modal-table-body table tbody tr:nth-of-type(1){
+.inbox-modal-table-body table tbody tr:nth-of-type(1) {
   background-color: var(--primary100);
   border-radius: 10px;
 }
-.inbox-modal-table-body table tbody tr:nth-of-type(2){
+
+.inbox-modal-table-body table tbody tr:nth-of-type(2) {
   background-color: var(--primary200);
   border-radius: 10px;
 }
-.inbox-modal-table-body table tbody tr:nth-of-type(3){
+
+.inbox-modal-table-body table tbody tr:nth-of-type(3) {
   background-color: var(--primary300);
   border-radius: 10px;
 }
 
 
-.inbox-modal-table-body table td{
+.inbox-modal-table-body table td {
   color: black;
   padding: 20px;
 }
@@ -899,7 +925,7 @@ select{
   margin-top: 36px;
 }
 
-.inbox-modal-table-body h2{
+.inbox-modal-table-body h2 {
   margin-bottom: 20px;
 }
 
@@ -920,7 +946,7 @@ select{
   resize: none;
 }
 
-.inbox-modal-coment input{
+.inbox-modal-coment input {
   width: 100%;
   height: 50px;
   border: 1px solid var(--gray300);
@@ -930,7 +956,7 @@ select{
   outline: none;
 }
 
-.inbox-modal-approver input{
+.inbox-modal-approver input {
   width: 100%;
   height: 50px;
   border: 1px solid var(--gray300);
@@ -942,7 +968,7 @@ select{
 
 }
 
-.inbox-modal-checkbox{
+.inbox-modal-checkbox {
   margin: 10px 0px 10px;
   width: 100%;
   display: flex;
@@ -951,7 +977,7 @@ select{
   align-items: center;
 }
 
-#inbox-modal-checkbox{
+#inbox-modal-checkbox {
   height: 15px;
   width: 20px;
 }
@@ -1006,8 +1032,7 @@ select{
 .write-modal-endDate,
 .write-modal-detail,
 .write-modal-businessDetail,
-.write-modal-approver
-{
+.write-modal-approver {
   width: 100%;
   max-height: 350px;
 
@@ -1153,6 +1178,7 @@ select{
   background-color: var(--gray50);
   transition: all 1s;
 }
+
 /* ------------------ */
 input[type='date'] {
   border: none;
@@ -1166,6 +1192,7 @@ input[type='date'] {
   border-radius: 8px;
   font-size: 100%;
 }
+
 input[type='date']::-webkit-calendar-picker-indicator {
   position: absolute;
   left: 0;
@@ -1176,11 +1203,19 @@ input[type='date']::-webkit-calendar-picker-indicator {
   color: transparent;
   cursor: pointer;
 }
+
 input[type='date']::before {
   content: attr(placeholder);
   width: 100%;
   height: 100%;
 }
+
 input[type='date']:valid::before {
   display: none;
+}
+
+
+/* 사이드바 반응형 */
+.sidebarMenuInner li:nth-child(2) span {
+  color: var(--primary500);
 }
