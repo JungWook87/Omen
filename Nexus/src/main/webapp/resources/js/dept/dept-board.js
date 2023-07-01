@@ -447,4 +447,6 @@ function boardDelete(boardNo){
 
 
 
+
+
  

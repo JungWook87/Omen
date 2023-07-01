@@ -35,6 +35,23 @@
 
       <jsp:include page="/WEB-INF/views/common/manager-header.jsp" />
       <section>
+      
+        <!-- 사이드바 반응형 -->
+      <div class="sidebarIconToggle">
+        <div class="spinner diagonal part-1"></div>
+        <div class="spinner horizontal"></div>
+        <div class="spinner diagonal part-2"></div>
+      </div>
+      <div id="sidebarMenu">
+        <ul class="sidebarMenuInner">
+          <li>직원/공지사항</li>
+          <li><a href="${contextPath}/member/memberAdd"><span>추가</span> </a></li>
+          <li><a href="${contextPath}/member/memberUpdate"><span>정보 수정</span> </a></li>
+          <li><a href="${contextPath}/member/memberDelete"><span>퇴사</span> </a></li>
+          <li><a href="${contextPath}/member/memberCheck"><span>조회</span> </a></li>
+          <li><a href="${contextPath}/member/notice"><span>공지사항 등록</span> </a></li>
+        </ul>
+      </div>
 
         <!-- 사이드 바 -->
         <div class="side-bar menu">

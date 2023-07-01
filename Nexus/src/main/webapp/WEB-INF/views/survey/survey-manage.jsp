@@ -34,20 +34,19 @@
 
       <section>
 
-        <!-- 사이드바 반응형 -->
-        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-        <label for="openSidebarMenu" class="sidebarIconToggle">
-          <div class="spinner diagonal part-1"></div>
-          <div class="spinner horizontal"></div>
-          <div class="spinner diagonal part-2"></div>
-        </label>
-        <div id="sidebarMenu">
-          <ul class="sidebarMenuInner">
-            <li>설문생성/관리</li>
-            <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-            <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
-          </ul>
-        </div>
+             <!-- 사이드바 반응형 -->
+             <div class="sidebarIconToggle">
+              <div class="spinner diagonal part-1"></div>
+              <div class="spinner horizontal"></div>
+              <div class="spinner diagonal part-2"></div>
+            </div>
+            <div id="sidebarMenu">
+              <ul class="sidebarMenuInner">
+                <li>설문생성/관리</li>
+                <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+              </ul>
+            </div>
 
         <!-- 사이드 바 -->
         <div class="side-bar menu">
@@ -146,23 +145,10 @@
         </div>
       </section>
 
-      <!-- 사이드바 -->
-      <script>
-        document.addEventListener('click', function (event) {
-          var sidebarMenu = document.getElementById('sidebarMenu');
-          var openSidebarMenu = document.getElementById('openSidebarMenu');
-          var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
-
-          var isClickInsideSidebar = sidebarMenu.contains(event.target);
-          var isClickInsideToggle = openSidebarMenu.contains(event.target);
-
-          if (!isClickInsideSidebar && !isClickInsideToggle && openSidebarMenu.checked) {
-            openSidebarMenu.checked = false;
-          }
-        });
-      </script>
+    
 
       <script src="${contextPath}/resources/js/survey/survey-manage.js"></script>
+      <script src="${contextPath}/resources/js/component.js"></script>
 
 
     </body>

@@ -1588,19 +1588,92 @@ option {
 
 /* 사이드바 반응형 */
 
+
+@media(max-width: 1100px) {
+    .side-bar {
+        display: none;
+    }
+
+    .sidebarIconToggle {
+        display: block !important;
+    }
+}
+
 #sidebarMenu {
     height: 500px;
     position: fixed;
-    left: 0;
+    left: -250px;
     width: 250px;
-
-    transform: translateX(-250px);
-    transition: transform 250ms ease-in-out;
+    transition: left 250ms ease-in-out;
     background-color: #f9f9f9;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
-}
+  }
+  
+  .sidebarIconToggle {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: fixed;
+    top: 115px;
+    left: 10px;
+    z-index: 2;
+    height: 22px;
+    width: 22px;
+    display: none;
+  }
+  
+  .spinner {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: var(--gray700);
+  }
+  
+  .horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+  }
+  
+  .diagonal.part-1 {
+    position: relative;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    float: left;
+  }
+  
+  .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+  }
+  
+  .show-sidebar #sidebarMenu {
+    left: 0;
+  }
+  
+  .show-sidebar .sidebarIconToggle .horizontal {
+    opacity: 0;
+  }
+  
+  .show-sidebar .sidebarIconToggle .diagonal.part-1 {
+    transform: rotate(135deg);
+    margin-top: 8px;
+  }
+  
+  .show-sidebar .sidebarIconToggle .diagonal.part-2 {
+    transform: rotate(-135deg);
+    margin-top: -9px;
+  }
 
-.sidebarMenuInner {
+
+  .sidebarMenuInner {
     margin: 0;
     padding: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
@@ -1654,88 +1727,8 @@ option {
     cursor: pointer;
     text-decoration: none;
 }
+  
 
-input[type="checkbox"]:checked~#sidebarMenu {
-    transform: translateX(0);
-}
 
-input[type=checkbox] {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    display: none;
-}
 
-.sidebarIconToggle {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    cursor: pointer;
-    position: fixed;
-    top: 115px;
-    left: 10px;
-    z-index: 2;
-    height: 22px;
-    width: 22px;
-    display: none;
-}
 
-.spinner {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background-color: var(--gray700);
-}
-
-.horizontal {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 3px;
-}
-
-.diagonal.part-1 {
-    position: relative;
-    transition: all 0.3s;
-    box-sizing: border-box;
-    float: left;
-}
-
-.diagonal.part-2 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 3px;
-}
-
-input[type=checkbox]:checked~.sidebarIconToggle>.horizontal {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    opacity: 0;
-}
-
-input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-1 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    transform: rotate(135deg);
-    margin-top: 8px;
-}
-
-input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    transform: rotate(-135deg);
-    margin-top: -9px;
-}
-
-@media(max-width: 1100px) {
-    .side-bar {
-        display: none;
-    }
-
-    .sidebarIconToggle {
-        display: block;
-    }
-}

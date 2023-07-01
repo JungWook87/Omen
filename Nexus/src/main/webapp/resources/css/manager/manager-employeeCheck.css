@@ -384,7 +384,7 @@ a:focus {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   transform-origin: left bottom;
-  z-index: 99;
+  z-index: 5;
 }
 
 .gate+label:before,
@@ -553,4 +553,19 @@ span:nth-child(2) .gate:active {
 .button--nina:hover>span:nth-child(4) {
   -webkit-transition-delay: 0.18s;
   transition-delay: 0.18s;
+}
+
+
+/* 사이드바 */
+#sidebarMenu {
+  z-index: 6;
+  height: 580px !important;
+}
+
+.sidebarIconToggle {
+  z-index: 7 !important;
+}
+
+.sidebarMenuInner li:nth-child(5) span {
+  color: var(--primary500);
 }

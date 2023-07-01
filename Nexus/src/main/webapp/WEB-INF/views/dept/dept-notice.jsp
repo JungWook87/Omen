@@ -30,12 +30,11 @@
       <section>
 
         <!-- 사이드바 반응형 -->
-        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-        <label for="openSidebarMenu" class="sidebarIconToggle">
+        <div class="sidebarIconToggle">
           <div class="spinner diagonal part-1"></div>
           <div class="spinner horizontal"></div>
           <div class="spinner diagonal part-2"></div>
-        </label>
+        </div>
         <div id="sidebarMenu">
           <ul class="sidebarMenuInner">
             <li>부서</li>
@@ -44,6 +43,7 @@
             <li><a href="${contextPath}/dept/deptSchedule"><span>부서 일정</span> </a></li>
           </ul>
         </div>
+
 
 
         <!-- 사이드 바 -->
@@ -250,23 +250,8 @@
         </div>
       </section>
 
-      <!-- 사이드바 -->
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          var sidebarMenu = document.getElementById("sidebarMenu");
-          var openSidebarMenu = document.getElementById("openSidebarMenu");
-
-
-          document.addEventListener('click', function (event) {
-            var isClickInsideSidebar = sidebarMenu.contains(event.target);
-            var isClickInsideToggle = openSidebarMenu.contains(event.target);
-
-            if (!isClickInsideSidebar && !isClickInsideToggle) {
-              openSidebarMenu.checked = false;
-            }
-          });
-        });
-      </script>
+     
+      
 
 
       <script>
@@ -277,6 +262,7 @@
 
       <script src="${contextPath}/resources/js/dept/dept-notice.js"></script>
       <script src="${contextPath}/resources/js/common.js"></script>
+      <script src="${contextPath}/resources/js/component.js"></script>
 
     </body>
 
