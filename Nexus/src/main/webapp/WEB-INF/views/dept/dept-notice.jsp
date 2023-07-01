@@ -28,7 +28,7 @@
 
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
       <section>
-        
+
         <!-- 사이드바 반응형 -->
         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
         <label for="openSidebarMenu" class="sidebarIconToggle">
@@ -250,9 +250,30 @@
         </div>
       </section>
 
+      <!-- 사이드바 -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var sidebarMenu = document.getElementById("sidebarMenu");
+          var openSidebarMenu = document.getElementById("openSidebarMenu");
+
+
+          document.addEventListener('click', function (event) {
+            var isClickInsideSidebar = sidebarMenu.contains(event.target);
+            var isClickInsideToggle = openSidebarMenu.contains(event.target);
+
+            if (!isClickInsideSidebar && !isClickInsideToggle) {
+              openSidebarMenu.checked = false;
+            }
+          });
+        });
+      </script>
+
+
       <script>
         const loginMember = "<c:out value='${loginMember}' />";
       </script>
+
+
 
       <script src="${contextPath}/resources/js/dept/dept-notice.js"></script>
       <script src="${contextPath}/resources/js/common.js"></script>

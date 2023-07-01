@@ -37,63 +37,63 @@
                 <!-- 사이드바 반응형 -->
                 <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
                 <label for="openSidebarMenu" class="sidebarIconToggle">
-                <div class="spinner diagonal part-1"></div>
-                <div class="spinner horizontal"></div>
-                <div class="spinner diagonal part-2"></div>
+                    <div class="spinner diagonal part-1"></div>
+                    <div class="spinner horizontal"></div>
+                    <div class="spinner diagonal part-2"></div>
                 </label>
                 <div id="sidebarMenu">
-                <ul class="sidebarMenuInner">
-                    <li>설문생성/관리</li>
-                    <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-                    <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
-                </ul>
+                    <ul class="sidebarMenuInner">
+                        <li>설문생성/관리</li>
+                        <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+                        <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+                    </ul>
                 </div>
-                
-                        <!-- 사이드 바 -->
-                        <div class="side-bar menu">
-                            <!-- 페이지마다 바뀌는 제목 -->
-                            <h1>설문</h1>
 
-                            <!-- 페이지마다 바뀌는 부제목 -->
-                            <ul>
-                                <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-                                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
-                            </ul>
-                        </div>
-                  
-                        <!-- 컨텐츠 내용 -->
-                        <div class="content-all-page">
+                <!-- 사이드 바 -->
+                <div class="side-bar menu">
+                    <!-- 페이지마다 바뀌는 제목 -->
+                    <h1>설문</h1>
 
-                            <!-- 윗부분 -->
-                            <div class="survey-create-top">
-                                <h1>${survey.surveyTopic}</h1>
-                                <span>${survey.surveyContent}</span>
-                                <br>
-                            </div>
+                    <!-- 페이지마다 바뀌는 부제목 -->
+                    <ul>
+                        <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+                        <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+                    </ul>
+                </div>
 
-                            <!-- 가운데 -->
-                            <form action="../surveyParticipate" method="post">
-                                <div class="survey-create-content">
-                                    <input type="hidden" name="surveyNo" value="${survey.surveyNo}">
-                                    <span class="survey-question">질문 : ${surveyResultList[0].question}</span>
-                                    <c:forEach var="surveyResult" items="${surveyResultList}">
-                                        <div id="radio-box">
-                                            <input id="radioBtn" name="radioInput" type="radio"
-                                                value="${surveyResult.optionNo}"><label
-                                                for="${surveyResult.optionNo}">${surveyResult.optionAnnotation}</label>
-                                        </div>
-                                    </c:forEach>
+                <!-- 컨텐츠 내용 -->
+                <div class="content-all-page">
+
+                    <!-- 윗부분 -->
+                    <div class="survey-create-top">
+                        <h1>${survey.surveyTopic}</h1>
+                        <span>${survey.surveyContent}</span>
+                        <br>
+                    </div>
+
+                    <!-- 가운데 -->
+                    <form action="../surveyParticipate" method="post">
+                        <div class="survey-create-content">
+                            <input type="hidden" name="surveyNo" value="${survey.surveyNo}">
+                            <span class="survey-question">질문 : ${surveyResultList[0].question}</span>
+                            <c:forEach var="surveyResult" items="${surveyResultList}">
+                                <div id="radio-box">
+                                    <input id="radioBtn" name="radioInput" type="radio"
+                                        value="${surveyResult.optionNo}"><label
+                                        for="${surveyResult.optionNo}">${surveyResult.optionAnnotation}</label>
                                 </div>
-                                <!-- 아래 취소 저장 부분 -->
-                                <div class="survey-create-bottom">
-                                    <button type="button" id="survey-create-bottom-cancle">목록으로</button>
-                                    <button type="submit" id="survey-create-bottom-submit">제출하기</button>
-                                </div>
-                            </form>
-
+                            </c:forEach>
                         </div>
+                        <!-- 아래 취소 저장 부분 -->
+                        <div class="survey-create-bottom">
+                            <button type="button" id="survey-create-bottom-cancle">목록으로</button>
+                            <button type="submit" id="survey-create-bottom-submit">제출하기</button>
+                        </div>
+                    </form>
 
-           
+                </div>
+
+
 
 
 
@@ -108,6 +108,22 @@
             </a>
         </div> -->
             </section>
+
+            <!-- 사이드바 -->
+            <script>
+                document.addEventListener('click', function (event) {
+                    var sidebarMenu = document.getElementById('sidebarMenu');
+                    var openSidebarMenu = document.getElementById('openSidebarMenu');
+                    var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
+
+                    var isClickInsideSidebar = sidebarMenu.contains(event.target);
+                    var isClickInsideToggle = openSidebarMenu.contains(event.target);
+
+                    if (!isClickInsideSidebar && !isClickInsideToggle && openSidebarMenu.checked) {
+                        openSidebarMenu.checked = false;
+                    }
+                });
+            </script>
 
 
             <script src="${contextPath}/resources/js/survey/survey-detail.js"></script>

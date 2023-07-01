@@ -298,3 +298,8 @@ th:nth-child(3) {
 #participation-color {
   color: red;
 }
+
+/* 사이드바 반응형 */
+.sidebarMenuInner li:nth-child(2) span {
+  color: var(--primary500);
+}

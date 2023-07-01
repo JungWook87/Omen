@@ -94,7 +94,7 @@ body {
 }
 
 .Responsive-header .menu-btn:checked~.menu {
-    max-height: 500px;
+    max-height: 610px;
 }
 
 .Responsive-header .menu-btn:checked~.menu-icon .navicon {
@@ -195,7 +195,7 @@ body {
 
     section {
         display: flex;
-        flex-wrap: wrap-reverse;
+        flex-wrap: wrap;
     }
 
     .main-area-left {
@@ -830,70 +830,68 @@ td:last-child {
 .fc-day-sun a {
     color: red;
     text-decoration: none;
-  }
-  
-  /* 토요일 날짜 파란색 */
-  .fc-day-sat a {
+}
+
+/* 토요일 날짜 파란색 */
+.fc-day-sat a {
     color: blue;
     text-decoration: none;
-  }
-  
-  /* 글자 앞에 타임 지우기 */
-  .fc-event-time{
+}
+
+/* 글자 앞에 타임 지우기 */
+.fc-event-time {
     display: none;
-  }
-  
-  /* 글자 정렬 */
-  .fc-event-title{
+}
+
+/* 글자 정렬 */
+.fc-event-title {
     padding-top: 5px;
-  }
-  
-  #calendar{
+}
+
+#calendar {
     height: 350px;
-  }
+}
 
-  .fc .fc-toolbar.fc-header-toolbar{
+.fc .fc-toolbar.fc-header-toolbar {
     margin-bottom: 0px;
-  }
+}
 
-  .fc{
+.fc {
     font-size: 0.7em;
-  }
+}
 
-  .fc .fc-button{
+.fc .fc-button {
     line-height: 1;
-  }
+}
 
-  .fc-toolbar-chunk > div > button{
+.fc-toolbar-chunk>div>button {
     padding: 0 !important;
     height: 23px !important;
-  }
+}
 
-  .fc-dayGridMonth-view{
+.fc-dayGridMonth-view {
     z-index: 0;
-  }
+}
 
-  /* 미니 공지사항 */
-  #noticeMin , #deptNoticeMin{
+/* 미니 공지사항 */
+#noticeMin,
+#deptNoticeMin {
     text-decoration: none;
     color: black;
     font-size: 1em;
-  }
+}
 
-  #noticeMin > span:nth-of-type(1), #deptNoticeMin > span:nth-of-type(1){
-    width:200px;
+#noticeMin>span:nth-of-type(1),
+#deptNoticeMin>span:nth-of-type(1) {
+    width: 200px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     margin-bottom: 2px;
     padding-top: 2px;
-  }
+}
 
-  #noticeMin:hover, #deptNoticeMin:hover {
+#noticeMin:hover,
+#deptNoticeMin:hover {
     color: #FFC759;
-  }
-
-
-
-
-
+}

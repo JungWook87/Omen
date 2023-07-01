@@ -273,6 +273,8 @@
         const loginMember = "<c:out value='${loginMember}' />";
       </script>
 
+
+
       <script src="${contextPath}/resources/js/dept/dept-board.js"></script>
 
     </body>

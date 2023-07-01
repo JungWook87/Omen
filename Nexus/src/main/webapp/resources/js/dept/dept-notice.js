@@ -482,3 +482,16 @@ checkCancellBtn.addEventListener("click", () => {
 
 
 
+document.addEventListener("click", function(event) {
+  var sidebar = document.getElementById("sidebarMenu");
+  var iconToggle = document.getElementsByClassName("sidebarIconToggle")[0];
+  var targetElement = event.target; // 클릭한 요소
+
+  // 클릭한 요소가 사이드바 이외의 영역에 속할 경우 사이드바 닫기
+  if (sidebar.contains(targetElement) === false && iconToggle.contains(targetElement) === false) {
+    sidebar.style.transform = "translateX(-250px)";
+    document.getElementById("openSidebarMenu").checked = false;
+  }
+});
+
+

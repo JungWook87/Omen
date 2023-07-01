@@ -293,7 +293,7 @@ a:focus {
   margin-bottom: 5px;
 }
 
-label {
+#radio-box label {
   font-size: 18px;
   line-height: 2rem;
   padding: 0.2em 0.4em;
@@ -363,4 +363,10 @@ fieldset {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 25px;
+}
+
+
+/* 사이드바 반응형 */
+.sidebarMenuInner li:nth-child(3) span {
+  color: var(--primary500);
 }

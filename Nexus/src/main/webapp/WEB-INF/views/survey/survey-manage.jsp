@@ -48,90 +48,90 @@
             <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
           </ul>
         </div>
-        
-            <!-- 사이드 바 -->
-            <div class="side-bar menu">
-              <!-- 페이지마다 바뀌는 제목 -->
-              <h1>설문생성/관리</h1>
 
-              <!-- 페이지마다 바뀌는 부제목 -->
-              <ul>
-                <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
-              </ul>
-            </div>
-         
-            <!-- 컨텐츠 내용 -->
-            <div class="content-all-page">
+        <!-- 사이드 바 -->
+        <div class="side-bar menu">
+          <!-- 페이지마다 바뀌는 제목 -->
+          <h1>설문생성/관리</h1>
 
-              <!-- 컨텐츠 내용 윗부분 -->
-              <div class="content-all-top-area">
+          <!-- 페이지마다 바뀌는 부제목 -->
+          <ul>
+            <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+            <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+          </ul>
+        </div>
 
-                <div class="content-all-top-area-detail">
+        <!-- 컨텐츠 내용 -->
+        <div class="content-all-page">
 
-                  <!-- 컨텐츠 제목 부분 -->
-                  <div class="content-all-top-texts">
-                    <a href="surveyCreate" class="omen-btn">
-                      설문 생성
-                    </a>
-                  </div>
-                </div>
+          <!-- 컨텐츠 내용 윗부분 -->
+          <div class="content-all-top-area">
 
+            <div class="content-all-top-area-detail">
+
+              <!-- 컨텐츠 제목 부분 -->
+              <div class="content-all-top-texts">
+                <a href="surveyCreate" class="omen-btn">
+                  설문 생성
+                </a>
               </div>
+            </div>
 
-              <!-- 컨텐츠 내용 아랫부분 -->
-              <div class="content-all-bottom-area">
-                <div class="survey-table">
-                  <table>
+          </div>
 
-                    <thead>
+          <!-- 컨텐츠 내용 아랫부분 -->
+          <div class="content-all-bottom-area">
+            <div class="survey-table">
+              <table>
+
+                <thead>
+                  <tr>
+                    <th>상태</th>
+                    <th>제목</th>
+                    <th>설문 생성일</th>
+                    <th>URL복사</th>
+                    <th>응답수</th>
+                    <th>설문 결과</th>
+                    <th>삭제</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <c:choose>
+                    <c:when test="${empty surveyList}">
                       <tr>
-                        <th>상태</th>
-                        <th>제목</th>
-                        <th>설문 생성일</th>
-                        <th>URL복사</th>
-                        <th>응답수</th>
-                        <th>설문 결과</th>
-                        <th>삭제</th>
+                        <th colspan="6">설문이 존재하지 않습니다.</th>
                       </tr>
-                    </thead>
+                    </c:when>
 
-                    <tbody>
-                      <c:choose>
-                        <c:when test="${empty surveyList}">
-                          <tr>
-                            <th colspan="6">설문이 존재하지 않습니다.</th>
-                          </tr>
-                        </c:when>
-
-                        <c:otherwise>
-                          <c:forEach var="survey" items="${surveyList}">
-                            <tr>
-                              <td id="status-color">${survey.end}</td>
-                              <td>${survey.surveyTopic}</td>
-                              <td>${survey.start}</td>
-                              <td id="clip" onclick="return copyURL(${survey.surveyNo})"></td>
-                              <td>${survey.respMember}/${survey.totalMember}</td>
-                              <td>
-                                <a id="survey-result-btn" href="../survey/surveyResult/${survey.surveyNo}">결과 보기</a>
-                              </td>
-                              <td>
-                                <a href="../survey/surveyDelete/${survey.surveyNo}" class="fa-solid fa-trash"
-                                  style="color: #c7c7c7;"></a>
-                              </td>
-                            </tr>
-                          </c:forEach>
-                        </c:otherwise>
-                      </c:choose>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-
+                    <c:otherwise>
+                      <c:forEach var="survey" items="${surveyList}">
+                        <tr>
+                          <td id="status-color">${survey.end}</td>
+                          <td>${survey.surveyTopic}</td>
+                          <td>${survey.start}</td>
+                          <td id="clip" onclick="return copyURL(${survey.surveyNo})"></td>
+                          <td>${survey.respMember}/${survey.totalMember}</td>
+                          <td>
+                            <a id="survey-result-btn" href="../survey/surveyResult/${survey.surveyNo}">결과 보기</a>
+                          </td>
+                          <td>
+                            <a href="../survey/surveyDelete/${survey.surveyNo}" class="fa-solid fa-trash"
+                              style="color: #c7c7c7;"></a>
+                          </td>
+                        </tr>
+                      </c:forEach>
+                    </c:otherwise>
+                  </c:choose>
+                </tbody>
+              </table>
             </div>
+          </div>
 
-        
+
+        </div>
+
+
 
 
 
@@ -145,6 +145,22 @@
           </a>
         </div>
       </section>
+
+      <!-- 사이드바 -->
+      <script>
+        document.addEventListener('click', function (event) {
+          var sidebarMenu = document.getElementById('sidebarMenu');
+          var openSidebarMenu = document.getElementById('openSidebarMenu');
+          var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
+
+          var isClickInsideSidebar = sidebarMenu.contains(event.target);
+          var isClickInsideToggle = openSidebarMenu.contains(event.target);
+
+          if (!isClickInsideSidebar && !isClickInsideToggle && openSidebarMenu.checked) {
+            openSidebarMenu.checked = false;
+          }
+        });
+      </script>
 
       <script src="${contextPath}/resources/js/survey/survey-manage.js"></script>
 
