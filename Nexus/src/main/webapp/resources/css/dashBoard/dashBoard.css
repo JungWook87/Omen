@@ -139,25 +139,22 @@ div{
     height : 20px;
     background:#f0f0f0;
     border-radius:4px;
-    box-shadow: inset 3px 3px 10px #ccc;
+    /* box-shadow: inset 3px 3px 10px #ccc; */
 }
 #progressBar::-webkit-progress-value {
     border-radius:4px;
-    background: #3a4f48;
-    background: -webkit-linear-gradient(to right, var(--primary600), var(--primary300));
-    background: linear-gradient(to right, var(--primary600), var(--primary300));
+    background: var(--primary400);
 }
 
 #progressBar.underBlue::-webkit-progress-value {
     border-radius:4px;
-    background: var(--gray400); 
+    background: var(--primary300); 
 }
 
 #progressBar.overOrange::-webkit-progress-value {
     border-radius:4px;
-    background: rgb(223, 94, 2); 
-    background: -webkit-linear-gradient(to right, rgb(221, 124, 75), rgb(221, 124, 75));
-    background: linear-gradient(to right, rgb(221, 124, 75), rgb(221, 124, 75));
+    background: rgb(255, 180, 126); 
+
 }
 
 .progressTemp {

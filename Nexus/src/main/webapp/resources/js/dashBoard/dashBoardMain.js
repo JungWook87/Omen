@@ -37,15 +37,19 @@ $(document).ready(function(){
                             fill: false, 
                             data: attnCount,
                             backgroundColor: [
-                                '#66347F',
-                                '#9E4784',
-                                '#37306B',
-                                '#D27685',
-                                '#1C8394',
-                                '#154B52',
-                                '#000B0D',
-                                '#390D02',
-                                '#A52502',
+                                
+                                '#04A2E4',
+                                '#FF7B89',
+                                '#F20574',
+                                '#30B893',
+                                '#FBD315',
+                                '#B4BBC5',
+                                '#EDEBF0',  
+                                '#FF979D',
+                                '#FFB4BF',
+                                '#04D9D9',
+                                '#ABD904',
+                                '#F25C05',
                             ],
                             borderColor: [
                                 //경계선 색상
