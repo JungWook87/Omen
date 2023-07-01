@@ -297,3 +297,18 @@ input:valid~span {
   background-color: var(--primary500);
   transition: all 1s;
 }
+
+
+/* 사이드바 */
+#sidebarMenu {
+  z-index: 6;
+  height: 580px !important;
+}
+
+.sidebarIconToggle {
+  z-index: 7 !important;
+}
+
+.sidebarMenuInner li:nth-child(4) span {
+  color: var(--primary500);
+}

@@ -1,4 +1,4 @@
-console.log("js load");
+
 
 // 모달창 스타일
 const btn = document.getElementById('popupBtn');
@@ -395,7 +395,7 @@ function detailModal(noticeNo) {
   
 
   deleteBtn.addEventListener('click', () => {
-    console.log(globalNoticeNo);
+    
     Swal.fire({
       title: '정말 삭제 하시겠습니까?',
       html: `<div style="text-align:center">삭제 하시면 되돌릴수 없습니다</div>`,
@@ -482,16 +482,8 @@ checkCancellBtn.addEventListener("click", () => {
 
 
 
-document.addEventListener("click", function(event) {
-  var sidebar = document.getElementById("sidebarMenu");
-  var iconToggle = document.getElementsByClassName("sidebarIconToggle")[0];
-  var targetElement = event.target; // 클릭한 요소
 
-  // 클릭한 요소가 사이드바 이외의 영역에 속할 경우 사이드바 닫기
-  if (sidebar.contains(targetElement) === false && iconToggle.contains(targetElement) === false) {
-    sidebar.style.transform = "translateX(-250px)";
-    document.getElementById("openSidebarMenu").checked = false;
-  }
-});
+
+
 
 

@@ -84,7 +84,7 @@
     </c:if>
 
     <script>
-      const loginMember = "<c:out value='${loginMember}' />";
+      const loginMemberHeader = "<c:out value='${loginMember}' />";
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
@@ -92,14 +92,14 @@
 
     <script>
       // 대시보드
-      const jobNoRegex = /jobNo=(\d+)/;
-      const jobNoMatch = loginMember.match(jobNoRegex);
-      const loginMemberJobNo = jobNoMatch[1];
-      const employeeRankChange = document.querySelector(".employee-rank-change");
-      const responsiveEmployeeRankChange = document.querySelector(".Responsive-employee-rank-change");
-      if (parseInt(loginMemberJobNo) === 4) {
-        employeeRankChange.style.display = 'none';
-        responsiveEmployeeRankChange.style.display = 'none'
+      const jobNoRegexHeader = /jobNo=(\d+)/;
+      const jobNoMatchHeader = loginMemberHeader.match(jobNoRegexHeader);
+      const loginMemberJobNoHeader = jobNoMatchHeader[1];
+      const employeeRankChangeHeader = document.querySelector(".employee-rank-change");
+      const responsiveEmployeeRankChangeHeader = document.querySelector(".Responsive-employee-rank-change");
+      if (parseInt(loginMemberJobNoHeader) === 4) {
+        employeeRankChangeHeader.style.display = 'none';
+        responsiveEmployeeRankChangeHeader.style.display = 'none'
       }
 
       // 로그아웃

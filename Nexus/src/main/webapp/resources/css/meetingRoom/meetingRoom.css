@@ -9,7 +9,7 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  height: 100vh;
+  /* height: 100vh; */
 
 
   background-color: var(--side);

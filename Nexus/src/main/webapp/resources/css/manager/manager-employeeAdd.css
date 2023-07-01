@@ -394,3 +394,17 @@ form .employee-area-container:nth-child(5)>div:nth-child(1) {
 #dept-option {
   width: 8rem;
 }
+
+/* 사이드바 */
+#sidebarMenu {
+  z-index: 6;
+  height: 580px !important;
+}
+
+.sidebarIconToggle {
+  z-index: 7 !important;
+}
+
+.sidebarMenuInner li:nth-child(2) span {
+  color: var(--primary500);
+}

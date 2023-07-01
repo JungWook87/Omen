@@ -66,3 +66,4 @@ function addStatusLabel() {
 window.addEventListener('DOMContentLoaded', function () {
   addStatusLabel();
 });
+

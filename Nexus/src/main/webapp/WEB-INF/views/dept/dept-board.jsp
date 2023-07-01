@@ -30,21 +30,20 @@
 
       <section>
 
-        <!-- 사이드바 반응형 -->
-        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-        <label for="openSidebarMenu" class="sidebarIconToggle">
-          <div class="spinner diagonal part-1"></div>
-          <div class="spinner horizontal"></div>
-          <div class="spinner diagonal part-2"></div>
-        </label>
-        <div id="sidebarMenu">
-          <ul class="sidebarMenuInner">
-            <li>부서</li>
-            <li><a href="${contextPath}/dept/deptNotice"><span>부서 공지사항</span> </a></li>
-            <li><a href="${contextPath}/dept/deptBoard"><span>부서 게시판</span> </a></li>
-            <li><a href="${contextPath}/dept/deptSchedule"><span>부서 일정</span> </a></li>
-          </ul>
-        </div>
+          <!-- 사이드바 반응형 -->
+          <div class="sidebarIconToggle">
+            <div class="spinner diagonal part-1"></div>
+            <div class="spinner horizontal"></div>
+            <div class="spinner diagonal part-2"></div>
+          </div>
+          <div id="sidebarMenu">
+            <ul class="sidebarMenuInner">
+              <li>부서</li>
+              <li><a href="${contextPath}/dept/deptNotice"><span>부서 공지사항</span> </a></li>
+              <li><a href="${contextPath}/dept/deptBoard"><span>부서 게시판</span> </a></li>
+              <li><a href="${contextPath}/dept/deptSchedule"><span>부서 일정</span> </a></li>
+            </ul>
+          </div>
 
         <!-- 사이드 바 -->
         <div class="side-bar menu">
@@ -276,6 +275,7 @@
 
 
       <script src="${contextPath}/resources/js/dept/dept-board.js"></script>
+      <script src="${contextPath}/resources/js/component.js"></script>
 
     </body>
 

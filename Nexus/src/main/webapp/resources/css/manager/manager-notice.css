@@ -196,3 +196,18 @@ a:focus {
   margin-left: 130px;
   margin-right: 130px;
 }
+
+
+/* 사이드바 */
+#sidebarMenu {
+  z-index: 6;
+  height: 580px !important;
+}
+
+.sidebarIconToggle {
+  z-index: 7 !important;
+}
+
+.sidebarMenuInner li:nth-child(6) span {
+  color: var(--primary500);
+}

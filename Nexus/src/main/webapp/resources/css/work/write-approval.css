@@ -367,7 +367,7 @@
   margin: 8px 0px 8px 0px;
 }
 
-input:checked + label{
+.divBox input:checked + label{
   padding: 5px 45px 5px 45px;
   font-weight: 300;
   text-align: center;
@@ -379,7 +379,7 @@ input:checked + label{
   box-shadow: 0px 5px 0px 0px var(--primary300);
 }
 
-input:checked + label:hover{
+.divBox input:checked + label:hover{
   margin-top: 15px;
   margin-bottom: 5px; 
   box-shadow: 0px 0px 0px 0px var(--primary300);
