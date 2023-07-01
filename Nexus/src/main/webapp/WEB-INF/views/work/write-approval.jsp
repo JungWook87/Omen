@@ -12,7 +12,7 @@
       <!-- 선1 -->
       <div class="work-modal-line"></div>
 
-      <form action="write" method="post" enctype="multipart/form-data" onsubmit="return workWrite()">
+      <form action="write" method="post" enctype="multipart/form-data" id="writeForm">
         <!-- 템플릿 -->
         <div class="work-modal-template">
           <p>결재 타입</p>
@@ -126,13 +126,14 @@
       
         <!-- 임시저장 버튼 -->
         <div class="work-modal-save">
-          <button type="button" id="save-draft">임시 저장</button>
+          <button type="button" id="save-draft" value="tempSaveBtn">임시 저장</button>
+          <input type="text" id='tempSaveBtn-checkbox' name="tempSave" style="display: none;" value="false">
         </div>
 
         <!-- 버튼 -->
         <div class="work-submit-reset-btns">
           <button type="reset" id="cancell-btn">취소</button>
-          <button id="success-btn">확인</button>
+          <button type="button" id="success-btn" value="submitBtn">확인</button>
         </div>
         
         <div id="approver-modal-wrap">

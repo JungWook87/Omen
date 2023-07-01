@@ -75,8 +75,7 @@
 
             <div class="YMSelect">
               <button type="button" id="leftBtn"><img src="${contextPath}/resources/images/LtAngle.png"></button>
-              <p id="attnDate">${attendanceList[0].today.split("/")[0]} 년 ${attendanceList[0].today.split("/")[1]} 월
-              </p>
+              <p id="attnDate"></p>
               <input id="year" style="display:none" value="${attendanceList[0].today.split('/')[0]}">
               <input id="month" style="display:none" value="${attendanceList[0].today.split('/')[1]}">
               <button type="button" id="rightBtn"><img src="${contextPath}/resources/images/RtAngle.png"></button>

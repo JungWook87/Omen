@@ -132,19 +132,18 @@ public class WorkController {
 	public String workWrite(@ModelAttribute("loginMember") Member loginMember,
 			@RequestParam("file-uploads") MultipartFile uploadFile,
 			@RequestParam Map<String, Object> map,
+			@RequestParam("tempSave") boolean tempSave,
 			@RequestParam("taskTitle") List<String> taskTitleList,
 			HttpServletRequest req,
 			RedirectAttributes ra) {
 		
+		System.out.println(map);
+
 		map.put("memNo", loginMember.getMemNo());
 		map.put("deptNo",loginMember.getDeptNo());
 		
-		logger.info("프로젝트/과제 부서입력용 로거 : " + (Integer)map.get("deptNo") );
-		
 		String workTypeWord = map.get("workTypeWord").toString();
 		int typeNo = 0;
-		
-		log.info("과제 번호 : "  + map.get("taskNo"));
 
 		if(workTypeWord.equals("normal-check")) typeNo = 1;
 		else if(workTypeWord.equals("vacation")) typeNo = 2;

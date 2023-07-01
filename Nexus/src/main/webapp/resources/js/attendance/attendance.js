@@ -1,7 +1,19 @@
+
 const leftBtn = document.getElementById("leftBtn");
 const rightBtn = document.getElementById("rightBtn");
 const year = document.getElementById("year");
 const month = document.getElementById("month");
+
+// 날짜
+const attnDate = document.getElementById("attnDate");
+(function(){
+	let todayDate = new Date();
+	let todayYear = '' + todayDate.getFullYear();
+	todayYear = todayYear.substr(2,2);
+	let todayMonth = todayDate.getMonth() + 1;
+	if(todayMonth < 10) todayMonth = '0' + todayMonth;
+	attnDate.innerText = todayYear + ' 년 ' + todayMonth + ' 월 ';
+})()
 
 leftBtn.addEventListener("click", function(){
 	let yearNum = Number(year.value);
@@ -45,8 +57,7 @@ function selectDate(yearNum, monthNum){
             	"month" : monthNum },
             success : function(attendanceList){
 
-				// 날짜
-				const attnDate = document.getElementById("attnDate");
+				
 				
 				attnDate.innerHTML = yearNum + ' 년 ' + monthNum + ' 월';
 
