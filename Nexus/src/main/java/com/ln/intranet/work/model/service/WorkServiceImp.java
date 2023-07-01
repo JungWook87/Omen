@@ -82,10 +82,13 @@ public class WorkServiceImp implements WorkService {
 		
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());
 		
-		// 다음 결재자 정보 불러오기
-		Map<String, Object> nextMember = dao.nextMember(Integer.parseInt(map.get("next").toString()));
-		String approvalList = nextMember.get("MEM_NAME") + "," + "진행중" + "," + nextMember.get("DEPT_NAME") + " / " + nextMember.get("JOB_NAME") + ",,";
-		map.put("approvalList", approvalList);
+		System.out.println("abs : " + map.get("next").toString());
+		if(map.get("next").toString().length() != 0) {
+			// 다음 결재자 정보 불러오기
+			Map<String, Object> nextMember = dao.nextMember(Integer.parseInt(map.get("next").toString()));
+			String approvalList = nextMember.get("MEM_NAME") + "," + "진행중" + "," + nextMember.get("DEPT_NAME") + " / " + nextMember.get("JOB_NAME") + ",,";
+			map.put("approvalList", approvalList);	
+		}
 		
 		// 프로젝트과제 객체 생성
 		List<ProjectTask> taskList = new ArrayList<>();
@@ -93,7 +96,6 @@ public class WorkServiceImp implements WorkService {
 		
 		// 결재 타입에 따른 결재 테이블에 값 넣기
 		if(typeNo == 1) {
-			
 			map.put("title", Util.XSSHandling(map.get("title").toString()));
 			map.put("content", Util.XSSHandling(map.get("content").toString()));
 			map.put("content", Util.newLineHandling(map.get("content").toString()));
@@ -255,8 +257,6 @@ public class WorkServiceImp implements WorkService {
 		}
 		
 		return result;
-		
-
 	}
 	
 	// 결재자 모달창

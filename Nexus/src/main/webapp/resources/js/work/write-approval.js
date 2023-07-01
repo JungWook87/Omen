@@ -27,13 +27,15 @@ const modalProjectbox = document.querySelector('.work-modal-projectBox'); // 과
 const workStartDateText = document.querySelector('.work-modal-startDate > input'); // 시작 날짜 
 const workEndDateText = document.querySelector('.work-modal-endDate > input'); // 종료 날짜 
 const workProjectboxText = workProjectbox.querySelectorAll('input'); // 과제명, 과제내용 
-const showMember = document.getElementById("showMemName");
+const showMember = document.getElementById("showMemName"); // 결재자 이름
+
 // 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
   workTitle.value = '';
   workContent.value = '';
   workApprover.value = '';
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
+  showMember.innerText = '-';
 
   workTemplateSelect.value = 'normal-check';
 
@@ -41,6 +43,7 @@ btn.addEventListener("click", () => {
   modal.style.display = 'block';
   workModaltitle.style.display = 'block';
   normalCheckSelect.style.display='block';
+  workDetail.style.display='block';
   modalProjectbox.style.display ='none';
   workProjectbox.style.display = 'none';
   workStartDate.style.display = 'none'; 
@@ -146,6 +149,7 @@ workTemplateSelect.addEventListener('change', () => {
   workApprover.value = '';
   workDetail.querySelector('textarea').value = '';
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
+  showMember.innerText = '-';
 
 
   normalCheckSelect.style.display='none';
@@ -636,74 +640,82 @@ fileRemove.addEventListener("click", () => {
   
 })
 
-// 제출전 조건 확인
-function workWrite(){
-  if(workTemplateSelect.value === 'normal-check'){
 
+// form 넘기기
+const saveDraft = document.getElementById("save-draft"); // 임시저장 버튼
+const successBtn = document.getElementById("success-btn"); // 제출 버튼
+const writeForm = document.getElementById("writeForm"); // form 요소
+const tempSaveFlag = document.getElementById("tempSaveBtn-checkbox");
+
+saveDraft.addEventListener("click", function(){
+  if(workTemplateSelect.value === 'normal-check' || workTemplateSelect.value === 'project'){
     if(workTitle.value === "") {
       Swal.fire('제목을 입력해 주세요');
-      return false;
+    } else{
+      tempSaveFlag.value = true;
+      writeForm.submit();
+    }
+  } else{
+    tempSaveFlag.value = true;
+    writeForm.submit();
+  }
+})
+
+// 제출 버튼 조건 확인
+successBtn.addEventListener("click", function(){
+  tempSaveFlag.value = false;
+
+  if(workTemplateSelect.value === 'normal-check'){
+  
+    if(workTitle.value === "") {
+      Swal.fire('제목을 입력해 주세요');
     } else if(workContent.value === "") {
       Swal.fire('내용을 입력해 주세요');
-      return false;
     } else if(workApprover.value === '') {
       Swal.fire('결재자를 입력해 주세요')
-      return false;
     } else{
-      return true;
+      writeForm.submit();
     }
 
   } else if(workTemplateSelect.value === 'business-trip'){
-      if(workStartDateText.value === "") {
-        Swal.fire('시작날짜를 입력해 주세요');
-        return false;
-      } else if(workEndDateText.value === "") {
-        Swal.fire('종료날짜를 입력해 주세요');
-        return false;
-      } else if(workContent.value === "") {
-        Swal.fire('출장내용을 입력해 주세요');
-        return false;
-      } else if(workApprover.value === '') {
-        Swal.fire('결재자를 입력해 주세요')
-        return false;
-      } else{
-        return true;
-      }
 
-    } else if(workTemplateSelect.value === 'vacation'){
-      if(workStartDateText.value === "") {
-        Swal.fire('시작날짜를 입력해 주세요');
-        return false;
-      } else if(workEndDateText.value === "") {
-        Swal.fire('종료날짜를 입력해 주세요');
-        return false;
-      } else if(workApprover.value == '') {
-        Swal.fire('결재자를 입력해 주세요')
-        return false;
-      } else{
-        return true;
-      }
-
-    } else if(workTemplateSelect.value === 'project'){
-      if(workTitle.value === "") {
-        Swal.fire('제목을 입력해 주세요');
-        return false;
-      } else if(workContent.value === "") {
-        Swal.fire('내용을 입력해 주세요');
-        return false;
-      } else if(workProjectboxText.value === "") {
-        Swal.fire('프로젝트 내용을 입력해 주세요');
-        return false;
-      } else if(workApprover.value === '') {
-        Swal.fire('결재자를 입력해 주세요')
-        return false;
-      } else { 
-        return true;
-      }
-    
+    if(workStartDateText.value === "") {
+      Swal.fire('시작날짜를 입력해 주세요');
+    } else if(workEndDateText.value === "") {
+      Swal.fire('종료날짜를 입력해 주세요');
+    } else if(workContent.value === "") {
+      Swal.fire('출장내용을 입력해 주세요');
+    } else if(workApprover.value === '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else{
+      writeForm.submit();
     }
-}
 
+  } else if(workTemplateSelect.value === 'vacation'){
+    if(workStartDateText.value === "") {
+      Swal.fire('시작날짜를 입력해 주세요');
+    } else if(workEndDateText.value === "") {
+      Swal.fire('종료날짜를 입력해 주세요');
+    } else if(workApprover.value == '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else{
+      writeForm.submit();
+    }
+
+  } else if(workTemplateSelect.value === 'project'){
+    if(workTitle.value === "") {
+      Swal.fire('제목을 입력해 주세요');
+    } else if(workContent.value === "") {
+      Swal.fire('내용을 입력해 주세요');
+    } else if(workProjectboxText.value === "") {
+      Swal.fire('프로젝트 내용을 입력해 주세요');
+    } else if(workApprover.value === '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else { 
+      writeForm.submit();
+    }
+  }
+})
 
 
   // --------------------------------------------------------------------------------

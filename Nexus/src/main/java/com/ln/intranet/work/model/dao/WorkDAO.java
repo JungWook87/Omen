@@ -47,8 +47,14 @@ public class WorkDAO {
 	
 	// 결재 상신 작성(일반결재)
 	public int workWrite(Map<String, Object> map) {
-		System.out.println(map);
-		return sqlSession.insert("workMapper.workWrite", map);
+		// 결재 작성 후 제출
+		int result = sqlSession.insert("workMapper.workWrite", map);
+		
+		// 임시 저장일 경우
+		if(result != 0 && map.get("tempSave").toString().equals("true")) {
+			result = sqlSession.update("workMapper.tempSave", map);
+		}
+		return result;
 	}
 
 	// 결재 파일 올리기

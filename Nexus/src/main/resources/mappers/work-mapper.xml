@@ -69,7 +69,7 @@
 		FROM "WORK"
 		LEFT JOIN WORK_TYPE USING(TYPE_NO)
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
-		WHERE MEM_NO = ${memNo}
+		WHERE MEM_NO = #{memNo}
 		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 		AND TEMP_SAVE IS NULL
 		ORDER BY SEND_DATE DESC
@@ -81,7 +81,7 @@
 		FROM "WORK"
 		LEFT JOIN WORK_TYPE USING(TYPE_NO)
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
-		WHERE MEM_NO = ${memNo}
+		WHERE MEM_NO = #{memNo}
 		AND TO_CHAR(SEND_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
 		ORDER BY SEND_DATE DESC
 	</select>
@@ -93,12 +93,12 @@
 		FROM "WORK" w
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
 		LEFT JOIN MEMBER USING(MEM_NO)
-		WHERE WORK_NO = ${workNo}
+		WHERE WORK_NO = #{workNo}
 	</select>
 	
 	<!-- 결재취소 -->
 	<delete id="workCancle" parameterType="_int">
-		DELETE FROM "WORK" WHERE WORK_NO = ${workNo}
+		DELETE FROM "WORK" WHERE WORK_NO = #{workNo}
 	</delete>
 
 	<!-- 결재 입력하기 -->
@@ -109,20 +109,24 @@
 		
 		<if test="typeNo == 1">
 			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, NEXT, APPROVAL_LIST, WORK_STATE)
-			VALUES (#{workNo}, ${memNo}, ${typeNo}, #{title}, DEFAULT, #{content}, ${next}, #{approvalList}, DEFAULT)
+			VALUES (#{workNo}, #{memNo}, #{typeNo}, #{title}, DEFAULT, #{content}, #{next}, #{approvalList}, DEFAULT)
 		</if>
 		
 		<if test="typeNo == 2">
 			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, "START", "END", NEXT, APPROVAL_LIST, WORK_STATE)
-			VALUES (#{workNo}, ${memNo}, ${typeNo}, '연차 결재', DEFAULT, #{start}, #{end}, ${next}, #{approvalList}, DEFAULT)
+			VALUES (#{workNo}, #{memNo}, #{typeNo}, '연차 결재', DEFAULT, #{start}, #{end}, #{next}, #{approvalList}, DEFAULT)
 		</if>
 	
 		<if test="typeNo == 3">
 			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "START", "END", NEXT, APPROVAL_LIST, WORK_STATE)
-			VALUES (#{workNo}, ${memNo}, ${typeNo}, '출장 결재', DEFAULT, #{content}, #{start}, #{end}, ${next}, #{approvalList}, DEFAULT)
-		</if>	
-		
+			VALUES (#{workNo}, #{memNo}, #{typeNo}, '출장 결재', DEFAULT, #{content}, #{start}, #{end}, #{next}, #{approvalList}, DEFAULT)
+		</if>
 	</insert>
+	
+	<!-- 임시저장 -->
+	<update id="tempSave">
+		UPDATE WORK SET TEMP_SAVE = 'Y' WHERE WORK_NO = #{workNo}
+	</update>
 	
 	<!-- 결재 파일 입력하기 -->
 	<insert id="insertWorkFile" parameterType="file" useGeneratedKeys="true">
@@ -144,7 +148,7 @@
 		FROM "WORK"
 		LEFT JOIN WORK_TYPE USING(TYPE_NO)
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
-		WHERE NEXT = ${memNo}
+		WHERE NEXT = #{memNo}
 		AND WORK_STATE = '진행중'
 		AND TEMP_SAVE IS NULL
 		ORDER BY SEND_DATE DESC
@@ -156,7 +160,7 @@
 		FROM "MEMBER"
 		LEFT JOIN DEPARTMENT USING (DEPT_NO)
 		LEFT JOIN JOB USING (JOB_NO)
-		WHERE MEM_NO = ${next}
+		WHERE MEM_NO = #{next}
 	</select>
 	
 	<!-- 반려 승인 -->
@@ -169,7 +173,7 @@
 				APPROVAL_LIST = #{approvalList},
 				<if test="opinion != null">OPINION = #{opinion}</if>
 			</set>
-			WHERE WORK_NO = ${workNo}
+			WHERE WORK_NO = #{workNo}
 		</if>
 		<if test="btnName == 'approve'">
 			UPDATE "WORK"
@@ -179,11 +183,11 @@
 					WORK_STATE = '승인',				
 				</if>
 				<if test = "next != ''">
-					NEXT = ${next},
+					NEXT = #{next},
 				</if>
 				APPROVAL_LIST = #{approvalList}			
 			</set>
-			WHERE WORK_NO = ${workNo}
+			WHERE WORK_NO = #{workNo}
 		</if>
 	</update>
 	
@@ -193,8 +197,9 @@
 		SELECT WORK_NO , TYPE_NO , TITLE , SEND_DATE , TYPE_NAME
 		FROM "WORK"
 		LEFT JOIN WORK_TYPE USING (TYPE_NO)
-		WHERE MEM_NO = ${memNo}
+		WHERE MEM_NO = #{memNo}
 		AND TEMP_SAVE = 'Y'
+		ORDER BY SEND_DATE DESC
 	</select>
 	
 	
