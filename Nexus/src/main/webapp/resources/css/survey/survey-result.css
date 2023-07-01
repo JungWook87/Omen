@@ -329,3 +329,8 @@ a:focus {
   background: linear-gradient(to right, var(--primary600), var(--primary300));
 
 }
+
+/* 사이드바 반응형 */
+.sidebarMenuInner li:nth-child(3) span {
+  color: var(--primary500);
+}

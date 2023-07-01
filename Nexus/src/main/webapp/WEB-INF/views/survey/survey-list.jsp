@@ -172,6 +172,22 @@
         </div>
       </section>
 
+      <!-- 사이드바 -->
+      <script>
+        document.addEventListener('click', function (event) {
+          var sidebarMenu = document.getElementById('sidebarMenu');
+          var openSidebarMenu = document.getElementById('openSidebarMenu');
+          var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
+
+          var isClickInsideSidebar = sidebarMenu.contains(event.target);
+          var isClickInsideToggle = openSidebarMenu.contains(event.target);
+
+          if (!isClickInsideSidebar && !isClickInsideToggle && openSidebarMenu.checked) {
+            openSidebarMenu.checked = false;
+          }
+        });
+      </script>
+
       <script src="${contextPath}/resources/js/survey/survey-list.js"></script>
     </body>
 

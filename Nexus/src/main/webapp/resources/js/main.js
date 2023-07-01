@@ -240,3 +240,16 @@ function logoutEvent() {
 
 
 
+
+  // 대시보드
+  const jobNoRegex = /jobNo=(\d+)/;
+  const jobNoMatch = loginMember.match(jobNoRegex);
+  const loginMemberJobNo = jobNoMatch[1];
+  const employeeRankChange = document.querySelector(".employee-rank-change");
+  const responsiveEmployeeRankChange = document.querySelector(".Responsive-employee-rank-change");
+  if (parseInt(loginMemberJobNo) === 4) {
+    employeeRankChange.style.display = 'none';
+    responsiveEmployeeRankChange.style.display = 'none'
+  }
+
+

@@ -248,3 +248,8 @@ a:focus {
 
   color: var(--primary400);
 }
+
+/* 사이드바 반응형 */
+.sidebarMenuInner li:nth-child(2) span {
+  color: var(--primary500);
+}

@@ -31,7 +31,7 @@
 
       <section>
 
-        
+
         <!-- 사이드바 반응형 -->
         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
         <label for="openSidebarMenu" class="sidebarIconToggle">
@@ -47,72 +47,89 @@
           </ul>
         </div>
 
-       
-            <!-- 사이드 바 -->
-            <div class="side-bar menu">
-              <!-- 페이지마다 바뀌는 제목 -->
-              <h1>설문생성/관리</h1>
 
-              <!-- 페이지마다 바뀌는 부제목 -->
-              <ul>
-                <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+        <!-- 사이드 바 -->
+        <div class="side-bar menu">
+          <!-- 페이지마다 바뀌는 제목 -->
+          <h1>설문생성/관리</h1>
+
+          <!-- 페이지마다 바뀌는 부제목 -->
+          <ul>
+            <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+            <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+          </ul>
+        </div>
+
+        <!-- 컨텐츠 내용 -->
+        <div class="content-all-page">
+
+          <form action="create" method="post" onsubmit="return validation()">
+            <!-- 윗부분 -->
+            <div class="survey-create-top">
+              <input id="survey-create-top-title" name="surveyTopic" type="text" placeholder="제목 없는 설문">
+              <input name="surveyContent" type="text" placeholder="설문에 대한 설명을 적어주세요.(선택사항)">
+              <br>
+              <!-- <input name="end" type="text" placeholder="종료일을 설정해주세요"> -->
+              <input type="date" name="end" value="" class="input-txt" id="date" aria-required="true"
+                aria-invalid="false" placeholder="종료일을 지정해 주세요"
+                onchange="this.className=(this.value!=''?'has-value':'')">
+            </div>
+
+            <!-- 가운데 -->
+            <div class="survey-create-content">
+              <div>
+                <input id="survey-create-content-question" name="question" type="text" placeholder="질문을 작성해 주세요.">
+              </div>
+
+              <!-- 옵션추가 부분 -->
+              <ul class="survey-create-content-option">
+                <li>
+                  <i class="fa-solid fa-check survey-check"></i>
+                  <input type="text" name="optionList" placeholder="옵션을 입력해 주세요.">
+                  <button type="button" id="survey-option-delete" disabled>
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                  </button>
+                </li>
               </ul>
-            </div>
-       
-            <!-- 컨텐츠 내용 -->
-            <div class="content-all-page">
 
-              <form action="create" method="post" onsubmit="return validation()">
-                <!-- 윗부분 -->
-                <div class="survey-create-top">
-                  <input id="survey-create-top-title" name="surveyTopic" type="text" placeholder="제목 없는 설문">
-                  <input name="surveyContent" type="text" placeholder="설문에 대한 설명을 적어주세요.(선택사항)">
-                  <br>
-                  <!-- <input name="end" type="text" placeholder="종료일을 설정해주세요"> -->
-                  <input type="date" name="end" value="" class="input-txt" id="date" aria-required="true" aria-invalid="false" placeholder="종료일을 지정해 주세요" 
-                  onchange="this.className=(this.value!=''?'has-value':'')">
-                </div>
-
-                <!-- 가운데 -->
-                <div class="survey-create-content">
-                  <div>
-                    <input id="survey-create-content-question" name="question" type="text" placeholder="질문을 작성해 주세요.">
-                  </div>
-
-                  <!-- 옵션추가 부분 -->
-                  <ul class="survey-create-content-option">
-                    <li>
-                      <i class="fa-solid fa-check survey-check"></i>
-                      <input type="text" name="optionList" placeholder="옵션을 입력해 주세요.">
-                      <button type="button" id="survey-option-delete" disabled>
-                        <i class="fa-solid fa-xmark fa-xl"></i>
-                      </button>
-                    </li>
-                  </ul>
-
-                  <div class="servey-option-add-area">
-                    <i class="fa-solid fa-plus fa-2xs"></i>
-                    <button type="button" id="survey-option-add">옵션 추가</button>
-                  </div>
-                </div>
-
-                <!-- 아래 취소 저장 부분 -->
-                <div class="survey-create-bottom">
-                  <button type="button" id="survey-create-bottom-cancle">취소</button>
-                  <button type="submit" id="survey-create-bottom-submit">저장</button>
-                </div>
-
-              </form>
-
+              <div class="servey-option-add-area">
+                <i class="fa-solid fa-plus fa-2xs"></i>
+                <button type="button" id="survey-option-add">옵션 추가</button>
+              </div>
             </div>
 
-      
+            <!-- 아래 취소 저장 부분 -->
+            <div class="survey-create-bottom">
+              <button type="button" id="survey-create-bottom-cancle">취소</button>
+              <button type="submit" id="survey-create-bottom-submit">저장</button>
+            </div>
+
+          </form>
+
+        </div>
+
+
 
 
 
 
       </section>
+
+      <!-- 사이드바 -->
+      <script>
+        document.addEventListener('click', function (event) {
+          var sidebarMenu = document.getElementById('sidebarMenu');
+          var openSidebarMenu = document.getElementById('openSidebarMenu');
+          var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
+
+          var isClickInsideSidebar = sidebarMenu.contains(event.target);
+          var isClickInsideToggle = openSidebarMenu.contains(event.target);
+
+          if (!isClickInsideSidebar && !isClickInsideToggle && openSidebarMenu.checked) {
+            openSidebarMenu.checked = false;
+          }
+        });
+      </script>
 
       <script src="${contextPath}/resources/js/survey/survey-create.js"></script>
 

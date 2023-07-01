@@ -27,8 +27,8 @@
               <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
               <li><a href="${contextPath}/meetingRoom/reservation">회의실</a> </li>
               <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
-              <li><a href="${contextPath}/dashBoard/dashBoardMain">대시보드</a></li>
-              <li id="employee-rank-change"><a href="dashBoard">대시보드</a></li>
+              <li class="employee-rank-change"><a href="${contextPath}/dashBoard/dashBoardMain">대시보드</a></li>
+              <!-- <li id="employee-rank-change"><a href="dashBoard">대시보드</a></li> -->
             </ul>
           </div>
 
@@ -64,6 +64,8 @@
           <li><a href="${contextPath}/attendance/list">근무/휴가</a> </li>
           <li><a href="${contextPath}/meetingRoom/reservation">회의실</a> </li>
           <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
+          <li class="Responsive-employee-rank-change"><a href="${contextPath}/dashBoard/dashBoardMain">대시보드</a></li>
+          <!-- <li id="employee-rank-change"><a href="dashBoard">대시보드</a></li> -->
           <li><a href="${contextPath}/member/myPageProfile">마이페이지</a> </li>
           <li><a class="log-out">로그아웃</a></li>
         </ul>
@@ -80,9 +82,26 @@
         Swal.fire("${message}");
       </script>
     </c:if>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 
     <script>
+      const loginMember = "<c:out value='${loginMember}' />";
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+
+
+    <script>
+      // 대시보드
+      const jobNoRegex = /jobNo=(\d+)/;
+      const jobNoMatch = loginMember.match(jobNoRegex);
+      const loginMemberJobNo = jobNoMatch[1];
+      const employeeRankChange = document.querySelector(".employee-rank-change");
+      const responsiveEmployeeRankChange = document.querySelector(".Responsive-employee-rank-change");
+      if (parseInt(loginMemberJobNo) === 4) {
+        employeeRankChange.style.display = 'none';
+        responsiveEmployeeRankChange.style.display = 'none'
+      }
+
       // 로그아웃
       const logOut = document.querySelector('.header-log-out');
       const logOut2 = document.querySelector('.log-out');

@@ -324,6 +324,15 @@ input:focus {
   text-wrap: balance;
 }
 
+/* 사이드바 반응형 */
 #sidebarMenu {
   z-index: 2;
+}
+
+.sidebarIconToggle {
+  z-index: 3;
+}
+
+.sidebarMenuInner li:nth-child(3) span {
+  color: var(--primary500);
 }

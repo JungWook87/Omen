@@ -40,83 +40,83 @@
             <li><a href="./dept-notice.html"><span>근태 현황</span> </a></li>
           </ul>
         </div>
-        
-            <!-- 사이드 바 -->
-            <div class="side-bar menu">
-              <!-- 페이지마다 바뀌는 제목 -->
-              <h1>근무/휴가</h1>
 
-              <!-- 페이지마다 바뀌는 부제목 -->
-              <ul>
-                <li><a href="./dept-notice.html"><span>근태 현황</span> </a></li>
-              </ul>
-            </div>
-         
-            <!-- 컨텐츠 내용 -->
-            <div class="content-all-page">
+        <!-- 사이드 바 -->
+        <div class="side-bar menu">
+          <!-- 페이지마다 바뀌는 제목 -->
+          <h1>근무/휴가</h1>
 
-              <!-- 컨텐츠 내용 윗부분 -->
-              <div class="content-all-top-area">
+          <!-- 페이지마다 바뀌는 부제목 -->
+          <ul>
+            <li><a href="./dept-notice.html"><span>근태 현황</span> </a></li>
+          </ul>
+        </div>
 
-                <div class="content-all-top-area-detail">
+        <!-- 컨텐츠 내용 -->
+        <div class="content-all-page">
 
-                  <!-- 컨텐츠 제목 부분 -->
-                  <div>
-                    <p class="content-all-top-text2">근태현황</p>
-                    <p class="content-all-top-text1">${loginMember.memName}님의 근태현황입니다.</p>
-                  </div>
+          <!-- 컨텐츠 내용 윗부분 -->
+          <div class="content-all-top-area">
 
-                </div>
+            <div class="content-all-top-area-detail">
 
+              <!-- 컨텐츠 제목 부분 -->
+              <div>
+                <p class="content-all-top-text2">근태현황</p>
+                <p class="content-all-top-text1">${loginMember.memName}님의 근태현황입니다.</p>
               </div>
-
-              <!-- 컨텐츠 내용 아랫부분 -->
-              <div class="content-all-bottom-area">
-
-                <div class="YMSelect">
-                  <button type="button" id="leftBtn"><img src="${contextPath}/resources/images/LtAngle.png"></button>
-                  <p id="attnDate">${attendanceList[0].today.split("/")[0]} 년 ${attendanceList[0].today.split("/")[1]} 월
-                  </p>
-                  <input id="year" style="display:none" value="${attendanceList[0].today.split('/')[0]}">
-                  <input id="month" style="display:none" value="${attendanceList[0].today.split('/')[1]}">
-                  <button type="button" id="rightBtn"><img src="${contextPath}/resources/images/RtAngle.png"></button>
-                </div>
-
-                <div class="attendance-table">
-                  <table>
-
-                    <thead>
-                      <tr>
-                        <th>분류</th>
-                        <th>날짜</th>
-                        <th>출근시간</th>
-                        <th>퇴근시간</th>
-                        <th>근무시간</th>
-                        <th>연장근무시간</th>
-                      </tr>
-                    </thead>
-
-                    <tbody id="attnList">
-                      <c:forEach var="attnList" items="${attendanceList}">
-                        <tr>
-                          <td>${attnList.attdTypeName}</td>
-                          <td>${attnList.today}</td>
-                          <td>${attnList.attnStart}</td>
-                          <td>${attnList.attnEnd}</td>
-                          <td>${attnList.workingHours}</td>
-                          <td>${attnList.extendedWorkingHours}</td>
-                        </tr>
-                      </c:forEach>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
 
             </div>
 
-         
+          </div>
+
+          <!-- 컨텐츠 내용 아랫부분 -->
+          <div class="content-all-bottom-area">
+
+            <div class="YMSelect">
+              <button type="button" id="leftBtn"><img src="${contextPath}/resources/images/LtAngle.png"></button>
+              <p id="attnDate">${attendanceList[0].today.split("/")[0]} 년 ${attendanceList[0].today.split("/")[1]} 월
+              </p>
+              <input id="year" style="display:none" value="${attendanceList[0].today.split('/')[0]}">
+              <input id="month" style="display:none" value="${attendanceList[0].today.split('/')[1]}">
+              <button type="button" id="rightBtn"><img src="${contextPath}/resources/images/RtAngle.png"></button>
+            </div>
+
+            <div class="attendance-table">
+              <table>
+
+                <thead>
+                  <tr>
+                    <th>분류</th>
+                    <th>날짜</th>
+                    <th>출근시간</th>
+                    <th>퇴근시간</th>
+                    <th>근무시간</th>
+                    <th>연장근무시간</th>
+                  </tr>
+                </thead>
+
+                <tbody id="attnList">
+                  <c:forEach var="attnList" items="${attendanceList}">
+                    <tr>
+                      <td>${attnList.attdTypeName}</td>
+                      <td>${attnList.today}</td>
+                      <td>${attnList.attnStart}</td>
+                      <td>${attnList.attnEnd}</td>
+                      <td>${attnList.workingHours}</td>
+                      <td>${attnList.extendedWorkingHours}</td>
+                    </tr>
+                  </c:forEach>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+        </div>
+
+
 
 
 
@@ -130,6 +130,22 @@
           </a>
         </div>
       </section>
+
+      <!-- 사이드바 -->
+      <script>
+        document.addEventListener('click', function (event) {
+          var sidebarMenu = document.getElementById('sidebarMenu');
+          var openSidebarMenu = document.getElementById('openSidebarMenu');
+          var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
+
+          var isClickInsideSidebar = sidebarMenu.contains(event.target);
+          var isClickInsideToggle = openSidebarMenu.contains(event.target);
+
+          if (!isClickInsideSidebar && !isClickInsideToggle && openSidebarMenu.checked) {
+            openSidebarMenu.checked = false;
+          }
+        });
+      </script>
 
       <script src="${contextPath}/resources/js/attendance/attendance.js"></script>
 
