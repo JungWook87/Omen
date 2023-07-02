@@ -240,6 +240,7 @@
 <script src="${contextPath}/resources/js/work/work-send.js"></script>
 <script src="${contextPath}/resources/js/work/write-approval.js"></script>
 <script src="${contextPath}/resources/js/work/checked-approval.js"></script>
+<script src="${contextPath}/resources/js/component.js"></script> <!--여기-->
 
 </html>
 
