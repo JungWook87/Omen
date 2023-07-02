@@ -13,6 +13,9 @@ const attnDate = document.getElementById("attnDate");
 	let todayMonth = todayDate.getMonth() + 1;
 	if(todayMonth < 10) todayMonth = '0' + todayMonth;
 	attnDate.innerText = todayYear + ' 년 ' + todayMonth + ' 월 ';
+
+	year.value = todayYear;
+	month.value = todayMonth;
 })()
 
 leftBtn.addEventListener("click", function(){
@@ -56,18 +59,31 @@ function selectDate(yearNum, monthNum){
    				"year" : yearNum,  
             	"month" : monthNum },
             success : function(attendanceList){
-
-				
 				
 				attnDate.innerHTML = yearNum + ' 년 ' + monthNum + ' 월';
 
 				year.value = yearNum;
 				month.value = monthNum;
-				
+
 				// 목록
 				// 리스트 삭제
 				const attnList = document.getElementById("attnList");
 				attnList.innerHTML = "";
+
+				if(attendanceList.length == 0){
+					// tr 요소 생성
+					const tr = document.createElement("tr");
+					tr.setAttribute("id", "emptyList");
+
+					// td 요소 생성
+					const td = document.createElement("td");
+					td.innerText = '조회 내역이 없습니다.';
+					td.setAttribute("colspan", "6");
+					
+					// 리스트에 요소 추가
+					tr.append(td);
+					attnList.append(tr);
+				}
 				
 				// for문 이용하여 리스트 출력
 				for(let item of attendanceList){

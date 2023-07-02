@@ -75,8 +75,8 @@
             <div class="YMSelect">
               <button type="button" id="leftBtn"><img src="${contextPath}/resources/images/LtAngle.png"></button>
               <p id="attnDate"></p>
-              <input id="year" style="display:none" value="${attendanceList[0].today.split('/')[0]}">
-              <input id="month" style="display:none" value="${attendanceList[0].today.split('/')[1]}">
+              <input id="year" style="display:none">
+              <input id="month" style="display:none">
               <button type="button" id="rightBtn"><img src="${contextPath}/resources/images/RtAngle.png"></button>
             </div>
 
@@ -95,6 +95,13 @@
                 </thead>
 
                 <tbody id="attnList">
+                  <c:choose>
+                    <c:when test="${empty attendanceList}">
+                      <tr id="emptyList">
+                        <td colspan="6">조회 내역이 없습니다.</td>
+                      </tr>
+                    </c:when>
+                  </c:choose>
                   <c:forEach var="attnList" items="${attendanceList}">
                     <tr>
                       <td>${attnList.attdTypeName}</td>
