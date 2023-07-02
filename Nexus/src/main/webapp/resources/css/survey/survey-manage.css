@@ -16,6 +16,18 @@ section {
 
 }
 
+@media(max-height:789px) {
+  .side-bar {
+    height: unset !important;
+  }
+  
+  .content-all-page {
+    margin-bottom: 10rem !important;
+
+  }
+
+}
+
 .side-bar ul {
   margin: 0;
   padding: 0;

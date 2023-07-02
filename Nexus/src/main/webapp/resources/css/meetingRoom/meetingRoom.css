@@ -9,10 +9,22 @@ section {
 /* 사이드바 전체 스타일 */
 .side-bar {
   width: 300px;
-  /* height: 100vh; */
+  height: 100vh;
 
 
   background-color: var(--side);
+
+}
+
+@media(max-height:789px) {
+  .side-bar {
+    height: unset !important;
+  }
+  
+  .content-all-page {
+    margin-bottom: 10rem !important;
+
+  }
 
 }
 
@@ -775,6 +787,7 @@ a:focus {
 #sidebarMenu {
   z-index: 2;
 }
+
 .sidebarIconToggle {
   z-index: 3;
 }
