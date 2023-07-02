@@ -142,7 +142,7 @@
 .work-modal-detail textarea,
 .work-modal-businessDetail textarea {
   width: 100%;
-  height: 350px;
+  height: 350px !important;
   border: 1px solid var(--gray300);
   border-radius: 5px;
   padding: 10px;
