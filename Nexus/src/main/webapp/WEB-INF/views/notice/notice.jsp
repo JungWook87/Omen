@@ -171,32 +171,32 @@
               <c:set var="url" value="${boardCode}?cp=" />
 
               <ul class="pagination">
-                <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
-
                 <c:if test="${pagination.currentPage > 1}">
-                  <li class="prevPage"><a href="${url}${pagination.currentPage - 1}${sURL}" class="blue">이전</a></li>
-                </c:if>
-                <c:if test="${pagination.currentPage == 1}">
-                  <li class="prevPage"><a href="javascript:void(0);">이전</a></li>
-                </c:if>
+                <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
+                <li class="prevPage"><a href="${url}${pagination.currentPage - 1}${sURL}" class="blue">이전</a></li>
+              </c:if>
+              <c:if test="${pagination.currentPage == 1}">
+                <li><a href="javascript:void(0);">&lt;&lt;</a></li>
+                <li class="prevPage"><a href="javascript:void(0);">이전</a></li>
+              </c:if>
 
-                <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
-                  <c:if test="${i == pagination.currentPage}">
-                    <li><a class="current">${i}</a></li>
-                  </c:if>
-                  <c:if test="${i != pagination.currentPage}">
-                    <li><a href="${url}${i}${sURL}">${i}</a></li>
-                  </c:if>
-                </c:forEach>
-
-                <c:if test="${pagination.currentPage < pagination.maxPage}">
-                  <li class="nextPage"><a href="${url}${pagination.currentPage + 1}${sURL}" class="blue">다음</a></li>
+              <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+                <c:if test="${i == pagination.currentPage}">
+                  <li><a class="current">${i}</a></li>
                 </c:if>
-                <c:if test="${pagination.currentPage == pagination.maxPage}">
-                  <li class="nextPage"><a href="javascript:void(0);">다음</a></li>
+                <c:if test="${i != pagination.currentPage}">
+                  <li><a href="${url}${i}${sURL}">${i}</a></li>
                 </c:if>
+              </c:forEach>
 
+              <c:if test="${pagination.currentPage < pagination.maxPage}">
+                <li class="nextPage"><a href="${url}${pagination.currentPage + 1}${sURL}" class="blue">다음</a></li>
                 <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+              </c:if>
+              <c:if test="${pagination.currentPage == pagination.maxPage}">
+                <li class="nextPage"><a href="javascript:void(0);">다음</a></li>
+                <li><a href="javascript:void(0);"">&gt;&gt;</a></li>
+              </c:if>
               </ul>
             </div>
           </div>

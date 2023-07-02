@@ -165,12 +165,13 @@
             <c:set var="url" value="${boardCode}?cp=" />
 
             <ul class="pagination">
-              <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
 
               <c:if test="${pagination.currentPage > 1}">
+                <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
                 <li class="prevPage"><a href="${url}${pagination.currentPage - 1}${sURL}" class="blue">이전</a></li>
               </c:if>
               <c:if test="${pagination.currentPage == 1}">
+                <li><a href="javascript:void(0);">&lt;&lt;</a></li>
                 <li class="prevPage"><a href="javascript:void(0);">이전</a></li>
               </c:if>
 
@@ -185,12 +186,12 @@
 
               <c:if test="${pagination.currentPage < pagination.maxPage}">
                 <li class="nextPage"><a href="${url}${pagination.currentPage + 1}${sURL}" class="blue">다음</a></li>
+                <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
               </c:if>
               <c:if test="${pagination.currentPage == pagination.maxPage}">
                 <li class="nextPage"><a href="javascript:void(0);">다음</a></li>
+                <li><a href="javascript:void(0);"">&gt;&gt;</a></li>
               </c:if>
-
-              <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
             </ul>
           </div>
         </div>
@@ -225,6 +226,7 @@
               <button type="button" id="check-file-remove">파일 지우기</button>
               <label for="file-uploads">파일 올리기</label>
               <input type="file" id="check-file-uploads" name="uploadFile" accept="" multiple>
+              <input type="text" name="fileData" value="false" style="display: none;">
             </div>
 
             <!-- 선2 -->
@@ -252,7 +254,11 @@
 
      
       
-
+      <c:if test="${ !empty message }">
+        <script>
+          Swal.fire("${message}");
+        </script>
+      </c:if>
 
       <script>
         const loginMember = "<c:out value='${loginMember}' />";
