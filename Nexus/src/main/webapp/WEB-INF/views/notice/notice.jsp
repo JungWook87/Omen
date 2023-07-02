@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <c:set var="pagination" value="${map.pagination}" />
     <c:set var="boardList" value="${map.boardList}" />
@@ -21,13 +22,14 @@
       <!-- jquery cdn -->
       <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
+      
       <title>공지사항</title>
     </head>
 
     <body>
 
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
+      
       <section>
 
 
@@ -145,13 +147,16 @@
                         <th colspan="4">게시글이 존재하지 않습니다.</th>
                       </tr>
                     </c:when>
-
+               
                     <c:otherwise>
                       <c:forEach var="board" items="${boardList}">
                         <tr onclick="detailModal(${board.noticeNo})">
                           <td>${board.noticeNo}</td>
                           <td>${board.title}</td>
-                          <td>${board.createDate}</td>
+                          <td>
+                            <fmt:parseDate value='${board.createDate}' var='boardDate' pattern='yyyymmdd'/>
+                            <fmt:formatDate pattern="yyyy-MM-dd" value="${boardDate}"/>
+                          <td>
                         </tr>
                       </c:forEach>
 
