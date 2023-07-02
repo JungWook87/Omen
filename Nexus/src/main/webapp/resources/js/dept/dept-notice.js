@@ -235,6 +235,9 @@ const modifyBtn = document.getElementById('check-success-btn');
 const doneBtn = document.getElementById('done-btn');
 const fileBox = document.querySelector('.check-file-box');
 const deleteBtn = document.getElementById('check-remove-btn');
+const checkFileRemove = document.getElementById('check-file-remove');
+const checkFileUpload = document.getElementById('check-file-uploads');
+const fileData = document.querySelector('input[name="fileData]"');
 
 
 let globalNoticeNo = 0;
@@ -282,6 +285,8 @@ function detailModal(noticeNo) {
 
       }
 
+     
+
   // 수정 버튼 눌렀을 때 이벤트
   let isEditMode = false; // 수정 모드 상태를 나타내는 변수
 
@@ -321,6 +326,17 @@ function detailModal(noticeNo) {
 
     // 수정 버튼을 none으로 설정
     modifyBtn.style.display = "none";
+
+    deleteBtn.style.display = "none";
+
+      // 파일지우기
+      checkFileRemove.addEventListener('click', ()=>{
+        const checkPreview = document.querySelector('.check-preview');
+        checkPreview.firstChild.innerText = "파일 없음";
+        checkPreview.firstChild.href = 'null';
+        checkFileUpload.value = 'null';
+        fileData.value = 'true';
+    })
 
     
     doneBtn.style.display = "inline-block";

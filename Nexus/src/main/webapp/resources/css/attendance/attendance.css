@@ -277,3 +277,14 @@ a:focus {
 .sidebarMenuInner li span {
   color: var(--primary500);
 }
+
+#emptyList > td{
+  text-align: center;
+  color: var(--gray600);
+  border-bottom: none;
+  padding-top: 40px;
+}
+
+#emptyList {
+  background-color: transparent;
+}

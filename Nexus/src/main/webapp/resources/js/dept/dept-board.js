@@ -228,7 +228,7 @@ const removeBtn = document.getElementById("check-remove-btn");
 const modifyBtn = document.getElementById('check-success-btn');
 const doneBtn = document.getElementById('done-btn');
 const fileBox = document.querySelector('.check-file-box');
-
+const checkFileRemove = document.getElementById('check-file-remove');
 
 const memNoRegex = /memNo=(\d+)/;
 const memNoMatch = loginMember.match(memNoRegex);
@@ -268,7 +268,7 @@ function detailModal(boardNo) {
       checkModalDetail.append(checkModalDetailSpan);
 
 
-      if (detail.NoticeFileOrigin) {
+      if (detail.boardFileOrigin) {
         const checkPreviewA = document.createElement("a");
         checkPreviewA.innerText = detail.boardFileOrigin;
         checkPreviewA.href = "/intranet" + detail.boardFileRename;
@@ -323,6 +323,8 @@ function detailModal(boardNo) {
 
       // 수정 버튼을 none으로 설정
       modifyBtn.style.display = "none";
+
+      deleteBtn.style.display = "none";
 
       
       doneBtn.style.display = "inline-block";
@@ -408,6 +410,7 @@ function checkModalClose() {
 
    doneBtn.style.display = "none";
    modifyBtn.style.display = "inline-block";
+   
 
    fileBox.style.display = 'none';
 
