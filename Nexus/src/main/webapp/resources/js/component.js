@@ -19,6 +19,5 @@ window.addEventListener('click', function(event) {
   if (!sidebarMenu.contains(event.target) && !sidebarToggle.contains(event.target)) {
     document.body.classList.remove('show-sidebar');
   }
+
 });
-
-

@@ -76,9 +76,6 @@
 
     </header>
 
-
-   
-
     <script>
       const loginMemberHeader = "<c:out value='${loginMember}' />";
     </script>
