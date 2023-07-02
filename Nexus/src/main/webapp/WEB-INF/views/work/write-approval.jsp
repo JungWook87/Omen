@@ -79,8 +79,7 @@
           <!-- 내용 -->
           <div class="work-modal-detail">
             <p>내용</p>
-            <textarea name="content" id="" onkeydown="handleResizeHeight(this)"
-              onkeyup="handleResizeHeight(this)" ></textarea>
+            <textarea name="content" ></textarea>
           </div>
 
           <!-- 프로젝트박스 -->
@@ -132,7 +131,7 @@
 
         <!-- 버튼 -->
         <div class="work-submit-reset-btns">
-          <button type="reset" id="cancell-btn">취소</button>
+          <button type="button" id="cancell-btn">취소</button>
           <button type="button" id="success-btn" value="submitBtn">확인</button>
         </div>
         
@@ -209,7 +208,7 @@
             <div class="approver-modal-line2"></div>
             <!-- 버튼 -->
             <div class="approver-submit-reset-btns">
-              <button type="reset" id="approver-cancell-btn">취소</button>
+              <button type="button" id="approver-cancell-btn">취소</button>
               <button type="button" id="approver-success-btn">확인</button>
             </div>
           

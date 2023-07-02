@@ -22,7 +22,9 @@
 
         <!-- 폰트어썸 -->
         <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
-
+        <!-- jquery cdn -->
+        <script src="https://code.jquery.com/jquery-3.7.0.js"
+          integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
         <!-- 날짜조회api-->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -30,9 +32,6 @@
           src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-        <!-- jquery cdn -->
-        <script src="https://code.jquery.com/jquery-3.7.0.js"
-          integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
         <title>결재</title>
       </head>
