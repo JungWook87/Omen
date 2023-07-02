@@ -40,10 +40,6 @@
           </div>
 
           <div class="checked-modal-headerbox-footer">
-              <button class="copy-btn">
-                <img src="${contextPath}/resources/images/paste-regular.svg" alt="">
-                <span>문서복사</span> 
-              </button>
               <button class="print-btn">
                 <img src="${contextPath}/resources/images/print-solid.svg" alt="">
                 <span>문서출력</span>

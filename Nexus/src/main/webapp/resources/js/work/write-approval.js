@@ -36,6 +36,7 @@ btn.addEventListener("click", () => {
   workApprover.value = '';
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
   showMember.innerText = '-';
+  normalCheckSelect.value = 'userCustom';
 
   workTemplateSelect.value = 'normal-check';
 
@@ -150,6 +151,7 @@ workTemplateSelect.addEventListener('change', () => {
   workDetail.querySelector('textarea').value = '';
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
   showMember.innerText = '-';
+  normalCheckSelect.value = 'userCustom';
 
 
   normalCheckSelect.style.display='none';
@@ -292,6 +294,18 @@ pulsApproverBtn.addEventListener("click",() => {
   approverModal.style.display = 'block';
   approverModalBody.classList.add('approver-modal-open');
 
+  for(let i = 0; i < deptList.length; i++){
+    deptList[i].classList.remove('show');
+  }
+
+  for(let i = 0; i < teamList.length; i++) {
+    teamList[i].classList.remove('show');
+  }
+
+  for(let i = 0; i < approvalTeam.length; i++) {
+    approvalTeam[i].classList.remove('show');
+  }
+
   $.ajax({
     url : "approvalMember",
     type : "GET",
@@ -305,110 +319,110 @@ pulsApproverBtn.addEventListener("click",() => {
       
       for(let i=0; i < team.length; i++){
         team[i].innerText = "";
-      }
+      }  
   
-          for (let value of approvalList) {
-            let div = document.createElement("div");
-            div.className = "divBox"
+      for (let value of approvalList) {
+        let div = document.createElement("div");
+        div.className = "divBox"
 
-            let label = document.createElement("label");
-            label.setAttribute("for", "mem" + value.memNo);
-            label.innerText = value.memName;
-            
-            let input = document.createElement("input");
-            input.setAttribute("type", "radio");
-            input.setAttribute("name", "approver-check");
-            input.setAttribute("id", "mem" + value.memNo);
-            input.classList.add("approver-checkBox");
-            input.value = value.memNo;
+        let label = document.createElement("label");
+        label.setAttribute("for", "mem" + value.memNo);
+        label.innerText = value.memName;
+        
+        let input = document.createElement("input");
+        input.setAttribute("type", "radio");
+        input.setAttribute("name", "approver-check");
+        input.setAttribute("id", "mem" + value.memNo);
+        input.classList.add("approver-checkBox");
+        input.value = value.memNo;
 
-              if (value.teamNo == 11) {
-                div.append(input);
-                div.append(label);
+          if (value.teamNo == 11) {
+            div.append(input);
+            div.append(label);
 
-                team[0].append(div);
-              } else if (value.teamNo == 12) {
-                div.append(input);
-                div.append(label);
+            team[0].append(div);
+          } else if (value.teamNo == 12) {
+            div.append(input);
+            div.append(label);
 
-                team[1].append(div);
-              } else if (value.teamNo == 21) {
-                div.append(input);
-                div.append(label);
+            team[1].append(div);
+          } else if (value.teamNo == 21) {
+            div.append(input);
+            div.append(label);
 
-                team[2].append(div);
-              } else if (value.teamNo == 22) {
-                div.append(input);
-                div.append(label);
+            team[2].append(div);
+          } else if (value.teamNo == 22) {
+            div.append(input);
+            div.append(label);
 
-                team[3].append(div);
-              } else if (value.teamNo == 31) {
-                div.append(input);
-                div.append(label);
+            team[3].append(div);
+          } else if (value.teamNo == 31) {
+            div.append(input);
+            div.append(label);
 
-                team[4].append(div);
-              } else if (value.teamNo == 32) {
-                div.append(input);
-                div.append(label);
+            team[4].append(div);
+          } else if (value.teamNo == 32) {
+            div.append(input);
+            div.append(label);
 
-                team[5].append(div);
-              } else if (value.teamNo == 33) {
-                div.append(input);
-                div.append(label);
+            team[5].append(div);
+          } else if (value.teamNo == 33) {
+            div.append(input);
+            div.append(label);
 
-                team[6].append(div);
-              } else if (value.teamNo == 34) {
-                div.append(input);
-                div.append(label);
+            team[6].append(div);
+          } else if (value.teamNo == 34) {
+            div.append(input);
+            div.append(label);
 
-                team[7].append(div);
-              } else if (value.teamNo == 41) {
-                div.append(input);
-                div.append(label);
+            team[7].append(div);
+          } else if (value.teamNo == 41) {
+            div.append(input);
+            div.append(label);
 
-                team[8].append(div);
-              } else if (value.teamNo == 42) {
-                div.append(input);
-                div.append(label);
+            team[8].append(div);
+          } else if (value.teamNo == 42) {
+            div.append(input);
+            div.append(label);
 
-                team[9].append(div);
-              } else if (value.teamNo == 43) {
-                div.append(input);
-                div.append(label);
+            team[9].append(div);
+          } else if (value.teamNo == 43) {
+            div.append(input);
+            div.append(label);
 
-                team[10].append(div);
-              } else if (value.teamNo == 51) {
-                div.append(input);
-                div.append(label);
+            team[10].append(div);
+          } else if (value.teamNo == 51) {
+            div.append(input);
+            div.append(label);
 
-                team[11].append(div);
-              } else if (value.teamNo == 52) {
-                div.append(input);
-                div.append(label);
+            team[11].append(div);
+          } else if (value.teamNo == 52) {
+            div.append(input);
+            div.append(label);
 
-                team[12].append(div);
-              }
+            team[12].append(div);
+          }
 
-            }
-            
-          //  // 결재자 클릭 이벤트 핸들러
-          const approverSuccessBtn = document.getElementById('approver-success-btn');
-          const approverCheckBtn = document.getElementsByClassName('approver-checkBox');
+        }
+        
+      //  // 결재자 클릭 이벤트 핸들러
+      const approverSuccessBtn = document.getElementById('approver-success-btn');
+      const approverCheckBtn = document.getElementsByClassName('approver-checkBox');
 
-          
-          approverSuccessBtn.addEventListener("click", () => {
+      
+      approverSuccessBtn.addEventListener("click", () => {
 
-            for (let i = 0; i < approverCheckBtn.length; i++) {
-              let radio = approverCheckBtn[i]; // <input[=radio]> 태그 내부의 라디오 버튼 선택
-              if (radio.checked) {  
-                workApprover.value = radio.value; // 체크된 라디오 버튼의 값을 가져옵니다.
-                const showMember = document.getElementById("showMemName");
-                showMember.innerText = radio.nextElementSibling.innerText; 
-                aproverModalClose();
-              }
-            } 
-          });
-    
+        for (let i = 0; i < approverCheckBtn.length; i++) {
+          let radio = approverCheckBtn[i]; // <input[=radio]> 태그 내부의 라디오 버튼 선택
+          if (radio.checked) {  
+            workApprover.value = radio.value; // 체크된 라디오 버튼의 값을 가져옵니다.
+            const showMember = document.getElementById("showMemName");
+            showMember.innerText = radio.nextElementSibling.innerText; 
+            aproverModalClose();
+          }
+        } 
+      });
+
     }
 
   });
@@ -469,11 +483,12 @@ for(let i= 0; i < deptList.length; i++ ){
 
 }
 
+const approvalTeam = document.querySelectorAll('.approval-team');
+
 // 팀원 조회 이벤트
 for (let i = 0; i < teamList.length; i++) {
   teamList[i].addEventListener('click', () => {
     // 해당 deptList 내부의 팀 요소들을 선택합니다.
-    const approvalTeam = document.querySelectorAll('.approval-team');
     
     for(let x = 0; x < approvalTeam.length; x++) {
       approvalTeam[x].classList.remove('show');
@@ -719,4 +734,8 @@ successBtn.addEventListener("click", function(){
 
 
   // --------------------------------------------------------------------------------
-
+//썸머노트 테스트
+$('.summernote').summernote({
+  height: 350,
+  lang: "ko-KR"
+});
