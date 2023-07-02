@@ -256,6 +256,12 @@ select {
   text-align: center;
 }
 
+.content-all-bottom-area-content tbody>tr:hover{
+  cursor: pointer;
+
+  background-color: var(--gray100);
+}
+
 .content-all-bottom-area-content table th {
   color: var(--gray600);
   border-bottom: 1px solid var(--gray300);
@@ -268,10 +274,21 @@ select {
   padding: 30px 0;
 }
 
-
 .content-all-bottom-area-content table td {
   color: black;
   padding: 20px;
+}
+
+.content-all-bottom-area-content tbody>tr:nth-of-type(2n-1){
+  cursor: pointer;
+
+  background-color: var(--side);
+}
+
+.content-all-bottom-area-content tbody>tr:nth-of-type(2n-1):hover{
+  cursor: pointer;
+
+  background-color: var(--gray100);
 }
 
 /* -------------------------------------- */
