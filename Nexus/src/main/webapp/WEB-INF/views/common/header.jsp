@@ -76,13 +76,6 @@
 
     </header>
 
-<!-- 
-    <c:if test="${ !empty message }">
-      <script>
-        Swal.fire("${message}", '', 'success');
-      </script>
-    </c:if> -->
-
     <script>
       const loginMemberHeader = "<c:out value='${loginMember}' />";
     </script>
