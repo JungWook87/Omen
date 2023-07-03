@@ -229,6 +229,8 @@ const modifyBtn = document.getElementById('check-success-btn');
 const doneBtn = document.getElementById('done-btn');
 const fileBox = document.querySelector('.check-file-box');
 const checkFileRemove = document.getElementById('check-file-remove');
+const fileData = document.querySelector('input[name="fileData"]');
+
 
 const memNoRegex = /memNo=(\d+)/;
 const memNoMatch = loginMember.match(memNoRegex);
@@ -324,7 +326,18 @@ function detailModal(boardNo) {
       // 수정 버튼을 none으로 설정
       modifyBtn.style.display = "none";
 
-      deleteBtn.style.display = "none";
+      removeBtn.style.display = "none";
+
+      // 파일지우기
+      checkFileRemove.addEventListener('click', ()=>{
+        const checkPreview = document.querySelector('.check-preview');
+        if(checkPreview.firstChild != null) {
+          checkPreview.firstChild.innerText = "파일 없음";
+          checkPreview.firstChild.href = 'null';
+          fileData.value = 'true';
+          console.log(fileData.value);
+        }
+      })
 
       
       doneBtn.style.display = "inline-block";
@@ -341,6 +354,7 @@ function detailModal(boardNo) {
         formData.append('boardNo', boardNo);
         formData.append('boardTitle', modifyNoticeTitle.value);
         formData.append('boardContent', modifyNoticeContent.value);
+        formData.append('fileData', fileData.value);
 
         // 파일 추가
         const fileInput = document.getElementById('file-uploads');

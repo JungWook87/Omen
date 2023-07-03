@@ -186,7 +186,7 @@ public class DeptServiceImpl implements DeptService{
 	// 부서 공지사항 수정
 	@Transactional(rollbackFor = {Exception.class})
 	@Override
-	public int updateDeptNotice(NoticeDetail detail, MultipartFile uploadFile, String webPath, String folderPath)throws IOException {
+	public int updateDeptNotice(NoticeDetail detail, MultipartFile uploadFile, String webPath, String folderPath, boolean fileData)throws IOException {
 		
 		detail.setContent(Util.newLineHandling(detail.getContent()));
 		
@@ -212,6 +212,14 @@ public class DeptServiceImpl implements DeptService{
 				} else {
 					throw new InsertFailException();
 				}
+			}
+			
+			if(fileData) {
+				
+				int noticeNo = detail.getNoticeNo();
+				System.out.println("fileData는 트루입니다");
+				int fileResult = dao.fileDelete(noticeNo);
+				
 			}
 		}
 		
@@ -250,7 +258,7 @@ public class DeptServiceImpl implements DeptService{
 	// 부서 게시판 수정
 	@Transactional(rollbackFor = {Exception.class})
 	@Override
-	public int updateBoardNotice(BoardDetail detail, MultipartFile uploadFile, String webPath, String folderPath)throws IOException {
+	public int updateBoardNotice(BoardDetail detail, MultipartFile uploadFile, String webPath, String folderPath, boolean fileData)throws IOException {
 
 		detail.setBoardContent(Util.newLineHandling(detail.getBoardContent()));
 		
@@ -274,6 +282,13 @@ public class DeptServiceImpl implements DeptService{
 				} else {
 					throw new InsertFailException();
 				}
+			}
+			
+			if(fileData) {
+				
+				int boardNo = detail.getBoardNo();
+				int fileResult = dao.fileDeleteBoard(boardNo);
+				
 			}
 		}
 		

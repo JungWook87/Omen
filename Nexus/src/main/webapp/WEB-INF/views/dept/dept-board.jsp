@@ -233,6 +233,7 @@
                 <button type="button" id="check-file-remove">파일 지우기</button>
                 <label for="file-uploads">파일 올리기</label>
                 <input type="file" id="check-file-uploads" name="uploadFile" accept="" multiple>
+                <input type="text" name="fileData" value="false" style="display: none;">
               </div>
 
               <!-- 선2 -->

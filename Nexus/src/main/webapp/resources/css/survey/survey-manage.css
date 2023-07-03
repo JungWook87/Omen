@@ -271,7 +271,7 @@ td {
   text-align: center;
 }
 
-tr:hover {
+tr:not(thead > tr:first-child):hover {
   cursor: pointer;
 
   background-color: var(--gray50);

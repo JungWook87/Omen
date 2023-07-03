@@ -15,7 +15,7 @@ section {
 
 }
 
-@media(max-height:789px) {
+@media(max-height:937px) {
   .side-bar {
     height: unset !important;
   }

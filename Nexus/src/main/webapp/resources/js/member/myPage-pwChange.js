@@ -34,11 +34,7 @@ $("#new-pw-check").on("input", function() {
 })
 
 
-function printAlert(el, message) {
-  Swal.fire(message)
-  el.focus();
-  return false;
-}
+
 
 // 비밀번호 변경 버튼
 function  changePwValidate() {
@@ -50,7 +46,8 @@ function  changePwValidate() {
   
   
   if(currentPw.value .trim().length == 0) {
-    return printAlert(currentPw, "현재 비밀번호를 입력해주세요.")
+    Swal.fire("현재 비밀번호를 입력해주세요.");
+    return false;
   }
 
   if(newPw.value.trim().length == 0) {
@@ -68,15 +65,24 @@ function  changePwValidate() {
   }
 
   if(newPwConfirm.value.trim().length == 0) {
-    return printAlert(newPwConfirm, "새 비밀번호 확인을 입력해주세요.");
+    Swal.fire("새 비밀번호 확인을 입력해주세요.");
+    return false;
   }
 
   if(newPw.value != newPwConfirm.value) {
-    return printAlert(newPwConfirm, "새 비밀번호가 일치하지 않습니다.");
+    Swal.fire("새 비밀번호가 일치하지 않습니다.");
+    return false;
   }
 
-  return true;
-    
+  Swal.fire('비밀번호 변경이 완료되었습니다. 다시 로그인해 주세요')
+  .then((result) => {
+    if (result.isConfirmed) {
+      document.forms["myForm"].submit();
+     
+      }
+    })
+
+    return false;
 
 }
 

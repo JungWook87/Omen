@@ -115,7 +115,7 @@
                             <a id="survey-result-btn" href="../survey/surveyResult/${survey.surveyNo}">결과 보기</a>
                           </td>
                           <td>
-                            <a href="../survey/surveyDelete/${survey.surveyNo}" class="fa-solid fa-trash"
+                            <a href="#" onclick="trashBtn(${survey.surveyNo})"  class="fa-solid fa-trash"
                               style="color: #c7c7c7;"></a>
                           </td>
                         </tr>

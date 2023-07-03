@@ -13,7 +13,7 @@ const noticeContent = document.querySelector('.modal-detail > textarea');
 const jobNoRegex = /jobNo=(\d+)/;
 const jobNoMatch = loginMember.match(jobNoRegex);
 const loginMemberJobNo = jobNoMatch[1];
-console.log(loginMemberJobNo);
+console.log(loginMember);
 
 // 공지사항 버튼 이벤트
 btn.addEventListener("click", () => {
@@ -237,7 +237,7 @@ const fileBox = document.querySelector('.check-file-box');
 const deleteBtn = document.getElementById('check-remove-btn');
 const checkFileRemove = document.getElementById('check-file-remove');
 const checkFileUpload = document.getElementById('check-file-uploads');
-const fileData = document.querySelector('input[name="fileData]"');
+const fileData = document.querySelector('input[name="fileData"]');
 
 
 let globalNoticeNo = 0;
@@ -329,13 +329,15 @@ function detailModal(noticeNo) {
 
     deleteBtn.style.display = "none";
 
-      // 파일지우기
-      checkFileRemove.addEventListener('click', ()=>{
-        const checkPreview = document.querySelector('.check-preview');
+    // 파일지우기
+    checkFileRemove.addEventListener('click', ()=>{
+      const checkPreview = document.querySelector('.check-preview');
+      if(checkPreview.firstChild != null) {
         checkPreview.firstChild.innerText = "파일 없음";
         checkPreview.firstChild.href = 'null';
-        checkFileUpload.value = 'null';
         fileData.value = 'true';
+        console.log(fileData.value);
+      }
     })
 
     
@@ -353,6 +355,7 @@ function detailModal(noticeNo) {
       formData.append('noticeNo', globalNoticeNo);
       formData.append('title', modifyNoticeTitle.value);
       formData.append('content', modifyNoticeContent.value);
+      formData.append('fileData', fileData.value);
 
       // 파일 추가
       const fileInput = document.getElementById('file-uploads');
