@@ -1192,13 +1192,13 @@ select {
 }
 
 /* ------------------ */
-input[type='date'] {
+/* input[type='date'] {
   border: none;
   position: relative;
   width: 100%;
   padding: 10px;
   color: var(--gray200);
-  background: url(/Nexus/src/main/webapp/resources/images/date.svg) no-repeat right 10px center / 35px auto;
+  background: no-repeat right 10px center / 35px auto;
   background-color: #bbb;
   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
@@ -1224,7 +1224,7 @@ input[type='date']::before {
 
 input[type='date']:valid::before {
   display: none;
-}
+} */
 
 
 /* 사이드바 반응형 */
