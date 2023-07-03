@@ -84,6 +84,11 @@ public class WorkServiceImp implements WorkService {
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());
 		
 		System.out.println("abs : " + map.get("next").toString());
+		
+		if(map.get("next").toString().equals("undefined")) {
+			map.put("next", "");
+		}
+		
 		if(map.get("next").toString().length() != 0) {
 			// 다음 결재자 정보 불러오기
 			Map<String, Object> nextMember = dao.nextMember(Integer.parseInt(map.get("next").toString()));

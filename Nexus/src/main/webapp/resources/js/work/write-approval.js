@@ -747,7 +747,7 @@ successBtn.addEventListener("click", function(){
 
   // --------------------------------------------------------------------------------
 //썸머노트 테스트
-$('.summernote').summernote({
-  height: 350,
-  lang: "ko-KR"
-});
+// $('.summernote').summernote({
+//   height: 350,
+//   lang: "ko-KR"
+// });

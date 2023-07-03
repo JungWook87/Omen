@@ -1199,7 +1199,7 @@ input[type='date'] {
   width: 100%;
   padding: 10px;
   color: var(--gray200);
-  background: url(/Nexus/src/main/webapp/resources/images/date.svg) no-repeat right 10px center / 35px auto;
+  background: no-repeat right 10px center / 35px auto;
   background-color: #bbb;
   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2);
   border-radius: 8px;

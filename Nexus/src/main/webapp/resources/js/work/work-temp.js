@@ -56,6 +56,8 @@ function againWirte(obj){
   let endDay = '연도-월-일';
   if(obj.start != null){
     startDay = obj.start.substr(0, 10);
+  }
+  if(obj.end != null){
     endDay = obj.end.substr(0, 10); 
   }
 
