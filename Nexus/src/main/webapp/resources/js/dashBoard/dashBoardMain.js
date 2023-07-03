@@ -10,7 +10,7 @@ $(document).ready(function(){
         type : 'GET',
         success : function(data){
 
-            console.log("타입넘버 : " + data[1].typeName);
+            
 
             var attnLabel = [];
             var attnCount = [];

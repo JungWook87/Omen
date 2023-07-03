@@ -191,7 +191,7 @@
                                                                     </span>
                                                                 </c:when>
                                                                 <c:when test="${taskTotal.workState == '진행중'}">
-                                                                    <span class="status-text"
+                                                                    <span class="status-orange"
                                                                         value="${taskTotal.workState}">
                                                                         ${taskTotal.workState}
                                                                     </span>

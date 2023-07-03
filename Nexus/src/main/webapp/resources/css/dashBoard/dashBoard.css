@@ -498,7 +498,7 @@ input[id="tab03"]:checked~.con3 {
 }
 
 .status-orange {
-    background-color: #DA932C;
+    background-color: #FAAB78;
     border-radius: 15px;
     padding: 10px 15px;
     color: white;
