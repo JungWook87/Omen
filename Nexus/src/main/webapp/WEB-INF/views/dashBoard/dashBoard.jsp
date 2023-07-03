@@ -37,7 +37,7 @@
     <div class="container">
 
         <div id="hr-div" class="mainDiv">
-            <div class="left">
+            <div class="left personnel-management-left">
                 <div class="hr-head">
                     <a class="managePageA" href="/dashBoard/humanResourceManage">❐ 인사 관리</a>
                 </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="hr-content">            
+            <div class="hr-content personnel-management-right">            
                 <div class="info-div">
                     <!-- 팀라디오 선택 -->
                     <div class="team-selector">
@@ -90,7 +90,8 @@
         </div>
 
         <div class="project-div mainDiv">
-            <div class="left">
+            <div class="left project-management-left
+            ">
                 <div class="project-head">
                     <a class="managePageA" href="/dashBoard/projectManage">❐ 프로젝트 관리</a>
                 </div>
@@ -101,7 +102,7 @@
 
 
             <!-- 프로젝트 생성 -->
-            <div class="project-content">
+            <div class="project-content project-management-right">
                 <div class="project-info-div">
                     <c:forEach var="projectTotal" items="${prList}" >
                         <div id="projectDiv-${projectTotal.projectNo}" class="projectDiv">
@@ -129,19 +130,22 @@
                                         <td class="project-progress">
                                             <div class="single-chart">
                                                 <svg viewBox="0 0 36 36" class="circular-chart green">
-                                                  <path class="circle-bg"
-                                                    d="M18 2.0845
-                                                      a 10 10 0 0 1 0 31.831
-                                                      a 10 10 0 0 1 0 -31.831"
+                                                    
+                                                    <ellipse class="circle-bg"
+                                                    cx="18" cy="18"
+                                                    rx="14" ry="14"  
+                                                    stroke-width="10"
+                                                    fill="transparent"
                                                   />
-                                                  <path class="circle"
+                                                  <ellipse class="circle"
+                                                    cx="18" cy="18"
+                                                    rx="14" ry="14"  
                                                     stroke-dasharray="${projectTotal.percent}, 100"
-                                                    d="M18 2.0845
-                                                    a 10 10 0 0 1 0 31.831
-                                                    a 10 10 0 0 1 0 -31.831"
+                                                    stroke-width="10"
+                                                    fill="transparent"
                                                   />
-                                                  <text x="18" y="22" class="percentage">${projectTotal.percent}%</text>
                                                 </svg>
+                                                <text x="18" y="22" class="percentage">${projectTotal.percent}%</text>
                                               </div>
                                         </td>
                                         <td style="display: none;">
@@ -152,9 +156,9 @@
                             <table class="projects-table">
                                 <thead>
                                     <tr>
-                                        <th><p>Project Task</p></th>
-                                        <th><p>SendDate</p></th>
-                                        <th><p>Leader + Team</p></th>
+                                        <th>Project Task</th>
+                                        <th>SendDate</th>
+                                        <th>Leader + Team</th>
                                         <th class="text-right">Work State</th>
                                     </tr>
                                 </thead>
@@ -175,13 +179,38 @@
                                             </div>
                                         </td>
                                         <td class="status">
-                                            <span class="status-text" 
+                                            <!-- <span class="status-text" 
                                             value="${taskTotal.workState}">
                                             ${taskTotal.workState}
-                                            </span>
+                                            </span> -->
+                                            <c:choose>
+                                                <c:when test="${taskTotal.workState == '승인'}">
+                                                  <span class="status-text" value="${taskTotal.workState}">
+                                                    ${taskTotal.workState}
+                                                  </span>
+                                                </c:when>
+                                                <c:when test="${taskTotal.workState == '진행중'}">
+                                                  <span class="status-orange" value="${taskTotal.workState}">
+                                                    ${taskTotal.workState}
+                                                  </span>
+                                                </c:when>
+                                                <c:when test="${taskTotal.workState == '반려'}">
+                                                  <span class="status-red" value="${taskTotal.workState}">
+                                                    ${taskTotal.workState}
+                                                  </span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                  <span class="status-green" value="${taskTotal.workState}">
+                                                    ${taskTotal.workState}
+                                                  </span>
+                                                </c:otherwise>
+                                              </c:choose>
+                                            
                                         </td>
                                     </tr>
-                                </c:forEach>     
+                                </c:forEach>   
+                                
+                                
                             </table>
                         </div>
                     </c:forEach>
@@ -195,6 +224,9 @@
 
     
 </section>
+
+
+
 
  
 <script src="${contextPath}/resources/js/dashBoard/dashBoardMain.js"></script>
