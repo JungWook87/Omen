@@ -74,7 +74,7 @@
 
       <!-- 컨텐츠 내용 아랫부분 -->
       <div class="content-all-bottom-area">
-        <form action="myPagePwChangeFunction" method="post" onsubmit="return changePwValidate()">
+        <form name="myForm" action="myPagePwChangeFunction" method="post" onsubmit="return changePwValidate()">
           <!-- 현재 비밀번호 -->
           <div class="myPage-pw-input-container">
             <div class="myPage-pw-input">

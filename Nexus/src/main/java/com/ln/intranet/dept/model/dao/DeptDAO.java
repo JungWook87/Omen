@@ -160,6 +160,18 @@ public class DeptDAO {
 		return sqlSession.update("deptMapper.updateBoardFileNotice", file);
 	}
 
+	// 공지사항 파일 지우기 클릭시 삭제
+	public int fileDelete(int noticeNo) {
+		
+		return sqlSession.delete("deptMapper.deleteFileDeptNotice", noticeNo);
+	}
+
+	// 게시판 파일 지우기 클릭시 삭제
+	public int fileDeleteBoard(int boardNo) {
+
+		return sqlSession.delete("deptMapper.boardFileDelete",boardNo);
+	}
+
 	
 	
 }

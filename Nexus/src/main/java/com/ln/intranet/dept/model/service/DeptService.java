@@ -33,9 +33,10 @@ public interface DeptService {
 	 * @param uploadFile
 	 * @param webPath
 	 * @param folderPath
+	 * @param fileData 
 	 * @return
 	 */
-	int updateDeptNotice(NoticeDetail detail, MultipartFile uploadFile, String webPath, String folderPath) throws IOException;
+	int updateDeptNotice(NoticeDetail detail, MultipartFile uploadFile, String webPath, String folderPath, boolean fileData) throws IOException;
 
 	// 본인 부서 프로젝트 조회하기(kjw)
 	List projectList(Member loginMember);
@@ -57,9 +58,10 @@ public interface DeptService {
 	 * @param uploadFile
 	 * @param webPath
 	 * @param folderPath
+	 * @param fileData 
 	 * @return result
 	 */
-	int updateBoardNotice(BoardDetail detail, MultipartFile uploadFile, String webPath, String folderPath) throws IOException;
+	int updateBoardNotice(BoardDetail detail, MultipartFile uploadFile, String webPath, String folderPath, boolean fileData) throws IOException;
 
 
 
