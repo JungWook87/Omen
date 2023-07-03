@@ -729,7 +729,19 @@ successBtn.addEventListener("click", function(){
     } else { 
       writeForm.submit();
     }
+  } else if(workTemplateSelect.value === 'assignment'){
+    if(workContent.value === "") {
+      Swal.fire('내용을 입력해 주세요');
+    } else if(workProjectboxText.value === "") {
+      Swal.fire('과제 내용을 입력해 주세요');
+    } else if(workApprover.value === '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else { 
+      writeForm.submit();
+    }
   }
+
+  
 })
 
 
