@@ -79,7 +79,7 @@
           <!-- 내용 -->
           <div class="work-modal-detail">
             <p>내용</p>
-            <textarea name="content" ></textarea>
+            <textarea name="content" class="summernote" ></textarea>
           </div>
 
           <!-- 프로젝트박스 -->
