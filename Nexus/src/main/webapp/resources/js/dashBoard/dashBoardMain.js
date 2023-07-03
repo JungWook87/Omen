@@ -236,6 +236,9 @@ window.onload = function() {
         prDivs[i].style.display = 'none';
     }
     prDivs[1].style.display='block';
+    
+
+    
 
 }
 

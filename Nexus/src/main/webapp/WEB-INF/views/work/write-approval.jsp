@@ -42,7 +42,7 @@
             </select>
 
             <c:forEach var="pList" items="${pList}">
-              <select name="" class="assignment-checked" data-project-no="${pList.projectNo}">
+              <select name="taskNo" class="assignment-checked" data-project-no="${pList.projectNo}">
                 <c:forEach var="ptList" items="${ptList}" varStatus="status">
                   <c:if test="${ptList.projectNo == pList.projectNo}">
                     <option value="${ptList.taskNo}">${ptList.taskTitle}</option>

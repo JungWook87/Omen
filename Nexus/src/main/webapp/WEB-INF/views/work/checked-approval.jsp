@@ -120,6 +120,27 @@
           </c:choose>
         </div>
 
+        <div class="checked-modal-taskList">
+          <p>과제 목록</p>
+          <table>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>과제명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach var="" items="">
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </c:forEach>
+            </tbody>
+          </table>
+
+        </div>
+
         <!-- 업로드 파일(kjw) -->
         <div class="file_div">
           <p>첨부파일</p>

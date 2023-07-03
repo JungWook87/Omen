@@ -21,10 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
-import com.ln.intranet.dashBoard.controller.DashBoardController;
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.service.WorkService;
 import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.ProjectDetail;
 import com.ln.intranet.work.model.vo.ProjectList;
 import com.ln.intranet.work.model.vo.ProjectTaskList;
 import com.ln.intranet.work.model.vo.WorkDetail;
@@ -104,6 +104,39 @@ public class WorkController {
 		
 		return gson.toJson(detailSelect);
 	}
+	
+//	======================= 프로젝트/과제 ================================
+
+	// 결재 디테일 조회
+	@ResponseBody
+	@GetMapping("/projectDetail")
+	public String projectDetailSelect(@RequestParam("workNo") int workNo) {
+		
+		ProjectDetail detailSelect = service.projectDetailSelect(workNo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(detailSelect);
+	}
+	
+	// 결재 디테일 조회
+	@ResponseBody
+	@GetMapping("/taskDetail")
+	public String taskDetailSelect(@RequestParam("workNo") int workNo) {
+		
+		WorkDetail detailSelect = service.detailSelect(workNo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(detailSelect);
+	}
+	
+	
+	
+	
+	
+//	=======================================================
+
 	
 	// 반려 / 승인
 	@GetMapping("/clickApproval")
