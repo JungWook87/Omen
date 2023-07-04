@@ -70,3 +70,48 @@ window.addEventListener('DOMContentLoaded', function () {
     console.log('participation 개수:', participationCount);
 });
 
+function filterSurveyList(flag){
+
+    // tr과 참여부분 클래스 요소로 만들기
+    const trList = document.getElementsByClassName("trList");
+    const part = document.getElementsByClassName("part");
+
+    // 전체 미참여 참여 요소화하기
+    const total = document.getElementById("total");
+    const non = document.getElementById("non");
+    const par = document.getElementById("par");
+
+    // 모든 요소의 클래스 지우기 
+    // css 먹이기용
+    total.classList.remove("clickText");
+    non.classList.remove("clickText");
+    par.classList.remove("clickText");
+
+    for(let i = 0; i < trList.length; i++){
+        trList[i].style.display = 'table-row';
+    }
+
+    if(flag == 'all'){
+        total.classList.add("clickText");
+
+        for(let i = 0; i < trList.length; i++){
+            trList[i].style.display = 'table-row';
+        }
+    } else if(flag == 'notparticipated'){
+        non.classList.add("clickText");
+
+        for(let i = 0; i < trList.length; i++){
+            if(part[i].innerText != '미참여'){
+                trList[i].style.display = 'none';
+            }
+        }
+    } else{
+        par.classList.add("clickText");
+
+        for(let i = 0; i < trList.length; i++){
+            if(part[i].innerText != '참여'){
+                trList[i].style.display = 'none';
+            }
+        }
+    }
+}

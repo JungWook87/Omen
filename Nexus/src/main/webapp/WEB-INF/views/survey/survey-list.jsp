@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
     <c:set var="pagination" value="${map.pagination}" />
     <c:set var="surveyList" value="${map.surveyList}" />
@@ -67,11 +68,21 @@
 
               <!-- 컨텐츠 제목 부분 -->
               <div class="content-all-top-texts">
-                <a href="" class="content-all-top-text" onclick="filterSurveyList('all')">전체(<span></span>)</a>
-                <a href="" class="content-all-top-text2"
-                  onclick="filterSurveyList('notparticipated')">미참여(<span></span>)</a>
-                <a href="" class="content-all-top-text3"
-                  onclick="filterSurveyList('participated')">참여(<span></span>)</a>
+                <a id="total" class="content-all-top-text clickText" onclick="filterSurveyList('all')">전체(<span>${fn:length(surveyList)}</span>)</a>
+                <c:forEach var="survey" items="${surveyList}">
+                  <c:choose>
+                    <c:when test="${survey.participation == ''}">
+                      <c:set var="nonCnt" value="${nonCnt + 1}"/> 
+                    </c:when>
+                    <c:otherwise>
+                      <c:set var="parCnt" value="${parCnt + 1}"/>
+                    </c:otherwise>
+                  </c:choose>
+                </c:forEach>
+                <a id="non" class="content-all-top-text2"
+                  onclick="filterSurveyList('notparticipated')">미참여(<span>${nonCnt}</span>)</a>
+                <a id="par" class="content-all-top-text3"
+                  onclick="filterSurveyList('participated')">참여(<span>${parCnt}</span>)</a>
               </div>
 
 
@@ -104,11 +115,11 @@
 
                     <c:otherwise>
                       <c:forEach var="survey" items="${surveyList}">
-                        <tr onclick="surveyDetail('${survey.surveyNo}', '${survey.participation}')">
+                        <tr onclick="surveyDetail('${survey.surveyNo}', '${survey.participation}')" class="trList">
                           <td id="status-color">${survey.end}</td>
                           <td>${survey.surveyTopic}</td>
                           <td>${survey.start} ~ ${survey.end}</td>
-                          <td id="participation-color">${survey.participation}</td>
+                          <td id="participation-color" class="part">${survey.participation}</td>
                         </tr>
                       </c:forEach>
                     </c:otherwise>
