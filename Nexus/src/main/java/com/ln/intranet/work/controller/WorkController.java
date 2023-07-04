@@ -192,6 +192,11 @@ public class WorkController {
 		if(result != 0) message = "성공";
 		else message = "실패";
 		
+		if(map.get("tempSave").toString().equals("true")) {
+			if(result != 0) message = "임시 저장 성공";
+			else message = "임시 저장 실패";
+		}
+		
 		ra.addFlashAttribute("message", message);
 		
 		return "redirect:workSend";

@@ -285,6 +285,7 @@ select {
   background-color: var(--side);
 }
 
+
 .content-all-bottom-area-content tbody>tr:nth-of-type(2n-1):hover{
   cursor: pointer;
 

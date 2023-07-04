@@ -1,5 +1,5 @@
 /* 체크 모달창 */
-#checked-modalWrap {
+#checked-modalWrap, #check-approver-modal-wrap {
     position: fixed;
     z-index: 1;
   
@@ -11,6 +11,11 @@
     background-color: rgba(0, 0, 0, 0.4);
     display: none;
   
+  }
+
+  #check-approver-modal-wrap{
+    z-index: 7;
+    height: 120vh;
   }
   
   .checked-modalBody {
@@ -353,11 +358,8 @@
 
   float: right;
 }
-  
-
 
 /* 프로젝트 과제 리스트 css */
-
 .modal-task-div span{
   margin-right : 30px;
   margin-left : 10px;

@@ -53,6 +53,8 @@ function workSendList(obj){
   const attnTypeSelect = document.getElementById("attnTypeSelect");
   attnTypeSelect.value = 0;
 
+
+
   let cntList = document.getElementsByClassName("content-all-top-text2");
   cntList[0].innerText = "내가 작성한 결재(" + obj.length + ")";
 
@@ -63,6 +65,7 @@ const attnTypeSelect = document.getElementById("attnTypeSelect");
 const listTr = document.getElementsByClassName("listTr");
 const listTypeNo = document.getElementsByClassName("listTypeNo");
 const cntList = document.getElementsByClassName("content-all-top-text2");
+
 
 attnTypeSelect.addEventListener("change", function(){
 
@@ -76,7 +79,6 @@ attnTypeSelect.addEventListener("change", function(){
 
     for(let i = 0; i < listTr.length; i++){
         listTr[i].style.display = 'table-row';
-        cnt++;
     }
 
   } else{
@@ -146,6 +148,7 @@ function detailModal(workNo){
   });
 };
 
+
 // 프로젝트 디테일
 function projectDetailModal(workNo){
   $.ajax({
@@ -175,3 +178,4 @@ function taskDetailModal(workNo){
     }
   });
 };
+

@@ -210,9 +210,7 @@ a:focus {
   font-weight: bold;
   font-size: 24px;
 
-  border-bottom: 2px solid var(--primary400);
-
-  color: var(--primary400);
+  color: var(--gray300);
 }
 
 .content-all-top-text2 {
@@ -227,6 +225,12 @@ a:focus {
   font-size: 24px;
 
   color: var(--gray300);
+}
+
+.clickText{
+  border-bottom: 2px solid var(--primary400);
+
+  color: var(--primary400);
 }
 
 
@@ -314,4 +318,8 @@ th:nth-child(3) {
 /* 사이드바 반응형 */
 .sidebarMenuInner li:nth-child(2) span {
   color: var(--primary500);
+}
+
+.content-all-top-text, .content-all-top-text2, .content-all-top-text3 {
+  cursor: pointer;
 }

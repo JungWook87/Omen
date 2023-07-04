@@ -58,6 +58,16 @@
               Swal.fire('결재 상신이 실패하였습니다.', '다시 시도해주세요.', 'warning');
             </script>
           </c:if>
+          <c:if test="${messageFlag == '임시 저장 성공'}">
+            <script>
+              Swal.fire('임시 저장이 완료되었습니다.', '', 'success');
+            </script>
+          </c:if>
+          <c:if test="${messageFlag == '임시 저장 실패'}">
+            <script>
+              Swal.fire('임시 저장이 실패하였습니다.', '다시 시도해주세요.', 'warning');
+            </script>
+          </c:if>
         </c:if>
 
         <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -168,10 +178,10 @@
                             <td style="color: var(--primary400);">${list.workState}</td>
                           </c:when>
                           <c:when test="${list.workState == '승인'}">
-                            <td style="color: var(--green);">${list.workState}</td>
+                            <td style="color: var(--green); display: none;">${list.workState}</td>
                           </c:when>
                           <c:otherwise>
-                            <td style="color: red;">${list.workState}</td>
+                            <td style="color: red; display: none;">${list.workState}</td>
                           </c:otherwise>
                         </c:choose>
                         <c:if test="${empty list.fileRename}">
