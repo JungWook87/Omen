@@ -110,9 +110,9 @@ public class WorkController {
 	// 결재 디테일 조회
 	@ResponseBody
 	@GetMapping("/projectDetail")
-	public String projectDetailSelect(@RequestParam("workNo") int workNo) {
+	public String projectDetailSelect(@RequestParam("workNo") int projectNo) {
 		
-		ProjectDetail detailSelect = service.projectDetailSelect(workNo);
+		ProjectDetail detailSelect = service.projectDetailSelect(projectNo);
 		
 		Gson gson = new Gson();
 		
@@ -122,9 +122,9 @@ public class WorkController {
 	// 결재 디테일 조회
 	@ResponseBody
 	@GetMapping("/taskDetail")
-	public String taskDetailSelect(@RequestParam("workNo") int workNo) {
+	public String taskDetailSelect(@RequestParam("workNo") int taskNo) {
 		
-		WorkDetail detailSelect = service.detailSelect(workNo);
+		WorkDetail detailSelect = service.taskDetailSelect(taskNo);
 		
 		Gson gson = new Gson();
 		

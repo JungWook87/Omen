@@ -12,6 +12,7 @@ import com.ln.intranet.work.model.vo.ProjectDetail;
 import com.ln.intranet.work.model.vo.ProjectList;
 import com.ln.intranet.work.model.vo.ProjectTask;
 import com.ln.intranet.work.model.vo.ProjectTaskList;
+import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
 
 @Repository
@@ -67,8 +68,13 @@ public class ProjectDAO {
 	}
 	
 	// 프로젝트 디테일
-	public ProjectDetail projectDetailSelect(int workNo) {
-		return sqlSession.selectOne("projectMapper.projectDetail",workNo);
+	public ProjectDetail projectDetailSelect(int projectNo) {
+		return sqlSession.selectOne("projectMapper.projectDetail",projectNo);
+	}
+	
+	// 과제 디테일
+	public WorkDetail taskDetailSelect(int taskNo) {
+		return sqlSession.selectOne("projectMapper.taskDetail",taskNo);
 	}
 
 	

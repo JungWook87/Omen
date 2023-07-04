@@ -56,7 +56,9 @@ public interface WorkService {
 	// 임시저장 리스트 불러오기
 	List<WorkDetail> workTemp(Member loginMember);
 
-	ProjectDetail projectDetailSelect(int workNo);
+	ProjectDetail projectDetailSelect(int projectNo);
+
+	WorkDetail taskDetailSelect(int taskNo);
 
 
 }

@@ -362,11 +362,23 @@ public class WorkServiceImp implements WorkService {
 	
 	
 	//====================== 프로젝트/과제 ========================
+	
 	//프로젝트 디테일
 	@Override
-	public ProjectDetail projectDetailSelect(int workNo) {
+	public ProjectDetail projectDetailSelect(int projectNo) {
 		
-		ProjectDetail detailSelect = pDao.projectDetailSelect(workNo);
+		ProjectDetail detailSelect = pDao.projectDetailSelect(projectNo);
+		
+		if(detailSelect.getContent() != null) {			
+			detailSelect.setContent(Util.newLineClear(detailSelect.getContent()));
+		}
+		
+		return detailSelect;
+	}
+
+	@Override
+	public WorkDetail taskDetailSelect(int taskNo) {
+		WorkDetail detailSelect = pDao.taskDetailSelect(taskNo);
 		
 		if(detailSelect.getContent() != null) {			
 			detailSelect.setContent(Util.newLineClear(detailSelect.getContent()));

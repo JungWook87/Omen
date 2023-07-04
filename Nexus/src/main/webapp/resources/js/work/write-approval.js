@@ -214,7 +214,7 @@ workTemplateSelect.addEventListener('change', () => {
       var projectNo = this.value;
       
       // 각 'assignment-checked' select 요소를 숨기고 
-      // 선택한 프로젝트 번호에 일치하는 것만 표시합니다.
+      // 선택한 프로젝트 번호에 일치하는 것만 표시
       var assignmentSelects = document.getElementsByClassName('assignment-checked');
 
       for (var i = 0; i < assignmentSelects.length; i++) {
@@ -229,11 +229,14 @@ workTemplateSelect.addEventListener('change', () => {
       for (var i = 0; i < assignmentSelects.length; i++) {
           var select = assignmentSelects[i];
           if (select.getAttribute('data-project-no') == projectNo) {
-          select.style.display = 'block';
+            select.style.display = 'block';
+            
           } else {
           select.style.display = 'none';
           }
       }
+
+      
       });
 
   }

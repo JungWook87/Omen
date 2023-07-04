@@ -33,22 +33,22 @@ $(document).ready(function(){
                     datasets: [
                         { //데이터
                             cutout: "50%", 
-                            label: '근무시간', 
+                            label: '근태타입', 
                             fill: false, 
                             data: attnCount,
                             backgroundColor: [
                                 
-                                '#04A2E4',
-                                '#FF7B89',
-                                '#F20574',
-                                '#30B893',
-                                '#FBD315',
-                                '#9BA4B1',
-                                '#EDEBF0',  
-                                '#FF979D',
+                                '#30B893',//초록
+                                '#ABD904',//연두
+                                '#FF7B89',//분홍
+                                '#04A2E4',//하늘
+                                '#FBD315',//노랑
+                                '#9BA4B1',// 회색
+                                '#F20574',//진분홍
                                 '#FFB4BF',
+                                '#FF979D',
+                                '#EDEBF0',  
                                 '#04D9D9',
-                                '#ABD904',
                                 '#F25C05',
                             ],
                             borderColor: [
@@ -73,7 +73,7 @@ $(document).ready(function(){
                 
                         legend: {
                             display: true, // 범례 유무
-                            position: 'bottom', // 범례위치
+                            position: 'right', // 범례위치
                             align: 'center', // 범례 정렬
                             labels:{
                                 margin : 10, // 범례 패딩
