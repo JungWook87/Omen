@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -105,7 +106,7 @@
                   <c:forEach var="attnList" items="${attendanceList}">
                     <tr>
                       <td>${attnList.attdTypeName}</td>
-                      <td>${attnList.today}</td>
+                      <td>${fn:substring(attnList.today, 0, 1)}</td>
                       <td>${attnList.attnStart}</td>
                       <td>${attnList.attnEnd}</td>
                       <td>${attnList.workingHours}</td>

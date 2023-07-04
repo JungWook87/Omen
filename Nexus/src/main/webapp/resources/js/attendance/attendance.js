@@ -16,7 +16,7 @@ const attnDate = document.getElementById("attnDate");
 
 	year.value = todayYear;
 	month.value = todayMonth;
-})()
+})();
 
 leftBtn.addEventListener("click", function(){
 	let yearNum = Number(year.value);
@@ -30,7 +30,7 @@ leftBtn.addEventListener("click", function(){
 	}
 	
 	selectDate(yearNum, monthNum);
-})
+});
 
 rightBtn.addEventListener("click", function(){
 
@@ -46,7 +46,7 @@ rightBtn.addEventListener("click", function(){
 	
 	selectDate(yearNum, monthNum);
 
-})
+});
 
 function selectDate(yearNum, monthNum){
 	if(monthNum < 10) monthNum = "0" + monthNum;
@@ -59,11 +59,11 @@ function selectDate(yearNum, monthNum){
    				"year" : yearNum,  
             	"month" : monthNum },
             success : function(attendanceList){
-				
 				attnDate.innerHTML = yearNum + ' 년 ' + monthNum + ' 월';
 
 				year.value = yearNum;
 				month.value = monthNum;
+
 
 				// 목록
 				// 리스트 삭제
@@ -83,11 +83,10 @@ function selectDate(yearNum, monthNum){
 					// 리스트에 요소 추가
 					tr.append(td);
 					attnList.append(tr);
-				}
+				};
 				
 				// for문 이용하여 리스트 출력
 				for(let item of attendanceList){
-					
 					// tr 요소 생성
 					const tr = document.createElement("tr");
 					
@@ -115,7 +114,7 @@ function selectDate(yearNum, monthNum){
 					
 					// 리스트에 요소 추가
 					attnList.append(tr);
-				}
+				};
 				
             },
 			error : function(request, status, error){
@@ -123,7 +122,7 @@ function selectDate(yearNum, monthNum){
            	 	console.log("상태코드 : " + request.status);
         	}
 	})
-}
+};
 
 
 

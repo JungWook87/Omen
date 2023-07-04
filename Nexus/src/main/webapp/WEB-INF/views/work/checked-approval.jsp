@@ -167,7 +167,6 @@
         </c:when>
         <c:otherwise>
         <div class="work-send-submit-btn">
-          <button type="button" id="checked-edit-btn">수정</button>
           <button type="button" id="checked-cancell-btn">결재취소</button>
           <button id="checked-success-btn" type="button" onclick="checkedModalClose()">확인</button>
         </div>
