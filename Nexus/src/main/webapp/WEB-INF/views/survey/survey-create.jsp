@@ -111,7 +111,7 @@
 
 
 
-
+		<jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
       </section>
 
      

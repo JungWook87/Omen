@@ -141,11 +141,7 @@
           <jsp:include page="/WEB-INF/views/work/checked-approval.jsp" />
 
           <!-- 채팅창 -->
-          <div id="chatting-function" class="chatting-box">
-            <a href="#">
-              <img class="chatting-img" src="${contextPath}/resources/images/chattImg.png" alt="">
-            </a>
-          </div>
+         <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
 
         </section>
 
