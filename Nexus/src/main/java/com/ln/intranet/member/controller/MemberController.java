@@ -132,8 +132,15 @@ public class MemberController {
 
 	// 직원 추가 화면 전환
 	@RequestMapping("memberAdd")
-	public String managerEmployAdd () {
-	
+	public String managerEmployAdd (RedirectAttributes ra,
+									Model model) {
+		String resultMessage = null;
+		
+		if(ra != null) {
+			resultMessage = (String)model.getAttribute("message");
+			model.addAttribute("resultMessage", resultMessage);
+		}
+		
 		return "manager/manager-employeeAdd";
 	}
 	
@@ -291,22 +298,10 @@ public class MemberController {
 						RedirectAttributes ra
 						) {
 		
-		int result = service.signUp(member);
-		
-//		String address = memberAddress[0]; // 주소 필드 값
-//	    String detailAddress = memberAddress[1]; // 상세주소 필드 값
-		
-		String message = null;
-		
-		
-		if(result > 0) {
-			message = "직원이 추가 되었습니다.";
-		} else {
-			message = "직원 추가 실패";
-
-		}
+		String message = service.signUp(member);		
 		
 		ra.addFlashAttribute("message", message);
+
 		return  "redirect:/member/memberAdd";
 	}
 	

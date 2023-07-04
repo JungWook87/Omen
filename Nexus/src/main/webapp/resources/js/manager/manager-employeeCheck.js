@@ -2,7 +2,8 @@
 const searchDept = document.getElementById('search-dept'),
   searchTeam = document.getElementById('search-team'),
   searchName = document.getElementById('search-name'),
-  searchBtn = document.getElementById('search-btn');
+  searchBtn = document.getElementById('search-btn'),
+  tbody = document.querySelector('tbody');
 
 searchBtn.addEventListener('click', () => {
   if(searchName.value === '') {
@@ -15,12 +16,13 @@ searchBtn.addEventListener('click', () => {
     type : "GET",
     dataType : "JSON",
     success : function(selectMem) {
-      const tbody = document.querySelector('tbody');
+      
       tbody.innerHTML = "";
       console.log(selectMem);
       if (selectMem.length === 0) {
         Swal.fire("검색 결과가 없습니다.");
       } else {
+        
         for(let item of selectMem) {
 
           const tr = document.createElement('tr');
@@ -87,6 +89,8 @@ function selectAll() {
     dataType : "JSON",
     success : function(memList) {
       console.log(memList);
+      searchName.value = "";
+      tbody.innerHTML = "";
       for(let item of memList) {
 
         const tr = document.createElement('tr');

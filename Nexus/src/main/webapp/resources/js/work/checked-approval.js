@@ -382,7 +382,8 @@ function app_btn_click(btnName, obj, checkbox_flag){
           "approvalList" : obj.approvalList,
           "opinion" : obj.opinion,
           "btnName" : btnName,
-          "checkbox_flag" : obj.checkbox_flag
+          "checkbox_flag" : obj.checkbox_flag,
+          "typeNo" : obj.typeNo
         },
         success : function(){
           Swal.fire({

@@ -42,7 +42,22 @@
         Swal.fire("${message}");
 
       </script>
+
     </c:if>
+    <c:if test="${!empty resultMessage}">
+      <script>
+        var memIdMessage = "${resultMessage}";
+        var temp = memIdMessage.split(",,");
+        Swal.fire(temp[0])
+        .then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire("추가하신 직원의 아이디는 \n"  + temp[1] + " 입니다.")
+          }
+        })
+
+      </script>
+    </c:if>
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 
     <script>

@@ -18,7 +18,7 @@ public interface MemberService {
 	 * @param member
 	 * @return result
 	 */
-	int signUp(Member member);
+	String signUp(Member member);
 
 	/** 직원 검색
 	 * @param memNo
