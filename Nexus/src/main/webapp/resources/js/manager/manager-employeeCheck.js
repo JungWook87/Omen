@@ -90,6 +90,7 @@ function selectAll() {
       for(let item of memList) {
 
         const tr = document.createElement('tr');
+        
 
         const memNo = document.createElement('td');
         memNo.innerText = item.memNo;
@@ -111,27 +112,47 @@ function selectAll() {
 
         const memSSN = document.createElement('td');
         memSSN.innerText = item.memRNo;
+        memSSN.classList.add('data-tooltip1');
+        memSSN.setAttribute('data-tooltip1', item.memRNo);
+        memSSN.style.maxWidth = '70px'; 
+        memSSN.style.overflow = 'hidden';
+        memSSN.style.textOverflow = 'ellipsis'; // 말줄임 표시
+        memSSN.style.whiteSpace = 'nowrap'; // 텍스트 줄바꿈 방지
         
         const tel = document.createElement('td');
         tel.innerText = item.memTel;
+        tel.classList.add('data-tooltip2');
+        tel.setAttribute('data-tooltip2', item.memTel);
+        tel.style.maxWidth = '70px'; 
+        tel.style.overflow = 'hidden';
+        tel.style.textOverflow = 'ellipsis'; // 말줄임 표시
+        tel.style.whiteSpace = 'nowrap'; // 텍스트 줄바꿈 방지
         
         const address = document.createElement('td');
         address.innerText = item.memAddress;
-        address.classList.add('data-tooltip');
-        address.setAttribute('data-tooltip', item.memAddress);
-        address.style.maxWidth = '200px'; // 주소가 표시될 최대 너비
+        address.classList.add('data-tooltip3');
+        address.setAttribute('data-tooltip3', item.memAddress);
+        address.style.maxWidth = '100px'; 
         address.style.overflow = 'hidden';
         address.style.textOverflow = 'ellipsis'; // 말줄임 표시
         address.style.whiteSpace = 'nowrap'; // 텍스트 줄바꿈 방지
         
         const email  = document.createElement('td');
         email.innerText = item.memEmail;
+        email.classList.add('data-tooltip4');
+        email.setAttribute('data-tooltip4', item.memEmail);
+        email.style.maxWidth = '100px'; 
+        email.style.overflow = 'hidden';
+        email.style.textOverflow = 'ellipsis'; // 말줄임 표시
+        email.style.whiteSpace = 'nowrap'; // 텍스트 줄바꿈 방지
         
         const enrollDate = document.createElement('td');
         enrollDate.innerText = item.enrollDate;
         
+        
         const departureDate = document.createElement('td');
         departureDate.innerText = item.departureDate;
+        
 
         tr.append(memNo, memId, memName, jobName, deptName, teamName, memSSN, tel, address, email, enrollDate, departureDate)
 

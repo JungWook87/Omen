@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.ProjectDetail;
 import com.ln.intranet.work.model.vo.ProjectList;
 import com.ln.intranet.work.model.vo.ProjectTaskList;
 import com.ln.intranet.work.model.vo.WorkDetail;
@@ -54,6 +55,10 @@ public interface WorkService {
 	
 	// 임시저장 리스트 불러오기
 	List<WorkDetail> workTemp(Member loginMember);
+
+	ProjectDetail projectDetailSelect(int projectNo);
+
+	WorkDetail taskDetailSelect(int taskNo);
 
 
 }

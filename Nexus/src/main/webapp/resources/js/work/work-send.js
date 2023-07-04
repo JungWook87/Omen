@@ -149,11 +149,33 @@ function detailModal(workNo){
 };
 
 
-// 결재 상신 상태에 따라 숨김처리하기
-const workStateSelect = document.getElementById("workStateSelect");
+// 프로젝트 디테일
+function projectDetailModal(workNo){
+  $.ajax({
+    url : "projectDetail",
+    type : "GET",
+    dataType : "JSON",
+    data : {"workNo" : workNo},
+    success : function(detailSelect){
 
-workStateSelect.addEventListener("change", function(){
-  for(let i = 0; i < listTr.length; i++){
+      successDetailModal(detailSelect);
 
-  }
-});
+    }
+  });
+};
+
+// 과제 디테일
+function taskDetailModal(workNo){
+  $.ajax({
+    url : "taskDetail",
+    type : "GET",
+    dataType : "JSON",
+    data : {"workNo" : workNo},
+    success : function(detailSelect){
+
+      successDetailModal(detailSelect);
+
+    }
+  });
+};
+

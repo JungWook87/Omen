@@ -140,6 +140,8 @@
                   <option value="1">일반</option>
                   <option value="2">연차</option>
                   <option value="3">출장</option>
+                  <option value="4">프로젝트</option>
+                  <option value="5">과제</option>
                 </select>
 
                 <div class="button-box">
@@ -222,7 +224,7 @@
 
                     <!-- 과제 리스트 생성 -->
                     <c:forEach var="taskList" items="${taskList}">
-                      <tr class="listTr" onclick="projectDetailModal(${taskList.workNo})">
+                      <tr class="listTr" onclick="taskDetailModal(${taskList.workNo})">
                         <td class="listTypeNo" style="display: none;">${taskList.typeNo}</td>
                         <td>${taskList.typeName}</td>
                         <td>${taskList.workNo}</td>

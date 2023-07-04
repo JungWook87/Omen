@@ -44,9 +44,13 @@
                 </div>
                 <div id="sidebarMenu">
                     <ul class="sidebarMenuInner">
-                    <li>설문생성/관리</li>
-                    <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-                    <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+                        <li>설문생성/관리</li>
+                        <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+                        <c:choose>
+                            <c:when test="${loginMember.jobNo <= 3}">
+                                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+                            </c:when>
+                        </c:choose>
                     </ul>
                 </div>
 
@@ -59,7 +63,11 @@
                     <!-- 페이지마다 바뀌는 부제목 -->
                     <ul>
                         <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-                        <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+                        <c:choose>
+                            <c:when test="${loginMember.jobNo <= 3}">
+                                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+                            </c:when>
+                        </c:choose>
                     </ul>
                 </div>
 

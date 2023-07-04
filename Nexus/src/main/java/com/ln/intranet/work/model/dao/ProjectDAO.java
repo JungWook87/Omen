@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ln.intranet.common.model.vo.UploadFile;
+import com.ln.intranet.work.model.vo.ProjectDetail;
 import com.ln.intranet.work.model.vo.ProjectList;
 import com.ln.intranet.work.model.vo.ProjectTask;
 import com.ln.intranet.work.model.vo.ProjectTaskList;
+import com.ln.intranet.work.model.vo.WorkDetail;
 import com.ln.intranet.work.model.vo.WorkGeneralList;
 
 @Repository
@@ -62,8 +64,17 @@ public class ProjectDAO {
 
 	// 과제 업로드
 	public int updateTask(Map<String, Object> map) {
-		
 		return sqlSession.update("projectMapper.updateTask",map);
+	}
+	
+	// 프로젝트 디테일
+	public ProjectDetail projectDetailSelect(int projectNo) {
+		return sqlSession.selectOne("projectMapper.projectDetail",projectNo);
+	}
+	
+	// 과제 디테일
+	public WorkDetail taskDetailSelect(int taskNo) {
+		return sqlSession.selectOne("projectMapper.taskDetail",taskNo);
 	}
 
 	

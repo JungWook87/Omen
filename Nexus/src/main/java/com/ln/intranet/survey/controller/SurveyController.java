@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.survey.model.service.SurveyService;
@@ -180,9 +181,12 @@ public class SurveyController {
 	@GetMapping("/surveyDelete/{surveyNo}")
 	public String surveyDelete(
 			@PathVariable("surveyNo") int surveyNo
+			
 			) {
 		
 		int result = service.surveyDelete(surveyNo);
+		
+		
 		
 		return "redirect:/survey/surveyManage";
 	}

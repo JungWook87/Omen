@@ -131,6 +131,11 @@
           </c:choose>
         </div>
 
+        <div class="checked-modal-taskList">
+          <p>과제 목록</p>
+            <div class="modal-task-div">
+        </div>
+
         <!-- 업로드 파일(kjw) -->
         <div class="file_div">
           <p>첨부파일</p>

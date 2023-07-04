@@ -22,6 +22,7 @@ import com.ln.intranet.member.model.vo.Member;
 import com.ln.intranet.work.model.dao.ProjectDAO;
 import com.ln.intranet.work.model.dao.WorkDAO;
 import com.ln.intranet.work.model.vo.ApprovalMember;
+import com.ln.intranet.work.model.vo.ProjectDetail;
 import com.ln.intranet.work.model.vo.ProjectList;
 import com.ln.intranet.work.model.vo.ProjectTask;
 import com.ln.intranet.work.model.vo.ProjectTaskList;
@@ -357,6 +358,33 @@ public class WorkServiceImp implements WorkService {
 	@Override
 	public List<WorkDetail> workTemp(Member loginMember) {
 		return dao.workTemp(loginMember);
+	}
+	
+	
+	//====================== 프로젝트/과제 ========================
+	
+	//프로젝트 디테일
+	@Override
+	public ProjectDetail projectDetailSelect(int projectNo) {
+		
+		ProjectDetail detailSelect = pDao.projectDetailSelect(projectNo);
+		
+		if(detailSelect.getContent() != null) {			
+			detailSelect.setContent(Util.newLineClear(detailSelect.getContent()));
+		}
+		
+		return detailSelect;
+	}
+
+	@Override
+	public WorkDetail taskDetailSelect(int taskNo) {
+		WorkDetail detailSelect = pDao.taskDetailSelect(taskNo);
+		
+		if(detailSelect.getContent() != null) {			
+			detailSelect.setContent(Util.newLineClear(detailSelect.getContent()));
+		}
+		
+		return detailSelect;
 	}
 
 

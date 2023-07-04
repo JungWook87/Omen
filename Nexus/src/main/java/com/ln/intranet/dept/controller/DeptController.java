@@ -128,9 +128,12 @@ public class DeptController {
 								@RequestParam("noticeNo") int noticeNo,
 								@RequestParam("title") String title,
 								@RequestParam("content") String content,
+								@RequestParam("fileData") boolean fileData,
 								@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile,
 								HttpServletRequest req
 								)throws IOException {
+	  		
+	  		System.out.println("fileData :" + fileData);
 			
 			NoticeDetail detail = new NoticeDetail();
 			
@@ -143,7 +146,7 @@ public class DeptController {
 			String webPath = "/resources/file/";
 			String folderPath = req.getSession().getServletContext().getRealPath(webPath);
 			
-			int result = service.updateDeptNotice(detail, uploadFile, webPath, folderPath);
+			int result = service.updateDeptNotice(detail, uploadFile, webPath, folderPath, fileData);
 			
 			
 			
@@ -264,6 +267,7 @@ public class DeptController {
 									@RequestParam("boardNo") int boardNo,
 									@RequestParam("boardTitle") String boardTitle,
 									@RequestParam("boardContent") String boardContent,
+									@RequestParam("fileData") boolean fileData,
 									@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile,
 									@ModelAttribute("loginMember") Member loginMember,
 									HttpServletRequest req
@@ -281,7 +285,7 @@ public class DeptController {
 		String webPath = "/resources/file/";
 		String folderPath = req.getSession().getServletContext().getRealPath(webPath);
 		
-		int result = service.updateBoardNotice(detail, uploadFile, webPath, folderPath);
+		int result = service.updateBoardNotice(detail, uploadFile, webPath, folderPath, fileData);
 		
 		
 		

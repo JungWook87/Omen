@@ -1,34 +1,37 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
-    color : black;
+    color: black;
 }
-    
+
 /* 틀을 잡아 놓기 위한 스타일 */
 section {
     display: flex;
-    
+
 }
-span, p{
+
+span,
+p {
     margin-top: 4px;
 }
 
 /* 인적자원/ 프로젝트 전체 div */
 .mainDiv {
-    display : flex;
-    width : 80%;
+    display: flex;
+    width: 80%;
     justify-content: space-between;
 }
 
-.mainDiv > div{
-    margin : 0 20px;
+.mainDiv>div {
+    margin: 0 20px;
 }
+
 /* 
 div{
     border: 1px solid #CDD2D8;
@@ -36,8 +39,10 @@ div{
 } */
 
 
-.container{
-    margin: 20px auto 0;
+
+
+.container {
+    margin: 40px auto 40px;
     width: 100%;
     height: 75%;
     display: flex;
@@ -46,56 +51,105 @@ div{
     align-items: center;
 }
 
-.managePageA{
+
+.personnel-management-left {
+    border: 1px solid var(--gray100);
+    border-radius: 10px;
+}
+
+.personnel-management-left .hr-head {
+    padding: 20px 20px 0 20px;
+}
+
+.personnel-management-left .doughnut-div {
+    padding: 0 20px 20px 20px;
+}
+
+.personnel-management-right {
+    border: 1px solid var(--gray100);
+    border-radius: 10px;
+}
+
+.personnel-management-right .info-div {
+    padding: 20px;
+}
+
+.project-management-left {
+    border: 1px solid var(--gray100);
+    border-radius: 10px;
+}
+
+.project-management-left .project-head {
+    padding: 20px 20px 0 20px;
+}
+
+.project-management-left .polar-div {
+    padding: 0 20px 20px 20px;
+}
+
+.project-management-right {
+    border: 1px solid var(--gray100);
+    border-radius: 10px;
+}
+
+.project-management-right .project-info-div {
+    padding: 20px;
+}
+
+.managePageA {
     font-size: 30px;
-    color : black;
+    color: black;
     text-decoration: none;
-    font-weight : bold;
+    font-weight: bold;
 }
 
 
 /* 인적자원 div */
 
-.hr-content{
+.hr-content {
     display: flex;
-    padding : 0 20px;
+    padding: 0 20px;
     width: 100%;
 }
-.info-div{
+
+.info-div {
     width: 100%;
 }
 
 /* 도넛타입 */
-#doughnut{
+#doughnut {
     margin-top: 10px;
-    width : 400px;
-    height : 250px;
+    width: 400px;
+    height: 250px;
 }
+
 /* 극좌표형 타입 */
 #polarArea {
-    width : 400px;
-    height : 400px;
+    width: 400px;
+    height: 400px;
 }
 
 
 /* 오른쪽 div */
-.team-work-status{
+.team-work-status {
     display: flex;
     flex-direction: column;
 }
 
 
 /* 팀별 인원 정보 css */
-.mem-info{
+.mem-info {
     display: flex;
     flex-direction: column;
-    width : 60px;
+    width: 60px;
 }
+
 .name {
     font-weight: bold;
 }
+
 .job {
-    color : var(--gray300);
+    color: var(--gray300);
 }
 
 
@@ -103,11 +157,12 @@ div{
 
 /* 자동생성 css */
 
-.team-selector{
+.team-selector {
     display: flex;
-    width : 100%;
+    width: 100%;
     margin-bottom: 10px;
 }
+
 .team-work-status {
     display: flex;
 }
@@ -116,11 +171,12 @@ div{
     display: flex;
 }
 
-.team-bar > div {
-    margin : 5px 5px 0;
+.team-bar>div {
+    margin: 5px 5px 0;
 }
-.team-data{
-    width : 100%;
+
+.team-data {
+    width: 100%;
 }
 
 /* 프로그레스 바 div */
@@ -132,29 +188,30 @@ div{
 
 /* 프로그레스바 스타일 */
 #progressBar {
-    width : 100%;
+    width: 100%;
     appearance: none;
 }
 
 #progressBar::-webkit-progress-bar {
-    height : 20px;
-    background:#f0f0f0;
-    border-radius:4px;
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 4px;
     /* box-shadow: inset 3px 3px 10px #ccc; */
 }
+
 #progressBar::-webkit-progress-value {
-    border-radius:4px;
+    border-radius: 4px;
     background: #04A2E4;
 }
 
 #progressBar.underBlue::-webkit-progress-value {
-    border-radius:4px;
-    background: #04A2E4; 
+    border-radius: 4px;
+    background: #04A2E4;
 }
 
 #progressBar.overOrange::-webkit-progress-value {
-    border-radius:4px;
-    background: rgb(255, 180, 126); 
+    border-radius: 4px;
+    background: rgb(255, 180, 126);
 
 }
 
@@ -162,8 +219,9 @@ div{
     display: flex;
     justify-content: space-between;
 }
-.progressTemp span{
-    color : var(--gray500);
+
+.progressTemp span {
+    color: var(--gray500);
     margin-top: 4px;
     font-size: 12px;
 }
@@ -172,13 +230,13 @@ div{
 
 
 /* 워크타임 */
-.work-time{
+.work-time {
     display: flex;
     flex-direction: column;
 }
 
-.extend{
-    color : var(--primary300);
+.extend {
+    color: var(--primary300);
     font-size: 14px;
 }
 
@@ -193,39 +251,77 @@ div{
 }
 
 .project-content {
-    display : flex;
+    display: flex;
     flex-direction: column;
     padding: 0 20px;
-    width : 100%;
+    width: 100%;
 }
 
-.project-info-div{
+.project-info-div {
     display: flex;
     flex-direction: column;
 }
 
-.selectedProject{
+.selectedProject {
     width: 100%;
-    height : 50px;
+    height: 50px;
 
 }
-.selectedTask{
-    height : 50px;
+
+.selectedTask {
+    height: 50px;
 }
 
 
 
 
-.tab_content {width: 100%; text-align:right;}
-input[type="radio"] {display:none;} /* input을 안보이게 처리 */
-input[type="radio"] + label {display:inline-block;padding:10px 20px 6px; margin-right: 6px; 
-     background:var(--primary700);color:white;cursor:pointer;} /* 버튼 공통 속성 */
-input[type="radio"]:checked + label {background:#999;color:white;} /* 선택된 버튼속성 */
+.tab_content {
+    width: 100%;
+    text-align: right;
+}
 
-.conbox {display:none;text-align:left;padding:20px 20px;box-sizing:border-box;} /* 컨텐츠박스 공통 속성 */
-input[id="tab01"]:checked ~ .con1 {display:block;} /* 인풋에 체크가 해당 요소보이게 설정 */
-input[id="tab02"]:checked ~ .con2 {display:block;}
-input[id="tab03"]:checked ~ .con3 {display:block;}
+input[type="radio"] {
+    display: none;
+}
+
+/* input을 안보이게 처리 */
+input[type="radio"]+label {
+    display: inline-block;
+    padding: 10px 20px 6px;
+    margin-right: 6px;
+    background: var(--gray50);
+    color: var(--black);
+    cursor: pointer;
+}
+
+/* 버튼 공통 속성 */
+input[type="radio"]:checked+label {
+    background: var(--primary500);
+    color: white;
+}
+
+/* 선택된 버튼속성 */
+
+.conbox {
+    display: none;
+    text-align: left;
+    padding: 20px 20px;
+    box-sizing: border-box;
+}
+
+/* 컨텐츠박스 공통 속성 */
+input[id="tab01"]:checked~.con1 {
+    display: block;
+}
+
+/* 인풋에 체크가 해당 요소보이게 설정 */
+input[id="tab02"]:checked~.con2 {
+    display: block;
+}
+
+input[id="tab03"]:checked~.con3 {
+    display: block;
+}
 
 
 
@@ -271,81 +367,91 @@ input[id="tab03"]:checked ~ .con3 {display:block;}
     border: 1px solid #313D4F;
     overflow-x: auto;
     width: 100%;
-  }
-  
-  .projects-inner {
+}
+
+.projects-inner {
     border-radius: 4px;
-  }
-  
-  .projects-header {
+}
+
+.projects-header {
     color: white;
     padding: 22px;
-  }
-  
-  .projects-header .count,
-  .projects-header .title {
+}
+
+.projects-header .count,
+.projects-header .title {
     display: inline-block;
-  }
-  
-  .projects-header .count {
+}
+
+.projects-header .count {
     color: #738297;
-  }
-  
-  .projects-header .title {
+}
+
+.projects-header .title {
     font-size: 21px;
-  }
-  
-  .projects-header .title + .count {
+}
+
+.projects-header .title+.count {
     margin-left: 5px;
-  }
-  
-  .projects-table {
+}
+
+.projects-table {
     background: white;
     width: 100%;
-  }
-  
-  .projects-table td{
+}
+
+.projects-table td {
     color: var(--gray700);
     padding: 5px 22px;
     vertical-align: middle;
-  }
-  .projects-table th {
-    color : var(--gray700);
+    width: 25%;
+}
+
+.projects-table th {
+    color: var(--gray700);
     padding: 10px 22px;
     vertical-align: middle;
 }
-  
-  .projects-table td p {
+
+.projects-table td p {
     font-size: 15px;
-  }
-  
-  .projects-table td p:last-of-type {
+}
+
+.projects-table td p:last-of-type {
     color: #738297;
     font-size: 11px;
-  }
-  
-  .projects-table th {
-    background-color: var(--gray50);
-  }
-  
-  .projects-table tr {
+}
 
-  }
-  
-  .projects-table tr:hover {
+/* .projects-table th {
+    background-color: var(--gray50);
+} */
+
+.projects-table-tr1 th {
+    background-color: #B2A4FF;
+    color: #FFFDF6;
+}
+
+.projects-table-tr2 th {
+    background-color: #FFB4B4;
+    color: #FFFDF6;
+}
+
+.projects-table tr {}
+
+.projects-table tr:hover {
     background-color: #f7f5f2;
-  }
-  
-  .projects-table tr:not(:last-of-type) {
+}
+
+.projects-table tr:not(:last-of-type) {
     border-bottom: 1px solid #313D4F;
-  }
-  
-  
-  .projects-table .status > form {
+}
+
+
+.projects-table .status>form {
     float: right;
-  }
-  
-  .projects-table .status-text {
+}
+
+/* .projects-table .status-text {
     display: inline-block;
     font-size: 12px;
     margin: 11px 0;
@@ -378,41 +484,73 @@ input[id="tab03"]:checked ~ .con3 {display:block;}
   
   .projects-table .status-text.status-red:before {
     border-color: #D65B4A;
-  }
-  
-  .danger-item {
-    border-left: 4px solid #A84D43;
-  }
-  
+  } */
 
-
-
-
-   /* 테이블 크기 정하기 */
-   tr :nth-child(1) {
-    text-align: left; 
-   }
-   tr :nth-child(2) {
-    width : 25%;
-    text-align : left;
-   }
-
-   tr > td:nth-child(1){
-    width : 35%;
-    text-align: left;
-   }
-
-   td :nth-child(1) > p {
-    font-size: 16px;
-   }
-   tr :nth-child(3) {
-    width : 15%;
-    text-align : left;
-   }
-
-.project-progress{
-    padding: 10px !important;
+.status {
+    text-align: center;
 }
+
+.status-text {
+    background-color: #0079FF;
+    border-radius: 15px;
+    padding: 10px 15px;
+    color: white;
+}
+
+.status-orange {
+    background-color: #FAAB78;
+    border-radius: 15px;
+    padding: 10px 15px;
+    color: white;
+}
+
+.status-red {
+    background-color: #FF0060;
+    border-radius: 15px;
+    padding: 10px 15px;
+    color: white;
+}
+
+.status-green {
+    background-color: #00DFA2;
+    border-radius: 15px;
+    padding: 10px 15px;
+    color: white;
+}
+
+.danger-item {
+    border-left: 4px solid #A84D43;
+}
+
+
+
+
+
+/* 테이블 크기 정하기 */
+tr :nth-child(1) {
+    text-align: left;
+}
+
+tr :nth-child(2) {
+    width: 25%;
+    text-align: left;
+}
+
+tr>td:nth-child(1) {
+    width: 35%;
+    text-align: left;
+}
+
+td :nth-child(1)>p {
+    font-size: 16px;
+}
+
+tr :nth-child(3) {
+    width: 15%;
+    text-align: left;
+}
+
+
 
 /* 진행도표시기 */
 
@@ -420,24 +558,28 @@ input[id="tab03"]:checked ~ .con3 {display:block;}
     display: flex;
     flex-flow: row nowrap;
 }
+
 .single-chart {
-    width: 35%;
-    margin: auto;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
+
 
 .circular-chart {
     display: block;
-    max-height: 250px;
+    height: 30px;
 }
+
 .circle-bg {
     fill: none;
     stroke: #eee;
-    stroke-width: 4.5; 
+    stroke-width: 4.5;
 }
 
 .circle {
     fill: none;
-    stroke-width: 4; 
+    stroke-width: 4;
     stroke-linecap: round;
     animation: progress 1s ease-out forwards;
 }
@@ -452,13 +594,13 @@ input[id="tab03"]:checked ~ .con3 {display:block;}
 }
 
 .circular-chart.blue .circle {
-stroke: #3c9ee5;            
+    stroke: #3c9ee5;
 }
 
 .percentage {
     fill: #666;
     font-family: sans-serif;
-    font-size: 11px;
     font-weight: bold;
     text-anchor: middle;
+    margin-top: 5px;
 }

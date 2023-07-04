@@ -42,7 +42,7 @@
             </select>
 
             <c:forEach var="pList" items="${pList}">
-              <select name="" class="assignment-checked" data-project-no="${pList.projectNo}">
+              <select name="taskNo" class="assignment-checked" data-project-no="${pList.projectNo}">
                 <c:forEach var="ptList" items="${ptList}" varStatus="status">
                   <c:if test="${ptList.projectNo == pList.projectNo}">
                     <option value="${ptList.taskNo}">${ptList.taskTitle}</option>
@@ -79,7 +79,7 @@
           <!-- 내용 -->
           <div class="work-modal-detail">
             <p>내용</p>
-            <textarea name="content" ></textarea>
+            <textarea name="content" class="summernote" ></textarea>
           </div>
 
           <!-- 프로젝트박스 -->
