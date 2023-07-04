@@ -74,27 +74,20 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 					
 			for(WebSocketSession s : sessions) {
 				
-				Map<String, Object> attributes = session.getAttributes();
-				System.out.println(attributes);
 				
 					
 				// WebSocketSession == HttpSession(로그인정보, 채팅방번호)을 가로챈 것
-				  int chatRoomNo = (Integer) session.getAttributes().get("cmNo");
 					
 				// WebSocketSession에 담겨있는 채팅방번호와
 				// 메시지에 담겨있는 채팅방 번호가 같을경우
 				// 같은방 클라이언트다.				
-				System.out.println(chatRoomNo);
 				System.out.println(chatMessage.getCmNo());
-				if(chatRoomNo == chatMessage.getCmNo())  {
 					
 					// 같은방 클라이언트에게 JSON형식 메시지를 보냄
 					s.sendMessage(new TextMessage(new Gson().toJson(chatMessage)));
 					
 				
 						
-				}
-					
 			}
 		}
 	}

@@ -81,7 +81,7 @@ function getChattingList() {
     contactArea.innerHTML = '';
    
     $.ajax({
-        url: "chatRoomList",
+        url: "/intranet/chatRoomList",
         type : "POST",
         dataType : "JSON",
         success : function(RoomList) {
@@ -91,18 +91,14 @@ function getChattingList() {
           newContact.classList.add('contact', 'contact-hover');
           newContact.setAttribute('data-cmno', room.cmNo);
           
-        
-			
-			
-
-			
+      
 			          
 
            if(room.createMemberName === loginMemberName){
              newContact.innerHTML = `
                <div>
                  <div class="name">${room.inviteName}</div>
-                 <div class="contact-message">${chatVal.value}</div>
+                 <div class="contact-message"></div>
                </div>
                <div class="delete-btn-set">
                  <div class="arrow-button">
@@ -118,7 +114,7 @@ function getChattingList() {
             newContact.innerHTML = `
             <div>
               <div class="name">${room.createMemberName}</div>
-              <div class="contact-message">${chatVal.value}</div>
+              <div class="contact-message"></div>
             </div>
             <div class="delete-btn-set">
               <div class="arrow-button">
@@ -140,7 +136,7 @@ function getChattingList() {
             message.style.overflow = 'hidden';
             message.style.whiteSpace = 'nowrap';
             message.style.textOverflow = 'ellipsis';
-           
+            
             // 화살표 버튼을 클릭하여 삭제 버튼 표시
             const arrowButton = newContact.querySelector('.arrow-button');
             arrowButton.addEventListener('click', () => {
@@ -226,7 +222,7 @@ function getChattingList() {
 
                 // AJAX 요청으로 채팅 내용 가져오기
                 $.ajax({
-                  url: 'chatMessageList/' + cmNo,
+                  url: '/intranet/chatMessageList/' + cmNo,
                   type: 'GET',
                   dataType : 'JSON',
                   success: function(chatMessageList) {
@@ -234,21 +230,10 @@ function getChattingList() {
                     console.log('이게진짜cmNo임 이거' + cmNo);
                     globalCmNo = cmNo;
 
-
-                    			// 채팅방 선택 시 메시지 전송
-			
-                    var sessionMessage = {
-                      cmNo: globalCmNo
-                    };
-                    console.log(sessionMessage);
-
-                  socket.send(JSON.stringify(sessionMessage));
-
-
                 
 
                     $.ajax({
-                      url : 'loginMember',
+                      url : '/intranet/loginMember',
                       type : 'POST',
                       dataType : 'JSON',
                       success : function(loginMemberInfo) {
@@ -411,7 +396,7 @@ employeeDropBox.forEach((dropBox, index) => {
     }
 
     $.ajax({
-      url: 'chatMemberList',
+      url: '/intranet/chatMemberList',
       type: 'GET',
       dataType: 'JSON',
       success: function(chatMember) {
@@ -507,7 +492,7 @@ employeeDropBox.forEach((dropBox, index) => {
             inviteName.textContent = pName;
 
             $.ajax({
-                url: "inviteMember",
+                url: "/intranet/inviteMember",
                 data:{name : pName},
                 type: "POST",
                 dataType: "JSON",
@@ -761,7 +746,7 @@ chatVal.addEventListener('input', () => {
     const chatValue = document.querySelector('#chat-input');
 
     $.ajax({
-      url: 'loginMember',
+      url: '/intranet/loginMember',
       type: 'POST',
       dataType: 'JSON',
       success: function(loginMemberInfo) { 
@@ -866,7 +851,7 @@ if (contactArea.innerHTML.trim() === '') {
 }
 
 $.ajax({
-  url : 'loginMember',
+  url : '/intranet/loginMember',
   type : 'POST',
   dataType : 'JSON',
   success : function(loginMemberInfo) {

@@ -32,7 +32,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	
 	import lombok.extern.slf4j.Slf4j;
 	
-	
 	@SessionAttributes({"loginMember", "cmNo"})
 	@Slf4j
 	@Controller
@@ -74,8 +73,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		 */
 		@ResponseBody
 		@RequestMapping(value = "/chatRoomList", method = RequestMethod.POST)
-		public String chatRoomList(@ModelAttribute("loginMember") Member loginMember,
-									Model model
+		public String chatRoomList(@ModelAttribute("loginMember") Member loginMember
+								
 				) {
 	
 			log.info("loginMember's memNo : " + loginMember.getMemNo());
@@ -84,12 +83,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 			String memName = loginMember.getMemName();
 	
 			Map<String, Object> map = new HashMap<>();
-	
+			
+
 			map.put("memNo", memNo);
 			map.put("memName", memName);
 			
-			int cmNo = 0;
-			model.addAttribute("cmNo", cmNo);
 	
 			List<ChatRoom> RoomList = service.selectChatRoomList(map);
 	
@@ -129,6 +127,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		
 		log.debug(chatMessageList + "");
 		
+		
+		model.addAttribute("cmNo", cmNo);
 		
 		
 		return new Gson().toJson(chatMessageList);	
@@ -198,17 +198,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		
 		return result;
 	}	 
-	
-	// 로그아웃
-		@GetMapping("/logout")
-		public String logout(SessionStatus status) {
 
-			
-			log.info("로그아웃 수행됨");
-			
-			status.setComplete(); 
-			
-			return "redirect:/"; 
-		}
 
 }

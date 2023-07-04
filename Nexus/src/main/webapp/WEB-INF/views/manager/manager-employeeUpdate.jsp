@@ -205,11 +205,7 @@
         </div>
 
         <!-- 채팅창 -->
-        <div id="chatting-function" class="chatting-box">
-          <a href="#">
-            <img class="chatting-img" src="../images/chattImg.png" alt="">
-          </a>
-        </div>
+        <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
       </section>
 
       <script src="${contextPath}/resources/js/manager/manager-employeeUpdate.js"></script>

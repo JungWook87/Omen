@@ -33,7 +33,6 @@ import com.ln.intranet.work.model.vo.Project;
 
 @Controller
 @SessionAttributes({"loginMember"})
-@RequestMapping("/dept")
 public class DeptController {
 
 	private Logger logger = LoggerFactory.getLogger(DeptController.class);
@@ -43,7 +42,7 @@ public class DeptController {
 	
 	
 	// 부서 공지사항 페이지 조회
-	@GetMapping("deptNotice")
+	@GetMapping("dept/deptNotice")
 	public String deptNotice(@RequestParam(value="cp",required=false, defaultValue="1") Integer cp,
 				Model model,
 				HttpSession session
@@ -64,7 +63,7 @@ public class DeptController {
 	}
 	
 	  // 공지사항 추가
-	  @PostMapping("writeNotice")
+	  @PostMapping("dept/writeNotice")
 	  public String writeNotice(@RequestParam("uploadFile") MultipartFile uploadFile,
 			  					@ModelAttribute("loginMember") Member loginMember,
 			  					@RequestParam Map<String, Object> map,
@@ -99,7 +98,7 @@ public class DeptController {
 	
 	// 부서 공지사항 디테일
 	  @ResponseBody
-	  @GetMapping("/deptNotice/noticeDetail")
+	  @GetMapping("dept/deptNotice/noticeDetail")
 	  public String noticeDetail(int noticeNo,
 			  @ModelAttribute("loginMember") Member loginMember) {
 		  
@@ -122,7 +121,7 @@ public class DeptController {
 	  }
 	  
 	  	// 부서 공지사항 수정
-	  	@PostMapping("updateDeptNotice")
+	  	@PostMapping("dept/updateDeptNotice")
 		@ResponseBody
 		public String updateDeptNotice(
 								@RequestParam("noticeNo") int noticeNo,
@@ -158,7 +157,7 @@ public class DeptController {
 		}
 	  	
 	  	// 부서 공지사항 삭제
-	  	@PostMapping("deleteDeptNotice")
+	  	@PostMapping("dept/deleteDeptNotice")
 		@ResponseBody
 		public String deleteNotice(@RequestParam("noticeNo") int noticeNo
 								) {
@@ -172,7 +171,7 @@ public class DeptController {
 	
 	
 	// 부서 게시판 접속
-	@GetMapping("deptBoard")
+	@GetMapping("dept/deptBoard")
 	public String deptBoard(
 			@RequestParam(value="cp",required=false, defaultValue="1") int cp, 
 			Model model,
@@ -195,7 +194,7 @@ public class DeptController {
 	
 	// 부서 게시판 디테일
 	@ResponseBody
-	@GetMapping("/deptBoard/boardDetail")
+	@GetMapping("dept/deptBoard/boardDetail")
 	public String boardDetail(int boardNo) {
 		
 		BoardDetail detail = service.boardDetail(boardNo);
@@ -206,7 +205,7 @@ public class DeptController {
 	}
 	
 	// 부서 일정 접속(kjw)
-	@GetMapping("deptSchedule")
+	@GetMapping("dept/deptSchedule")
 	public String deptSchedule(@ModelAttribute("loginMember") Member loginMember,
 								Model model) {
 		Gson gson = new Gson();
@@ -233,7 +232,7 @@ public class DeptController {
 	}
 	
 	// 부서 게시판 작성
-	@PostMapping("write")
+	@PostMapping("dept/write")
 	public String insertBoard(
 			@RequestParam("noticeTitle") String boardTitle,
 			@RequestParam("noticeContent") String boardContent,
@@ -261,7 +260,7 @@ public class DeptController {
 	
 	
 	// 부서 게시판 수정
-	@PostMapping("updateDeptBoardNotice")
+	@PostMapping("dept/updateDeptBoardNotice")
 	@ResponseBody
 	public String updateDeptBoardNotice(
 									@RequestParam("boardNo") int boardNo,
@@ -300,7 +299,7 @@ public class DeptController {
 	
 	
 	// 게시글 삭제
-	@GetMapping("/boardDelete/{boardNo}")
+	@GetMapping("dept//boardDelete/{boardNo}")
 	public String boardDelete(
 			@PathVariable("boardNo") int boardNo
 			) {

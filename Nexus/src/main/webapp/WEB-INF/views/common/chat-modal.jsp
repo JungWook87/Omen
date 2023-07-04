@@ -158,13 +158,14 @@
 		
 		
 			const cmNo = "${cmNo}";
-			const contextPath = "${contextPath}";
+			const contextPath = "/intranet";
+
+
 
 			
 			console.log(cmNo);
 			
 	
-			const socket = new SockJS(contextPath + "/update");
 			const chattingSock = new SockJS(contextPath+"/chat");
 	
 
