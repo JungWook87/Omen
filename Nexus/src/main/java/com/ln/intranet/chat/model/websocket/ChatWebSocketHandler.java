@@ -7,6 +7,14 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -16,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.ln.intranet.chat.model.service.ChatService;
 import com.ln.intranet.chat.model.vo.Message;
+
 
 
 public class ChatWebSocketHandler extends TextWebSocketHandler {
@@ -28,8 +37,8 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	= Collections.synchronizedSet(new HashSet<WebSocketSession>());
 	
 	
-	// afterConnectionEstablished가 자동으로 다시 수행되기 때문에 페이지를 이동해도 결론적으론 session에 남아잇음
-	// 클라이언트와 연결이 완료되고, 통신할 준비가 되면 수행
+	
+	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 			
@@ -38,7 +47,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		sessions.add(session);
 		
 	}
-	
 	
 
 	// 클라이언트로부터 텍스트 메세지를 전달 받았을 때 수행
@@ -57,7 +65,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		
 		
 		
-		
 		int result = service.insertMessage(chatMessage);
 			
 		if(result > 0) {
@@ -72,11 +79,13 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 				
 					
 				// WebSocketSession == HttpSession(로그인정보, 채팅방번호)을 가로챈 것
-				int chatRoomNo = (Integer)s.getAttributes().get("cmNo");
+				  int chatRoomNo = (Integer) session.getAttributes().get("cmNo");
 					
 				// WebSocketSession에 담겨있는 채팅방번호와
 				// 메시지에 담겨있는 채팅방 번호가 같을경우
 				// 같은방 클라이언트다.				
+				System.out.println(chatRoomNo);
+				System.out.println(chatMessage.getCmNo());
 				if(chatRoomNo == chatMessage.getCmNo())  {
 					
 					// 같은방 클라이언트에게 JSON형식 메시지를 보냄

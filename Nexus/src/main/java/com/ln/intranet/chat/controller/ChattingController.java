@@ -12,7 +12,8 @@ import java.util.HashMap;
 	import org.springframework.web.bind.annotation.ModelAttribute;
 	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.PostMapping;
-	import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RequestMethod;
 	import org.springframework.web.bind.annotation.RequestParam;
 	import org.springframework.web.bind.annotation.ResponseBody;
@@ -73,7 +74,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		 */
 		@ResponseBody
 		@RequestMapping(value = "/chatRoomList", method = RequestMethod.POST)
-		public String chatRoomList(@ModelAttribute("loginMember") Member loginMember) {
+		public String chatRoomList(@ModelAttribute("loginMember") Member loginMember,
+									Model model
+				) {
 	
 			log.info("loginMember's memNo : " + loginMember.getMemNo());
 	
@@ -85,6 +88,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 			map.put("memNo", memNo);
 			map.put("memName", memName);
 			
+			int cmNo = 0;
+			model.addAttribute("cmNo", cmNo);
 	
 			List<ChatRoom> RoomList = service.selectChatRoomList(map);
 	
@@ -102,6 +107,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 			return new Gson().toJson(RoomList);
 	
 		}
+		
+
 
 
 	/** 채팅방 채팅 조회
@@ -110,7 +117,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	 * @return Gson(chatMessageList)
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/chatRoomList/{cmNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/chatMessageList/{cmNo}", method = RequestMethod.GET)
 	public String joinChatRoom(@PathVariable("cmNo") int cmNo, 
 								Model model
 			) {
@@ -119,9 +126,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		
 		List<Message> chatMessageList = service.selectChatMessageList(cmNo);
 		
-		model.addAttribute("cmNo", cmNo);
 		
 		log.debug(chatMessageList + "");
+		
+		
 		
 		return new Gson().toJson(chatMessageList);	
 	}
