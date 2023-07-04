@@ -107,7 +107,7 @@ public class WorkController {
 	
 //	======================= 프로젝트/과제 ================================
 
-	// 결재 디테일 조회
+	// 프로젝트 디테일 조회
 	@ResponseBody
 	@GetMapping("/projectDetail")
 	public String projectDetailSelect(@RequestParam("workNo") int projectNo) {
@@ -119,7 +119,7 @@ public class WorkController {
 		return gson.toJson(detailSelect);
 	}
 	
-	// 결재 디테일 조회
+	// 과제 디테일 조회
 	@ResponseBody
 	@GetMapping("/taskDetail")
 	public String taskDetailSelect(@RequestParam("workNo") int taskNo) {
@@ -130,6 +130,8 @@ public class WorkController {
 		
 		return gson.toJson(detailSelect);
 	}
+	
+
 	
 	
 	
@@ -152,10 +154,9 @@ public class WorkController {
 	// 결재 취소
 	@ResponseBody
 	@GetMapping("/workCancle")
-	public int workCancle(@RequestParam("workNo") int workNo) {
-		System.out.println(workNo);
+	public int workCancle(@RequestParam Map<String, Object> map) {
 		
-		int result = service.workCancle(workNo);
+		int result = service.workCancle(map);
 		
 		return result;
 	}
@@ -221,8 +222,17 @@ public class WorkController {
 			@ModelAttribute("loginMember") Member loginMember) {
 			
 		List <WorkGeneralList> list = service.workInbox(loginMember.getMemNo());
-		
+		List<WorkGeneralList> projectList = service.projectInbox(loginMember.getMemNo());
+		List<WorkGeneralList> taskList = service.taskInbox(loginMember.getMemNo());
+		List<ProjectList> pList = service.pList(loginMember.getDeptNo());
+		List<ProjectTaskList> ptList = service.ptList(loginMember.getDeptNo());
+				
 		model.addAttribute("list", list);
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("taskList", taskList);		
+		// 프로젝트/과제 리스트
+		model.addAttribute("pList", pList);
+		model.addAttribute("ptList", ptList);
 		
 		return "/work/work-inbox(1)";
 	}
@@ -233,20 +243,18 @@ public class WorkController {
 			@ModelAttribute("loginMember") Member loginMember) {
 		
 		List<WorkDetail> tempList = service.workTemp(loginMember);
+		
+		List<ProjectList> pList = service.pList(loginMember.getDeptNo());
+		List<ProjectTaskList> ptList = service.ptList(loginMember.getDeptNo());
 			
 		model.addAttribute("tempList", tempList);
+		// 프로젝트/과제 리스트
+		model.addAttribute("pList", pList);
+		model.addAttribute("ptList", ptList);
 		
 		return "/work/work-temp";
 	}
 	
-	
-	
-	
-	
-
-	// ----------------------------------------------------------------------------------------------
-	// ----------------------------------       �봽濡쒖젥�듃      -----------------------------------------------
-	// ----------------------------------------------------------------------------------------------	
 	
 	
 	

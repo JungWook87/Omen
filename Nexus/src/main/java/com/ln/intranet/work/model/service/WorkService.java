@@ -38,8 +38,8 @@ public interface WorkService {
 	// 결재 수신함 - 결재할 문서
 	List<WorkGeneralList> workInbox(int memNo);
 
-	// 결재 취소
-	int workCancle(int workNo);
+	// 결재 취소 (int workNo 에서 typeNo 포함한 map 으로 바뀌었습니다)
+	int workCancle(Map<String, Object> map);
 	
 	// 프로젝트상신함리스트
 	List<WorkGeneralList> projectSendList(int memNo);
@@ -59,6 +59,10 @@ public interface WorkService {
 	ProjectDetail projectDetailSelect(int projectNo);
 
 	WorkDetail taskDetailSelect(int taskNo);
+
+	List<WorkGeneralList> projectInbox(int memNo);
+
+	List<WorkGeneralList> taskInbox(int memNo);
 
 
 }

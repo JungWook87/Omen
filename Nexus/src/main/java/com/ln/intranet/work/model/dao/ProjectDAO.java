@@ -77,5 +77,39 @@ public class ProjectDAO {
 		return sqlSession.selectOne("projectMapper.taskDetail",taskNo);
 	}
 
+	// 수신함 프로젝트 리스트
+	public List<WorkGeneralList> projectInbox(int memNo) {
+		return sqlSession.selectList("projectMapper.projectInbox",memNo);
+	}
+
+	// 수신함 과제 리스트
+	public List<WorkGeneralList> taskInbox(int memNo) {
+		return sqlSession.selectList("projectMapper.taskInbox",memNo);
+	}
+
+	// 프로젝트 승인/반려
+	public int projectApproval(Map<String, Object> map) {
+		return sqlSession.update("projectMapper.projectApproval", map);
+	}
+	
+	// 과제 승인/반려
+	public int taskApproval(Map<String, Object> map) {
+		return sqlSession.update("projectMapper.taskApproval", map);
+	}
+
+	// 프로젝트 삭제
+	public int projectCancle(int workNo) {	
+		sqlSession.delete("projectMapper.projectFileDelete",workNo);
+		
+		return sqlSession.delete("projectMapper.projectCancle",workNo);
+	}
+	
+	// 과제 삭제
+	public int taskCancle(int workNo) {
+		sqlSession.delete("projectMapper.taskFileDelete",workNo);
+		
+		return sqlSession.delete("projectMapper.taskCancle",workNo);
+	}
+
 	
 }
