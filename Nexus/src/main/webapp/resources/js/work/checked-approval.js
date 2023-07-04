@@ -361,8 +361,8 @@ const checkDeptList = document.querySelectorAll(".check-dept-list");
 const checkTeamList = document.querySelectorAll(".check-team-list");
 
 checkDept.querySelector("p").addEventListener("click", ()=> {
-  for(let item of checkDeptList){
-    item.classList.toggle('show');
+  for(let a of checkDeptList){
+    a.classList.toggle('show');
   }
 })
 
