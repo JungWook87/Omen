@@ -240,7 +240,7 @@ option {
 .notice-table table th {
     color: var(--gray600);
 
-    border-bottom: 1px solid var(--gray300);
+    border-bottom: 1px solid var(--gray500);
 
     padding-bottom: 10px;
 
@@ -278,13 +278,13 @@ option {
     text-align: left;
 }
 
-.notice-table tbody>tr:nth-of-type(2n-1){
+/* .notice-table tbody>tr:nth-of-type(2n-1){
     background-color: var(--side)
-}
+} */
 
-.notice-table tbody>tr:nth-of-type(2n-1):hover{
+/* .notice-table tbody>tr:nth-of-type(2n-1):hover{
     background-color: var(--gray100);
-}
+} */
 
 
 /* 모달 박스 스타일 */

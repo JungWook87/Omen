@@ -10,7 +10,7 @@ $(document).ready(function(){
         type : 'GET',
         success : function(data){
 
-            console.log("타입넘버 : " + data[1].typeName);
+            
 
             var attnLabel = [];
             var attnCount = [];
@@ -255,22 +255,22 @@ function createProjectInfo(projectNo){
 }
 
 
+// console.log(workState);
+// let status = `${taskTotal.workState}`; 
+// let statusClass = "";
 
-let status = `${taskTotal.workState}`; 
-let statusClass = "";
+// switch(status) {
+//     case '승인':
+//         statusClass = "status-green";
+//         break;
+//     case '진행중':
+//         statusClass = "status-orange";
+//         break;
+//     case '반려':
+//         statusClass = "status-red";
+//         break;
+//     default:
+//         statusClass = "";
+// }
 
-switch(status) {
-    case '승인':
-        statusClass = "status-green";
-        break;
-    case '진행중':
-        statusClass = "status-orange";
-        break;
-    case '반려':
-        statusClass = "status-red";
-        break;
-    default:
-        statusClass = "";
-}
-
-document.querySelector(".status-text").classList.add(statusClass);
+// document.querySelector(".status-text").classList.add(statusClass);
