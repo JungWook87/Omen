@@ -178,10 +178,10 @@
                             <td style="color: var(--primary400);">${list.workState}</td>
                           </c:when>
                           <c:when test="${list.workState == '승인'}">
-                            <td style="color: var(--green); display: none;">${list.workState}</td>
+                            <td style="color: var(--green);">${list.workState}</td>
                           </c:when>
                           <c:otherwise>
-                            <td style="color: red; display: none;">${list.workState}</td>
+                            <td style="color: red;">${list.workState}</td>
                           </c:otherwise>
                         </c:choose>
                         <c:if test="${empty list.fileRename}">

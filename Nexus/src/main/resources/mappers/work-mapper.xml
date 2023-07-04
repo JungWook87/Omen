@@ -33,6 +33,7 @@
 		<result property="opinion" column="OPINION"/>
 		<result property="typeName" column="TYPE_NAME"/>
 		<result property="fileRename" column="FILE_RENAME"/>
+		<result property="memName" column="MEMBER_NAME"/>
 	</resultMap>
 	
 	<resultMap type="workDetail" id="workDetail_rm">
@@ -144,8 +145,8 @@
 	
 	<!-- 수신함 -->
 	<select id="workInbox" resultMap="workGeneralList_rm">
-		SELECT WORK_NO, TYPE_NO, TITLE , SEND_DATE ,WORK_STATE , OPINION , TYPE_NAME, FILE_RENAME 
-		FROM "WORK"
+		SELECT WORK_NO, TYPE_NO, TITLE , SEND_DATE ,WORK_STATE , OPINION , TYPE_NAME, FILE_RENAME, (SELECT MEM_NAME FROM "MEMBER" m WHERE M.MEM_NO = W.MEM_NO) AS "MEMBER_NAME"
+		FROM "WORK" w
 		LEFT JOIN WORK_TYPE USING(TYPE_NO)
 		LEFT JOIN UPLOAD_FILE USING(WORK_NO)
 		WHERE NEXT = #{memNo}
