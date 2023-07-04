@@ -50,3 +50,35 @@ function detailModal(workNo){
     }
   });
 };
+
+
+// 프로젝트 디테일
+function projectDetailModal(workNo){
+  $.ajax({
+    url : "projectDetail",
+    type : "GET",
+    dataType : "JSON",
+    data : {"workNo" : workNo},
+    success : function(detailSelect){
+
+      successDetailModal(detailSelect);
+
+    }
+  });
+};
+
+// 과제 디테일
+function taskDetailModal(workNo){
+  $.ajax({
+    url : "taskDetail",
+    type : "GET",
+    dataType : "JSON",
+    data : {"workNo" : workNo},
+    success : function(detailSelect){
+
+      successDetailModal(detailSelect);
+
+    }
+  });
+};
+

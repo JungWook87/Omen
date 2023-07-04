@@ -54,7 +54,7 @@ public class DashBoardController {
 				
 				hr.setWorkMin(newMin);
 				hr.setWorkTime(hr.getWorkTime()+plusTime);
-				log.info("워크타임 : " + hr.getWorkTime() + "시/" + hr.getWorkMin() + "분");
+				//log.info("워크타임 : " + hr.getWorkTime() + "시/" + hr.getWorkMin() + "분");
 			}
 			
 			if(hr.getExMin() > 60) {
@@ -63,7 +63,7 @@ public class DashBoardController {
 				
 				hr.setExMin(newMin);
 				hr.setExTime(hr.getExTime()+plusTime);
-				log.info("연장근무 : " + hr.getExTime() + "시/" + hr.getExMin() + "분");
+				//log.info("연장근무 : " + hr.getExTime() + "시/" + hr.getExMin() + "분");
 			}
 		}
 		
@@ -113,5 +113,41 @@ public class DashBoardController {
 		return list;
 	}
 	
-
+	
+	@GetMapping("/humanResourceManage")
+	public String humanResourceManage(
+			@ModelAttribute("loginMember") Member loginMember,
+			Model model
+			) {
+		
+		int deptNo = loginMember.getDeptNo();
+		
+		List<HumanResourceManage> hrList = new ArrayList<HumanResourceManage>();
+		
+		hrList = service.hrList(deptNo);
+		
+		for(int i = 0; i < hrList.size(); i++) {
+			HumanResourceManage hr = hrList.get(i);
+			
+			if(hr.getWorkMin() > 60) {
+				int plusTime = hr.getWorkMin()/60;
+				int newMin = hr.getWorkMin()%60;
+				
+				hr.setWorkMin(newMin);
+				hr.setWorkTime(hr.getWorkTime()+plusTime);
+			}
+			
+			if(hr.getExMin() > 60) {
+				int plusTime = hr.getExMin()/60;
+				int newMin = hr.getExMin()%60;
+				
+				hr.setExMin(newMin);
+				hr.setExTime(hr.getExTime()+plusTime);
+			}
+		}
+		
+		model.addAttribute("hrList", hrList);
+		
+		return "/dashBoard/humanResource-manage";
+	}
 }

@@ -316,7 +316,8 @@ function workDelete(obj){
       type : "GET",
       dataType : "JSON",
       data : {
-        "workNo" : obj.workNo
+        "workNo" : obj.workNo,
+        "typeNo" : obj.typeNo
       },
       success : function(result){
         if(result != 0){
@@ -382,7 +383,8 @@ function app_btn_click(btnName, obj, checkbox_flag){
           "approvalList" : obj.approvalList,
           "opinion" : obj.opinion,
           "btnName" : btnName,
-          "checkbox_flag" : obj.checkbox_flag
+          "checkbox_flag" : obj.checkbox_flag,
+          "typeNo" : obj.typeNo
         },
         success : function(){
           Swal.fire({

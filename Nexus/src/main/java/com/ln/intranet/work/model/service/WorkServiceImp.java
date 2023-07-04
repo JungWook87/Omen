@@ -66,10 +66,23 @@ public class WorkServiceImp implements WorkService {
 		return detailSelect;
 	}
 	
-	// 결재취소
+	// 결재취소 (int workNo 에서 typeNo 포함한 map 으로 바뀌었습니다)
 	@Override
-	public int workCancle(int workNo) {
-		return dao.workCancle(workNo);
+	public int workCancle(Map<String, Object> map) {
+		
+		int workNo = Integer.parseInt(map.get("workNo").toString());	
+		int typeNo = Integer.parseInt(map.get("typeNo").toString());	
+		
+		System.out.println(workNo);
+		
+		if( typeNo == 4 ) {
+			return pDao.projectCancle(workNo);
+		} else if ( typeNo == 5 ) {
+			return pDao.taskCancle(workNo);
+		} else {
+			return dao.workCancle(workNo);			
+		}
+		
 	}
 
 	// 결재 상신 작성(일반결재)
@@ -277,18 +290,6 @@ public class WorkServiceImp implements WorkService {
 		return dao.workInbox(memNo);
 	}
 	
-	// 프로젝트 상신함 - 프로젝트리스트
-	@Override
-	public List<WorkGeneralList> projectSendList(int memNo) {		
-		return pDao.projectSendList(memNo);
-	}
-
-	// 프로젝트 상신함 - 과제리스트
-	@Override
-	public List<WorkGeneralList> taskSendList(int memNo) {
-		return pDao.taskSendList(memNo);
-	}
-
 	
 	// 반려 승인
 	@Override
@@ -316,6 +317,8 @@ public class WorkServiceImp implements WorkService {
 		}
 		map.put("approvalList", approvalList);
 		
+		
+		
 		String checkbox_flag = map.get("checkbox_flag").toString();
 		if(checkbox_flag.equals("false")) {
 			Map<String, Object> nextMember = dao.nextMember(Integer.parseInt(map.get("next").toString()));
@@ -337,9 +340,15 @@ public class WorkServiceImp implements WorkService {
 			int attnResult = attnDao.insertAttn(map);
 		}
 		
-
+		if(typeNo == 4) {
+			return pDao.projectApproval(map);
+		} else if (typeNo == 5) {
+			return pDao.taskApproval(map);
+		} else {
+			return dao.clickApproval(map);
+		}
 		
-		return dao.clickApproval(map);
+		
 	}
 
 	// 프로젝트과제 리스트 뽑기용
@@ -385,6 +394,33 @@ public class WorkServiceImp implements WorkService {
 		}
 		
 		return detailSelect;
+	}
+	
+	
+	
+
+	// 상신함 - 프로젝트리스트
+	@Override
+	public List<WorkGeneralList> projectSendList(int memNo) {		
+		return pDao.projectSendList(memNo);
+	}
+
+	// 상신함 - 과제리스트
+	@Override
+	public List<WorkGeneralList> taskSendList(int memNo) {
+		return pDao.taskSendList(memNo);
+	}
+
+	// 수신함 - 프로젝트리스트
+	@Override
+	public List<WorkGeneralList> projectInbox(int memNo) {
+		return pDao.projectInbox(memNo);
+	}
+	
+	// 수신함 - 과제리스트
+	@Override
+	public List<WorkGeneralList> taskInbox(int memNo) {
+		return pDao.taskInbox(memNo);
 	}
 
 

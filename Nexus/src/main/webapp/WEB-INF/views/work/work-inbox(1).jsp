@@ -97,7 +97,6 @@
 
                     <tr>
                       <th>종류</th>
-                      <th>결재 번호</th>
                       <th>제목</th>
                       <th>작성자</th>
                       <th>첨부파일</th>
@@ -111,7 +110,6 @@
                       <tr class="listTr" onclick="detailModal(${list.workNo})">
                         <td class="listTypeNo" style="display: none;">${list.typeNo}</td>
                         <td>${list.typeName}</td>
-                        <td>${list.workNo}</td>
                         <td>${list.title}</td>
                         <td>${list.memName}</td>
                         <c:if test="${empty list.fileRename}">
@@ -123,6 +121,41 @@
                         <td>${fn:substring(list.sendDate, 0, 11)}</td>
                       </tr>
                     </c:forEach>
+
+                    <!-- 프로젝트 리스트 생성 -->
+                    <c:forEach var="projectList" items="${projectList}">
+                      <tr class="listTr" onclick="projectDetailModal(${projectList.workNo})">
+                        <td class="listTypeNo" style="display: none;">${projectList.typeNo}</td>
+                        <td>${projectList.typeName}</td>
+                        <td>${projectList.title}</td>
+                        <td>${projectList.memName}</td>
+                        <c:if test="${empty projectList.fileRename}">
+                          <td>없음</td>
+                        </c:if>
+                        <c:if test="${not empty projectList.fileRename}">
+                          <td>있음</td>
+                        </c:if>
+                        <td>${fn:substring(projectList.sendDate, 0, 11)}</td>
+                      </tr>
+                    </c:forEach>
+
+                    <!-- 과제 리스트 생성 -->
+                    <c:forEach var="taskList" items="${taskList}">
+                      <tr class="listTr" onclick="taskDetailModal(${taskList.workNo})">
+                        <td class="listTypeNo" style="display: none;">${taskList.typeNo}</td>
+                        <td>${taskList.typeName}</td>
+                        <td>${taskList.title}</td>
+                        <td>${taskList.memName}</td>
+                        <c:if test="${empty taskList.fileRename}">
+                          <td>없음</td>
+                        </c:if>
+                        <c:if test="${not empty taskList.fileRename}">
+                          <td>있음</td>
+                        </c:if>
+                        <td>${fn:substring(taskList.sendDate, 0, 11)}</td>
+                      </tr>
+                    </c:forEach>
+
                   </tbody>
 
                 </table>

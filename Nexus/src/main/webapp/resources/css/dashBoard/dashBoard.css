@@ -7,7 +7,6 @@
 body {
     display: flex;
     flex-direction: column;
-    color: black;
 }
 
 /* 틀을 잡아 놓기 위한 스타일 */

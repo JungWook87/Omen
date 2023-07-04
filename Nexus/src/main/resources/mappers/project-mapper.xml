@@ -7,6 +7,7 @@
 		<result property="typeNo" 			column="TYPE_NO"/>
 		<result property="title" 				column="TITLE"/>
 		<result property="sendDate" 		column="SEND_DATE"/>
+		<result property="memName" 		column="MEM_NAME"/>
 		<result property="workState" 		column="WORK_STATE"/>
 		<result property="opinion" 			column="OPINION"/>
 		<result property="typeName" 		column="TYPE_NAME"/>
@@ -241,5 +242,103 @@
 		WHERE TASK_NO = #{taskNo}
 	</select>
 	
+	<!-- 프로젝트 수신함 조회 -->	
+	<select id="projectInbox" resultMap="workList_rm">
+		SELECT PROJECT_NO AS WORK_NO, 4 AS TYPE_NO , '프로젝트' AS TYPE_NAME ,  TITLE , MEM_NAME , SEND_DATE , WORK_STATE , OPINION , FILE_RENAME 
+		FROM PROJECT
+		JOIN "MEMBER" m USING (MEM_NO)
+		LEFT JOIN UPLOAD_FILE USING(PROJECT_NO)
+		WHERE NEXT = #{memNo}
+		AND WORK_STATE = '진행중'
+		AND TEMP_SAVE IS NULL
+		ORDER BY SEND_DATE DESC
+	</select>
+
+	<!-- 과제 수신함 조회 -->		
+	<select id="taskInbox" resultMap="workList_rm">
+		SELECT TASK_NO AS WORK_NO, 5 AS TYPE_NO , '과제' AS TYPE_NAME ,  TITLE , MEM_NAME , SEND_DATE , WORK_STATE , OPINION , FILE_RENAME 
+		FROM PROJECT_TASK
+		JOIN "MEMBER" m USING (MEM_NO)
+		LEFT JOIN UPLOAD_FILE USING(TASK_NO)
+		WHERE NEXT = #{memNo}
+		AND WORK_STATE = '진행중'
+		AND TEMP_SAVE IS NULL
+		ORDER BY SEND_DATE DESC
+	</select>
+	
+	
+	<!-- 프로젝트 반려 승인 -->
+	<update id="projectApproval">
+		<if test="btnName == 'reject'">
+			UPDATE "PROJECT"
+			<set>
+				APPROVAL_DATE = SYSDATE,
+				WORK_STATE = '반려',
+				APPROVAL_LIST = #{approvalList},
+				<if test="opinion != null">OPINION = #{opinion}</if>
+			</set>
+			WHERE PROJECT_NO = #{workNo}
+		</if>
+		<if test="btnName == 'approve'">
+			UPDATE "PROJECT"
+			<set>
+				APPROVAL_DATE = SYSDATE,
+				<if test = "next == ''">
+					WORK_STATE = '승인',				
+				</if>
+				<if test = "next != ''">
+					NEXT = #{next},
+				</if>
+				APPROVAL_LIST = #{approvalList}			
+			</set>
+			WHERE PROJECT_NO = #{workNo}
+		</if>
+	</update>
+	
+	<!-- 과제 -->
+	<update id="taskApproval">
+		<if test="btnName == 'reject'">
+			UPDATE "PROJECT_TASK"
+			<set>
+				APPROVAL_DATE = SYSDATE,
+				WORK_STATE = '반려',
+				APPROVAL_LIST = #{approvalList},
+				<if test="opinion != null">OPINION = #{opinion}</if>
+			</set>
+			WHERE TASK_NO = #{workNo}
+		</if>
+		<if test="btnName == 'approve'">
+			UPDATE "PROJECT_TASK"
+			<set>
+				APPROVAL_DATE = SYSDATE,
+				<if test = "next == ''">
+					WORK_STATE = '승인',				
+				</if>
+				<if test = "next != ''">
+					NEXT = #{next},
+				</if>
+				APPROVAL_LIST = #{approvalList}			
+			</set>
+			WHERE TASK_NO = #{workNo}
+		</if>
+	</update>
+	
+	
+	<!-- 프로젝트 취소 -->
+	<delete id="projectFileDelete" parameterType="_int">
+		DELETE FROM UPLOAD_FILE WHERE PROJECT_NO = #{workNo}
+	</delete>
+	<delete id="projectCancle" parameterType="_int">
+		DELETE FROM "PROJECT" WHERE PROJECT_NO = #{workNo}
+	</delete>
+	
+	
+	<!-- 과제 취소 -->
+	<delete id="taskFileDelete" parameterType="_int">
+			DELETE FROM UPLOAD_FILE WHERE TASK_NO = #{workNo}
+	</delete>
+	<delete id="taskCancle" parameterType="_int">
+		DELETE FROM "PROJECT_TASK" WHERE TASK_NO = #{workNo}
+	</delete>
 	
 </mapper>

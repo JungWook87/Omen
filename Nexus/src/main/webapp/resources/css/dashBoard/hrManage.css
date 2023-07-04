@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 프로그레스 바 div */
+.bar-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* 프로그레스바 스타일 */
+#progressBar {
+    width: 100%;
+    appearance: none;
+}
+
+#progressBar::-webkit-progress-bar {
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    /* box-shadow: inset 3px 3px 10px #ccc; */
+}
+
+#progressBar::-webkit-progress-value {
+    border-radius: 20px;
+    background: #04A2E4;
+}
+
+#progressBar.underBlue::-webkit-progress-value {
+    border-radius: 20px;
+    background: #04A2E4;
+}
+
+#progressBar.overOrange::-webkit-progress-value {
+    border-radius: 20px;
+    background: rgb(255, 180, 126);
+
+}
+
+.progressTemp {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progressTemp span {
+    color: var(--gray500);
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+/* 워크타임 */
+.work-time-box {
+    display: flex;
+    flex-direction: column;
+    width : 110px;
+}
+
+.extend {
+    color: var(--primary300);
+    font-size: 14px;
+}
+
+section {
+    display: flex;
+
+}
+
+
+
+.container{
+    margin: auto;
+    width: 70%;
+}
+
+.hr-header{
+    margin : 30px;
+}
+
+.btn-div{
+    display: flex;
+}
+
+.hr-div{
+
+}
+
+.monthBtn {
+    background-color: transparent;
+    border-style: none;
+}
+.monthBtn > img {
+    width: 20px;
+}
+
+/* 테이블 스타일 */
+table{
+    width: 100%;
+}
+
+th{
+    padding : 5px 0;
+    text-align: left;
+}
+td{
+    padding: 1px 0 10px;
+}
+td:nth-child(1),th:nth-child(1) {
+    width: 8%;
+}
+td:nth-child(2),th:nth-child(2) {
+    width: 8%;
+}
+td:nth-child(3),th:nth-child(3) {
+    width: 6%;
+}
+td:nth-child(4),th:nth-child(4) {
+    width: 8%;
+}
+td:nth-child(5),th:nth-child(5) {
+    width: 66%;
+}
+td:nth-child(6),th:nth-child(6) {
+    width: 14%;
+    padding-left: 10px;
+}
+
+.work-time-info{
+    display: flex;
+    width : 100%;
+}
+
+.progress-box{
+    width : 100%;
+    padding-right: 10px;
+}
+
+.bar-box{
+    width : 100%;
+}
+
+th {
+    color : var(--gray600);
+}
