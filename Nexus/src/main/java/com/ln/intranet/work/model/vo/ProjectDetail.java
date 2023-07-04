@@ -31,7 +31,7 @@ public class ProjectDetail {
 	private String nextMemName; // 결재자 이름
 	private String nextMemEmail; // 결재자 이메일
 	
-	private List<ProjectTask> taskList;
+	private List<ProjectTaskList> taskList;
 	
 	
 }

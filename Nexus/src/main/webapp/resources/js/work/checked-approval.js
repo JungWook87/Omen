@@ -15,6 +15,9 @@ const checkedEditBtn = document.getElementById('checked-edit-btn'); // 결재내
 const checkedModalApprover = document.querySelector('.checked-modal-approver'); // 결재자
 const checkedStartDate = document.getElementsByClassName("checked-modal-startDate"); // 시작일
 const checkedEndDate = document.getElementsByClassName("checked-modal-endDate"); // 종료일
+const checkedModalTaskList = document.querySelector('.checked-modal-taskList'); 
+const checkedModalTaskDiv = document.querySelector('.modal-task-div');
+const checkedModalTableBody = document.querySelector('.modal-table-body');
 
 // ajax 성공 후 결재 디테일 모달창 내용 입력(kjw)
 function successDetailModal(obj){
@@ -37,6 +40,7 @@ function successDetailModal(obj){
   checkedModalDetail.style.display = 'none';
   checkedStartDate[0].style.display = 'none';
   checkedEndDate[0].style.display = 'none';
+  checkedModalTaskList.style.display = 'none';
 
   checkedModalTitle.innerHTML = "";
   workNo.innerText = "";
@@ -128,6 +132,43 @@ function successDetailModal(obj){
     checkedModalDetail.style.display = 'block';
     checkedStartDate[0].style.display = 'block';
     checkedEndDate[0].style.display = 'block';
+
+  } else if(obj.typeNo == 4){
+    content.value = obj.content;
+    checkStart.value = obj.start.substr(0,10);
+    checkEnd.value = obj.end.substr(0,10);
+    opinion.value = obj.opinion;
+    next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
+
+    checkedModalDetail.style.display = 'block';
+    checkedModalTaskList.style.display = 'block';
+    checkedStartDate[0].style.display = 'block';
+    checkedEndDate[0].style.display = 'block';
+    checkedModalTaskDiv.innerHTML ="";
+
+    for (var i = 0; i < obj.taskList.length; i++) {
+      var task = obj.taskList[i];
+      
+      var div = document.createElement('div');
+      var span1 = document.createElement('span');
+      var span2 = document.createElement('span');
+      span1.textContent = i+1 + ".";
+      span2.textContent = task.taskTitle;
+      
+      div.appendChild(span1);
+      div.appendChild(span2);
+      
+      checkedModalTaskDiv.appendChild(div);
+    }
+
+ 
+  } else if(obj.typeNo == 5){
+    content.value = obj.content;
+    opinion.value = obj.opinion;
+    next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
+
+    checkedModalDetail.style.display = 'block';
+
 
   }
 

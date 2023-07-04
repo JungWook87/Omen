@@ -87,12 +87,31 @@
 		<result property="nextMemName" column="NEXT_MEM_NAME"/>
 		<result property="nextMemEmail" column="NEXT_MEM_EMAIL"/>
 		
-		<collection property="projectTaskList" column="WORK_NO" 
+		<collection property="taskList" column="WORK_NO" 
 		javaType="java.util.ArrayList" ofType="projectTaskList" 
 		select="taskCollection"/>
 	</resultMap>
 	
-	
+	<!-- 과제 디테일 -->
+	<resultMap type="workDetail" id="workDetail_rm">
+		<id property="workNo" column="WORK_NO" />
+		<result property="typeNo" column="TYPE_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="sendDate" column="SEND_DATE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="start" column="START"/>
+		<result property="end" column="END"/>
+		<result property="next" column="NEXT"/>
+		<result property="approvalList" column="APPROVAL_LIST"/>
+		<result property="opinion" column="OPINION"/>
+		<result property="fileRename" column="FILE_RENAME"/>
+		<result property="fileOrigin" column="FILE_ORIGIN"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="nextMemName" column="NEXT_MEM_NAME"/>
+		<result property="nextMemEmail" column="NEXT_MEM_EMAIL"/>
+	</resultMap>
 	
 	
 	<!-- 프로젝트 생성 -->
@@ -101,7 +120,7 @@
 			SELECT SEQ_PROJECT_NO.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO PROJECT(PROJECT_NO, MEM_NO, TITLE, CONTENT, 
-		SEND_DATE, "START", "END", NEXT, APPROVAL_LIST
+		SEND_DATE, "START", "END", NEXT, APPROVAL_LIST,
  		WORK_STATE, DEPT_NO)
 		VALUES ( #{projectNo}, #{memNo}, #{title}, #{content},
 		DEFAULT, #{start}, #{end}, #{next}, #{approvalList},
@@ -193,8 +212,14 @@
 	
 	<!-- 프로젝트 디테일 조회 -->
 	<select id="projectDetail" parameterType="_int" resultMap="projectDetail_rm">
-	
-	
+		SELECT PROJECT_NO AS WORK_NO, 4 AS TYPE_NO, MEM_NO, TITLE, SEND_DATE, CONTENT, "START", "END" ,"NEXT", 
+		APPROVAL_LIST, OPINION, FILE_RENAME, FILE_ORIGIN, MEM_NAME, EMAIL,
+		(SELECT MEM_NAME FROM "MEMBER" m WHERE MEM_NO = P."NEXT") AS NEXT_MEM_NAME,
+		(SELECT EMAIL FROM "MEMBER" m WHERE MEM_NO = P."NEXT") AS NEXT_MEM_EMAIL
+		FROM PROJECT P
+		LEFT JOIN UPLOAD_FILE USING(PROJECT_NO)
+		LEFT JOIN MEMBER USING(MEM_NO)
+		WHERE PROJECT_NO = #{projectNo}
 	</select>
 	
 	<!-- 프로젝트 디테일 과제 콜렉션 -->
@@ -204,8 +229,17 @@
 		WHERE PROJECT_NO = #{workNo}
 	</select>
 	
-	
-
+	<!-- 과제 디테일 조회 -->	
+	<select id="taskDetail" resultMap="workDetail_rm">
+		SELECT TASK_NO AS WORK_NO, 5 AS TYPE_NO, MEM_NO, TITLE, SEND_DATE, CONTENT ,"NEXT", 
+		APPROVAL_LIST, OPINION, FILE_RENAME, FILE_ORIGIN, MEM_NAME, EMAIL,
+		(SELECT MEM_NAME FROM "MEMBER" m WHERE MEM_NO = PT."NEXT") AS NEXT_MEM_NAME,
+		(SELECT EMAIL FROM "MEMBER" m WHERE MEM_NO = PT."NEXT") AS NEXT_MEM_EMAIL
+		FROM PROJECT_TASK PT
+		LEFT JOIN UPLOAD_FILE USING(TASK_NO)
+		LEFT JOIN MEMBER USING(MEM_NO)
+		WHERE TASK_NO = #{taskNo}
+	</select>
 	
 	
 </mapper>
