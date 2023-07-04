@@ -90,8 +90,13 @@ function getChattingList() {
           const newContact = document.createElement('div');
           newContact.classList.add('contact', 'contact-hover');
           newContact.setAttribute('data-cmno', room.cmNo);
-           globalCmNo = room.cmNo; 
-           console.log(globalCmNo);
+          
+        
+			
+			
+
+			
+			          
 
            if(room.createMemberName === loginMemberName){
              newContact.innerHTML = `
@@ -205,22 +210,43 @@ function getChattingList() {
             // 채팅방에서 클릭 이벤트
             
             let loginMemberNumber;
+
+
+          
+
+            
+            
             
 
             newContact.addEventListener('click', function() {
                const contacts = document.querySelectorAll('.contact');
                 const cmNo = this.getAttribute('data-cmno');
 
+                
+
                 // AJAX 요청으로 채팅 내용 가져오기
                 $.ajax({
-                  url: 'chatRoomList/' + cmNo,
+                  url: 'chatMessageList/' + cmNo,
                   type: 'GET',
                   dataType : 'JSON',
                   success: function(chatMessageList) {
                     console.log(chatMessageList)
-                    
+                    console.log('이게진짜cmNo임 이거' + cmNo);
+                    globalCmNo = cmNo;
 
-                    
+
+                    			// 채팅방 선택 시 메시지 전송
+			
+                    var sessionMessage = {
+                      cmNo: globalCmNo
+                    };
+                    console.log(sessionMessage);
+
+                  socket.send(JSON.stringify(sessionMessage));
+
+
+                
+
                     $.ajax({
                       url : 'loginMember',
                       type : 'POST',
@@ -228,10 +254,14 @@ function getChattingList() {
                       success : function(loginMemberInfo) {
                         console.log(loginMemberInfo);
 
+
                         loginMemberNumber = loginMemberInfo.memNo;
                         loginMemberName = loginMemberInfo.memName;
-                        
-                        
+
+
+
+
+                      
                         for (let i = 0; i < chatMessageList.length; i++) {
                           chatMessageNumber = chatMessageList[i].memNo;
                             const message = chatMessageList[i].mContent;
@@ -727,37 +757,37 @@ chatVal.addEventListener('input', () => {
   }
 });
 
-function sendWebMessage(loginMemberInfo) {
-  const chatValue = document.querySelector('#chat-input');
+  function sendWebMessage(loginMemberInfo) {
+    const chatValue = document.querySelector('#chat-input');
 
-  $.ajax({
-    url: 'loginMember',
-    type: 'POST',
-    dataType: 'JSON',
-    success: function(loginMemberInfo) { 
-      console.log(loginMemberInfo);
-      console.log(chatValue.value);
+    $.ajax({
+      url: 'loginMember',
+      type: 'POST',
+      dataType: 'JSON',
+      success: function(loginMemberInfo) { 
+        console.log(loginMemberInfo);
+        console.log(chatValue.value);
 
-      const chatMessage = {
-        "cmNo": globalCmNo,
-        "memNo": loginMemberInfo.memNo,
-        "memberNick": loginMemberInfo.memName,
-        "mContent": chatValue.value
-      };
+        const chatMessage = {
+          "cmNo": globalCmNo,
+          "memNo": loginMemberInfo.memNo,
+          "memberNick": loginMemberInfo.memName,
+          "mContent": chatValue.value
+        };
 
-      // JSON.parse(문자열) : JSON -> JS Object
-      // JSON.stringify(객체) :  JS Object -> JSON
-      console.log(chatMessage);
-      console.log(JSON.stringify(chatMessage));
+        // JSON.parse(문자열) : JSON -> JS Object
+        // JSON.stringify(객체) :  JS Object -> JSON
+        console.log(chatMessage);
+        console.log(JSON.stringify(chatMessage));
 
-      // chattingSock(웹소켓 객체)을 이용하여 메세지 보내기
-      // chattingSock.send(값) : 웹소켓 핸들러로 값을 보냄
-      chattingSock.send(JSON.stringify(chatMessage));
-    },
-    error: function() {
-      console.log("에러");
-    }
-  });
+        // chattingSock(웹소켓 객체)을 이용하여 메세지 보내기
+        // chattingSock.send(값) : 웹소켓 핸들러로 값을 보냄
+        chattingSock.send(JSON.stringify(chatMessage));
+      },
+      error: function() {
+        console.log("에러");
+      }
+    });
 }
    
 
@@ -823,6 +853,9 @@ chatSubmit.addEventListener('click', () => {
 function scrollToBottom() {
   chat.scrollTop = chat.scrollHeight;
 }
+
+
+
 
 
 
