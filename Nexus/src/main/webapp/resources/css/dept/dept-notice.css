@@ -21,6 +21,12 @@ section {
   }
 }
 
+@media(max-height:878.29px) {
+  .side-bar {
+    height: unset !important;
+  }
+}
+
 .side-bar ul {
   margin: 0;
   padding: 0;
@@ -245,4 +251,16 @@ a:focus {
 /* 사이드바 반응형 */
 .sidebarMenuInner li:nth-child(2) span {
   color: var(--primary500);
+}
+
+/* 게시글 없을때 */
+.noneNotice th {
+  border-bottom: none !important;
+  text-align: center !important;
+  padding-top: 40px;
+}
+
+.noneNotice:hover {
+  background-color: unset !important;
+  cursor: unset !important;
 }

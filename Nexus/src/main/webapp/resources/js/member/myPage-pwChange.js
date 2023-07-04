@@ -50,6 +50,11 @@ function  changePwValidate() {
     return false;
   }
 
+  if(currentPw.value === newPw.value) {
+    Swal.fire("현재 비밀번호와 다르게 입력해 주세요");
+    return false;
+  }
+
   if(newPw.value.trim().length == 0) {
     Swal.fire("새 비밀번호를 입력해주세요.")
     newPw.focus();

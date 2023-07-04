@@ -76,11 +76,22 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 직원 추가 서비스 구현
 	@Override
-	public int signUp(Member member) {
+	public String signUp(Member member) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		int result = dao.signUp(member);
+		System.out.println("rkqt : " + member);
 		
-		return result;
+		String message = null;
+		String memId = "NEXUS" + member.getMemNo();
+		
+		if(result > 0) {
+			message = "직원이 추가 되었습니다.,," + memId;
+		} else {
+			message = "직원 추가 실패";
+		}
+		
+		return message;
 	}
 
 	// 직원 검색 서비스 구현

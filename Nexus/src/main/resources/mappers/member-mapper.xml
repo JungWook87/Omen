@@ -59,12 +59,15 @@
 	</select>
 	
 	<!-- 직원 추가 -->
-	<insert id="signUp" parameterType="member">
+	<insert id="signUp" useGeneratedKeys="true"> 
+		<selectKey keyProperty="memNo" resultType="_int" order="BEFORE">
+				SELECT SEQ_MEMBER_NO.NEXTVAL FROM DUAL
+		</selectKey>
 		INSERT INTO MEMBER
-		VALUES(SEQ_MEMBER_NO.NEXTVAL,
+		VALUES(#{memNo},
 			#{jobNo},
 			#{teamNo},
-			#{deptNo},
+			#{deptNo}, 
 			'NEXUS'||SEQ_MEMBER_NO.CURRVAL,
 			DEFAULT,
 			#{memName},
