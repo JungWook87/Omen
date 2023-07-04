@@ -171,7 +171,89 @@
           <button id="checked-success-btn" type="button" onclick="checkedModalClose()">확인</button>
         </div>
         </c:otherwise>
-      </c:choose>  
+      </c:choose>
+      
+      <div id="check-approver-modal-wrap">
+        <div class="check-approver-modal-Body">
+          <span id="check-approver-closeBtn">
+            <img src="${contextPath}/resources/images/Xbtn.png" alt="">
+          </span>
+          <h1>결재 라인 설정</h1>
+          <!-- 선1 -->
+          <div class="check-approver-modal-line1"></div>
+
+          <div class="check-approver-modal-container">
+
+              <div class="dept-Box">
+                <ul class="executives"><p>임원</p>
+
+                </ul>
+
+                <ul class="check-dept"><p>부서</p>
+                  <li class="check-dept-list"><p>관리기획부</p></li>
+                  <li class="check-dept-list"><p>업무기획부</p></li>
+                  <li class="check-dept-list"><p>공무기획부</p></li>
+                  <li class="check-dept-list"><p>개발사업부</p></li>
+                  <li class="check-dept-list"><p>전략기획실</p></li>
+                </ul>
+              </div>
+
+              <div class="team-Box">
+                <ul class="check-team">
+                  <li class="check-team-list"><p>재무팀</p></li>
+                  <li class="check-team-list"><p>인사총무팀</p></li>
+
+                  <li class="check-team-list"><p>영업팀</p></li>
+                  <li class="check-team-list"><p>기술개발팀</p></li>
+
+                  <li class="check-team-list"><p>공사팀</p></li>                     
+                  <li class="check-team-list"><p>공무팀</p></li>
+                  <li class="check-team-list"><p>견적팀</p></li>
+                  <li class="check-team-list"><p>자재팀</p></li>
+
+                  <li class="check-team-list"><p>개발기획팀</p></li>
+                  <li class="check-team-list"><p>분양홍보팀</p></li>
+                  <li class="check-team-list"><p>설계기획팀</p></li>
+
+                  <li class="check-team-list"><p>경영팀</p></li>
+                  <li class="check-team-list"><p>전략팀</p></li>
+                </ul>
+              </div>
+
+              <div class="teamone-Box">
+
+                <ul style="display: flex; flex-direction: column;">
+
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                  <li class="check-approval-team"></li>
+                    
+                </ul>
+              </div>
+
+          </div>
+
+          <div class="check-approver-modal-line2"></div>
+          <!-- 버튼 -->
+          <div class="check-approver-submit-reset-btns">
+            <button type="button" id="check-approver-cancell-btn">취소</button>
+            <button type="button" id="check-approver-success-btn">확인</button>
+          </div>
+        
+        </div>
+
+      
+      </div>
 
     </div>
     

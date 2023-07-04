@@ -2,12 +2,12 @@
 const body = document.querySelector('body');
 const btn = document.getElementById('popupBtn');
 const modal = document.getElementById('modalWrap'); // 모달창
-const approverModal = document.getElementById('approver-modal-wrap') // 결재 모달창
 const closeBtn = document.getElementById('closeBtn'); // X 버튼 (span)
 const approverCloseBtn = document.getElementById('approver-closeBtn'); // X 버튼 (span)
 const plusBtn = document.querySelector('.work-modal-projectBox'); // 프로젝트 추가 버튼
 const pulsApproverBtn = document.querySelector('.work-modal-approverBox'); // 결재자 추가 버튼
 const modalBody = document.querySelector('.work-modalBody'); // 모달창 내부
+const approverModal = document.getElementById('approver-modal-wrap') // 결재 모달창
 const approverModalBody = document.querySelector('.approver-modal-Body'); // 결재 모달창 내부
 const cancellBtn = document.getElementById('cancell-btn'); // 취소 버튼
 const approverCancellBtn = document.getElementById('approver-cancell-btn'); // 결재자 취소 버튼
