@@ -19,13 +19,13 @@
         <!-- sweetAlert2 cdn -->
         <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        
+        <!-- jquery cdn -->
+        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
-        <!-- 폰트어썸 -->
+          <!-- 폰트어썸 -->
         <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
 
-        <!-- jquery cdn -->
-        <script src="https://code.jquery.com/jquery-3.7.0.js"
-          integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
         <!-- 날짜조회api-->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
