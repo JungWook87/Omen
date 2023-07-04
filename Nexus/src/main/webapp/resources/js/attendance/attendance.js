@@ -95,7 +95,7 @@ function selectDate(yearNum, monthNum){
 					td1.innerText = item.attdTypeName;
 					
 					const td2 = document.createElement("td");
-					td2.innerText = item.today;
+					td2.innerText = item.today.substr(3,5);
 					
 					const td3 = document.createElement("td");
 					td3.innerText = item.attnStart;

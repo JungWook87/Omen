@@ -106,7 +106,7 @@
                   <c:forEach var="attnList" items="${attendanceList}">
                     <tr>
                       <td>${attnList.attdTypeName}</td>
-                      <td>${fn:substring(attnList.today, 0, 1)}</td>
+                      <td>${fn:substring(attnList.today, 3, 8)}</td>
                       <td>${attnList.attnStart}</td>
                       <td>${attnList.attnEnd}</td>
                       <td>${attnList.workingHours}</td>
