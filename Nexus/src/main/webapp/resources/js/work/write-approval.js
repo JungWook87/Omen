@@ -434,10 +434,44 @@ pulsApproverBtn.addEventListener("click",() => {
 
 // 결재자 부서 클릭 이벤트
 const dept = document.querySelector(".dept");
+const Executives = document.querySelector(".executives");
+const SeniorList = document.querySelectorAll(".senior-list");
 const deptList = document.querySelectorAll(".dept-list");
 const teamList = document.querySelectorAll(".team-list");
 
+Executives.querySelector("p").addEventListener("click", ()=> {
+
+  for(let i = 0; i < teamList.length; i++) {
+    teamList[i].classList.remove('show');
+  }
+
+  for(let i = 0; i < deptList.length; i++){
+    deptList[i].classList.remove('show');
+  }
+
+  for(let x = 0; x < approvalTeam.length; x++) {
+    approvalTeam[x].classList.remove('show');
+  }
+
+  for(let b of SeniorList){
+    b.classList.toggle('show');
+  }
+})
+
 dept.querySelector("p").addEventListener("click", ()=> {
+
+  for(let i = 0; i < SeniorList.length; i++){
+    SeniorList[i].classList.remove('show');
+  }
+
+  for(let i = 0; i < teamList.length; i++) {
+    teamList[i].classList.remove('show');
+  }
+
+  for(let x = 0; x < approvalTeam.length; x++) {
+    approvalTeam[x].classList.remove('show');
+  }
+
   for(let a of deptList){
     a.classList.toggle('show');
   }
@@ -750,7 +784,21 @@ successBtn.addEventListener("click", function(){
 
   // --------------------------------------------------------------------------------
 //썸머노트 테스트
-// $('.summernote').summernote({
-//   height: 350,
-//   lang: "ko-KR"
-// });
+$(document).ready(function() {
+	//여기 아래 부분
+	$('.summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+      callbacks: {
+        onImageUpload: function(files, editor, welEditable) {
+          for(var i = files.length -1; i>=0; i--) {
+            sendFile(files[i], this);
+          }
+      }
+    }   
+	});
+});
