@@ -336,7 +336,7 @@ public class WorkServiceImp implements WorkService {
 		// 연차 또는 출장 관련 결재 최종 승인 시 근태 테이블에 값 넣기
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());
 			
-		if(typeNo == 2 || typeNo == 3 && checkbox_flag.equals("true")) {
+		if((typeNo == 2 || typeNo == 3) && checkbox_flag.equals("true") && map.get("btnName").toString().equals("approve")) {
 			int attnResult = attnDao.insertAttn(map);
 		}
 		

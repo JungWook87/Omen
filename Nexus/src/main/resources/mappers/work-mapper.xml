@@ -138,9 +138,12 @@
 		VALUES(#{workNo}, #{fileReName}, #{fileOrigin}, #{fileNo})
 	</insert>
 	
+	<!-- 결재자 리스트 -->
 	<select id="approvalMember" resultMap="approvalMember_rm">
 		SELECT MEM_NO , JOB_NO , TEAM_NO , DEPT_NO , MEM_NAME 
 		FROM "MEMBER" 
+		WHERE SECESSION = 'N'
+		ORDER BY JOB_NO ASC, MEM_NAME ASC
 	</select>
 	
 	<!-- 수신함 -->

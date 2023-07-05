@@ -107,14 +107,26 @@
         </div>
 
         <!-- 결재자 -->
-        <c:if test="${flag == 1}">
-          <div class ="check-modal-approverBox">
-            <span id="pulsApprover">
-              <img src="${contextPath}/resources/images/plus.png" alt="">
-              결재자 추가
-            </span>  
-          </div>
-        </c:if>
+        <c:choose>
+          <c:when test="${flag == 1}">
+            <div class ="check-modal-approverBox">
+              <span id="pulsApprover">
+                <img src="${contextPath}/resources/images/plus.png" alt="">
+                결재자 추가
+              </span>  
+            </div>
+          </c:when>
+          <c:otherwise>
+            <div class ="check-modal-approverBox" style="display: none;">
+              <span id="pulsApprover">
+                <img src="${contextPath}/resources/images/plus.png" alt="">
+                결재자 추가
+              </span>  
+            </div>
+          </c:otherwise>
+        </c:choose>
+        
+
 
 
         <div class="checked-modal-approver">
@@ -133,7 +145,7 @@
 
         <div class="checked-modal-taskList">
           <p>과제 목록</p>
-            <div class="modal-task-div">
+            <div class="modal-task-div"></div>
         </div>
 
         <!-- 업로드 파일(kjw) -->

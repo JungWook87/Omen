@@ -41,6 +41,11 @@ public class MeetingRoomDAO {
 		return sqlSession.delete("meetingRoomMapper.deleteReservation",reservationNo);
 	}
 
+	// 해달 달의 미팅룸 리스트 불러오기(kjw)
+	public List<MeetingRoom> meetingRoomList(String inputDate) {
+		return sqlSession.selectList("meetingRoomMapper.meetingRoomList", inputDate);
+	}
+
 
 
 }

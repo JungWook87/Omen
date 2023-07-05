@@ -23,7 +23,7 @@
 		WHERE MEM_NO = ${memNo}
 		AND SUBSTR(TODAY, 1, 2) = #{year}
 		AND SUBSTR(TODAY, 4, 2) = #{month}
-		AND TODAY &lt;= SYSDATE
+		AND TODAY &lt;= TO_CHAR(SYSDATE, 'YY/MM/DD')
 		ORDER BY TODAY DESC
 	</select>
 	

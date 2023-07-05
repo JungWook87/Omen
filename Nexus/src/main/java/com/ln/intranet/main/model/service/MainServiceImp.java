@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ln.intranet.main.model.dao.MainDAO;
 import com.ln.intranet.member.model.vo.Member;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 @Service
 public class MainServiceImp implements MainService{
@@ -19,6 +20,20 @@ public class MainServiceImp implements MainService{
 	public List noticeSelect(Member loginMember) {
 		return dao.noticeSelect(loginMember);
 	}
+
+	// 메인 화면에서 공지사항 읽기(kjw)
+	@Override
+	public NoticeDetail mainDetail(int noticeNo) {
+		return dao.mainDetail(noticeNo);
+	}
+
+	// 메인 화면 결재리스트
+	@Override
+	public List workMinList(Member loginMember) {
+		return dao.workMinList(loginMember);
+	}
+	
+	
 	
 	
 	

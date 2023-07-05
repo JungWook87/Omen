@@ -8,8 +8,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
@@ -18,6 +21,7 @@ import com.ln.intranet.attendance.model.vo.Attendance;
 import com.ln.intranet.dept.model.service.DeptService;
 import com.ln.intranet.main.model.service.MainService;
 import com.ln.intranet.member.model.vo.Member;
+import com.ln.intranet.notice.model.vo.NoticeDetail;
 
 @Controller
 @SessionAttributes({"loginMember"})
@@ -65,9 +69,24 @@ public class MainController {
 		// 회사 + 부서 공지사항(kjw)
 		List notice = service.noticeSelect(loginMember);
 		model.addAttribute("notice", notice);
+		
+		List workMinList = service.workMinList(loginMember);
+		model.addAttribute("workMinList", workMinList);
 
 		
 		return "/main";
+	}
+	
+	// 메인 화면에서 공지사항 읽기(kjw)
+	@GetMapping("/mainDetail")
+	@ResponseBody
+	public String mainDetail(@RequestParam("noticeNo") int noticeNo) {
+		
+		NoticeDetail mainDetail = service.mainDetail(noticeNo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(mainDetail);
 	}
 	
 

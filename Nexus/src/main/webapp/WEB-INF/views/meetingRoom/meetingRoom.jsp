@@ -44,7 +44,7 @@
         <div id="sidebarMenu">
           <ul class="sidebarMenuInner">
             <li>회의실</li>
-            <li><a href="${contextPath}/meetingRoom"><span>예약신청</span> </a></li>
+            <li><a href="${contextPath}/meetingRoom/reservation"><span>예약신청</span> </a></li>
           </ul>
         </div>
 
@@ -57,7 +57,7 @@
 
           <!-- 페이지마다 바뀌는 부제목 -->
           <ul>
-            <li><a href="${contextPath}/meetingRoom"><span>예약신청</span> </a></li>
+            <li><a href="${contextPath}/meetingRoom/reservation"><span>예약신청</span> </a></li>
           </ul>
         </div>
 
@@ -182,21 +182,6 @@
 
       <input type="hidden" id="memNo" value="${loginMember.memNo}">
 
-      <!-- 사이드바 -->
-      <script>
-        document.addEventListener('click', function (event) {
-          var sidebarMenu = document.getElementById('sidebarMenu');
-          var openSidebarMenu = document.getElementById('openSidebarMenu');
-          var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
-
-          var isClickInsideSidebar = sidebarMenu.contains(event.target);
-          var isClickInsideToggle = openSidebarMenu.contains(event.target);
-
-          if (!isClickInsideSidebar && !isClickInsideToggle && openSidebarMenu.checked) {
-            openSidebarMenu.checked = false;
-          }
-        });
-      </script>
 
       <script src="${contextPath}/resources/js/meetingRoom/meetingRoom.js"></script>
       <script src="${contextPath}/resources/js/component.js"></script>

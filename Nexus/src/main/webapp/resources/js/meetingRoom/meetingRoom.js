@@ -84,17 +84,17 @@ function initCalendar() {
       if(event) {
         days += `<div class="day today active event" > ${i}</div>`;
       } else {
-        days += `<div class="day today active" > ${i}</div>`;
+        days += `<div class="day today active mDay" > ${i}</div>`;
       }
     } 
     else if (new Date(year, month, i).getDay() === 0) {
-      days += `<div class="day sun" > ${i}</div>`; 
+      days += `<div class="day sun mDay" > ${i}</div>`; 
     }
      else {
       if(event) {
         days += `<div class="day event" > ${i}</div>`;
       } else {
-        days += `<div class="day" > ${i}</div>`;
+        days += `<div class="day mDay" > ${i}</div>`;
       }
     }
   }
@@ -438,3 +438,39 @@ function updateEvents() {
 }
 
 
+// 미팅룸 리스트 불러와서 달력에 표시(kjw)
+(function(){
+  meetingRoomList();
+})();
+
+prev.addEventListener("click", function(){
+  meetingRoomList();
+})
+next.addEventListener("click", function(){
+  meetingRoomList();
+})
+
+function meetingRoomList(){
+  const mDay = document.getElementsByClassName("mDay");
+  const date = document.getElementsByClassName("date");
+  
+  let temp = date[0].innerText.split("년");
+  let tempM = temp[1].replace(' ', '').replace('월', '');
+  
+  if(tempM < 10) tempM = "0" + tempM;
+
+  let inputDate = temp[0] + "-" + tempM;
+
+  console.log(inputDate);
+  console.log(mDay.length);
+
+  // $.ajax({
+  //   url : "meetingRoomList",
+  //   type : "GET",
+  //   dataType : "JSON",
+  //   data{ "inputDate" : inputDate },
+  //   success : function(meetingRoomList){
+
+  // }
+  // });
+}

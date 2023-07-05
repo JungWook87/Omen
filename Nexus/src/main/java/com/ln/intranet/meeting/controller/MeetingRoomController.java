@@ -91,6 +91,14 @@ public class MeetingRoomController {
 	   return result;
    }
    
+   // 해달 달의 미팅룸 리스트 불러오기(kjw)
+   @ResponseBody
+   @GetMapping("/meetingRoomList")
+   public String meetingRoomList(@RequestParam("inputDate") String inputDate) {
+	   List<MeetingRoom> meetingRoomList = service.meetingRoomList(inputDate);
+	   return "";
+   }
+   
 }
 
 
