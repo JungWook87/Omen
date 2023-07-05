@@ -29,6 +29,7 @@
 		<result property="workMin" 	column="WORK_MIN"/>
 		<result property="exTime" 		column="EX_TIME"/>
 		<result property="exMin" 		column="EX_MIN"/>
+		<result property="targetDate" 	column="TARGET_DATE"/>
 	</resultMap>
 	
 	<resultMap type="deptTeam" id="deptTeam_rm">
@@ -82,7 +83,7 @@
 		ORDER BY ATTD_TYPE_NO ASC
 	</select>
 	
-	<!-- 총 인적자원 조회 -->
+	<!-- 부서 인적자원 조회 -->
 	<select id="hrList" parameterType="_int" resultMap="hrManage_rm">
 		SELECT 
 		    MEM_NO, MEM_NAME, 
@@ -167,5 +168,42 @@
 		GROUP BY p.PROJECT_NO, MEM_NAME, TW_NAME, JOB_NAME, p.TITLE, "START", "END", p.WORK_STATE
 		ORDER BY p.PROJECT_NO ASC
 	</select>
+	
+	<select id="hrTotal" resultMap="hrManage_rm">
+	  SELECT 
+	    MEM_NO, MEM_NAME, 
+	    DEPARTMENT.DEPT_NO, DEPT_NAME, 
+	    JOB_NO, JOB_NAME, 
+	    TEAM_NO, TW_NAME,
+	    COUNT(*) AS WORK_DAY,
+	    SUM(TO_NUMBER(SUBSTR(WORKING_HOURS , 1, INSTR(WORKING_HOURS, ' 시간') - 1))) as WORK_TIME, 
+	    SUM(TO_NUMBER(SUBSTR(WORKING_HOURS, INSTR(WORKING_HOURS, '시간') + 2, 
+	    INSTR(WORKING_HOURS, ' 분') - INSTR(WORKING_HOURS, '시간') - 2))) as WORK_MIN,
+	    SUM(TO_NUMBER(SUBSTR(EXTENDED_WORKING_HOURS , 1, INSTR(EXTENDED_WORKING_HOURS, ' 시간') - 1))) as EX_TIME, 
+	    SUM(TO_NUMBER(SUBSTR(EXTENDED_WORKING_HOURS, INSTR(EXTENDED_WORKING_HOURS, '시간') + 2, 
+	    INSTR(EXTENDED_WORKING_HOURS, ' 분') - INSTR(EXTENDED_WORKING_HOURS, '시간') - 2))) as EX_MIN,
+	    #{searchDate} as TARGET_DATE
+	  FROM 
+	    ATTENDANCE
+	  JOIN 
+	    MEMBER USING (MEM_NO)
+	  JOIN 
+	    JOB USING (JOB_NO)
+	  JOIN 
+	    TEAM USING (TEAM_NO)
+	  JOIN 
+	    DEPARTMENT ON MEMBER.DEPT_NO = DEPARTMENT.DEPT_NO 
+	  WHERE 
+	    ATTENDANCE.ATTD_TYPE_NO IN (1, 2, 4, 5) 
+	    AND TO_CHAR(TO_DATE(TODAY, 'YY/MM/DD'), 'YY/MM') = #{searchDate}
+	    AND MEMBER.DEPT_NO = #{deptNo}
+	  GROUP BY 
+	    MEM_NO, MEM_NAME, 
+	    DEPARTMENT.DEPT_NO, DEPT_NAME, 
+	    JOB_NO, JOB_NAME,
+	    TEAM_NO, TW_NAME
+	  ORDER BY JOB_NO ASC
+	</select>
+
 
 </mapper>

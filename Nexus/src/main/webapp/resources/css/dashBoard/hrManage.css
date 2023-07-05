@@ -87,15 +87,46 @@ section {
 
 .btn-div{
     display: flex;
+    justify-content: space-between;
+    margin : 20px 0 5px
 }
 
-.hr-div{
+.monthBtn{
+    display: flex;
+}
 
+.excel-div{
+    border: 1px solid var(--primary500);
+    border-radius: 5px;
+    padding: 10px 15px 7px 15px;
+}
+
+.excelBtn{
+    background-color: transparent;
+    border-style: none;
+    color: var(--primary500);
+}
+
+.dept-info-span{
+    color : var(--primary600);
+    font-size: 30px;
+    font-weight: bold;
+}
+.dept-size-span{
+    color : var(--gray400);
+    font-size: 24px;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+
+#attnDate{
+    font-size: 20px;
 }
 
 .monthBtn {
     background-color: transparent;
     border-style: none;
+    
 }
 .monthBtn > img {
     width: 20px;
@@ -104,6 +135,7 @@ section {
 /* 테이블 스타일 */
 table{
     width: 100%;
+    margin-bottom: 50px;
 }
 
 th{

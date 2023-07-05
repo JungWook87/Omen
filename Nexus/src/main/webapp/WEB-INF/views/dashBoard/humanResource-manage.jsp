@@ -40,15 +40,24 @@
         <div class="container">
             <div class="hr-header">
                 <div>
-                    <p>기본 근무정책 / 전체보기</p> <span>명</span>
+                    <span class="dept-info-span">${hrList[0].deptName} / 전체보기</span> 
+                    <span class="dept-size-span">${hrList.size()}명</span>
                 </div>
                 <div class="btn-div">
-                    <button type="button" id="leftBtn" class="monthBtn"><img src="${contextPath}/resources/images/LtAngle.png"></button>
-                    <p id="attnDate"></p>
-                    <input id="year" style="display:none">
-                    <input id="month" style="display:none">
-                    <button type="button" id="rightBtn" class="monthBtn"><img src="${contextPath}/resources/images/RtAngle.png"></button>
+                    <div class="monthBtn">
+                        <button type="button" id="decreaseBtn" class="monthBtn"><img src="${contextPath}/resources/images/LtAngle.png"></button>
+                        <p id="attnDate">20${hrList[0].targetDate}</p>
+                        <input id="targetDate" style="display:none" value="${hrList[0].targetDate}">
+                        <button type="button" id="increaseBtn" class="monthBtn"><img src="${contextPath}/resources/images/RtAngle.png"></button>
+                    </div>
+                    <form action="${contextPath}/dashBoard/excelDownload" method="POST">
+                        <div class="excel-div">
+                            <button type="submit" class="excelBtn">엑셀 다운로드</button>
+                            <input type="hidden" id="excelDate" name="excelDate" value="${hrList[0].targetDate}">                        
+                        </div>
+                    </form>
                 </div>
+
             </div>
             <div class="hr-div">
                 <table>
@@ -75,12 +84,6 @@
                                 <p>${hrList.workDay}일</p>
                             </td>
                             <td>
-                                <c:choose>
-                                    <c:when test="${}">
-
-
-                                    </c:when>
-                                </c:choose>
                                 적정근무
                             </td>
                             <td>
