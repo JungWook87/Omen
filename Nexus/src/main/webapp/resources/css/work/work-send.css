@@ -281,6 +281,7 @@ select {
 }
 
 .content-all-bottom-area-content tbody>tr:nth-of-type(2n-1) {
+
   cursor: pointer;
 
   background-color: var(--side);
@@ -291,7 +292,7 @@ select {
   cursor: pointer;
 
   background-color: var(--gray100);
-}
+} */
 
 /* -------------------------------------- */
 

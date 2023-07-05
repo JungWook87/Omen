@@ -126,7 +126,6 @@
           </c:otherwise>
         </c:choose>
 
-
         <div class="checked-modal-approver">
           <p>결재자</p>
           <c:choose>
@@ -143,7 +142,7 @@
 
         <div class="checked-modal-taskList">
           <p>과제 목록</p>
-            <div class="modal-task-div">
+            <div class="modal-task-div"></div>
         </div>
 
         <!-- 업로드 파일(kjw) -->

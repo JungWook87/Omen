@@ -1,4 +1,5 @@
 
+// 출퇴근 입력버튼
 const attn_btn2 = document.getElementsByClassName("main-attn-btn2");
 const attn_start = document.getElementById("attn-start");
 const attn_end = document.getElementById("attn-end");
@@ -284,3 +285,85 @@ function getCookie(name) {
 
 
 
+// 미니 공지사항 창 ----------------------------------------------------
+  // 메인 페이지 공지사항 디테일(kjw)
+  const checkModal = document.getElementById('check-modalWrap'); // 모달창
+  const checkModalBody = document.querySelector('.check-modalBody'); // 모달창
+  const checkCancellBtn = document.getElementById('check-cancell-btn'); // 닫기버튼
+  const checkCloseBtn = document.getElementById('check-closeBtn'); // x버튼
+  const typeName = document.getElementById("typeName"); // 이름바꾸기
+
+  // 디테일창 요소(제목 내용 파일..)
+  const title = document.getElementById("check-modal-title");
+  const content = document.getElementById("check-modal-detail");
+  const uploadedFile = document.getElementById("check-preview");
+
+  function detailNotice(noticeNo){
+
+    $.ajax({
+      url : "mainDetail",
+      data : {"noticeNo" : noticeNo},
+      type : "GET",
+      dataType : "JSON",
+      success : function(obj){
+        console.log(obj);
+
+        // 공지사항
+        if(obj.noticeType == 0){
+          typeName.innerText = "공지사항";
+        } else { // 부서 공지사항
+          typeName.innerText = "부서 공지사항"
+        }
+
+        title.innerText = obj.title;
+        content.innerText = obj.content;
+        uploadedFile.innerText = '';
+
+        // 첨부파일
+        if(obj.NoticeFileRename != null){
+          const fileNameA = document.createElement("a");
+          fileNameA.innerText = obj.NoticeFileOrigin;
+          fileNameA.href =`${contextPath}` +  obj.NoticeFileRename;
+          fileNameA.download = obj.NoticeFileOrigin;
+          uploadedFile.append(fileNameA);
+        } 
+
+        // 모달창 열기
+        checkModal.style.display = 'block';
+        checkModalBody.classList.add('check-modal-open');
+      },
+      error : function(){
+        console.log("메인에서 공지사항 불러오다가 에러");
+      }
+    })
+
+  }
+
+  // 모달창 엑스 버튼
+  checkCloseBtn.addEventListener("click", () => {
+    checkModalClose();
+  });
+
+  // 모달창 외부 영역 이벤트
+  $(window).click(function(event) {
+    if (event.target == checkModal) {
+      checkModalClose();
+    }
+  });
+
+  // 취소버튼 이벤트
+  checkCancellBtn.addEventListener("click", () => {
+    checkModalClose();
+  });
+
+  // 수정 모달창 닫기
+  function checkModalClose() {
+    checkModalBody.classList.add('check-modal-close');
+
+    setTimeout(() => {
+      checkModal.style.display = 'none';
+      checkModalBody.classList.remove("check-modal-close");
+    }, 350);
+
+  }
+//-----------------------------------------------------------------  
