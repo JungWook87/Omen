@@ -140,7 +140,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	 */ 
 	@ResponseBody
 	@RequestMapping(value = "/chatMemberList", method = RequestMethod.GET)
-	private String ChatMemberList() {
+	public String ChatMemberList() {
 		
 	List<Member> chatMember = mService.selectChatMemberList();
 	
@@ -159,7 +159,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/inviteMember", method = RequestMethod.POST)
-	private int inviteMember(@ModelAttribute("loginMember") Member loginMember,
+	public int inviteMember(@ModelAttribute("loginMember") Member loginMember,
 			@RequestParam("name") String name,
 								ChatRoomJoin join,
 								RedirectAttributes ra
@@ -198,6 +198,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		
 		return result;
 	}	 
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/exitChatRoom", method = RequestMethod.POST)
+	public String exitChatRoom(int cmNo) {
+		
+		log.debug(cmNo + "");
+		
+		int response = service.exitChatRoom(cmNo);
+		
+		return new Gson().toJson(response);
+		
+	}
 
 
 }

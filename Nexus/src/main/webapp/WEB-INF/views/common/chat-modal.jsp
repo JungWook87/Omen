@@ -120,7 +120,7 @@
 		
 		
 			const cmNo = "${cmNo}";
-			const contextPath = "/intranet";
+			const contextPath = "${contextPath}";
 
 
 

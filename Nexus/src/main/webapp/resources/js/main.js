@@ -253,6 +253,37 @@ function logoutEvent() {
     responsiveEmployeeRankChange.style.display = 'none'
   }
 
+// 팝업창
+function popup() {
+  
+  var parentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  var popupWidth = 260;
+  var left = parentWidth - popupWidth;
+
+  var cookieCheck = getCookie("popupYN");
+  if (cookieCheck != "N")
+  window.open('popup', 'pop', 'width=400, height=500, left=' + left + ', scrollbars=no, resizable=no');
+  
+
+}
+
+function getCookie(name) {
+    var cookie = document.cookie;
+    
+    if (document.cookie != "") {
+        var cookie_array = cookie.split("; ");
+        for ( var index in cookie_array) {
+            var cookie_name = cookie_array[index].split("=");
+            
+            if (cookie_name[0] == "popupYN") {
+                return cookie_name[1];
+            }
+        }
+    }
+    return ;
+}
+
+
 
 // 미니 공지사항 창 ----------------------------------------------------
   // 메인 페이지 공지사항 디테일(kjw)

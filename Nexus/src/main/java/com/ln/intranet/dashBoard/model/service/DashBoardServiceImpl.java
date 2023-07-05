@@ -51,4 +51,10 @@ public class DashBoardServiceImpl implements DashBoardService {
 	public List<ProjectTotal> prList(int deptNo) {
 		return dao.prList(deptNo);
 	}
+
+	// 해당부서/전체의 근무일람 리스트
+	@Override
+	public List<HumanResourceManage> hrTotal(int deptNo, String searchDate) {
+		return dao.hrTotal(deptNo,searchDate);
+	}
 }

@@ -77,6 +77,7 @@ public class MainController {
 		return "/main";
 	}
 	
+
 	// 메인 화면에서 공지사항 읽기(kjw)
 	@GetMapping("/mainDetail")
 	@ResponseBody
@@ -87,6 +88,14 @@ public class MainController {
 		Gson gson = new Gson();
 		
 		return gson.toJson(mainDetail);
+    
+  }
+  
+	// 팝업
+	@RequestMapping("popup")
+	public String popup() {
+		
+		return "popup/popup";
 	}
 	
 

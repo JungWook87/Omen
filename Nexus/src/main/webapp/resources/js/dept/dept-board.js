@@ -215,7 +215,6 @@ successBtn.addEventListener("click", () => {
 
 
 // 게시글디테일
-const contextPath = "${contextPath}";
 
 const checkModal = document.getElementById('check-modalWrap');
 const checkCloseBtn = document.getElementById('check-closeBtn');
@@ -298,8 +297,8 @@ function detailModal(boardNo) {
     
       isEditMode = true; // 수정 모드로 변경
 
-      const noticeTitle = document.querySelector('.check-modal-title');
-      const noticeContent = document.querySelector('.check-modal-detail');
+      const noticeModalTitle = document.querySelector('.check-modal-title');
+      const noticeModalContent = document.querySelector('.check-modal-detail');
     
       
       const modifyNoticeTitle = document.createElement('input');
@@ -308,11 +307,11 @@ function detailModal(boardNo) {
       modifyNoticeTitle.value = checkModalTitleSpan.innerText;
       modifyNoticeContent.innerHTML = checkModalDetailSpan.innerText.replace(/<br>/g, '\n');
     
-      noticeTitle.innerHTML = '';
-      noticeTitle.appendChild(modifyNoticeTitle);
+      noticeModalTitle.innerHTML = '';
+      noticeModalTitle.appendChild(modifyNoticeTitle);
 
-      noticeContent.innerHTML = '';
-      noticeContent.appendChild(modifyNoticeContent);
+      noticeModalContent.innerHTML = '';
+      noticeModalContent.appendChild(modifyNoticeContent);
 
       modifyNoticeContent.style.minHeight = '350px';
       modifyNoticeContent.style.overflow = 'auto';
@@ -330,7 +329,7 @@ function detailModal(boardNo) {
 
       // 파일지우기
       checkFileRemove.addEventListener('click', ()=>{
-        const checkPreview = document.querySelector('.check-preview');
+        
         if(checkPreview.firstChild != null) {
           checkPreview.firstChild.innerText = "파일 없음";
           checkPreview.firstChild.href = 'null';
