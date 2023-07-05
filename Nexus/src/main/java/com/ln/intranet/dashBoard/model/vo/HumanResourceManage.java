@@ -30,4 +30,6 @@ public class HumanResourceManage {
 	
 	private int exTime;
 	private int exMin;
+	
+	private String targetDate;
 }

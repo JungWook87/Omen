@@ -66,6 +66,16 @@ public class ChatDAO {
 		return sqlSession.selectOne("chatMapper.selectInviteMember", paramMap);
 	}
 
+	public int exitChatRoom(int cmNo) {
+		
+		return sqlSession.delete("chatMapper.exitChatRoom", cmNo);
+	}
+
+	public int exitChatRoomJoin(int cmNo) {
+		
+		return sqlSession.delete("chatMapper.exitChatRoomJoin", cmNo);
+	}
+
 
 	
 	

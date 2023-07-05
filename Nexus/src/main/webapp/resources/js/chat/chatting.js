@@ -6,6 +6,7 @@ const chatMain = document.getElementById('chat-main'),
   chatting = document.querySelector('.chat');
 
   let loginMemberName;
+  let loginMemberNumber;
  
 // 채팅창 오픈 이벤트
 chatOpen.addEventListener('click', () => {
@@ -79,9 +80,27 @@ function getChattingList() {
 
     const contactArea = document.getElementById('contact-area');
     contactArea.innerHTML = '';
+    
+	  $.ajax({
+	  url : 'http://3.37.18.102:8080/loginMember',
+	  type : 'POST',
+	  dataType : 'JSON',
+	  success : function(loginMemberInfo) {
+      console.log(loginMemberInfo);
+    
+	    loginMemberNumber = loginMemberInfo.memNo;
+	    loginMemberName = loginMemberInfo.memName;
+    
+    
+   	  },
+     error: function(error) {
+      console.log("에러");
+      }
+     });
+    
    
     $.ajax({
-        url: "/intranet/chatRoomList",
+         url: 'http://3.37.18.102:8080/chatRoomList',
         type : "POST",
         dataType : "JSON",
         success : function(RoomList) {
@@ -91,8 +110,6 @@ function getChattingList() {
           newContact.classList.add('contact', 'contact-hover');
           newContact.setAttribute('data-cmno', room.cmNo);
           
-      
-			          
 
            if(room.createMemberName === loginMemberName){
              newContact.innerHTML = `
@@ -129,7 +146,6 @@ function getChattingList() {
 
 
            }
-
 
             // 글이 길어지면 ... 표시
             const message = newContact.querySelector('.contact-message');
@@ -172,29 +188,43 @@ function getChattingList() {
                 arrowButton.style.display = 'none';
             };
 
-            // 삭제 버튼의 이벤트 리스너 추가
-            deleteButton.addEventListener('click', () => {
+         
+			// 삭제 버튼의 이벤트 리스너 추가
+			deleteButton.addEventListener('click', () => {
+			  Swal.fire({
+			    title: '채팅방을 나가시겠습니까?',
+			    text: "",
+			    icon: 'warning',
+			    showCancelButton: true,
+			    confirmButtonColor: 'red',
+			    cancelButtonColor: 'var(--primary400)',
+			    confirmButtonText: '나가기'
+			  }).then((result) => {
+			    if (result.isConfirmed) {
+			      $.ajax({
+			        url: 'http://3.37.18.102:8080/exitChatRoom',
+			        type: "POST",
+			        dataType: "JSON",
+			        data: {
+			          cmNo: globalCmNo
+			        },
+			        success: function(response) {
+			          newContact.remove();
+			          if (contactArea.innerHTML.trim() === '') {
+			            showEmptyChatMessage();
+			          }
+			        },
+			        error: function() {
+			          console.log("에러");
+			        }
+			      });
+			    } else {
+			      hideDeleteButton();
+			      showArrowButton();
+			    }
+			  });
+			});
 
-                Swal.fire({
-                title: '채팅방을 나가시겠습니까?',
-                text: "",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: 'red',
-                cancelButtonColor: 'var(--primary400)',
-                confirmButtonText: '나가기'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    newContact.remove();
-                    if (contactArea.innerHTML.trim() === '') {
-                        showEmptyChatMessage();
-                    }
-                } else {
-                    hideDeleteButton();
-                    showArrowButton();
-                }
-                })
-            });
 
             // 취소 버튼의 이벤트 리스너
             cancleButton.addEventListener('click', () => {
@@ -202,17 +232,6 @@ function getChattingList() {
                 showArrowButton();
             })
 
-
-            // 채팅방에서 클릭 이벤트
-            
-            let loginMemberNumber;
-
-
-          
-
-            
-            
-            
 
             newContact.addEventListener('click', function() {
                const contacts = document.querySelectorAll('.contact');
@@ -222,7 +241,7 @@ function getChattingList() {
 
                 // AJAX 요청으로 채팅 내용 가져오기
                 $.ajax({
-                  url: '/intranet/chatMessageList/' + cmNo,
+                  url: 'http://3.37.18.102:8080/chatMessageList/' + cmNo,
                   type: 'GET',
                   dataType : 'JSON',
                   success: function(chatMessageList) {
@@ -233,19 +252,11 @@ function getChattingList() {
                 
 
                     $.ajax({
-                      url : '/intranet/loginMember',
+                      url : 'http://3.37.18.102:8080/loginMember',
                       type : 'POST',
                       dataType : 'JSON',
                       success : function(loginMemberInfo) {
                         console.log(loginMemberInfo);
-
-
-                        loginMemberNumber = loginMemberInfo.memNo;
-                        loginMemberName = loginMemberInfo.memName;
-
-
-
-
                       
                         for (let i = 0; i < chatMessageList.length; i++) {
                           chatMessageNumber = chatMessageList[i].memNo;
@@ -270,7 +281,7 @@ function getChattingList() {
 
                             chat.appendChild(chatMessage);
                           }
-
+								scrollToBottom();
                           },
                           error : function() {
                             console.log("에러");
@@ -396,7 +407,7 @@ employeeDropBox.forEach((dropBox, index) => {
     }
 
     $.ajax({
-      url: '/intranet/chatMemberList',
+      url:'http://3.37.18.102:8080/chatMemberList',
       type: 'GET',
       dataType: 'JSON',
       success: function(chatMember) {
@@ -492,7 +503,7 @@ employeeDropBox.forEach((dropBox, index) => {
             inviteName.textContent = pName;
 
             $.ajax({
-                url: "/intranet/inviteMember",
+                url: 'http://3.37.18.102:8080/inviteMember',
                 data:{name : pName},
                 type: "POST",
                 dataType: "JSON",
@@ -746,7 +757,7 @@ chatVal.addEventListener('input', () => {
     const chatValue = document.querySelector('#chat-input');
 
     $.ajax({
-      url: '/intranet/loginMember',
+      url:  'http://3.37.18.102:8080/loginMember',
       type: 'POST',
       dataType: 'JSON',
       success: function(loginMemberInfo) { 
@@ -768,6 +779,8 @@ chatVal.addEventListener('input', () => {
         // chattingSock(웹소켓 객체)을 이용하여 메세지 보내기
         // chattingSock.send(값) : 웹소켓 핸들러로 값을 보냄
         chattingSock.send(JSON.stringify(chatMessage));
+        chatValue.value = "";
+        
       },
       error: function() {
         console.log("에러");
@@ -795,25 +808,6 @@ chatSubmit.addEventListener('click', sendWebMessage);
 
 chatSubmit.addEventListener('click', () => {
   const chatValue = document.querySelector('#chat-input');
-  if (chatValue.value.trim() !== '') {
-    const message = document.createElement('div');
-    message.className = 'message parker';
-    const time = getTimeString();
-    const content = document.createElement('div');
-    content.className = 'content';
-    content.textContent = chatVal.value;
-    message.appendChild(content);
-    chat.appendChild(message);
-
-    // 글자 수에 따라 .long-message 클래스 추가
-    if (content.offsetHeight < content.scrollHeight) {
-      content.classList.add('long-message');
-    }
-
-    const timeSub = document.createElement('div');
-    timeSub.className = 'time-sub';
-    timeSub.textContent = time;
-    message.insertBefore(timeSub, content);
 
     if (isTyping) {
       isTyping = false;
@@ -824,7 +818,7 @@ chatSubmit.addEventListener('click', () => {
     }
 
     scrollToBottom();
-  }
+  
 });
 
 
@@ -851,7 +845,7 @@ if (contactArea.innerHTML.trim() === '') {
 }
 
 $.ajax({
-  url : '/intranet/loginMember',
+  url : 'http://3.37.18.102:8080/loginMember',
   type : 'POST',
   dataType : 'JSON',
   success : function(loginMemberInfo) {

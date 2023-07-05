@@ -18,6 +18,8 @@ public interface ChatService {
 
 	int inviteMember(Map<String, Object> paramMap, ChatRoomJoin join);
 
+	int exitChatRoom(int cmNo);
+
 
 
 }

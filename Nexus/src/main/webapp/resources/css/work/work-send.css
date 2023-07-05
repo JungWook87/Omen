@@ -11,7 +11,7 @@ section {
 .side-bar {
   width: 300px;
 
-  /* height: 100vh; */
+  height: 100vh;
   background-color: var(--side);
 
 }
@@ -159,7 +159,8 @@ a:focus {
 /* 컨텐츠 영역 전체 */
 .content-all-page {
   width: 100%;
-  height: 100%
+  height: 100%;
+  margin-bottom: 10vh;
 }
 
 /* 컨텐츠 상단 부분 */
@@ -256,7 +257,7 @@ select {
   text-align: center;
 }
 
-.content-all-bottom-area-content tbody>tr:hover{
+.content-all-bottom-area-content tbody>tr:hover {
   cursor: pointer;
 
   background-color: var(--gray100);
@@ -279,14 +280,15 @@ select {
   padding: 20px;
 }
 
-/* .content-all-bottom-area-content tbody>tr:nth-of-type(2n-1){
+.content-all-bottom-area-content tbody>tr:nth-of-type(2n-1) {
+
   cursor: pointer;
 
   background-color: var(--side);
 }
 
 
-.content-all-bottom-area-content tbody>tr:nth-of-type(2n-1):hover{
+.content-all-bottom-area-content tbody>tr:nth-of-type(2n-1):hover {
   cursor: pointer;
 
   background-color: var(--gray100);

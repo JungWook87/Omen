@@ -20,4 +20,6 @@ public interface DashBoardService {
 
 	List<ProjectTotal> prList(int deptNo);
 
+	List<HumanResourceManage> hrTotal(int deptNo, String searchDate);
+
 }
