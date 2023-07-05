@@ -94,5 +94,24 @@ public class ChatServiceImpl implements ChatService{
 		return dao.insertMessage(chatMessage);
 	}
 
+	
+	// 채팅방 나가기
+	@Override
+	public int exitChatRoom(int cmNo) {
+		
+		int result = dao.exitChatRoomJoin(cmNo);
+		
+		if(result > 0) {
+			
+		 dao.exitChatRoom(cmNo);
+		 
+		}else {
+			
+			return 0;
+		}
+		
+		return result;
+	}
+
 
 }
