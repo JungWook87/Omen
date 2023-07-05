@@ -1,16 +1,3 @@
-// 설문 디테일창 리다이렉트
-function surveyDetail(surveyNo,participation) {
-	if(participation == 0) {
-        var url = "../survey/surveyDetail/" + surveyNo; 
-        window.location.href = url; 
-    } else {
-        var url = "../survey/surveyResult/" + surveyNo; 
-        window.location.href = url; 
-    }
-}
-
-
-
 // 날짜 => 글자 변경 로직
 function getCurrentDate() {
     var currentDate = new Date();
@@ -20,22 +7,43 @@ function getCurrentDate() {
     var currentDateStr = year + '.' + month + '.' + day;
     return currentDateStr;
   }
+
+  
+  // 설문 디테일창 리다이렉트
+  function surveyDetail(surveyNo,participation,surveyEnd) {
+      var currentDate = getCurrentDate();
+      var endDate = surveyEnd;
+	if(participation == 0) {
+        if(endDate >= currentDate){
+            var url = "../survey/surveyDetail/" + surveyNo; 
+            window.location.href = url; 
+        } else {
+            var url = "../survey/surveyResult/" + surveyNo; 
+            window.location.href = url; 
+        }
+    } else {
+        var url = "../survey/surveyResult/" + surveyNo; 
+        window.location.href = url; 
+    }
+}
+
+
+
   
   
   function addStatusLabel() {
     var endDateElements = document.querySelectorAll('#status-color');
     var currentDate = getCurrentDate();
-  
     endDateElements.forEach(function (element) {
         var endDate = element.textContent.trim();
-        console.log(endDate + ">=" + currentDate );
         if (endDate >= currentDate) {
             element.textContent = '진행중';
         } else {
             element.textContent = '종료';
             element.style.color = 'gray'; 
+            
         }
-      });   
+    });   
 }
 
 function addParticipationLabel() {

@@ -70,5 +70,12 @@ public class MainController {
 		return "/main";
 	}
 	
+	// 팝업
+	@RequestMapping("popup")
+	public String popup() {
+		
+		return "popup/popup";
+	}
+	
 
 }

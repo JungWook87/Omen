@@ -123,7 +123,7 @@
 
                     <c:otherwise>
                       <c:forEach var="survey" items="${surveyList}">
-                        <tr onclick="surveyDetail('${survey.surveyNo}', '${survey.participation}')" class="trList">
+                        <tr onclick="surveyDetail('${survey.surveyNo}', '${survey.participation}', '${survey.end}')" class="trList">
                           <td id="status-color">${survey.end}</td>
                           <td>${survey.surveyTopic}</td>
                           <td>${survey.start} ~ ${survey.end}</td>
