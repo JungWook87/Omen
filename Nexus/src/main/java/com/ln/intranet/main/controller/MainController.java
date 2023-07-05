@@ -77,8 +77,12 @@ public class MainController {
 		return "/main";
 	}
 	
+<<<<<<< HEAD
+	// 메인 화면에서 공지사항 읽기(kjw)()
+=======
 
 	// 메인 화면에서 공지사항 읽기(kjw)
+>>>>>>> 208c72f9d8a88f94ebd42e429f05ded5d8542342
 	@GetMapping("/mainDetail")
 	@ResponseBody
 	public String mainDetail(@RequestParam("noticeNo") int noticeNo) {
