@@ -463,6 +463,7 @@ function meetingRoomList(){
 
   console.log(inputDate);
   console.log(mDay.length);
+  console.log("깃올리기");
 
   // $.ajax({
   //   url : "meetingRoomList",
