@@ -89,7 +89,7 @@
         <!-- 내용 -->
         <div class="checked-modal-detail">
           <p>내용</p>
-          <textarea name="" id="content" onkeydown="handleResizeHeight(this)"
+          <textarea class="summernote" id="content" onkeydown="handleResizeHeight(this)"
             onkeyup="handleResizeHeight(this)" readonly></textarea>
         </div>
 
@@ -125,15 +125,12 @@
             </div>
           </c:otherwise>
         </c:choose>
-        
-
-
 
         <div class="checked-modal-approver">
           <p>결재자</p>
           <c:choose>
             <c:when test="${flag == 1}">
-              <div id="showMemName">-</div>
+              <div id="showMemName2">-</div>
               <input style="display: none;" type="text" id="next1">
               <input style="display: none;" type="text" id="next2" readonly>
             </c:when>
@@ -197,20 +194,28 @@
           <div class="check-approver-modal-container">
 
               <div class="dept-Box">
-                <ul class="executives"><p>임원</p>
+                <ul class="check-executives"><p class="heartBeat">임원</p>
 
                 </ul>
 
-                <ul class="check-dept"><p>부서</p>
+                <ul class="check-dept"><p class="heartBeat">부서</p>
                   <li class="check-dept-list"><p>관리기획부</p></li>
                   <li class="check-dept-list"><p>업무기획부</p></li>
                   <li class="check-dept-list"><p>공무기획부</p></li>
                   <li class="check-dept-list"><p>개발사업부</p></li>
-                  <li class="check-dept-list"><p>전략기획실</p></li>
+                  <li class="check-dept-list end"><p>전략기획실</p></li>
                 </ul>
               </div>
 
               <div class="team-Box">
+
+                <ul class="check-senior">
+                  <li class="check-senior-list"><p>대표이사</p></li>
+                  <li class="check-senior-list"><p>사장</p></li>
+                  <li class="check-senior-list"><p>부사장</p></li>
+                  <li class="check-senior-list end"><p>전무</p></li>
+                </ul>
+
                 <ul class="check-team">
                   <li class="check-team-list"><p>재무팀</p></li>
                   <li class="check-team-list"><p>인사총무팀</p></li>

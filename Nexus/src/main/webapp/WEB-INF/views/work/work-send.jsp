@@ -33,13 +33,16 @@
         <script type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-        <!-- 서머노트를 위해 추가해야할 부분
-        <script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/summernote/lang/summernote-ko-KR.js"></script>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css"> -->
+         <!-- 서머노트를 위해 추가해야할 부분 -->
+        <script src="${contextPath}/resources/js/summernote/summernote-lite.js"></script>
+        <script src="${contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+        <link rel="stylesheet" href="${contextPath}/resources/css/summernote/summernote-lite.css">
         
-        <link rel="stylesheet" type="text/css"
-          href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+        <!-- 애니메이트.api -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
         <title>결재</title>
@@ -94,7 +97,6 @@
 
           <!---------------------------------------------------- 컨텐츠 내용 ----------------------------------------------------->
           <div class="content-all-page">
-
             <div class="content-all-top-area">
               <p class="content-all-top-text1">결재 / </p>
               <p class="content-all-top-text2">내가 작성한 결재(${fn:length(list)})</p>

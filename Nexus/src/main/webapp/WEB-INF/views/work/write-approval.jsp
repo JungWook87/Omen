@@ -147,20 +147,27 @@
             <div class="approver-modal-container">
 
                 <div class="dept-Box">
-                  <ul class="executives"><p>임원</p>
+                  <ul class="executives"><p class="heartBeat">임원</p>
 
                   </ul>
-
-                  <ul class="dept"><p>부서</p>
+                  <ul class="dept"><p class="heartBeat">부서</p>
                     <li class="dept-list"><p>관리기획부</p></li>
                     <li class="dept-list"><p>업무기획부</p></li>
                     <li class="dept-list"><p>공무기획부</p></li>
                     <li class="dept-list"><p>개발사업부</p></li>
-                    <li class="dept-list"><p>전략기획실</p></li>
+                    <li class="dept-list end"><p>전략기획실</p></li>
                   </ul>
                 </div>
 
                 <div class="team-Box">
+
+                  <ul class="senior">
+                    <li class="senior-list"><p>대표이사</p></li>
+                    <li class="senior-list"><p>사장</p></li>
+                    <li class="senior-list"><p>부사장</p></li>
+                    <li class="senior-list end"><p>전무</p></li>
+                  </ul>
+
                   <ul class="team">
                     <li class="team-list"><p>재무팀</p></li>
                     <li class="team-list"><p>인사총무팀</p></li>
@@ -180,6 +187,7 @@
                     <li class="team-list"><p>경영팀</p></li>
                     <li class="team-list"><p>전략팀</p></li>
                   </ul>
+
                 </div>
 
                 <div class="teamone-Box">
