@@ -1,6 +1,8 @@
 package com.ln.intranet.dashBoard.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,14 @@ public class DashBoardDAO {
 	// 부서 모든 프로젝트/과제
 	public List<ProjectTotal> prList(int deptNo) {
 		return sqlSession.selectList("dashBoardMapper.projectTotal",deptNo);
+	}
+	
+	// 총 인적자원 조회
+	public List<HumanResourceManage> hrTotal(int deptNo, String searchDate) {
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("deptNo", deptNo);
+	    map.put("searchDate", searchDate);
+		return sqlSession.selectList("dashBoardMapper.hrTotal",map);
 	}
 
 }
