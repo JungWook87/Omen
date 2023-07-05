@@ -18,6 +18,10 @@ const checkedModalTaskList = document.querySelector('.checked-modal-taskList');
 const checkedModalTaskDiv = document.querySelector('.modal-task-div');
 const checkedModalTableBody = document.querySelector('.modal-table-body');
 
+// 썸머노트 테스트
+const sumTest = $('.summernote').summernote('code');
+
+
 // ajax 성공 후 결재 디테일 모달창 내용 입력(kjw)
 function successDetailModal(obj){
 
@@ -106,7 +110,10 @@ function successDetailModal(obj){
   sendDate.innerText = obj.sendDate;
   
   if(obj.typeNo == 1){
-    content.value = obj.content;
+    console.log("들어오는지");
+    // content.value = obj.content;
+    sumTest[0].innerHTML = obj.content;
+
     opinion.value = obj.opinion;
     next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 
@@ -219,16 +226,20 @@ function successDetailModal(obj){
   checkApproverModal.style.display = 'block';
   checkApproverModalBody.classList.add('check-approver-modal-open');
 
-  for(let i = 0; i < deptList.length; i++){
-    deptList[i].classList.remove('show');
+  for(let i = 0; i < checkSeniorList.length; i++){
+    checkSeniorList[i].classList.remove('show');
   }
 
-  for(let i = 0; i < teamList.length; i++) {
-    teamList[i].classList.remove('show');
+  for(let i = 0; i < checkDeptList.length; i++){
+    checkDeptList[i].classList.remove('show');
   }
 
-  for(let i = 0; i < approvalTeam.length; i++) {
-    approvalTeam[i].classList.remove('show');
+  for(let i = 0; i < checkTeamList.length; i++) {
+    checkTeamList[i].classList.remove('show');
+  }
+
+  for(let i = 0; i < checkApprovalTeam.length; i++) {
+    checkApprovalTeam[i].classList.remove('show');
   }
 
   $.ajax({
@@ -342,8 +353,8 @@ function successDetailModal(obj){
           let radio = CheckApproverCheckBtn[i]; // <input[=radio]> 태그 내부의 라디오 버튼 선택
           if (radio.checked) {  
             checkWorkApprover.value = radio.value; // 체크된 라디오 버튼의 값을 가져옵니다.
-            const showMember = document.getElementById("showMemName");
-            showMember.innerText = radio.nextElementSibling.innerText; 
+            const showMember2 = document.getElementById("showMemName2");
+            showMember2.innerText = radio.nextElementSibling.innerText; 
             checkAproverModalClose();
           }
         } 
@@ -357,10 +368,44 @@ function successDetailModal(obj){
 
 // 결재자 부서 클릭 이벤트
 const checkDept = document.querySelector(".check-dept");
+const checkExecutives = document.querySelector(".check-executives");
+const checkSeniorList = document.querySelectorAll(".check-senior-list");
 const checkDeptList = document.querySelectorAll(".check-dept-list");
 const checkTeamList = document.querySelectorAll(".check-team-list");
 
+checkExecutives.querySelector("p").addEventListener("click", ()=> {
+
+  for(let i = 0; i < checkTeamList.length; i++) {
+    checkTeamList[i].classList.remove('show');
+  }
+
+  for(let i = 0; i < checkDeptList.length; i++){
+    checkDeptList[i].classList.remove('show');
+  }
+
+  for(let x = 0; x < checkApprovalTeam.length; x++) {
+    checkApprovalTeam[x].classList.remove('show');
+  }
+
+  for(let b of checkSeniorList){
+    b.classList.toggle('show');
+  }
+})
+
 checkDept.querySelector("p").addEventListener("click", ()=> {
+
+  for(let i = 0; i < checkSeniorList.length; i++){
+    checkSeniorList[i].classList.remove('show');
+  }
+
+  for(let x = 0; x < checkTeamList.length; x++) {
+    checkTeamList[x].classList.remove('show');
+  }
+
+  for(let x = 0; x < checkApprovalTeam.length; x++) {
+    checkApprovalTeam[x].classList.remove('show');
+  }
+
   for(let a of checkDeptList){
     a.classList.toggle('show');
   }
@@ -409,32 +454,32 @@ for(let i= 0; i < checkDeptList.length; i++ ){
 
 }
 
-const approvalTeam = document.querySelectorAll('.check-approval-team');
+const checkApprovalTeam = document.querySelectorAll('.check-approval-team');
 
 // 팀원 조회 이벤트
 for (let i = 0; i < checkTeamList.length; i++) {
   checkTeamList[i].addEventListener('click', () => {
     // 해당 deptList 내부의 팀 요소들을 선택합니다.
     
-    for(let x = 0; x < approvalTeam.length; x++) {
-      approvalTeam[x].classList.remove('show');
+    for(let x = 0; x < checkApprovalTeam.length; x++) {
+      checkApprovalTeam[x].classList.remove('show');
     }
 
     // 선택한 deptList 내부의 팀 요소들을 보여주거나 숨깁니다.
     switch(i){
-      case 0 : approvalTeam[0].classList.toggle('show');break;
-      case 1 : approvalTeam[1].classList.toggle('show');break;
-      case 2 : approvalTeam[2].classList.toggle('show');break; 
-      case 3 : approvalTeam[3].classList.toggle('show');break;
-      case 4 : approvalTeam[4].classList.toggle('show');break;
-      case 5 : approvalTeam[5].classList.toggle('show');break;
-      case 6 : approvalTeam[6].classList.toggle('show');break;
-      case 7 : approvalTeam[7].classList.toggle('show');break;
-      case 8 : approvalTeam[8].classList.toggle('show');break;
-      case 9 : approvalTeam[9].classList.toggle('show');break;
-      case 10 : approvalTeam[10].classList.toggle('show');break;
-      case 11 : approvalTeam[11].classList.toggle('show');break;
-      case 12 : approvalTeam[12].classList.toggle('show');break;
+      case 0 : checkApprovalTeam[0].classList.toggle('show');break;
+      case 1 : checkApprovalTeam[1].classList.toggle('show');break;
+      case 2 : checkApprovalTeam[2].classList.toggle('show');break; 
+      case 3 : checkApprovalTeam[3].classList.toggle('show');break;
+      case 4 : checkApprovalTeam[4].classList.toggle('show');break;
+      case 5 : checkApprovalTeam[5].classList.toggle('show');break;
+      case 6 : checkApprovalTeam[6].classList.toggle('show');break;
+      case 7 : checkApprovalTeam[7].classList.toggle('show');break;
+      case 8 : checkApprovalTeam[8].classList.toggle('show');break;
+      case 9 : checkApprovalTeam[9].classList.toggle('show');break;
+      case 10 : checkApprovalTeam[10].classList.toggle('show');break;
+      case 11 : checkApprovalTeam[11].classList.toggle('show');break;
+      case 12 : checkApprovalTeam[12].classList.toggle('show');break;
       default : return;
     }   
 
@@ -731,3 +776,17 @@ function app_btn_click(btnName, obj, checkbox_flag){
    })
   }
 }
+
+//썸머노트 테스트
+$(document).ready(function() {
+	//여기 아래 부분
+	$('.summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+          
+	});
+});

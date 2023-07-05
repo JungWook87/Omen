@@ -37,7 +37,7 @@
 }
 
 .check-approver-modal-container p{
-  margin: 10px 0px 10px;
+  padding: 10px 0px 10px;
 }
 
 #approver-box p {
@@ -69,44 +69,48 @@
     margin: 10px !important;
   } 
 
-  .executives{
+  .check-executives{
     border-bottom: 1px solid white;
     list-style: none;
   }
 
-  .executives > p ,.dept > p{
+  .check-executives > p ,.check-dept > p{
     font-size: 14px;
     margin: 0 !important;
     padding: 7px;
     height: 30px;
     background-color: var(--primary500);
-    color: white;
+    color: white !important;
   } 
 
-  .check-dept-list{
+  .check-dept-list, .check-senior-list, .check-team-list{
     display: none;
     list-style: none;
     font-size: 14px;
-    height: 30px;
+    font-weight: 200;
+    height: 100%;
     border-bottom: 1px solid var(--gray300);
     cursor: pointer;
   }
   
-
   .check-dept-list > p:hover{
-    background: var(--gray300);
-    color:white !important;
-    transition: 1s;
-    transform-origin: top;
-    transform: translatey(-100%) rotatex(90deg);
+    font-weight: 500;
+    color: var(--black);
+    background-color: var(--gray100);
+    animation: rubberBand 1s infinite; 
+    animation-duration: 2s;
+    animation-direction: alternate;;
+  }
+  .check-team-list > p:hover{
+    font-weight: 500;
+    color: var(--black);
+    background-color: var(--gray100);
+    animation: flip 2s infinite; 
+    animation-duration: 2s;
+    animation-direction: alternate;
+
   }
   
- 
-
-  .check-team-list{
-    display: none;
-  }
-
   .teamone-Box{
     display: flex;
     align-items: center;
@@ -150,6 +154,16 @@
     text-shadow: 1px 1px var(--primary200);
 }
 
+.heartBeat:hover {
+  animation: heartBeat 2s infinite;
+  animation-duration: 2s;
+  animation-direction: alternate;
+}
+
+.end{
+  border-bottom: none !important;
+}
+
 /* 결재자 모달선 */
 .check-approver-modal-line1, .check-approver-modal-line2{
   border-bottom: 1px solid var(--gray300);
@@ -185,19 +199,16 @@
   .checked-modalBody {
     min-width: 570px;
     min-height: 100px;
-    max-width: 80%;
-    /* max-height: calc(100vh - 90px); */
-  
+    max-width: 85%;
+    max-height: 85%;
     background: white;
     border-radius: 10px;
-  
     margin: 0 auto;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 7%;
+    margin-bottom: 7%;
     position: relative;
     padding: 30px;
     overflow: auto;
-    width: 80%;
   }
   
   .check-modalBody.modal-open {
@@ -520,7 +531,7 @@
  /* 확인 취소 버튼 */
 .work-inbox-submit-btn, .work-send-submit-btn {
   margin-top: 20px;
-
+  padding-bottom: 20px;
   float: right;
 }
 
