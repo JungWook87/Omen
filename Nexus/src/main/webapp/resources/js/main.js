@@ -248,7 +248,7 @@ function logoutEvent() {
   const loginMemberJobNo = jobNoMatch[1];
   const employeeRankChange = document.querySelector(".employee-rank-change");
   const responsiveEmployeeRankChange = document.querySelector(".Responsive-employee-rank-change");
-  if (parseInt(loginMemberJobNo) === 4) {
+  if (parseInt(loginMemberJobNo) === 6) {
     employeeRankChange.style.display = 'none';
     responsiveEmployeeRankChange.style.display = 'none'
   }

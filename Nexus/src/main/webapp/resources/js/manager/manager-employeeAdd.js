@@ -58,10 +58,7 @@ function validateName() {
     const formattedPhone = formatPhoneNumber(phone);
     telInput.val(formattedPhone);
 
-    // if (phone.length === 3) {
-    //   telInput.val(phone + '-');
-    // }
-
+  
    
     if (regTel.test(telInput.val())) {
       telCheck.text('유효한 형식입니다');

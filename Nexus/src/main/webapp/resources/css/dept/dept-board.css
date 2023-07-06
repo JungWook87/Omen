@@ -64,14 +64,6 @@ section {
   padding-left: 40px;
 }
 
-/* 사이드바 메뉴 선택부분이 두번째 이상일때 */
-/* .side-bar li:nth-child(2)>a:first-child>span:first-child {
-
-  color: var(--primary400);
-}
-
-
-} */
 
 
 /* 사이드바 호버 스타일 시작 ------------------------------*/
@@ -93,7 +85,6 @@ a:focus {
   display: block;
   padding: 7px 15px;
   text-transform: uppercase;
-  /* text-align: center; */
   transition: all 0.5s ease 0s;
 }
 

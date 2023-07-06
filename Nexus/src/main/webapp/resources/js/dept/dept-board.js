@@ -456,8 +456,23 @@ checkCancellBtn.addEventListener("click", () => {
 
 // 게시글삭제
 function boardDelete(boardNo){
-  var url = "../dept/boardDelete/" + boardNo; 
-  window.location.href = url; 
+  var url = "../dept/boardDelete/" + boardNo;
+  Swal.fire({
+    title: '정말 삭제 하시겠습니까?',
+    html: `<div style="text-align:center">삭제 하시면 되돌릴수 없습니다</div>`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '네, 삭제할게요!',
+    cancelButtonText: '취소'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = url; 
+      
+       }
+    })
+  
 }
 
 

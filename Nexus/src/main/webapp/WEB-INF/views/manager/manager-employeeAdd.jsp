@@ -147,20 +147,28 @@
                 <p>직책</p>
                 <div class="employee-rank-radio-box">
                   <div class="employee-rank-radio">
-                    <input type="radio" name="jobNo" id="job-junior" value="4">
+                    <input type="radio" name="jobNo" id="job-junior" value="6">
                     <label for="job-junior">사원</label>
                   </div>
                   <div class="employee-rank-radio">
-                    <input type="radio" name="jobNo" id="job-senior" value="3">
+                    <input type="radio" name="jobNo" id="job-senior" value="5">
                     <label for="job-senior">팀장</label>
                   </div>
                   <div class="employee-rank-radio">
-                    <input type="radio" name="jobNo" id="job-director" value="2">
+                    <input type="radio" name="jobNo" id="job-director" value="4">
                     <label for="job-director">부장</label>
                   </div>
                   <div class="employee-rank-radio">
+                    <input type="radio" name="jobNo" id="job-managing-director" value="3">
+                    <label for="job-managing-director">상무이사</label>
+                  </div>
+                  <div class="employee-rank-radio">
+                    <input type="radio" name="jobNo" id="job-executive-director" value="2">
+                    <label for="job-executive-director">전무이사</label>
+                  </div>
+                  <div class="employee-rank-radio">
                     <input type="radio" name="jobNo" id="job-ceo" value="1">
-                    <label for="job-ceo">사장</label>
+                    <label for="job-ceo">대표이사</label>
                   </div>
                 </div>
               </div>

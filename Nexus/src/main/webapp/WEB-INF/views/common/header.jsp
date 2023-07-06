@@ -90,7 +90,7 @@
       const loginMemberJobNoHeader = jobNoMatchHeader[1];
       const employeeRankChangeHeader = document.querySelector(".employee-rank-change");
       const responsiveEmployeeRankChangeHeader = document.querySelector(".Responsive-employee-rank-change");
-      if (parseInt(loginMemberJobNoHeader) === 4) {
+      if (parseInt(loginMemberJobNoHeader) === 6) {
         employeeRankChangeHeader.style.display = 'none';
         responsiveEmployeeRankChangeHeader.style.display = 'none'
       }

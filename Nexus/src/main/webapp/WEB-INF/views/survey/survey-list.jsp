@@ -43,7 +43,7 @@
               <li>설문생성/관리</li>
               <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
               <c:choose>
-                <c:when test="${loginMember.jobNo <= 3}">
+                <c:when test="${loginMember.jobNo <= 5}">
                   <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
                 </c:when>
               </c:choose>
@@ -59,7 +59,7 @@
           <ul>
             <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
             <c:choose>
-              <c:when test="${loginMember.jobNo <= 3}">
+              <c:when test="${loginMember.jobNo <= 5}">
                 <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
               </c:when>
             </c:choose>
@@ -117,7 +117,7 @@
                   <c:choose>
                     <c:when test="${empty surveyList}">
                       <tr>
-                        <th colspan="4">설문이 존재하지 않습니다.</th>
+                        <th colspan="4" class="survey-none">설문이 존재하지 않습니다.</th>
                       </tr>
                     </c:when>
 

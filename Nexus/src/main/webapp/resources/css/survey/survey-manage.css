@@ -338,3 +338,8 @@ th:nth-child(2) {
 .sidebarMenuInner li:nth-child(3) span {
   color: var(--primary500);
 }
+
+.survey-none {
+  border-bottom: unset;
+  padding-top: 30px;
+}
