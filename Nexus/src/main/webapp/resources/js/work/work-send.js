@@ -18,8 +18,6 @@ function workSendList(obj){
     const td2 = document.createElement("td");
     td2.innerText = item.typeName;
 
-    const td3 = document.createElement("td");
-    td3.innerText = item.workNo;
 
     const td4 = document.createElement("td");
     td4.innerText = item.title;
@@ -45,7 +43,7 @@ function workSendList(obj){
     item.sendDate = item.sendDate.substring(0, 11);
     td7.innerText = item.sendDate;
 
-    tr.append(td1, td2, td3, td4, td5, td6, td7);
+    tr.append(td1, td2, td4, td5, td6, td7);
 
     listBody.append(tr);
   }
