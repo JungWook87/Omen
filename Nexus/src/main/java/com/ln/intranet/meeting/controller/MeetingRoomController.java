@@ -61,6 +61,8 @@ public class MeetingRoomController {
 	   logger.info(reservationDate);
 	   
 	   int result = service.reservationRoom(meetingRoom);
+	   
+	   
        
 	   return result;
    }
