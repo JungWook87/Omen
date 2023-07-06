@@ -115,12 +115,12 @@
 		
 		<if test="typeNo == 2">
 			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, "START", "END", NEXT, APPROVAL_LIST, WORK_STATE)
-			VALUES (#{workNo}, #{memNo}, #{typeNo}, '연차 결재', DEFAULT, #{start}, #{end}, #{next}, #{approvalList}, DEFAULT)
+			VALUES (#{workNo}, #{memNo}, #{typeNo}, '연차 결재', DEFAULT, TO_DATE(#{start}, 'YYYY-MM-DD'), TO_DATE(#{end}, 'YYYY-MM-DD'), #{next}, #{approvalList}, DEFAULT)
 		</if>
 	
 		<if test="typeNo == 3">
 			INSERT INTO WORK(WORK_NO, MEM_NO, TYPE_NO, TITLE, SEND_DATE, CONTENT, "START", "END", NEXT, APPROVAL_LIST, WORK_STATE)
-			VALUES (#{workNo}, #{memNo}, #{typeNo}, '출장 결재', DEFAULT, #{content}, #{start}, #{end}, #{next}, #{approvalList}, DEFAULT)
+			VALUES (#{workNo}, #{memNo}, #{typeNo}, '출장 결재', DEFAULT, #{content}, TO_DATE(#{start}, 'YYYY-MM-DD'), TO_DATE(#{end}, 'YYYY-MM-DD'), #{next}, #{approvalList}, DEFAULT)
 		</if>
 	</insert>
 	

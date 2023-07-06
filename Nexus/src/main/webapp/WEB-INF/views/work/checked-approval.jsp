@@ -89,8 +89,7 @@
         <!-- 내용 -->
         <div class="checked-modal-detail">
           <p>내용</p>
-          <div contenteditable="false" id="content" onkeydown="handleResizeHeight(this)"
-            onkeyup="handleResizeHeight(this)" readonly></div>
+          <textarea id="content" name="content" class="summernote" spellcheck="false"></textarea>
         </div>
 
         <!-- 의견 -->

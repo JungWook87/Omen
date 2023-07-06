@@ -251,7 +251,7 @@
                                 </div>
                             </div>
                             <div class="main-work-progress-box">
-                                <c:forEach var="item" items="${workMinList}" begin="0" end="4">
+                                <c:forEach var="item" items="${workMinList}" begin="0" end="9">
                                     <c:if test="${item.sendMemNo == loginMember.memNo}">
                                         <div style="display: flex; justify-content: space-between;" id="workMin">
                                             <span>${item.title}</span>
@@ -287,7 +287,7 @@
                             </div>
                             <div class="main-approval-list-box">
                                 <div>
-                                    <c:forEach var="item" items="${workMinList}" begin="5" end="9">
+                                    <c:forEach var="item" items="${workMinList}" begin="0" end="9">
                                         <c:if test="${item.nextMemNo == loginMember.memNo}">
                                             <div style="display: flex; justify-content: space-between;" id="workMin">
                                                 <span>${item.title}</span>

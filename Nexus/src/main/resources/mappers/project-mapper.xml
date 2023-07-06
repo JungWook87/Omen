@@ -124,7 +124,7 @@
 		SEND_DATE, "START", "END", NEXT, APPROVAL_LIST,
  		WORK_STATE, DEPT_NO)
 		VALUES ( #{projectNo}, #{memNo}, #{title}, #{content},
-		DEFAULT, #{start}, #{end}, #{next}, #{approvalList},
+		DEFAULT, TO_DATE(#{start}, 'YYYY-MM-DD'), TO_DATE(#{end}, 'YYYY-MM-DD'), #{next}, #{approvalList},
  		'진행중', #{deptNo})
 	</insert>
 	
