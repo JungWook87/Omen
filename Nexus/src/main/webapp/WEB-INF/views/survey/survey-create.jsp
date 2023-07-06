@@ -68,7 +68,6 @@
               <input id="survey-create-top-title" name="surveyTopic" type="text" placeholder="제목 없는 설문">
               <input name="surveyContent" type="text" placeholder="설문에 대한 설명을 적어주세요.(선택사항)">
               <br>
-              <!-- <input name="end" type="text" placeholder="종료일을 설정해주세요"> -->
               <input type="date" name="end" value="" class="input-txt" id="date" aria-required="true"
                 aria-invalid="false" placeholder="종료일을 지정해 주세요"
                 onchange="this.className=(this.value!=''?'has-value':'')">

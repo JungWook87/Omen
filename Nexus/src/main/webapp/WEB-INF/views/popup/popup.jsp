@@ -89,30 +89,38 @@
             color: var(--primary400);
             text-decoration: underline;
         }
+
+        .size {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
         
     </style>
 </head>
 <body>
 
-  
-    <h1>설문이 진행중 입니다.</h1>
-    
-    <div class="surveyBtn">
-        <span onclick="changeParent();">설문참여 하러가기</span>
-        <i class="fa-solid fa-angle-right"></i>
-    </div>
-
-    <div class="today-none">
-        <div class="today-check">
-            <input type="checkbox" id="check" >
-            <span>오늘 하루동안 보지 않기</span>
+    <div class="size">
+        <h1>설문이 진행중 입니다.</h1>
+        
+        <div class="surveyBtn">
+            <span onclick="changeParent();">설문참여 하러가기</span>
+            <i class="fa-solid fa-angle-right"></i>
         </div>
-            <span class="today-close" onclick="closePopup();">끝내기</span>
+    
+        <div class="today-none">
+            <div class="today-check">
+                <input type="checkbox" id="check" >
+                <span>오늘 하루동안 보지 않기</span>
+            </div>
+                <span class="today-close" onclick="closePopup();">끝내기</span>
+        </div>
     </div>
 
        
     
-    </div>
+   
     <script>
     function setCookie(name, value, expiredays) {
     var date = new Date();

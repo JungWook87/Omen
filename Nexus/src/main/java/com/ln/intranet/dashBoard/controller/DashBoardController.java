@@ -122,7 +122,6 @@ public class DashBoardController {
 		List<AttnDoughnut> list = new ArrayList<AttnDoughnut>();
 		
 
-		log.info("조회한 부서 : " + loginMember.getDeptName());			
 		list = service.doughnutList(loginMember.getDeptNo());
 		
 		return list;
@@ -161,9 +160,10 @@ public class DashBoardController {
 	        now = LocalDate.of(currentYear, currentMonth, 1);
 	    }
 	    
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/MM");
-	    String searchDate = now.format(formatter);	    
 	    
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/MM");
+	    String searchDate = now.format(formatter);
+		
 		int deptNo = loginMember.getDeptNo();
 		
 		List<HumanResourceManage> hrList = new ArrayList<HumanResourceManage>();

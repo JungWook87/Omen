@@ -176,7 +176,6 @@ $(document).ready(function() {
 
 // 세션에서 멤버정보 가져오기
 var loginMemNo = $("input[id='memNo']").val();
-console.log("memNo = " + loginMemNo);
 
 
 // ---------------------------------------------------------------------
@@ -260,8 +259,7 @@ $(document).on('click','.event', function(){
   var memNo = $(this).data('memno');
   var reservationNo = $(this).data('reservationno');
   
-  console.log("memNo = " + memNo);
-  console.log("reservationNo = " + reservationNo);
+
 
   if(loginMemNo == memNo){
 
@@ -381,8 +379,7 @@ function addListner() {
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
       
-      // 해당 날짜를 보여주는 콘솔로그
-      console.log(day.innerHTML);
+
 
       getActiveDay(e.target.innerHTML);
       updateEvents(Number(e.target.innerHTML));

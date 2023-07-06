@@ -39,8 +39,8 @@
         <div id="sidebarMenu">
           <ul class="sidebarMenuInner">
             <li>부서</li>
-            <li><a href="${contextPath}/dept/depttice"><span>부서 공지사항</span> </a></li>
-            <li><a href="${contextPath}/dept/deBoard"><span>부서 게시판</span> </a></li>
+            <li><a href="${contextPath}/dept/deptNotice"><span>부서 공지사항</span> </a></li>
+            <li><a href="${contextPath}/dept/deptBoard"><span>부서 게시판</span> </a></li>
             <li><a href="${contextPath}/dept/deptSchedule"><span>부서 일정</span> </a></li>
           </ul>
         </div>
@@ -52,9 +52,9 @@
 
           <!-- 페이지마다 바뀌는 부제목 -->
           <ul>
-            <li><a href="deptNotice"><span>부서 공지사항</span> </a></li>
-            <li><a href="deptBoa"><span>부서 게시판</span> </a></li>
-            <li><a href="deptSedule"><span>부서 일정</span> </a></li>
+            <li><a href="${contextPath}/dept/deptNotice"><span>부서 공지사항</span> </a></li>
+            <li><a href="${contextPath}/dept/deptBoard"><span>부서 게시판</span> </a></li>
+            <li><a href="${contextPath}/dept/deptSchedule"><span>부서 일정</span> </a></li>
           </ul>
         </div>
 

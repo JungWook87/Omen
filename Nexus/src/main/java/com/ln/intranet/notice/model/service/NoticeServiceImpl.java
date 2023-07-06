@@ -58,7 +58,6 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		int noticeNo = dao.insertNotice(notice);
 		
-		log.debug("noticeNo = " + noticeNo + "");
 		
 		UploadFile file = new UploadFile();
 		String reName = null;
@@ -75,7 +74,6 @@ public class NoticeServiceImpl implements NoticeService{
 				
 				int result = dao.insertNoticeFile(file);
 				
-				log.debug("FILENO = " + result + "");
 				
 				
 				if(result > 0) {
