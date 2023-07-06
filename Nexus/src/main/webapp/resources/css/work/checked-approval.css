@@ -126,7 +126,7 @@
     position: relative;
   }
 
-  .check-approval-team{
+  .check-approval-team , .check-senior-team{
     display: none;
     flex-direction: column;
     margin: 10px 5px 10px 5px;
@@ -136,17 +136,17 @@
     width: 100%;
   }
 
-  .check-approval-team > p{
+  .check-approval-team > p , .check-senior-team > p{
   color: white;
   }
 
-  .check-approval-team input {
+  .check-approval-team input , .check-senior-team input{
     width: 10px;
     height: 10px;
     display: none;
   }
 
-  .check-approval-team label {
+  .check-approval-team label , .check-senior-team label{
     color: var(--primary500);
     padding: 5px;
     font-size: 17px;

@@ -28,7 +28,7 @@ const workStartDateText = document.querySelector('.work-modal-startDate > input'
 const workEndDateText = document.querySelector('.work-modal-endDate > input'); // 종료 날짜 
 const workProjectboxText = workProjectbox.querySelectorAll('input'); // 과제명, 과제내용 
 const showMember = document.getElementById("showMemName"); // 결재자 이름
-const seniorTeam = document.getElementById("senior-team"); // 임원팀
+const seniorTeam = document.querySelectorAll(".senior-team"); // 임원팀
 
 
 const sumTxt = document.getElementsByClassName("note-editable");
@@ -348,7 +348,11 @@ pulsApproverBtn.addEventListener("click",() => {
       
       for(let i=0; i < team.length; i++){
         team[i].innerText = "";
-      }  
+      } 
+      
+      for(let i=0; i < seniorTeam.length; i++){
+        seniorTeam[i].innerText = "";
+      } 
   
       for (let value of approvalList) {
         let div = document.createElement("div");
@@ -370,17 +374,17 @@ pulsApproverBtn.addEventListener("click",() => {
             div.append(input);
             div.append(label);
 
-            seniorTeam.append(div);
+            seniorTeam[0].append(div);
           } else if(value.jobNo == 2){
             div.append(input);
             div.append(label);
 
-            seniorTeam.append(div);
+            seniorTeam[1].append(div);
           } else if(value.jobNo == 3){
             div.append(input);
             div.append(label);
 
-            seniorTeam.append(div);
+            seniorTeam[2].append(div);
           } else if (value.teamNo == 11) {
             div.append(input);
             div.append(label);
@@ -497,6 +501,10 @@ Executives.querySelector("p").addEventListener("click", ()=> {
     approvalTeam[x].classList.remove('show');
   }
 
+  for(let x = 0; x < seniorTeam.length; x++) {
+    seniorTeam[x].classList.remove('show');
+  }
+
   for(let b of SeniorList){
     b.classList.toggle('show');
   }
@@ -504,7 +512,12 @@ Executives.querySelector("p").addEventListener("click", ()=> {
 
 // 사장, 전무이사, 상무이사 조회
 for(let i = 0; i < SeniorList.length; i++){
+
   SeniorList[i].addEventListener("click", ()=>{
+
+    for(let x = 0; x < seniorTeam.length; x++) {
+      seniorTeam[x].classList.remove('show');
+    }
 
     if( i === 0){
       seniorTeam[0].classList.toggle('show');
@@ -531,6 +544,10 @@ dept.querySelector("p").addEventListener("click", ()=> {
 
   for(let x = 0; x < approvalTeam.length; x++) {
     approvalTeam[x].classList.remove('show');
+  }
+
+  for(let x = 0; x < seniorTeam.length; x++) {
+    seniorTeam[x].classList.remove('show');
   }
 
   for(let a of deptList){
