@@ -34,7 +34,7 @@ attn_btn2[0].addEventListener("click", function() {
     attn_start_minutes = attn_time_minutes;
     
     if(attn_btn2[0].innerText == "업무시작"){
-        if(true){
+        if(attn_end.innerText == '-- : --'){
             attn_start.innerText = attn_start_hours + " : " + attn_start_minutes;
             attn_btn2[0].innerText = "업무종료";
             attn_btn2[0].style.backgroundColor = 'var(--gray400)';
@@ -367,3 +367,24 @@ function getCookie(name) {
 
   }
 //-----------------------------------------------------------------  
+
+(function(){
+  const workFromMe = document.getElementsByClassName("main-work-progress-box");
+  if(workFromMe.innerText == undefined){
+    workFromMe[0].innerText = '상신한 결재가 없습니다.';
+    workFromMe[0].style.color = "var(--gray500)";
+  }
+
+  const workToMe = document.getElementsByClassName("main-approval-list-box");
+  if(workToMe.innerText == undefined){
+    workToMe[0].innerText = '요청된 결재가 없습니다.';
+    workToMe[0].style.color = "var(--gray500)";
+  }
+
+  const deptNotice = document.getElementsByClassName("main-dept-notice-box");
+  if(deptNotice.innerText == undefined){
+    deptNotice[0].innerText = '부서 공지사항이 없습니다.';
+    deptNotice[0].style.color = "var(--gray500)";
+  }
+
+})()
