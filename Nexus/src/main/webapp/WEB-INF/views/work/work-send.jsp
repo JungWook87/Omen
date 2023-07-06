@@ -61,6 +61,16 @@
               Swal.fire('결재 상신이 실패하였습니다.', '다시 시도해주세요.', 'warning');
             </script>
           </c:if>
+          <c:if test="${messageFlag == '임시 저장 성공'}">
+            <script>
+              Swal.fire('임시 저장이 완료되었습니다.', '', 'success');
+            </script>
+          </c:if>
+          <c:if test="${messageFlag == '임시 저장 실패'}">
+            <script>
+              Swal.fire('임시 저장이 실패하였습니다.', '다시 시도해주세요.', 'warning');
+            </script>
+          </c:if>
         </c:if>
 
         <jsp:include page="/WEB-INF/views/common/header.jsp" />

@@ -206,6 +206,10 @@
 		ORDER BY SEND_DATE DESC
 	</select>
 	
+	<!-- 결재 임시저장 제출 완료 후 임시저장 지우기 -->
+	<delete id="tempDelete" parameterType="_int">
+		DELETE FROM "WORK" WHERE WORK_NO = ${workNo}
+	</delete>
 	
 	
 </mapper>

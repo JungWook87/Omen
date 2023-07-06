@@ -583,7 +583,7 @@
   transition: all 1s;
 }
 
-#success-btn, #approver-success-btn {
+#success-btn, #approver-success-btn, #tempSuccessBtn {
   width: 60px;
   height: 30px;
 
@@ -604,6 +604,11 @@
 }
 
 #success-btn:hover {
+  background-color: var(--primary500);
+  transition: all 1s;
+}
+
+#tempSuccessBtn:hover {
   background-color: var(--primary500);
   transition: all 1s;
 }
@@ -646,4 +651,9 @@ input[type='date']:valid::before {
   animation: heartBeat 2s infinite; 
   animation-duration: 2s;
   animation-direction: alternate;
+}
+
+/* 내용 입력창 테이블 볼더 */
+.table-bordered tbody tr td{
+  border: 1px solid;
 }

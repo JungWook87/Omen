@@ -370,6 +370,12 @@ public class WorkServiceImp implements WorkService {
 		return dao.workTemp(loginMember);
 	}
 	
+	// 결재 임시저장 제출 완료 후 임시저장 지우기
+	@Override
+	public int tempDelete(int workNo) {
+		return dao.tempDelete(workNo);
+	}
+	
 	
 	//====================== 프로젝트/과제 ========================
 	
@@ -423,6 +429,8 @@ public class WorkServiceImp implements WorkService {
 	public List<WorkGeneralList> taskInbox(int memNo) {
 		return pDao.taskInbox(memNo);
 	}
+
+
 
 
 	
