@@ -163,9 +163,8 @@
 
                   <ul class="senior">
                     <li class="senior-list"><p>대표이사</p></li>
-                    <li class="senior-list"><p>사장</p></li>
-                    <li class="senior-list"><p>부사장</p></li>
-                    <li class="senior-list end"><p>전무</p></li>
+                    <li class="senior-list"><p>전무이사</p></li>
+                    <li class="senior-list"><p>상무이사</p></li>
                   </ul>
 
                   <ul class="team">
@@ -191,6 +190,13 @@
                 </div>
 
                 <div class="teamone-Box">
+
+
+                  <ul style="display: flex; flex-direction: column;">
+                    <li id="senior-team"></li>
+                    <li id="senior-team"></li>
+                    <li id="senior-team"></li>
+                  </ul>
 
                   <ul style="display: flex; flex-direction: column;">
 

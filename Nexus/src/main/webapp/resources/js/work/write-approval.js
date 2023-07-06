@@ -28,6 +28,7 @@ const workStartDateText = document.querySelector('.work-modal-startDate > input'
 const workEndDateText = document.querySelector('.work-modal-endDate > input'); // 종료 날짜 
 const workProjectboxText = workProjectbox.querySelectorAll('input'); // 과제명, 과제내용 
 const showMember = document.getElementById("showMemName"); // 결재자 이름
+const seniorTeam = document.getElementById("senior-team"); // 임원팀
 
 
 const sumTxt = document.getElementsByClassName("note-editable");
@@ -365,7 +366,23 @@ pulsApproverBtn.addEventListener("click",() => {
         input.classList.add("approver-checkBox");
         input.value = value.memNo;
 
-          if (value.teamNo == 11) {
+
+          if(value.jobNo == 1){
+            div.append(input);
+            div.append(label);
+
+            seniorTeam.append(div);
+          } else if(value.jobNo == 2){
+            div.append(input);
+            div.append(label);
+
+            seniorTeam.append(div);
+          } else if(value.jobNo == 3){
+            div.append(input);
+            div.append(label);
+
+            seniorTeam.append(div);
+          } else if (value.teamNo == 11) {
             div.append(input);
             div.append(label);
 
@@ -465,6 +482,8 @@ const SeniorList = document.querySelectorAll(".senior-list");
 const deptList = document.querySelectorAll(".dept-list");
 const teamList = document.querySelectorAll(".team-list");
 
+
+// 임원 조회 이벤트
 Executives.querySelector("p").addEventListener("click", ()=> {
 
   for(let i = 0; i < teamList.length; i++) {
@@ -484,6 +503,23 @@ Executives.querySelector("p").addEventListener("click", ()=> {
   }
 })
 
+// 사장, 전무이사, 상무이사 조회
+for(let i = 0; i < SeniorList.length; i++){
+  SeniorList[i].addEventListener("click", ()=>{
+
+    if( i === 0){
+      seniorTeam[0].classList.toggle('show');
+    } else if( i === 1){
+      seniorTeam[1].classList.toggle('show');
+    } else if( i === 2){
+      seniorTeam[2].classList.toggle('show');
+    }  
+  })
+}
+
+
+
+// 부서 조회 이벤트
 dept.querySelector("p").addEventListener("click", ()=> {
 
   for(let i = 0; i < SeniorList.length; i++){
@@ -813,19 +849,34 @@ successBtn.addEventListener("click", function(){
 $(document).ready(function() {
 	//여기 아래 부분
 	$('.summernote').summernote({
+    toolbar: [
+      // [groupName, [list of button]]
+      ['fontname', ['fontname']],
+      ['fontsize', ['fontsize']],
+      ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+      ['color', ['forecolor','color']],
+      ['table', ['table']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['height', ['height']],
+      ['view', ['help']]
+    ],
+  fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+
 		  height: 300,                 // 에디터 높이
 		  minHeight: null,             // 최소 높이
 		  maxHeight: null,             // 최대 높이
 		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		  lang: "ko-KR",					// 한글 설정
-		  placeholder: '내용을 작성해주세요.',	//placeholder 설정
-      callbacks: {
-        onImageUpload: function(files, editor, welEditable) {
-          for(var i = files.length -1; i>=0; i--) {
-            sendFile(files[i], this);
-          }
-      }
-    }   
+      popover: {//팝오버 설정
+
+      image: [], //이미지 삭제
+
+      link: [], //링크 삭제
+
+      air: []
+
+   }
 	});
 
   $('#summernote').summernote('insertText', 'TEST');
