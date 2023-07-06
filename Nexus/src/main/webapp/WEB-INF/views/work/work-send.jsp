@@ -149,7 +149,6 @@
                   <thead>
                     <tr>
                       <th>종류</th>
-                      <th>결재 번호</th>
                       <th>제목</th>
                       <th>상태</th>
                       <th>첨부파일</th>
@@ -163,7 +162,6 @@
                       <tr class="listTr" onclick="detailModal(${list.workNo})">
                         <td class="listTypeNo" style="display: none;">${list.typeNo}</td>
                         <td>${list.typeName}</td>
-                        <td>${list.workNo}</td>
                         <td>${list.title}</td>
                         <c:choose>
                           <c:when test="${list.workState == '진행중'}">
@@ -191,7 +189,6 @@
                       <tr class="listTr" onclick="projectDetailModal(${projectList.workNo})">
                         <td class="listTypeNo" style="display: none;">${projectList.typeNo}</td>
                         <td>${projectList.typeName}</td>
-                        <td>${projectList.workNo}</td>
                         <td>${projectList.title}</td>
                         <c:choose>
                           <c:when test="${projectList.workState == '진행중'}">
@@ -219,7 +216,6 @@
                       <tr class="listTr" onclick="taskDetailModal(${taskList.workNo})">
                         <td class="listTypeNo" style="display: none;">${taskList.typeNo}</td>
                         <td>${taskList.typeName}</td>
-                        <td>${taskList.workNo}</td>
                         <td>${taskList.title}</td>
                         <c:choose>
                           <c:when test="${taskList.workState == '진행중'}">

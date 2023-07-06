@@ -179,3 +179,22 @@ function taskDetailModal(workNo){
   });
 };
 
+
+
+// 사이드바 크기조정
+var contentAllPage = document.querySelector('.content-all-page');
+var sideBar = document.querySelector('.side-bar');
+
+function adjustSideBarHeight() {
+  if (contentAllPage.offsetHeight >= 900) {
+    sideBar.style.height = 'unset';
+  } else {
+    sideBar.style.height = '100vh !impotant';
+  }
+}
+
+window.addEventListener('resize', function() {
+  setTimeout(adjustSideBarHeight, 100);
+});
+
+adjustSideBarHeight();

@@ -34,6 +34,15 @@ public class MeetingRoomServiceImpl implements MeetingRoomService{
 		
 		return dao.deleteReservation(reservationNo);
 	}
+
+
+	// 해달 달의 미팅룸 리스트 불러오기(kjw)
+	@Override
+	public List<MeetingRoom> meetingRoomList(String inputDate) {
+		return dao.meetingRoomList(inputDate);
+	}
+	
+	
 	
 
 

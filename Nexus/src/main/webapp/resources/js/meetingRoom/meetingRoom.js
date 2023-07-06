@@ -437,4 +437,3 @@ function updateEvents() {
   searchResv();
 }
 
-

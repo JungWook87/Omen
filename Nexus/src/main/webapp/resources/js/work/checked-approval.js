@@ -96,7 +96,7 @@ function successDetailModal(obj){
   if(obj.fileOrigin != null){
     const fileNameA = document.createElement("a");
     fileNameA.innerText = obj.fileOrigin;
-    fileNameA.href = +"${contextPath}" +  obj.fileRename;
+    fileNameA.href =`${contextPath}` +  obj.fileRename;
     fileNameA.download = obj.fileOrigin;
     uploadFile.append(fileNameA);
   }

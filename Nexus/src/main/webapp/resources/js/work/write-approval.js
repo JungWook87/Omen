@@ -29,7 +29,26 @@ const workEndDateText = document.querySelector('.work-modal-endDate > input'); /
 const workProjectboxText = workProjectbox.querySelectorAll('input'); // 과제명, 과제내용 
 const showMember = document.getElementById("showMemName"); // 결재자 이름
 
+
 const sumTxt = document.getElementsByClassName("note-editable");
+
+// 날짜 조건 걸기(kjw)
+(function(){
+    // 오늘 날짜
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    
+    if(month < 10) month = "0" + month;
+    if(day < 10) day = "0" + day;
+    
+    let today = year + "-" + month + "-" + day;
+
+    workStartDateText.setAttribute("min", today);
+    workEndDateText.setAttribute("min", today);
+})();
+
 
 // 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
@@ -157,6 +176,8 @@ workTemplateSelect.addEventListener('change', () => {
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
   showMember.innerText = '-';
   normalCheckSelect.value = 'userCustom';
+  workStartDateText.value = '';
+  workEndDateText.value = '';
 
 
   normalCheckSelect.style.display='none';

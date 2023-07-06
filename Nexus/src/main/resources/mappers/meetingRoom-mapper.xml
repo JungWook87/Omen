@@ -54,5 +54,13 @@
 	<delete id="deleteReservation" parameterType="_int">
 		DELETE FROM MEETING_ROOM WHERE RESERVATION_NO = #{reservationNo}
 	</delete>
+	
+	<!-- 해달 달의 미팅룸 리스트 불러오기(kjw) --> 
+	<select id="meetingRoomList" resultMap="meetingRoom_rm">
+		SELECT RESERVATION_NO,RESERVATION_DATE, RESERVATION_TIME, ROOM_NO  
+		FROM MEETING_ROOM
+		WHERE SUBSTR(RESERVATION_DATE, 0, 7) = #{inputDate}
+		ORDER BY RESERVATION_DATE
+	</select>
 
 </mapper>

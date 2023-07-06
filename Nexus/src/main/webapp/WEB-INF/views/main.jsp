@@ -34,7 +34,7 @@
                 <title>메인페이지</title>
             </head>
 
-            <body>
+            <body onload="popup()">
 
                 <!-- 메인 헤더 부분 시작 -->
                 <header>
@@ -246,12 +246,30 @@
                                     <span>결재 진행 상황</span>
                                 </div>
                                 <div class="main-box-title-right">
-                                    <a href="">전체보기</a>
+                                    <a href="${contextPath}/work/workSend">전체보기</a>
                                     <img src="${contextPath}/resources/images/right-arrow.png" alt="">
                                 </div>
                             </div>
                             <div class="main-work-progress-box">
-                                <p>결재할 항목이 없습니다.</p>
+                                <c:forEach var="item" items="${workMinList}" begin="0" end="4">
+                                    <c:if test="${item.sendMemNo == loginMember.memNo}">
+                                        <div style="display: flex; justify-content: space-between;" id="workMin">
+                                            <span>${item.title}</span>
+                                            <span>${fn:substring(item.sendDate, 5, 10)}</span>
+                                            <c:choose>
+                                                <c:when test="${item.workState == '진행중'}">
+                                                    <span style="color: var(--primary400);">${item.workState}</span>
+                                                </c:when>
+                                                <c:when test="${item.workState == '승인'}">
+                                                    <span style="color: var(--green);">${item.workState}</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span style="color: red;">${item.workState}</span>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                    </c:if>
+                                </c:forEach>
                             </div>
                         </div>
 
@@ -260,16 +278,24 @@
                             <div class="main-box-title">
                                 <div class="main-box-title-left">
                                     <img src="${contextPath}/resources/images/approval.png" alt="">
-                                    <span>요청된 승인</span>
+                                    <span>요청된 결재</span>
                                 </div>
                                 <div class="main-box-title-right">
-                                    <a href="">전체보기</a>
+                                    <a href="${contextPath}/work/workInbox">전체보기</a>
                                     <img src="${contextPath}/resources/images/right-arrow.png" alt="">
                                 </div>
                             </div>
                             <div class="main-approval-list-box">
-                                <p>지출결의서 - 법인카드(예시)</p>
-                                <p>2023.05.24.수 19:39</p>
+                                <div>
+                                    <c:forEach var="item" items="${workMinList}" begin="5" end="9">
+                                        <c:if test="${item.nextMemNo == loginMember.memNo}">
+                                            <div style="display: flex; justify-content: space-between;" id="workMin">
+                                                <span>${item.title}</span>
+                                                <span>${fn:substring(item.sendDate, 5, 10)}</span>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -321,12 +347,10 @@
                                 <div class="main-notice-box-in-box">
                                     <c:forEach var="item" items="${notice}">
                                         <c:if test="${item.noticeType == 0}">
-                                            <div>
-                                                <a href="" style="display: flex; justify-content: space-between;"
-                                                    id="noticeMin">
-                                                    <span>${item.title}</span>
-                                                    <span>${fn:substring(item.createDate, 0, 11)}</span>
-                                                </a>
+                                            <div style="display: flex; justify-content: space-between;"
+                                                id="noticeMin" onclick="detailNotice(${item.noticeNo})">
+                                                <span>${item.title}</span>
+                                                <span>${fn:substring(item.createDate, 0, 11)}</span>
                                             </div>
                                         </c:if>
                                     </c:forEach>
@@ -346,24 +370,60 @@
                                     </div>
                                 </div>
                                 <div class="main-dept-notice-box">
-                                    <table id="deptNoticeMin">
-                                        <c:forEach var="item" items="${notice}">
-                                            <c:if test="${item.noticeType != 0}">
-                                                <div>
-                                                    <a href="" style="display: flex; justify-content: space-between;"
-                                                        id="deptNoticeMin">
-                                                        <span>${item.title}</span>
-                                                        <span>${fn:substring(item.createDate, 0, 11)}</span>
-                                                    </a>
-                                                </div>
-                                            </c:if>
-                                        </c:forEach>
-                                    </table>
+                                    <c:forEach var="item" items="${notice}">
+                                        <c:if test="${item.noticeType != 0}">
+                                            <div style="display: flex; justify-content: space-between;"
+                                                id="deptNoticeMin" onclick="detailNotice(${item.noticeNo})">
+                                                <span>${item.title}</span>
+                                                <span>${fn:substring(item.createDate, 0, 11)}</span>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
+                    <!-- 사용자가 작성한 공지사항 열기 -->
+                    <div id="check-modalWrap">
+                        <div class="check-modalBody">
+                            <span id="check-closeBtn">
+                                <img src="${contextPath}/resources/images/Xbtn.png" alt="">
+                            </span>
+
+                            <h1 id="typeName">부서 공지사항</h1>
+
+                            <!-- 선1 -->
+                            <div class="modal-line"></div>
+            
+                            <!-- 제목 -->
+                            <div>
+                                <p>제목</p>
+                                <div class="check-modal-title" id="check-modal-title"></div>
+                            </div>
+
+                            <!-- 내용 -->
+                            <div>
+                                <p>내용</p>
+                                <div class="check-modal-detail" id="check-modal-detail"></div>
+                            </div>
+            
+                            <!-- 선택된 파일 -->
+                            <p>첨부파일</p>
+                            <div class="check-preview" id="check-preview"></div>
+            
+                            <!-- 선2 -->
+                            <div class="modal-line"></div>
+
+                            <!-- 버튼 -->
+                            <div class="notice-submit-reset-btns">
+                                <button type="reset" id="check-cancell-btn">닫기</button>
+                            </div>
+            
+                        </div>
+                    </div>
+
 
                     <!-- 채팅창 -->
                     <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
@@ -385,9 +445,6 @@
                 <c:if test="${ !empty message }">
                     <script>
                         Swal.fire("${message}");
-    // EL 작성 시 scope를 지정하지 않으면
-    // page -> request -> session -> application 순서로 검색하여
-    // 일치하는 속성이 있으면 출력
 
                     </script>
                 </c:if>

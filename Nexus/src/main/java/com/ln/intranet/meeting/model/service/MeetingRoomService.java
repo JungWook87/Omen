@@ -12,5 +12,8 @@ public interface MeetingRoomService {
 	List<MeetingRoom> allReservation();
 
 	int deleteReservation(int reservationNo);
+	
+	// 해달 달의 미팅룸 리스트 불러오기(kjw)
+	List<MeetingRoom> meetingRoomList(String inputDate);
 
 }

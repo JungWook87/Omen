@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.gson.Gson;
 import com.ln.intranet.meeting.model.service.MeetingRoomService;
 import com.ln.intranet.meeting.model.vo.MeetingRoom;
 import com.ln.intranet.member.model.vo.Member;
@@ -89,6 +90,19 @@ public class MeetingRoomController {
 	   // 예외처리 , 트랜잭션 처리 (?)
 	   
 	   return result;
+   }
+   
+   // 해달 달의 미팅룸 리스트 불러오기(kjw)
+   @ResponseBody
+   @GetMapping("/meetingRoomList")
+   public String meetingRoomList(@RequestParam("inputDate") String inputDate) {
+	   List<MeetingRoom> meetingRoomList = service.meetingRoomList(inputDate);
+	   
+	   System.out.println(meetingRoomList);
+	   
+	   Gson gson = new Gson();
+	   
+	   return gson.toJson(meetingRoomList);
    }
    
 }

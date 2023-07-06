@@ -35,7 +35,7 @@
 	<select id="selectChatRoomList" resultMap="chatroom_rm">
 		SELECT *
 		FROM CHAT_ROOM
-		WHERE MEM_NO = #{memNo} OR INVITE_NAME = #{memName}
+		WHERE (MEM_NO = #{memNo} OR INVITE_NAME = #{memName})
 		AND STATUS = 'Y'
 		ORDER BY CM_NO
 	</select>
@@ -76,6 +76,14 @@
 		WHERE MEM_NAME = #{inviteName}
 	</select>
 	
+	<delete id="exitChatRoomJoin">
+		DELETE FROM CHAT_ROOM_JOIN WHERE CM_NO = #{cmNo}
+	</delete>
+	
+	<update id="exitChatRoom">
+		UPDATE CHAT_ROOM SET STATUS = 'N'
+		WHERE CM_NO = #{cmNo}
+	</update>
 	
 	
 	

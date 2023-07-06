@@ -1,4 +1,5 @@
 
+// 출퇴근 입력버튼
 const attn_btn2 = document.getElementsByClassName("main-attn-btn2");
 const attn_start = document.getElementById("attn-start");
 const attn_end = document.getElementById("attn-end");
@@ -33,7 +34,7 @@ attn_btn2[0].addEventListener("click", function() {
     attn_start_minutes = attn_time_minutes;
     
     if(attn_btn2[0].innerText == "업무시작"){
-        if(true){
+        if(attn_end.innerText == '-- : --'){
             attn_start.innerText = attn_start_hours + " : " + attn_start_minutes;
             attn_btn2[0].innerText = "업무종료";
             attn_btn2[0].style.backgroundColor = 'var(--gray400)';
@@ -252,4 +253,138 @@ function logoutEvent() {
     responsiveEmployeeRankChange.style.display = 'none'
   }
 
+// 팝업창
+function popup() {
+  
+  var parentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  var popupWidth = 260;
+  var left = parentWidth - popupWidth;
 
+  var cookieCheck = getCookie("popupYN");
+  if (cookieCheck != "N")
+  window.open('popup', 'pop', 'width=400, height=500, left=' + left + ', scrollbars=no, resizable=no');
+  
+
+}
+
+function getCookie(name) {
+    var cookie = document.cookie;
+    
+    if (document.cookie != "") {
+        var cookie_array = cookie.split("; ");
+        for ( var index in cookie_array) {
+            var cookie_name = cookie_array[index].split("=");
+            
+            if (cookie_name[0] == "popupYN") {
+                return cookie_name[1];
+            }
+        }
+    }
+    return ;
+}
+
+
+
+// 미니 공지사항 창 ----------------------------------------------------
+  // 메인 페이지 공지사항 디테일(kjw)
+  const checkModal = document.getElementById('check-modalWrap'); // 모달창
+  const checkModalBody = document.querySelector('.check-modalBody'); // 모달창
+  const checkCancellBtn = document.getElementById('check-cancell-btn'); // 닫기버튼
+  const checkCloseBtn = document.getElementById('check-closeBtn'); // x버튼
+  const typeName = document.getElementById("typeName"); // 이름바꾸기
+
+  // 디테일창 요소(제목 내용 파일..)
+  const title = document.getElementById("check-modal-title");
+  const content = document.getElementById("check-modal-detail");
+  const uploadedFile = document.getElementById("check-preview");
+
+  function detailNotice(noticeNo){
+
+    $.ajax({
+      url : "mainDetail",
+      data : {"noticeNo" : noticeNo},
+      type : "GET",
+      dataType : "JSON",
+      success : function(obj){
+        console.log(obj);
+
+        // 공지사항
+        if(obj.noticeType == 0){
+          typeName.innerText = "공지사항";
+        } else { // 부서 공지사항
+          typeName.innerText = "부서 공지사항"
+        }
+
+        title.innerText = obj.title;
+        content.innerText = obj.content;
+        uploadedFile.innerText = '';
+
+        // 첨부파일
+        if(obj.NoticeFileRename != null){
+          const fileNameA = document.createElement("a");
+          fileNameA.innerText = obj.NoticeFileOrigin;
+          fileNameA.href =`${contextPath}` +  obj.NoticeFileRename;
+          fileNameA.download = obj.NoticeFileOrigin;
+          uploadedFile.append(fileNameA);
+        } 
+
+        // 모달창 열기
+        checkModal.style.display = 'block';
+        checkModalBody.classList.add('check-modal-open');
+      },
+      error : function(){
+        console.log("메인에서 공지사항 불러오다가 에러");
+      }
+    })
+
+  }
+
+  // 모달창 엑스 버튼
+  checkCloseBtn.addEventListener("click", () => {
+    checkModalClose();
+  });
+
+  // 모달창 외부 영역 이벤트
+  $(window).click(function(event) {
+    if (event.target == checkModal) {
+      checkModalClose();
+    }
+  });
+
+  // 취소버튼 이벤트
+  checkCancellBtn.addEventListener("click", () => {
+    checkModalClose();
+  });
+
+  // 수정 모달창 닫기
+  function checkModalClose() {
+    checkModalBody.classList.add('check-modal-close');
+
+    setTimeout(() => {
+      checkModal.style.display = 'none';
+      checkModalBody.classList.remove("check-modal-close");
+    }, 350);
+
+  }
+//-----------------------------------------------------------------  
+
+(function(){
+  const workFromMe = document.getElementsByClassName("main-work-progress-box");
+  if(workFromMe.innerText == undefined){
+    workFromMe[0].innerText = '상신한 결재가 없습니다.';
+    workFromMe[0].style.color = "var(--gray500)";
+  }
+
+  const workToMe = document.getElementsByClassName("main-approval-list-box");
+  if(workToMe.innerText == undefined){
+    workToMe[0].innerText = '요청된 결재가 없습니다.';
+    workToMe[0].style.color = "var(--gray500)";
+  }
+
+  const deptNotice = document.getElementsByClassName("main-dept-notice-box");
+  if(deptNotice.innerText == undefined){
+    deptNotice[0].innerText = '부서 공지사항이 없습니다.';
+    deptNotice[0].style.color = "var(--gray500)";
+  }
+
+})()
