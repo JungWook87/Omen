@@ -81,6 +81,11 @@ public class WorkDAO {
 	public List<WorkDetail> workTemp(Member loginMember) {
 		return sqlSession.selectList("workMapper.workTemp", loginMember);
 	}
+
+	// 결재 임시저장 제출 완료 후 임시저장 지우기
+	public int tempDelete(int workNo) {
+		return sqlSession.delete("workMapper.tempDelete", workNo);
+	}
 	
 
 

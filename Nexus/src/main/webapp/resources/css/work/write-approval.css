@@ -586,7 +586,7 @@
   transition: all 1s;
 }
 
-#success-btn, #approver-success-btn {
+#success-btn, #approver-success-btn, #tempSuccessBtn {
   width: 60px;
   height: 30px;
 
@@ -607,6 +607,11 @@
 }
 
 #success-btn:hover {
+  background-color: var(--primary500);
+  transition: all 1s;
+}
+
+#tempSuccessBtn:hover {
   background-color: var(--primary500);
   transition: all 1s;
 }
@@ -650,6 +655,7 @@ input[type='date']:valid::before {
   animation-duration: 2s;
   animation-direction: alternate;
 }
+
 
 /* 썸머노트 툴바 */
 .note-toolbar{

@@ -79,7 +79,7 @@
           <!-- 내용 -->
           <div class="work-modal-detail">
             <p>내용</p>
-            <textarea name="content" class="summernote" ></textarea>
+            <textarea name="content" class="summernote" spellcheck="false"></textarea>
           </div>
 
           <!-- 프로젝트박스 -->
@@ -133,6 +133,7 @@
         <div class="work-submit-reset-btns">
           <button type="button" id="cancell-btn">취소</button>
           <button type="button" id="success-btn" value="submitBtn">확인</button>
+          <button type="button" id="tempSuccessBtn" value="submitBtn" style="display: none;">확인</button>
         </div>
         
         <div id="approver-modal-wrap">

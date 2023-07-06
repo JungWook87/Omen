@@ -64,5 +64,8 @@ public interface WorkService {
 
 	List<WorkGeneralList> taskInbox(int memNo);
 
+	// 결재 임시저장 제출 완료 후 임시저장 지우기
+	int tempDelete(int workNo);
+
 
 }
