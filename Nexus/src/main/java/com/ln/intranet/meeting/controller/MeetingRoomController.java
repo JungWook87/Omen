@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.gson.Gson;
 import com.ln.intranet.meeting.model.service.MeetingRoomService;
 import com.ln.intranet.meeting.model.vo.MeetingRoom;
 import com.ln.intranet.member.model.vo.Member;
@@ -96,7 +97,12 @@ public class MeetingRoomController {
    @GetMapping("/meetingRoomList")
    public String meetingRoomList(@RequestParam("inputDate") String inputDate) {
 	   List<MeetingRoom> meetingRoomList = service.meetingRoomList(inputDate);
-	   return "";
+	   
+	   System.out.println(meetingRoomList);
+	   
+	   Gson gson = new Gson();
+	   
+	   return gson.toJson(meetingRoomList);
    }
    
 }

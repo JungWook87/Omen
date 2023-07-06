@@ -278,7 +278,7 @@
                             <div class="main-box-title">
                                 <div class="main-box-title-left">
                                     <img src="${contextPath}/resources/images/approval.png" alt="">
-                                    <span>요청된 승인</span>
+                                    <span>요청된 결재</span>
                                 </div>
                                 <div class="main-box-title-right">
                                     <a href="${contextPath}/work/workInbox">전체보기</a>
@@ -370,17 +370,15 @@
                                     </div>
                                 </div>
                                 <div class="main-dept-notice-box">
-                                    <table id="deptNoticeMin">
-                                        <c:forEach var="item" items="${notice}">
-                                            <c:if test="${item.noticeType != 0}">
-                                                <div style="display: flex; justify-content: space-between;"
-                                                    id="deptNoticeMin" onclick="detailNotice(${item.noticeNo})">
-                                                    <span>${item.title}</span>
-                                                    <span>${fn:substring(item.createDate, 0, 11)}</span>
-                                                </div>
-                                            </c:if>
-                                        </c:forEach>
-                                    </table>
+                                    <c:forEach var="item" items="${notice}">
+                                        <c:if test="${item.noticeType != 0}">
+                                            <div style="display: flex; justify-content: space-between;"
+                                                id="deptNoticeMin" onclick="detailNotice(${item.noticeNo})">
+                                                <span>${item.title}</span>
+                                                <span>${fn:substring(item.createDate, 0, 11)}</span>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
