@@ -75,7 +75,7 @@ public class DashBoardController {
 				
 				hr.setWorkMin(newMin);
 				hr.setWorkTime(hr.getWorkTime()+plusTime);
-				//log.info("워크타임 : " + hr.getWorkTime() + "시/" + hr.getWorkMin() + "분");
+		
 			}
 			
 			if(hr.getExMin() > 60) {
@@ -84,7 +84,7 @@ public class DashBoardController {
 				
 				hr.setExMin(newMin);
 				hr.setExTime(hr.getExTime()+plusTime);
-				//log.info("연장근무 : " + hr.getExTime() + "시/" + hr.getExMin() + "분");
+		
 			}
 		}
 		
@@ -150,8 +150,6 @@ public class DashBoardController {
 			Model model
 			) {
 		
-		log.info("현재 년 : "+currentYear);
-		log.info("현재 월 : "+currentMonth);
 		
 	 LocalDate now;
 	    
@@ -163,14 +161,8 @@ public class DashBoardController {
 	        now = LocalDate.of(currentYear, currentMonth, 1);
 	    }
 	    
-	    log.info("현재날짜 : " + now);
-	    
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/MM");
-	    String searchDate = now.format(formatter);
-		
-
-	    log.info("현재날짜 : " + searchDate);
-	    
+	    String searchDate = now.format(formatter);	    
 	    
 		int deptNo = loginMember.getDeptNo();
 		
@@ -211,7 +203,6 @@ public class DashBoardController {
 			Model model
 			) {
 
-	    log.info(targetDate);
 	    
 	    int deptNo = loginMember.getDeptNo();
 	    
@@ -221,8 +212,6 @@ public class DashBoardController {
 	    int month = Integer.parseInt(dateParts[1]);
 
 	    String searchDate = String.format("%02d/%02d", year, month);
-	    
-	    log.info(searchDate);
 	    
 		List<HumanResourceManage> hrList = new ArrayList<HumanResourceManage>();
 		
@@ -288,8 +277,6 @@ public class DashBoardController {
 			}
 		}
 		
-		
-
 		Workbook wb = new HSSFWorkbook(); // 엑셀파일 객체 생성
 		Sheet sheet = wb.createSheet("테스트 시트"); //시트 생성 ( 첫번째 시트이며, 시트명은 테스트 시트 )
 		

@@ -196,7 +196,7 @@
 	  WHERE 
 	    ATTENDANCE.ATTD_TYPE_NO IN (1, 2, 4, 5) 
 	    AND TO_CHAR(TO_DATE(TODAY, 'YY/MM/DD'), 'YY/MM') = #{searchDate}
-	    AND MEMBER.DEPT_NO = #{deptNo}
+	    AND (#{deptNo} = 1 OR MEMBER.DEPT_NO = #{deptNo})
 	  GROUP BY 
 	    MEM_NO, MEM_NAME, 
 	    DEPARTMENT.DEPT_NO, DEPT_NAME, 
