@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ln.intranet.dashBoard.model.service.DashBoardService;
 import com.ln.intranet.dashBoard.model.vo.AttnDoughnut;
@@ -55,7 +56,8 @@ public class DashBoardController {
 	@GetMapping("/dashBoardMain")
 	public String dashBoardViewer(
 			@ModelAttribute("loginMember") Member loginMember,
-			Model model
+			Model model,
+			RedirectAttributes ra
 			) {
 		
 		int deptNo = loginMember.getDeptNo();
@@ -93,14 +95,21 @@ public class DashBoardController {
 		List<ProjectTotal> prList = new ArrayList<ProjectTotal>();
 		prList = service.prList(deptNo);
 		
-		log.info("1번째 프로젝트 이름 : " + prList.get(0).getTitle());
 		
 		model.addAttribute("hrList", hrList);
 		model.addAttribute("dtList", dtList);
 		model.addAttribute("prList", prList);
 		
+		String message = null;
+		
+		if(hrList.size()==0) {
+			message = "대시보드 내용이 없습니다!";
+			ra.addFlashAttribute("message", message);
+			return "redirect:/main";
+		} else {			
+			return "/dashBoard/dashBoard";
+		}
 			
-		return "/dashBoard/dashBoard";
 	}
 	
 	// 부서별 근태 도넛 리스트

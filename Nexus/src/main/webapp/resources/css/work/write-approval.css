@@ -111,7 +111,7 @@
 .work-modal-template select{
   width: 25%;
   height: 40px;
-}
+} 
 
 .work-modal-title input {
   width: 100%;
@@ -646,4 +646,9 @@ input[type='date']:valid::before {
   animation: heartBeat 2s infinite; 
   animation-duration: 2s;
   animation-direction: alternate;
+}
+
+/* 결재자선택창 폰트조정 */
+label{
+  font-family: 'NanumSquareNeo-Variable';
 }

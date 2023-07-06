@@ -17,7 +17,8 @@ console.log(loginMember);
 
 // 공지사항 버튼 이벤트
 btn.addEventListener("click", () => {
-  if(parseInt(loginMemberJobNo) === 4) {
+  if(parseInt(loginMemberJobNo) === 6) {
+    console.log(loginMemberJobNo);
     Swal.fire({
       html: `
         <div class="custom-message">
@@ -254,7 +255,7 @@ function detailModal(noticeNo) {
     success : function(detail){
 
 
-      const isMyJob = (parseInt(loginMemberJobNo) === 4);
+      const isMyJob = (parseInt(loginMemberJobNo) === 6);
 
       if (isMyJob) {
         modifyBtn.style.display = 'none';

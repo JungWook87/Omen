@@ -99,7 +99,7 @@
                   <c:choose>
                     <c:when test="${empty surveyList}">
                       <tr>
-                        <th colspan="6">설문이 존재하지 않습니다.</th>
+                        <th colspan="6" class="survey-none">설문이 존재하지 않습니다.</th>
                       </tr>
                     </c:when>
 

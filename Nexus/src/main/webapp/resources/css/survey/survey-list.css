@@ -323,3 +323,8 @@ th:nth-child(3) {
 .content-all-top-text, .content-all-top-text2, .content-all-top-text3 {
   cursor: pointer;
 }
+
+.survey-none {
+  border-bottom: unset;
+    padding-top: 30px;
+}
