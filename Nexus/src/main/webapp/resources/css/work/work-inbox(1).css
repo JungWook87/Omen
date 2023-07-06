@@ -550,77 +550,7 @@ select {
 
 }
 
-/*     
-  .M01>li, .M02>li, .M03>li {
-  
-      position: relative;
-      width: 100%;
-      height: 50px;
-      border: 1px solid var(--gray300);
-      border-radius: 5px;
-      text-align: center;
-      gap: 10px;
-      line-height: 50px;
-  
-  }
-   
-  .M01>li:hover .M02 {
-  
-  left: 100px;
-  
-  }
-      
-  .M01>li p:hover {
-  
-  display: block;
-  
-  background: var(--primary400);
-  
-  color: white;
-  
-  }
-   
-  .M02, .M03 {
-  
-  margin: 0px 210px;
 
-  transition: all 0s ease-out 0.5s;
-
-  width: 300px;
-  
-  list-style: none;
-  
-  position: absolute;
-  
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-  
-  top: 0;
-  
-  left: -9999px;
-  
-  }
-       
-  .M02>li:hover .M03 {
-  
-  left: 100px;
-  
-  }
-  
-  .M02>li p:hover {
-  
-  display: block;
-  background: var(--primary400);
-  
-  }
-
-  .M03>li p:hover {   
-  display: block;   
-  background: var(--primary400);
-  } */
 
 .approver-checkBox {
   margin: 5px;
@@ -1186,40 +1116,7 @@ select {
 }
 
 
-/* ------------------ */
-/* input[type='date'] {
-  border: none;
-  position: relative;
-  width: 100%;
-  padding: 10px;
-  color: var(--gray200);
-  background: no-repeat right 10px center / 35px auto;
-  background-color: #bbb;
-  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  font-size: 100%;
-}
 
-input[type='date']::-webkit-calendar-picker-indicator {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  color: transparent;
-  cursor: pointer;
-}
-
-input[type='date']::before {
-  content: attr(placeholder);
-  width: 100%;
-  height: 100%;
-}
-
-input[type='date']:valid::before {
-  display: none;
-} */
 
 /* 사이드바 반응형 */
 .sidebarMenuInner li:nth-child(3) span {

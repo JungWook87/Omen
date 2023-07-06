@@ -192,10 +192,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="status">
-                                                            <!-- <span class="status-text" 
-                                value="${taskTotal.workState}">
-                                ${taskTotal.workState}
-                                </span> -->
+                                  
                                                             <c:choose>
                                                                 <c:when test="${taskTotal.workState == '승인'}">
                                                                     <span class="status-green"

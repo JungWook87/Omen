@@ -33,7 +33,6 @@ public class MemberServiceImpl implements MemberService {
 	public Member login(Member inputMember) {
 		
 		
-		logger.info(inputMember.getMemPw()+"/"+bcrypt.encode(inputMember.getMemPw()));
 		
 		Member loginMember = dao.login(inputMember);
 		
@@ -80,7 +79,6 @@ public class MemberServiceImpl implements MemberService {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		int result = dao.signUp(member);
-		System.out.println("rkqt : " + member);
 		
 		String message = null;
 		String memId = "NEXUS" + member.getMemNo();

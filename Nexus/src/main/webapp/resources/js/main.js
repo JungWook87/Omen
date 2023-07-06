@@ -160,7 +160,6 @@ const myPageBtn = document.querySelector(".main-attn-btn1");
 myPageBtn.addEventListener('click', () => {
     
     const url = "member/myPageProfile";
-    console.log(url);
     window.location.href = url;
 })
 
@@ -306,7 +305,6 @@ function getCookie(name) {
       type : "GET",
       dataType : "JSON",
       success : function(obj){
-        console.log(obj);
 
         // 공지사항
         if(obj.noticeType == 0){

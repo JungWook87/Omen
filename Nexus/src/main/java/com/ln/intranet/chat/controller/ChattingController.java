@@ -77,7 +77,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 								
 				) {
 	
-			log.info("loginMember's memNo : " + loginMember.getMemNo());
 	
 			int memNo = loginMember.getMemNo();
 			String memName = loginMember.getMemName();
@@ -100,7 +99,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 			        }
 			    }
 			
-			log.debug(RoomList + "");
 	
 			return new Gson().toJson(RoomList);
 	
@@ -125,7 +123,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		List<Message> chatMessageList = service.selectChatMessageList(cmNo);
 		
 		
-		log.debug(chatMessageList + "");
 		
 		
 		model.addAttribute("cmNo", cmNo);
@@ -204,7 +201,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	@RequestMapping(value = "/exitChatRoom", method = RequestMethod.POST)
 	public String exitChatRoom(int cmNo) {
 		
-		log.debug(cmNo + "");
 		
 		int response = service.exitChatRoom(cmNo);
 		
