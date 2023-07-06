@@ -41,7 +41,7 @@
                         <div id="hr-div" class="mainDiv">
                             <div class="left personnel-management-left">
                                 <div class="hr-head">
-                                    <a class="managePageA" href="/intranet/dashBoard/humanResourceManage">❐ 인적자원 관리</a>
+                                    <h1 class="managePageA">❐ 인적자원 관리</h1>
                                 </div>
                                 <div class="doughnut-div">
                                     <canvas id="doughnut"></canvas>
@@ -52,11 +52,16 @@
                                 <div class="info-div">
                                     <!-- 팀라디오 선택 -->
                                     <div class="team-selector">
-                                        <c:forEach var="team" items="${dtList}">
-                                            <input type="radio" id="team${team.teamNo}-radio" name="team"
-                                                value="${team.teamNo}">
-                                            <label for="team${team.teamNo}-radio">${team.teamName}</label><br>
-                                        </c:forEach>
+                                        <div class="team-selector-box">
+                                            <c:forEach var="team" items="${dtList}">
+                                                <input type="radio" id="team${team.teamNo}-radio" name="team"
+                                                    value="${team.teamNo}">
+                                                <label for="team${team.teamNo}-radio">${team.teamName}</label><br>
+                                            </c:forEach>
+                                        </div>
+                                        <div class="more-box">
+                                            <a href="${contextPath}/dashBoard/humanResourceManage">전체보기 ></a>
+                                        </div>
                                     </div>
                                     <!-- 팀별 조회용 기본적으로 display : none -->
                                     <c:forEach var="team" items="${dtList}">
@@ -99,7 +104,7 @@
                         <div class="project-div mainDiv">
                             <div class="left project-management-left">
                                 <div class="project-head">
-                                    <a class="managePageA" href="/dashBoard/projectManage">❐ 프로젝트 관리</a>
+                                    <h1 class="managePageA">❐ 프로젝트 관리</h1>
                                 </div>
                                 <div class="polar-div">
                                     <canvas id="polarArea" aria-label="Hello ARIA World" role="img"></canvas>
