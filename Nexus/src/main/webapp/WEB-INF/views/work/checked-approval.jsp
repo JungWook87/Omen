@@ -89,8 +89,8 @@
         <!-- 내용 -->
         <div class="checked-modal-detail">
           <p>내용</p>
-          <div contenteditable="false" id="content" onkeydown="handleResizeHeight(this)"
-            onkeyup="handleResizeHeight(this)" readonly></div>
+          <textarea id="content" onkeydown="handleResizeHeight(this)"
+            onkeyup="handleResizeHeight(this)" readonly></textarea>
         </div>
 
         <!-- 의견 -->
@@ -211,9 +211,8 @@
 
                 <ul class="check-senior">
                   <li class="check-senior-list"><p>대표이사</p></li>
-                  <li class="check-senior-list"><p>사장</p></li>
-                  <li class="check-senior-list"><p>부사장</p></li>
-                  <li class="check-senior-list end"><p>전무</p></li>
+                  <li class="check-senior-list"><p>전무이사</p></li>
+                  <li class="check-senior-list"><p>상무이사</p></li>
                 </ul>
 
                 <ul class="check-team">
@@ -238,6 +237,12 @@
               </div>
 
               <div class="teamone-Box">
+
+                <ul style="display: flex; flex-direction: column;">
+                  <li class="check-senior-team"></li>
+                  <li class="check-senior-team"></li>
+                  <li class="check-senior-team"></li>
+                </ul>
 
                 <ul style="display: flex; flex-direction: column;">
 

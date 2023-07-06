@@ -18,6 +18,8 @@ const checkedModalTaskList = document.querySelector('.checked-modal-taskList');
 const checkedModalTaskDiv = document.querySelector('.modal-task-div');
 const checkedModalTableBody = document.querySelector('.modal-table-body');
 const txt = document.getElementById("content");
+const sumTxt1 = document.getElementsByClassName("note-editable");
+const checkSeniorTeam = document.querySelectorAll(".check-senior-team");
 
 
 
@@ -110,10 +112,11 @@ function successDetailModal(obj){
   
   if(obj.typeNo == 1){
     console.log("come in");
-    
-    
-    txt.innerHTML = obj.content;
-
+    console.log(obj.content);
+    //sumTxt1[0].innerHTML = obj.content;
+    //const txt = document.getElementById("content"); 결재자
+    // txt.value = obj.content;
+    $('#content').html(obj.content + '');
     opinion.value = obj.opinion;
     next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 
@@ -255,7 +258,12 @@ function successDetailModal(obj){
       
       for(let i=0; i < team.length; i++){
         team[i].innerText = "";
-      }  
+      } 
+
+      for(let i=0; i < checkSeniorTeam.length; i++){
+        checkSeniorTeam[i].innerText = "";
+      } 
+      
   
       for (let value of approvalList) {
         let div = document.createElement("div");
@@ -272,7 +280,22 @@ function successDetailModal(obj){
         input.classList.add("check-approver-checkBox");
         input.value = value.memNo;
 
-          if (value.teamNo == 11) {
+        if(value.jobNo == 1){
+          div.append(input);
+          div.append(label);
+
+          checkSeniorTeam[0].append(div);
+        } else if(value.jobNo == 2){
+          div.append(input);
+          div.append(label);
+
+          checkSeniorTeam[1].append(div);
+        } else if(value.jobNo == 3){
+          div.append(input);
+          div.append(label);
+
+          checkSeniorTeam[2].append(div);
+        } else if (value.teamNo == 11) {
             div.append(input);
             div.append(label);
 

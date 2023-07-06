@@ -194,9 +194,9 @@
 
 
                   <ul style="display: flex; flex-direction: column;">
-                    <li id="senior-team"></li>
-                    <li id="senior-team"></li>
-                    <li id="senior-team"></li>
+                    <li class="senior-team"></li>
+                    <li class="senior-team"></li>
+                    <li class="senior-team"></li>
                   </ul>
 
                   <ul style="display: flex; flex-direction: column;">
