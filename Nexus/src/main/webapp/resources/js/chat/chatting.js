@@ -412,26 +412,35 @@ employeeDropBox.forEach((dropBox, index) => {
       dataType: 'JSON',
       success: function(chatMember) {
 
-        console.log(chatMember);
         let count = 0;
         const employeeCEO = document.querySelector('.employee-ceo'),
+            employeeExecutiveManagingDirector = document.querySelector('.employee-executive-director'),
+            employeeManagingDirector = document.querySelector('.employee-managing-director'),
             employeeDirector = document.querySelector('.employee-director'),
             employeeSenior = document.querySelector('.employee-senior'),
             employeeJunior = document.querySelector('.employee-junior');
         // 기존의 직원 목록 삭제
         employeeCEO.innerHTML = '';
+        employeeExecutiveManagingDirector.innerHTML = '';
+        employeeManagingDirector.innerHTML = '';
         employeeDirector.innerHTML = '';
         employeeSenior.innerHTML = '';
         employeeJunior.innerHTML = '';
        
         chatMember.forEach((member, i) => {
-            if (member.jobNo === 4) {
+            if (member.jobNo === 1) {
               const employeeList = employeeRankList(member.memName, count + i);
               employeeCEO.appendChild(employeeList);
+            } else if (member.jobNo === 2) {
+              const employeeList = employeeRankList(member.memName, count + i);
+              employeeExecutiveManagingDirector.appendChild(employeeList);
             } else if (member.jobNo === 3) {
               const employeeList = employeeRankList(member.memName, count + i);
+              employeeManagingDirector.appendChild(employeeList);
+            } else if (member.jobNo === 4) {
+              const employeeList = employeeRankList(member.memName, count + i);
               employeeDirector.appendChild(employeeList);
-            } else if (member.jobNo === 2) {
+            } else if (member.jobNo === 5) {
               const employeeList = employeeRankList(member.memName, count + i);
               employeeSenior.appendChild(employeeList);
             } else {
@@ -761,8 +770,6 @@ chatVal.addEventListener('input', () => {
       type: 'POST',
       dataType: 'JSON',
       success: function(loginMemberInfo) { 
-        console.log(loginMemberInfo);
-        console.log(chatValue.value);
 
         const chatMessage = {
           "cmNo": globalCmNo,
@@ -773,8 +780,6 @@ chatVal.addEventListener('input', () => {
 
         // JSON.parse(문자열) : JSON -> JS Object
         // JSON.stringify(객체) :  JS Object -> JSON
-        console.log(chatMessage);
-        console.log(JSON.stringify(chatMessage));
 
         // chattingSock(웹소켓 객체)을 이용하여 메세지 보내기
         // chattingSock.send(값) : 웹소켓 핸들러로 값을 보냄
@@ -852,7 +857,6 @@ $.ajax({
   chattingSock.onmessage = function(e) {
 
 const chatMessage = JSON.parse(e.data);
-console.log(chatMessage);
 
 const message = document.createElement('div');
 if(chatMessage.memNo === loginMemberInfo.memNo){

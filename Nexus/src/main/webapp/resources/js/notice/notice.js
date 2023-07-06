@@ -1,4 +1,3 @@
-console.log("js loaded");
 
 // 모달창 스타일
 const btn = document.getElementById('popupBtn');
@@ -211,7 +210,6 @@ document.getElementById('check-success-btn').style.display = 'none';
 // 게시글 디테일 창 오픈
 function detailModal(noticeNo) {
 
-  console.log(noticeNo);
 
   $.ajax({
     url : "list/NoticeDetail",
@@ -229,7 +227,6 @@ function detailModal(noticeNo) {
       checkModalDetail.append(checkModalDetailSpan);
 
       
-      console.log(detail.fileRename);
 
 
 	if (detail.NoticeFileOrigin) {

@@ -176,7 +176,6 @@ workTemplateSelect.addEventListener('change', () => {
   // 선택된 옵션의 값 가져오기
   const selectedValue = workTemplateSelect.value;
 
-  console.log("selectedValue",selectedValue);
   workTitle.value = '';
   sumTxt[0].innerHTML = '';
   workApprover.value = '';
@@ -258,7 +257,6 @@ workTemplateSelect.addEventListener('change', () => {
         select.addEventListener('click', function() {
           var taskNo = this.value;
           document.getElementsByName('taskNo')[0].value = taskNo;
-          console.log(taskNo);
         });
       }
 
@@ -344,7 +342,6 @@ pulsApproverBtn.addEventListener("click",() => {
     dataType : "JSON",
     // 동준작성
     success : function(list) {
-      console.log(list);
 
       const approvalList = list;
       const team = document.querySelectorAll(".approval-team");

@@ -23,10 +23,10 @@ const checkSeniorTeam = document.querySelectorAll(".check-senior-team");
 
 
 
+
 // ajax 성공 후 결재 디테일 모달창 내용 입력(kjw)
 function successDetailModal(obj){
 
-  console.log(obj);
 
   const workNo = document.getElementById("workNo");
   const memName = document.getElementById("memName");
@@ -109,14 +109,12 @@ function successDetailModal(obj){
   workNo.innerText = obj.workNo;
   memName.innerText = obj.memName + " (" + obj.email +")";
   sendDate.innerText = obj.sendDate;
+
+  sumTxt[1].setAttribute("contenteditable","false");
   
   if(obj.typeNo == 1){
-    console.log("come in");
-    console.log(obj.content);
-    //sumTxt1[0].innerHTML = obj.content;
-    //const txt = document.getElementById("content"); 결재자
-    // txt.value = obj.content;
-    $('#content').html(obj.content + '');
+    sumTxt[1].innerHTML = obj.content;
+
     opinion.value = obj.opinion;
     next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 
@@ -132,7 +130,7 @@ function successDetailModal(obj){
     checkedEndDate[0].style.display = 'block';
 
   } else if(obj.typeNo == 3){
-    txt.innerHTML = obj.content;
+    sumTxt[1].innerHTML = obj.content;
     checkStart.value = obj.start.substr(0,10);
     checkEnd.value = obj.end.substr(0,10);
     opinion.value = obj.opinion;
@@ -143,7 +141,7 @@ function successDetailModal(obj){
     checkedEndDate[0].style.display = 'block';
 
   } else if(obj.typeNo == 4){
-    txt.innerHTML = obj.content;
+    sumTxt[1].innerHTML = obj.content;
     checkStart.value = obj.start.substr(0,10);
     checkEnd.value = obj.end.substr(0,10);
     opinion.value = obj.opinion;
@@ -172,7 +170,7 @@ function successDetailModal(obj){
 
  
   } else if(obj.typeNo == 5){
-    txt.innerHTML = obj.content;
+    sumTxt[1].innerHTML = obj.content;
     opinion.value = obj.opinion;
     next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 
@@ -251,7 +249,6 @@ function successDetailModal(obj){
     dataType : "JSON",
     // 동준작성
     success : function(list) {
-      console.log(list);
 
       const approvalList = list;
       const team = document.querySelectorAll(".check-approval-team");
@@ -630,14 +627,10 @@ window.onclick = function(event) {
 // 취소버튼 작동(kjw)
 function workDelete(obj){
   
-  console.log(obj.workNo);
-  console.log(obj.approvalList);
-  console.log(obj);
 
   let cancleFlag = obj.approvalList.split(",,");
   let cancleFlag2 = cancleFlag[cancleFlag.length-2].split(",");
 
-  console.log(cancleFlag2[1]);
   if(cancleFlag.length > 2 || cancleFlag2[1] != '진행중'){
 
     Swal.fire(

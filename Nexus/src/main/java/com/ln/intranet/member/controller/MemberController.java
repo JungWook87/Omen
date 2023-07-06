@@ -64,12 +64,10 @@ public class MemberController {
 
 			if ( loginMember.getDeptNo() != 100 ) {
 				
-				logger.info("로그인 회원 : " + loginMember.getMemName());
 				return "redirect:/main";	
 				
 			} else if ( loginMember.getDeptNo() == 100 ){
 				
-				logger.info("관리자접속 : " + loginMember.getDeptNo());
 				
 				return "redirect:memberAdd";
 			}
@@ -246,7 +244,6 @@ public class MemberController {
 		
 		NoticeDetail detail = new NoticeDetail();
 		
-		System.out.println("확인용");
 		
 		detail.setNoticeNo(noticeNo);
 		detail.setTitle(title);
@@ -338,7 +335,6 @@ public class MemberController {
 		
 	    int result = service.update(paramMap);
 		
-		logger.info("paramMap: {}", paramMap);
 		
 		String message = null;
 		
@@ -408,8 +404,6 @@ public class MemberController {
 	        ra.addFlashAttribute("message", message);
 		}
 		
-		logger.debug("selectMem: " + selectMem);
-		logger.debug("paramMap: " + paramMap);
 		
 		
 		return new Gson().toJson(selectMem);
@@ -421,7 +415,6 @@ public class MemberController {
 	public String logout(SessionStatus status) {
 
 		
-		logger.info("로그아웃 수행됨");
 		
 		status.setComplete(); 
 		

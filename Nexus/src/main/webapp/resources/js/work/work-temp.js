@@ -36,7 +36,6 @@ attnTypeSelect.addEventListener("change", function(){
 });
 
 function tempWrite(workNo){
-  console.log("여기");
     $.ajax({
         url : "detail",
         type : "GET",
@@ -56,7 +55,6 @@ function tempWrite(workNo){
 
 function againWirte(obj){
 
-console.log(obj);
 
   let startDay = '연도-월-일';
   let endDay = '연도-월-일';

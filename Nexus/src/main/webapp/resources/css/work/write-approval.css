@@ -668,6 +668,11 @@ input[type='date']:valid::before {
 
 }
 
+
 .note-resizebar{
   display: none;
+}
+  
+.table-bordered > tbody > tr > td {
+  border: 1px solid !important;
 }

@@ -8,7 +8,7 @@
       <span id="closeBtn">
         <img src="${contextPath}/resources/images/Xbtn.png" alt="">
       </span>
-      <h1>결제상신</h1>
+      <h1>결재상신</h1>
       <!-- 선1 -->
       <div class="work-modal-line"></div>
 

@@ -1,4 +1,3 @@
-console.log("js loaded");
 
 // 모달창 스타일
 const btn = document.getElementById('popupBtn');
@@ -243,7 +242,6 @@ const fileBox = document.querySelector('.check-file-box');
 let globalNoticeNo = 0;
 // 게시글 디테일 창 오픈
 function detailModal(noticeNo) {
-  console.log(noticeNo);
 
   $.ajax({
     url: "noticeDetail",
@@ -336,9 +334,7 @@ function detailModal(noticeNo) {
             formData.append('uploadFile', files[i]);
           }
 
-          console.log(formData.get('noticeNo'));
-          console.log(formData.get('title'));
-          console.log(formData.get('content'));
+        
           
           $.ajax({
             url: "updateNotice",
@@ -388,7 +384,6 @@ function detailModal(noticeNo) {
 const deleteBtn = document.getElementById('check-remove-btn');
 
 deleteBtn.addEventListener('click', () => {
-  console.log(globalNoticeNo);
   Swal.fire({
     title: '정말 삭제 하시겠습니까?',
     html: `<div style="text-align:center">삭제 하시면 되돌릴수 없습니다</div>`,

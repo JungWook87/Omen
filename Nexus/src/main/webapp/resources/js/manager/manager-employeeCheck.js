@@ -18,7 +18,6 @@ searchBtn.addEventListener('click', () => {
     success : function(selectMem) {
       
       tbody.innerHTML = "";
-      console.log(selectMem);
       if (selectMem.length === 0) {
         Swal.fire("검색 결과가 없습니다.");
       } else {
@@ -88,7 +87,6 @@ function selectAll() {
     url: "selectAll",
     dataType : "JSON",
     success : function(memList) {
-      console.log(memList);
       searchName.value = "";
       tbody.innerHTML = "";
       for(let item of memList) {

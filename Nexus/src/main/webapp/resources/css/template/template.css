@@ -46,31 +46,7 @@ section {
 
 /* 사이드바 선택 되었을때 스타일 */
 /* FIXME:아래 주석처리 되어 있는 코드를 바꿔서 현재페이지에 맞게 지정 해주면 될것 */
-/* .side-bar li:nth-child(2) {   
-  border-left: 10px solid var(--primary500);
 
-  background-color: rgb(230, 232, 236, 50%);
-  
-}
-
-.side-bar li:first-child>a:first-child>span:first-child {
-
-  color: var(--primary400);
-}
-
-.side-bar li:first-child>a:first-child {
-  padding-left: 30px;
-}
-*/
-/* 사이드바 메뉴 선택부분이 두번째 이상일때 */
-/* .side-bar li:nth-child(2)>a:first-child>span:first-child {
-
-  color: var(--primary400);
-}
-
-.side-bar li:nth-child(2)>a:first-child {
-  padding-left: 30px;
-} */
 
 
 /* 사이드바 호버 스타일 시작 ------------------------------*/

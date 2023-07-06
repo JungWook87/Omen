@@ -33,7 +33,6 @@ public class SurveyServiceImp implements SurveyService {
 		int result = dao.createSurvey(survey);
 		int resultCount = 0;
 		
-		logger.info("생성된 설문 번호 : " + result);
 		
 		//리스트를 이용해 지문추가 
 	    if (result > 0) {
@@ -83,7 +82,6 @@ public class SurveyServiceImp implements SurveyService {
 		
 		// 설문 정보 map에 담기 
 		Survey survey = dao.surveyDetail(surveyNo);
-		logger.info(survey.getSurveyTopic());
 		
 		map.put("survey",survey);
 		

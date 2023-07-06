@@ -136,8 +136,8 @@
         
         <!-- 페이지 정의 -->
         <c:set var="flag" value="1" scope="request" />
-        <jsp:include page="/WEB-INF/views/work/checked-approval.jsp" />
         <jsp:include page="/WEB-INF/views/work/write-approval.jsp" />
+        <jsp:include page="/WEB-INF/views/work/checked-approval.jsp" />
 
         <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
         

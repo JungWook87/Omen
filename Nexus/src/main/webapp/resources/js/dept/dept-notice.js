@@ -13,12 +13,10 @@ const noticeContent = document.querySelector('.modal-detail > textarea');
 const jobNoRegex = /jobNo=(\d+)/;
 const jobNoMatch = loginMember.match(jobNoRegex);
 const loginMemberJobNo = jobNoMatch[1];
-console.log(loginMember);
 
 // 공지사항 버튼 이벤트
 btn.addEventListener("click", () => {
   if(parseInt(loginMemberJobNo) === 6) {
-    console.log(loginMemberJobNo);
     Swal.fire({
       html: `
         <div class="custom-message">
@@ -245,7 +243,6 @@ let globalNoticeNo = 0;
 // 게시글 디테일 창 오픈
 function detailModal(noticeNo) {
 
-  console.log(noticeNo);
 
   $.ajax({
     url : "deptNotice/noticeDetail",
@@ -277,7 +274,7 @@ function detailModal(noticeNo) {
         const checkPreviewA = document.createElement("a");
         checkPreviewA.innerText = detail.NoticeFileOrigin;
         checkPreviewA.href = "/intranet" + detail.NoticeFileRename;
-        checkPreviewA.download = detail.boardFileOrigin;
+        checkPreviewA.download = detail.NoticeFileOrigin;
         checkPreview.append(checkPreviewA); 
       }else{
         const checkPreviewA = document.createElement("p");
@@ -337,7 +334,6 @@ function detailModal(noticeNo) {
         checkPreview.firstChild.innerText = "파일 없음";
         checkPreview.firstChild.href = 'null';
         fileData.value = 'true';
-        console.log(fileData.value);
       }
     })
 
