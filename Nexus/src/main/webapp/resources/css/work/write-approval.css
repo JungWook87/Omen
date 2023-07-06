@@ -296,6 +296,7 @@
     height: 30px;
     background-color: var(--primary500);
     color: white;
+    cursor: pointer;
   } 
 
   .dept-list, .senior-list, .team-list{
@@ -345,27 +346,29 @@
     position: relative;
   }
 
-  .approval-team {
+  .approval-team, #senior-team {
     display: none;
+    list-style: none;
     flex-direction: column;
     margin: 10px 5px 10px 5px;
     border-radius: 5px;
     align-items: center !important;
     gap: 10px !important;
     width: 100%;
+    cursor: pointer;
   }
 
-  .approval-team > p{
+  .approval-team >, p #senior-team > p{
   color: white;
   }
 
-  .approval-team input {
+  .approval-team input, #senior-team input {
     width: 10px;
     height: 10px;
     display: none;
   }
 
-  .approval-team label {
+  .approval-team label, #senior-team label {
     color: var(--primary500);
     padding: 5px;
     font-size: 17px;
@@ -653,7 +656,8 @@ input[type='date']:valid::before {
   animation-direction: alternate;
 }
 
-/* 내용 입력창 테이블 볼더 */
-.table-bordered tbody tr td{
-  border: 1px solid;
+
+/* 썸머노트 툴바 */
+.note-toolbar{
+  white-space: pre-wrap;
 }
