@@ -160,8 +160,7 @@ function addListner() {
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
       
-      // 해당 날짜를 보여주는 콘솔로그
-      console.log(day.innerHTML);
+    
 
       getActiveDay(e.target.innerHTML);
       updateEvents(Number(e.target.innerHTML));
@@ -305,10 +304,7 @@ addEventSubmit.addEventListener("click", () => {
   const afternoonChecked = afternoonRadio.checked;
 
   // 값 출력
-  console.log("Selected value:", selectedValue);
-  console.log("Selected text:", selectedText);
-  console.log("Morning radio checked:", morningChecked);
-  console.log("Afternoon radio checked:", afternoonChecked);
+  
 
   // 회의실을 선택 안했거나 오전과 오후중 선택을 안했을때 알림창이 뜸
   if(selectedValue === "placeholder") {
@@ -385,9 +381,7 @@ $(".add-event-btn").click(function() {
   var day = String(currentDate.getDate()).padStart(2, '0');
   var todayDate = year + "-" + month + "-" + day;
 
-  // 전송전 값 확인
-  console.log("selectedRoom:", selectedRoom);
-  console.log("selectedReservationTime:", selectedReservationTime);
+  
 
   $.ajax({
     url: "reservationRoom",

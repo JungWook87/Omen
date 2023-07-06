@@ -99,7 +99,6 @@ $(document).ready(function(){
         type : 'GET',
         success : function(data){
 
-            console.log("프로젝트 : " + data[1].typeName);
 
             var projectLabel = [];
             var projectCount = [];
@@ -170,8 +169,6 @@ $(document).ready(function(){
                         },    
 
                         onClick: function(point, event){
-                            console.log('리스트 순서 : ', event[0]['index']);
-                            console.log('프로젝트넘버 : ', projectNo[event[0]['index']]);
                             createProjectInfo(projectNo[event[0]['index']]);
 
                         },
@@ -218,7 +215,6 @@ window.onload = function() {
 
             // 클릭된 라디오의 밸류 (team.teamNo)
             var selectedTeamNo = this.value;
-            console.log(selectedTeamNo);
             var hrDivs = document.querySelectorAll('.team-data');
             
             // 팀넘버에따라 부여된 id로 div 추적/동작
@@ -255,22 +251,3 @@ function createProjectInfo(projectNo){
 }
 
 
-// console.log(workState);
-// let status = `${taskTotal.workState}`; 
-// let statusClass = "";
-
-// switch(status) {
-//     case '승인':
-//         statusClass = "status-green";
-//         break;
-//     case '진행중':
-//         statusClass = "status-orange";
-//         break;
-//     case '반려':
-//         statusClass = "status-red";
-//         break;
-//     default:
-//         statusClass = "";
-// }
-
-// document.querySelector(".status-text").classList.add(statusClass);

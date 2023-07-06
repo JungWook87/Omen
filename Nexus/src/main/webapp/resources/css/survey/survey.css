@@ -254,17 +254,6 @@ a:focus {
   text-align: left;
 }
 
-/* .survey-table table th:nth-child(1) {
-  width: 100px;
-}
-
-.survey-table table th:nth-child(2) {
-  width: 500px;
-}
-
-.survey-table table th:nth-child(3) {
-  width: 200px;
-} */
 
 .survey-table table td {
   color: var(--black);

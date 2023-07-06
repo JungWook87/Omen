@@ -24,7 +24,6 @@ const txt = document.getElementById("content");
 // ajax 성공 후 결재 디테일 모달창 내용 입력(kjw)
 function successDetailModal(obj){
 
-  console.log(obj);
 
   const workNo = document.getElementById("workNo");
   const memName = document.getElementById("memName");
@@ -109,7 +108,6 @@ function successDetailModal(obj){
   sendDate.innerText = obj.sendDate;
   
   if(obj.typeNo == 1){
-    console.log("come in");
     
     
     txt.innerHTML = obj.content;
@@ -248,7 +246,6 @@ function successDetailModal(obj){
     dataType : "JSON",
     // 동준작성
     success : function(list) {
-      console.log(list);
 
       const approvalList = list;
       const team = document.querySelectorAll(".check-approval-team");
@@ -607,14 +604,10 @@ window.onclick = function(event) {
 // 취소버튼 작동(kjw)
 function workDelete(obj){
   
-  console.log(obj.workNo);
-  console.log(obj.approvalList);
-  console.log(obj);
 
   let cancleFlag = obj.approvalList.split(",,");
   let cancleFlag2 = cancleFlag[cancleFlag.length-2].split(",");
 
-  console.log(cancleFlag2[1]);
   if(cancleFlag.length > 2 || cancleFlag2[1] != '진행중'){
 
     Swal.fire(

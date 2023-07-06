@@ -59,7 +59,6 @@ public class MeetingRoomController {
 	   meetingRoom.setReservationDate(reservationDate);
 	  
 
-	   logger.info(reservationDate);
 	   
 	   int result = service.reservationRoom(meetingRoom);
 	   

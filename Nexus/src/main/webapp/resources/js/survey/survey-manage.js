@@ -53,7 +53,6 @@ function addStatusLabel() {
 
   endDateElements.forEach(function (element) {
   var endDate = element.textContent.trim();
-  console.log(endDate + ">=" + currentDate );
   if (endDate >= currentDate) {
       element.textContent = '진행중';
   } else {

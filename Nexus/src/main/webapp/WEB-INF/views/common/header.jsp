@@ -28,7 +28,6 @@
               <li><a href="${contextPath}/meetingRoom/reservation">회의실</a> </li>
               <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
               <li class="employee-rank-change"><a href="${contextPath}/dashBoard/dashBoardMain">대시보드</a></li>
-              <!-- <li id="employee-rank-change"><a href="dashBoard">대시보드</a></li> -->
             </ul>
           </div>
 
@@ -65,7 +64,6 @@
           <li><a href="${contextPath}/meetingRoom/reservation">회의실</a> </li>
           <li><a href="${contextPath}/survey/surveyList">설문</a> </li>
           <li class="Responsive-employee-rank-change"><a href="${contextPath}/dashBoard/dashBoardMain">대시보드</a></li>
-          <!-- <li id="employee-rank-change"><a href="dashBoard">대시보드</a></li> -->
           <li><a href="${contextPath}/member/myPageProfile">마이페이지</a> </li>
           <li><a class="log-out">로그아웃</a></li>
         </ul>

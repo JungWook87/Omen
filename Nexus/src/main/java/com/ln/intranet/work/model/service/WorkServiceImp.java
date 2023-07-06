@@ -74,7 +74,6 @@ public class WorkServiceImp implements WorkService {
 		int workNo = Integer.parseInt(map.get("workNo").toString());	
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());	
 		
-		System.out.println(workNo);
 		
 		if( typeNo == 4 ) {
 			return pDao.projectCancle(workNo);
@@ -97,7 +96,6 @@ public class WorkServiceImp implements WorkService {
 		
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());
 		
-		System.out.println("abs : " + map.get("next").toString());
 		
 		if(map.get("next").toString().equals("undefined")) {
 			map.put("next", "");
@@ -201,7 +199,6 @@ public class WorkServiceImp implements WorkService {
 				    task.setDeptNo((Integer)map.get("deptNo"));
 				    int successCount = pDao.createTask(task);
 				    if(successCount > 0)  taskCount++;	    
-				    logger.info("생성된 과제 수 : " + taskCount);
 				}	
 			}
 			
@@ -333,7 +330,6 @@ public class WorkServiceImp implements WorkService {
 			map.put("opinion", Util.newLineHandling(map.get("opinion").toString()));
 		}
 		
-		System.out.println(map);
 		// 연차 또는 출장 관련 결재 최종 승인 시 근태 테이블에 값 넣기
 		int typeNo = Integer.parseInt(map.get("typeNo").toString());
 			

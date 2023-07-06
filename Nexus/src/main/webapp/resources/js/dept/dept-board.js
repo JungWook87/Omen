@@ -234,7 +234,6 @@ const fileData = document.querySelector('input[name="fileData"]');
 const memNoRegex = /memNo=(\d+)/;
 const memNoMatch = loginMember.match(memNoRegex);
 const loginMemberMemNo = memNoMatch[1];
-console.log(loginMemberMemNo);
 
 // 게시글 디테일 창 오픈
 function detailModal(boardNo) {
@@ -249,8 +248,6 @@ function detailModal(boardNo) {
       const authorMemNo = detail.memNo;
       const isMyPost = (parseInt(loginMemberMemNo) === authorMemNo);
 
-      console.log(authorMemNo);
-      console.log(isMyPost);
 
       if (isMyPost) {
         modifyBtn.style.display = 'inline-block';
@@ -334,7 +331,6 @@ function detailModal(boardNo) {
           checkPreview.firstChild.innerText = "파일 없음";
           checkPreview.firstChild.href = 'null';
           fileData.value = 'true';
-          console.log(fileData.value);
         }
       })
 

@@ -143,8 +143,8 @@
                 <tbody>
                   <c:choose>
                     <c:when test="${empty boardList}">
-                      <tr>
-                        <th colspan="4">게시글이 존재하지 않습니다.</th>
+                      <tr class="noneHover">
+                        <th colspan="4" class="noneNotice">게시글이 존재하지 않습니다.</th>
                       </tr>
                     </c:when>
                

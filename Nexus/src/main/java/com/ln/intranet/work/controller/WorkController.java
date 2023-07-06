@@ -171,7 +171,6 @@ public class WorkController {
 			HttpServletRequest req,
 			RedirectAttributes ra) {
 		
-		System.out.println(map);
 
 		map.put("memNo", loginMember.getMemNo());
 		map.put("deptNo",loginMember.getDeptNo());
@@ -261,7 +260,6 @@ public class WorkController {
 	@ResponseBody
 	public int tempDelete(@RequestParam("workNo") int workNo) {
 		
-		System.out.println("workNo : " + workNo);
 		
 		int result = service.tempDelete(workNo);
 		

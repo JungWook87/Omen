@@ -73,9 +73,7 @@ window.addEventListener('DOMContentLoaded', function () {
         participationCount++;
       }
     }
-    
-    console.log('surveyList 개수:', surveyListLength);
-    console.log('participation 개수:', participationCount);
+   
 });
 
 function filterSurveyList(flag){
