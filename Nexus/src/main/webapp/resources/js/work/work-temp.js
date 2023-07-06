@@ -36,6 +36,7 @@ attnTypeSelect.addEventListener("change", function(){
 });
 
 function tempWrite(workNo){
+  console.log("여기");
     $.ajax({
         url : "detail",
         type : "GET",
@@ -43,6 +44,9 @@ function tempWrite(workNo){
         data : {"workNo" : workNo},
         success : function(detailSelect){
 
+        // 임시저장된 행 테이블 지우기
+
+        // workNo를 기준으로 저장된 내용 불러와서 작성창에 넣기
         againWirte(detailSelect);
 
         }
@@ -113,6 +117,11 @@ console.log(obj);
       workEndDate.style.display = 'block'; // 종료일 영역
       workDetail.style.display = 'block'; // 내용 영역
   }
+
+  // 임시저장일 경우 아이디값 변경으로 클릭시 새로운 함수 시행되게끔
+  successBtn.style.display = "none";
+  tempSuccessBtn.style.display = "inline-block";
+  tempSuccessBtn.setAttribute("onclick", "tempWriteDelete(" + obj.workNo + ")");
 
   modalBody.classList.add('modal-open');
 }

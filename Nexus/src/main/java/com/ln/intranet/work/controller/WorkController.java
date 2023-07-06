@@ -256,7 +256,17 @@ public class WorkController {
 	}
 	
 	
-	
+	// 결재 임시저장 제출 완료 후 임시저장 지우기
+	@GetMapping("/tempDelete")
+	@ResponseBody
+	public int tempDelete(@RequestParam("workNo") int workNo) {
+		
+		System.out.println("workNo : " + workNo);
+		
+		int result = service.tempDelete(workNo);
+		
+		return result;
+	}
 	
 	
 	

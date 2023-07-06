@@ -61,7 +61,7 @@
 	<!-- 직원 추가 -->
 	<insert id="signUp" useGeneratedKeys="true"> 
 		<selectKey keyProperty="memNo" resultType="_int" order="BEFORE">
-				SELECT SEQ_MEMBER_NO.NEXTVAL FROM DUAL
+				SELECT SEQ_MEM_NO.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO MEMBER
 		VALUES(#{memNo},

@@ -296,6 +296,7 @@
     height: 30px;
     background-color: var(--primary500);
     color: white;
+    cursor: pointer;
   } 
 
   .dept-list, .senior-list, .team-list{
@@ -345,27 +346,29 @@
     position: relative;
   }
 
-  .approval-team {
+  .approval-team, #senior-team {
     display: none;
+    list-style: none;
     flex-direction: column;
     margin: 10px 5px 10px 5px;
     border-radius: 5px;
     align-items: center !important;
     gap: 10px !important;
     width: 100%;
+    cursor: pointer;
   }
 
-  .approval-team > p{
+  .approval-team >, p #senior-team > p{
   color: white;
   }
 
-  .approval-team input {
+  .approval-team input, #senior-team input {
     width: 10px;
     height: 10px;
     display: none;
   }
 
-  .approval-team label {
+  .approval-team label, #senior-team label {
     color: var(--primary500);
     padding: 5px;
     font-size: 17px;
@@ -583,7 +586,7 @@
   transition: all 1s;
 }
 
-#success-btn, #approver-success-btn {
+#success-btn, #approver-success-btn, #tempSuccessBtn {
   width: 60px;
   height: 30px;
 
@@ -604,6 +607,11 @@
 }
 
 #success-btn:hover {
+  background-color: var(--primary500);
+  transition: all 1s;
+}
+
+#tempSuccessBtn:hover {
   background-color: var(--primary500);
   transition: all 1s;
 }
@@ -648,7 +656,14 @@ input[type='date']:valid::before {
   animation-direction: alternate;
 }
 
+
 /* 결재자선택창 폰트조정 */
 label{
   font-family: 'NanumSquareNeo-Variable';
+}
+
+/* 썸머노트 툴바 */
+.note-toolbar{
+  white-space: pre-wrap;
+
 }

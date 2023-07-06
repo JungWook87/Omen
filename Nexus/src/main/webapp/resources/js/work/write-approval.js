@@ -28,9 +28,11 @@ const workStartDateText = document.querySelector('.work-modal-startDate > input'
 const workEndDateText = document.querySelector('.work-modal-endDate > input'); // 종료 날짜 
 const workProjectboxText = workProjectbox.querySelectorAll('input'); // 과제명, 과제내용 
 const showMember = document.getElementById("showMemName"); // 결재자 이름
+const seniorTeam = document.getElementById("senior-team"); // 임원팀
 
 
 const sumTxt = document.getElementsByClassName("note-editable");
+
 
 // 날짜 조건 걸기(kjw)
 (function(){
@@ -53,10 +55,16 @@ const sumTxt = document.getElementsByClassName("note-editable");
 // 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
 
+  // 그냥 작성일 때와 임시저장에서 작성 할 때의 아이디 변경을 통해
+  // 다른 함수가 실행되게 한다. 그래서 임시저장 확인에서는 해당 문서 삭제를 진행하고 새로운 글로 입력되게 한다
+  successBtn.style.display = "inline-block";
+  tempSuccessBtn.style.display = "none";
+
+  sumTxt[0].setAttribute("spellcheck", "false");
   
   $('.summernote').summernote('code', '');
   workTitle.value = '';
-  workContent.value = '';
+  sumTxt[0].innerHTML = '';
   workApprover.value = '';
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
   showMember.innerText = '-';
@@ -170,7 +178,7 @@ workTemplateSelect.addEventListener('change', () => {
 
   console.log("selectedValue",selectedValue);
   workTitle.value = '';
-  workContent.value = '';
+  sumTxt[0].innerHTML = '';
   workApprover.value = '';
   workDetail.querySelector('textarea').value = '';
   workProjectbox.querySelectorAll('input').forEach(input => input.value = '');
@@ -196,7 +204,7 @@ workTemplateSelect.addEventListener('change', () => {
     normalCheckSelect.style.display = 'block';
     workModaltitle.style.display = 'block'; 
     workDetail.style.display = 'block';
-    workContent.value = '';
+    sumTxt[0].innerHTML = '';
 
   } 
 
@@ -205,13 +213,15 @@ workTemplateSelect.addEventListener('change', () => {
     workStartDate.style.display = 'block'; 
     workEndDate.style.display = 'block';
     workDetail.style.display = 'block';
-    workContent.value = 
-    '\n***** 출장 신청서 *****\n\n\n' + 
-    '1. 출장 인원(성명/소속/직급/사번) :  \n' + 
-    '   1) \n\n\n' +
-    '2. 출장지 : \n\n\n' +
-    '3. 출장 내용 : \n\n\n' +
-    '4. 비고 : ';
+    sumTxt[0].innerHTML = 
+    '<h1 style="text-align: center; ">출장 신청서</h1><p><br></p><h3><br></h3><h3><br></h3><h3>' + 
+    '1. 출장 인원</h3><table class="table table-bordered"><tbody><tr><td style="text-align: center; "><h4>성명</h4></td><td style="text-align: center;">' +
+    '<h4>소속</h4></td><td style="text-align: center;"><h4>직급</h4></td><td style="text-align: center;"><h4>사번</h4></td></tr><tr><td><br></td><td><br></td><td><br></td><td><br></td></tr>' + 
+    '<tr><td><br></td><td><br></td><td><br></td><td><br></td></tr><tr><td><br></td><td><br></td><td><br></td><td><br></td></tr><tr><td><br></td>' +
+    '<td><br></td><td><br></td><td><br></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '2. 출장지&nbsp;</h3><table class="table table-bordered"><tbody><tr><td><br></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '3. 출장 내용</h3><table class="table table-bordered"><tbody><tr><td><br></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '4. 비고</h3><table class="table table-bordered"><tbody><tr><td><br></td></tr></tbody></table><p><br></p>';
   }
 
   if(selectedValue === 'vacation') {
@@ -271,43 +281,36 @@ workTemplateSelect.addEventListener('change', () => {
 
 // 일반 결재의 세부사항 선택창 변경시 내용 변경(kjw)
 normalCheckSelect.addEventListener("change", function(){
-  workContent.value = '';
+  sumTxt[0].innerHTML = '';
 
   if(normalCheckSelect.value == 'normalEx1'){
-    workContent.value = 
-    '\n***** 경조금 지급 신청서 *****\n\n\n' + 
-    '1. 경조금 수혜자\n' + 
-    '   소속 :  \n' +
-    '   성명 :  \n\n\n' + 
-    '2. 지급사유\n' +
-    '   경조 대상자 성명 :  \n' + 
-    '   관계 :  \n' + 
-    '   경조일(장례시 발인일 입력) :  \n' + 
-    '   경조 내용 :  \n\n\n' + 
-    '3. 지급 금액 : \n\n\n' +
-    '4. 지급 계좌 : ';
+    sumTxt[0].innerHTML = 
+    '<h1 style="text-align: center; ">경조금 지급 신청서</h1><p><br></p><h3><br></h3><h3><br></h3><h3>1. 경조금 수혜자</h3><table class="table table-bordered"><tbody><tr><td style="text-align: center; ">' + 
+    '<h4>성명</h4></td><td style="text-align: center;"><h4>소속</h4></td><td style="text-align: center;"><h4>직급</h4></td><td style="text-align: center;">' + 
+    '<h4>사번</h4></td></tr><tr><td><br></td><td><br></td><td><br></td><td><br></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '2. 지급 사유</h3><table class="table table-bordered"><tbody><tr><td style="text-align: center; "><h4>경조 대상자 성명</h4></td><td style="text-align: center;">' +
+    '<h4>관계</h4></td><td style="text-align: center;"><h4>경조일 (장례식 발인일 입력)</h4></td><td style="text-align: center;">' +
+    '<h4>경조 내용</h4></td></tr><tr><td><br></td><td><br></td><td><br></td><td><br></td></tr></tbody></table><p><br></p><p><br></p>' +
+    '<h3>3. 지급 금액</h3><table class="table table-bordered"><tbody><tr><td><br></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '4. 지급 계좌</h3><table class="table table-bordered"><tbody><tr><td><br></td></tr></tbody></table><p><br></p>'
   } else if(normalCheckSelect.value == 'normalEx2'){
-    workContent.value = 
-    '\n***** 구매 요청서 *****\n\n\n' + 
-    '1. 구매 요청 부서 :  \n\n\n' + 
-    '2. 구매 목적(필요성) :  \n\n\n' +
-    '3. 희망 납기일 : \n\n\n' +
-    '4. 구매 요청 품목 (품목명 / 모델명 / 수량 / 단가 / 금액 / 사용부서(사용자)) \n' +
-    '   1) \n\n\n' +
-    '5. 합계 금액 : \n\n\n' +
-    '6. 관련 구매 링크 : '
+    sumTxt[0].innerHTML = 
+    '<h1 style="text-align: center; ">구매 요청서</h1><p><br></p><h3><br></h3><h3><br></h3><h3>' +
+    '1. 구매 요청 부서</h3><table class="table table-bordered"><tbody><tr><td style="text-align: center; "><h4 style="text-align: left; "><br></h4></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '2. 구매 목적 (필요성)</h3><table class="table table-bordered"><tbody><tr><td style="text-align: center; "><h4 style="text-align: left; "><br></h4></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '3. 희망 납기일</h3><table class="table table-bordered"><tbody><tr><td><br></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '4. 구매 요청 품목</h3><table class="table table-bordered"><tbody><tr><td><h4 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;품목명&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h4></td><td><h4 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;모델명&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h4></td><td><h4 style="text-align: center;">&nbsp; 수량&nbsp;&nbsp;</h4></td><td><h4 style="text-align: center;">&nbsp; 단가&nbsp;&nbsp;</h4></td><td><h4 style="text-align: center;">&nbsp; 금액&nbsp;&nbsp;</h4></td><td><h4 style="text-align: center;">사용부서 (사용자)</h4></td></tr><tr><td><br></td><td><br></td><td><br></td><td><br></td><td><br></td><td><br></td></tr></tbody></table><p><br></p><p><br></p><h3>' + 
+    '5. 합계금액</h3><table class="table table-bordered"><tbody><tr><td><br></td></tr></tbody></table><br><p><br></p><h3>' +
+    '6. 관련 구매 링크</h3><table class="table table-bordered"><tbody><tr><td><h4 style="text-align: center; ">품목명</h4></td><td><h4 style="text-align: center; ">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;링크&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h4></td></tr><tr><td><br></td><td><br></td></tr></tbody></table><h3><br></h3>';
   } else if(normalCheckSelect.value == 'normalEx3'){
-    workContent.value = 
-    '\n***** 자산 요청서 *****\n\n\n' + 
-    '1. 자산 요청 부서 :  \n\n\n' + 
-    '2. 자산 요청 목적(필요성) :  \n\n\n' +
-    '4. 자산 요청 품목 (품목명 / 모델명 / 수량 / 사용부서(사용자)) \n' +
-    '   1) \n\n\n';
+    sumTxt[0].innerHTML = 
+    '<h1 style="text-align: center; ">자산 요청서</h1><p><br></p><h3><br></h3><h3><br></h3><h3>1. 자산 요청 부서</h3><table class="table table-bordered"><tbody><tr><td style="text-align: center; "><h4 style="text-align: left; "><br></h4></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '2. 자산 요청 목적 (필요성)</h3><table class="table table-bordered"><tbody><tr><td style="text-align: center; "><h4 style="text-align: left; "><br></h4></td></tr></tbody></table><p><br></p><p><br></p><h3>' +
+    '3. 자산 요청 품목<br></h3><table class="table table-bordered"><tbody><tr><td><h4 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;품목명&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h4></td><td><h4 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;모델명&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h4></td><td><h4 style="text-align: center;">&nbsp; 수량&nbsp;&nbsp;</h4></td><td><h4 style="text-align: center;">사용부서 (사용자)</h4></td></tr><tr><td><br></td><td><br></td><td><br></td><td><br></td></tr></tbody></table><p><br></p>';
   } else if(normalCheckSelect.value == 'normalEx4'){
-    workContent.value = 
-    '\n***** 지출 결의서 *****\n\n\n' + 
-    '1. 지출 결의서 (거래일 / 거래처명 / 내용 / 금액 / 지급요청일 / 예금주 / 은행 / 계죄번호)  \n' + 
-    '   1) \n';
+    sumTxt[0].innerHTML = 
+    '<h1 style="text-align: center; ">지출 결의서</h1><p><br></p><h3><br></h3><h3><br></h3><h3>' +
+    '1. 지출 결의서</h3><table class="table table-bordered"><tbody><tr><td style="text-align: center; "><h4>거래일</h4></td><td style="text-align: center;"><h4>거래처명</h4></td><td style="text-align: center;"><h4>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 내용&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</h4></td><td style="text-align: center;"><h4>금액</h4></td><td style="text-align: center;"><h4>지급요청일</h4></td><td style="text-align: center;"><h4>예금주</h4></td><td style="text-align: center;"><h4>은행</h4></td><td style="text-align: center;"><h4>계좌번호</h4></td></tr><tr><td><br></td><td><br></td><td><br></td><td><br></td><td><br></td><td><br></td><td><br></td><td><br></td></tr></tbody></table><h3><br></h3>';
   }
 
 });
@@ -365,7 +368,23 @@ pulsApproverBtn.addEventListener("click",() => {
         input.classList.add("approver-checkBox");
         input.value = value.memNo;
 
-          if (value.teamNo == 11) {
+
+          if(value.jobNo == 1){
+            div.append(input);
+            div.append(label);
+
+            seniorTeam.append(div);
+          } else if(value.jobNo == 2){
+            div.append(input);
+            div.append(label);
+
+            seniorTeam.append(div);
+          } else if(value.jobNo == 3){
+            div.append(input);
+            div.append(label);
+
+            seniorTeam.append(div);
+          } else if (value.teamNo == 11) {
             div.append(input);
             div.append(label);
 
@@ -465,6 +484,8 @@ const SeniorList = document.querySelectorAll(".senior-list");
 const deptList = document.querySelectorAll(".dept-list");
 const teamList = document.querySelectorAll(".team-list");
 
+
+// 임원 조회 이벤트
 Executives.querySelector("p").addEventListener("click", ()=> {
 
   for(let i = 0; i < teamList.length; i++) {
@@ -484,6 +505,23 @@ Executives.querySelector("p").addEventListener("click", ()=> {
   }
 })
 
+// 사장, 전무이사, 상무이사 조회
+for(let i = 0; i < SeniorList.length; i++){
+  SeniorList[i].addEventListener("click", ()=>{
+
+    if( i === 0){
+      seniorTeam[0].classList.toggle('show');
+    } else if( i === 1){
+      seniorTeam[1].classList.toggle('show');
+    } else if( i === 2){
+      seniorTeam[2].classList.toggle('show');
+    }  
+  })
+}
+
+
+
+// 부서 조회 이벤트
 dept.querySelector("p").addEventListener("click", ()=> {
 
   for(let i = 0; i < SeniorList.length; i++){
@@ -722,6 +760,7 @@ fileRemove.addEventListener("click", () => {
 // form 넘기기
 const saveDraft = document.getElementById("save-draft"); // 임시저장 버튼
 const successBtn = document.getElementById("success-btn"); // 제출 버튼
+const tempSuccessBtn = document.getElementById("tempSuccessBtn"); // 임시 저장 제출 버튼
 const writeForm = document.getElementById("writeForm"); // form 요소
 const tempSaveFlag = document.getElementById("tempSaveBtn-checkbox");
 
@@ -807,25 +846,121 @@ successBtn.addEventListener("click", function(){
   
 })
 
+// 임시저장에서 제출 확인버튼 누를 때
+function tempWriteDelete(workNo){
+  tempSaveFlag.value = false;
+
+  if(workTemplateSelect.value === 'normal-check'){
+  
+    if(workTitle.value === "") {
+      Swal.fire('제목을 입력해 주세요');
+    } else if(workContent.value === "") {
+      Swal.fire('내용을 입력해 주세요');
+    } else if(workApprover.value === '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else{
+      tempDelete(workNo);
+    }
+
+  } else if(workTemplateSelect.value === 'business-trip'){
+
+    if(workStartDateText.value === "") {
+      Swal.fire('시작날짜를 입력해 주세요');
+    } else if(workEndDateText.value === "") {
+      Swal.fire('종료날짜를 입력해 주세요');
+    } else if(workContent.value === "") {
+      Swal.fire('출장내용을 입력해 주세요');
+    } else if(workApprover.value === '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else{
+      tempDelete(workNo);
+    }
+
+  } else if(workTemplateSelect.value === 'vacation'){
+    if(workStartDateText.value === "") {
+      Swal.fire('시작날짜를 입력해 주세요');
+    } else if(workEndDateText.value === "") {
+      Swal.fire('종료날짜를 입력해 주세요');
+    } else if(workApprover.value == '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else{
+      tempDelete(workNo);
+    }
+
+  } else if(workTemplateSelect.value === 'project'){
+    if(workTitle.value === "") {
+      Swal.fire('제목을 입력해 주세요');
+    } else if(workContent.value === "") {
+      Swal.fire('내용을 입력해 주세요');
+    } else if(workProjectboxText.value === "") {
+      Swal.fire('프로젝트 내용을 입력해 주세요');
+    } else if(workApprover.value === '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else { 
+      tempDelete(workNo);
+    }
+  } else if(workTemplateSelect.value === 'assignment'){
+    if(workContent.value === "") {
+      Swal.fire('내용을 입력해 주세요');
+    } else if(workProjectboxText.value === "") {
+      Swal.fire('과제 내용을 입력해 주세요');
+    } else if(workApprover.value === '') {
+      Swal.fire('결재자를 입력해 주세요')
+    } else { 
+      tempDelete(workNo);
+    }
+  }
+}
+
+// 문서 지우기
+function tempDelete(workNo){
+  $.ajax({
+    url : "tempDelete",
+    dataType : "JSON",
+    type : "GET",
+    data : {"workNo" : workNo},
+    success : function(){
+      writeForm.submit();
+    },
+    error : function(){
+      console.log("임시저장 지우다가 에러");
+    }
+  });
+}
 
   // --------------------------------------------------------------------------------
 //썸머노트 테스트
 $(document).ready(function() {
 	//여기 아래 부분
 	$('.summernote').summernote({
+    toolbar: [
+      // [groupName, [list of button]]
+      ['fontname', ['fontname']],
+      ['fontsize', ['fontsize']],
+      ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+      ['color', ['forecolor','color']],
+      ['table', ['table']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['height', ['height']],
+      ['view', ['help']]
+    ],
+  fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+
 		  height: 300,                 // 에디터 높이
 		  minHeight: null,             // 최소 높이
 		  maxHeight: null,             // 최대 높이
 		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		  lang: "ko-KR",					// 한글 설정
-		  placeholder: '내용을 작성해주세요.',	//placeholder 설정
-      callbacks: {
-        onImageUpload: function(files, editor, welEditable) {
-          for(var i = files.length -1; i>=0; i--) {
-            sendFile(files[i], this);
-          }
-      }
-    }   
+      popover: {//팝오버 설정
+
+      image: [], //이미지 삭제
+
+      link: [], //링크 삭제
+
+      air: []
+
+   }
 	});
 
   $('#summernote').summernote('insertText', 'TEST');

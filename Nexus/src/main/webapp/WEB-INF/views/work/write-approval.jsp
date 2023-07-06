@@ -79,7 +79,7 @@
           <!-- 내용 -->
           <div class="work-modal-detail">
             <p>내용</p>
-            <textarea name="content" class="summernote" ></textarea>
+            <textarea name="content" class="summernote" spellcheck="false"></textarea>
           </div>
 
           <!-- 프로젝트박스 -->
@@ -133,6 +133,7 @@
         <div class="work-submit-reset-btns">
           <button type="button" id="cancell-btn">취소</button>
           <button type="button" id="success-btn" value="submitBtn">확인</button>
+          <button type="button" id="tempSuccessBtn" value="submitBtn" style="display: none;">확인</button>
         </div>
         
         <div id="approver-modal-wrap">
@@ -163,9 +164,8 @@
 
                   <ul class="senior">
                     <li class="senior-list"><p>대표이사</p></li>
-                    <li class="senior-list"><p>사장</p></li>
-                    <li class="senior-list"><p>부사장</p></li>
-                    <li class="senior-list end"><p>전무</p></li>
+                    <li class="senior-list"><p>전무이사</p></li>
+                    <li class="senior-list"><p>상무이사</p></li>
                   </ul>
 
                   <ul class="team">
@@ -191,6 +191,13 @@
                 </div>
 
                 <div class="teamone-Box">
+
+
+                  <ul style="display: flex; flex-direction: column;">
+                    <li id="senior-team"></li>
+                    <li id="senior-team"></li>
+                    <li id="senior-team"></li>
+                  </ul>
 
                   <ul style="display: flex; flex-direction: column;">
 
