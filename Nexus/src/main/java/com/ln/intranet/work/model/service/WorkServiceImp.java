@@ -61,6 +61,7 @@ public class WorkServiceImp implements WorkService {
 		
 		if(detailSelect.getContent() != null) {			
 			detailSelect.setContent(Util.newLineClear(detailSelect.getContent()));
+			detailSelect.setContent(Util.XSSClear(detailSelect.getContent()));
 		}
 		
 		return detailSelect;

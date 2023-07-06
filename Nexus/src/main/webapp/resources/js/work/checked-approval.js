@@ -17,9 +17,8 @@ const checkedEndDate = document.getElementsByClassName("checked-modal-endDate");
 const checkedModalTaskList = document.querySelector('.checked-modal-taskList'); 
 const checkedModalTaskDiv = document.querySelector('.modal-task-div');
 const checkedModalTableBody = document.querySelector('.modal-table-body');
+const txt = document.getElementById("content");
 
-// 썸머노트 테스트
-const sumTest = $('.summernote').summernote('code');
 
 
 // ajax 성공 후 결재 디테일 모달창 내용 입력(kjw)
@@ -110,9 +109,10 @@ function successDetailModal(obj){
   sendDate.innerText = obj.sendDate;
   
   if(obj.typeNo == 1){
-    console.log("들어오는지");
-    // content.value = obj.content;
-    sumTest[0].innerHTML = obj.content;
+    console.log("come in");
+    
+    
+    txt.innerHTML = obj.content;
 
     opinion.value = obj.opinion;
     next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
@@ -129,7 +129,7 @@ function successDetailModal(obj){
     checkedEndDate[0].style.display = 'block';
 
   } else if(obj.typeNo == 3){
-    content.value = obj.content;
+    txt.innerHTML = obj.content;
     checkStart.value = obj.start.substr(0,10);
     checkEnd.value = obj.end.substr(0,10);
     opinion.value = obj.opinion;
@@ -140,7 +140,7 @@ function successDetailModal(obj){
     checkedEndDate[0].style.display = 'block';
 
   } else if(obj.typeNo == 4){
-    content.value = obj.content;
+    txt.innerHTML = obj.content;
     checkStart.value = obj.start.substr(0,10);
     checkEnd.value = obj.end.substr(0,10);
     opinion.value = obj.opinion;
@@ -169,7 +169,7 @@ function successDetailModal(obj){
 
  
   } else if(obj.typeNo == 5){
-    content.value = obj.content;
+    txt.innerHTML = obj.content;
     opinion.value = obj.opinion;
     next2.value = obj.nextMemName + " (" + obj.nextMemEmail + ")";
 

@@ -9,7 +9,7 @@
       <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">jquery
         <link rel="stylesheet" href="${contextPath}/resources/css/common/component.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
@@ -26,6 +26,11 @@
 
         <!-- 폰트어썸 -->
         <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
+
+        <!-- 서머노트를 위해 추가해야할 부분 -->
+        <script src="${contextPath}/resources/js/summernote/summernote-lite.js"></script>
+        <script src="${contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+        <link rel="stylesheet" href="${contextPath}/resources/css/summernote/summernote-lite.css">
 
         <title>결재-임시저장</title>
       </head>
