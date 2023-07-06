@@ -396,6 +396,7 @@ body {
 .main-header-ul a {
     text-decoration: none;
     color: white;
+    padding-top: 10px;
 }
 
 .main-header-ul a:hover {
@@ -899,28 +900,28 @@ td:last-child {
 
 
 /* 메인 결재 리스트 */
-#workMin > span:nth-of-type(1){
+#workMin>span:nth-of-type(1) {
     width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space:nowrap;
+    white-space: nowrap;
 }
 
-#workMin > span:nth-of-type(2){
+#workMin>span:nth-of-type(2) {
     width: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space:nowrap;
+    white-space: nowrap;
 }
 
-#workMin > span:nth-of-type(3){
+#workMin>span:nth-of-type(3) {
     width: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space:nowrap;
+    white-space: nowrap;
 }
 
-#workMin > span{
+#workMin>span {
     font-size: 1em;
     margin-bottom: 2px;
     padding-top: 2px;
