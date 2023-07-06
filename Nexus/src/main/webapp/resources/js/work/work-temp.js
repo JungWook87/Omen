@@ -52,6 +52,8 @@ function tempWrite(workNo){
 
 function againWirte(obj){
 
+console.log(obj);
+
   let startDay = '연도-월-일';
   let endDay = '연도-월-일';
   if(obj.start != null){
@@ -65,7 +67,7 @@ function againWirte(obj){
   workTitle.value = obj.title; // 제목 값
 
   if(obj.content == null) obj.content = ''; // 내용값이 없을 때 ''으로 수정
-  workContent.value = obj.content; // 내용 값
+  sumTxt[0].innerHTML = obj.content; // 내용 값
 
   workStartDateText.value = startDay; // 시작일 값
   workEndDateText.value = endDay; // 종료일 값

@@ -29,8 +29,13 @@ const workEndDateText = document.querySelector('.work-modal-endDate > input'); /
 const workProjectboxText = workProjectbox.querySelectorAll('input'); // 과제명, 과제내용 
 const showMember = document.getElementById("showMemName"); // 결재자 이름
 
+const sumTxt = document.getElementsByClassName("note-editable");
+
 // 결제창 버튼 이벤트
 btn.addEventListener("click", () => {
+
+  
+  $('.summernote').summernote('code', '');
   workTitle.value = '';
   workContent.value = '';
   workApprover.value = '';
@@ -792,7 +797,7 @@ $(document).ready(function() {
 		  maxHeight: null,             // 최대 높이
 		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 		  lang: "ko-KR",					// 한글 설정
-		  placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+		  placeholder: '내용을 작성해주세요.',	//placeholder 설정
       callbacks: {
         onImageUpload: function(files, editor, welEditable) {
           for(var i = files.length -1; i>=0; i--) {
@@ -801,4 +806,6 @@ $(document).ready(function() {
       }
     }   
 	});
+
+  $('#summernote').summernote('insertText', 'TEST');
 });

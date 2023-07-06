@@ -277,6 +277,15 @@
     font-size: 16px;
     list-style: none;
   }
+
+  #content{
+    border: 1px solid var(--gray200);
+    padding: 20px;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: none;
+  }
+
   /* work-inbox 추가사항(삭제 예정) */
   .check-modalBody h1 {
     color: var(--black);
