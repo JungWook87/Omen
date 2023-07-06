@@ -562,3 +562,7 @@
   margin-bottom : 30px;
 }
 
+/* 체크 내용 백그라운드 */
+.note-editable{
+  background-color: white !important;
+}

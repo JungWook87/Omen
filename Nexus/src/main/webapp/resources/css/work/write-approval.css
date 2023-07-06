@@ -667,3 +667,7 @@ label{
   white-space: pre-wrap;
 
 }
+
+.table-bordered > tbody > tr > td {
+  border: 1px solid !important;
+}

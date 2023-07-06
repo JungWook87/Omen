@@ -77,6 +77,7 @@ attnTypeSelect.addEventListener("change", function(){
 
     for(let i = 0; i < listTr.length; i++){
         listTr[i].style.display = 'table-row';
+        cnt++;
     }
 
   } else{
