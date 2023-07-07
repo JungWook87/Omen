@@ -82,7 +82,7 @@ function getChattingList() {
     contactArea.innerHTML = '';
     
 	  $.ajax({
-	  url : 'http://3.37.18.102:8080/loginMember',
+	  url : 'http://nexus.o-r.kr:8080/loginMember',
 	  type : 'POST',
 	  dataType : 'JSON',
 	  success : function(loginMemberInfo) {
@@ -100,7 +100,7 @@ function getChattingList() {
     
    
     $.ajax({
-         url: 'http://3.37.18.102:8080/chatRoomList',
+         url: 'http://nexus.o-r.kr:8080/chatRoomList',
         type : "POST",
         dataType : "JSON",
         success : function(RoomList) {
@@ -202,7 +202,7 @@ function getChattingList() {
 			  }).then((result) => {
 			    if (result.isConfirmed) {
 			      $.ajax({
-			        url: 'http://3.37.18.102:8080/exitChatRoom',
+			        url: 'http://nexus.o-r.kr:8080/exitChatRoom',
 			        type: "POST",
 			        dataType: "JSON",
 			        data: {
@@ -241,7 +241,7 @@ function getChattingList() {
 
                 // AJAX 요청으로 채팅 내용 가져오기
                 $.ajax({
-                  url: 'http://3.37.18.102:8080/chatMessageList/' + cmNo,
+                  url: 'http://nexus.o-r.kr:8080/chatMessageList/' + cmNo,
                   type: 'GET',
                   dataType : 'JSON',
                   success: function(chatMessageList) {
@@ -252,7 +252,7 @@ function getChattingList() {
                 
 
                     $.ajax({
-                      url : 'http://3.37.18.102:8080/loginMember',
+                      url : 'http://nexus.o-r.kr:8080/loginMember',
                       type : 'POST',
                       dataType : 'JSON',
                       success : function(loginMemberInfo) {
@@ -407,7 +407,7 @@ employeeDropBox.forEach((dropBox, index) => {
     }
 
     $.ajax({
-      url:'http://3.37.18.102:8080/chatMemberList',
+      url:'http://nexus.o-r.kr:8080/chatMemberList',
       type: 'GET',
       dataType: 'JSON',
       success: function(chatMember) {
@@ -512,7 +512,7 @@ employeeDropBox.forEach((dropBox, index) => {
             inviteName.textContent = pName;
 
             $.ajax({
-                url: 'http://3.37.18.102:8080/inviteMember',
+                url: 'http://nexus.o-r.kr:8080/inviteMember',
                 data:{name : pName},
                 type: "POST",
                 dataType: "JSON",
@@ -766,7 +766,7 @@ chatVal.addEventListener('input', () => {
     const chatValue = document.querySelector('#chat-input');
 
     $.ajax({
-      url:  'http://3.37.18.102:8080/loginMember',
+      url:  'http://nexus.o-r.kr:8080/loginMember',
       type: 'POST',
       dataType: 'JSON',
       success: function(loginMemberInfo) { 
@@ -850,7 +850,7 @@ if (contactArea.innerHTML.trim() === '') {
 }
 
 $.ajax({
-  url : 'http://3.37.18.102:8080/loginMember',
+  url : 'http://nexus.o-r.kr:8080/loginMember',
   type : 'POST',
   dataType : 'JSON',
   success : function(loginMemberInfo) {
