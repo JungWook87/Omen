@@ -93,7 +93,7 @@ function successDetailModal(obj){
     app_list.append(tr);
   }
 
-
+  console.log(obj);
   // 첨부파일
   if(obj.fileOrigin != null){
     const fileNameA = document.createElement("a");
