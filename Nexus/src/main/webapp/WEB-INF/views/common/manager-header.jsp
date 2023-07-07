@@ -89,7 +89,7 @@
               'success'
             ).then((result) => {
 
-              const url = "/intranet";
+              const url = "member/logout";
               window.location.href = url;
 
             })
