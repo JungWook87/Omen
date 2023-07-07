@@ -84,7 +84,7 @@
                                             <div class="hr-team-job">
                                                 <p class="hr-teamName">${hrList.teamName}</p>
                                                 <c:choose>
-                                                    <c:when test="${hrList.jobName eq '상무이사' || hrList.jobName eq '전무이사' || hrList.jobName eq '대표이사'}">
+                                                    <c:when test="${hrList.jobName eq '상무' || hrList.jobName eq '전무' || hrList.jobName eq '대표이사'}">
                                                         <p class="hr-jobDanger">${hrList.jobName}</p>
                                                     </c:when>
                                                     <c:when test="${hrList.jobName eq '부장'}">
