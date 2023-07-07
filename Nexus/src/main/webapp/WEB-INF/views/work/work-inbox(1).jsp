@@ -103,7 +103,7 @@
 
                     <tr>
                       <th>종류</th>
-                      <th>제목</th>
+                      <th style="width: 500px;">제목</th>
                       <th>작성자</th>
                       <th>첨부파일</th>
                       <th>작성일</th>
@@ -119,10 +119,10 @@
                         <td>${list.title}</td>
                         <td>${list.memName}</td>
                         <c:if test="${empty list.fileRename}">
-                          <td>없음</td>
+                          <td style="color: var(--gray400)">없음</td>
                         </c:if>
                         <c:if test="${not empty list.fileRename}">
-                          <td>있음</td>
+                          <td style="color: var(--primary700)">있음</td>
                         </c:if>
                         <td>${fn:substring(list.sendDate, 0, 11)}</td>
                       </tr>
@@ -136,10 +136,10 @@
                         <td>${projectList.title}</td>
                         <td>${projectList.memName}</td>
                         <c:if test="${empty projectList.fileRename}">
-                          <td>없음</td>
+                          <td style="color: var(--gray400)">없음</td>
                         </c:if>
                         <c:if test="${not empty projectList.fileRename}">
-                          <td>있음</td>
+                          <td style="color: var(--primary700)">있음</td>
                         </c:if>
                         <td>${fn:substring(projectList.sendDate, 0, 11)}</td>
                       </tr>
@@ -153,10 +153,10 @@
                         <td>${taskList.title}</td>
                         <td>${taskList.memName}</td>
                         <c:if test="${empty taskList.fileRename}">
-                          <td>없음</td>
+                          <td style="color: var(--gray400)">없음</td>
                         </c:if>
                         <c:if test="${not empty taskList.fileRename}">
-                          <td>있음</td>
+                          <td style="color: var(--primary700)">있음</td>
                         </c:if>
                         <td>${fn:substring(taskList.sendDate, 0, 11)}</td>
                       </tr>
