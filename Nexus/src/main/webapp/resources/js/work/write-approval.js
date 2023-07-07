@@ -63,6 +63,7 @@ btn.addEventListener("click", () => {
   sumTxt[0].setAttribute("spellcheck", "false");
   
   $('.summernote').summernote('code', '');
+  if(preview.firstChild) {preview.removeChild(preview.firstChild);}
   workTitle.value = '';
   sumTxt[0].innerHTML = '';
   workApprover.value = '';
