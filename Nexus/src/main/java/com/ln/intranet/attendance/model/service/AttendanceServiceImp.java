@@ -95,25 +95,64 @@ public class AttendanceServiceImp implements AttendanceService {
 		int startHour = Integer.parseInt(startTime.split(" : ")[0]);
 		int startMinute = Integer.parseInt(startTime.split(" : ")[1]);
 		
+		// 지각 아닌 경우
 		if(startHour < 9 || (startHour == 9 && startMinute == 0)) {
-			workingHour = endHours - 9;
-			workingMinute = endMinutes - 0;
-		} else {
-			workingHour = endHours - startHour;
-			workingMinute = endMinutes - startMinute;
+			System.out.println("startHour : " + startHour);
+			System.out.println("startMinute : " + startMinute);
+			System.out.println("endHours : " + endHours);
+			System.out.println("endMinutes : " + endMinutes);
+			
+			if(endHours < 13) {
+				workingHour = endHours - startHour;
+				workingMinute = endMinutes - 0;
+			} else if(endHours == 13) {
+				workingHour = 13 - startHour;
+				workingMinute = 0;
+			} else {
+				workingHour = endHours - startHour - 1;
+				workingMinute = endMinutes - 0;
+			}
+			
+		// 지각인 경우
+		} else { 
+			// 지각인데 점심 시간 이전 출근
+			if(startHour < 13) {
+				if(endHours < 13 ) {
+					workingHour = endHours - startHour;
+					workingMinute = endMinutes - startMinute;
+				} else if(endHours == 13) {
+					workingHour = 13 - startHour;
+					workingMinute = 0 - startMinute;
+				} else {
+					workingHour = endHours - startHour - 1;
+					workingMinute = endMinutes - startMinute;
+				}
+					
+			// 지각인데 점심 시간 이후 출근
+			} else {
+				// 점심시간에 출근
+				if(startHour == 13) {
+					workingHour = endHours - 14;
+					workingMinute = endMinutes - 0;
+					
+				// 점심시간 끝나고 출근
+				} else
+				workingHour = endHours - startHour;
+				workingMinute = endMinutes - startMinute;
+			}
 			
 			if(workingMinute < 0) {
-				workingMinute = 60 - workingMinute;
+				workingMinute = 60 + workingMinute;
 				workingHour--;
 			}
 		}
 		
-		String workingHours = (workingHour - 1) + " 시간 " + workingMinute + " 분";
+		String workingHours = workingHour + " 시간 " + workingMinute + " 분";
 		
 		map.put("workingHours", workingHours);
 		
 		// 연장 시간 계산하기
-		int tempEx = (workingHour - 1) - 8;
+		int tempEx = workingHour - 8;
 		
 		String extendedWH = "";
 		
