@@ -68,7 +68,7 @@
 			#{jobNo},
 			#{teamNo},
 			#{deptNo}, 
-			'NEXUS'||SEQ_MEMBER_NO.CURRVAL,
+			'NEXUS'||SEQ_MEM_NO.CURRVAL,
 			DEFAULT,
 			#{memName},
 			#{memRNo},
