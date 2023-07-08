@@ -77,6 +77,7 @@
 
     <script>
       const loginMemberHeader = "<c:out value='${loginMember}' />";
+      const contextPath = "<c:out value='${contextPath}' />";
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
@@ -93,6 +94,9 @@
         employeeRankChangeHeader.style.display = 'none';
         responsiveEmployeeRankChangeHeader.style.display = 'none'
       }
+
+    
+      
 
       // 로그아웃
       const logOut = document.querySelector('.header-log-out');
@@ -121,8 +125,8 @@
               '퇴근하십시오.',
               'success'
             ).then((result) => {
-
-              const url = "/intranet";
+            
+              const url = contextPath + "/member/logout";
               window.location.href = url;
 
             })

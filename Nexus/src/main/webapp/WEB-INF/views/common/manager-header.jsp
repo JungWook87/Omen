@@ -45,6 +45,10 @@
 
     </c:if>
     <c:if test="${!empty resultMessage}">
+
+     <script>
+      const contextPath = "<c:out value='${contextPath}' />";
+    </script>
       <script>
         var memIdMessage = "${resultMessage}";
         var temp = memIdMessage.split(",,");
@@ -89,7 +93,7 @@
               'success'
             ).then((result) => {
 
-              const url = "/intranet";
+              const url = contextPath + "/member/logout";
               window.location.href = url;
 
             })

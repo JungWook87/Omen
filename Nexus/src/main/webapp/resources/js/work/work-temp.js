@@ -124,3 +124,32 @@ function againWirte(obj){
   modalBody.classList.add('modal-open');
 }
   
+// 삭제버튼 클릭시
+function deleteTemp(workNo){
+  $.ajax({
+    url : "tempDelete",
+    dataType : "JSON",
+    type : "GET",
+    data : {"workNo" : workNo},
+    success : function(){
+      Swal.fire({
+        title: '삭제를 완료했습니다.',
+        text: '',
+        icon: 'success',
+        
+        showCancelButton: false, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+        cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정     
+     }).then(result => {
+        if(result.isConfirmed){
+          window.location.reload();
+        }
+      }) 
+    },
+    error : function(){
+      console.log("임시저장 삭제하다 에러");
+    }
+  });
+}

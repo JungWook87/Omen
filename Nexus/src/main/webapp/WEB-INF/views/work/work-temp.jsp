@@ -107,8 +107,9 @@
                       <th style="display: none;">결재번호</th>
                       <th style="display: none;">타입번호</th>
                       <th>종류</th>
-                      <th>제목</th>
+                      <th style="width: 500px;">제목</th>
                       <th>작성일</th>
+                      <th>삭제</th>
                     </tr>
 
                   </thead>
@@ -121,6 +122,7 @@
                         <td>${item.typeName}</td>
                         <td>${item.title}</td>
                         <td>${fn:substring(item.sendDate, 0, 11)}</td>
+                        <td><a class="fa-solid fa-trash" onclick="event.stopPropagation(); deleteTemp(${item.workNo})" style="color: #c7c7c7;"></a></td>
                       </tr>
                     </c:forEach>
                   </tbody>
