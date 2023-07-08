@@ -15,6 +15,8 @@
             <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
             <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
             <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-detail.css ">
+            <!-- Favicon-->
+            <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
             <!-- sweetAlert2 cdn -->
             <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -34,23 +36,23 @@
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <section>
 
-                   <!-- 사이드바 반응형 -->
-                    <div class="sidebarIconToggle">
-                        <div class="spinner diagonal part-1"></div>
-                        <div class="spinner horizontal"></div>
-                        <div class="spinner diagonal part-2"></div>
-                    </div>
-                    <div id="sidebarMenu">
-                        <ul class="sidebarMenuInner">
-                            <li>설문생성/관리</li>
-                            <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-                            <c:choose>
-                                <c:when test="${loginMember.jobNo <= 5}">
-                                    <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
-                                </c:when>
-                            </c:choose>
-                        </ul>
-                    </div>
+                <!-- 사이드바 반응형 -->
+                <div class="sidebarIconToggle">
+                    <div class="spinner diagonal part-1"></div>
+                    <div class="spinner horizontal"></div>
+                    <div class="spinner diagonal part-2"></div>
+                </div>
+                <div id="sidebarMenu">
+                    <ul class="sidebarMenuInner">
+                        <li>설문생성/관리</li>
+                        <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+                        <c:choose>
+                            <c:when test="${loginMember.jobNo <= 5}">
+                                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+                            </c:when>
+                        </c:choose>
+                    </ul>
+                </div>
 
                 <!-- 사이드 바 -->
                 <div class="side-bar menu">
@@ -62,7 +64,7 @@
                         <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
                         <c:choose>
                             <c:when test="${loginMember.jobNo <= 5}">
-                              <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+                                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
                             </c:when>
                         </c:choose>
                     </ul>

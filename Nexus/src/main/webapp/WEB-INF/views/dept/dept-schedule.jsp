@@ -12,6 +12,8 @@
       <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/dept/dept-schedule.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
+      <!-- Favicon-->
+      <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
       <!-- sweetAlert2 cdn -->
       <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -89,10 +91,10 @@
         </div>
 
         <!-- 채팅창 -->
-		<jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
+        <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
       </section>
 
-    
+
 
       <script>
         var pList = '${pList}';

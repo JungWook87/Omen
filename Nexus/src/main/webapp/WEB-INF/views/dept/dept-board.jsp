@@ -15,6 +15,8 @@
       <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/dept/dept-board.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
+      <!-- Favicon-->
+      <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
       <!-- sweetAlert2 cdn -->
       <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -171,30 +173,30 @@
 
               <ul class="pagination">
                 <c:if test="${pagination.currentPage > 1}">
-                <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
-                <li class="prevPage"><a href="${url}${pagination.currentPage - 1}${sURL}" class="blue">이전</a></li>
-              </c:if>
-              <c:if test="${pagination.currentPage == 1}">
-                <li><a href="javascript:void(0);">&lt;&lt;</a></li>
-                <li class="prevPage"><a href="javascript:void(0);">이전</a></li>
-              </c:if>
-
-              <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
-                <c:if test="${i == pagination.currentPage}">
-                  <li><a class="current">${i}</a></li>
+                  <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
+                  <li class="prevPage"><a href="${url}${pagination.currentPage - 1}${sURL}" class="blue">이전</a></li>
                 </c:if>
-                <c:if test="${i != pagination.currentPage}">
-                  <li><a href="${url}${i}${sURL}">${i}</a></li>
+                <c:if test="${pagination.currentPage == 1}">
+                  <li><a href="javascript:void(0);">&lt;&lt;</a></li>
+                  <li class="prevPage"><a href="javascript:void(0);">이전</a></li>
                 </c:if>
-              </c:forEach>
 
-              <c:if test="${pagination.currentPage < pagination.maxPage}">
-                <li class="nextPage"><a href="${url}${pagination.currentPage + 1}${sURL}" class="blue">다음</a></li>
-                <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
-              </c:if>
-              <c:if test="${pagination.currentPage == pagination.maxPage}">
-                <li class="nextPage"><a href="javascript:void(0);">다음</a></li>
-                <li><a href="javascript:void(0);"">&gt;&gt;</a></li>
+                <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+                  <c:if test="${i == pagination.currentPage}">
+                    <li><a class="current">${i}</a></li>
+                  </c:if>
+                  <c:if test="${i != pagination.currentPage}">
+                    <li><a href="${url}${i}${sURL}">${i}</a></li>
+                  </c:if>
+                </c:forEach>
+
+                <c:if test="${pagination.currentPage < pagination.maxPage}">
+                  <li class="nextPage"><a href="${url}${pagination.currentPage + 1}${sURL}" class="blue">다음</a></li>
+                  <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+                </c:if>
+                <c:if test="${pagination.currentPage == pagination.maxPage}">
+                  <li class="nextPage"><a href="javascript:void(0);">다음</a></li>
+                  <li><a href="javascript:void(0);"">&gt;&gt;</a></li>
               </c:if>
               </ul>
             </div>
@@ -202,68 +204,68 @@
           </div>
 
           <!-- 게시글 디테일 창 -->
-          <div id="check-modalWrap">
-            <div class="check-modalBody">
-              <span id="check-closeBtn">
-                <img src="${contextPath}/resources/images/Xbtn.png" alt="">
-              </span>
-              <h1>부서 게시판</h1>
-              <!-- 선1 -->
-              <div class="modal-line"></div>
+          <div id=" check-modalWrap">
+                      <div class="check-modalBody">
+                        <span id="check-closeBtn">
+                          <img src="${contextPath}/resources/images/Xbtn.png" alt="">
+                        </span>
+                        <h1>부서 게시판</h1>
+                        <!-- 선1 -->
+                        <div class="modal-line"></div>
 
-              <!-- 제목 -->
-              <div>
-                <p>제목</p>
-                <div class="check-modal-title" id="check-modal-title"></div>
-              </div>
-
-
-              <!-- 내용 -->
-              <div>
-                <p>내용</p>
-                <div class="check-modal-detail" id="check-modal-detail"></div>
-              </div>
-
-              <!-- 선택된 파일 -->
-              <p>첨부파일</p>
-              <div class="check-preview" id="check-preview"></div>
-
-              <!-- 파일 업로드 -->
-              <div class="check-file-box">
-                <button type="button" id="check-file-remove">파일 지우기</button>
-                <label for="file-uploads">파일 올리기</label>
-                <input type="file" id="check-file-uploads" name="uploadFile" accept="" multiple>
-                <input type="text" name="fileData" value="false" style="display: none;">
-              </div>
-
-              <!-- 선2 -->
-              <div class="modal-line"></div>
-              <!-- 버튼 -->
-              <div class="notice-submit-reset-btns">
+                        <!-- 제목 -->
+                        <div>
+                          <p>제목</p>
+                          <div class="check-modal-title" id="check-modal-title"></div>
+                        </div>
 
 
-                <button type="button" id="check-remove-btn">삭제</button>
-                <button type="reset" id="check-cancell-btn">닫기</button>
-                <button id="check-success-btn">수정</button>
-                <button id="done-btn">수정완료</button>
-                </form>
+                        <!-- 내용 -->
+                        <div>
+                          <p>내용</p>
+                          <div class="check-modal-detail" id="check-modal-detail"></div>
+                        </div>
 
-              </div>
+                        <!-- 선택된 파일 -->
+                        <p>첨부파일</p>
+                        <div class="check-preview" id="check-preview"></div>
 
+                        <!-- 파일 업로드 -->
+                        <div class="check-file-box">
+                          <button type="button" id="check-file-remove">파일 지우기</button>
+                          <label for="file-uploads">파일 올리기</label>
+                          <input type="file" id="check-file-uploads" name="uploadFile" accept="" multiple>
+                          <input type="text" name="fileData" value="false" style="display: none;">
+                        </div>
+
+                        <!-- 선2 -->
+                        <div class="modal-line"></div>
+                        <!-- 버튼 -->
+                        <div class="notice-submit-reset-btns">
+
+
+                          <button type="button" id="check-remove-btn">삭제</button>
+                          <button type="reset" id="check-cancell-btn">닫기</button>
+                          <button id="check-success-btn">수정</button>
+                          <button id="done-btn">수정완료</button>
+                          </form>
+
+                        </div>
+
+                      </div>
             </div>
+
           </div>
 
-        </div>
 
 
 
+          <!-- 채팅창 -->
+          <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
 
-        <!-- 채팅창 -->
-		<jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
-		
       </section>
 
-    
+
 
       <script>
         const loginMember = "<c:out value='${loginMember}' />";
