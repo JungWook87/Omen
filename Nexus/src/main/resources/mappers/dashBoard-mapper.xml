@@ -169,7 +169,7 @@
 		ORDER BY p.PROJECT_NO ASC
 	</select>
 	
-	<select id="hrTotal" resultMap="hrManage_rm">
+	<select id="hrTotal" parameterType="map" resultMap="hrManage_rm">
 	  SELECT 
 	    MEM_NO, MEM_NAME, 
 	    DEPARTMENT.DEPT_NO, DEPT_NAME, 
@@ -195,7 +195,7 @@
 	    DEPARTMENT ON MEMBER.DEPT_NO = DEPARTMENT.DEPT_NO 
 	  WHERE 
 	    ATTENDANCE.ATTD_TYPE_NO IN (1, 2, 4, 5) 
-	    AND TO_CHAR(TO_DATE(TODAY, 'YY/MM/DD'), 'YY/MM') = TO_CHAR(TO_DATE(#{searchDate}, 'YY/MM'), 'YY/MM')
+	    AND TO_CHAR(TO_DATE(TODAY, 'YY/MM/DD'), 'YY/MM') = #{searchDate}
 	    AND (#{deptNo} = 1 OR MEMBER.DEPT_NO = #{deptNo})
 	  GROUP BY 
 	    MEM_NO, MEM_NAME, 
