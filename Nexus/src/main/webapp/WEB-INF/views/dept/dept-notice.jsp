@@ -15,6 +15,8 @@
       <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/dept/dept-notice.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
+      <!-- Favicon-->
+      <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
       <!-- sweetAlert2 cdn -->
       <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -197,59 +199,59 @@
         </div>
 
         <!-- 사용자가 작성한 공지사항 열기 -->
-        <div id="check-modalWrap">
-          <div class="check-modalBody">
-            <span id="check-closeBtn">
-              <img src="${contextPath}/resources/images/Xbtn.png" alt="">
-            </span>
-            <h1>부서 공지사항</h1>
-            <!-- 선1 -->
-            <div class="modal-line"></div>
+        <div id=" check-modalWrap">
+                    <div class="check-modalBody">
+                      <span id="check-closeBtn">
+                        <img src="${contextPath}/resources/images/Xbtn.png" alt="">
+                      </span>
+                      <h1>부서 공지사항</h1>
+                      <!-- 선1 -->
+                      <div class="modal-line"></div>
 
-            <!-- 제목 -->
-            <div>
-              <p>제목</p>
-              <div class="check-modal-title" id="check-modal-title"></div>
-            </div>
-            <!-- 내용 -->
-            <div>
-              <p>내용</p>
-              <div class="check-modal-detail"></div>
-            </div>
+                      <!-- 제목 -->
+                      <div>
+                        <p>제목</p>
+                        <div class="check-modal-title" id="check-modal-title"></div>
+                      </div>
+                      <!-- 내용 -->
+                      <div>
+                        <p>내용</p>
+                        <div class="check-modal-detail"></div>
+                      </div>
 
-            <!-- 선택된 파일 -->
-            <p>첨부파일</p>
-            <div class="check-preview"></div>
+                      <!-- 선택된 파일 -->
+                      <p>첨부파일</p>
+                      <div class="check-preview"></div>
 
-            <!-- 파일 업로드 -->
-            <div class="check-file-box">
-              <button type="button" id="check-file-remove">파일 지우기</button>
-              <label for="file-uploads">파일 올리기</label>
-              <input type="file" id="check-file-uploads" name="uploadFile" accept="" multiple>
-              <input type="text" name="fileData" value="false" style="display: none;">
-            </div>
+                      <!-- 파일 업로드 -->
+                      <div class="check-file-box">
+                        <button type="button" id="check-file-remove">파일 지우기</button>
+                        <label for="file-uploads">파일 올리기</label>
+                        <input type="file" id="check-file-uploads" name="uploadFile" accept="" multiple>
+                        <input type="text" name="fileData" value="false" style="display: none;">
+                      </div>
 
-            <!-- 선2 -->
-            <div class="modal-line"></div>
-            <!-- 버튼 -->
-            <div class="notice-submit-reset-btns">
-              <button id="check-remove-btn">삭제</button>
-              <button type="reset" id="check-cancell-btn">닫기</button>
-              <button id="check-success-btn">수정</button>
-              <button id="done-btn">수정완료</button>
+                      <!-- 선2 -->
+                      <div class="modal-line"></div>
+                      <!-- 버튼 -->
+                      <div class="notice-submit-reset-btns">
+                        <button id="check-remove-btn">삭제</button>
+                        <button type="reset" id="check-cancell-btn">닫기</button>
+                        <button id="check-success-btn">수정</button>
+                        <button id="done-btn">수정완료</button>
 
-            </div>
+                      </div>
 
+                    </div>
           </div>
-        </div>
 
 
-        <!-- 채팅창 -->
-		<jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
+          <!-- 채팅창 -->
+          <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
       </section>
 
-     
-      
+
+
       <c:if test="${ !empty message }">
         <script>
           Swal.fire("${message}");

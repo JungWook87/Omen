@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="${contextPath}/resources/css/work/work-inbox(1).css">
         <link rel="stylesheet" href="${contextPath}/resources/css/work/checked-approval.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/work/write-approval.css">
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
         <!-- sweetAlert2 cdn -->
         <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -24,14 +26,14 @@
         <!-- jquery cdn -->
         <script src="https://code.jquery.com/jquery-3.7.0.js"
           integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-          
+
         <!-- 서머노트를 위해 추가해야할 부분 -->
         <script src="${contextPath}/resources/js/summernote/summernote-lite.js"></script>
         <script src="${contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
-        <link rel="stylesheet" href="${contextPath}/resources/css/summernote/summernote-lite.css">  
-          
-          <!-- 애니메이트.api -->
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link rel="stylesheet" href="${contextPath}/resources/css/summernote/summernote-lite.css">
+
+        <!-- 애니메이트.api -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         <title>결재-수신함-결재할것</title>
       </head>
 
@@ -182,7 +184,7 @@
           <jsp:include page="/WEB-INF/views/work/checked-approval.jsp" />
 
           <!-- 채팅창 -->
-         <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
+          <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
 
         </section>
 

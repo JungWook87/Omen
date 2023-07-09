@@ -17,6 +17,8 @@
             <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
             <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
             <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-result.css ">
+            <!-- Favicon-->
+            <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
             <!-- sweetAlert2 cdn -->
             <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

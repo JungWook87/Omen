@@ -465,6 +465,7 @@ function checkModalClose() {
 
    doneBtn.style.display = "none";
    modifyBtn.style.display = "inline-block";
+   deleteBtn.style.display = "inline-block";
 
    fileBox.style.display = 'none';
 

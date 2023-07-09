@@ -15,6 +15,8 @@
       <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-manage.css ">
+      <!-- Favicon-->
+      <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
       <!-- sweetAlert2 cdn -->
       <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -34,19 +36,19 @@
 
       <section>
 
-             <!-- 사이드바 반응형 -->
-             <div class="sidebarIconToggle">
-              <div class="spinner diagonal part-1"></div>
-              <div class="spinner horizontal"></div>
-              <div class="spinner diagonal part-2"></div>
-            </div>
-            <div id="sidebarMenu">
-              <ul class="sidebarMenuInner">
-                <li>설문생성/관리</li>
-                <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
-                <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
-              </ul>
-            </div>
+        <!-- 사이드바 반응형 -->
+        <div class="sidebarIconToggle">
+          <div class="spinner diagonal part-1"></div>
+          <div class="spinner horizontal"></div>
+          <div class="spinner diagonal part-2"></div>
+        </div>
+        <div id="sidebarMenu">
+          <ul class="sidebarMenuInner">
+            <li>설문생성/관리</li>
+            <li><a href="${contextPath}/survey/surveyList"><span>설문 리스트</span> </a></li>
+            <li><a href="${contextPath}/survey/surveyManage"><span>설문 생성/관리</span> </a></li>
+          </ul>
+        </div>
 
         <!-- 사이드 바 -->
         <div class="side-bar menu">
@@ -115,7 +117,7 @@
                             <a id="survey-result-btn" href="../survey/surveyResult/${survey.surveyNo}">결과 보기</a>
                           </td>
                           <td>
-                            <a href="#" onclick="trashBtn(${survey.surveyNo})"  class="fa-solid fa-trash"
+                            <a href="#" onclick="trashBtn(${survey.surveyNo})" class="fa-solid fa-trash"
                               style="color: #c7c7c7;"></a>
                           </td>
                         </tr>
@@ -141,7 +143,7 @@
         <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
       </section>
 
-    
+
 
       <script src="${contextPath}/resources/js/survey/survey-manage.js"></script>
       <script src="${contextPath}/resources/js/component.js"></script>

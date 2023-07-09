@@ -16,14 +16,17 @@
         <link rel="stylesheet" href="${contextPath}/resources/css/work/work-send.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/work/write-approval.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/work/checked-approval.css">
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
         <!-- sweetAlert2 cdn -->
         <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-        
-        <!-- jquery cdn -->
-        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
-          <!-- 폰트어썸 -->
+        <!-- jquery cdn -->
+        <script src="https://code.jquery.com/jquery-3.7.0.js"
+          integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+        <!-- 폰트어썸 -->
         <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
 
 
@@ -33,16 +36,17 @@
         <script type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-         <!-- 서머노트를 위해 추가해야할 부분 -->
+        <!-- 서머노트를 위해 추가해야할 부분 -->
         <script src="${contextPath}/resources/js/summernote/summernote-lite.js"></script>
         <script src="${contextPath}/resources/js/summernote/lang/summernote-ko-KR.js"></script>
         <link rel="stylesheet" href="${contextPath}/resources/css/summernote/summernote-lite.css">
-        
+
 
         <!-- 애니메이트.api -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
         <title>결재</title>

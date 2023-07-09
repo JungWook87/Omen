@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
       <!DOCTYPE html>
       <html lang="en">
@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="${contextPath}/resources/css/work/work-temp.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/work/checked-approval.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/work/write-approval.css">
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
         <!-- sweetAlert2 cdn -->
         <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -133,21 +135,21 @@
 
           </div>
           <!-------------------------------- 컨텐츠 내용 영역 끝 --------------------------------------------------------------------->
-          
+
         </section>
-        
+
         <!-- 페이지 정의 -->
         <c:set var="flag" value="1" scope="request" />
         <jsp:include page="/WEB-INF/views/work/write-approval.jsp" />
         <jsp:include page="/WEB-INF/views/work/checked-approval.jsp" />
 
         <jsp:include page="/WEB-INF/views/common/chat-modal.jsp" />
-        
+
         <script src="${contextPath}/resources/js/work/work-temp.js"></script>
         <script src="${contextPath}/resources/js/work/write-approval.js"></script>
         <script src="${contextPath}/resources/js/work/checked-approval.js"></script>
         <script src="${contextPath}/resources/js/component.js"></script>
-      
+
       </body>
 
-     </html>
+      </html>

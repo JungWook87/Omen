@@ -248,7 +248,11 @@ function searchMemberAjax() {
             tel.value = searchedMem.memTel;
             email.value = searchedMem.memEmail;
             address.value = searchedMem.memAddress.split(",")[0]; // 첫 번째 주소
-            detailAddress.value = searchedMem.memAddress.split(",")[1]; // 두 번째 주소
+            if(searchedMem.memAddress.split(",")[1] === undefined) {
+              detailAddress.value = "";
+            } else {
+              detailAddress.value = searchedMem.memAddress.split(",")[1]; // 두 번째 주소
+            }
     
     
             
