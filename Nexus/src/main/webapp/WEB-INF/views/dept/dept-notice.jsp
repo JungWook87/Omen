@@ -199,7 +199,7 @@
         </div>
 
         <!-- 사용자가 작성한 공지사항 열기 -->
-        <div id=" check-modalWrap">
+        <div id="check-modalWrap">
                     <div class="check-modalBody">
                       <span id="check-closeBtn">
                         <img src="${contextPath}/resources/images/Xbtn.png" alt="">

@@ -204,7 +204,7 @@
           </div>
 
           <!-- 게시글 디테일 창 -->
-          <div id=" check-modalWrap">
+          <div id="check-modalWrap">
                       <div class="check-modalBody">
                         <span id="check-closeBtn">
                           <img src="${contextPath}/resources/images/Xbtn.png" alt="">
