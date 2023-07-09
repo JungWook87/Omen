@@ -36,7 +36,7 @@
 			SELECT SEQ_SURVEY_NO.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO SURVEY VALUES (
-		#{surveyNo}, #{surveyTopic}, #{surveyContent}, DEFAULT, #{end}
+		#{surveyNo}, #{surveyTopic}, #{surveyContent}, DEFAULT, TO_DATE(#{end}, 'yyyy.mm.dd')
 		)
 	</insert>
 	

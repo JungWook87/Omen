@@ -582,3 +582,12 @@ tr :nth-child(3) {
 .text-red {
     color: red !important;
 }
+
+
+.mem-info {
+    min-width: 50px;
+}
+
+.work-time {
+    min-width : 70px;
+}

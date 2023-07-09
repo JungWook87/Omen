@@ -93,6 +93,7 @@ $(document).ready(function(){
 
 
     })
+
     // 프로젝트 극좌표차트 ajax
     $.ajax({
         url : 'projectPolar',
@@ -141,39 +142,18 @@ $(document).ready(function(){
                     ],
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio :false,
+
                     plugins:{ 
-                
                         legend: {
                             display: false, // 범례 유무
-                            position: 'bottom', // 범례위치
-                            align: 'center', // 범례 정렬
-                            labels:{
-                                margin : 10, // 범례 패딩
-                                font:{size: 12}, // 범례 폰트 사이즈
-                                fontColor: 'black',
-                            }
                             }
                         },
-                        scales: {
-                            // r: {
-                            //     pointLabels: {
-                            //     display: true,
-                            //     centerPointLabels: true,
-                            //     font: {
-                            //         size: 16
-                            //     }
-                            //     }
-                            // }
-                        },    
-
-                        onClick: function(point, event){
-                            createProjectInfo(projectNo[event[0]['index']]);
-
-                        },
+                    onClick: function(point, event){
+                        console.log(event);
+                        createProjectInfo(projectNo[event[0]['index']]);
                     },
-                });
+                },
+            });
         },
         error : function(error){
             console.log(error);
