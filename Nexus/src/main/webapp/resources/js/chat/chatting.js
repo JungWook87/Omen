@@ -75,7 +75,7 @@ window.addEventListener('click', function(event) {
 
 let globalCmNo;
 
-// 채팅 버튼 눌렀을 때 이전 채팅이 보임
+// 채팅 방 AJAX
 function getChattingList() {
 
     const contactArea = document.getElementById('contact-area');
@@ -110,7 +110,7 @@ function getChattingList() {
           newContact.classList.add('contact', 'contact-hover');
           newContact.setAttribute('data-cmno', room.cmNo);
           
-
+		   
            if(room.createMemberName === loginMemberName){
              newContact.innerHTML = `
                <div>
@@ -404,7 +404,7 @@ employeeDropBox.forEach((dropBox, index) => {
     } else {
       employeeDropBoxUl[index].style.display = 'block';
       employeeDropBoxI[index].classList.add("fa-bounce");
-    }
+    }+
 
     $.ajax({
       url:'http://nexus.o-r.kr:8080/chatMemberList',
