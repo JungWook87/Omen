@@ -1726,6 +1726,8 @@ option {
 }
   
 
-
+.side-bar {
+    min-width: 300px;
+}
 
 

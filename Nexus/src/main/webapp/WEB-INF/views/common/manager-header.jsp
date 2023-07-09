@@ -53,11 +53,11 @@
         var memIdMessage = "${resultMessage}";
         var temp = memIdMessage.split(",,");
         Swal.fire(temp[0])
-        .then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire("추가하신 직원의 아이디는 \n"  + temp[1] + " 입니다.")
-          }
-        })
+          .then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire("추가하신 직원의 아이디는 \n" + temp[1] + " 입니다.")
+            }
+          })
 
       </script>
     </c:if>

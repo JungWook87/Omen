@@ -12,6 +12,8 @@
       <link rel="stylesheet" href="${contextPath}/resources/css/common/variable.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/common/header.css">
       <link rel="stylesheet" href="${contextPath}/resources/css/survey/survey-create.css ">
+      <!-- Favicon-->
+      <link rel="icon" type="image/x-icon" href="${contextPath}/resources/images/favicon.png" />
       <!-- sweetAlert2 cdn -->
       <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -32,8 +34,8 @@
       <section>
 
 
-         <!-- 사이드바 반응형 -->
-         <div class="sidebarIconToggle">
+        <!-- 사이드바 반응형 -->
+        <div class="sidebarIconToggle">
           <div class="spinner diagonal part-1"></div>
           <div class="spinner horizontal"></div>
           <div class="spinner diagonal part-2"></div>
@@ -112,7 +114,7 @@
 
       </section>
 
-     
+
 
       <script src="${contextPath}/resources/js/survey/survey-create.js"></script>
       <script src="${contextPath}/resources/js/component.js"></script>
