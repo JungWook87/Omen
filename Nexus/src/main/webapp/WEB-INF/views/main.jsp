@@ -288,7 +288,7 @@
                             <div class="main-approval-list-box">
                                 <div>
                                     <c:forEach var="item" items="${workMinList}" begin="0" end="9">
-                                        <c:if test="${item.nextMemNo == loginMember.memNo}">
+                                        <c:if test="${item.nextMemNo == loginMember.memNo && item.workState == '진행중'}">
                                             <div style="display: flex; justify-content: space-between;" id="workMin">
                                                 <span>${item.title}</span>
                                                 <span>${fn:substring(item.sendDate, 5, 10)}</span>

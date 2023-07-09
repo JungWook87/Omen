@@ -109,7 +109,7 @@
           <div class="content-all-page">
             <div class="content-all-top-area">
               <p class="content-all-top-text1">결재 / </p>
-              <p class="content-all-top-text2">내가 작성한 결재(${fn:length(list)})</p>
+              <p class="content-all-top-text2">내가 작성한 결재(${fn:length(list) + fn:length(projectList) + fn:length(taskList)})</p>
               <!-- 날짜 선택 -->
               <div class="content-all-date">
 

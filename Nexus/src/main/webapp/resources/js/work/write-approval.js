@@ -779,6 +779,7 @@ const tempSuccessBtn = document.getElementById("tempSuccessBtn"); // 임시 저�
 const writeForm = document.getElementById("writeForm"); // form 요소
 const tempSaveFlag = document.getElementById("tempSaveBtn-checkbox");
 
+// 임시저장 클릭
 saveDraft.addEventListener("click", function(){
   if(workTemplateSelect.value === 'normal-check' || workTemplateSelect.value === 'project'){
     if(workTitle.value === "") {
