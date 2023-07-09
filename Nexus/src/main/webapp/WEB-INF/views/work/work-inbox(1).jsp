@@ -73,7 +73,7 @@
 
             <div class="content-all-top-area">
               <p class="content-all-top-text1">결재 / </p>
-              <p class="content-all-top-text2">결재할 문서(${fn:length(list)})</p>
+              <p class="content-all-top-text2">결재할 문서(${fn:length(list) + fn:length(projectList) + fn:length(taskList)})</p>
             </div>
 
             <div class="content-all-bottom-area">
