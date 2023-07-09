@@ -199,7 +199,7 @@
                                                                         value="${taskTotal.workState}">
                                                                         ${taskTotal.workState}
                                                                     </span>
-                                                                </c:when>
+                                                                </c:when> 
                                                                 <c:when test="${taskTotal.workState == '진행중'}">
                                                                     <span class="status-orange"
                                                                         value="${taskTotal.workState}">
@@ -215,7 +215,7 @@
                                                                 <c:otherwise>
                                                                     <span class="status-blue"
                                                                         value="${taskTotal.workState}">
-                                                                        ${taskTotal.workState}
+                                                                        미진행
                                                                     </span>
                                                                 </c:otherwise>
                                                             </c:choose>
