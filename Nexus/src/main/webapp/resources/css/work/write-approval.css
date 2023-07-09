@@ -154,7 +154,7 @@
 
 .note-editable > p {
   margin-top: 0 !important;
-  color: black;
+  color: black !important;
 }
 
 .work-modalBody input{
@@ -322,7 +322,7 @@
     animation-direction: alternate;;
   }
 
-  .team-list > p:hover{
+  .team-list > p:hover, .senior-list > p:hover{
     font-weight: 500;
     color: var(--black);
     background-color: var(--gray100);
@@ -330,6 +330,8 @@
     animation-duration: 2s;
     animation-direction: alternate;
   }
+
+  
  
   .teamone-Box{
     display: flex;

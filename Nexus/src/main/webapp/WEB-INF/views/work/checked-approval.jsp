@@ -40,7 +40,7 @@
           </div>
 
           <div class="checked-modal-headerbox-footer">
-              <button class="print-btn">
+              <button id="print-btn" onclick="return printPage()">
                 <img src="${contextPath}/resources/images/print-solid.svg" alt="">
                 <span>문서출력</span>
               </button>

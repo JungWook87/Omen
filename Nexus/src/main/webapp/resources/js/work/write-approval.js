@@ -325,12 +325,20 @@ pulsApproverBtn.addEventListener("click",() => {
   approverModal.style.display = 'block';
   approverModalBody.classList.add('approver-modal-open');
 
+  for(let i = 0; i <SeniorList.length; i++){
+    SeniorList[i].classList.remove('show');
+  }
+
   for(let i = 0; i < deptList.length; i++){
     deptList[i].classList.remove('show');
   }
 
   for(let i = 0; i < teamList.length; i++) {
     teamList[i].classList.remove('show');
+  }
+
+  for(let i = 0; i < seniorTeam.length; i++) {
+    seniorTeam[i].classList.remove('show');
   }
 
   for(let i = 0; i < approvalTeam.length; i++) {
@@ -341,7 +349,7 @@ pulsApproverBtn.addEventListener("click",() => {
     url : "approvalMember",
     type : "GET",
     dataType : "JSON",
-    // 동준작성
+    
     success : function(list) {
 
       const approvalList = list;
@@ -957,8 +965,7 @@ $(document).ready(function() {
       ['color', ['forecolor','color']],
       ['table', ['table']],
       ['para', ['ul', 'ol', 'paragraph']],
-      ['height', ['height']],
-      ['view', ['help']]
+      ['height', ['height']]
     ],
   fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
   fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],

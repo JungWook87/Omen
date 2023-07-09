@@ -101,7 +101,7 @@
     animation-duration: 2s;
     animation-direction: alternate;;
   }
-  .check-team-list > p:hover{
+  .check-team-list > p:hover, .check-senior-list > p:hover{
     font-weight: 500;
     color: var(--black);
     background-color: var(--gray100);
@@ -467,7 +467,7 @@
     margin-right: 0;
   }
   
-  .copy-btn, .print-btn{
+  #print-btn{
     cursor: pointer;
   }
   
