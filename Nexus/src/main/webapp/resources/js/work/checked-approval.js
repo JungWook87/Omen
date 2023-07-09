@@ -121,6 +121,7 @@ function successDetailModal(obj){
     checkedModalDetail.style.display = 'block';
 
   } else if(obj.typeNo == 2){
+    sumTxt[1].innerHTML = obj.content;
     checkStart.value = obj.start.substr(0,10);
     checkEnd.value = obj.end.substr(0,10);
     opinion.value = obj.opinion;
@@ -221,9 +222,8 @@ function successDetailModal(obj){
   checkPulsApproverBtn.addEventListener("click",() => {
 
   closeBtn.scrollIntoView();
-  // body.style.overflow = "hidden";
-  // modalBody.style.overflow ="hidden";
-  // modal.style.overflow = "hidden";
+  body.style.overflow = "hidden";
+  checkedModal.style.overflow ="hidden";
   checkApproverModal.style.display = 'block';
   checkApproverModalBody.classList.add('check-approver-modal-open');
 
@@ -237,6 +237,10 @@ function successDetailModal(obj){
 
   for(let i = 0; i < checkTeamList.length; i++) {
     checkTeamList[i].classList.remove('show');
+  
+  }
+  for(let i = 0; i < checkSeniorTeam.length; i++) {
+    checkSeniorTeam[i].classList.remove('show');
   }
 
   for(let i = 0; i < checkApprovalTeam.length; i++) {
@@ -431,6 +435,26 @@ checkDept.querySelector("p").addEventListener("click", ()=> {
   }
 })
 
+// 사장, 전무이사, 상무이사 조회
+for(let i = 0; i < checkSeniorList.length; i++){
+
+  checkSeniorList[i].addEventListener("click", ()=>{
+
+    for(let x = 0; x < checkSeniorTeam.length; x++) {
+      checkSeniorTeam[x].classList.remove('show');
+    }
+
+    if( i === 0){
+      checkSeniorTeam[0].classList.toggle('show');
+    } else if( i === 1){
+      checkSeniorTeam[1].classList.toggle('show');
+    } else if( i === 2){
+      checkSeniorTeam[2].classList.toggle('show');
+    }  
+  })
+}
+
+
 // 팀 조회 이벤트
 for(let i= 0; i < checkDeptList.length; i++ ){
 
@@ -594,6 +618,8 @@ function checkedModalOpen() {
   
   // 모달창 열기
   checkedModal.style.display = 'block';
+  body.style.overflow = "hidden";
+  checkedModal.style.overflow ="hidden";
   checkedModalBody.classList.add('.checked-modal-open');
 
 }
@@ -609,6 +635,7 @@ function checkedModalClose() {
     checkedModalBody.classList.remove(".checked-modal-close");
   }, 350);
 
+  body.style.overflow = "auto";
 }
 
 // 모달창 엑스 버튼
@@ -618,7 +645,7 @@ checkedCloseBtn.addEventListener("click", () => {
 
 // 모달창 외부 영역 이벤트
 window.onclick = function(event) {
-  if (event.target == modal) {
+  if (event.target == checkedModal) {
     checkedModalClose();
   }
 }
@@ -806,3 +833,9 @@ $(document).ready(function() {
           
 	});
 });
+
+const printBtn = document.getElementById("print-btn");
+
+function printPage(){
+  window.print();
+}
