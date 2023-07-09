@@ -9,7 +9,7 @@
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
+                <title>${dtList[0].deptName}_대시보드</title>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
 

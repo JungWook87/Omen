@@ -9,7 +9,7 @@
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
+                <title>${dtList[0].deptName}_대시보드</title>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script src="https://kit.fontawesome.com/3cd0aae50a.js" crossorigin="anonymous"></script>
 
@@ -162,7 +162,7 @@
                                                     <tr class="projects-table-tr2">
                                                         <th>Project Task</th>
                                                         <th>SendDate</th>
-                                                        <th>Leader + Team</th>
+                                                        <th>Writer</th>
                                                         <th class="text-right">Work State</th>
                                                     </tr>
                                                 </thead>
@@ -185,12 +185,21 @@
                                                                 </td>
                                                             </c:otherwise>
                                                         </c:choose>
-                                                        <td class="member">
-                                                            <div class="member-info">
-                                                                <p>${taskTotal.memName} ${taskTotal.jobName}</p>
-                                                                <p>${taskTotal.teamName}</p>
-                                                            </div>
-                                                        </td>
+                                                        <c:choose>
+                                                            <c:when test="${empty taskTotal.memName}">
+                                                                <td>
+                                                                    <p class="text-danger text-red">미제출</p>
+                                                                </td>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <td class="member">
+                                                                    <div class="member-info">
+                                                                        <p>${taskTotal.memName} ${taskTotal.jobName}</p>
+                                                                        <p>${taskTotal.teamName}</p>
+                                                                    </div>
+                                                                </td>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                         <td class="status">
                                   
                                                             <c:choose>
@@ -199,7 +208,7 @@
                                                                         value="${taskTotal.workState}">
                                                                         ${taskTotal.workState}
                                                                     </span>
-                                                                </c:when>
+                                                                </c:when> 
                                                                 <c:when test="${taskTotal.workState == '진행중'}">
                                                                     <span class="status-orange"
                                                                         value="${taskTotal.workState}">
@@ -215,7 +224,7 @@
                                                                 <c:otherwise>
                                                                     <span class="status-blue"
                                                                         value="${taskTotal.workState}">
-                                                                        ${taskTotal.workState}
+                                                                        미진행
                                                                     </span>
                                                                 </c:otherwise>
                                                             </c:choose>

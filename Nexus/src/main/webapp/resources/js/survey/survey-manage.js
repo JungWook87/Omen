@@ -13,7 +13,9 @@ const Toast = Swal.mixin({
 
 function copyURL(surveyNo){
     // 이걸로 지정한 값이 복사댐
-    const textToCopy = "http://localhost:8080/intranet/survey/surveyDetail/"+surveyNo;
+
+
+    const textToCopy = "http://nexus.o-r.kr:8080/survey/surveyDetail/" + surveyNo;
 
     const textarea = document.createElement('textarea');
     textarea.value = textToCopy;

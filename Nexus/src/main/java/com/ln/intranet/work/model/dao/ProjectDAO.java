@@ -64,7 +64,10 @@ public class ProjectDAO {
 
 	// 과제 업로드
 	public int updateTask(Map<String, Object> map) {
-		return sqlSession.update("projectMapper.updateTask",map);
+
+		int result = sqlSession.update("projectMapper.updateTask",map);
+		
+		return result;
 	}
 	
 	// 프로젝트 디테일

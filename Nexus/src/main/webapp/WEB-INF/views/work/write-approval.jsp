@@ -36,6 +36,7 @@
             </select>
 
             <select name="projectNo" id="project-checked">
+              <option value="">-- 프로젝트 선택 --</option>
               <c:forEach var="pList" items="${pList}">
                 <option value="${pList.projectNo}">${pList.projectTitle}</option>
               </c:forEach>
@@ -43,6 +44,7 @@
 
             <c:forEach var="pList" items="${pList}">
               <select name="taskNo" class="assignment-checked" data-project-no="${pList.projectNo}">
+                <!-- <option value="">--- 과제 선택 ---</option> -->
                 <c:forEach var="ptList" items="${ptList}" varStatus="status">
                   <c:if test="${ptList.projectNo == pList.projectNo}">
                     <option value="${ptList.taskNo}">${ptList.taskTitle}</option>
