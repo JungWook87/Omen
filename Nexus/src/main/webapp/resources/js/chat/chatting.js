@@ -783,7 +783,9 @@ chatVal.addEventListener('input', () => {
 
         // chattingSock(웹소켓 객체)을 이용하여 메세지 보내기
         // chattingSock.send(값) : 웹소켓 핸들러로 값을 보냄
+        
         chattingSock.send(JSON.stringify(chatMessage));
+        console.log("chatMessage" + "전송됨");
         chatValue.value = "";
         
       },
@@ -856,7 +858,9 @@ $.ajax({
   success : function(loginMemberInfo) {
   chattingSock.onmessage = function(e) {
 
+
 const chatMessage = JSON.parse(e.data);
+console.log("chatMessage");
 
 const message = document.createElement('div');
 if(chatMessage.memNo === loginMemberInfo.memNo){

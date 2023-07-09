@@ -136,7 +136,7 @@
 		
 		
 			const cmNo = "${cmNo}";
-			const contextPath = "${contextPath}";
+			const contextPath1 = "${contextPath}";
 
 
 
@@ -144,7 +144,7 @@
 			console.log(cmNo);
 			
 	
-			const chattingSock = new SockJS(contextPath+"/chat");
+			const chattingSock = new SockJS(contextPath1+"/chat");
 	
 
 
