@@ -132,6 +132,13 @@
 </ul>
 
 <br><br>
+
+## 📃 요구사항 정의서
+[빛나는 넥서스.xlsx](https://github.com/JungWook87/Omen/files/12027879/default.xlsx)
+
+
+
+<br><br>
  
 ## <img src="https://img.shields.io/badge/ERD-green"/> ERD
 ![ERD 수정](https://github.com/JungWook87/Omen/assets/119837276/5cf90c39-60be-4d00-8f0c-f47459038c2c)
