@@ -137,19 +137,19 @@
 ![ERD 수정](https://github.com/JungWook87/Omen/assets/119837276/5cf90c39-60be-4d00-8f0c-f47459038c2c)
 
 ## 🔗 와이어 프레임 & 목업
-와이어 프레임(카카오오븐) :  <a href="https://ovenapp.io/view/cFVnycXsqkrVi3y9rSmOAEvlakTCQIef/1" target="_blank">
+🔸와이어 프레임(카카오오븐) :  <a href="https://ovenapp.io/view/cFVnycXsqkrVi3y9rSmOAEvlakTCQIef/1" target="_blank">
 <img src="https://img.shields.io/badge/kakao-FFCD00?style=for-the-badge&logo=oven&logoColor=white"> </a>
 <br>
-목업(피그마) : <a href="https://www.figma.com/file/ot7OHLUT9JGweK1stm6SGp/%EB%B9%9B%EB%82%98%EB%8A%94-%EB%84%A5%EC%84%9C%EC%8A%A4(%EC%97%B0%EC%9E%A5)?type=design&mode=design&t=nPixJmLjM0fHOiU9-0;" target="_blank">
+🔸목업(피그마) : <a href="https://www.figma.com/file/ot7OHLUT9JGweK1stm6SGp/%EB%B9%9B%EB%82%98%EB%8A%94-%EB%84%A5%EC%84%9C%EC%8A%A4(%EC%97%B0%EC%9E%A5)?type=design&mode=design&t=nPixJmLjM0fHOiU9-0;" target="_blank">
 <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"></a>
 
+<br><br>
     
-## 🔨 Once I've used 🔨
+## 🖥️ 개발 환경
 <div style="display:flex; flex-direction:row;">
     <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
     <img src="https://img.shields.io/badge/Spring Framewor-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
     <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white">
-    <br>
     <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=black">
     <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=amazon aws&logoColor=white">
     <br>
@@ -157,12 +157,21 @@
     <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
     <img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=black">
-    <br>
     <img src="https://img.shields.io/badge/notion-7D929E?style=for-the-badge&logo=notion&logoColor=white">
     <img src="https://img.shields.io/badge/github-232F3E?style=for-the-badge&logo=github&logoColor=white">
     <br>
     <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
     <img src="https://img.shields.io/badge/Gson-00FF00?style=for-the-badge&logo=google&logoColor=white">
-    <img src="https://img.shields.io/badge/json-13B5EA?style=for-the-badge&logo=json&logoColor=white">
-</div><br>
+    <img src="https://img.shields.io/badge/json-13B5EA?style=for-the-badge&logo=json&logoColor=white"> 
+    <img src="https://img.shields.io/badge/chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white">    
+    <img src="https://img.shields.io/badge/maven-71A36?style=for-the-badge&logo=apachemaven&logoColor=white">  
+    <img src="https://img.shields.io/badge/fontawesome-528DD7?style=for-the-badge&logo=fontawesome&logoColor=white">
+    <br>
+    <img src="https://img.shields.io/badge/dbeaver-5B4638?style=for-the-badge&logo=&logoColor=white">
+    <img src="https://img.shields.io/badge/xml-041E42?style=for-the-badge&logo=&logoColor=white">
+    <img src="https://img.shields.io/badge/jsp-F7DF1E?style=for-the-badge&logo=&logoColor=white">
+    <img src="https://img.shields.io/badge/ajax-23C8D2?style=for-the-badge&logo=&logoColor=white">
+    <img src="https://img.shields.io/badge/mybatis-2E51A2?style=for-the-badge&logo=&logoColor=white">
+    <img src="https://img.shields.io/badge/fullcalander-184D66?style=for-the-badge&logo=&logoColor=white">
+    <img src="https://img.shields.io/badge/sweetalert2-F05138?style=for-the-badge&logo=&logoColor=white">
 </div>
