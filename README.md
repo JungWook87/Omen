@@ -1,23 +1,129 @@
-# Omen (5명의 남자들의 파이널 프로젝트)
-<span><h1> 빛나는 넥서스</h1></span><span><h3>(회사 구성원들 간의 연결과 협업이 빛는 중심지인 인트라넷)</h3></span>
+![header](https://capsule-render.vercel.app/api?type=waving&color=6999FFFF&text=Omen(5명의+남자)&animation=twinkling&height=150)
 
-![header](https://capsule-render.vercel.app/api?type=waving&color=6994CDEE&text=&animation=twinkling&height=80)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Alkatra&weight=500&size=45&duration=1500&pause=999999999&color=6994CDEE&center=false&vCenter=false&multiline=true&repeat=true&width=1000&height=100&lines=title++:++빛나는+넥서스(협업이+빛나는+인트라넷)!👋)](https://git.io/typing-svg)
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Alkatra&weight=500&size=45&duration=4000&pause=3&color=6994CDEE&center=false&vCenter=false&multiline=true&repeat=true&width=1000&height=100&lines=Omen👋)](https://git.io/typing-svg)
- 
 <div align="left">
  
  ---
-     
-[![GITHUB](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjiholee0&count_bg=%23F29494&title_bg=%232F2E2E&icon=github.svg&icon_color=%23FFFFFF&title=GITHUB&edge_flat=false)](https://github.com/jiholee0)
 
-<!--[![JIHO's languages](https://github-readme-stats.vercel.app/api/top-langs/?username=jiholee0&layout=compact&theme=nord&hide_border=true&langs_count=10)](https://github.com/jiholee0/github-readme-stats)-->
-[![JIHO's GitHub stats](https://github-readme-stats.vercel.app/api?username=jiholee0&theme=nord&hide_border=true&count_private=true)](https://github.com/jiholee0/github-readme-stats)
+# 💪 Team
+<table>
+ <thead>
+  <tr>
+   <th width=150>이름</th>   <th width=250>Front</th>   <th width=250>JS</th>   <th width=250>Back</th>   <th width=250>기타</th>
+  </tr>
+ </thead>
+
+<tbody>
+ <tr>
+  <td>김정욱(팀장)</td>
+  <td>
+   부서 일정(API) <br><br><br>
+  </td>
+  <td>
+   메인 페이지 <br>
+   결재 페이지 <br>
+   근무 / 휴가
+  </td>
+  <td>
+   메인 페이지 <br>
+   결재 페이지 <br>
+   근무 / 휴가
+  </td>
+  <td>
+   깃 생성 및 관리 <br><br><br>
+  </td>
+ </tr>
+
+<tr>
+ <td>오가람</td>
+ <td>
+  관리자 페이지 <br>
+  메인 팝업창 <br>
+  로그인 <br>
+  메인 페이지 <br>
+  부서 게시판 <br>
+  회의실 <br>
+ </td>
+ <td>
+  관리자 페이지 <br>
+  메인 팝업창 <br><br><br><br><br>
+ </td>
+ <td>
+  관리자 페이지 <br>
+  메인 팝업창 <br><br><br><br><br>
+ </td>
+ <td>
+  노션 관리 <br><br><br><br><br><br>
+ </td>
+</tr>
+
+<tr>
+ <td>이동준</td>
+ <td>
+  결재자 리스트 <br>
+  결재 페이지 <br>
+ </td>
+ <td>
+  결재자 리스트 <br><br>
+ </td>
+ <td>
+  결재자 리스트 <br><br>
+ </td>
+ <td>
+  PPT 작성 <br><br>
+ </td>
+</tr>
+
+<tr>
+ <td>이재혁</td>
+ <td>
+  대시보드 <br><br><br><br>
+ </td>
+ <td>
+  대시보드 <br>
+  설문 <br>
+  회의실 <br><br>
+ </td>
+ <td>
+  대시보드 <br>
+  설문 <br>
+  회의실 <br>
+  로그인
+ </td>
+ <td>
+  DB 생성 및 관리 <br><br><br><br>
+ </td>
+</tr>
+
+<tr>
+ <td>류정훈</td>
+ <td>
+   
+ </td>
+ <td>
+  채팅창 <br>
+  공지사항 <br><br>
+ </td>
+ <td>
+  채팅창 <br>
+  공지사항 <br>
+  예외처리 <br>
+ </td>
+ <td>
+  AWS 배포 및 관리 <br><br><br>
+ </td>
+</tr>
+
  
-<!--  <a href="https://github.com/jiholee0">
-    <img align="center" src="https://github-readme-activity-graph.cyclic.app/graph?username=jiholee0&theme=light&height=400&width=400&bg_color=white&title_color=2f80ed&color=2f80ed&line=2f80ed&point=1074b8&custom_title=jiholee0's%20Contribution%20Graph&area=true&hide_border=true&font_color=2f80ed&font_weight=bold" />
-  </a> -->
+</tbody>
  
+
+
+
+
+ 
+</table>
 <br>
 
 ## 💻 DEV's log 💻
