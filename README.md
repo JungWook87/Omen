@@ -133,8 +133,9 @@
 
 <br><br>
  
-## 🔗 참고 사이트
-<img src="https://img.shields.io/badge/ERD-green"/> <a href="https://www.erdcloud.com/d/6tbxisMQadQbJ99gL">https://www.erdcloud.com/d/6tbxisMQadQbJ99gL</a>
+## <img src="https://img.shields.io/badge/ERD-green"/> ERD
+![ERD 수정](https://github.com/JungWook87/Omen/assets/119837276/5cf90c39-60be-4d00-8f0c-f47459038c2c)
+
 
     
 ## 🔨 Once I've used 🔨
