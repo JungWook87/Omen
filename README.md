@@ -144,6 +144,9 @@
 <br>
 🔸목업(피그마) : <a href="https://www.figma.com/file/ot7OHLUT9JGweK1stm6SGp/%EB%B9%9B%EB%82%98%EB%8A%94-%EB%84%A5%EC%84%9C%EC%8A%A4(%EC%97%B0%EC%9E%A5)?type=design&mode=design&t=nPixJmLjM0fHOiU9-0;" target="_blank">
 <img src="https://img.shields.io/badge/figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"></a>
+<br>
+🔸협업(노션) : <a href="https://www.notion.so/5a452b6536ea466288861e38c06247c2">
+<img src="https://img.shields.io/badge/notion-7D929E?style=flat-square&logo=notion&logoColor=white"> </a>
 
 <br><br>
     
