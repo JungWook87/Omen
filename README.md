@@ -134,9 +134,7 @@
 <br><br>
 
 ## 📃 요구사항 정의서
-[빛나는 넥서스.xlsx](https://github.com/JungWook87/Omen/files/12027879/default.xlsx)
-
-
+![요구사항 정의서](https://github.com/JungWook87/Omen/assets/119837276/c4e506ad-88dc-4d62-ba16-1f23da17b643)
 
 <br><br>
  
