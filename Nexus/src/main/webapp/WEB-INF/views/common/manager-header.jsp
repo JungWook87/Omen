@@ -67,9 +67,7 @@
     <script>
       // 로그아웃
       const logOut = document.querySelector('.header-log-out');
-      const logOut2 = document.querySelector('.log-out');
       logOut.addEventListener('click', logoutEvent);
-      logOut2.addEventListener('click', logoutEvent);
 
       function logoutEvent() {
         Swal.fire({
