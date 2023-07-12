@@ -6,7 +6,7 @@
  
  ---
 
-# 💪 Team
+## 💪 Team
 <table>
  <thead>
   <tr>
@@ -14,140 +14,128 @@
   </tr>
  </thead>
 
-<tbody>
- <tr>
-  <td>김정욱(팀장)</td>
-  <td>
-   부서 일정(API) <br><br><br>
-  </td>
-  <td>
-   메인 페이지 <br>
-   결재 페이지 <br>
-   근무 / 휴가
-  </td>
-  <td>
-   메인 페이지 <br>
-   결재 페이지 <br>
-   근무 / 휴가
-  </td>
-  <td>
-   깃 생성 및 관리 <br><br><br>
-  </td>
- </tr>
-
-<tr>
- <td>오가람</td>
- <td>
-  관리자 페이지 <br>
-  메인 팝업창 <br>
-  로그인 <br>
-  메인 페이지 <br>
-  부서 게시판 <br>
-  회의실 <br>
- </td>
- <td>
-  관리자 페이지 <br>
-  메인 팝업창 <br><br><br><br><br>
- </td>
- <td>
-  관리자 페이지 <br>
-  메인 팝업창 <br><br><br><br><br>
- </td>
- <td>
-  노션 관리 <br><br><br><br><br><br>
- </td>
-</tr>
-
-<tr>
- <td>이동준</td>
- <td>
-  결재자 리스트 <br>
-  결재 페이지 <br>
- </td>
- <td>
-  결재자 리스트 <br><br>
- </td>
- <td>
-  결재자 리스트 <br><br>
- </td>
- <td>
-  PPT 작성 <br><br>
- </td>
-</tr>
-
-<tr>
- <td>이재혁</td>
- <td>
-  대시보드 <br><br><br><br>
- </td>
- <td>
-  대시보드 <br>
-  설문 <br>
-  회의실 <br><br>
- </td>
- <td>
-  대시보드 <br>
-  설문 <br>
-  회의실 <br>
-  로그인
- </td>
- <td>
-  DB 생성 및 관리 <br><br><br><br>
- </td>
-</tr>
-
-<tr>
- <td>류정훈</td>
- <td>
-   
- </td>
- <td>
-  채팅창 <br>
-  공지사항 <br><br>
- </td>
- <td>
-  채팅창 <br>
-  공지사항 <br>
-  예외처리 <br>
- </td>
- <td>
-  AWS 배포 및 관리 <br><br><br>
- </td>
-</tr>
-
+ <tbody>
+  <tr>
+   <td>김정욱(팀장)</td>
+   <td>
+    부서 일정(API) <br><br><br>
+   </td>
+   <td>
+    메인 페이지 <br>
+    결재 페이지 <br>
+    근무 / 휴가
+   </td>
+   <td>
+    메인 페이지 <br>
+    결재 페이지 <br>
+    근무 / 휴가
+   </td>
+   <td>
+    깃 생성 및 관리 <br><br><br>
+   </td>
+  </tr>
  
-</tbody>
+  <tr>
+   <td>오가람</td>
+   <td>
+    관리자 페이지 <br>
+    메인 팝업창 <br>
+    로그인 <br>
+    메인 페이지 <br>
+    부서 게시판 <br>
+    회의실 <br>
+   </td>
+   <td>
+    관리자 페이지 <br>
+    메인 팝업창 <br><br><br><br><br>
+   </td>
+   <td>
+    관리자 페이지 <br>
+    메인 팝업창 <br><br><br><br><br>
+   </td>
+   <td>
+    노션 관리 <br><br><br><br><br><br>
+   </td>
+  </tr>
  
-
-
-
-
+  <tr>
+   <td>이동준</td>
+   <td>
+    결재자 리스트 <br>
+    결재 페이지 <br>
+   </td>
+   <td>
+    결재자 리스트 <br><br>
+   </td>
+   <td>
+    결재자 리스트 <br><br>
+   </td>
+   <td>
+    PPT 작성 <br><br>
+   </td>
+  </tr>
  
+  <tr>
+   <td>이재혁</td>
+   <td>
+    대시보드 <br><br><br><br>
+   </td>
+   <td>
+    대시보드 <br>
+    설문 <br>
+    회의실 <br><br>
+   </td>
+   <td>
+    대시보드 <br>
+    설문 <br>
+    회의실 <br>
+    로그인
+   </td>
+   <td>
+    DB 생성 및 관리 <br><br><br><br>
+   </td>
+  </tr>
+ 
+  <tr>
+   <td>류정훈</td>
+   <td></td>
+   <td>
+    채팅창 <br>
+    공지사항 <br><br>
+   </td>
+   <td>
+    채팅창 <br>
+    공지사항 <br>
+    예외처리 <br>
+   </td>
+   <td>
+    AWS 배포 및 관리 <br><br><br>
+   </td>
+  </tr>
+ </tbody>
 </table>
+
+<br><br>
+
+## 🗓️ 개발 일정
+🔸6월
+<ul>
+ <li>1st Week : 프로젝트 기획</li>
+ <li>1st ~ 2nd : 데이터베이스 설계 </li>
+ <li>2nd : 화면 설계</li>
+ <li>3rd ~ 4th : 화면 구현 및 기능 구현</li>
+</ul>
 <br>
+🔸7월
+<ul>
+ <li>1st : 최종 점검</li>
+</ul>
 
-## 💻 DEV's log 💻
-<div style="display:flex; flex-direction:row;">
-    <a href="https://easyhomputer.tistory.com">
-        <img src="https://img.shields.io/badge/Tistory-000000?style=for-the-badge&logo=Tistory&logoColor=white"> 
-    </a>
-    <a href="https://www.notion.so/homputer/Notion-3a51e19fa20a4c08a3c1d281a7a2c741">
-        <img src="https://img.shields.io/badge/Notion-9999FF?style=for-the-badge&logo=Notion&logoColor=white"> 
-    </a>
-  
-[![Tistory's Card](https://github-readme-tistory-card.vercel.app/api?name=easyhomputer&theme=default)](https://easyhomputer.tistory.com)
-</div><br>
-
+<br><br>
  
-## 📞 Contact 📞
-<div style="display:flex; flex-direction:row;">
-    <a href="https://www.instagram.com/6_o777/">
-        <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=Instagram&logoColor=white"> 
-    </a>
-    <a href="mailto:dlwlgh1254@gmail.com">
-        <img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=Gmail&logoColor=white"> 
-    </a>
-</div><br>
+## 🔗 참고 사이트
+<img src="https://img.shields.io/badge/ERD-green"/> <a href="https://www.erdcloud.com/d/6tbxisMQadQbJ99gL">https://www.erdcloud.com/d/6tbxisMQadQbJ99gL</a>
+
     
 ## 🔨 Once I've used 🔨
 <div style="display:flex; flex-direction:row;">
