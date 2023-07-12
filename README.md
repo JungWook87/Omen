@@ -137,10 +137,10 @@
 ![ERD 수정](https://github.com/JungWook87/Omen/assets/119837276/5cf90c39-60be-4d00-8f0c-f47459038c2c)
 
 ## 🔗 와이어 프레임 & 목업
-와이어 프레임(카카오오븐) :  <a href="https://ovenapp.io/view/cFVnycXsqkrVi3y9rSmOAEvlakTCQIef/1">
+와이어 프레임(카카오오븐) :  <a href="https://ovenapp.io/view/cFVnycXsqkrVi3y9rSmOAEvlakTCQIef/1" target="_blank">
 <img src="https://img.shields.io/badge/kakao-FFCD00?style=for-the-badge&logo=oven&logoColor=white"> </a>
 <br>
-목업(피그마) : <a href="https://www.figma.com/file/ot7OHLUT9JGweK1stm6SGp/%EB%B9%9B%EB%82%98%EB%8A%94-%EB%84%A5%EC%84%9C%EC%8A%A4(%EC%97%B0%EC%9E%A5)?type=design&mode=design&t=nPixJmLjM0fHOiU9-0">
+목업(피그마) : <a href="https://www.figma.com/file/ot7OHLUT9JGweK1stm6SGp/%EB%B9%9B%EB%82%98%EB%8A%94-%EB%84%A5%EC%84%9C%EC%8A%A4(%EC%97%B0%EC%9E%A5)?type=design&mode=design&t=nPixJmLjM0fHOiU9-0" target="_blank">
 <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"></a>
 
 
