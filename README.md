@@ -10,7 +10,7 @@
 <table>
  <thead>
   <tr>
-   <th width=200>이름</th>   <th width=250>Front</th>   <th width=250>JS</th>   <th width=250>Back</th>   <th width=250>기타</th>
+   <th width=180>이름</th>   <th width=250>Front</th>   <th width=250>JS</th>   <th width=250>Back</th>   <th width=250>기타</th>
   </tr>
  </thead>
 
